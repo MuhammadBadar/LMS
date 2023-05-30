@@ -1,0 +1,48 @@
+<div class="container-fluid page">
+  <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+    <div>Manage User Roles
+    </div>
+  </div>
+  <div class="page_content shadow p-3 position-relative">
+    <div style="text-align: right;margin-right: 10px;">
+      <button mat-raised-button class="mb-05" style="width: 150px;height: 30px;background-color: #1e293b;color:white"
+        (click)="addEvent()">Assign Roles</button>
+    </div>
+    <c-card style="padding: 10px; margin-top: 70px;">
+      <h5 cCardTitle>Assign Roles List</h5>
+      <c-card-body style="padding: 10px;background-color: rgb(2, 42, 75);margin: 5px;border-radius: 10px;">
+        <div class="example-table-container">
+          <section class="example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+              <ng-container matColumnDef="id" id="id">
+                <th mat-header-cell *matHeaderCellDef style="width: 20%;">Sr No </th>
+                <td mat-cell *matCellDef="let urole" style="width: 20%;"> {{urole.userId}} </td>
+              </ng-container>
+              <ng-container matColumnDef="user" id="user">
+                <th mat-header-cell *matHeaderCellDef style="width: 30%;">User </th>
+                <td mat-cell *matCellDef="let urole" style="width: 30%;"> {{urole.name}} </td>
+              </ng-container>
+              <ng-container matColumnDef="role" id="role">
+                <th mat-header-cell *matHeaderCellDef style="width: 60%;"> Roles </th>
+                <td mat-cell *matCellDef="let urole" style="width: 60%;"> {{urole.role}} </td>
+              </ng-container>
+              <ng-container matColumnDef="action" stickyEnd="true">
+                <th mat-header-cell *matHeaderCellDef>
+                  <p style="width: 150px;text-align: center;">Action</p>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  <div style="width: 150px;text-align: center;">
+                    <button mat-icon-button mat-sm-button color="dark" class="mr-1"
+                      (click)="Delete(row)"><mat-icon>delete</mat-icon></button>
+                  </div>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </section>
+        </div>
+      </c-card-body>
+    </c-card>
+  </div>
+</div>

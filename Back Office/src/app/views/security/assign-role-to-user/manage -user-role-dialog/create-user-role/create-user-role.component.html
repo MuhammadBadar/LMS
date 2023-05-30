@@ -1,0 +1,77 @@
+<div class="event-dialog-wrapper">
+  <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color: #1e293b">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span *ngIf="Add" class="title dialog-title" style="color:white;">{{dialogTitle}}</span>
+      <span *ngIf="del" class="title dialog-title" style="color:white;">Delete UserRole</span>
+      <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog" style="color: white;">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  <div mat-dialog-content class="p-1 m-0" style="padding: 10px;">
+    <form name="eventForm" #userForm="ngForm" class="event-form" fxFlex>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column">
+        <div fxFlex="100">
+          <mat-form-field fxFlex="100">
+            <mat-label>User</mat-label>
+            <mat-select matNativeControl required [disabled]="del" name="UserName" #userName="ngModel"
+              [(ngModel)]="securityService.selectedUserRole.userId">
+              <mat-option *ngFor="let u of user" [value]="u.id" (click)="Search()">
+                {{u.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex="100" *ngIf=" Add">
+          <mat-form-field>
+            <mat-label>Roles</mat-label>
+            <mat-select multiple required name="Name" #name="ngModel"
+              [(ngModel)]="securityService.selectedUserRole.role">
+              <mat-option *ngFor="let r of role" [value]="r.name">{{r.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%; margin-top: 10px;" *ngIf="del">
+          <c-card-body style="padding: 10px;background-color: rgb(2, 42, 75);margin: 5px;border-radius: 10px;">
+            <div class="example-table-container">
+              <section class="example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                  <ng-container matColumnDef="role" id="role">
+                    <th mat-header-cell *matHeaderCellDef style="width: 90%;">Role </th>
+                    <td mat-cell *matCellDef="let urole" style="width: 90%;"> {{urole}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef style="margin-top: 20px;"> Action </th>
+                    <td mat-cell *matCellDef="let row">
+                      <div>
+                        <button mat-icon-button mat-sm-button color="secondary" class="mr-1"
+                          (click)="Delete(row)"><mat-icon>delete</mat-icon></button>
+                      </div>
+                    </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </section>
+            </div>
+          </c-card-body>
+        </div>
+        <div *ngIf="del && msg" style="padding: 10px;">
+          <p><strong> No Role Assigned to this user yet</strong></p>
+        </div>
+      </div>
+      <div class="pull-right" style="text-align:end; margin-left: 5px;">
+        <button mat-raised-button *ngIf=" Add" [disabled]="userForm.invalid" (click)="SaveUserRoles()"
+          style="width: 100px;height: 30px;background-color: #1e293b; color: white;" aria-label="SUBMIT">
+          <strong>
+            Submit
+          </strong>
+        </button>
+        <button size="sm" cButton class="me-1" color="dark"
+          style="margin-right: 10;margin-left: 5px;width: 100px;height: 30px;" (click)="dialogRef.close()" *ngIf=" Add"
+          aria-label="CANCEL"><strong> Cancel</strong>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

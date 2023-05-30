@@ -1,0 +1,128 @@
+<div class="event-dialog-wrapper" style="z-index: 100;">
+    <mat-toolbar matDialogTitle class="mat-primary m-0"
+        style="background-color:  rgb(2, 42, 75);color: black; height: 50px; margin-top: 15px;">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 13px;">
+            <span *ngIf="Add" class="title dialog-title" style="color:white;">
+                <p>Manage SettingsType</p>
+            </span>
+            <span *ngIf="Edit" class="title dialog-title" style="color:white;">
+                <p>Edit SettingsType</p>
+            </span>
+            <button mat-icon-button style="color:white;margin-top: 0; padding-top: 0;" (click)="dialogRef.close()"
+                aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+    <div class="page_content shadow p-3 position-relative">
+        <form name="eventForm" #userForm="ngForm">
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                    <mat-label>Enter Name</mat-label>
+                    <input matInput #name="ngModel" name="Name" type="text" required="true"
+                        [(ngModel)]="selectedSettingsType.name" (input)="TextChangeEvent($event);onSearchChange()">
+                </mat-form-field>
+                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                    <mat-label>Code</mat-label>
+                    <input matInput #keyCode="ngModel" name="KeyCode" type="text" required="true"
+                        [readonly]="selectedSettingsType.isSystemDefined && Edit"
+                        [(ngModel)]="selectedSettingsType.keyCode" (input)="onSearchChange()">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                    <mat-label> Select Parent</mat-label>
+                    <mat-select name="ParentId" [(ngModel)]="selectedSettingsType.parentId">
+                        <mat-option [value]="0" (click)="Refresh()">--Please Select--</mat-option>
+                        <mat-option *ngFor="let pt of types" [value]=" pt.id" (click)="Search()">
+                            {{ pt.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div fxLayout="column">
+                    <mat-checkbox name="isSystemDefined" [(ngModel)]="selectedSettingsType.isSystemDefined">
+                        Is System Defined
+                    </mat-checkbox>
+                    <mat-checkbox name="uploadStatus" [(ngModel)]="selectedSettingsType.uploadStatus">
+                        Upload Status
+                    </mat-checkbox>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="100% " appearance="outline">
+                    <mat-label>Enter Description</mat-label>
+                    <textarea #Description="ngModel" matInput name="description"
+                        [(ngModel)]="selectedSettingsType.description"></textarea>
+                </mat-form-field>
+            </div>
+            <div fxLayoutAlign="end end">
+                <div style="margin-top: 10px;">
+                    <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;" type="submit"
+                        (click)="SaveSettingsType();">
+                        Save
+                    </button>
+                    <button *ngIf="Edit" cButton class="me-1" style="background-color:#1e293b ;" type="submit"
+                        (click)="UpdateSettingsType()">
+                        Update
+                    </button>
+                </div>
+                <div>
+                    <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                        (click)="ngOnInit()">
+                        <mat-icon>autorenew</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <c-card style="padding: 10px; margin-top: 30px;" class="mat-elevation-z8">
+            <h5 cCardTitle style="font-size: 20;"> Settings Type List</h5>
+            <c-card-body style="padding: 10px;margin: 10px;border-radius: 10px;">
+                <div class="example-table-container">
+                    <section class="example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;">
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                            <ng-container matColumnDef="Id">
+                                <th mat-header-cell *matHeaderCellDef> Sr No </th>
+                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef> Name </th>
+                                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="keyCode">
+                                <th mat-header-cell *matHeaderCellDef> Key Code </th>
+                                <td mat-cell *matCellDef="let element"> {{element.keyCode}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="parent">
+                                <th mat-header-cell *matHeaderCellDef> Parent</th>
+                                <td mat-cell *matCellDef="let element"> {{element.parentName}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="description">
+                                <th mat-header-cell *matHeaderCellDef> Description </th>
+                                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="actions" stickyEnd="true">
+                                <th mat-header-cell *matHeaderCellDef style="width: 14%;text-align: center;">Actions
+                                </th>
+                                <td mat-cell *matCellDef="let row" style="width: 100px;">
+                                    <div style="width: 100px;">
+                                        <button mat-icon-button mat-sm-button style="color:#1e293b ; "
+                                            cTooltip="Edit Settings Type" (click)="GetSettingsTypeForEdit(row.id)">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                        <button mat-icon-button mat-sm-button color="warn"
+                                            cTooltip="Delete Settings Type" [disabled]="row.isSystemDefined"
+                                            (click)="DeleteSettingsType(row.id)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </div>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </section>
+                </div>
+            </c-card-body>
+        </c-card>
+    </div>
+</div>

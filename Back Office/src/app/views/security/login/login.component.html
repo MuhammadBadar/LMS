@@ -1,0 +1,59 @@
+<div style="background-color: white;border-radius: 20px; margin-top: -1.3rem;">
+  <c-container style="max-width: 750px;">
+    <c-row class="justify-content-center">
+      <c-col md="6"
+        style="padding: 10px;background-color: rgb(2, 42, 75);    background-image: linear-gradient(to bottom, rgb(2, 33, 58), rgb(7, 95, 122));margin: 5px;border-radius: 10px;"
+        class="mat-elevation-z8">
+
+        <c-card class="p-4">
+          <c-card-body>
+            <div>
+              <form cForm>
+                <mat-progress-bar mode="query" class="session-progress"
+                  style="color: wheat;margin-top: -20px;"></mat-progress-bar>
+                <!-- <mat-toolbar matDialogTitle style="background-color: rgb(32, 10, 66);">
+                </mat-toolbar> -->
+                <div class="text-center pt-8 pb-16" style="margin: 20px;margin-top: 30px;">
+                  <mat-icon style="background-color: rgb(7, 95, 122);"
+                    style="  transform: scale(4)">person_pin</mat-icon>
+                </div>
+                <c-row>
+                  <mat-form-field style="margin-top: 20px;" appearance="outline">
+                    <input matInput required="true" #name="ngModel" [(ngModel)]="login.name" name="Name"
+                      placeholder="User Name">
+                  </mat-form-field>
+                </c-row>
+                <c-row>
+                  <mat-form-field style="margin-top: 20px;" appearance="outline">
+                    <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" #password="ngModel"
+                      required="true" [(ngModel)]="login.password" name="Password">
+                    <mat-icon style="color: rgb(32, 10, 66);" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off'
+                      :
+                      'visibility'}}
+                    </mat-icon>
+                    <mat-hint style="color: rgb(32, 10, 66);">Please Enter your password</mat-hint>
+                  </mat-form-field>
+                </c-row>
+                <c-row>
+                  <button mat-raised-button routerLinkActive="active" (click)="Login()"
+                    style="margin-top: 20px;  width: 400px;background-color: rgb(32, 10, 66); color: rgb(223, 221, 217);">Sign
+                    in</button>
+                </c-row>
+                <mat-divider></mat-divider>
+                <div fxLayout="row" fxLayoutAlign="space-around">
+                  <div style="margin-top: 30px;">
+                    <p>Not Registered Yet?</p>
+                  </div>
+                  <div style="margin-top: 30px;"><a><strong>Register Now</strong> </a></div>
+                </div>
+
+              </form>
+            </div>
+          </c-card-body>
+        </c-card>
+
+
+      </c-col>
+    </c-row>
+  </c-container>
+</div>

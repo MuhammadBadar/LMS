@@ -1,0 +1,97 @@
+<div class="container-fluid page">
+  <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+    <div *ngIf="Add">Manage User
+    </div>
+    <div *ngIf="Edit">Edit User
+    </div>
+  </div>
+  <div class="page_content shadow p-3 position-relative">
+    <form name="form" style="margin-top: 20px;padding: 10px;" #userForm="ngForm"
+      (ngSubmit)="userForm.form.valid && SaveUser() " novalidate class="event-form" fxFlex>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column">
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%" class="form-group">
+          <mat-form-field fxFlex="49% " appearance="outline">
+            <mat-label>Name</mat-label>
+            <input class="form-control" matInput name="firstName" #firstName="ngModel"
+              [(ngModel)]="securityService.selectedUser.firstName" required>
+          </mat-form-field>
+          <mat-form-field fxFlex="49% " appearance="outline">
+            <mat-label>Father Name</mat-label>
+            <input class="form-control" matInput name="fatherName" #fatherName="ngModel"
+              [(ngModel)]="securityService.selectedUser.fatherName" required>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%" class="form-group">
+          <mat-form-field fxFlex="49% " appearance="outline">
+            <mat-label>Phone No</mat-label>
+            <span matPrefix>+1 &nbsp;</span>
+            <input type="tel" #phoneNumber="ngModel" matInput placeholder="Cell Number" required name="phoneNumber"
+              [(ngModel)]="securityService.selectedUser.phoneNumber">
+          </mat-form-field>
+          <mat-form-field fxFlex="49% " appearance="outline">
+            <mat-label>Email</mat-label>
+            <input class="form-control" matInput name="Email" #email="ngModel"
+              [(ngModel)]="securityService.selectedUser.email"
+              [ngClass]="{ 'is-invalid': userForm.submitted && email.invalid }" placeholder="Email" required email>
+          </mat-form-field>
+        </div>
+        <div *ngIf="userForm.submitted && email.invalid" class="invalid-feedback">
+          <div style="color: rgb(223, 24, 24);  margin-left: 320px;" *ngIf="['email']"><strong>Must be a valid
+              email address</strong> </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%" class="form-group">
+          <mat-form-field fxFlex="49% " appearance="outline">
+            <mat-label>User Name</mat-label>
+            <input class="form-control" matInput name="Name" #name="ngModel"
+              [(ngModel)]="securityService.selectedUser.name"
+              [ngClass]="{ 'is-invalid': userForm.submitted && name.invalid }" placeholder="Name" required>
+          </mat-form-field>
+          <mat-form-field fxFlex="49% " appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput class="form-control" placeholder="Password" [type]="hide ? 'password' : 'text'"
+              name="Password" [ngClass]="{ 'is-invalid': userForm.submitted && password.invalid }" #password="ngModel"
+              [(ngModel)]="securityService.selectedUser.userPassword" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <!-- <mat-hint>Enter your password</mat-hint> -->
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%" class="form-group">
+          <mat-form-field fxFlex="49% " appearance="outline">
+            <mat-label>CNIC</mat-label>
+            <input class="form-control" matInput name="cnic" #cnic="ngModel"
+              [(ngModel)]="securityService.selectedUser.cnic" required>
+          </mat-form-field>
+          <mat-form-field fxFlex="49% " appearance="outline">
+            <mat-label>Address</mat-label>
+            <input class="form-control" matInput name="address" #address="ngModel"
+              [(ngModel)]="securityService.selectedUser.address" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div *ngIf="messagebox"
+        style="background-color: rgb(212, 245, 234); color:rgb(218, 17, 17); padding: 15px;margin: 10px;width: 680; text-align: center; justify-content: center;">
+
+        <tbody>
+
+          <tr *ngFor="let msg of message">
+
+            <td><strong>{{msg.description}}</strong></td>
+          </tr>
+        </tbody>
+      </div>
+      <div fxLayoutAlign="end end">
+        <button mat-raised-button *ngIf=" !Edit" style="background-color:  #1e293b;color:white" aria-label="SUBMIT"
+          [disabled]="userForm.invalid">
+          Submit
+        </button>
+        <button mat-raised-button [disabled]="userForm.invalid" *ngIf=" !Add"
+          style="background-color: #1e293b;color:white" aria-label="Update">
+          Update
+        </button>
+        <button mat-raised-button color="warn" [routerLink]="['/security/users']"
+          style="margin-left: 5px; margin-top: 20x;">Back </button>
+      </div>
+    </form>
+  </div>
+</div>

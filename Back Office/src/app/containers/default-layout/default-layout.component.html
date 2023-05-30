@@ -1,0 +1,55 @@
+<!--sidebar-->
+<c-sidebar #sidebar="cSidebar" class="d-print-none sidebar sidebar-fixed" id="sidebar" visible
+  style="background-color: rgb(58, 59, 59);z-index: 101;  background-image: linear-gradient(to bottom, rgb(2, 33, 58),rgb(2, 33, 58), rgb(6, 70, 90));color: #FFAC1C;">
+
+  <!-- <c-sidebar-brand routerLink="./" style="cursor: pointer;background-color: rgb(7, 95, 122);">
+
+  </c-sidebar-brand> -->
+  <c-sidebar-brand [brandFull]="{
+        src: 'assets/img/brand/logo.png',
+        width: 130,
+        height: 50,
+        alt: 'QamSoft Logo'
+      }" [brandNarrow]="{
+        src: 'assets/img/brand/favIcon.png',
+       width: 50,
+        height: 50,
+        alt: 'QamSoft Logo'
+      }" routerLink="./" style="background-color: white; ">
+  </c-sidebar-brand>
+  <!-- <c-sidebar-brand [brandFull]="{
+      src: 'assets/img/brand/coreui-angular.svg',
+      width: 200,
+      height: 46,
+      alt: 'CoreUI Logo'
+    }" [brandNarrow]="{
+      src: 'assets/img/brand/coreui-signet-white.svg',
+      width: 46,
+      height: 46,
+      alt: 'CoreUI Logo'
+    }" routerLink="./">
+  </c-sidebar-brand> -->
+  <perfect-scrollbar [config]="perfectScrollbarConfig">
+    <c-sidebar-nav [navItems]="navItems" dropdownMode="close">
+    </c-sidebar-nav>
+  </perfect-scrollbar>
+  <c-sidebar-toggler *ngIf="!sidebar.narrow" toggle="unfoldable" cSidebarToggle="sidebar"></c-sidebar-toggler>
+</c-sidebar>
+
+<!--main-->
+<div class="wrapper d-flex flex-column min-vh-100 bg-light dark:bg-transparent">
+  <!--app-header-->
+  <app-default-header class="mb-4 d-print-none header header-sticky" position="sticky" style="z-index: 101;"
+    sidebarId="sidebar"></app-default-header> <!-- <app-default-header class="mb-4 d-print-none header header-sticky" position="sticky" sidebarId="sidebar"
+    style="background-color: rgb(228, 229, 231);z-index: 101;max-height: 40px"></app-default-header> -->
+
+  <!--app-body-->
+  <div class="body flex-grow-1 " style="margin-left: 3px;">
+    <c-container breakpoint="lg" class="h-auto">
+      <router-outlet></router-outlet>
+    </c-container>
+  </div>
+  <!--app footer-->
+  <app-default-footer></app-default-footer>
+</div>
+<!-- [perfectScrollbar]="perfectScrollbarConfig" -->

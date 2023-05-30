@@ -1,0 +1,103 @@
+<div class="container-fluid page">
+    <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+        <div *ngIf="Add">Manage Inquiry
+        </div>
+        <div *ngIf="Edit">Edit Inquiry
+        </div>
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <form #InquiryForm="ngForm">
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                    <mat-label> Name</mat-label>
+                    <input matInput required #Name="ngModel" name="name" [(ngModel)]="selectedInquiry.name" />
+                </mat-form-field>
+                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                    <mat-label>Email</mat-label>
+                    <input matInput required #email="ngModel" name="email" [(ngModel)]="selectedInquiry.email" />
+                </mat-form-field>
+                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                    <mat-label>Cell No</mat-label>
+                    <input matInput required #cell="ngModel" name="cell" [(ngModel)]="selectedInquiry.cell" />
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
+                    <mat-label> Message</mat-label>
+                    <textarea matInput #message="ngModel" name="message"
+                        [(ngModel)]="selectedInquiry.comments"></textarea>
+                </mat-form-field>
+            </div>
+            <div fxLayoutAlign="end end">
+                <c-spinner *ngIf="proccessing" style="height: 50px;width: 50px;color: rgb(3, 71, 102);"></c-spinner>
+                <div style="margin-top: 10px;" *ngIf="!proccessing">
+                    <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;" type="submit"
+                        (click)="SaveInquiry();">
+                        Save
+                    </button>
+                    <button *ngIf="Edit" cButton class="me-1" style="background-color:#1e293b ;" type="submit"
+                        (click)="UpdateInquiry()">
+                        Update
+                    </button>
+                </div>
+                <div>
+                    <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                        (click)="ngOnInit()">
+                        <mat-icon>autorenew</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <c-card style="padding: 10px; margin-top: 30px;" class="mat-elevation-z8">
+            <h5 cCardTitle>Inquiry List</h5>
+            <c-card-body style="padding: 10px;margin: 5px;border-radius: 10px;">
+                <div class="example-table-container">
+                    <section class="example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;">
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                            <ng-container matColumnDef="Id">
+                                <th mat-header-cell *matHeaderCellDef> Sr No </th>
+                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef> Name </th>
+                                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="email">
+                                <th mat-header-cell *matHeaderCellDef> Email </th>
+                                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="cell">
+                                <th mat-header-cell *matHeaderCellDef> Cell NO </th>
+                                <td mat-cell *matCellDef="let element"> {{element.cell}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="comments">
+                                <th mat-header-cell *matHeaderCellDef> Message </th>
+                                <td mat-cell *matCellDef="let element"> {{element.comments}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="actions" stickyEnd="true">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <p style="font-size: 14px;text-align: center;">Actions</p>
+                                </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <div style="text-align: center;">
+                                        <button mat-icon-button mat-sm-button style=" color:#1e293b ; "
+                                            cTooltip=" Edit Inquiry" (click)="GetInquiryForEdit(row.id)">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+
+                                        <button mat-icon-button mat-sm-button color="warn" cTooltip="Delete Inquiry"
+                                            (click)="DeleteInquiry(row.id)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </div>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </section>
+                </div>
+            </c-card-body>
+        </c-card>
+    </div>
+</div>

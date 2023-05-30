@@ -1,0 +1,79 @@
+<div class="container-fluid page">
+  <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+    <div>Manage Role
+    </div>
+  </div>
+  <div class="page_content shadow p-3 position-relative">
+    <form name="eventForm" #roleForm="ngForm">
+      <div fxLayout="row" fxLayoutAlign="space-between"
+        style="padding: 30px;width: 700px;text-align: center;margin: 0 auto;">
+        <mat-form-field fxFlex="76%">
+          <mat-label>Enter Role</mat-label>
+          <input matInput name="Name" #name="ngModel" [(ngModel)]="securitySvc.selectedRole.name" required="true">
+        </mat-form-field>
+        <div fxLayout="row" fxFlex="20%" style="margin-top: 10px;">
+          <button mat-raised-button color="primary" *ngIf=" !Edit" [disabled]="roleForm.invalid" (click)="SaveRole()"
+            style="background-color: #1e293b;color:white;" aria-label="SUBMIT">
+            Submit
+          </button>
+          <button mat-raised-button color="primary" *ngIf=" !Add" [disabled]="roleForm.invalid" (click)="SaveRole()"
+            style="background-color: #1e293b;color:white;" aria-label="Update">
+            Update
+          </button>
+          <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh " (click)="Refresh()" *ngIf=" Edit"
+            cTooltipPlacement="right" style="margin-top: -10px;">
+            <mat-icon>autorenew</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="messagebox" style="background-color: wheat;color:#1e293b; padding: 5px;">
+        <tbody>
+          <tr *ngFor="let msg of message">
+            <td><strong>{{msg.description}}</strong></td>
+          </tr>
+        </tbody>
+      </div>
+    </form>
+    <div style="padding: 30px;width: 700px;text-align: center;margin: 0 auto;">
+      <c-card style="padding: 10px; margin-top: 30px;" class="mat-elevation-z8">
+        <c-card-body style="padding: 10px;background-color: rgb(2, 42, 75);margin: 5px;border-radius: 10px;">
+          <div class="example-table-container">
+            <section class="example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;">
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="id" id="id">
+                  <th mat-header-cell *matHeaderCellDef style="width: 20%;">Sr No </th>
+                  <td mat-cell *matCellDef="let stdlec" style="width: 20%;"> {{stdlec.id}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="role" id="role">
+                  <th mat-header-cell *matHeaderCellDef style="width: 80%;">Role </th>
+                  <td mat-cell *matCellDef="let stdlec" style="width: 80%;"> {{stdlec.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action" stickyEnd="true">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <p style="width:150px;text-align: center;">Actions</p>
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    <div fxLayout="row" fxLayoutAlign="space-around" style="width:150px;text-align: center;">
+                      <button mat-icon-button mat-sm-button color="primary" class="mr-1"
+                        (click)="EditRole(row)"><mat-icon>edit</mat-icon></button>
+
+                      <button mat-icon-button mat-sm-button color="warn" class="mr-1"
+                        (click)="DeleteRole(row.id)"><mat-icon>delete</mat-icon></button>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+              </table>
+            </section>
+          </div>
+        </c-card-body>
+      </c-card>
+    </div>
+  </div>
+</div>
