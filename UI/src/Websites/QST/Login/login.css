@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.login-left {
+    background-color: aqua;
+
+}
+
+
+.login-right {
+    margin-top: 80px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .form-check-label {
+    color: white;
+} */
+
+.login-left img {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.login-left h3 {
+    margin-top: 170px;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    font-size: 23px;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+.login-left h1 {
+    margin-top: 20px;
+    font-size: 60px;
+    color: white;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+
+
+}
+
+.bar-login {
+    height: 10px;
+    width: 60px;
+    border-radius: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    background-color: white;
+}
+
+.login-left p {
+    margin-top: 20px;
+    color: white;
+    font-size: 14px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 150px;
+}
+
+.login-left {
+    background: linear-gradient(0deg, rgba(255, 0, 150, 0.3), rgba(255, 0, 150, 0.3)), url(../assets/images/login.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.login-right h2 {
+    margin-top: 100px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    color: rgba(9, 9, 121, 1);
+
+}
+
+.login-right p {
+    margin-top: 50px;
+    font-size: 14px;
+    color: darkgray;
+    text-align: center;
+
+}
+
+.email-label {
+    margin-top: 70px;
+    border-left: 8px solid rgba(9, 9, 121, 1);
+    border-radius: 0px;
+}
+
+.pass-label {
+    margin-top: 20px;
+    border-left: 8px solid rgba(9, 9, 121, 1);
+    border-radius: 0px;
+}
+
+.login-btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    font-size: 20px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    border: none;
+    border-radius: 20px;
+    padding: 5px 100px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}

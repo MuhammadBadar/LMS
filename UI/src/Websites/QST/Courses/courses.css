@@ -1,0 +1,116 @@
+#banner-bg {
+    background-image: url(../assets/images/banner-courses1.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 200px;
+
+}
+
+#main {
+    background-color: #f8f9fe;
+    padding-bottom: 60px;
+}
+
+ul {
+    margin-left: 200px;
+}
+
+ul li a {
+    margin-right: 20px;
+    color: white
+}
+
+#navbar {
+    box-shadow: 2px 10px 5px 2px rgba(0, 0, 0, 0.57);
+
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+}
+
+.navbar .btn {
+    background-color: white;
+    color: rgba(9, 9, 121, 1);
+    border: 1px solid blue;
+    margin-left: 150px;
+}
+
+#bar {
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    box-shadow: -1px 6px 5px 0px rgba(0, 0, 0, 0.6);
+
+}
+
+#main-courses {
+    padding-bottom: 100px;
+}
+
+.bar-courses {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.bar-courses h2 {
+    text-align: center;
+    font-size: 28px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 400;
+
+}
+
+
+.courses-row {
+    margin-top: 70px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.courses-row h4 {
+    text-align: center;
+    color: rgba(9, 9, 121, 1);
+    font-size: 30px;
+}
+
+.courses-row .card-title {
+    text-align: center;
+    font-size: 20px;
+    color: rgba(9, 9, 121, 1);
+}
+
+.course-btn {
+    width: 100%;
+}
+
+.btn-primary {
+    width: 100%;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    border: none;
+    margin-top: 20px;
+}
+
+.card {
+    box-shadow: -1px 4px 5px 0px rgba(0, 0, 0, 0.68);
+
+}
+
+.courses-row-2 {
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.courses-row-2 h4 {
+    text-align: center;
+    color: rgba(9, 9, 121, 1);
+    font-size: 30px;
+}
+
+.courses-row-2 .card-title {
+    text-align: center;
+    font-size: 20px;
+    color: rgba(9, 9, 121, 1);
+}
+
+.card img {
+    margin-top: 30px;
+}

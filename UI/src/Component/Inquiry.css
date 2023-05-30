@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,200&display=swap");
+
+.iSubmitBtn {
+    width: 120px;
+    margin-top: 30px;
+    background-image: linear-gradient(to right, rgb(3, 35, 77) 0%,
+            rgb(1, 50, 65) 35%,
+            rgb(1, 75, 90));
+    color: white;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    font-family: "Fraunces";
+}
+
+
+.closeBtn {
+    color: white;
+}
+
+.addBtn {
+    padding: 5px;
+    font-family: "Fraunces";
+    margin-top: 70px;
+    margin-bottom: 30px;
+    background-image: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    color: white;
+    border: none;
+    width: 120px;
+    margin-left: 10px;
+}
+
+.label {
+    color: rgb(4, 11, 70);
+    margin-top: 10px;
+    font-size: medium;
+}
+
+.inquiryForm {
+    font-family: "Fraunces";
+    margin: 30px;
+}
+
+.iHeader {
+    background-image: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    color: white;
+}
+
+.iTableHead {
+    background-image: linear-gradient(to right, rgba(2, 0, 36, 1) 0%,
+            rgba(9, 9, 121, 1) 35%,
+            rgba(0, 212, 255, 1));
+    color: white;
+    font-weight: normal;
+}
+
+.head {
+    font-weight: normal;
+    font-size: medium;
+}
+
+.table {
+    font-family: "Fraunces";
+    font-size: 90%;
+    display: block;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.iTableWraper {
+    width: 100%;
+    overflow: auto;
+}
+
+.iTableWraper .iActions {
+    text-align: center;
+    position: sticky;
+    right: 0;
+    z-index: 2;
+
+}
+
+
+
+.actionBtn {
+    background-color: transparent;
+    border: none;
+    color: #a56060;
+}
+
+.iTableWraper .actionLabel {
+    background-color: linear-gradient(to bottom, #c04904, #ca6e05);
+    justify-content: center;
+}
+
+.iTableWraper .actionBtnCol {
+    background-color: white;
+}
+
+table th,
+table td {
+    margin: 20px;
+    width: 200px;
+}
+
+.heading {
+    color: #c04904;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 40px;
+}
+
+.reSetBtn:hover {
+    background-color: rgb(145, 27, 7);
+}
+
+.submitBtn:hover {
+    background-color: rgb(51, 2, 25);
+}
+
+.reSetBtn {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    background-color: #363535;
+    color: white;
+    border: none;
+    text-align: right;
+    width: 120px;
+    text-align: center;
+    justify-content: center;
+}

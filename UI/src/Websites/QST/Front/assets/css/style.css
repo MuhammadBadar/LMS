@@ -1,0 +1,190 @@
+#main{
+    background-color: #f8f9fe;
+    padding-bottom: 60px;
+}
+ul{
+    margin-left:200px;
+}
+ul li a{
+    margin-right: 20px;
+    color: white
+}
+#navbar{
+    box-shadow: 2px 10px 5px 2px rgba(0,0,0,0.57);
+
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+.navbar .btn{
+    background-color: white;
+    color: rgba(9,9,121,1);
+   border: 1px solid blue;
+   margin-left: 150px;
+}
+.main-data h1{
+    color: #2b71e8;
+    font-size: 55px;
+    font-weight: 400;
+}
+
+.main-btn{
+    padding: 8px 10px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    color: white;
+    border: none;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+.main-data{
+    margin-top: 100px;
+}
+.main-img{
+    margin-top: 100px;
+}
+.stats{
+    background-color: #e9edf1;
+}
+
+.landing-form-btn{
+    background-color: white;
+    padding: 5px 16px;
+    color: #2b71e8;
+    font-weight: 500;
+    border: none;
+    margin-top: 10px;
+}
+
+.main-data p{
+    margin-top: 20px;
+}
+
+.courses-data{
+    margin-top: 100px;
+    
+}
+
+.courses-data h3{
+    font-size: 30px;
+    color: #424242;
+}
+
+.courses-data p{
+    margin-top: 20px;
+    color: darkgray;
+}
+
+.courses-row-1{
+    margin-top: 40px;
+}
+
+.courses-row-2{
+    margin-top: 40px;
+}
+.courses-btn{
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
+.courses-main-btn{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px 45px;
+    font-size: 18px;
+    font-weight: 500px;
+    color: white;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    border-radius: 0px;
+    border: none;
+}
+
+.angular .card{
+    border-radius: 0px;
+    box-shadow: -1px 6px 12px -3px rgba(0,0,0,0.52);
+    text-align: center;
+}
+.angular .card-body .btn{
+width: 100%;
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+color: white;
+font-size: 15px;
+border: none;
+border-radius: 0px;
+
+}
+#services{
+    background-color: #f8f9fe;
+    padding-bottom: 100px;
+}
+.ser-heading{
+    margin-top: 100px;
+}
+.ser-heading h1{
+    font-size: 25px;
+    color: #424242;
+}
+.service-row{
+    margin-top: 40px;
+}
+.service-row .card{
+    border: none;
+    border-radius: 0px;
+}
+.service-row .btn{
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    border-radius: 0px;
+    border: none;
+    margin-top: 10px;
+}
+.books-head{
+    margin-top:50px;
+}
+.books-head h3{
+    font-size: 25px;
+    color: #424242;
+}
+
+.books-head p{
+    color: darkgray;
+    font-size: 14px;
+    margin-top: 20px;
+}
+.books-row .card-img{
+    margin-top: 40px;
+}
+
+.books-row .card{
+    margin-top: 30px;
+}
+.book-btn-main{
+    margin-top: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 45px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    color: white;
+    border: none;
+    border-radius: 0px;
+}
+.book-btn{
+    margin-bottom: 50px;
+}
+
+#footer{
+    padding-top: 100px;
+    padding-bottom: 50px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+.form-landing{
+    margin-top: 100px;
+    padding: 50px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+form h3{
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: white;
+    font-weight: 400;
+}

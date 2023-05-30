@@ -1,0 +1,20 @@
+#footer{
+    padding-top: 100px;
+    padding-bottom: 50px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+.form-landing{
+    margin-top: 100px;
+    padding: 50px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+form h3{
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: white;
+    font-weight: 400;
+}
+.footer-logo p{
+    color: #FFAC1C;
+}

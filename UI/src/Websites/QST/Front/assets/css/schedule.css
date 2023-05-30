@@ -1,0 +1,63 @@
+#main-sch-bg{
+    background-image: url(../images/banner-courses1.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 200px;
+}
+
+#main{
+    background-color: #f8f9fe;
+    padding-bottom: 60px;
+}
+ul{
+    margin-left:200px;
+}
+ul li a{
+    margin-right: 20px;
+    color: white
+}
+#navbar{
+    box-shadow: 2px 10px 5px 2px rgba(0,0,0,0.57);
+
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+.navbar .btn{
+    background-color: white;
+    color: rgba(9,9,121,1);
+   border: 1px solid blue;
+   margin-left: 150px;
+}
+.row-row-1-sch{
+    margin-top: 70px;
+}
+.btn-primary{
+    width: 100%;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    border: none;
+    margin-top: 20px;
+}
+.card{
+    box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.68);
+}
+.card{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+#bar-sch{
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: -1px 6px 5px 0px rgba(0,0,0,0.6);
+
+    
+}
+.bar-sch{
+    text-align: center;
+    font-size: 28px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 400;
+}

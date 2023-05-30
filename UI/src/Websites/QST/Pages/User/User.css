@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,200&display=swap");
+
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.uheading {
+    color: #c04904;
+}
+
+
+#tableHead {
+    background-image: linear-gradient(to bottom, #c04904, #ca6e05);
+    color: white;
+    font-weight: normal;
+}
+
+.head {
+    font-weight: normal;
+    font-size: medium;
+}
+
+
+
+.tableWraper {
+    width: 100%;
+
+}
+
+.tableWraper .userTable .actions {
+    text-align: center;
+    width: 20%;
+    position: sticky;
+    right: 0;
+    z-index: 2;
+
+}
+
+.tableWraper .userTable .otherCol {
+    width: 80%;
+    font-size: 20px;
+}
+
+.tableWraper .userTable {
+
+    width: 100%;
+}
+
+.actionBtn {
+    background-color: transparent;
+    border: none;
+    right: 0;
+    color: (to bottom, #c04904, #ca6e05);
+}
+
+.tableWraper .userActionLabel {
+    background-color: (to bottom, #c04904, #ca6e05);
+    right: 0;
+    justify-content: center;
+}
+
+.tableWraper .actionBtnCol {
+    right: 0;
+    background-color: white;
+}
+
+
+.uSubmitBtn {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: (to bottom, #c04904, #ca6e05);
+    color: white;
+    border: none;
+    text-align: right;
+    width: 120px;
+    text-align: center;
+    justify-content: center;
+}
+
+
+#uReSetBtn :hover {
+    background-color: rgb(145, 27, 7);
+}
+
+.uSubmitBtn:hover {
+    background-color: rgb(51, 2, 25);
+}
+
+#uReSetBtn {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    background-color: #363535;
+    color: white;
+    border: none;
+    text-align: right;
+    width: 120px;
+    text-align: center;
+    justify-content: center;
+}

@@ -1,0 +1,135 @@
+#main-contact-bg {
+    background-image: url('../images/contact-bg.jpg');
+    height: 200px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#main {
+    background-color: #f8f9fe;
+    padding-bottom: 60px;
+}
+
+.formBody .btn {
+    background-color: red;
+}
+
+ul {
+    margin-left: 200px;
+}
+
+ul li a {
+    margin-right: 20px;
+    color: white
+}
+
+#navbar {
+    box-shadow: 2px 10px 5px 2px rgba(0, 0, 0, 0.57);
+
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+}
+
+.navbar .btn {
+    background-color: white;
+    color: rgba(9, 9, 121, 1);
+    border: 1px solid blue;
+    margin-left: 150px;
+}
+
+#contact-bar {
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    box-shadow: -1px 6px 5px 0px rgba(0, 0, 0, 0.6);
+
+}
+
+.contact-bar {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.contact-bar h2 {
+    text-align: center;
+    font-size: 28px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+
+.contact-head h5 {
+    margin-top: 70px;
+    color: rgba(9, 9, 121, 1);
+    font-size: 20px;
+}
+
+.contact-head h1 {
+    font-style: normal;
+    color: black;
+    font-size: 40px;
+    font-weight: 700;
+
+
+}
+
+.contact-head p {
+    margin-top: 30px;
+    font-size: 15px;
+    color: #333;
+}
+
+.contact-head {
+    margin-bottom: 50px;
+}
+
+
+.contact-icon i {
+    background-color: rgba(9, 9, 121, 1);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.contact-icon {
+    margin-bottom: 40px;
+}
+
+.contact-icon p {
+    color: darkgray;
+}
+
+.location h3 {
+    font-size: 10px;
+}
+
+.location p {
+    font-size: 5px;
+}
+
+.class h3 {
+    font-size: 10px;
+}
+
+.contact-form {
+    margin-top: 120px;
+}
+
+form {
+    padding: 40px;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    border-radius: 10px;
+}
+
+.contact-btn {
+    background-color: palevioletred;
+    width: 100%;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
