@@ -1,0 +1,17 @@
+E:\MicroERP\Back-End\MicroERP.Service\bin\Debug\net6.0\MicroERP.Service.deps.json
+E:\MicroERP\Back-End\MicroERP.Service\bin\Debug\net6.0\MicroERP.Service.dll
+E:\MicroERP\Back-End\MicroERP.Service\bin\Debug\net6.0\MicroERP.Service.pdb
+E:\MicroERP\Back-End\MicroERP.Service\bin\Debug\net6.0\MicroERP.Core.dll
+E:\MicroERP\Back-End\MicroERP.Service\bin\Debug\net6.0\MicroERP.DAL.dll
+E:\MicroERP\Back-End\MicroERP.Service\bin\Debug\net6.0\MicroERP.Core.pdb
+E:\MicroERP\Back-End\MicroERP.Service\bin\Debug\net6.0\MicroERP.DAL.pdb
+E:\MicroERP\Back-End\MicroERP.Service\obj\Debug\net6.0\MicroERP.Service.csproj.AssemblyReference.cache
+E:\MicroERP\Back-End\MicroERP.Service\obj\Debug\net6.0\MicroERP.Service.GeneratedMSBuildEditorConfig.editorconfig
+E:\MicroERP\Back-End\MicroERP.Service\obj\Debug\net6.0\MicroERP.Service.AssemblyInfoInputs.cache
+E:\MicroERP\Back-End\MicroERP.Service\obj\Debug\net6.0\MicroERP.Service.AssemblyInfo.cs
+E:\MicroERP\Back-End\MicroERP.Service\obj\Debug\net6.0\MicroERP.Service.csproj.CoreCompileInputs.cache
+E:\MicroERP\Back-End\MicroERP.Service\obj\Debug\net6.0\MicroERP.Service.csproj.CopyComplete
+E:\MicroERP\Back-End\MicroERP.Service\obj\Debug\net6.0\MicroERP.Service.dll
+E:\MicroERP\Back-End\MicroERP.Service\obj\Debug\net6.0\refint\MicroERP.Service.dll
+E:\MicroERP\Back-End\MicroERP.Service\obj\Debug\net6.0\MicroERP.Service.pdb
+E:\MicroERP\Back-End\MicroERP.Service\obj\Debug\net6.0\ref\MicroERP.Service.dll

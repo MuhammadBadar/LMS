@@ -1,0 +1,14 @@
+E:\LMS\Back-End\LMS.Core\bin\Debug\net6.0\LMS.Core.deps.json
+E:\LMS\Back-End\LMS.Core\bin\Debug\net6.0\LMS.Core.runtimeconfig.json
+E:\LMS\Back-End\LMS.Core\bin\Debug\net6.0\LMS.Core.dll
+E:\LMS\Back-End\LMS.Core\bin\Debug\net6.0\LMS.Core.pdb
+E:\LMS\Back-End\LMS.Core\obj\Debug\net6.0\LMS.Core.csproj.AssemblyReference.cache
+E:\LMS\Back-End\LMS.Core\obj\Debug\net6.0\LMS.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\LMS\Back-End\LMS.Core\obj\Debug\net6.0\LMS.Core.AssemblyInfoInputs.cache
+E:\LMS\Back-End\LMS.Core\obj\Debug\net6.0\LMS.Core.AssemblyInfo.cs
+E:\LMS\Back-End\LMS.Core\obj\Debug\net6.0\LMS.Core.csproj.CoreCompileInputs.cache
+E:\LMS\Back-End\LMS.Core\obj\Debug\net6.0\LMS.Core.dll
+E:\LMS\Back-End\LMS.Core\obj\Debug\net6.0\refint\LMS.Core.dll
+E:\LMS\Back-End\LMS.Core\obj\Debug\net6.0\LMS.Core.pdb
+E:\LMS\Back-End\LMS.Core\obj\Debug\net6.0\LMS.Core.genruntimeconfig.cache
+E:\LMS\Back-End\LMS.Core\obj\Debug\net6.0\ref\LMS.Core.dll

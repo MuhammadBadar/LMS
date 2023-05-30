@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "AdLZxGSeI3yvhVlecSHnog7ZJ12t8eJv3eWukn1iOY8=",
+  "Source": "LMS.WebAPI",
+  "BasePath": "_content/LMS.WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "LMS.WebAPI\\wwwroot",
+      "Source": "LMS.WebAPI",
+      "ContentRoot": "E:\\LMS\\Back-End\\LMS.WebAPI\\wwwroot\\",
+      "BasePath": "_content/LMS.WebAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}

@@ -1,0 +1,99 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\MicroERP\\Back-End\\KeyAccounting.Service\\KeyAccounting.Service.csproj": {}
+  },
+  "projects": {
+    "E:\\MicroERP\\Back-End\\KeyAccounting.Service\\KeyAccounting.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\MicroERP\\Back-End\\KeyAccounting.Service\\KeyAccounting.Service.csproj",
+        "projectName": "KeyAccounting.Service",
+        "projectPath": "E:\\MicroERP\\Back-End\\KeyAccounting.Service\\KeyAccounting.Service.csproj",
+        "packagesPath": "C:\\Users\\Bilal\\.nuget\\packages\\",
+        "outputPath": "E:\\MicroERP\\Back-End\\KeyAccounting.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Bilal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "E:\\MicroERP\\Back-End\\MicroERP.Core\\MicroERP.Core.csproj": {
+                "projectPath": "E:\\MicroERP\\Back-End\\MicroERP.Core\\MicroERP.Core.csproj"
+              },
+              "E:\\MicroERP\\Back-End\\MicroERP.DAL\\MicroERP.DAL.csproj": {
+                "projectPath": "E:\\MicroERP\\Back-End\\MicroERP.DAL\\MicroERP.DAL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Identity.Core": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.28, )"
+            },
+            "NLog.Web.AspNetCore": {
+              "target": "Package",
+              "version": "[5.2.1, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            },
+            "Xamarin.Essentials": {
+              "target": "Package",
+              "version": "[1.5.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+E:\LMS\Back-End\LMS.Service\bin\Debug\net6.0\LMS.Service.deps.json
+E:\LMS\Back-End\LMS.Service\bin\Debug\net6.0\LMS.Service.dll
+E:\LMS\Back-End\LMS.Service\bin\Debug\net6.0\LMS.Service.pdb
+E:\LMS\Back-End\LMS.Service\bin\Debug\net6.0\LMS.Core.dll
+E:\LMS\Back-End\LMS.Service\bin\Debug\net6.0\LMS.DAL.dll
+E:\LMS\Back-End\LMS.Service\bin\Debug\net6.0\LMS.DAL.pdb
+E:\LMS\Back-End\LMS.Service\bin\Debug\net6.0\LMS.Core.pdb
+E:\LMS\Back-End\LMS.Service\obj\Debug\net6.0\LMS.Service.csproj.AssemblyReference.cache
+E:\LMS\Back-End\LMS.Service\obj\Debug\net6.0\LMS.Service.GeneratedMSBuildEditorConfig.editorconfig
+E:\LMS\Back-End\LMS.Service\obj\Debug\net6.0\LMS.Service.AssemblyInfoInputs.cache
+E:\LMS\Back-End\LMS.Service\obj\Debug\net6.0\LMS.Service.AssemblyInfo.cs
+E:\LMS\Back-End\LMS.Service\obj\Debug\net6.0\LMS.Service.csproj.CoreCompileInputs.cache
+E:\LMS\Back-End\LMS.Service\obj\Debug\net6.0\LMS.Service.csproj.CopyComplete
+E:\LMS\Back-End\LMS.Service\obj\Debug\net6.0\LMS.Service.dll
+E:\LMS\Back-End\LMS.Service\obj\Debug\net6.0\refint\LMS.Service.dll
+E:\LMS\Back-End\LMS.Service\obj\Debug\net6.0\LMS.Service.pdb
+E:\LMS\Back-End\LMS.Service\obj\Debug\net6.0\ref\LMS.Service.dll
