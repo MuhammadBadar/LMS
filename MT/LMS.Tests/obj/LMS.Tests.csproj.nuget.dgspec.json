@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj": {}
+    "C:\\QST\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj": {}
   },
   "projects": {
-    "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+    "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
+        "projectUniqueName": "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
         "projectName": "LMS.Core",
-        "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
-        "packagesPath": "C:\\Users\\devum\\.nuget\\packages\\",
-        "outputPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\obj\\",
+        "projectPath": "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
+        "packagesPath": "C:\\Users\\Hamza\\.nuget\\packages\\",
+        "outputPath": "C:\\QST\\LMS\\MT\\LMS.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\devum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hamza\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -103,21 +103,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\QAM SOFT\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj": {
+    "C:\\QST\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QAM SOFT\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj",
+        "projectUniqueName": "C:\\QST\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj",
         "projectName": "LMS.DAL",
-        "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj",
-        "packagesPath": "C:\\Users\\devum\\.nuget\\packages\\",
-        "outputPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.DAL\\obj\\",
+        "projectPath": "C:\\QST\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj",
+        "packagesPath": "C:\\Users\\Hamza\\.nuget\\packages\\",
+        "outputPath": "C:\\QST\\LMS\\MT\\LMS.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\devum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hamza\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -131,8 +131,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
-                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
+              "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+                "projectPath": "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
               }
             }
           }
@@ -188,21 +188,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
+    "C:\\QST\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj",
+        "projectUniqueName": "C:\\QST\\LMS\\MT\\LMS.Service\\LMS.Service.csproj",
         "projectName": "LMS.Service",
-        "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj",
-        "packagesPath": "C:\\Users\\devum\\.nuget\\packages\\",
-        "outputPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\obj\\",
+        "projectPath": "C:\\QST\\LMS\\MT\\LMS.Service\\LMS.Service.csproj",
+        "packagesPath": "C:\\Users\\Hamza\\.nuget\\packages\\",
+        "outputPath": "C:\\QST\\LMS\\MT\\LMS.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\devum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hamza\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -216,11 +216,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
-                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
+              "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+                "projectPath": "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
               },
-              "D:\\QAM SOFT\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj": {
-                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj"
+              "C:\\QST\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj": {
+                "projectPath": "C:\\QST\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj"
               }
             }
           }
@@ -276,21 +276,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj": {
+    "C:\\QST\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
+        "projectUniqueName": "C:\\QST\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
         "projectName": "LMS.Tests",
-        "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
-        "packagesPath": "C:\\Users\\devum\\.nuget\\packages\\",
-        "outputPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\obj\\",
+        "projectPath": "C:\\QST\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
+        "packagesPath": "C:\\Users\\Hamza\\.nuget\\packages\\",
+        "outputPath": "C:\\QST\\LMS\\MT\\LMS.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\devum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hamza\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -304,14 +304,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
-                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
+              "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+                "projectPath": "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
               },
-              "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
-                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj"
+              "C:\\QST\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
+                "projectPath": "C:\\QST\\LMS\\MT\\LMS.Service\\LMS.Service.csproj"
               },
-              "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj": {
-                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj"
+              "C:\\QST\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj": {
+                "projectPath": "C:\\QST\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj"
               }
             }
           }
@@ -379,21 +379,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj": {
+    "C:\\QST\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
+        "projectUniqueName": "C:\\QST\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
         "projectName": "LMS.WebAPI",
-        "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
-        "packagesPath": "C:\\Users\\devum\\.nuget\\packages\\",
-        "outputPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\obj\\",
+        "projectPath": "C:\\QST\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
+        "packagesPath": "C:\\Users\\Hamza\\.nuget\\packages\\",
+        "outputPath": "C:\\QST\\LMS\\MT\\LMS.WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\devum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hamza\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -401,17 +401,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
-                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
+              "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+                "projectPath": "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
               },
-              "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
-                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj"
+              "C:\\QST\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
+                "projectPath": "C:\\QST\\LMS\\MT\\LMS.Service\\LMS.Service.csproj"
               }
             }
           }
@@ -506,7 +507,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

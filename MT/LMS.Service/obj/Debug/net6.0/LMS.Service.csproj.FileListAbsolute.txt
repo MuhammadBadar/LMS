@@ -32,3 +32,20 @@ D:\QAM SOFT\LMS\MT\LMS.Service\obj\Debug\net6.0\LMS.Service.dll
 D:\QAM SOFT\LMS\MT\LMS.Service\obj\Debug\net6.0\refint\LMS.Service.dll
 D:\QAM SOFT\LMS\MT\LMS.Service\obj\Debug\net6.0\LMS.Service.pdb
 D:\QAM SOFT\LMS\MT\LMS.Service\obj\Debug\net6.0\ref\LMS.Service.dll
+C:\QST\LMS\MT\LMS.Service\bin\Debug\net6.0\LMS.Service.deps.json
+C:\QST\LMS\MT\LMS.Service\bin\Debug\net6.0\LMS.Service.dll
+C:\QST\LMS\MT\LMS.Service\bin\Debug\net6.0\LMS.Service.pdb
+C:\QST\LMS\MT\LMS.Service\bin\Debug\net6.0\LMS.Core.dll
+C:\QST\LMS\MT\LMS.Service\bin\Debug\net6.0\LMS.DAL.dll
+C:\QST\LMS\MT\LMS.Service\bin\Debug\net6.0\LMS.DAL.pdb
+C:\QST\LMS\MT\LMS.Service\bin\Debug\net6.0\LMS.Core.pdb
+C:\QST\LMS\MT\LMS.Service\obj\Debug\net6.0\LMS.Service.csproj.AssemblyReference.cache
+C:\QST\LMS\MT\LMS.Service\obj\Debug\net6.0\LMS.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\QST\LMS\MT\LMS.Service\obj\Debug\net6.0\LMS.Service.AssemblyInfoInputs.cache
+C:\QST\LMS\MT\LMS.Service\obj\Debug\net6.0\LMS.Service.AssemblyInfo.cs
+C:\QST\LMS\MT\LMS.Service\obj\Debug\net6.0\LMS.Service.csproj.CoreCompileInputs.cache
+C:\QST\LMS\MT\LMS.Service\obj\Debug\net6.0\LMS.Service.csproj.CopyComplete
+C:\QST\LMS\MT\LMS.Service\obj\Debug\net6.0\LMS.Service.dll
+C:\QST\LMS\MT\LMS.Service\obj\Debug\net6.0\refint\LMS.Service.dll
+C:\QST\LMS\MT\LMS.Service\obj\Debug\net6.0\LMS.Service.pdb
+C:\QST\LMS\MT\LMS.Service\obj\Debug\net6.0\ref\LMS.Service.dll
