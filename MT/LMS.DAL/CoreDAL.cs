@@ -31,6 +31,7 @@ namespace LMS.DAL
             {
                 LMSDataContext.CloseMySqlConnection(cmd);
             }
+			
             return retVal;
         }
         public List<EnumValueDE> GetEnumValues(EnumType type, MySqlCommand cmd = null)
