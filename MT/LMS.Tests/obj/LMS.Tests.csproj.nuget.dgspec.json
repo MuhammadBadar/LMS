@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "E:\\LMS\\Back-End\\LMS.Tests\\LMS.Tests.csproj": {}
+    "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj": {}
   },
   "projects": {
-    "E:\\LMS\\Back-End\\LMS.Core\\LMS.Core.csproj": {
+    "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LMS\\Back-End\\LMS.Core\\LMS.Core.csproj",
+        "projectUniqueName": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
         "projectName": "LMS.Core",
-        "projectPath": "E:\\LMS\\Back-End\\LMS.Core\\LMS.Core.csproj",
-        "packagesPath": "C:\\Users\\Bilal\\.nuget\\packages\\",
-        "outputPath": "E:\\LMS\\Back-End\\LMS.Core\\obj\\",
+        "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
+        "packagesPath": "C:\\Users\\devum\\.nuget\\packages\\",
+        "outputPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Bilal\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\devum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -97,7 +93,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -106,26 +103,22 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\LMS\\Back-End\\LMS.DAL\\LMS.DAL.csproj": {
+    "D:\\QAM SOFT\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LMS\\Back-End\\LMS.DAL\\LMS.DAL.csproj",
+        "projectUniqueName": "D:\\QAM SOFT\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj",
         "projectName": "LMS.DAL",
-        "projectPath": "E:\\LMS\\Back-End\\LMS.DAL\\LMS.DAL.csproj",
-        "packagesPath": "C:\\Users\\Bilal\\.nuget\\packages\\",
-        "outputPath": "E:\\LMS\\Back-End\\LMS.DAL\\obj\\",
+        "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj",
+        "packagesPath": "C:\\Users\\devum\\.nuget\\packages\\",
+        "outputPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.DAL\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Bilal\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\devum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -138,8 +131,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\LMS\\Back-End\\LMS.Core\\LMS.Core.csproj": {
-                "projectPath": "E:\\LMS\\Back-End\\LMS.Core\\LMS.Core.csproj"
+              "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
               }
             }
           }
@@ -185,7 +178,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -194,26 +188,22 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\LMS\\Back-End\\LMS.Service\\LMS.Service.csproj": {
+    "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LMS\\Back-End\\LMS.Service\\LMS.Service.csproj",
+        "projectUniqueName": "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj",
         "projectName": "LMS.Service",
-        "projectPath": "E:\\LMS\\Back-End\\LMS.Service\\LMS.Service.csproj",
-        "packagesPath": "C:\\Users\\Bilal\\.nuget\\packages\\",
-        "outputPath": "E:\\LMS\\Back-End\\LMS.Service\\obj\\",
+        "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj",
+        "packagesPath": "C:\\Users\\devum\\.nuget\\packages\\",
+        "outputPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Bilal\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\devum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -226,11 +216,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\LMS\\Back-End\\LMS.Core\\LMS.Core.csproj": {
-                "projectPath": "E:\\LMS\\Back-End\\LMS.Core\\LMS.Core.csproj"
+              "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
               },
-              "E:\\LMS\\Back-End\\LMS.DAL\\LMS.DAL.csproj": {
-                "projectPath": "E:\\LMS\\Back-End\\LMS.DAL\\LMS.DAL.csproj"
+              "D:\\QAM SOFT\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj": {
+                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj"
               }
             }
           }
@@ -276,7 +266,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -285,26 +276,22 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\LMS\\Back-End\\LMS.Tests\\LMS.Tests.csproj": {
+    "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LMS\\Back-End\\LMS.Tests\\LMS.Tests.csproj",
+        "projectUniqueName": "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
         "projectName": "LMS.Tests",
-        "projectPath": "E:\\LMS\\Back-End\\LMS.Tests\\LMS.Tests.csproj",
-        "packagesPath": "C:\\Users\\Bilal\\.nuget\\packages\\",
-        "outputPath": "E:\\LMS\\Back-End\\LMS.Tests\\obj\\",
+        "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
+        "packagesPath": "C:\\Users\\devum\\.nuget\\packages\\",
+        "outputPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Bilal\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\devum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -317,14 +304,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\LMS\\Back-End\\LMS.Core\\LMS.Core.csproj": {
-                "projectPath": "E:\\LMS\\Back-End\\LMS.Core\\LMS.Core.csproj"
+              "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
               },
-              "E:\\LMS\\Back-End\\LMS.Service\\LMS.Service.csproj": {
-                "projectPath": "E:\\LMS\\Back-End\\LMS.Service\\LMS.Service.csproj"
+              "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
+                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj"
               },
-              "E:\\LMS\\Back-End\\LMS.WebAPI\\LMS.WebAPI.csproj": {
-                "projectPath": "E:\\LMS\\Back-End\\LMS.WebAPI\\LMS.WebAPI.csproj"
+              "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj": {
+                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj"
               }
             }
           }
@@ -382,7 +369,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -391,26 +379,22 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\LMS\\Back-End\\LMS.WebAPI\\LMS.WebAPI.csproj": {
+    "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LMS\\Back-End\\LMS.WebAPI\\LMS.WebAPI.csproj",
+        "projectUniqueName": "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
         "projectName": "LMS.WebAPI",
-        "projectPath": "E:\\LMS\\Back-End\\LMS.WebAPI\\LMS.WebAPI.csproj",
-        "packagesPath": "C:\\Users\\Bilal\\.nuget\\packages\\",
-        "outputPath": "E:\\LMS\\Back-End\\LMS.WebAPI\\obj\\",
+        "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
+        "packagesPath": "C:\\Users\\devum\\.nuget\\packages\\",
+        "outputPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Bilal\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\devum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -423,11 +407,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\LMS\\Back-End\\LMS.Core\\LMS.Core.csproj": {
-                "projectPath": "E:\\LMS\\Back-End\\LMS.Core\\LMS.Core.csproj"
+              "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
               },
-              "E:\\LMS\\Back-End\\LMS.Service\\LMS.Service.csproj": {
-                "projectPath": "E:\\LMS\\Back-End\\LMS.Service\\LMS.Service.csproj"
+              "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
+                "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj"
               }
             }
           }
@@ -509,7 +493,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -521,7 +506,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

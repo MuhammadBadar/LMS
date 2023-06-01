@@ -12,3 +12,17 @@ E:\LMS\Back-End\LMS.Core\obj\Debug\net6.0\refint\LMS.Core.dll
 E:\LMS\Back-End\LMS.Core\obj\Debug\net6.0\LMS.Core.pdb
 E:\LMS\Back-End\LMS.Core\obj\Debug\net6.0\LMS.Core.genruntimeconfig.cache
 E:\LMS\Back-End\LMS.Core\obj\Debug\net6.0\ref\LMS.Core.dll
+D:\QAM SOFT\LMS\MT\LMS.Core\bin\Debug\net6.0\LMS.Core.deps.json
+D:\QAM SOFT\LMS\MT\LMS.Core\bin\Debug\net6.0\LMS.Core.runtimeconfig.json
+D:\QAM SOFT\LMS\MT\LMS.Core\bin\Debug\net6.0\LMS.Core.dll
+D:\QAM SOFT\LMS\MT\LMS.Core\bin\Debug\net6.0\LMS.Core.pdb
+D:\QAM SOFT\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.csproj.AssemblyReference.cache
+D:\QAM SOFT\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\QAM SOFT\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.AssemblyInfoInputs.cache
+D:\QAM SOFT\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.AssemblyInfo.cs
+D:\QAM SOFT\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.csproj.CoreCompileInputs.cache
+D:\QAM SOFT\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.dll
+D:\QAM SOFT\LMS\MT\LMS.Core\obj\Debug\net6.0\refint\LMS.Core.dll
+D:\QAM SOFT\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.pdb
+D:\QAM SOFT\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.genruntimeconfig.cache
+D:\QAM SOFT\LMS\MT\LMS.Core\obj\Debug\net6.0\ref\LMS.Core.dll

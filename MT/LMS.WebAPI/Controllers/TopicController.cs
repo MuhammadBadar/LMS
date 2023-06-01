@@ -16,7 +16,7 @@ namespace LMS.WebAPI.Controllers
         {
             _topicSvc = new TopicService();
         }
-
+        // HTTP Methods 
         [HttpGet]
         public IActionResult GetTopic()
         {
