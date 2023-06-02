@@ -7570,19 +7570,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Hamza\\.nuget\\packages\\": {}
+    "C:\\Users\\devum\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\QST\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
+      "projectUniqueName": "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
       "projectName": "LMS.Tests",
-      "projectPath": "C:\\QST\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
-      "packagesPath": "C:\\Users\\Hamza\\.nuget\\packages\\",
-      "outputPath": "C:\\QST\\LMS\\MT\\LMS.Tests\\obj\\",
+      "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
+      "packagesPath": "C:\\Users\\devum\\.nuget\\packages\\",
+      "outputPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Hamza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\devum\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7596,14 +7596,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
-              "projectPath": "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
+            "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+              "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
             },
-            "C:\\QST\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
-              "projectPath": "C:\\QST\\LMS\\MT\\LMS.Service\\LMS.Service.csproj"
+            "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
+              "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj"
             },
-            "C:\\QST\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj": {
-              "projectPath": "C:\\QST\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj"
+            "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj": {
+              "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj"
             }
           }
         }
@@ -7671,7 +7671,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
