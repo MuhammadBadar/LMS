@@ -62,7 +62,7 @@ namespace LMS.WebAPI.Controllers
         public IActionResult DeleteTopic(int id)
         {
             TopicDE topicDe = new TopicDE();
-            topicDe.DBoperation = DBoperations.Delete;
+            topicDe.DBoperation = DBoperations.DeActivate;
             topicDe.Id = id;
             _topicSvc.ManageTopic(topicDe);
             return Ok();

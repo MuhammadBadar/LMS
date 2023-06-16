@@ -10,5 +10,7 @@ namespace LMS.Core.Entities
     {
         public string? TopicTitle { get; set; }
         public string? Description { get; set; }
+        public int CourseId { get; set; }
+        public string? Course { get; set; }
     }
 }
