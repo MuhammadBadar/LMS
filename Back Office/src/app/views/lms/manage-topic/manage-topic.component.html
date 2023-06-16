@@ -1,59 +1,88 @@
-<form>
-    <div fxLayout="row" fxLayoutAlign="space-between">
-        <mat-form-field appearance="outline" fxFlex="49%">
-            <label>Topic Title</label>
-            <input matInput name="topicTitle" [(ngModel)]="selectedTopic.topicTitle">
-        </mat-form-field>
-        <mat-form-field appearance="outline" fxFlex="49%">
-            <label>Description</label>
-            <textarea matInput name="description" [(ngModel)]="selectedTopic.description"></textarea>
-        </mat-form-field>
+<div class="container-fluid page">
+    <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+        <div *ngIf="AddMode">Manage Topic
+        </div>
+        <div *ngIf="EditMode">Edit Topic
+        </div>
     </div>
-    <mat-checkbox name="isActive" [(ngModel)]="selectedTopic.isActive">Is Active</mat-checkbox>
-    <div fxLayoutAlign="end end">
-        <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveTopic()">Submit</button>
-        <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateTopic()">Update</button>
-    </div>
-
-</form>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin-top: 20px;">
-
-
-    <ng-container matColumnDef="topicTitle">
-        <th mat-header-cell *matHeaderCellDef> Topic Title </th>
-        <td mat-cell *matCellDef="let element"> {{element.topicTitle}} </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Descripton </th>
-        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="isActive">
-        <th mat-header-cell *matHeaderCellDef> Is Active </th>
-        <td mat-cell *matCellDef="let element"> {{element.isActive}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="actions" stickyEnd="true">
-        <th mat-header-cell *matHeaderCellDef>
-            <p style="font-size: 14px;text-align: center;">Actions</p>
-        </th>
-        <td mat-cell *matCellDef="let row">
-            <div style="text-align: center;">
-                <button mat-icon-button mat-sm-button (click)="EditTopic(row)" style=" color:#1e293b ; "
-                    cTooltip=" Edit Course">
-                    <mat-icon>edit</mat-icon>
-                </button>
-
-                <button mat-icon-button mat-sm-button color="warn" (click)="DeleteTopic(row.id)"
-                    cTooltip="Delete Course">
-                    <mat-icon>delete</mat-icon>
-                </button>
+    <div class="page_content shadow p-3 position-relative">
+        <form>
+            <Row>
+                <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
+                    <mat-form-field appearance="outline" fxFlex="49%">
+                        <mat-label>Select Course</mat-label>
+                        <mat-select name="courseId" [(ngModel)]="selectedTopic.courseId">
+                            <mat-option *ngFor="let val of courses" [value]="val.id">
+                                {{val.title}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" fxFlex="49%">
+                        <mat-label>Topic Title</mat-label>
+                        <input matInput name="topicTitle" [(ngModel)]="selectedTopic.topicTitle">
+                    </mat-form-field>
+                </div>
+            </Row>
+            <Row>
+                <div fxLayout="row" fxFlex="100%">
+                    <mat-form-field appearance="outline" fxFlex="100%">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput name="description" [(ngModel)]="selectedTopic.description"></textarea>
+                    </mat-form-field>
+                </div>
+            </Row>
+            <mat-checkbox name="isActive" [(ngModel)]="selectedTopic.isActive">Is Active</mat-checkbox>
+            <div fxLayoutAlign="end end">
+                <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveTopic()">Submit</button>
+                <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateTopic()">Update</button>
+                <div>
+                    <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                        (click)="Refresh()">
+                        <mat-icon>autorenew</mat-icon>
+                    </button>
+                </div>
             </div>
-        </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+
+        </form>
+        <section class=" example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;margin-top: 20px;">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="topicTitle">
+                    <th mat-header-cell *matHeaderCellDef> Topic Title </th>
+                    <td mat-cell *matCellDef="let element"> {{element.topicTitle}} </td>
+                </ng-container>
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef> Descripton </th>
+                    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                </ng-container>
+                <ng-container matColumnDef="course">
+                    <th mat-header-cell *matHeaderCellDef> Course </th>
+                    <td mat-cell *matCellDef="let element"> {{element.course}} </td>
+                </ng-container>
+                <ng-container matColumnDef="isActive">
+                    <th mat-header-cell *matHeaderCellDef> Is Active </th>
+                    <td mat-cell *matCellDef="let element"> {{element.isActive}} </td>
+                </ng-container>
+                <ng-container matColumnDef="actions" stickyEnd="true">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <p style="font-size: 14px;text-align: center;">Actions</p>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <div style="text-align: center;">
+                            <button mat-icon-button mat-sm-button (click)="EditTopic(row)" style=" color:#1e293b ; "
+                                cTooltip=" Edit Course">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+
+                            <button mat-icon-button mat-sm-button color="warn" (click)="DeleteTopic(row.id)"
+                                cTooltip="Delete Course">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </section>
+    </div>
+</div>

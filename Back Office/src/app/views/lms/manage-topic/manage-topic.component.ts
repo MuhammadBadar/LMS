@@ -1,9 +1,12 @@
+import { MatDialog } from '@angular/material/dialog';
 import { CatalogService } from 'src/app/views/catalog/catalog.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { TopicVM } from '../Models/TopicVM';
 import { LMSService } from './../lms.service';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
+import { CourseVM } from '../Models/CourseVM';
+import { ManageCourseComponent } from '../manage-course/manage-course.component';
 
 @Component({
   selector: 'app-manage-topic',
@@ -11,12 +14,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./manage-topic.component.css']
 })
 export class ManageTopicComponent implements OnInit {
-  displayedColumns: string[] = ['topicTitle', 'description', 'isActive', 'actions'];
+  displayedColumns: string[] = ['topicTitle', 'course', 'description', 'isActive', 'actions'];
   AddMode: boolean = true
   EditMode: boolean = false
   dataSource: any
   selectedTopic: TopicVM
+  courses?: CourseVM[]
   topics?: TopicVM[]
+  dialogRef?: any
   constructor(
     private lmsSvc: LMSService,
     private catSvc: CatalogService) {
@@ -24,6 +29,16 @@ export class ManageTopicComponent implements OnInit {
   }
   ngOnInit(): void {
     this.GetTopic();
+    this.GetCourses();
+  }
+  GetCourses() {
+    this.lmsSvc.GetCourse().subscribe({
+      next: (res: CourseVM[]) => {
+        this.courses = res
+      }, error: (err) => {
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+      },
+    })
   }
   GetTopic() {
     this.lmsSvc.GetTopic().subscribe({
