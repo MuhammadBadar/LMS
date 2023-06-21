@@ -7,6 +7,7 @@ import { ManageUserComponent } from './manage-user/manage-user.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ManageTopicComponent } from './manage-topic/manage-topic.component';
+import { ManageLectureComponent } from './manage-lecture/manage-lecture.component';
 
 const routes: Routes = [{
   path: '',
@@ -54,6 +55,12 @@ const routes: Routes = [{
       component: ManageTopicComponent,
       pathMatch: "full"
     },
+    {
+      path: "lecture",
+      component: ManageLectureComponent,
+      pathMatch: "full"
+    },
+
   ]
 },];
 

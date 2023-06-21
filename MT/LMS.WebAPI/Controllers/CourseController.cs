@@ -1,6 +1,6 @@
 ﻿using LMS.Core.Entities;
 using LMS.Core.Enums;
-using LMS.Service;
+using LMS.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LMS.WebAPI.Controllers

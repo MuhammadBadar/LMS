@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Globals } from 'src/app/globals';
 import { InquiryVM } from './Models/InquiryVM';
 import { UserVM } from './Models/UserVM';
+import {LectureVM} from './Models/LectureVM';
 @Injectable({
   providedIn: 'root'
 })
@@ -126,5 +127,21 @@ export class LMSService {
   }
   SearchTopic(value: TopicVM): Observable<TopicVM[]> {
     return this.http.post<TopicVM[]>(Globals.BASE_API_URL + 'Topic', value).pipe();
+  }
+
+  GetLecture(): Observable<LectureVM[]> {
+    return this.http.get<LectureVM[]>(Globals.BASE_API_URL + 'Lecture').pipe();
+  }
+  SaveLecture(value: LectureVM) {
+    return this.http.post(Globals.BASE_API_URL + 'Lecture', value)
+  }
+  UpdateLecture(value: LectureVM) {
+    return this.http.put(Globals.BASE_API_URL + 'Lecture', value)
+  }
+  DeleteLecture(id: number) {
+    return this.http.delete(Globals.BASE_API_URL + 'Lecture/' + id)
+  }
+  SearchLecture(value: LectureVM): Observable<LectureVM[]> {
+    return this.http.post<LectureVM[]>(Globals.BASE_API_URL + 'Lecture', value).pipe();
   }
 }

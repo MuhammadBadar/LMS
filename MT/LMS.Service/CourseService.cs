@@ -4,7 +4,7 @@ using LMS.DAL;
 using MySql.Data.MySqlClient;
 using NLog;
 
-namespace LMS.Service
+namespace LMS.Services
 {
     public class CourseService
     {

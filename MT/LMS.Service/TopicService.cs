@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LMS.Service
+namespace LMS.Services
 {
     public class TopicService
     {

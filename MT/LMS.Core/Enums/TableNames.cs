@@ -12,6 +12,10 @@
         schedule,
         inquiry,
         classtiming,
-        topic
+        topic,
+        signup,
+        lecture
+  
+        
     }
 }
