@@ -24,6 +24,7 @@ export class ManageTopicComponent implements OnInit {
   dialogRef?: any
   constructor(
     private lmsSvc: LMSService,
+    private dialog: MatDialog,
     private catSvc: CatalogService) {
     this.selectedTopic = new TopicVM
   }
@@ -107,5 +108,16 @@ export class ManageTopicComponent implements OnInit {
         })
       }
     })
+  }
+
+  OpenCourseDialog() {
+    this.dialogRef = this.dialog.open(ManageCourseComponent, {
+      width: '1200px', height: '950px'
+    })
+    this.dialogRef.afterClosed()
+      .subscribe((res: any) => {
+        this.GetCourses()
+      }
+      );
   }
 }

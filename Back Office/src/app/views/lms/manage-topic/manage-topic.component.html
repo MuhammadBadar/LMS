@@ -16,6 +16,12 @@
                                 {{val.title}}
                             </mat-option>
                         </mat-select>
+                        <div matSuffix>
+                            <button mat-icon-button style="color:#940540 ; "
+                                (click)="OpenCourseDialog(); $event.stopPropagation()" cTooltip="Explore SettingsType ">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="49%">
                         <mat-label>Topic Title</mat-label>
