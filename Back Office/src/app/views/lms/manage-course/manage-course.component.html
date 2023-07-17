@@ -1,127 +1,151 @@
 <div class="container-fluid page">
-    <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
-        <div *ngIf="Add">Manage Course
-        </div>
-        <div *ngIf="Edit">Edit Course
-        </div>
-    </div>
-    <div class="page_content shadow p-3 position-relative">
-        <form #CourseForm="ngForm">
-            <div fxLayout="row" fxLayoutAlign="space-between">
-                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
-                    <mat-label> Title</mat-label>
-                    <input matInput required #title="ngModel" name="title" [(ngModel)]="selectedCourse.title" />
-                </mat-form-field>
-                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
-                    <mat-label>Fee</mat-label>
-                    <input matInput required #email="ngModel" name="fee" type="number" min="0"
-                        [(ngModel)]="selectedCourse.fee" />
-                </mat-form-field>
+    `    <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+            <div *ngIf="Add">Manage Course
             </div>
-            <div fxLayout="row" fxLayoutAlign="space-between">
-                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
-                    <mat-label>Short Description</mat-label>
-                    <textarea matInput required #shortDescription="ngModel" name="shortDescription" rows="5"
-                        [(ngModel)]="selectedCourse.shortDescription"></textarea>
-                </mat-form-field>
-                <div>
-                    <div class="gallery-img mat-elevation-z8" style="border-radius: 15px;width: 170px;height: 170px;">
-                        <img [src]="selectedCourse.logoBase64Path" (click)="onPreviewImage()" style="padding:9px;border: 6px solid rgb(223, 74, 6);
-                            border-radius: 15px;
-                            width: 170px;height: 170px;
-                            object-fit: cover;">
+            <div *ngIf="Edit">Edit Course
+            </div>
+            
+        
+    <button mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+    
+    
+    <!-- </ng-template>
+    
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>  -->
+            <!-- <button mat-button (click)="OpenCourseDialog()">Open Course Dialog</button> -->
+           
+        </div>
+        <div class="page_content shadow p-3 position-relative">
+            <form #CourseForm="ngForm">
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                    <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                        <mat-label> Title</mat-label>
+                        <input matInput required #title="ngModel" name="title" [(ngModel)]="selectedCourse.title" />
+                    </mat-form-field>
+                    <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                        <mat-label>Fee</mat-label>
+                        <input matInput required #email="ngModel" name="fee" type="number" min="0"
+                            [(ngModel)]="selectedCourse.fee" />
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                    <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                        <mat-label>Short Description</mat-label>
+                        <textarea matInput required #shortDescription="ngModel" name="shortDescription" rows="5"
+                            [(ngModel)]="selectedCourse.shortDescription"></textarea>
+                    </mat-form-field>
+                    <div>
+                        <div class="gallery-img mat-elevation-z8" style="border-radius: 15px;width: 170px;height: 170px;">
+                            <img [src]="selectedCourse.logoBase64Path" (click)="onPreviewImage()" style="padding:9px;border: 6px solid rgb(223, 74, 6);
+                                border-radius: 15px;
+                                width: 170px;height: 170px;
+                                object-fit: cover;">
+                        </div>
+                        <a (click)="fileSelector.click()"
+                            style="padding: 10px;margin-top: 50px; text-decoration: underline;color: rgb(3, 73, 114); cursor: pointer;"><strong>Browse
+                            </strong></a>
+                        <mat-form-feild>
+                            <input matinput #fileSelector multiple type="file" accept=".png, .jpg, .jpeg" required
+                                name="logoBase64Path" (change)="handleFileInput($event)" hidden>
+                        </mat-form-feild>
                     </div>
-                    <a (click)="fileSelector.click()"
-                        style="padding: 10px;margin-top: 50px; text-decoration: underline;color: rgb(3, 73, 114); cursor: pointer;"><strong>Browse
-                        </strong></a>
-                    <mat-form-feild>
-                        <input matinput #fileSelector multiple type="file" accept=".png, .jpg, .jpeg" required
-                            name="logoBase64Path" (change)="handleFileInput($event)" hidden>
-                    </mat-form-feild>
                 </div>
-            </div>
-            <div fxLayoutAlign="end end">
-                <c-spinner *ngIf="proccessing" style="height: 50px;width: 50px;color: rgb(3, 71, 102);"></c-spinner>
-                <div style="margin-top: 10px;" *ngIf="!proccessing">
-                    <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;" type="submit"
-                        (click)="SaveCourse();">
-                        Save
-                    </button>
-                    <button *ngIf="Edit" cButton class="me-1" style="background-color:#1e293b ;" type="submit"
-                        (click)="UpdateCourse()">
-                        Update
-                    </button>
+    
+                <mat-checkbox name="isActive" [(ngModel)]="selectedCourse.isActive">Is Active</mat-checkbox>
+    
+                <div fxLayoutAlign="end end">
+    
+                    <c-spinner *ngIf="proccessing" style="height: 50px;width: 50px;color: rgb(3, 71, 102);"></c-spinner>
+                    <div style="margin-top: 10px;" *ngIf="!proccessing">
+    
+                        <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;" type="submit"
+                            (click)="SaveCourse();">
+                            Save
+                        </button>
+                        <button *ngIf="Edit" cButton class="me-1" style="background-color:#1e293b ;" type="submit"
+                            (click)="UpdateCourse()">
+                            Update
+                        </button>
+                    </div>
+                    <div>
+                        <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                            (click)="ngOnInit()">
+                            <mat-icon>autorenew</mat-icon>
+                        </button>
+                    </div>
                 </div>
-                <div>
-                    <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
-                        (click)="ngOnInit()">
-                        <mat-icon>autorenew</mat-icon>
-                    </button>
-                </div>
-            </div>
-        </form>
-        <c-card style="padding: 10px; margin-top: 30px;" class="mat-elevation-z8">
-            <h5 cCardTitle>Course List</h5>
-            <c-card-body style="padding: 10px;margin: 5px;border-radius: 10px;">
-                <div class="example-table-container">
-                    <section class="example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;">
-                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                            <ng-container matColumnDef="Id">
-                                <th mat-header-cell *matHeaderCellDef> Sr No </th>
-                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-                            </ng-container>
-                            <ng-container matColumnDef="title">
-                                <th mat-header-cell *matHeaderCellDef> Title </th>
-                                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-                            </ng-container>
-                            <ng-container matColumnDef="shortDes">
-                                <th mat-header-cell *matHeaderCellDef> Description </th>
-                                <td mat-cell *matCellDef="let element"> {{element.shortDescription}} </td>
-                            </ng-container>
-                            <ng-container matColumnDef="fee">
-                                <th mat-header-cell *matHeaderCellDef> Fee </th>
-                                <td mat-cell *matCellDef="let element"> {{element.fee}} </td>
-                            </ng-container>
-                            <ng-container matColumnDef="logo">
-                                <th mat-header-cell *matHeaderCellDef> Logo </th>
-                                <td mat-cell *matCellDef="let element"><img [src]="element.logoBase64Path"
-                                        style="height: 80px;"> </td>
-                            </ng-container>
-                            <ng-container matColumnDef="actions" stickyEnd="true">
-                                <th mat-header-cell *matHeaderCellDef>
-                                    <p style="font-size: 14px;text-align: center;">Actions</p>
-                                </th>
-                                <td mat-cell *matCellDef="let row">
-                                    <div style="text-align: center;">
-                                        <button mat-icon-button mat-sm-button style=" color:#1e293b ; "
-                                            cTooltip=" Edit Course" (click)="GetCourseForEdit(row.id)">
-                                            <mat-icon>edit</mat-icon>
-                                        </button>
-
-                                        <button mat-icon-button mat-sm-button color="warn" cTooltip="Delete Course"
-                                            (click)="DeleteCourse(row.id)">
-                                            <mat-icon>delete</mat-icon>
-                                        </button>
-                                    </div>
-                                </td>
-                            </ng-container>
-                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                        </table>
-                    </section>
-                </div>
-            </c-card-body>
-        </c-card>
-    </div>
-</div>
-<div class="gallery-lightbox-container">
-    <div *ngIf="previewImage" class="lightbox">
-        <button mat-icon-button *ngIf="previewImage" (click)="onClosePreview()" class="close-button"
-            style="color:white;margin-right:15px">
-            <mat-icon>close</mat-icon>
-        </button>
-        <div *ngIf="previewImage" class="lightbox-img" style="display: flex; overflow: auto;">
-            <img [src]="currentLightBoxImage" style=" height:400px;">
+            </form>
+            <c-card style="padding: 10px; margin-top: 30px;" class="mat-elevation-z8">
+                <h5 cCardTitle>Course List</h5>
+                <c-card-body style="padding: 10px;margin: 5px;border-radius: 10px;">
+                    <div class="example-table-container">
+                        <section class="example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;">
+                            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                                <ng-container matColumnDef="Id">
+                                    <th mat-header-cell *matHeaderCellDef> Sr No </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="title">
+                                    <th mat-header-cell *matHeaderCellDef> Title </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="shortDes">
+                                    <th mat-header-cell *matHeaderCellDef> Description </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.shortDescription}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="fee">
+                                    <th mat-header-cell *matHeaderCellDef> Fee </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.fee}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="logo">
+                                    <th mat-header-cell *matHeaderCellDef> Logo </th>
+                                    <td mat-cell *matCellDef="let element"><img [src]="element.logoBase64Path"
+                                            style="height: 80px;"> </td>
+                                </ng-container>
+                                <ng-container matColumnDef="isActive">
+                                    <th mat-header-cell *matHeaderCellDef> Is Active </th>
+                                    <td mat-cell *matCellDef="let element"> {{ element.isActive ? 'yes' : 'no' }} </td>
+                                  </ng-container>
+    
+                                <ng-container matColumnDef="actions" stickyEnd="true">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        <p style="font-size: 14px;text-align: center;">Action</p>
+                                    </th>
+                                    <td mat-cell *matCellDef="let row">
+                                        <div style="text-align: center;">
+                                            <button mat-icon-button mat-sm-button style=" color:#1e293b ; "
+                                                cTooltip=" Edit Course" (click)="GetCourseForEdit(row.id)">
+                                                <mat-icon>edit</mat-icon>
+                                            </button>
+    
+                                            <!-- <button mat-icon-button mat-sm-button color="warn" cTooltip="Delete Course"
+                                                (click)="DeleteCourse(row.id)">
+                                                <mat-icon>delete</mat-icon>
+                                            </button> -->
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                        </section>
+                    </div>
+                </c-card-body>
+            </c-card>
         </div>
     </div>
-</div>
+    <div class="gallery-lightbox-container">
+        <div *ngIf="previewImage" class="lightbox">
+            <button mat-icon-button *ngIf="previewImage" (click)="onClosePreview()" class="close-button"
+                style="color:white;margin-right:15px">
+                <mat-icon>close</mat-icon>
+            </button>
+            <div *ngIf="previewImage" class="lightbox-img" style="display: flex; overflow: auto;">
+                <img [src]="currentLightBoxImage" style=" height:400px;">
+            </div>
+        </div>
+    </div>

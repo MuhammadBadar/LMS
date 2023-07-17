@@ -1,4 +1,3 @@
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
@@ -42,7 +41,7 @@ export class ManageScheduleComponent implements OnInit {
   ClassTimings: ClassTimingVM[] = []
   @ViewChild('ScheduleForm', { static: true }) ScheduleForm!: NgForm;
   @ViewChild('ClassTimingForm', { static: true }) ClassTimingForm!: NgForm;
-  displayeScheduleColumns: string[] = ['day', 'timeFrom', 'timeTo', 'actions'];
+  displayeScheduleColumns: string[] = ['day', 'timeFrom', 'timeTo','isActive', 'actions'];
   dataSource: any
   outputArray = [];
   constructor(
@@ -101,7 +100,11 @@ export class ManageScheduleComponent implements OnInit {
     })
   }
   GetCourses() {
-    this.lmsSvc.GetCourse().subscribe({
+    var course = new CourseVM
+    course.isActive = true;
+
+   
+    this.lmsSvc.SearchCourse(course).subscribe({
       next: (res: CourseVM[]) => {
         this.Courses = res;
       }, error: (e) => {
@@ -157,6 +160,7 @@ export class ManageScheduleComponent implements OnInit {
     this.proccessing = false
   }
   SaveSchedule() {
+    
     this.lmsSvc.SaveSchedule(this.selectedSchedule).subscribe({
       next: (res: ScheduleVM) => {
         this.catSvc.SuccessMsgBar(" Successfully Added!", 5000)

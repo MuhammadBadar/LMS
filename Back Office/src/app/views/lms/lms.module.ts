@@ -73,6 +73,8 @@ import { ManageCourseDetailComponent } from './manage-course-detail/manage-cours
 import { ScheduleListComponent } from './Schedule/schedule-list/schedule-list.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ManageTopicComponent } from './manage-topic/manage-topic.component';
+import { ManageLectureComponent } from './manage-lecture/manage-lecture.component';
+import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
 
@@ -85,6 +87,8 @@ import { ManageTopicComponent } from './manage-topic/manage-topic.component';
     ManageCourseDetailComponent,
     ScheduleListComponent,
     ManageTopicComponent,
+    ManageLectureComponent, 
+    ManageAssignTaskComponent,
 
   ],
   imports: [

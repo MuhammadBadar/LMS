@@ -1,13 +1,14 @@
-import { MatDialog } from '@angular/material/dialog';
+import {  MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CatalogService } from 'src/app/views/catalog/catalog.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { TopicVM } from '../Models/TopicVM';
 import { LMSService } from './../lms.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 import { CourseVM } from '../Models/CourseVM';
 import { ManageCourseComponent } from '../manage-course/manage-course.component';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-manage-topic',
   templateUrl: './manage-topic.component.html',
@@ -19,23 +20,53 @@ export class ManageTopicComponent implements OnInit {
   EditMode: boolean = false
   dataSource: any
   selectedTopic: TopicVM
-  courses?: CourseVM[]
+  Courses?: CourseVM[]
   topics?: TopicVM[]
-  dialogRef?: any
+  dialogRef: any
+  dialogref: any
+  disableClose:any
+  dialogData: any
+  isDialog : boolean = false;
+  Edit: any;
+  proccessing: boolean = false;
+  Add: boolean = true;
+  hide = true;
+  @ViewChild('topicForm', { static: true }) topicForm!: NgForm;
+
   constructor(
+    private injector: Injector,
     private lmsSvc: LMSService,
     private dialog: MatDialog,
     private catSvc: CatalogService) {
+      this.dialogref = this.injector.get(MatDialogRef, null);
+    this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
+   
+
     this.selectedTopic = new TopicVM
-  }
+    }
   ngOnInit(): void {
+    this.Add = true;
+    
     this.GetTopic();
     this.GetCourses();
+    this.selectedTopic.isActive = true;
+    // this.isDialog = this.dialogData.isDialog;
+    if (this.dialogData  != null) {
+      this.isDialog = true;
+    console.warn(this.dialogData.courseId)
+      if (this.dialogData.courseId != undefined) {
+        this.selectedTopic.courseId = this.dialogData.courseId
+         this.SearchbyCourse(this.dialogData.courseId)
+       }
+    }
   }
+  
   GetCourses() {
-    this.lmsSvc.GetCourse().subscribe({
+    var course = new CourseVM
+    course.isActive = true;
+    this.lmsSvc.SearchCourse(course).subscribe({
       next: (res: CourseVM[]) => {
-        this.courses = res
+        this.Courses = res
       }, error: (err) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
       },
@@ -52,15 +83,52 @@ export class ManageTopicComponent implements OnInit {
     })
   }
   SaveTopic() {
-    this.lmsSvc.SaveTopic(this.selectedTopic).subscribe({
-      next: (value) => {
-        this.catSvc.SuccessMsgBar("Successfully Added", 5000)
-        this.Refresh();
-      }, error: (err) => {
+    this.lmsSvc.GetTopic().subscribe({
+      
+      next: (res: TopicVM[]) => {
+        var list = res
+        if (this.Edit)
+          res = res.filter(x => x != this.selectedTopic)
+        var find = res.find(x => x.topicTitle == this.selectedTopic.topicTitle)
+        if (find == undefined) {
+          
+    if (this.selectedTopic.courseId == 0 || this.selectedTopic.courseId == undefined)
+    this.topicForm.form.controls['courseId'].setErrors({ 'incorrect': true });
+    console.warn(this.topicForm)
+
+          this.proccessing = true
+          if (!this.topicForm.invalid) {
+            if (this.Edit)
+              this.UpdateTopic()
+            else {
+              this.lmsSvc.SaveTopic(this.selectedTopic).subscribe({
+                next: (res) => {
+                  this.catSvc.SuccessMsgBar("Successfully Added!", 5000)
+                  this.Add = true;
+                  this.Edit = false;
+                  this.proccessing = false
+                  this.ngOnInit();
+                }, error: (e) => {
+                  this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+                  console.warn(e);
+                  this.proccessing = false
+                }
+              })
+            }
+          } else {
+            this.catSvc.ErrorMsgBar("Please Fill all required fields!", 5000)
+            this.proccessing = false
+          }
+        } else
+          this.catSvc.ErrorMsgBar("This Title Already Taken ", 5000)
+      }, error: (e) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-      },
+        console.warn(e);
+      }
     })
   }
+
+ 
   EditTopic(topic: TopicVM) {
     this.EditMode = true
     this.AddMode = false
@@ -113,11 +181,31 @@ export class ManageTopicComponent implements OnInit {
   OpenCourseDialog() {
     this.dialogRef = this.dialog.open(ManageCourseComponent, {
       width: '1200px', height: '950px'
-    })
+     
+     })
+      this.dataSource = new MatTableDataSource(this.topics)
     this.dialogRef.afterClosed()
       .subscribe((res: any) => {
         this.GetCourses()
       }
       );
   }
-}
+  SearchbyCourse(id : number ){
+  debugger
+    var topic = new TopicVM
+    topic.courseId = id;
+    this.lmsSvc.SearchTopic(topic).subscribe({
+     next: (value: TopicVM[]) => {
+       this.topics = value
+       this.dataSource = new MatTableDataSource(value)
+       console.warn(this.selectedTopic.courseId)
+     }, error: (err) => {
+    
+       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+     },
+   })
+  //  CheckCoursevalidation() {
+  //   if (this.selectedTopic.courseId == 0 || this.selectedTopic.courseId == undefined)
+  //     this.topicForm.form.controls['courseId'].setErrors({ 'incorrect': true });
+  // }
+}}

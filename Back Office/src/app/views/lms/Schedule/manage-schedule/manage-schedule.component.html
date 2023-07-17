@@ -113,6 +113,7 @@
                         </div>
                     </Row>
                     <Row>
+                        <mat-checkbox name="isActive" [(ngModel)]=" selectedSchedule.isActive">Is Active</mat-checkbox>
                         <div fxLayoutAlign="end end">
                             <button mat-icon-button mat-sm-button style="color: rgb(97, 48, 48);"
                                 cTooltipPlacement="top" (click)="AddClassTimingtoList()">
@@ -150,9 +151,14 @@
                                     <th mat-header-cell *matHeaderCellDef> Time From</th>
                                     <td mat-cell *matCellDef="let element"> {{element.timeFrom}} </td>
                                 </ng-container>
+                                <ng-container matColumnDef="isActive">
+                                    <th mat-header-cell *matHeaderCellDef> Is Active </th>
+                                    <td mat-cell *matCellDef="let element"> {{ element.isActive ? 'yes' : 'no' }} </td>
+                                  </ng-container>
+
                                 <ng-container matColumnDef="actions" stickyEnd>
                                     <th mat-header-cell *matHeaderCellDef style="width: 100px; text-align: center;">
-                                        <div style="width: 100px; text-align: center;">Actions</div>
+                                        <div style="width: 100px; text-align: center;">Action</div>
                                     </th>
                                     <td mat-cell *matCellDef="let row">
                                         <div style="width: 100px; text-align: center;">
@@ -160,11 +166,11 @@
                                                 (click)="edit(row)" cTooltip="Edit Settings ">
                                                 <mat-icon>edit</mat-icon>
                                             </button>
-                                            <button mat-icon-button mat-sm-button color="warn"
+                                            <!-- <button mat-icon-button mat-sm-button color="warn"
                                                 cTooltip="Delete Settings " (click)="delete(row)"
                                                 [disabled]="row.isSystemDefined">
                                                 <mat-icon>delete</mat-icon>
-                                            </button>
+                                            </button> -->
                                         </div>
                                     </td>
                                 </ng-container>

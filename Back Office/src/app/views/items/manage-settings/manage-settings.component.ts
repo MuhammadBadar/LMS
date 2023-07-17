@@ -17,6 +17,7 @@ import { CatalogService } from '../../catalog/catalog.service';
   styleUrls: ['./manage-settings.component.css']
 })
 export class ManageSettingsComponent implements OnInit {
+  isActive?:false
   Edit: boolean = false;
   DisabledType: boolean = false;
   parentId?: number = 0
@@ -24,6 +25,7 @@ export class ManageSettingsComponent implements OnInit {
   typeKeyCode: string = "";
   settingName: string = "";
   Add: boolean = true;
+ 
   IsUnique: boolean = true;
   enumTypeId?: number;
   validFields: boolean = false;
@@ -39,7 +41,7 @@ export class ManageSettingsComponent implements OnInit {
   selectedSettings = new SettingsVM();
   private dialogRef?: MatDialogRef<ManageSettingsTypeComponent>;
   @ViewChild('userForm', { static: true }) userForm!: NgForm;
-  displayedColumns: string[] = ['name', 'keyCode', 'parent', 'description', 'actions'];
+  displayedColumns: string[] = ['name', 'keyCode', 'parent', 'description','isActive', 'actions'];
   dataSource: any;
   constructor(
     private route: ActivatedRoute,
@@ -50,12 +52,15 @@ export class ManageSettingsComponent implements OnInit {
   }
   ngOnInit(): void {
     debugger
-    this.GetSettingsType();
+   
+    this.GetSettingsType()
+   
     this.Add = true;
     this.Edit = false;
     this.typeKeyCode = ""
     this.settingName = ""
     this.selectedSettings = new SettingsVM;
+   
     this.route.queryParams.subscribe(params => {
       this.typeId = + params['type']
       console.warn(this.typeId)
@@ -69,6 +74,7 @@ export class ManageSettingsComponent implements OnInit {
             this.selectedSettings.enumTypeId = + params['type'];
             this.Search()
             this.DisabledType = true
+            
           }, error: (e) => {
             this.catSvc.ErrorMsgBar("Error OccurRed!", 5000)
           }
@@ -84,6 +90,7 @@ export class ManageSettingsComponent implements OnInit {
         this.typeKeyCode = ""
         this.settingName = ""
         this.DisabledType = false
+        this.selectedSettings.isActive = true;
       }
     });
   }
@@ -108,6 +115,8 @@ export class ManageSettingsComponent implements OnInit {
     });
   }
   GetSettingsType() {
+    var settingtype = new SettingsTypeVM
+    settingtype.isActive = true;
     this.catSvc.GetSettingsType().subscribe((res: SettingsTypeVM[]) => {
       this.settingsType = res;
     });
@@ -288,7 +297,7 @@ export class ManageSettingsComponent implements OnInit {
     if (this.selectedSettings.isSystemDefined && this.Edit) {
 
     } else {
-      this.settingName = '_' + event.target.value.replaceAll(' ', '_')
+      this.settingName = '' + event.target.value.replaceAll(' ', '')
       this.selectedSettings.keyCode = this.typeKeyCode + this.settingName
     }
   }
@@ -326,8 +335,8 @@ export class ManageSettingsComponent implements OnInit {
           this.GetSettings()
           this.GetSettingsType()
           this.selectedSettings.keyCode = this.typeKeyCode
+
         }
       });
   }
 }
-

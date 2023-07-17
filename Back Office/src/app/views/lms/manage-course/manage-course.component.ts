@@ -1,10 +1,12 @@
 import { LMSService } from './../lms.service';
 import { CourseVM } from './../Models/CourseVM';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { CatalogService } from '../../catalog/catalog.service';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-manage-course',
@@ -12,6 +14,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./manage-course.component.css']
 })
 export class ManageCourseComponent implements OnInit {
+  isActive?:false
   imageName: any
   previewImage = false;
   currentLightBoxImage: any
@@ -23,19 +26,37 @@ export class ManageCourseComponent implements OnInit {
   Course: CourseVM[] | undefined;
   selectedCourse: CourseVM;
   @ViewChild('CourseForm', { static: true }) CourseForm!: NgForm;
-  displayedColumns: string[] = ['title', 'shortDes', 'logo', 'fee', 'actions'];
+  displayedColumns: string[] = ['title', 'shortDes', 'logo', 'fee', 'isActive', 'actions'];
   dataSource: any;
+  isDialog: boolean = false;
+  dialogData: any;
+  dialogref: any;
   constructor(
+    private injector: Injector,
     public accSvc: LMSService,
     private catSvc: CatalogService,
+    private dialog: MatDialog ,
+
+
   ) {
+    this.dialogref = this.injector.get(MatDialogRef, null);
+    this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
+    
     this.selectedCourse = new CourseVM();
   }
+
+
+
   ngOnInit(): void {
     this.Add = true;
     this.Edit = false;
     this.selectedCourse = new CourseVM
-    this.GetCourse();
+    // this.isDialog=true
+    this.GetCourse()
+    this.isDialog=true
+    this.selectedCourse.isActive = true;
+    this.isDialog = this.dialogData.isDialog;
+  
   }
   GetCourse() {
     this.accSvc.GetCourse().subscribe({
@@ -169,5 +190,3 @@ export class ManageCourseComponent implements OnInit {
 
 
 }
-
-

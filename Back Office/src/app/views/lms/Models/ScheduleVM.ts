@@ -7,6 +7,7 @@ export class ScheduleVM {
     startDate?: Date
     classTimings?: ClassTimingVM[] = new Array();
     course?: string
+    isActive?:boolean
 }
 export class ClassTimingVM {
     id!: number

@@ -7,6 +7,8 @@ import { ManageUserComponent } from './manage-user/manage-user.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ManageTopicComponent } from './manage-topic/manage-topic.component';
+import { ManageLectureComponent } from './manage-lecture/manage-lecture.component';
+import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
 
 const routes: Routes = [{
   path: '',
@@ -52,6 +54,16 @@ const routes: Routes = [{
     {
       path: "topic",
       component: ManageTopicComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "lecture",
+      component: ManageLectureComponent,
+      pathMatch: "full"
+    }, 
+    {
+      path: "assignTask",
+      component: ManageAssignTaskComponent,
       pathMatch: "full"
     },
   ]

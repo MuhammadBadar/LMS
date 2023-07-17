@@ -4,4 +4,5 @@ export class CourseVM {
     shortDescription?: string
     logoBase64Path?: string
     fee?: number
+  isActive?: boolean
 }

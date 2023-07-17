@@ -15,6 +15,7 @@ import { CatalogService } from '../../catalog/catalog.service';
   styleUrls: ['./manage-settings-type.component.css']
 })
 export class ManageSettingsTypeComponent implements OnInit {
+  isActive?:false
   Edit: boolean = false;
   IsUnique: boolean = true;
   Add: boolean = true;
@@ -27,7 +28,7 @@ export class ManageSettingsTypeComponent implements OnInit {
   settingsTypeById?: SettingsTypeVM[];
   selectedSettingsType = new SettingsTypeVM()
   @ViewChild('userForm', { static: true }) userForm!: NgForm;
-  displayedColumns: string[] = ['name', 'keyCode', 'parent', 'description', 'actions'];
+  displayedColumns: string[] = ['name', 'keyCode', 'parent', 'description','isActive', 'actions'];
   dataSource: any;
   constructor(
     public dialogRef: MatDialogRef<ManageSettingsTypeComponent>,
@@ -41,6 +42,7 @@ export class ManageSettingsTypeComponent implements OnInit {
     this.Edit = false;
     this.selectedSettingsType = new SettingsTypeVM();
     this.GetSettingsType();
+    this.selectedSettingsType.isActive = true;
   }
   Check() {
     this.validFields = true;
@@ -172,7 +174,7 @@ export class ManageSettingsTypeComponent implements OnInit {
     // this.selectedSettingsType = new SettingsTypeVM;
     // this.Add = true;
     // this.Edit = false;
-    this.GetSettingsType();
+     this.GetSettingsType();
   }
   onSearchChange() {
     debugger
@@ -193,4 +195,3 @@ export class ManageSettingsTypeComponent implements OnInit {
     }
   }
 }
-
