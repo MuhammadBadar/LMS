@@ -12,6 +12,9 @@
         schedule,
         inquiry,
         classtiming,
-        topic
+        topic,
+        lecture,
+        assignTask
+
     }
 }

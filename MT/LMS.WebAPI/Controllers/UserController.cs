@@ -23,7 +23,7 @@ namespace LMS.WebAPI.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            UserDE User = new UserDE { IsActive = true };
+            UserDE User = new UserDE ();
             List<UserDE> values = _UserSVC.SearchUsers(User);
             return Ok(values);
         }
@@ -37,7 +37,7 @@ namespace LMS.WebAPI.Controllers
         [HttpPost("{Search}")]
         public ActionResult Search(UserDE Search)
         {
-            Search.IsActive = true;
+            //Search.IsActive = true;
             List<UserDE> values = _UserSVC.SearchUsers(Search);
             return Ok(values);
         }

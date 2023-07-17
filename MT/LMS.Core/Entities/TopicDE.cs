@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace LMS.Core.Entities
 {
-    public class TopicDE:BaseDomain
+    public class TopicDE : BaseDomain
     {
+
         public string? TopicTitle { get; set; }
         public string? Description { get; set; }
         public int CourseId { get; set; }

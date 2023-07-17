@@ -19,7 +19,7 @@ namespace LMS.Core.Entities
             DBoperation = new DBoperations();
             this.CreatedOn = DateTime.Now;
             this.ModifiedOn = DateTime.Now;
-            this.IsActive = true;
+            //this.IsActive = true;
         }
         #endregion
     }

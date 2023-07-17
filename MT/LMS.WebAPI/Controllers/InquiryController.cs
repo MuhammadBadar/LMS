@@ -32,7 +32,7 @@ namespace LMS.WepAPI.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            InquiryDE inqrySC = new InquiryDE { IsActive = true };
+            InquiryDE inqrySC = new InquiryDE ();
             List<InquiryDE> Inquiry = _inqrySVC.SearchInquiry(inqrySC);
             return Ok(Inquiry);
         }

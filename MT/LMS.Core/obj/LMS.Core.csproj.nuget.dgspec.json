@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {}
+    "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {}
   },
   "projects": {
-    "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+    "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
+        "projectUniqueName": "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
         "projectName": "LMS.Core",
-        "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
-        "packagesPath": "C:\\Users\\devum\\.nuget\\packages\\",
-        "outputPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\obj\\",
+        "projectPath": "C:\\QST\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
+        "packagesPath": "C:\\Users\\Hira Doll\\.nuget\\packages\\",
+        "outputPath": "C:\\QST\\LMS\\MT\\LMS.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\devum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hira Doll\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -103,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }

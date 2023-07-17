@@ -23,7 +23,7 @@ namespace LMS.WebAPI.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            CourseDetailDE CourseDetail = new CourseDetailDE { IsActive = true };
+            CourseDetailDE CourseDetail = new CourseDetailDE();
             List<CourseDetailDE> values = _CourseDetailSVC.SearchCourseDetails(CourseDetail);
             return Ok(values);
         }
@@ -37,7 +37,7 @@ namespace LMS.WebAPI.Controllers
         [HttpPost("{Search}")]
         public ActionResult Search(CourseDetailDE Search)
         {
-            Search.IsActive = true;
+            //Search.IsActive = true;
             List<CourseDetailDE> values = _CourseDetailSVC.SearchCourseDetails(Search);
             return Ok(values);
         }
