@@ -1,25 +1,15 @@
 <div class="container-fluid page">
-    `    <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
-            <div *ngIf="Add">Manage Course
-            </div>
-            <div *ngIf="Edit">Edit Course
-            </div>
-            
-        
-    <button mat-icon-button mat-dialog-close>
-      <mat-icon>close</mat-icon>
-    </button>
-    
-    
-    <!-- </ng-template>
-    
-    <mat-dialog-actions>
-      <button mat-button mat-dialog-close>Close</button>
-    </mat-dialog-actions>  -->
-            <!-- <button mat-button (click)="OpenCourseDialog()">Open Course Dialog</button> -->
-           
-        </div>
-        <div class="page_content shadow p-3 position-relative">
+    <div class="d-flex page_box p-3 mt-2 header-sticky" style="position: sticky;">
+      <div *ngIf="Add">Manage Course</div>
+      <div *ngIf="Edit">Edit Course</div>
+      <div fxFlex fxLayout="row" fxLayoutAlign="end center" style="margin-top: 0; padding-top: 0;" *ngIf="isDialog">
+        <button mat-icon-button (click)="dialogref.close()" style="color: white;">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  
+  <div class="page_content shadow p-3 position-relative">
             <form #CourseForm="ngForm">
                 <div fxLayout="row" fxLayoutAlign="space-between">
                     <mat-form-field fxFlex="48%" appearance="outline" class="form-group">

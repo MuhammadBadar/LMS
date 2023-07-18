@@ -1,0 +1,1 @@
+2023-07-16 14:22:31.6418 ERROR MySql.Data.MySqlClient.MySqlException: Authentication to host 'localhost' for user 'root' using method 'caching_sha2_password' failed with message: Access denied for user 'root'@'localhost' (using password: YES)

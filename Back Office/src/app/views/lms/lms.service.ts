@@ -129,6 +129,7 @@ export class LMSService {
   SearchTopic(value: TopicVM): Observable<TopicVM[]> {
     return this.http.post<TopicVM[]>(Globals.BASE_API_URL + 'Topic/Search', value).pipe();
   }
+  
   GetLecture(): Observable<LectureVM[]> {
     return this.http.get<LectureVM[]>(Globals.BASE_API_URL + 'Lecture').pipe();
   }

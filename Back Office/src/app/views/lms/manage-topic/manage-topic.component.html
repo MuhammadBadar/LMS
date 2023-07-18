@@ -4,9 +4,11 @@
         </div>
         <div *ngIf="EditMode">Edit Topic
         </div>
-        <button mat-icon-button style="color:white;margin-top: 0; padding-top: 0;">
-        <mat-icon>close</mat-icon>
-    </button> 
+        <div fxFlex fxLayout="row" fxLayoutAlign="end end" style="margin-top: 13px;" *ngIf="isDialog">
+            <button mat-icon-button (click)="dialogref.close()" style="color: white;">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
     </div>
     <div class="page_content shadow p-3 position-relative">
         <form #topicForm="ngForm">

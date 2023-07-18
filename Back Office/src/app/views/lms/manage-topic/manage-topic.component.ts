@@ -50,7 +50,7 @@ export class ManageTopicComponent implements OnInit {
     this.GetTopic();
     this.GetCourses();
     this.selectedTopic.isActive = true;
-    // this.isDialog = this.dialogData.isDialog;
+    this.isDialog = this.dialogData.isDialog;
     if (this.dialogData  != null) {
       this.isDialog = true;
     console.warn(this.dialogData.courseId)
@@ -180,7 +180,8 @@ export class ManageTopicComponent implements OnInit {
 
   OpenCourseDialog() {
     this.dialogRef = this.dialog.open(ManageCourseComponent, {
-      width: '1200px', height: '950px'
+      width: '1200px', height: '950px',
+    
      
      })
       this.dataSource = new MatTableDataSource(this.topics)

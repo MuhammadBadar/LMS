@@ -1,0 +1,146 @@
+<div class="container-fluid page">
+    <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+        <div *ngIf="AddMode">Manage Lecture
+        </div>
+        <div *ngIf="EditMode">Edit Lecture
+        </div>
+       
+    </div>
+    <form>
+    <div class="page_content shadow p-3 position-relative">
+        <form #lectureForm="ngForm">
+    
+            <Row>
+                <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
+                    <mat-form-field appearance="outline" fxFlex="49%">
+                        <mat-label>--Please Select Course--</mat-label>
+                        <mat-select name="courseId" [(ngModel)]="selectedlec.courseId">
+                          <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
+                          <mat-option *ngFor="let val of courses" [value]="val.id" (click)="Search()">
+                            {{val.title}}
+                          </mat-option>
+                        </mat-select>
+                        
+                        <div matSuffix>
+                          <button mat-icon-button style="color:#940540;" (click)="OpenCourseDialog(); $event.stopPropagation()" cTooltip="Explore SettingsType">
+                            <mat-icon>add</mat-icon>
+                          </button>
+                        </div>
+                      </mat-form-field>
+                      
+                    <mat-form-field appearance="outline" fxFlex="49%">
+                      
+                        <mat-label>--Please Select Topic--</mat-label>
+                        <mat-select name="topicId" [(ngModel)]="selectedlec.topicId">
+                          <mat-option [value]="0">--Please Select--</mat-option>
+                          <mat-option *ngFor="let val of topics" [value]="val.id">{{val.topicTitle}}</mat-option>
+                        </mat-select>
+                        
+                          
+                        <div matSuffix>
+                            <button mat-icon-button style="color:#940540 ; "
+                                (click)="OpenTopicDialog(); $event.stopPropagation()" cTooltip="Explore SettingsType ">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                    </mat-form-field>  
+                </div>
+            </Row>
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field appearance="outline" fxFlex="49%">
+                  <mat-label>Lecture Title</mat-label>
+                  <input matInput class="form-control" placeholder="Title" [type]="hide ? 'title' : 'text'"
+                         name="Title" [ngClass]="{ 'is-invalid': lectureForm.submitted && title.invalid }"
+                         #title="ngModel" [(ngModel)]="selectedlec.title" required>
+                </mat-form-field>
+              
+                <mat-form-field appearance="outline" fxFlex="49%">
+                  <mat-label>URL</mat-label>
+                  <input matInput class="form-control" placeholder="URL" [type]="hide ? 'url' : 'text'"
+                         name="URL" [ngClass]="{ 'is-invalid': lectureForm.submitted && url.invalid }"
+                         #url="ngModel" [(ngModel)]="selectedlec.url" required>
+                </mat-form-field>
+              </div>
+              
+            <Row>
+                <div fxLayout="row" fxFlex="100%">
+                    <mat-form-field appearance="outline" fxFlex="100%">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput name="description" [(ngModel)]="selectedlec.description"></textarea>
+                    </mat-form-field>
+                </div>
+            </Row>
+            <mat-checkbox name="isActive" [(ngModel)]="selectedlec.isActive" checked>Is Active</mat-checkbox>
+
+
+            <div fxLayoutAlign="end end">
+                <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveLecture()">Submit</button>
+                <button mat-raised-button *ngIf="EditMode" color="primary" (click)="SaveLecture()">Update</button>
+                <div>
+                    <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                        (click)="Refresh()">
+                        <mat-icon>autorenew</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <section class=" example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;margin-top: 20px;">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="course">
+                    <th mat-header-cell *matHeaderCellDef> Course </th>
+                    <td mat-cell *matCellDef="let element"> {{element.course}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="topic">
+                    <th mat-header-cell *matHeaderCellDef> TopicTitle </th>
+                    <td mat-cell *matCellDef="let element"> {{element.topicTitle}} </td>
+                </ng-container>
+                
+
+
+                <ng-container matColumnDef="title">
+                    <th mat-header-cell *matHeaderCellDef>Lecture Title </th>
+                    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="url">
+                    <th mat-header-cell *matHeaderCellDef> URL </th>
+                    <td mat-cell *matCellDef="let element">
+                      <a href="{{element.url}}" target="_blank">{{element.url}}</a>
+                    </td>
+                  </ng-container>
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef> Description </th>
+                    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="isActive">
+                    <th mat-header-cell *matHeaderCellDef> Is Active </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.isActive ? 'yes' : 'no' }} </td>
+                  </ng-container>
+                  
+
+                <ng-container matColumnDef="actions" stickyEnd="true">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <p style="font-size: 14px;text-align: center;">Action</p>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <div style="text-align: center;">
+                            <button mat-icon-button mat-sm-button (click)="EditLecture(row)" style=" color:#1e293b ; "
+                                cTooltip=" Edit Course">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+  
+                         <!-- <button mat-icon-button mat-sm-button color="warn" (click)="DeleteLecture(row.id)"
+                                cTooltip="Delete Course">
+                                <mat-icon>delete</mat-icon>
+                            </button>  -->
+                        </div>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </section>
+    </div>

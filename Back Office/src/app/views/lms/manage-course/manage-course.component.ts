@@ -51,11 +51,17 @@ export class ManageCourseComponent implements OnInit {
     this.Add = true;
     this.Edit = false;
     this.selectedCourse = new CourseVM
+    
     // this.isDialog=true
     this.GetCourse()
     this.isDialog=true
     this.selectedCourse.isActive = true;
     this.isDialog = this.dialogData.isDialog;
+    if (this.dialogData  != null) {
+      this.isDialog = this.dialogData.isDialog;}    
+   
+  
+       
   
   }
   GetCourse() {
