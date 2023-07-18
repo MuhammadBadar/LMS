@@ -7,6 +7,10 @@ import { ManageUserComponent } from './manage-user/manage-user.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ManageTopicComponent } from './manage-topic/manage-topic.component';
+import { ManageVocabularyComponent } from './manage-vocabulary/manage-vocabulary.component';
+import { ManageStudentComponent } from './manage-student/maanage-student.component';
+import { ManageCityComponent } from './manage-city/manage-city.component';
+import { ManageCityStudentComponent } from './manage-city-student/manage-city-student.component';
 
 const routes: Routes = [{
   path: '',
@@ -52,6 +56,26 @@ const routes: Routes = [{
     {
       path: "topic",
       component: ManageTopicComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "Vocabulary",
+      component: ManageVocabularyComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "City",
+      component: ManageCityComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "Student",
+      component: ManageStudentComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "CityStudent",
+      component: ManageCityStudentComponent,
       pathMatch: "full"
     },
   ]
