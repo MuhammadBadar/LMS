@@ -1,0 +1,110 @@
+     
+     
+     
+     <div class="event-dialog-wrapper" style="z-index: 100;">
+        <mat-toolbar matDialogTitle class="mat-primary m-0"
+            style="background-color:  rgb(2, 42, 75);color: black; height: 50px; margin-top: 15px;">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 13px;">
+                <span *ngIf="Add" class="title dialog-title" style="color:white;">
+                    <p>Manage City</p>
+                </span>
+                <span *ngIf="Edit" class="title dialog-title" style="color:rgb(224, 26, 26);">
+                    <p>Edit City</p>
+                </span>
+                <div fxFlex="7%" *ngIf="isDialog">
+                    <button mat-icon-button style="color: white; margin-top: 0; padding-top: 0;" 
+                      (click)="dialogRefe.close()"
+                      aria-label="Close dialog">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </div>
+                
+             <!-- <button mat-icon-button style="color:white;margin-top: 0; padding-top: 0;" (click)="dialogRefe.close()"
+                    aria-label="Close dialog">
+                    <mat-icon>close</mat-icon>
+                </button>   -->
+
+                <!-- <button mat-icon-button style="color:#940540 ; "
+                (click)="dialogRefe.close(); $event.stopPropagation()" cTooltip="Explore CityType "
+                *ngIf="isDialogOpen">
+                <mat-icon>add</mat-icon>
+              </button>
+               -->
+            </div>
+        </mat-toolbar>
+        </div>
+       
+                    <div class="page_content shadow p-3 position-relative">
+                        <form #userForm="ngForm">
+                            <div fxLayout="row" fxLayoutAlign="space-between">
+                               
+                                <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput required #name="ngModel" name="name" [(ngModel)]="selectedCity.name" />
+                                </mat-form-field>
+                            </div>
+                            <mat-checkbox name="isActive" [(ngModel)]="selectedCity.isActive">Is Active</mat-checkbox>
+                            <div fxLayoutAlign="end end">
+                                <c-spinner *ngIf="proccessing" style="height: 50px;width: 50px;color: rgb(3, 71, 102);"></c-spinner>
+                                <div style="margin-top: 10px;" *ngIf="!proccessing">
+                                    <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveCity()">Submit</button>
+                    <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateCity()">Update</button>
+                     </div>
+                   <div>  <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                     (click)="Refresh()">
+                     <mat-icon>autorenew</mat-icon>
+                 </button>
+                </div>
+                            </div>
+                        </form>
+                        <c-card style="padding: 10px; margin-top: 30px;" class="mat-elevation-z8">
+                            <h5 cCardTitle>Cities List</h5>
+                            <c-card-body style="padding: 10px;margin: 5px;border-radius: 10px;">
+                                <div class="example-table-container">
+                                    <section class="example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;">
+                                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                                            <!-- <ng-container matColumnDef="Id">
+                                                <th mat-header-cell *matHeaderCellDef> Sr No </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                                            </ng-container> -->
+                                            <ng-container matColumnDef="name">
+                                                <th mat-header-cell *matHeaderCellDef> Name </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                            </ng-container>
+                                            
+                                            
+
+                                            <ng-container matColumnDef="isActive">
+                                                <th mat-header-cell *matHeaderCellDef> Is Active </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.isActive ? 'Yes' : 'No'}} </td>
+                                              </ng-container>
+                                            <ng-container matColumnDef="actions" stickyEnd="true">
+                                                <th mat-header-cell *matHeaderCellDef>
+                                                    <p style="font-size: 14px;text-align: center;">Actions</p>
+                                                </th>
+                                                <td mat-cell *matCellDef="let row">
+                                                    <div style="text-align: center;">
+                                                        <!-- <button mat-icon-button mat-sm-button style=" color:#1e293b ; "
+                                                            cTooltip=" Edit City" (click)="GetCityForEdit(row.id)">
+                                                            <mat-icon>edit</mat-icon>
+                                                        </button> -->
+                                                        <button mat-icon-button mat-sm-button (click)="EditCity(row)" style=" color:#1e293b ; "
+                                                        cTooltip=" Edit City">
+                                                        <mat-icon>edit</mat-icon>
+                                                    </button>
+                                                        <!-- <button mat-icon-button mat-sm-button color="warn" cTooltip="Delete City"
+                                                            (click)="DeleteCity(row.id)">
+                                                            <mat-icon>delete</mat-icon>
+                                                        </button> -->
+                                                    </div>
+                                                </td>
+                                            </ng-container>
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                        </table>
+                                    </section>
+                                </div>
+                            </c-card-body>
+                        </c-card>
+                    </div>
+        
