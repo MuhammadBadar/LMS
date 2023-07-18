@@ -3,6 +3,10 @@
     public enum TableNames
     {      
         permissions,
+        City,
+        CityStudent,
+        Vocabulary,
+        Student,
         feature,
         enums,
         enumline,

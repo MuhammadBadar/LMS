@@ -38,7 +38,7 @@ namespace LMS.DAL
         //{
         //	try
         //	{
-        //		MySqlConnection con = new MySqlConnection("Server = localhost; Database = LMS; Uid = root; Pwd = Ss3s3Ss3s3;");
+        //		MySqlConnection con = new MySqlConnection("Server = localhost; Database = LMS; Uid = root; Pwd = root;");
         //		MySqlCommand cmd = new MySqlCommand()
         //		{
         //			CommandTimeout = 0,

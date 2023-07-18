@@ -7570,19 +7570,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\devum\\.nuget\\packages\\": {}
+    "C:\\Users\\FF\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
+      "projectUniqueName": "E:\\QST\\LMS1\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
       "projectName": "LMS.Tests",
-      "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
-      "packagesPath": "C:\\Users\\devum\\.nuget\\packages\\",
-      "outputPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Tests\\obj\\",
+      "projectPath": "E:\\QST\\LMS1\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
+      "packagesPath": "C:\\Users\\FF\\.nuget\\packages\\",
+      "outputPath": "E:\\QST\\LMS1\\LMS\\MT\\LMS.Tests\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\devum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\FF\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7590,20 +7595,21 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
-              "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
+            "E:\\QST\\LMS1\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+              "projectPath": "E:\\QST\\LMS1\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
             },
-            "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
-              "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.Service\\LMS.Service.csproj"
+            "E:\\QST\\LMS1\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
+              "projectPath": "E:\\QST\\LMS1\\LMS\\MT\\LMS.Service\\LMS.Service.csproj"
             },
-            "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj": {
-              "projectPath": "D:\\QAM SOFT\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj"
+            "E:\\QST\\LMS1\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj": {
+              "projectPath": "E:\\QST\\LMS1\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj"
             }
           }
         }
@@ -7671,7 +7677,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
