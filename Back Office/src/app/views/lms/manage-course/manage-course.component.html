@@ -4,6 +4,13 @@
         </div>
         <div *ngIf="Edit">Edit Course
         </div>
+        <div fxFlex="7%" *ngIf="isDialog">
+            <button mat-icon-button style="color: white; margin-top: 0; padding-top: 0;" 
+              (click)="dialogRefe.close()"
+              aria-label="Close dialog">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
     </div>
     <div class="page_content shadow p-3 position-relative">
         <form #CourseForm="ngForm">

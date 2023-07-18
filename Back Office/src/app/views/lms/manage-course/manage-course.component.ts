@@ -1,10 +1,11 @@
 import { LMSService } from './../lms.service';
 import { CourseVM } from './../Models/CourseVM';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { CatalogService } from '../../catalog/catalog.service';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-manage-course',
@@ -25,17 +26,28 @@ export class ManageCourseComponent implements OnInit {
   @ViewChild('CourseForm', { static: true }) CourseForm!: NgForm;
   displayedColumns: string[] = ['title', 'shortDes', 'logo', 'fee', 'actions'];
   dataSource: any;
-  constructor(
+  dialogData: any;
+  isDialog: boolean= false;
+dialogRefe: any;
+  constructor(private injector: Injector,
     public accSvc: LMSService,
     private catSvc: CatalogService,
   ) {
     this.selectedCourse = new CourseVM();
+    
+    //private injector: Injector,
+    this.dialogRefe = this.injector.get(MatDialogRef, null);
+    this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
   }
   ngOnInit(): void {
     this.Add = true;
     this.Edit = false;
     this.selectedCourse = new CourseVM
     this.GetCourse();
+    if (this.dialogData ) {
+      this.isDialog =this.dialogData.isDialogue;
+      console.warn(this.dialogData.courseId)}
+  
   }
   GetCourse() {
     this.accSvc.GetCourse().subscribe({

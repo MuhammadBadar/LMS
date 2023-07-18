@@ -43,7 +43,7 @@ export class ManageCityComponent {
   values?: CitiesVM[];
   //selectedVocabulary: VocabularyVM
   cities?: CityVM[]
- ssing: any;
+  
   dialogRefe: any;
   dialogData: any;
   // isDialog: any;

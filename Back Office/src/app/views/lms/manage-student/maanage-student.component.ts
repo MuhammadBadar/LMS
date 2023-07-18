@@ -275,7 +275,8 @@ export class ManageStudentComponent implements OnInit {
 OpenTopicDialog() {
   this.Reftopic = this.dialog.open(ManageTopicComponent, {
     width: '1200px', height: '950px',
-    data: { isDialogue: true, topicId: this.selectedStudent.topicId },
+    disableClose: true, panelClass: 'calendar-form-dialog',
+      data: { isDialogue: true, topicId: this.selectedStudent.topicId },
    
   })
   this.Reftopic.afterClosed()

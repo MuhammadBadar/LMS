@@ -1,9 +1,9 @@
-import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CatalogService } from 'src/app/views/catalog/catalog.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { TopicVM } from '../Models/TopicVM';
 import { LMSService } from './../lms.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { CourseVM } from '../Models/CourseVM';
 import { ManageCourseComponent } from '../manage-course/manage-course.component';
@@ -22,15 +22,25 @@ export class ManageTopicComponent implements OnInit {
   courses?: CourseVM[]
   topics?: TopicVM[]
   dialogRef?: any
-  constructor(
+  
+  dialogRefe: any;
+  isDialog : boolean = false;
+  dialogData: any;
+  constructor(  private injector: Injector,
     private lmsSvc: LMSService,
     private dialog: MatDialog,
     private catSvc: CatalogService) {
-    this.selectedTopic = new TopicVM
+    this.selectedTopic = new TopicVM;
+  
+    this.dialogRefe = this.injector.get(MatDialogRef, null);
+    this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
   }
   ngOnInit(): void {
     this.GetTopic();
     this.GetCourses();
+    if (this.dialogData ) {
+      this.isDialog =this.dialogData.isDialogue;
+      console.warn(this.dialogData.topicId)}
   }
   GetCourses() {
     this.lmsSvc.GetCourse().subscribe({
@@ -112,7 +122,10 @@ export class ManageTopicComponent implements OnInit {
 
   OpenCourseDialog() {
     this.dialogRef = this.dialog.open(ManageCourseComponent, {
-      width: '1200px', height: '950px'
+      width: '1200px', height: '950px',
+       disableClose: true, panelClass: 'calendar-form-dialog',
+      data: { isDialogue: true, courseId: this.selectedTopic.courseId },
+   
     })
     this.dialogRef.afterClosed()
       .subscribe((res: any) => {
