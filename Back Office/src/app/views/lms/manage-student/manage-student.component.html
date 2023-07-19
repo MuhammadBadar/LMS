@@ -1,0 +1,155 @@
+<div class="event-dialog-wrapper" style="z-index: 100;">
+    <mat-toolbar matDialogTitle class="mat-primary m-0"
+        style="background-color:  rgb(2, 42, 75);color: black; height: 50px; margin-top: 15px;">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 13px;">
+            <span *ngIf="Add" class="title dialog-title" style="color:white;">
+                <p>Manage Student</p>
+            </span>
+            <span *ngIf="Edit" class="title dialog-title" style="color:rgb(224, 26, 26);">
+                <p>Edit Student</p>
+            </span>
+            <!-- <button mat-icon-button style="color:white;margin-top: 0; padding-top: 0;" (click)="dialogRefe.close()"
+            aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+        </button>   -->
+        <div fxFlex="7%" *ngIf="isDialog">
+            <button mat-icon-button style="color: white; margin-top: 0; padding-top: 0;" 
+              (click)="dialogRefe.close()"
+              aria-label="Close dialog">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+    </mat-toolbar>
+    </div>
+   <form>
+    <div class="container-fluid page">
+        <!-- <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+            <div *ngIf="AddMode">Manage Topic
+            </div>
+            <div *ngIf="EditMode">Edit Topic
+            </div>
+        </div> -->
+        <div class="page_content shadow p-3 position-relative">
+            <form #StudentForm="ngForm">
+                <Row>
+                    <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
+                        <mat-form-field appearance="outline" fxFlex="49%">
+                            <mat-label>Please Select City*</mat-label>
+                            <mat-select name="cityId" [(ngModel)]="selectedStudent.cityId">
+                                <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
+                                <mat-option *ngFor="let val of City" [value]="val.id">
+                                    {{val.name}}
+                                </mat-option>
+                            </mat-select>
+                            <div matSuffix>
+                                <button mat-icon-button style="color:#940540 ; "
+                                    (click)="OpenCityDialog(); $event.stopPropagation()" cTooltip="Explore CityType ">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" fxFlex="49%">
+                            <mat-label>Please select Topic*</mat-label>
+                            <mat-select name="topicId" [(ngModel)]="selectedStudent.topicId">
+                                <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
+                                <mat-option *ngFor="let val of topics" [value]="val.id">
+                                    {{val.topicTitle}}
+                                </mat-option>
+                            </mat-select>
+                            <div matSuffix>
+                                <button mat-icon-button style="color:#940540 ; "
+                                    (click)="OpenTopicDialog(); $event.stopPropagation()" cTooltip="Explore SettingsType ">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </mat-form-field>
+                    </div>
+                </Row>
+                        
+                        
+                  
+                <Row>
+                    <div fxLayout="row" fxFlex="100%">
+                    <mat-form-field appearance="outline" fxFlex="49%">
+                        <mat-label> Name</mat-label>
+                        <input matInput name="name" [(ngModel)]="selectedStudent.name" required>
+                    </mat-form-field>
+                
+                    <!-- <div fxLayout="row" fxFlex="100%"> -->
+                        <mat-form-field appearance="outline" fxFlex="49%">
+                            <mat-label> Email</mat-label>
+                            <input matInput name="email" [(ngModel)]="selectedStudent.email">
+                        </mat-form-field>
+                    </div>
+                </Row>
+                <mat-checkbox name="isActive" [(ngModel)]="selectedStudent.isActive">Is Active</mat-checkbox>
+                <div fxLayoutAlign="end end">
+                    <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveStudent()">Submit</button>
+                    <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateStudent()">Update</button>
+                    <div>
+                        <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                            (click)="Refresh()">
+                            <mat-icon>autorenew</mat-icon>
+                        </button>
+                    </div>
+                </div>
+    
+            </form>
+            <c-card style="padding: 10px; margin-top: 30px;" class="mat-elevation-z8">
+                <h5 cCardTitle>Student List</h5>
+                <c-card-body style="padding: 10px;margin: 5px;border-radius: 10px;">
+                    <div class="example-table-container">
+            <section class=" example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;margin-top: 20px;">
+             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin-top: 20px;">
+
+                    
+    <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef>City </th>
+        <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="topic">
+        <th mat-header-cell *matHeaderCellDef>Topic </th>
+        <td mat-cell *matCellDef="let element"> {{element.topic}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="isActive">
+        <th mat-header-cell *matHeaderCellDef> Is Active </th>
+        <td mat-cell *matCellDef="let element"> {{element.isActive ? 'Yes' : 'No'}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="actions" stickyEnd="true">
+        <th mat-header-cell *matHeaderCellDef>
+            <p style="font-size: 14px;text-align: center;">Actions</p>
+        </th>
+        <td mat-cell *matCellDef="let row">
+            <div style="text-align: center;">
+                <button mat-icon-button mat-sm-button (click)="EditStudent(row)" style=" color:#1e293b ; "
+                    cTooltip=" Edit Student">
+                    <mat-icon>edit</mat-icon>
+                </button>
+
+                <!-- <button mat-icon-button mat-sm-button color="warn" (click)="DeleteStudent(row.id)"
+                    cTooltip="Delete Student">
+                    <mat-icon>delete</mat-icon>
+                </button> -->
+            </div>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table> 
+              
