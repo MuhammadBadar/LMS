@@ -3,4 +3,7 @@ export class CityVM {
     name?: string
     comments?: string
     isActive?: boolean
+	
+	
+	
 }
