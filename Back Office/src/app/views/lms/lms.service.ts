@@ -10,6 +10,7 @@ import { InquiryVM } from './Models/InquiryVM';
 import { UserVM } from './Models/UserVM';
 import{LectureVM} from './Models/LectureVM';
 import{AssignTaskVM}from './Models/AssignTaskVM';
+import { StudentVM } from './Models/StudentVM';
 @Injectable({
   providedIn: 'root'
 })
@@ -160,5 +161,21 @@ export class LMSService {
   }
   SearchAssignTask(value: AssignTaskVM): Observable<AssignTaskVM[]> {
     return this.http.post<AssignTaskVM[]>(Globals.BASE_API_URL + 'AssignTask/Search', value).pipe();
+  }
+  
+  GetStudent(): Observable<StudentVM[]> {
+    return this.http.get<StudentVM[]>(Globals.BASE_API_URL + 'Student').pipe();
+  }
+  SaveStudent(value:StudentVM) {
+    return this.http.post(Globals.BASE_API_URL + 'Student', value)
+  }
+  UpdateStudent(value: StudentVM) {
+    return this.http.put(Globals.BASE_API_URL + 'Student', value)
+  }
+  DeleteStudent(id: number) {
+    return this.http.delete(Globals.BASE_API_URL + 'Student/' + id)
+  }
+  SearchStudent(value: StudentVM): Observable<StudentVM[]> {
+    return this.http.post<StudentVM[]>(Globals.BASE_API_URL + 'Student/Search', value).pipe();
   }
 }

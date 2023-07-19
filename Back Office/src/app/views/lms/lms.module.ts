@@ -75,6 +75,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ManageTopicComponent } from './manage-topic/manage-topic.component';
 import { ManageLectureComponent } from './manage-lecture/manage-lecture.component';
 import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
+import { ManageStudentComponent } from './manage-student/manage-student.component';
 
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
@@ -89,7 +90,7 @@ import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-ta
     ScheduleListComponent,
     ManageTopicComponent,
     ManageLectureComponent, 
-    ManageAssignTaskComponent,
+    ManageAssignTaskComponent, ManageStudentComponent,
 
   ],
   imports: [

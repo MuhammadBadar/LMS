@@ -57,8 +57,9 @@ export class ManageCourseComponent implements OnInit {
     this.isDialog=true
     this.selectedCourse.isActive = true;
     this.isDialog = this.dialogData.isDialog;
-    if (this.dialogData  != null) {
-      this.isDialog = this.dialogData.isDialog;}    
+    if (this.dialogData ) {
+      this.isDialog =this.dialogData.isDialogue;
+      console.warn(this.dialogData.courseId)}   
    
   
        
