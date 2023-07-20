@@ -8,4 +8,5 @@ export class LectureVM {
     course?:string 
     courseId:number = 0
     isActive?: boolean
+	
 }
