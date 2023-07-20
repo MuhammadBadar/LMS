@@ -2,7 +2,6 @@ import { Component, Injector, ViewChild } from '@angular/core';
 import { LMSService } from '../lms.service';
 import { CatalogService } from '../../catalog/catalog.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ManageStudentComponent } from '../manage-student/maanage-student.component';
 import { ManageCityComponent } from '../manage-city/manage-city.component';
 import { StudentVM } from '../Models/StudentVM';
 import { CityVM } from '../Models/CityVM';
@@ -14,6 +13,7 @@ import { CityStudentVM } from '../Models/CityStudentVM';
 import { NgForm } from '@angular/forms';
 
 import { Observable } from 'rxjs';
+import { ManageStudentComponent } from '../manage-student/manage-student.component';
 @Component({
   selector: 'app-manage-city-student',
   templateUrl: './manage-city-student.component.html',

@@ -66,7 +66,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -83,6 +83,7 @@ const APP_CONTAINERS = [
   declarations: [AppComponent, ...APP_CONTAINERS],
   imports: [
     NgxMatDatetimePickerModule,
+    PerfectScrollbarModule,
     NgxMatNativeDateModule,
     MatNativeDateModule,
     MatDialogModule,
@@ -116,7 +117,6 @@ const APP_CONTAINERS = [
     HeaderModule,
     SidebarModule,
     IconModule,
-    PerfectScrollbarModule,
     NavModule,
     ButtonModule,
     FormModule,

@@ -9,6 +9,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ManageTopicComponent } from './manage-topic/manage-topic.component';
 import { ManageLectureComponent } from './manage-lecture/manage-lecture.component';
 import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
+import { ManageCityComponent } from './manage-city/manage-city.component';
+import { ManageVocabularyComponent } from './manage-vocabulary/manage-vocabulary.component';
+import { ManageCityStudentComponent } from './manage-city-student/manage-city-student.component';
 import { ManageStudentComponent } from './manage-student/manage-student.component';
 
 const routes: Routes = [{
@@ -67,13 +70,32 @@ const routes: Routes = [{
       component: ManageAssignTaskComponent,
       pathMatch: "full"
     },
+   
     {
-      path: "student",
+      path: "Vocabulary",
+      component: ManageVocabularyComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "City",
+      component: ManageCityComponent,
+      pathMatch: "full"
+    },
+   
+    {
+      path: "CityStudent",
+      component: ManageCityStudentComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "Student",
       component: ManageStudentComponent,
       pathMatch: "full"
     },
   ]
-},];
+  
+},
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

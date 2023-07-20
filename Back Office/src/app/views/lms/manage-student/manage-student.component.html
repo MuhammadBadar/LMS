@@ -8,10 +8,7 @@
             <span *ngIf="Edit" class="title dialog-title" style="color:rgb(224, 26, 26);">
                 <p>Edit Student</p>
             </span>
-            <!-- <button mat-icon-button style="color:white;margin-top: 0; padding-top: 0;" (click)="dialogRefe.close()"
-            aria-label="Close dialog">
-            <mat-icon>close</mat-icon>
-        </button>   -->
+           
         <div fxFlex="7%" *ngIf="isDialog">
             <button mat-icon-button style="color: white; margin-top: 0; padding-top: 0;" 
               (click)="dialogRefe.close()"
@@ -24,25 +21,25 @@
     </div>
    <form>
     <div class="container-fluid page">
-        <!-- <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
-            <div *ngIf="AddMode">Manage Topic
-            </div>
-            <div *ngIf="EditMode">Edit Topic
-            </div>
-        </div> -->
+       
         <div class="page_content shadow p-3 position-relative">
             <form #StudentForm="ngForm">
-                <!-- <Row>
+                <Row>
                     <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
                         <mat-form-field appearance="outline" fxFlex="49%">
                             <mat-label>Please Select City*</mat-label>
                             <mat-select name="cityId" [(ngModel)]="selectedStudent.cityId">
                                 <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
-                                 <mat-option *ngFor="let val of City" [value]="val.id"> -->
-                                    <!-- {{val.name}}
-                                </mat-option> -->
-                            <!-- </mat-select>
-                         
+                                <mat-option *ngFor="let val of City" [value]="val.id">
+                                    {{val.name}}
+                                </mat-option>
+                            </mat-select>
+                            <div matSuffix>
+                                <button mat-icon-button style="color:#940540 ; "
+                                    (click)="OpenCityDialog(); $event.stopPropagation()" cTooltip="Explore CityType ">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
                         </mat-form-field>
                         <mat-form-field appearance="outline" fxFlex="49%">
                             <mat-label>Please select Topic*</mat-label>
@@ -52,6 +49,8 @@
                                     {{val.topicTitle}}
                                 </mat-option>
                             </mat-select>
+
+                           
                             <div matSuffix>
                                 <button mat-icon-button style="color:#940540 ; "
                                     (click)="OpenTopicDialog(); $event.stopPropagation()" cTooltip="Explore SettingsType ">
@@ -59,8 +58,9 @@
                                 </button>
                             </div>
                         </mat-form-field>
+                        
                     </div>
-                </Row>  -->
+                </Row>
                         
                         
                   
@@ -71,7 +71,7 @@
                         <input matInput name="name" [(ngModel)]="selectedStudent.name" required>
                     </mat-form-field>
                 
-                    <!-- <div fxLayout="row" fxFlex="100%"> -->
+                  
                         <mat-form-field appearance="outline" fxFlex="49%">
                             <mat-label> Email</mat-label>
                             <input matInput name="email" [(ngModel)]="selectedStudent.email">
@@ -98,8 +98,7 @@
             <section class=" example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;margin-top: 20px;">
              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin-top: 20px;">
 
-                    
-    <!-- <ng-container matColumnDef="city">
+    <ng-container matColumnDef="city">
         <th mat-header-cell *matHeaderCellDef>City </th>
         <td mat-cell *matCellDef="let element"> {{element.city}} </td>
     </ng-container>
@@ -107,7 +106,7 @@
     <ng-container matColumnDef="topic">
         <th mat-header-cell *matHeaderCellDef>Topic </th>
         <td mat-cell *matCellDef="let element"> {{element.topic}} </td>
-    </ng-container> -->
+    </ng-container>
 
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -146,5 +145,4 @@
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table> 
-              
+</table>

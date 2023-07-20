@@ -57,7 +57,7 @@ import { ManageSettingsComponent } from './manage-settings/manage-settings.compo
 import { ManageSettingsTypeComponent } from './manage-settings-type/manage-settings-type.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+// import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 
 
@@ -68,7 +68,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
   ],
   imports: [
-    NgxMaterialTimepickerModule,
+    MatDatepickerModule,
     MatCardModule,
     ReactiveFormsModule,
     FlexLayoutModule,

@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { ManageStudentComponent } from './manage-student.component';
 
-describe('MaanageStudentComponent', () => {
+describe('ManageStudentComponent', () => {
   let component: ManageStudentComponent;
   let fixture: ComponentFixture<ManageStudentComponent>;
 

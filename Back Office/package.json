@@ -42,10 +42,10 @@
     "chart.js": "^3.9.1",
     "moment": "^2.29.4",
     "ngx-mat-timepicker": "^15.1.6",
-    "ngx-material-timepicker": "^5.5.3",
+    "ngx-material-timepicker": "^13.1.1",
     "ngx-perfect-scrollbar": "^10.1.1",
     "rxjs": "~7.5.0",
-    "sweetalert2": "^11.7.3",
+    "sweetalert2": "^11.6.13",
     "tslib": "^2.4.1",
     "zone.js": "~0.12.0"
   },

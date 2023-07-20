@@ -61,7 +61,6 @@ import {
 } from '@angular-material-components/datetime-picker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 // import { MatDatepickerModule } from '@matheo/datepicker';
 // import { MatNativeDateModule } from '@matheo/datepicker/core';
@@ -75,8 +74,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ManageTopicComponent } from './manage-topic/manage-topic.component';
 import { ManageLectureComponent } from './manage-lecture/manage-lecture.component';
 import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
-import { ManageStudentComponent } from './manage-student/manage-student.component';
 
+import { ManageVocabularyComponent } from './manage-vocabulary/manage-vocabulary.component';
+import { ManageCityComponent } from './manage-city/manage-city.component';
+import { ManageCityStudentComponent } from './manage-city-student/manage-city-student.component';
+import { ManageStudentComponent } from './manage-student/manage-student.component';
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
 
@@ -90,14 +92,17 @@ import { ManageStudentComponent } from './manage-student/manage-student.componen
     ScheduleListComponent,
     ManageTopicComponent,
     ManageLectureComponent, 
-    ManageAssignTaskComponent, ManageStudentComponent,
-
+    ManageVocabularyComponent,
+    ManageCityComponent,
+    ManageCityStudentComponent,
+    ManageAssignTaskComponent,
+    ManageStudentComponent,
   ],
   imports: [
     NgxMatDatetimePickerModule,
     MatDatepickerModule,
     NgxMatTimepickerModule,
-    NgxMaterialTimepickerModule,
+   // NgxMaterialTimepickerModule,
     NgxMatNativeDateModule,
     FlexLayoutModule,
     FormsModule,
