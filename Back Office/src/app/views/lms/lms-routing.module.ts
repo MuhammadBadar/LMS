@@ -13,6 +13,7 @@ import { ManageCityComponent } from './manage-city/manage-city.component';
 import { ManageVocabularyComponent } from './manage-vocabulary/manage-vocabulary.component';
 import { ManageCityStudentComponent } from './manage-city-student/manage-city-student.component';
 import { ManageStudentComponent } from './manage-student/manage-student.component';
+import { ManageScheduleFHComponent } from './manage-schedule-fh/manage-schedule-fh.component';
 
 const routes: Routes = [{
   path: '',
@@ -90,6 +91,11 @@ const routes: Routes = [{
     {
       path: "Student",
       component: ManageStudentComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "ScheduleFH",
+      component: ManageScheduleFHComponent,
       pathMatch: "full"
     },
   ]

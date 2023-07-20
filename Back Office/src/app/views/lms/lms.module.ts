@@ -79,6 +79,7 @@ import { ManageVocabularyComponent } from './manage-vocabulary/manage-vocabulary
 import { ManageCityComponent } from './manage-city/manage-city.component';
 import { ManageCityStudentComponent } from './manage-city-student/manage-city-student.component';
 import { ManageStudentComponent } from './manage-student/manage-student.component';
+import { ManageScheduleFHComponent } from './manage-schedule-fh/manage-schedule-fh.component';
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
 
@@ -97,6 +98,7 @@ import { ManageStudentComponent } from './manage-student/manage-student.componen
     ManageCityStudentComponent,
     ManageAssignTaskComponent,
     ManageStudentComponent,
+    ManageScheduleFHComponent,
   ],
   imports: [
     NgxMatDatetimePickerModule,

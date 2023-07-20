@@ -12,6 +12,8 @@ import{LectureVM} from './Models/LectureVM';
 import{AssignTaskVM}from './Models/AssignTaskVM';
 import { StudentVM } from './Models/StudentVM';
 import { CityVM } from './Models/CityVM';
+
+import { ScheduleFHVM } from './Models/ScheduleFHVM';
 import { CityStudentVM } from './Models/CityStudentVM';
 import { VocabularyVM } from './Models/VocabularyVM';
 @Injectable({
@@ -218,6 +220,8 @@ export class LMSService {
   SearchCity(value: CityVM): Observable<CityVM[]> {
     return this.http.post<CityVM[]>(Globals.BASE_API_URL + 'City/Search', value).pipe();
   }
+
+
   GetCityStudent(): Observable<CityStudentVM[]> {
     return this.http.get<CityStudentVM[]>(Globals.BASE_API_URL + 'CityStudent').pipe();
   }
@@ -232,5 +236,22 @@ export class LMSService {
   }
   SearchCityStudent(value: CityStudentVM): Observable<CityStudentVM[]> {
     return this.http.post<CityStudentVM[]>(Globals.BASE_API_URL + 'CityStudent/Search', value).pipe();
+  }
+
+
+  GetScheduleFH(): Observable<ScheduleFHVM[]> {
+    return this.http.get<ScheduleFHVM[]>(Globals.BASE_API_URL + 'ScheduleFH').pipe();
+  }
+  SaveCScheduleFH(value: ScheduleFHVM) {
+    return this.http.post(Globals.BASE_API_URL + 'ScheduleFH', value)
+  }
+  UpdateScheduleFH(value: ScheduleFHVM) {
+    return this.http.put(Globals.BASE_API_URL + 'ScheduleFH', value)
+  }
+  DeleteScheduleFH(id: number) {
+    return this.http.delete(Globals.BASE_API_URL + 'ScheduleFH/' + id)
+  }
+  SearchScheduleFH(value: ScheduleFHVM): Observable<ScheduleFHVM[]> {
+    return this.http.post<ScheduleFHVM[]>(Globals.BASE_API_URL + 'CScheduleFHVM/Search', value).pipe();
   }
 }
