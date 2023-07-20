@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicroERP.Core.Entities
+namespace LMS.Core.Entities
 {
     public class VocabularyDE:BaseDomain
     {

@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using LMS.Core.Entities;
-using MicroERP.Core.Entities;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;

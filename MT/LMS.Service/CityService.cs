@@ -1,8 +1,6 @@
 ﻿using LMS.Core.Entities;
 using LMS.Core.Enums;
 using LMS.DAL;
-using MicroERP.Core.Entities;
-using MicroERP.DAL;
 using MySql.Data.MySqlClient;
 using NLog;
 using System;

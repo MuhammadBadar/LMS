@@ -1,6 +1,6 @@
 ﻿using Dapper;
+using LMS.Core.Entities;
 using LMS.DAL;
-using MicroERP.Core.Entities;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicroERP.DAL
+namespace LMS.DAL
 {
     public class VocabularyDAL
     {

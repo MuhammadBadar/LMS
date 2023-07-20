@@ -1,8 +1,6 @@
 ﻿using LMS.Core.Entities;
 using LMS.Core.Enums;
 using LMS.DAL;
-using MicroERP.Core.Entities;
-using MicroERP.DAL;
 using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using NLog;
@@ -12,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicroERP.Service
+namespace LMS.Service
 {
     public class VocabularyService
     {
