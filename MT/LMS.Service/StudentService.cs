@@ -40,7 +40,7 @@ namespace LMS.Service
                 closeConnectionFlag = true;
 
                 if (_Student.DBoperation == DBoperations.Insert)
-                    _Student.Id = _corDAL.GetnextId(TableNames.Student.ToString());
+                    _Student.Id = _corDAL.GetnextId(TableNames.student.ToString());
                 retVal = _stdDAL.ManageStudent(_Student, cmd);
                 return retVal;
             }
@@ -104,6 +104,6 @@ namespace LMS.Service
         }
     }
 }
-    
+
 
 

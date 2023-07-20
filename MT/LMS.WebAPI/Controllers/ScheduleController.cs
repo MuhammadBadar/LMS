@@ -23,7 +23,7 @@ namespace LMS.WebAPI.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            ScheduleDE Schedule = new ScheduleDE { IsActive = true };
+            ScheduleDE Schedule = new ScheduleDE ();
             List<ScheduleDE> values = _ScheduleSVC.SearchSchedules(Schedule);
             return Ok(values);
         }
@@ -37,7 +37,7 @@ namespace LMS.WebAPI.Controllers
         [HttpPost("{Search}")]
         public ActionResult Search(ScheduleDE Search)
         {
-            Search.IsActive = true;
+          /*  Search.IsActive = true*/;
             List<ScheduleDE> values = _ScheduleSVC.SearchSchedules(Search);
             return Ok(values);
         }

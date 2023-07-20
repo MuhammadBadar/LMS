@@ -25,7 +25,7 @@ namespace LMS.WebAPI.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            SettingsTypeDE SettingsType = new SettingsTypeDE { IsActive = true };
+            SettingsTypeDE SettingsType = new SettingsTypeDE ();
             List<SettingsTypeDE> categories = _settingsTypeSVC.SearchSettingsTypes(SettingsType);
             return Ok(categories);
         }
@@ -39,7 +39,7 @@ namespace LMS.WebAPI.Controllers
         [HttpPost("{Search}")]
         public ActionResult Search(SettingsTypeDE Search)
         {
-            Search.IsActive = true;
+            //Search.IsActive = true;
             List<SettingsTypeDE> categories = _settingsTypeSVC.SearchSettingsTypes(Search);
             return Ok(categories);
         }

@@ -3,4 +3,5 @@ export class UserVM {
     email?: string
     password?: string
     rememberMe?: string
+    isActive?:boolean
 }

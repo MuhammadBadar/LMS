@@ -4,4 +4,5 @@ export class InquiryVM {
     email?: string
     cell?: string
     comments?: string
+    isActive?:boolean
 }

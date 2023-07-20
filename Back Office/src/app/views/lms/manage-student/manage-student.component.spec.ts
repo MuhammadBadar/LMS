@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ManageStudentComponent } from './maanage-student.component';
+import { ManageStudentComponent } from './manage-student.component';
 
 describe('MaanageStudentComponent', () => {
   let component: ManageStudentComponent;
@@ -16,8 +15,6 @@ describe('MaanageStudentComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-
 
   it('should create', () => {
     expect(component).toBeTruthy();

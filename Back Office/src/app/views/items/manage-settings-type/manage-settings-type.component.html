@@ -55,6 +55,7 @@
                         [(ngModel)]="selectedSettingsType.description"></textarea>
                 </mat-form-field>
             </div>
+            <mat-checkbox name="isActive" [(ngModel)]="selectedSettingsType.isActive" checked>Is Active</mat-checkbox>
             <div fxLayoutAlign="end end">
                 <div style="margin-top: 10px;">
                     <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;" type="submit"
@@ -100,8 +101,14 @@
                                 <th mat-header-cell *matHeaderCellDef> Description </th>
                                 <td mat-cell *matCellDef="let element"> {{element.description}} </td>
                             </ng-container>
+                            <ng-container matColumnDef="isActive">
+                                <th mat-header-cell *matHeaderCellDef> Is Active </th>
+                                <td mat-cell *matCellDef="let element"> {{ element.isActive ? 'yes' : 'no' }} </td>
+                              </ng-container>
+                              
+                        
                             <ng-container matColumnDef="actions" stickyEnd="true">
-                                <th mat-header-cell *matHeaderCellDef style="width: 14%;text-align: center;">Actions
+                                <th mat-header-cell *matHeaderCellDef style="width: 14%;text-align: center;">Action
                                 </th>
                                 <td mat-cell *matCellDef="let row" style="width: 100px;">
                                     <div style="width: 100px;">
@@ -109,11 +116,11 @@
                                             cTooltip="Edit Settings Type" (click)="GetSettingsTypeForEdit(row.id)">
                                             <mat-icon>edit</mat-icon>
                                         </button>
-                                        <button mat-icon-button mat-sm-button color="warn"
+                                        <!-- <button mat-icon-button mat-sm-button color="warn"
                                             cTooltip="Delete Settings Type" [disabled]="row.isSystemDefined"
                                             (click)="DeleteSettingsType(row.id)">
                                             <mat-icon>delete</mat-icon>
-                                        </button>
+                                        </button> -->
                                     </div>
                                 </td>
                             </ng-container>

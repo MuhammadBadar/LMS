@@ -32,7 +32,7 @@ namespace LMS.DAL
                 cmd.CommandText = "Manage_Student";
                 cmd.Parameters.AddWithValue("@prm_Id", std.Id);
                 cmd.Parameters.AddWithValue("@prm_CityId", std.CityId);
-                 cmd.Parameters.AddWithValue("@prm_City", std.City);
+                cmd.Parameters.AddWithValue("@prm_City", std.City);
                 cmd.Parameters.AddWithValue("@prm_TopicId", std.TopicId);
                 cmd.Parameters.AddWithValue("@prm_Topic", std.Topic);
                 cmd.Parameters.AddWithValue("@prm_Name", std.Name);

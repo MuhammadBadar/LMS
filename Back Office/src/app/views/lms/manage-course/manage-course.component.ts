@@ -5,7 +5,8 @@ import { CatalogService } from '../../catalog/catalog.service';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-manage-course',
@@ -13,6 +14,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./manage-course.component.css']
 })
 export class ManageCourseComponent implements OnInit {
+  isActive?:false
   imageName: any
   previewImage = false;
   currentLightBoxImage: any
@@ -24,29 +26,43 @@ export class ManageCourseComponent implements OnInit {
   Course: CourseVM[] | undefined;
   selectedCourse: CourseVM;
   @ViewChild('CourseForm', { static: true }) CourseForm!: NgForm;
-  displayedColumns: string[] = ['title', 'shortDes', 'logo', 'fee', 'actions'];
+  displayedColumns: string[] = ['title', 'shortDes', 'logo', 'fee', 'isActive', 'actions'];
   dataSource: any;
+  isDialog: boolean = false;
   dialogData: any;
-  isDialog: boolean= false;
-dialogRefe: any;
-  constructor(private injector: Injector,
+  dialogref: any;
+  constructor(
+    private injector: Injector,
     public accSvc: LMSService,
     private catSvc: CatalogService,
+    private dialog: MatDialog ,
+
+
   ) {
-    this.selectedCourse = new CourseVM();
-    
-    //private injector: Injector,
-    this.dialogRefe = this.injector.get(MatDialogRef, null);
+    this.dialogref = this.injector.get(MatDialogRef, null);
     this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
+    
+    this.selectedCourse = new CourseVM();
   }
+
+
+
   ngOnInit(): void {
     this.Add = true;
     this.Edit = false;
     this.selectedCourse = new CourseVM
-    this.GetCourse();
+    
+    // this.isDialog=true
+    this.GetCourse()
+    this.isDialog=true
+    this.selectedCourse.isActive = true;
+    this.isDialog = this.dialogData.isDialog;
     if (this.dialogData ) {
       this.isDialog =this.dialogData.isDialogue;
-      console.warn(this.dialogData.courseId)}
+      console.warn(this.dialogData.courseId)}   
+   
+  
+       
   
   }
   GetCourse() {
@@ -181,5 +197,3 @@ dialogRefe: any;
 
 
 }
-
-

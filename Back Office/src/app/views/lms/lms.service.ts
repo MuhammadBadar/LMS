@@ -7,43 +7,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Globals } from 'src/app/globals';
 import { InquiryVM } from './Models/InquiryVM';
-import { CityStudentVM } from './Models/CityStudentVM';
-import { StudentVM } from './Models/StudentVM';
-import { CityVM } from './Models/CityVM';
 import { UserVM } from './Models/UserVM';
-import { VocabularyVM } from './Models/VocabularyVM';
-
+import{LectureVM} from './Models/LectureVM';
+import{AssignTaskVM}from './Models/AssignTaskVM';
+import { StudentVM } from './Models/StudentVM';
 @Injectable({
   providedIn: 'root'
 })
 export class LMSService {
- 
 
   constructor(private http: HttpClient) { }
-
-
-  UpdateVocabulary(value: VocabularyVM) {
-    return this.http.put(Globals.BASE_API_URL + 'Vocabulary', value);
-  }
-  // GetVocabularyById(id: number): Observable<VocabularyVM> {
-  //   return this.http.get<VocabularyVM>(Globals.BASE_API_URL + 'Inquiry/' + id).pipe()
-  // }
-  SearchVocabulary(value: VocabularyVM): Observable<VocabularyVM[]> {
-    return this.http.post<VocabularyVM[]>(Globals.BASE_API_URL + 'Vocabulary/Search', value).pipe();
-  }
-  GetVocabulary(): Observable<VocabularyVM[]> {
-    return this.http.get<VocabularyVM[]>(Globals.BASE_API_URL + 'Vocabulary').pipe();
-  }
-  SaveVocabulary(value: VocabularyVM): Observable<any> {
-    return this.http.post(Globals.BASE_API_URL + 'Vocabulary', value);
-  }
-  DeleteVocabulary(id: number) {
-    return this.http.delete(Globals.BASE_API_URL + 'Vocabulary/' + id);
-  }
-
-
-
-
 
   UpdateInquiry(value: InquiryVM) {
     return this.http.put(Globals.BASE_API_URL + 'Inquiry', value);
@@ -155,36 +128,45 @@ export class LMSService {
     return this.http.delete(Globals.BASE_API_URL + 'Topic/' + id)
   }
   SearchTopic(value: TopicVM): Observable<TopicVM[]> {
-    return this.http.post<TopicVM[]>(Globals.BASE_API_URL + 'Topic', value).pipe();
-  }
-
-
-
-
-  GetCity(): Observable<CityVM[]> {
-    return this.http.get<CityVM[]>(Globals.BASE_API_URL + 'City').pipe();
-  }
-  SaveCity(value: CityVM) {
-    return this.http.post(Globals.BASE_API_URL + 'City', value)
-  }
-  UpdateCity(value: CityVM) {
-    return this.http.put(Globals.BASE_API_URL + 'City', value)
-  }
-  DeleteCity(id: number) {
-    return this.http.delete(Globals.BASE_API_URL + 'City/' + id)
-  }
-  SearchCity(value: CityVM): Observable<CityVM[]> {
-    return this.http.post<CityVM[]>(Globals.BASE_API_URL + 'City/Search', value).pipe();
+    return this.http.post<TopicVM[]>(Globals.BASE_API_URL + 'Topic/Search', value).pipe();
   }
   
+  GetLecture(): Observable<LectureVM[]> {
+    return this.http.get<LectureVM[]>(Globals.BASE_API_URL + 'Lecture').pipe();
+  }
+  SaveLecture(value:LectureVM) {
+    return this.http.post(Globals.BASE_API_URL + 'Lecture', value)
+  }
+  UpdateLecture(value: LectureVM) {
+    return this.http.put(Globals.BASE_API_URL + 'Lecture', value)
+  }
+  DeleteLecture(id: number) {
+    return this.http.delete(Globals.BASE_API_URL + 'Lecture/' + id)
+  }
+  SearchLecture(value: LectureVM): Observable<LectureVM[]> {
+    return this.http.post<LectureVM[]>(Globals.BASE_API_URL + 'Lecture/Search', value).pipe();
+  }
 
-
-
+  GetAssignTask(): Observable<AssignTaskVM[]> {
+    return this.http.get<AssignTaskVM[]>(Globals.BASE_API_URL + 'AssignTask').pipe();
+  }
+  SaveAssignTask(value:AssignTaskVM) {
+    return this.http.post(Globals.BASE_API_URL + 'AssignTask', value)
+  }
+  UpdateAssignTask(value: AssignTaskVM) {
+    return this.http.put(Globals.BASE_API_URL + 'AssignTask', value)
+  }
+  DeleteAssignTask(id: number) {
+    return this.http.delete(Globals.BASE_API_URL + 'AssignTask/' + id)
+  }
+  SearchAssignTask(value: AssignTaskVM): Observable<AssignTaskVM[]> {
+    return this.http.post<AssignTaskVM[]>(Globals.BASE_API_URL + 'AssignTask/Search', value).pipe();
+  }
   
   GetStudent(): Observable<StudentVM[]> {
     return this.http.get<StudentVM[]>(Globals.BASE_API_URL + 'Student').pipe();
   }
-  SaveStudent(value: StudentVM) {
+  SaveStudent(value:StudentVM) {
     return this.http.post(Globals.BASE_API_URL + 'Student', value)
   }
   UpdateStudent(value: StudentVM) {
@@ -196,21 +178,4 @@ export class LMSService {
   SearchStudent(value: StudentVM): Observable<StudentVM[]> {
     return this.http.post<StudentVM[]>(Globals.BASE_API_URL + 'Student/Search', value).pipe();
   }
-
-  GetCityStudent(): Observable<CityStudentVM[]> {
-    return this.http.get<CityStudentVM[]>(Globals.BASE_API_URL + 'CityStudent').pipe();
-  }
-  SaveCityStudent(value: CityStudentVM) {
-    return this.http.post(Globals.BASE_API_URL + 'CityStudent', value)
-  }
-  UpdateCityStudent(value: CityStudentVM) {
-    return this.http.put(Globals.BASE_API_URL + 'CityStudent', value)
-  }
-  DeleteCityStudent(id: number) {
-    return this.http.delete(Globals.BASE_API_URL + 'CityStudent/' + id)
-  }
-  SearchCityStudent(value: CityStudentVM): Observable<CityStudentVM[]> {
-    return this.http.post<CityStudentVM[]>(Globals.BASE_API_URL + 'CityStudent/Search', value).pipe();
-  }
 }
-

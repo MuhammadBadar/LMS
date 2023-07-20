@@ -65,8 +65,11 @@ namespace LMS.Service
                 string WhereClause = "Where 1=1";
                 if (_topic.Id != default)
                     WhereClause += $" AND Id={_topic.Id}";
+                if (_topic.CourseId != default)
+                    WhereClause += $" AND CourseId={_topic.CourseId}";
                 if (_topic.TopicTitle != default)
-                    WhereClause += $" and TopicTitle like ''"+ _topic.TopicTitle +"''";
+                    WhereClause += $" and TopicTitle like ''" + _topic.TopicTitle + "''";
+
                 if (_topic.IsActive != default)
                     WhereClause += $" AND IsActive={_topic.IsActive}";
 

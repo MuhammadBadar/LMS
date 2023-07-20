@@ -12,9 +12,12 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./manage-inquiry.component.css']
 })
 export class ManageInquiryComponent implements OnInit {
+  isActive?:false
   proccessing: boolean = false;
   Edit: boolean = false;
   Add: boolean = true;
+  AddMode: boolean = true
+  EditMode: boolean = false
   validFields: boolean = false;
   public date = new Date();
   Inquiry: InquiryVM[] | undefined;
@@ -32,7 +35,9 @@ export class ManageInquiryComponent implements OnInit {
     this.Add = true;
     this.Edit = false;
     this.selectedInquiry = new InquiryVM
-    this.GetInquiry();
+   
+    this.GetInquiry()
+    this.selectedInquiry.isActive = true;
   }
   GetInquiry() {
     this.accSvc.GetInquiry().subscribe({
@@ -138,4 +143,3 @@ export class ManageInquiryComponent implements OnInit {
     this.Edit = false;
   }
 }
-

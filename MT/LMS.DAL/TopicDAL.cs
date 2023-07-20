@@ -24,9 +24,9 @@ namespace LMS.DAL
                 }
                 cmd.CommandText = "ManageTopic";
                 cmd.Parameters.AddWithValue("id", _topic.Id);
-                cmd.Parameters.AddWithValue("courseId", _topic.CourseId);
                 cmd.Parameters.AddWithValue("topicTitle", _topic.TopicTitle);
                 cmd.Parameters.AddWithValue("description", _topic.Description);
+                cmd.Parameters.AddWithValue("courseId", _topic.CourseId);
                 cmd.Parameters.AddWithValue("createdOn", _topic.CreatedOn);
                 cmd.Parameters.AddWithValue("createdById", _topic.CreatedById);
                 cmd.Parameters.AddWithValue("modifiedOn", _topic.ModifiedOn);
@@ -73,4 +73,5 @@ namespace LMS.DAL
         }
         #endregion
     }
+
 }

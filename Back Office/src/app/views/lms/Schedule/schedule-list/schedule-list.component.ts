@@ -29,7 +29,7 @@ export class ScheduleListComponent implements OnInit {
   selectedRow: ScheduleVM
   Edit: boolean = true;
   isPosted: boolean = false
-  columnsToDisplay = ['expand', 'course', 'logo', 'orientationClass', 'startDate', 'description', 'Action'];
+  columnsToDisplay = ['expand', 'course', 'logo', 'orientationClass', 'startDate', 'description','isActive', 'Action'];
   dataSource: any;
   innerDisplayeScheduleolumns: string[] = ['day', 'timeFrom', 'timeTo'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay];
@@ -107,5 +107,3 @@ export class ScheduleListComponent implements OnInit {
     this.selectedRow = new ScheduleVM
   }
 }
-
-

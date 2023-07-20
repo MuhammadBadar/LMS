@@ -3,10 +3,6 @@
     public enum TableNames
     {      
         permissions,
-        City,
-        CityStudent,
-        Vocabulary,
-        Student,
         feature,
         enums,
         enumline,
@@ -16,6 +12,10 @@
         schedule,
         inquiry,
         classtiming,
-        topic
+        topic,
+        lecture,
+        assignTask,
+        student
+
     }
 }

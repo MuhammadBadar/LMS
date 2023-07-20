@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./manage-user.component.css']
 })
 export class ManageUserComponent implements OnInit {
+  
   hide = true;
   proccessing: boolean = false;
   Edit: boolean = false;
@@ -21,7 +22,7 @@ export class ManageUserComponent implements OnInit {
   User: UserVM[] | undefined;
   selectedUser: UserVM;
   @ViewChild('userForm', { static: true }) userForm!: NgForm;
-  displayedColumns: string[] = ['email', 'password', 'actions'];
+  displayedColumns: string[] = ['email', 'password', 'isActive','actions'];
   dataSource: any;
   constructor(
     public lmsSvc: LMSService,
@@ -33,7 +34,9 @@ export class ManageUserComponent implements OnInit {
     this.Add = true;
     this.Edit = false;
     this.selectedUser = new UserVM
-    this.GetUser();
+    this.GetUser()
+    this.selectedUser.isActive = true;
+    
   }
   GetUser() {
     this.lmsSvc.GetUser().subscribe({
@@ -94,16 +97,17 @@ export class ManageUserComponent implements OnInit {
   SaveUser() {
     this.lmsSvc.GetUser().subscribe({
       next: (res: UserVM[]) => {
+        console.warn(res)
         var list = res
         if (this.Edit)
-          list = list.filter(x => x != this.selectedUser)
+          list = list.filter(x => x.id != this.selectedUser.id)
+          console.warn(list)
         var find = list.find(x => x.email == this.selectedUser.email)
         if (find == undefined) {
-
-          this.proccessing = true
+          console.warn(this.userForm)
           if (!this.userForm.invalid) {
             if (this.Edit)
-              this.UpdateUser
+              this.UpdateUser()
             else {
               this.lmsSvc.SaveUser(this.selectedUser).subscribe({
                 next: (res) => {
@@ -132,8 +136,10 @@ export class ManageUserComponent implements OnInit {
     })
   }
   UpdateUser() {
+    debugger
     this.lmsSvc.UpdateUser(this.selectedUser).subscribe({
       next: (res) => {
+        
         this.catSvc.SuccessMsgBar("User Successfully Updated!", 5000)
         this.Add = true;
         this.Edit = false;
@@ -152,4 +158,3 @@ export class ManageUserComponent implements OnInit {
     this.Edit = false;
   }
 }
-
