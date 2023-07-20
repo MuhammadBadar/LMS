@@ -180,28 +180,28 @@ namespace LMS.Tests
 
             ctystdSvc.ManageCityStudent(ctystd);
         }
-        //[Test]
-        //public void Service_ScheduleFH_CRUD()
-        //{
-        //    ScheduleFHService schSvc = new ScheduleFHService();
+        [Test]
+        public void service_ScheduleFH_crud()
+        {
+            ScheduleFHService schsvc = new ScheduleFHService();
 
-        //    //var list = new List<CourseDE>();
-        //    //list = crsSvc.SearchCourse();
+            //var list = new list<coursede>();
+            //list = crssvc.searchcourse();
 
-        //    var sch = new ScheduleFHDE();
-        //    sch.Id = 1;
-        //    sch.UserId = 2;
-        //    sch.User = "Related to";
-        //    sch.RoleId = 1;
-        //    sch.ScheduleType = "FH";
-        //    sch.WorkingFor = "Week";
-        //    sch.WorkingHours = "10 Hours";
+            var sch = new ScheduleFHDE();
+            sch.Id = 1;
+            sch.UserId = 2;
+            sch.User = "related to";
+            sch.RoleId = 1;
+            sch.ScheduleType = "fh";
+            sch.WorkingFor = "week";
+            sch.WorkingHours = "10 hours";
 
-        //    //crs.DBoperation = DBoperations.Update;
-        //    sch.DBoperation = DBoperations.Insert;
+            //crs.dboperation = dboperations.update;
+            sch.DBoperation = DBoperations.Insert;
 
-        //    schSvc.ManageScheduleFH(sch);
-        //}
+            schsvc.ManageScheduleFH(sch);
+        }
     }
 }
 

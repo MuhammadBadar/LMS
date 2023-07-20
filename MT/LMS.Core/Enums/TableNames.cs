@@ -11,6 +11,7 @@
         CityStudent,
         Vocabulary,
         Student,
+        ScheduleFH,
         user,
         coursedetail,
         schedule,
