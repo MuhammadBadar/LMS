@@ -11,6 +11,7 @@ import { LectureVM } from '../Models/LectureVM';
 import { ManageLectureComponent } from '../manage-lecture/manage-lecture.component';
 import { ManageCourseComponent } from '../manage-course/manage-course.component';
 import { StudentVM } from '../Models/StudentVM';
+import Swal from 'sweetalert2';
 
 
 
@@ -239,16 +240,36 @@ SaveAssignTask(){
   this.GetAssignTask();
   this.selectedTask = new AssignTaskVM
   this.AddMode = true
+  this.GetStudent();
 }
 search(lecture : LectureVM){
   this.selectedTask.courseId = lecture.courseId
   this.selectedTask.topicId = lecture.topicId
 }
-}
 
- 
-          // this.selectedTask.topicId = this.selectedLecture.topicId;
-          // this.selectedTask.courseId = selectedLecture.courseId;
-  
+ValidationAddOnCheckBox(){
+Swal.fire({
+  title: 'Are you sure,you want to continue?',
+  // text: "You won't be able to revert this!",
+  icon: 'warning',
+   showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes!'
+}).then((result) => {
+  if (result.value) {
+    this.lmsSvc.GetAssignTask().subscribe({
+      next: (data) => {
+        Swal.fire(
+          'Assigned',
+          'Task has been assigned.',
+          'success'
+        )}
+      }
+      )
+    }}
+    )
+    // CheckAssigning(){
 
-
+    // }
+  }}
