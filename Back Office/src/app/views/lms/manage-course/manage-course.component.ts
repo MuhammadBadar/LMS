@@ -16,6 +16,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 export class ManageCourseComponent implements OnInit {
   isActive?:false
   imageName: any
+  hide :  any;
   previewImage = false;
   currentLightBoxImage: any
   proccessing: boolean = false;
@@ -56,9 +57,9 @@ export class ManageCourseComponent implements OnInit {
     this.GetCourse()
     this.isDialog=true
     this.selectedCourse.isActive = true;
-    this.isDialog = this.dialogData.isDialog;
+
     if (this.dialogData ) {
-      this.isDialog =this.dialogData.isDialogue;
+      this.isDialog =this.dialogData.isDialog;
       console.warn(this.dialogData.courseId)}   
    
   
@@ -121,28 +122,38 @@ export class ManageCourseComponent implements OnInit {
     })
   }
   SaveCourse() {
-    if (this.selectedCourse.logoBase64Path == null && this.selectedCourse.logoBase64Path == undefined) {
-      this.catSvc.ErrorMsgBar("Please Browse an image to continue", 8000)
+  
+    // this.checkDropDownVailidation()
+    const controls = this.CourseForm.controls;
+    if (this.CourseForm.invalid) {
+      for (const name in controls) {
+        if (controls[name].invalid) {
+          this.catSvc.ErrorMsgBar(`  ${name} is Required`, 6000)
+          break
+        }
+      }
     } else {
+      if (this.selectedCourse.logoBase64Path == null && this.selectedCourse.logoBase64Path == undefined) {
+        this.catSvc.ErrorMsgBar("Please Browse an image to continue", 8000)
+      } else {
       this.proccessing = true
-      if (!this.CourseForm.invalid) {
+      if (this.Edit) {
+         this.UpdateCourse();
+      } else {
         this.accSvc.SaveCourse(this.selectedCourse).subscribe({
           next: (res) => {
-            this.catSvc.SuccessMsgBar("Successfully Added!", 5000)
-            this.Add = true;
-            this.Edit = false;
-            this.proccessing = false
+            this.catSvc.SuccessMsgBar("Successfully Added !", 6000)
             this.ngOnInit();
+            this.Refresh();
+            window.scrollTo(0, 0)
+            this.proccessing = false
           }, error: (e) => {
-            this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-            console.warn(e);
+            console.warn(e)
+            this.catSvc.ErrorMsgBar("Error Occurred !", 6000)
             this.proccessing = false
           }
         })
-      } else {
-        this.catSvc.ErrorMsgBar("Please Fill all required fields!", 5000)
-        this.proccessing = false
-      }
+      }}
     }
   }
   UpdateCourse() {
@@ -192,8 +203,14 @@ export class ManageCourseComponent implements OnInit {
     this.currentLightBoxImage = this.selectedCourse.logoBase64Path
   }
   onClosePreview() {
-    this.previewImage = false;
+    this.previewImage = false
   }
-
+  validateNo(e : any): boolean {
+    const charCode = e.which ? e.which : e.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false
+    }
+    return true
+  }
 
 }

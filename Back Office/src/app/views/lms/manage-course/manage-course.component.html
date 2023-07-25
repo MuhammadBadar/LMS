@@ -8,25 +8,35 @@
         </button>
       </div>
     </div>
-  
   <div class="page_content shadow p-3 position-relative">
             <form #CourseForm="ngForm">
                 <div fxLayout="row" fxLayoutAlign="space-between">
                     <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
                         <mat-label> Title</mat-label>
-                        <input matInput required #title="ngModel" name="title" [(ngModel)]="selectedCourse.title" />
+                     
+                        <input Title matInput required #title="ngModel" name="Title" [(ngModel)]="selectedCourse.title" maxlength="200" minlength="20"/>
+                         <mat-error class="form-text text-danger"
+                        *ngIf="CourseForm.controls['Title']?.hasError || CourseForm.controls['Title']?.errors?.['minlength']">
+                        Title is required to be at least 20 characters.
+                      </mat-error> 
+               
                     </mat-form-field>
                     <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
                         <mat-label>Fee</mat-label>
-                        <input matInput required #email="ngModel" name="fee" type="number" min="0"
-                            [(ngModel)]="selectedCourse.fee" />
+                         <input matInput required #fee="ngModel" name="Fee" type="number" 
+                            [(ngModel)]="selectedCourse.fee"  max="9999" min="0">
                     </mat-form-field>
+                
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-between">
                     <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
                         <mat-label>Short Description</mat-label>
-                        <textarea matInput required #shortDescription="ngModel" name="shortDescription" rows="5"
-                            [(ngModel)]="selectedCourse.shortDescription"></textarea>
+                        <textarea matInput required #shortDescription="ngModel" name="ShortDescription" rows="5"
+                            [(ngModel)]="selectedCourse.shortDescription" maxlength="2000" minlength="10"></textarea>
+                            <mat-error class="form-text text-danger"
+                            *ngIf="CourseForm.controls['Title']?.hasError || CourseForm.controls['Title']?.errors?.['minlength']">
+                            Description  is required to be at least 10 characters.
+                          </mat-error> 
                     </mat-form-field>
                     <div>
                         <div class="gallery-img mat-elevation-z8" style="border-radius: 15px;width: 170px;height: 170px;">
