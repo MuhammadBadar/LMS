@@ -15,13 +15,12 @@
             <Row>
                 <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
                     <mat-form-field appearance="outline" fxFlex="49%">
-                        <mat-label>--Please Select Course--</mat-label>
-                        <mat-select name="courseId" [(ngModel)]="selectedTopic.courseId">
-                          <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
-                          <mat-option *ngFor="let val of Courses" [value]="val.id">
-                            {{val.title}}
-                          </mat-option>
-                        </mat-select>
+                        <mat-select name="Course" [(ngModel)]="selectedTopic.courseId">
+                            <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
+                            <mat-option *ngFor="let val of Courses" [value]="val.id" (click)="Search()">
+                              {{val.title}}
+                            </mat-option>
+                          </mat-select>
                         
                         <div matSuffix>
                           <button mat-icon-button style="color:#940540;" (click)="OpenCourseDialog(); $event.stopPropagation()" cTooltip="Explore SettingsType">
@@ -29,19 +28,29 @@
                           </button>
                         </div>
                       </mat-form-field>
-                    <mat-form-field appearance="outline" fxFlex="49%">
+                      <mat-form-field appearance="outline" fxFlex="49%">
                         <mat-label>Topic Title</mat-label>
-                        <input matInput class="form-control" placeholder="TopicTitle" [type]="hide ? 'topicTitle' : 'text'"
-                             name="TopicTitle" [ngClass]="{ 'is-invalid': topicForm.submitted && topicTitle.invalid }"
-                             #topicTitle="ngModel" [(ngModel)]="selectedTopic.topicTitle" required>
-                    </mat-form-field>
+                        <input matInput class="form-control" placeholder="Title" [type]="hide ? 'title' : 'text'"
+                               name="topicTitle" [ngClass]="{ 'is-invalid': topicForm.submitted && title.invalid }"
+                               #title="ngModel" [(ngModel)]="selectedTopic.topicTitle" required maxlength="200" minlength="20">
+                        
+                        <mat-error class="form-text text-danger"
+                                   *ngIf="topicForm.controls['topicTitle']?.hasError('required') || topicForm.controls['topicTitle']?.hasError('minlength')">
+                            TopicTitle is required to be at least 20 characters.
+                        </mat-error>
+                        
+                      </mat-form-field>
                 </div>
             </Row>
             <Row>
                 <div fxLayout="row" fxFlex="100%">
                     <mat-form-field appearance="outline" fxFlex="100%">
                         <mat-label>Description</mat-label>
-                        <textarea matInput name="description" [(ngModel)]="selectedTopic.description"></textarea>
+                        <textarea matInput required name="description" [(ngModel)]="selectedTopic.description" maxlength="2000" minlength="10"></textarea>
+                        <mat-error class="form-text text-danger"
+                        *ngIf="topicForm.controls['description']?.hasError || topicForm.controls['description']?.errors?.['minlength']">
+                        Description is required to be at least 10 characters.
+                      </mat-error>
                     </mat-form-field>
                 </div>
             </Row>

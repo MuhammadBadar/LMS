@@ -15,7 +15,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./manage-topic.component.css']
 })
 export class ManageTopicComponent implements OnInit {
-  displayedColumns: string[] = ['topicTitle', 'course', 'description', 'isActive', 'actions'];
+  displayedColumns: string[] = ['course','topicTitle', 'description', 'isActive', 'actions'];
   AddMode: boolean = true
   EditMode: boolean = false
   dataSource: any
@@ -27,9 +27,8 @@ export class ManageTopicComponent implements OnInit {
   disableClose:any
   dialogData: any
   isDialog : boolean = false;
-  Edit: any;
   proccessing: boolean = false;
-  Add: boolean = true;
+  
   hide = true;
   @ViewChild('topicForm', { static: true }) topicForm!: NgForm;
 
@@ -45,13 +44,14 @@ export class ManageTopicComponent implements OnInit {
     this.selectedTopic = new TopicVM
     }
   ngOnInit(): void {
-    this.Add = true;
+    this.AddMode = true;
     
     this.GetTopic();
     this.GetCourses();
     this.selectedTopic.isActive = true;
-    this.isDialog = this.dialogData.isDialog;
+    
     if (this.dialogData  != null) {
+      this.isDialog = this.dialogData.isDialog;
       this.isDialog = true;
     console.warn(this.dialogData.courseId)
       if (this.dialogData.courseId != undefined) {
@@ -64,6 +64,7 @@ export class ManageTopicComponent implements OnInit {
   GetCourses() {
     var course = new CourseVM
     course.isActive = true;
+    this.selectedTopic.isActive = true;
     this.lmsSvc.SearchCourse(course).subscribe({
       next: (res: CourseVM[]) => {
         this.Courses = res
@@ -73,6 +74,7 @@ export class ManageTopicComponent implements OnInit {
     })
   }
   GetTopic() {
+    this.selectedTopic.isActive = true;
     this.lmsSvc.GetTopic().subscribe({
       next: (value: TopicVM[]) => {
         this.topics = value
@@ -83,56 +85,64 @@ export class ManageTopicComponent implements OnInit {
     })
   }
   SaveTopic() {
+    if (this.selectedTopic.courseId == 0 || this.selectedTopic.courseId == undefined) {
+      this.topicForm.form.controls['Course'].setErrors({ 'incorrect': true });
+    }
+    this.selectedTopic.isActive = true;
     this.lmsSvc.GetTopic().subscribe({
-      
       next: (res: TopicVM[]) => {
-        var list = res
-        if (this.Edit)
-          res = res.filter(x => x != this.selectedTopic)
-        var find = res.find(x => x.topicTitle == this.selectedTopic.topicTitle)
+        var list = res;
+        if (this.EditMode) {
+          res = res.filter(x => x != this.selectedTopic);
+        }
+        var find = res.find(x => x.topicTitle == this.selectedTopic.topicTitle);
         if (find == undefined) {
-          
-    if (this.selectedTopic.courseId == 0 || this.selectedTopic.courseId == undefined)
-    this.topicForm.form.controls['courseId'].setErrors({ 'incorrect': true });
-    console.warn(this.topicForm)
-
-          this.proccessing = true
-          if (!this.topicForm.invalid) {
-            if (this.Edit)
-              this.UpdateTopic()
-            else {
-              this.lmsSvc.SaveTopic(this.selectedTopic).subscribe({
-                next: (res) => {
-                  this.catSvc.SuccessMsgBar("Successfully Added!", 5000)
-                  this.Add = true;
-                  this.Edit = false;
-                  this.proccessing = false
-                  this.ngOnInit();
-                }, error: (e) => {
-                  this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-                  console.warn(e);
-                  this.proccessing = false
-                }
-              })
+         const controls = this.topicForm.controls;
+          if (this.topicForm.invalid) {
+            for (const name in controls) {
+              if (controls[name].invalid) {
+                this.catSvc.ErrorMsgBar(`Please enter a valid  ${name} `, 6000);
+                break;
+              }
             }
           } else {
-            this.catSvc.ErrorMsgBar("Please Fill all required fields!", 5000)
-            this.proccessing = false
+            this.proccessing = true;
+            if (this.EditMode) {
+              this.UpdateTopic();
+            } else {
+              this.lmsSvc.SaveTopic(this.selectedTopic).subscribe({
+                next: (res) => {
+                  this.catSvc.SuccessMsgBar("Successfully Added!", 6000);
+                  this.ngOnInit();
+                  this.Refresh();
+                  window.scrollTo(0, 0);
+                  this.proccessing = false;
+                },
+                error: (e) => {
+                  console.warn(e);
+                  this.catSvc.ErrorMsgBar("Error Occurred!", 6000);
+                  this.proccessing = false;
+                }
+              });
+            }
           }
-        } else
-          this.catSvc.ErrorMsgBar("This Title Already Taken ", 5000)
-      }, error: (e) => {
-        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+        } else {
+          this.catSvc.ErrorMsgBar("This Title Already Taken", 5000);
+        }
+      },
+      error: (e) => {
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000);
         console.warn(e);
       }
-    })
+    });
+    
   }
-
  
   EditTopic(topic: TopicVM) {
     this.EditMode = true
     this.AddMode = false
     this.selectedTopic = topic
+    this.selectedTopic.isActive = true;
   }
   UpdateTopic() {
     this.lmsSvc.UpdateTopic(this.selectedTopic).subscribe({
@@ -147,8 +157,13 @@ export class ManageTopicComponent implements OnInit {
   Refresh() {
     this.GetTopic();
     this.selectedTopic = new TopicVM
+    this.GetCourses();
     this.EditMode = false
     this.AddMode = true
+    this.selectedTopic.isActive = true;
+
+
+   
   }
   DeleteTopic(id: number) {
     Swal.fire({
@@ -181,8 +196,7 @@ export class ManageTopicComponent implements OnInit {
   OpenCourseDialog() {
     this.dialogRef = this.dialog.open(ManageCourseComponent, {
       width: '1200px', height: '950px',
-    
-     
+      data:{isDialog : true}
      })
       this.dataSource = new MatTableDataSource(this.topics)
     this.dialogRef.afterClosed()
@@ -204,9 +218,27 @@ export class ManageTopicComponent implements OnInit {
     
        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
      },
-   })
+   })}
   //  CheckCoursevalidation() {
   //   if (this.selectedTopic.courseId == 0 || this.selectedTopic.courseId == undefined)
   //     this.topicForm.form.controls['courseId'].setErrors({ 'incorrect': true });
   // }
-}}
+Search(){
+  var  topic = new TopicVM();
+  topic.courseId = this.selectedTopic.courseId;
+  this.lmsSvc.SearchTopic(topic).subscribe({
+   next: (value: TopicVM[]) => {
+     this.topics = value
+     this.dataSource = new MatTableDataSource(this.topics)
+   }, error: (err) => {
+     this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+   },
+ })}
+ validateNo(e: any): boolean {
+  const charCode = e.which ? e.which : e.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    return false
+  }
+  return true
+}
+}
