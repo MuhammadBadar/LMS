@@ -17,7 +17,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./manage-lecture.component.css']
 })
 export class ManageLectureComponent implements OnInit {
-  displayedColumns: string[] = ['course', 'topic', 'title', 'url' ,'description','isActive','actions'];
+  displayedColumns: string[] = ['course', 'topic', 'title', 'url', 'description', 'isActive', 'actions'];
   AddMode: boolean = true
   proccessing: boolean = false;
   EditMode: boolean = false
@@ -26,52 +26,39 @@ export class ManageLectureComponent implements OnInit {
   dataSource: any
   selectedlec: LectureVM
   lecs?: LectureVM[]
-  @ViewChild('lectureForm', { static: true }) lectureForm!: NgForm;
+  @ViewChild('lectureForm', { static: true }) lectureForm: NgForm;
   courses?: CourseVM[]
   topics?: TopicVM[]
   Edit: boolean = false;
   dialogRef: any
   dialogref: any
   dialogData: any;
-  isDialog : boolean = false; 
+  isDialog: boolean = false;
   isActive?: false
   Add: boolean = true;
   hide = true;
- 
-  
-  
   constructor(
     private injector: Injector,
     private lmsSvc: LMSService,
     private catSvc: CatalogService,
     private dialog: MatDialog) {
-
-    
-     this.dialogref = this.injector.get(MatDialogRef, null);
+    this.dialogref = this.injector.get(MatDialogRef, null);
     this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
     this.selectedlec = new LectureVM();
-    
-   
   }
-
-
   ngOnInit(): void {
     this.GetLecture()
-     this.GetTopic()
-     this.GetCourses()
-     this.Add = true;
-     this.selectedlec.isActive = true;
-     this.isDialog = this.dialogData.isDialog;
+    this.GetTopic()
+    this.GetCourses()
+    this.Add = true;
+    this.selectedlec.isActive = true;
+    this.isDialog = this.dialogData.isDialog;
 
   }
-
-  
-    
   GetCourses() {
-
     var course = new CourseVM
     course.isActive = true;
-
+    this.selectedlec.isActive = true;
     this.lmsSvc.SearchCourse(course).subscribe({
       next: (res: CourseVM[]) => {
         this.courses = res
@@ -80,12 +67,10 @@ export class ManageLectureComponent implements OnInit {
       },
     })
   }
-
-  GetTopic() 
-  {
+  GetTopic() {
     var topic = new TopicVM
     topic.isActive = true;
-
+    this.selectedlec.isActive = true;
     this.lmsSvc.SearchTopic(topic).subscribe({
       next: (value: TopicVM[]) => {
         this.topics = value
@@ -103,68 +88,80 @@ export class ManageLectureComponent implements OnInit {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
         console.warn(err)
       },
-      
+
     })
   }
   SaveLecture() {
+    if (this.selectedlec.courseId == 0 || this.selectedlec.courseId == undefined) {
+      this.lectureForm.controls['Course'].setErrors({ 'incorrect': true });
+      console.warn(this.lectureForm);
+    }
+    if (this.selectedlec.topicId == 0 || this.selectedlec.topicId == undefined) {
+      this.lectureForm.controls['Topic'].setErrors({ 'incorrect': true });
+      console.warn(this.lectureForm);
+    }
     this.lmsSvc.GetLecture().subscribe({
-      
       next: (res: LectureVM[]) => {
-        var list = res
-        if (this.Edit)
-          res = res.filter(x => x != this.selectedlec)
-        var find = res.find(x => x.title == this.selectedlec.title)
+        var list = res;
+        if (this.Edit) {
+          res = res.filter(x => x !== this.selectedlec);
+        }
+        var find = res.find(x => x.title === this.selectedlec.title);
         if (find == undefined) {
-          
-    if (this.selectedlec.courseId == 0 || this.selectedlec.courseId == undefined)
-    this.lectureForm.form.controls['courseId'].setErrors({ 'incorrect': true });
-    console.warn(this.lectureForm)
+          const controls = this.lectureForm.controls;
+          if (this.lectureForm.invalid) {
+            for (const name in controls) {
 
-    if (this.selectedlec.topicId == 0 || this.selectedlec.topicId == undefined)
-    this.lectureForm.form.controls['topicId'].setErrors({ 'incorrect': true });
-    console.warn(this.lectureForm)
-
-          this.proccessing = true
-          if (!this.lectureForm.invalid) {
-            if (this.Edit)
-              this.UpdateLecture()
-            else {
+               if (controls[name].hasError('required')) {
+                this.catSvc.ErrorMsgBar(` ${name} is required field`, 6000)
+                 break
+               }else if(controls[name].hasError('minlength')){
+        
+                 this.catSvc.ErrorMsgBar(` ${name} must be atleast ${controls[name].errors['minlength'].requiredLength } characters long.`, 6000)
+                 break
+            }}
+          } else {
+            this.proccessing = true;
+            if (this.EditMode) {
+              this.UpdateLecture();
+            } else {
               this.lmsSvc.SaveLecture(this.selectedlec).subscribe({
                 next: (res) => {
-                  this.catSvc.SuccessMsgBar("Successfully Added!", 5000)
-                  this.Add = true;
-                  this.Edit = false;
-                  this.proccessing = false
+                  this.catSvc.SuccessMsgBar("Successfully Added!", 6000);
                   this.ngOnInit();
-                }, error: (e) => {
-                  this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+                  this.Refresh();
+                  window.scrollTo(0, 0);
+                  this.proccessing = false;
+                },
+                error: (e) => {
                   console.warn(e);
-                  this.proccessing = false
+                  this.catSvc.ErrorMsgBar("Error Occurred!", 6000);
+                  this.proccessing = false;
                 }
-              })
+              });
             }
-          } else {
-            this.catSvc.ErrorMsgBar("Please Fill all required fields!", 5000)
-            this.proccessing = false
           }
-        } else
-          this.catSvc.ErrorMsgBar("This Title Already Taken ", 5000)
-      }, error: (e) => {
-        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+        } else {
+          this.catSvc.ErrorMsgBar("This Title Already Taken ", 5000);
+        }
+      },
+      error: (e) => {
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000);
         console.warn(e);
       }
-    })
+    });
+
+
   }
-
-
   EditLecture(lect: LectureVM) {
     this.EditMode = true
     this.AddMode = false
     this.selectedlec = lect
+    this.selectedlec.isActive = true;
   }
   UpdateLecture() {
     this.proccessing = true;
-  
+
     if (this.lectureForm && !this.lectureForm.invalid && this.selectedlec) {
       this.lmsSvc.UpdateLecture(this.selectedlec).subscribe({
         next: (value) => {
@@ -185,12 +182,11 @@ export class ManageLectureComponent implements OnInit {
       this.proccessing = false;
     }
   }
-  
+
   Refresh() {
     this.GetLecture();
     this.selectedlec = new LectureVM
-    this.EditMode = false
-    this.AddMode = true
+    this.selectedlec.isActive = true;
     this.GetCourses();
     this.GetTopic();
     this.Add = true;
@@ -227,20 +223,20 @@ export class ManageLectureComponent implements OnInit {
     const dialogRef = this.dialog.open(ManageCourseComponent, {
       width: '1200px',
       height: '950px',
-      data:{isDialog:true }
+      data: { isDialog: true }
     });
-  
+
     dialogRef.afterClosed().subscribe(() => {
       this.GetCourses();
     });
   }
 
-  
+
   OpenTopicDialog() {
     this.dialogRef = this.dialog.open(ManageTopicComponent, {
       width: '1200px', height: '950px'
-      ,  data:{isDialog:true ,courseId: this.selectedlec.courseId}
-  
+      , data: { isDialog: true, courseId: this.selectedlec.courseId }
+
     })
     console.warn(this.selectedlec.courseId)
     this.dialogRef.afterClosed()
@@ -249,29 +245,33 @@ export class ManageLectureComponent implements OnInit {
       }
       );
   }
-
-
-
-  Search(){
-  
-    var  topic = new TopicVM();
+  Search() {
+    var topic = new TopicVM();
     topic.courseId = this.selectedlec.courseId;
-topic.isActive = true;
+    topic.isActive = true;
     this.lmsSvc.SearchTopic(topic).subscribe({
-     next: (value: TopicVM[]) => {
-       this.topics = value
-     }, error: (err) => {
-       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-     },
-   })
-    
-     var  lec = new LectureVM();
-     lec.courseId = this.selectedlec.courseId;
-     this.lmsSvc.SearchLecture(lec).subscribe({
+      next: (value: TopicVM[]) => {
+        this.topics = value
+      }, error: (err) => {
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+      },
+    })
+     var lec = new LectureVM();
+    lec.courseId = this.selectedlec.courseId;
+    this.lmsSvc.SearchLecture(lec).subscribe({
       next: (value: LectureVM[]) => {
         this.lecs = value
         this.dataSource = new MatTableDataSource(this.lecs)
       }, error: (err) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
       },
-    })}}
+    })
+  }
+  validateNo(e: any): boolean {
+    const charCode = e.which ? e.which : e.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false
+    }
+    return true
+  }
+}

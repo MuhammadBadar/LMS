@@ -14,9 +14,9 @@
                 <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
                     <mat-form-field appearance="outline" fxFlex="49%">
                         <mat-label>--Please Select Course--</mat-label>
-                        <mat-select name="courseId" [(ngModel)]="selectedlec.courseId">
+                        <mat-select name="Course" [(ngModel)]="selectedlec.courseId">
                           <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
-                          <mat-option *ngFor="let val of courses" [value]="val.id" (click)="Search()">
+                          <mat-option *ngFor="let val of courses" [value]="val.id" (click)="Search()" >
                             {{val.title}}
                           </mat-option>
                         </mat-select>
@@ -31,7 +31,7 @@
                     <mat-form-field appearance="outline" fxFlex="49%">
                       
                         <mat-label>--Please Select Topic--</mat-label>
-                        <mat-select name="topicId" [(ngModel)]="selectedlec.topicId">
+                        <mat-select name="Topic" [(ngModel)]="selectedlec.topicId">
                           <mat-option [value]="0">--Please Select--</mat-option>
                           <mat-option *ngFor="let val of topics" [value]="val.id">{{val.topicTitle}}</mat-option>
                         </mat-select>
@@ -50,15 +50,23 @@
                 <mat-form-field appearance="outline" fxFlex="49%">
                   <mat-label>Lecture Title</mat-label>
                   <input matInput class="form-control" placeholder="Title" [type]="hide ? 'title' : 'text'"
-                         name="Title" [ngClass]="{ 'is-invalid': lectureForm.submitted && title.invalid }"
-                         #title="ngModel" [(ngModel)]="selectedlec.title" required>
+                         name="LectureTitle" [ngClass]="{ 'is-invalid': lectureForm.submitted && title.invalid }"
+                         #title="ngModel" [(ngModel)]="selectedlec.title" required maxlength="200" minlength="20">
+                         <mat-error class="form-text text-danger"
+                         *ngIf="lectureForm.controls['URL']?.hasError || lectureForm.controls['URL']?.errors?.['minlength']">
+                         LectureTitle is required to be at least 20 characters.
+                       </mat-error> 
                 </mat-form-field>
               
                 <mat-form-field appearance="outline" fxFlex="49%">
                   <mat-label>URL</mat-label>
                   <input matInput class="form-control" placeholder="URL" [type]="hide ? 'url' : 'text'"
                          name="URL" [ngClass]="{ 'is-invalid': lectureForm.submitted && url.invalid }"
-                         #url="ngModel" [(ngModel)]="selectedlec.url" required>
+                         #url="ngModel" [(ngModel)]="selectedlec.url" required maxlength="2048" minlength="75" >
+                         <mat-error class="form-text text-danger"
+                         *ngIf="lectureForm.controls['URL']?.hasError || lectureForm.controls['URL']?.errors?.['minlength']">
+                         URL is required to be at least 75 characters.
+                       </mat-error> 
                 </mat-form-field>
               </div>
               
@@ -66,7 +74,11 @@
                 <div fxLayout="row" fxFlex="100%">
                     <mat-form-field appearance="outline" fxFlex="100%">
                         <mat-label>Description</mat-label>
-                        <textarea matInput name="description" [(ngModel)]="selectedlec.description"></textarea>
+                        <textarea matInput required name="description" [(ngModel)]="selectedlec.description" maxlength="2000" minlength="10"></textarea>
+                        <mat-error class="form-text text-danger"
+                        *ngIf="lectureForm.controls['description']?.hasError || lectureForm.controls['description']?.errors?.['minlength']">
+                        Description is required to be at least 10 characters.
+                      </mat-error>
                     </mat-form-field>
                 </div>
             </Row>
