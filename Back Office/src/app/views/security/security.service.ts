@@ -58,8 +58,9 @@ export class SecurityService {
   SearchUserById(id: any): Observable<UserVM> {
     return this.http.get<UserVM>(Globals.BASE_API_URL + 'User/' + id).pipe();
   }
-  SearchUserByName(search: any): Observable<UserVM[]> {
-    return this.http.post<UserVM[]>(Globals.BASE_API_URL + 'User/Search', search).pipe();
+  SearchUserByName(search: any): Observable<UserVM> {
+    debugger;
+    return this.http.post<UserVM>(Globals.BASE_API_URL + 'User/name',search).pipe();
   }
   SearchRole(search: any): Observable<RoleVM> {
     return this.http.post<RoleVM>(Globals.BASE_API_URL + 'Role/id', search).pipe();

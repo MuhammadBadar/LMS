@@ -35,7 +35,7 @@ namespace LMS.WebAPI.Controllers
         [HttpGet]
 
         public IActionResult GetScheduleFH()
-        {
+      {
             ScheduleFHDE schSC = new ScheduleFHDE();
             List<ScheduleFHDE> schedule = _schSVC.SearchScheduleFH(schSC);
             return Ok(schedule);

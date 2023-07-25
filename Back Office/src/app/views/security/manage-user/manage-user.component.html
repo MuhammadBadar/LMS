@@ -19,9 +19,13 @@
                 <th mat-header-cell *matHeaderCellDef>Sr No </th>
                 <td mat-cell *matCellDef="let user"> {{user.id}} </td>
               </ng-container>
+              <ng-container matColumnDef="passwordHash" id="passwordHash">
+                <th mat-header-cell *matHeaderCellDef>PasswordHash </th>
+                <td mat-cell *matCellDef="let user"> {{user.passwordHash}} </td>
+              </ng-container>
               <ng-container matColumnDef="userName" id="userName">
                 <th mat-header-cell *matHeaderCellDef>User Name </th>
-                <td mat-cell *matCellDef="let user"> {{user.name}} </td>
+                <td mat-cell *matCellDef="let user"> {{user.userName}} </td>
               </ng-container>
               <ng-container matColumnDef="role" id="role">
                 <th mat-header-cell *matHeaderCellDef>Role</th>

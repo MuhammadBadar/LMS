@@ -73,13 +73,12 @@ import { ScheduleListComponent } from './Schedule/schedule-list/schedule-list.co
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ManageTopicComponent } from './manage-topic/manage-topic.component';
 import { ManageLectureComponent } from './manage-lecture/manage-lecture.component';
-import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
-
 import { ManageVocabularyComponent } from './manage-vocabulary/manage-vocabulary.component';
 import { ManageCityComponent } from './manage-city/manage-city.component';
 import { ManageCityStudentComponent } from './manage-city-student/manage-city-student.component';
 import { ManageStudentComponent } from './manage-student/manage-student.component';
 import { ManageScheduleFHComponent } from './manage-schedule-fh/manage-schedule-fh.component';
+import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
 
@@ -92,11 +91,11 @@ import { ManageScheduleFHComponent } from './manage-schedule-fh/manage-schedule-
     ManageCourseDetailComponent,
     ScheduleListComponent,
     ManageTopicComponent,
+    ManageAssignTaskComponent,
     ManageLectureComponent, 
     ManageVocabularyComponent,
     ManageCityComponent,
     ManageCityStudentComponent,
-    ManageAssignTaskComponent,
     ManageStudentComponent,
     ManageScheduleFHComponent,
   ],

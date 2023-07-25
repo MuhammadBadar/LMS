@@ -138,10 +138,14 @@
                                             cTooltip="Edit Settings " (click)="GetSettingsForEdit(row.id)">
                                             <mat-icon>edit</mat-icon>
                                         </button>
-                                        <!-- <button mat-icon-button mat-sm-button color="warn" cTooltip="Delete Settings "
+                                     <!--   <button mat-icon-button mat-sm-button color="warn" cTooltip="Delete Settings "
                                             [disabled]="row.isSystemDefined" (click)="DeleteSettings(row.id)">
                                             <mat-icon>delete</mat-icon>
-                                        </button> -->
+                                        </button>  
+                                          <button mat-icon-button mat-sm-button color="warn" cTooltip="Delete Settings"
+                                                            (click)="DeleteSettings(row.id)">
+                                                            <mat-icon>delete</mat-icon>
+                                                        </button>-->
                                     </div>
                                 </td>
                             </ng-container>

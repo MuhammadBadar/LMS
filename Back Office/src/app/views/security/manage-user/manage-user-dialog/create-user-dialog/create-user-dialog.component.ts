@@ -18,16 +18,17 @@ import { UserVM } from '../../../models/user-vm';
   styleUrls: ['./create-user-dialog.component.css']
 })
 export class CreateUserDialogComponent implements OnInit {
+  
   @ViewChild('userForm', { static: true }) userForm?: NgForm;
   messagebox: boolean = false;
-  message: any;
+  messages: any;
   success?: boolean;
   error: string = '';
   submitted: boolean = false;
   user: boolean = false;
   Edit: boolean = false;
   Add: boolean = true;
-  UserId: string = '';
+  userName: string = '';
   durationInSeconds = 3;
   hide = true;
   url = "https://localhost:7100/api/Users";
@@ -35,6 +36,7 @@ export class CreateUserDialogComponent implements OnInit {
   getbyIduser?: UserVM;
   dialogTitle: string;
   action?: string;
+  dialogRef: any;
   constructor(
     private formBuilder: FormBuilder,
     private httpClient: HttpClient,
@@ -48,66 +50,114 @@ export class CreateUserDialogComponent implements OnInit {
   ngOnInit() {
 
     this.route.queryParams.subscribe(params => {
-      this.UserId = params['id'];
+      this.userName = params['name'];
     });
-    if (this.UserId != null) {
+    if (this.userName != null) {
       this.Edit = true;
       this.Add = false;
-      this.GetUserById();
+      this.GetUserByName();
     }
   }
+  // SaveUser() {
+  //   this.securityService.selectedUser.userName = this.securityService.selectedUser.userPassword
+  //   this.securityService.selectedUser.passwordHash = this.securityService.selectedUser.userPassword
+  //   console.warn(this.securityService.selectedUser)
+  //   if (this.userName != null) {
+  //     this.PutUser();
+  //   } else {
+  //     this.securityService.SaveUser(this.securityService.selectedUser).subscribe({
+  //       next: (data: any) => {
+  //         if (data.succeeded == true) {
+  //           this.messagebox = false;
+  //           Swal.fire({
+  //             icon: 'success',
+  //             position: 'center',
+  //             text: 'User Registered Successfully',
+  //             background: "#FFFFFF",
+  //             confirmButtonColor: "#000000"
+  //           })
+  //           this.userForm?.reset();
+  //         }
+  //         else {
+  //           this.messagebox = true;
+  //           this.message = data.errors
+  //           console.warn(data)
+  //         }
+  //       }, error: (err) => {
+  //         if (err.status == 0) {
+  //           Swal.fire({
+  //             icon: 'error',
+  //             title: 'Oops...',
+  //             text: 'Something went wrong!',
+  //             footer: 'Please check your Internet Connection'
+  //           })
+  //         }
+  //         else {
+  //           Swal.fire({
+  //             icon: 'error',
+  //             title: 'Oops...',
+  //             text: 'Something went wrong!',
+  //           })
+  //         }
+  //       }
+  //     })
+  //   }
+  // }
   SaveUser() {
-    this.securityService.selectedUser.userName = this.securityService.selectedUser.userPassword
-    this.securityService.selectedUser.passwordHash = this.securityService.selectedUser.userPassword
+    //this.spinner.show();
+    debugger;
     console.warn(this.securityService.selectedUser)
-    if (this.UserId != null) {
-      this.PutUser();
-    } else {
-      this.securityService.SaveUser(this.securityService.selectedUser).subscribe({
-        next: (data: any) => {
-          if (data.succeeded == true) {
-            this.messagebox = false;
-            Swal.fire({
-              icon: 'success',
-              position: 'center',
-              text: 'User Registered Successfully',
-              background: "#FFFFFF",
-              confirmButtonColor: "#000000"
-            })
-            this.userForm?.reset();
-          }
-          else {
-            this.messagebox = true;
-            this.message = data.errors
-            console.warn(data)
-          }
-        }, error: (err) => {
-          if (err.status == 0) {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-              footer: 'Please check your Internet Connection'
-            })
-          }
-          else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-            })
-          }
-        }
-      })
-    }
+   // if(this.securityService.selectedUser.directSupervisorId==undefined){
+    //this.securityService.selectedUser.directSupervisorId=this.securityService.selectedUser.id}
+    if (this.userName != null) {
+          this.PutUser();
+        } else {
+    this.securityService.SaveUser(this.securityService.selectedUser).subscribe((data:any) => {
+     // console.warn(data)
+      if(data.succeeded==true){
+        this.messagebox=false;
+        Swal.fire({
+          icon:'success',
+          position:  'center' ,
+         text:'User Registered Successfully',
+          background: "#FFFFFF",
+          confirmButtonColor: "#000000"          
+        })
+        this.dialogRef.close();
+      this.userForm?.reset();}
+      else{
+        this.messagebox=true;
+        this.messages=data.errors
+        console.warn(data)
+      }
+    },
+      (err: any) => {
+        console.warn(err)
+       if(err.status==0){
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: 'Please check your Internet Connection'
+        })}
+        else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          })} 
+  
+      });
+     }
   }
-  GetUserById() {
-    this.securityService.selectedUser.id = this.UserId
-    this.securityService.SearchUserById(this.UserId).subscribe({
+  GetUserByName() {
+    this.securityService.selectedUser.userName = this.userName
+    this.securityService.SearchUserByName(this.securityService.selectedUser).subscribe({
       next: (res: UserVM) => {
         this.getbyIduser = res;
         this.securityService.selectedUser = this.getbyIduser
       }, error: (e) => {
+      console.warn(e)
         this.snack.open('Error Occured!', 'OK', { duration: 4000 })
       }
     })
@@ -127,7 +177,7 @@ export class CreateUserDialogComponent implements OnInit {
         }
         else {
           this.messagebox = true;
-          this.message = data.errors
+          this.messages = data.errors
           console.warn(data)
         }
       }, error: (err) => {

@@ -15,8 +15,9 @@ import { Router } from '@angular/router';
 })
 export class ManageUserComponent implements OnInit {
   dataSource: any;
-  displayedColumns = ['firstName', 'userName', 'phoneNumber', 'email', 'fatherName', 'address', 'cnic', 'msCardNo', 'discountLimit',
-    'action'];
+  // displayedColumns = ['firstName', 'userName', 'phoneNumber', 'email', 'fatherName', 'address', 'cnic', 'msCardNo', 'discountLimit',
+  //   'action'];
+  displayedColumns = [ 'userName', 'email', 'action'];
   users?: UserVM[];
   constructor(
     private securitySvc: SecurityService,
@@ -36,7 +37,7 @@ export class ManageUserComponent implements OnInit {
   EditUser(user: any) {
     this.route.navigate(['/security/userRegistration'], {
       queryParams: {
-        id: user.id
+        name: user.userName
       }
     });
   }

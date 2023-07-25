@@ -1,0 +1,587 @@
+
+--
+-- Final table and procedure of  `Vocabulary`
+--
+Drop Table if exists `Vocabulary`;
+
+CREATE TABLE `Vocabulary` (
+  `Id` int NOT NULL,
+  `Word` Varchar(50) NOT NULL,
+   `Meaning`Varchar(50) NOT NULL,
+ `Reference`Varchar(500) NOT NULL,
+  `Sentance` Varchar(5000) NOT NULL,
+ `Pronunciation`Varchar(1000) NOT NULL,
+  `Translation` Varchar(100) NOT NULL,
+  `CreatedBy` int DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `IsActive` bit(1) DEFAULT NULL
+);
+
+drop procedure if exists `Manage_Vocabulary`;
+delimiter ;;
+create procedure `Manage_Vocabulary`( In prm_Filter varchar (50),
+In prm_Id int ,
+  In prm_Word  Varchar(50),
+  In prm_Meaning Varchar(50) ,
+  In prm_Reference  Varchar(500),
+  In prm_Sentance Varchar(5000) ,
+  In prm_Pronunciation  Varchar(1000),
+  In prm_Translation Varchar(100) ,
+  IN prm_CreatedBy INT,
+  IN prm_CreatedOn datetime ( 0 ),
+  IN prm_ModifiedBy INT,
+  IN prm_ModifiedOn datetime ( 0 ),
+  In prm_IsActive bit ( 1 )
+  
+ -- OUT prm_RetVal INT
+ )
+BEGIN
+
+	
+
+	-- SET prm_RetVal =- 1;
+
+	IF
+
+		( prm_Filter = 'Insert' ) THEN
+
+		BEGIN
+
+			insert into Vocabulary (Id, Word, Meaning, Reference, Sentance, Pronunciation, Translation,  CreatedBy, CreatedOn, IsActive) 
+			values (prm_Id, prm_Word, prm_Meaning,prm_Reference,prm_Sentance,prm_Pronunciation,prm_Translation, prm_CreatedBy, prm_CreatedOn, prm_IsActive );
+
+			-- SET prm_RetVal = LAST_INSERT_ID();
+
+		END;
+
+		ELSE
+
+		IF
+
+			( prm_Filter = 'Update' ) THEN
+
+			BEGIN
+
+				Update Vocabulary
+				Set 
+				Word = prm_Word,
+               Meaning = prm_Meaning,
+             Reference = prm_Reference,
+              Sentance = prm_Sentance,
+              Pronunciation = prm_Pronunciation, 
+             Translation = prm_Translation,
+              ModifiedBy = prm_ModifiedBy,
+				ModifiedOn = prm_ModifiedOn,
+				IsActive = prm_IsActive
+				Where Id = prm_Id;
+
+				-- SET prm_RetVal = prm_Id;
+
+			END;
+
+			ELSE
+
+			IF
+
+				( prm_Filter = 'Delete' ) THEN
+
+				BEGIN
+
+					DELETE FROM `Vocabulary` 
+					WHERE Id = prm_Id;
+
+					-- SET prm_RetVal = prm_Id;
+
+				END;
+
+				ELSE
+
+				IF
+
+					( prm_Filter = 'Disable' ) THEN
+
+					BEGIN
+
+							UPDATE `Vocabulary` 
+
+							SET IsActive = 0,
+
+							ModifiedBy = prm_ModifiedBy,
+
+							ModifiedOn = prm_ModifiedOn 
+
+						WHERE
+
+							Id = prm_Id;
+
+					-- 	SET prm_RetVal = prm_Id;
+
+					END;
+
+				END IF;
+
+			END IF;
+
+		END IF;
+
+	END IF;
+
+END;
+
+
+
+DROP PROCEDURE IF EXISTS `Get_Vocabulary`;
+delimiter ;;
+
+CREATE PROCEDURE `Get_Vocabulary`(prm_WhereClause VARCHAR ( 2000 ))
+BEGIN 
+		BEGIN
+
+			DECLARE
+
+				offsetVal INT DEFAULT 0;
+			SET @QueryStr = "SELECT Count(vcb.Id) INTO @TotalRecords
+				FROM Vocabulary as vcb";
+			SET @QueryStr = CONCAT( @QueryStr, prm_WhereClause );
+
+			PREPARE stmt1 
+
+			FROM
+
+				@QueryStr;
+
+			EXECUTE stmt1;
+
+			DEALLOCATE PREPARE stmt1;
+SET @QueryStr = "SELECT 	
+    vcb.Id AS Id, 
+		vcb.Word, 
+        vcb.Meaning, 
+        vcb.Reference,
+         vcb.Sentance,
+         vcb.Pronunciation,
+         vcb.Translation,
+       vcb.CreatedOn,
+		-- Func_Get_FullName(crs.CreatedBy) As CreatedName,
+        vcb.CreatedBy,
+		vcb.ModifiedOn,
+		-- Func_Get_FullName(crs.ModifiedBy) As ModifiedName,
+        vcb.ModifiedBy,
+		vcb.IsActive
+FROM
+		Vocabulary AS vcb;
+";
+
+			
+			SET @QueryStr = CONCAT( @QueryStr, prm_WhereClause );
+
+			PREPARE stmt1 
+
+			FROM
+
+				@QueryStr;
+
+			EXECUTE stmt1;
+
+			DEALLOCATE PREPARE stmt1;
+
+			SELECT
+				@querystr;
+		END;
+
+END;
+
+
+
+--
+-- Final table  of  `citystudent`
+--
+
+
+CREATE TABLE `citystudent` (
+    `Id` INT NOT NULL,
+    `CreatedBy` INT DEFAULT NULL,
+    `CreatedOn` DATETIME DEFAULT NULL,
+    `ModifiedBy` INT DEFAULT NULL,
+    `ModifiedOn` DATETIME DEFAULT NULL,
+    `IsActive` BIT(1) DEFAULT NULL,
+    `CityId` INT DEFAULT NULL,
+    `StudentId` INT DEFAULT NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4 COLLATE = UTF8MB4_0900_AI_CI;
+
+
+--
+-- Final procedure of  `citystudent`
+--
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ManageCityStudent`(
+		in id int,
+     
+       in cityId int,
+        in studentId int,
+        in createdOn datetime,
+        in createdBy int,
+        in modifiedOn datetime,
+        in modifiedBy int,
+        in isActive bit,
+        in DBoperation varchar(50)
+        )
+BEGIN
+if DBoperation = 'Insert'
+then
+           insert into  CityStudent (Id,CityId,StudentId, CreatedOn, CreatedBy,
+           ModifiedOn, ModifiedBy, IsActive ) 
+           values (id,cityId,studentId, createdOn, createdBy, modifiedOn,
+           modifiedBy, isActive );
+ end if;   
+
+ if DBoperation ='Update'
+ then
+            update  CityStudent set 
+                         CityId = cityId,
+                          StudentId=studentId,
+                          CreatedOn=createdOn,
+                          CreatedBy=createdBy,
+                          ModifiedOn=modifiedOn,
+                          ModifiedBy=modifiedBy,
+						  IsActive=isActive						 
+             where   CityStudent.Id =id;
+   end if;
+   IF DBoperation = 'Delete'
+    then
+            delete from CityStudent
+			where
+			 CityStudent.Id=id ; 
+        END if;
+IF DBoperation = 'Activate'
+        then
+            update   CityStudent set IsActive=1
+			where 
+			 Lecture.Id=id ;
+        END if;
+IF DBoperation = 'DeActivate'
+        then
+            update  CityStudent set IsActive=0
+			where
+			 CityStudent.Id=id; 
+        END if;
+END
+
+
+--
+-- Final procedure of  `CityStudent`
+--
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SearchCityStudent`( in WhereClause varchar(5000))
+BEGIN
+ set @queryStr= "select * from `vw_CityStudent`";
+ set @queryStr= concat(@queryStr, WhereClause);
+ prepare stm1
+ from @queryStr;
+ execute stm1;
+ deallocate prepare stm1;
+END
+--
+-- Final procedure of  `vw_citystudent`
+--
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_citystudent` AS select `citystudent`.`Id` AS `Id`,
+`citystudent`.`StudentId` AS `StudentId`,
+`citystudent`.`CityId` AS `CityId`,
+`citystudent`.`CreatedOn` AS `CreatedOn`,
+`citystudent`.`CreatedBy` AS `CreatedBy`,
+`citystudent`.`ModifiedOn` AS `ModifiedOn`,
+`citystudent`.`ModifiedBy` AS `ModifiedBy`,
+`citystudent`.`IsActive` AS `IsActive`,
+`student`.`Name` AS `Student`,
+`city`.`Name` AS `City` 
+from 
+((`citystudent`
+ left join `student` on((`student`.`Id` = `citystudent`.`StudentId`)))
+ left join `city` on((`city`.`Id` = `citystudent`.`CityId`)));
+
+
+--
+-- Final table of  student
+--
+
+CREATE TABLE `student` (
+  `Id` int NOT NULL,
+  `CityId` int DEFAULT NULL,
+  `Name` varchar(50) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `CreatedBy` int DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `IsActive` bit(1) DEFAULT NULL,
+  `TopicId` int DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+--
+-- Final proceduer of  student
+--
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Manage_Student`( In prm_Filter varchar (50),
+In prm_Id int ,
+  In prm_CityId  int,
+  In prm_TopicId  int,
+ In prm_Name  Varchar(50),
+  In prm_Email  Varchar(50),
+  IN prm_CreatedBy INT,
+  IN prm_CreatedOn datetime ( 0 ),
+  IN prm_ModifiedBy INT,
+  IN prm_ModifiedOn datetime ( 0 ),
+  In prm_IsActive bit ( 1 )
+  
+ -- OUT prm_RetVal INT
+ )
+BEGIN
+
+	
+
+	-- SET prm_RetVal =- 1;
+
+	IF
+
+		( prm_Filter = 'Insert' ) THEN
+
+		BEGIN
+
+			insert into Student (Id, CityId,TopicId,  Name, Email, CreatedBy, CreatedOn, IsActive) 
+			values (prm_Id, prm_CityId,prm_TopicId, prm_Name, prm_Email, prm_CreatedBy, prm_CreatedOn, prm_IsActive );
+
+			-- SET prm_RetVal = LAST_INSERT_ID();
+
+		END;
+
+		ELSE
+
+		IF
+
+			( prm_Filter = 'Update' ) THEN
+
+			BEGIN
+
+				Update Student
+				Set 
+                		CityId = prm_CityId,
+            			TopicId = prm_TopicId,
+				Name = prm_Name,
+             		  	Email = prm_Email,
+              			ModifiedBy = prm_ModifiedBy,
+				ModifiedOn = prm_ModifiedOn,
+				IsActive = prm_IsActive
+				Where Id = prm_Id;
+
+				-- SET prm_RetVal = prm_Id;
+
+			END;
+
+			ELSE
+
+			IF
+
+				( prm_Filter = 'Delete' ) THEN
+
+				BEGIN
+
+					DELETE FROM `Student` 
+					WHERE Id = prm_Id;
+
+					-- SET prm_RetVal = prm_Id;
+
+				END;
+
+				ELSE
+
+				IF
+
+					( prm_Filter = 'Disable' ) THEN
+
+					BEGIN
+
+							UPDATE `Student` 
+
+							SET IsActive = 0,
+
+							ModifiedBy = prm_ModifiedBy,
+
+							ModifiedOn = prm_ModifiedOn 
+
+						WHERE
+
+							Id = prm_Id;
+
+					-- 	SET prm_RetVal = prm_Id;
+
+					END;
+
+				END IF;
+
+			END IF;
+
+		END IF;
+
+	END IF;
+
+END
+
+
+--
+-- Final procedure of  student
+--
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SearchStudent`( in WhereClause varchar(5000))
+BEGIN
+ set @queryStr= "select * from `vw_Student`";
+ set @queryStr= concat(@queryStr, WhereClause);
+ prepare stm1
+ from @queryStr;
+ execute stm1;
+ deallocate prepare stm1;
+END
+
+
+
+--
+-- Final table of  `city`
+--
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_student` AS select `student`.`Id` AS `Id`,`student`.`CityId` AS `CityId`,`student`.`TopicId` AS `TopicId`,`student`.`Name` AS `Name`,`student`.`Email` AS `Email`,`student`.`CreatedOn` AS `CreatedOn`,`student`.`CreatedBy` AS `CreatedBy`,`student`.`ModifiedOn` AS `ModifiedOn`,`student`.`ModifiedBy` AS `ModifiedBy`,`student`.`IsActive` AS `IsActive`,`city`.`Name` AS `City`,`topic`.`TopicTitle` AS `Topic` from ((`student` join `city` on((`city`.`Id` = `student`.`CityId`))) join `topic` on((`topic`.`Id` = `student`.`TopicId`)))
+
+
+--
+-- Final table of  `city`
+--
+
+
+CREATE TABLE `city` (
+  `Id` int NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `CreatedBy` int DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `IsActive` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+--
+-- Final procedure of  `city`
+--
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Manage_City`( In prm_Filter varchar (50),
+In prm_Id int ,
+  In prm_Name  Varchar(50),
+ IN prm_CreatedBy INT,
+  IN prm_CreatedOn datetime ( 0 ),
+  IN prm_ModifiedBy INT,
+  IN prm_ModifiedOn datetime ( 0 ),
+  In prm_IsActive bit ( 1 )
+  
+ -- OUT prm_RetVal INT
+ )
+BEGIN
+
+	
+
+	-- SET prm_RetVal =- 1;
+
+	IF
+
+		( prm_Filter = 'Insert' ) THEN
+
+		BEGIN
+
+			insert into City (Id, Name,CreatedBy, CreatedOn, IsActive) 
+			values (prm_Id, prm_Name, prm_CreatedBy, prm_CreatedOn, prm_IsActive );
+
+			-- SET prm_RetVal = LAST_INSERT_ID();
+
+		END;
+
+		ELSE
+
+		IF
+
+			( prm_Filter = 'Update' ) THEN
+
+			BEGIN
+
+				Update City
+				Set 
+				Name = prm_Name,
+              ModifiedBy = prm_ModifiedBy,
+				ModifiedOn = prm_ModifiedOn,
+				IsActive = prm_IsActive
+				Where Id = prm_Id;
+
+				-- SET prm_RetVal = prm_Id;
+
+			END;
+
+			ELSE
+
+			IF
+
+				( prm_Filter = 'Delete' ) THEN
+
+				BEGIN
+
+					DELETE FROM `City` 
+					WHERE Id = prm_Id;
+
+					-- SET prm_RetVal = prm_Id;
+
+				END;
+
+				ELSE
+
+				IF
+
+					( prm_Filter = 'Disable' ) THEN
+
+					BEGIN
+
+							UPDATE `City` 
+
+							SET IsActive = 0,
+
+							ModifiedBy = prm_ModifiedBy,
+
+							ModifiedOn = prm_ModifiedOn 
+
+						WHERE
+
+							Id = prm_Id;
+
+					-- 	SET prm_RetVal = prm_Id;
+
+					END;
+
+				END IF;
+
+			END IF;
+
+		END IF;
+
+	END IF;
+
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Get_City`(prm_WhereClause VARCHAR ( 2000 ))
+BEGIN
+ set @queryStr= "select * from `City`";
+ set @queryStr= concat(@queryStr, prm_WhereClause);
+ prepare stm1
+ from @queryStr;
+ execute stm1;
+ deallocate prepare stm1;
+END

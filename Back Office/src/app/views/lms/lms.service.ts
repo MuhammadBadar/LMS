@@ -242,7 +242,7 @@ export class LMSService {
   GetScheduleFH(): Observable<ScheduleFHVM[]> {
     return this.http.get<ScheduleFHVM[]>(Globals.BASE_API_URL + 'ScheduleFH').pipe();
   }
-  SaveCScheduleFH(value: ScheduleFHVM) {
+  SaveScheduleFH(value: ScheduleFHVM) {
     return this.http.post(Globals.BASE_API_URL + 'ScheduleFH', value)
   }
   UpdateScheduleFH(value: ScheduleFHVM) {
@@ -252,6 +252,7 @@ export class LMSService {
     return this.http.delete(Globals.BASE_API_URL + 'ScheduleFH/' + id)
   }
   SearchScheduleFH(value: ScheduleFHVM): Observable<ScheduleFHVM[]> {
-    return this.http.post<ScheduleFHVM[]>(Globals.BASE_API_URL + 'CScheduleFHVM/Search', value).pipe();
+    return this.http.post<ScheduleFHVM[]>(Globals.BASE_API_URL + 'ScheduleFH/Search', value).pipe();
   }
+
 }

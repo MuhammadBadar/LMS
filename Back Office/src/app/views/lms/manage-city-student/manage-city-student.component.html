@@ -8,34 +8,20 @@
             <span *ngIf="Edit" class="title dialog-title" style="color:rgb(224, 26, 26);">
                 <p>Edit CityStudent</p>
             </span>
-
-            <div fxFlex="7%" *ngIf="isDialog">
-                                <button mat-icon-button flexLayoutAlign="end end"
-                                (click)="dialogRefe.close()" style="color:#f5f2f3" cTooltip="Explore CityType ">
-                                <mat-icon>add</mat-icon>
-                            </button>
-                        </div> 
-                        <!-- <div fxFlex="7%" *ngIf="isDialog">
-                            <button mat-icon-button style="color: white; margin-top: 0; padding-top: 0;" 
+                  <div fxFlex="7%" *ngIf="isDialog">
+                       <button mat-icon-button style="color: white; margin-top: 0; padding-top: 0;" 
                               (click)="dialogRefe.close()"
                               aria-label="Close dialog">
                               <mat-icon>close</mat-icon>
-                            </button>
-                          </div> -->
+                       </button>
+                  </div> 
     
         </div>
     </mat-toolbar>
     </div>
 
 <form>
-    
-    <!-- <div class="container-fluid page">
-        <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
-            <div *ngIf="AddMode">Manage CityStudent
-            </div>
-            <div *ngIf="EditMode">Edit CityStudent
-            </div>
-        </div> -->
+   
         <div class="page_content shadow p-3 position-relative">
             <form #CityStudentForm="ngForm">
                 <Row>
@@ -49,10 +35,7 @@
                                 </mat-option>
                             </mat-select>
                             <div matSuffix>
-                                <!-- <button mat-icon-button style="color:#940540 ; "
-                                    (click)="OpenCityDialog(); $event.stopPropagation()" cTooltip="Explore CityType ">
-                                    <mat-icon>add</mat-icon>
-                                </button> -->
+                             
                                 <button mat-icon-button style="color:#940540 ; "
                                 (click)="OpenCityDialog(); $event.stopPropagation()" cTooltip="Explore CityType ">
                                 <mat-icon>add</mat-icon>
@@ -90,18 +73,7 @@
                         </button>
                     </div>
                 </div>
-                 <!-- <Row>
-                    <div fxLayoutAlign="end end">
-                        <button mat-icon-button mat-sm-button style="color: rgb(97, 48, 48);"
-                            cTooltipPlacement="top" (click)="AddClassTimingtoList()">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                        <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh"
-                            cTooltipPlacement="top" (click)="RefreshDetail()">
-                            <mat-icon>autorenew</mat-icon>
-                        </button>
-                    </div>
-                </Row> -->
+               
             </form>
             <section class=" example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;margin-top: 20px;">
                 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
