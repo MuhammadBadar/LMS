@@ -10,8 +10,7 @@ namespace LMS.Core.Entities
     {
         public int? CityId { get; set; }
         public string? City { get; set; }
-        public int? TopicId { get; set; }
-        public string? Topic { get; set; }
+        public string? CellNo { get; set; }
         public string? Name { get; set; }
         public string? Email { get; set; }
 

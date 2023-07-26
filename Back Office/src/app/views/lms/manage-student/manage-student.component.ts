@@ -13,19 +13,18 @@ import {  OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { StudentsVM } from '../../items/Models/StudentsVM';
 import { ManageCityComponent } from '../manage-city/manage-city.component';
-import { MatTableDataSource } from '@angular/material/table';
-import { ManageTopicComponent } from '../manage-topic/manage-topic.component';
-import { TopicVM } from '../Models/TopicVM';
+// import { MatTableDataSource } from '@angular/material/table';
 import { NgForm } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-manage-student',
   templateUrl: './manage-student.component.html',
-  styleUrls: ['./manage-student.component.scss']
+  styleUrls: ['./manage-student.component.css']
 })
 export class ManageStudentComponent implements OnInit {
 
-    displayedColumns: string[] = [`city`,`topic`,`name`,`email`,'isActive', 'actions'];
+    displayedColumns: string[] = [`city`,`name`,`cellNo`,`email`,'isActive', 'actions'];
     AddMode: boolean = true
     EditMode: boolean = false
     dataSource: any
@@ -49,10 +48,8 @@ export class ManageStudentComponent implements OnInit {
     value?: StudentsVM[];
     //selectedVocabulary: VocabularyVM
     students?: StudentVM[]=[]
-    public Reftopic?: MatDialogRef<ManageTopicComponent>;
     public dialogRef?: MatDialogRef<ManageCityComponent>;
     City: CityVM[] | undefined;
-    topics: TopicVM[] | undefined;
     proccessing: boolean | undefined;
     isDialog: boolean= false;
    
@@ -70,7 +67,6 @@ export class ManageStudentComponent implements OnInit {
       this.selectedStudent = new StudentVM
      }
     ngOnInit(): void {
-     this.GetTopic();
       this.GetCity();
       this.GetStudent();
       if (this.dialogData ) {
@@ -103,16 +99,7 @@ export class ManageStudentComponent implements OnInit {
        },
      })
     }
-    GetTopic() {
-      this.lmsSvc.GetTopic().subscribe({
-        next: (value: TopicVM[]) => {
-          this.topics = value
-         // this.dataSource = new MatTableDataSource(this.topics)
-        }, error: (err) => {
-          this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-        },
-      })
-    }
+   
     GetCity() {
       this.lmsSvc.GetCity().subscribe({
         next: (res: CityVM[]) => {
@@ -125,78 +112,86 @@ export class ManageStudentComponent implements OnInit {
       })
     }
     
-  
-  
-  
-  
-    SaveStudent() {
+    CheckStudentValidation() {
+      if (this.selectedStudent.cityId == 0 || this.selectedStudent.cityId == undefined) 
+        this.StudentForm.form.controls['cityId'].setErrors({ 'incorrect': true });
+       
+    }
+    
+     SaveStudent() {
+    //   this.proccessing = true;
+    
+    //   if (!this.CheckStudentValidation()) {
+    //     this.catSvc.ErrorMsgBar("City is a required field!", 5000);
+    //     this.proccessing = false;
+    //     return;
+    //   }
+    
+    //   // Check if any required fields (name, email) are empty
+    //   if (!this.selectedStudent.name || this.selectedStudent.name.trim() === '' ||
+    //       !this.selectedStudent.email || this.selectedStudent.email.trim() === '') {
+        
+    //     // Display the appropriate message bar for missing fields
+    //     if (!this.selectedStudent.name || this.selectedStudent.name.trim() === '') {
+    //       this.catSvc.ErrorMsgBar("Name is a required field!", 5000);
+    //     }
+    //     if (!this.selectedStudent.email || this.selectedStudent.email.trim() === '') {
+    //       this.catSvc.ErrorMsgBar("Email is a required field!", 5000);
+    //     }
+    
+    //     this.proccessing = false;
+    //     return;
+    //   }
+    
+    //   // Rest of the code...
+    //   // Only proceed if all required fields are filled in
+    
+    //   this.lmsSvc.GetStudent().subscribe({
+    //     next: (res: StudentVM[]) => {
+    //       // Rest of the code...
+    //     },
+    //     error: (e) => {
+    //       this.catSvc.ErrorMsgBar("Error Occurred", 5000);
+    //       console.warn(e);
+    //     }
+    //   });
+    // }
+   
       this.lmsSvc.GetStudent().subscribe({
         next: (res: StudentVM[]) => {
-          var list = res
+          var list = res;
           if (this.Edit)
-            list = list.filter(x => x != this.selectedStudent)
-          var find = list.find(x => x.name == this.selectedStudent.name)
+            list = list.filter(x => x != this.selectedStudent);
+          var find = list.find(x => x.name == this.selectedStudent.name);
           if (find == undefined) {
-    
-            this.proccessing = true
-            this.CheckStudentValidation();
-            if (!this.StudentForm.invalid) {
-              if (this.Edit)
-                this.UpdateStudent
-              else {
-                this.lmsSvc.SaveStudent(this.selectedStudent).subscribe({
-                  next: (res) => {
-                    this.catSvc.SuccessMsgBar(" Successfully Added!", 5000)
-                    this.Add = true;
-                    this.Edit = false;
-                    this.proccessing = false
-                    this.ngOnInit();
-                  }, error: (e) => {
-                    this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-                    console.warn(e);
-                    this.proccessing = false
-                  }
-                })
-              }
-            } else {
-              this.catSvc.ErrorMsgBar("Please Fill all required fields!", 5000)
-              this.proccessing = false
+            if (this.selectedStudent.name == undefined || this.selectedStudent.name == null) {
+              this.catSvc.ErrorMsgBar("Please enter a name to continue", 5000);
             }
-          } 
-          else
-            this.catSvc.ErrorMsgBar("Please Fill required name field! ", 5000)
-        }, error: (e) => {
-          this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-          console.warn(e);
+            var find = list.find(x => x.email == this.selectedStudent.email);
+            if (find == undefined) {
+              if (this.selectedStudent.email == undefined || this.selectedStudent.email == null) {
+                this.catSvc.ErrorMsgBar("Please enter an email to continue", 5000);
+              }
+              this.CheckStudentValidation();
+              if (!this.StudentForm.invalid) {
+                this.lmsSvc.SaveStudent(this.selectedStudent).subscribe({
+                  next: (value) => {
+                    this.catSvc.SuccessMsgBar("Successfully Added", 5000);
+                    this.Refresh();
+                  }, 
+                  error: (err) => {
+                    this.catSvc.ErrorMsgBar("Error Occurred", 5000);
+                  },
+                });
+              } else {
+                this.catSvc.ErrorMsgBar("Please fill all Required fields", 5000);
+              }
+            }
+          }
         }
-      })
+      });
     }
-    //  this.lmsSvc.GetStudent().subscribe({
-    //   next: (res: StudentVM[]) => {
-    //     var list = res
-    //     if (this.Edit)
-    //       list = list.filter(x => x != this.selectedStudent)
-    //     var find = list.find(x => x.name == this.selectedStudent.name)
-    //   if (find == undefined) {
-    //     if (this.selectedStudent.email == undefined || this.selectedStudent.email == null)
-    //       this.catSvc.ErrorMsgBar("Please enter a name/email to continue", 5000)
-      
-    //   this.CheckStudentValidation();
-    //   if(!this.StudentForm.invalid){
-    //   this.lmsSvc.SaveStudent(this.selectedStudent).subscribe({
-    //     next: (value) => {
-    //       this.catSvc.SuccessMsgBar("Successfully Added", 5000)
-    //       this.Refresh();
-    //     }, error: (err) => {
-    //       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-    //     },
-    //   })
-    // } else this.catSvc.ErrorMsgBar("Please fill all Required fields  ", 5000)
-  //}
-      // }
-      
-  //      })
-  // }
+    
     EditStudent(student: StudentVM) {
       this.EditMode = true
       this.AddMode = false
@@ -273,24 +268,7 @@ export class ManageStudentComponent implements OnInit {
         }
         );
   }
-  OpenTopicDialog() {
-    this.Reftopic = this.dialog.open(ManageTopicComponent, {
-      width: '1200px', height: '950px',
-      disableClose: true, panelClass: 'calendar-form-dialog',
-        data: { isDialogue: true, topicId: this.selectedStudent.topicId },
-     
-    })
-    this.Reftopic.afterClosed()
-      .subscribe((res: any) => {
-        this.GetTopic()
-      }
-      );
-  }
-  CheckStudentValidation() {
-    if (this.selectedStudent.topicId == 0 || this.selectedStudent.topicId == undefined)
-      this.StudentForm.form.controls['topicId'].setErrors({ 'incorrect': true });
-      if (this.selectedStudent.cityId == 0 || this.selectedStudent.cityId == undefined)
-      this.StudentForm.form.controls['cityId'].setErrors({ 'incorrect': true });
-  }
+
+ 
   }
   

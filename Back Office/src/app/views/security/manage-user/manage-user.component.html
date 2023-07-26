@@ -1,14 +1,86 @@
+
 <div class="container-fluid page">
-  <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
-    <div>Manage User
+  
+    <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+        <div *ngIf="Add">Manage User
+        </div>
+        <div *ngIf="Edit">Edit User
+        </div>
     </div>
-  </div>
-  <div class="page_content shadow p-3 position-relative">
-    <div style="margin-top: 30px;text-align: right;margin-right: 10px;">
+  
+    <form #userForm="ngForm">
+    <div class="page_content shadow p-3 position-relative">
+         <div fxLayout="row" fxLayoutAlign="space-between">
+             
+              <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                  <mat-label>User Name</mat-label>
+                  <input matInput required #userName="ngModel" name="userName" [(ngModel)]="selectedUser.userName" />
+              </mat-form-field>
+       
+               <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                    <mat-label>Password</mat-label>
+                <input matInput placeholder="passwordHash" [type]="hide ? 'password' : 'text'" #passwordHash="ngModel"
+                  required="true" [(ngModel)]="selectedUser.passwordHash" name="passwordHash">
+                <mat-icon style="color: rgb(32, 10, 66);" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off'
+                  :
+                  'visibility'}}
+                </mat-icon>
+                </mat-form-field>
+                 <!-- <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                    <mat-label>PasswordHash</mat-label>
+                    <input matInput required #passwordHash="ngModel" name="passwordHash" [(ngModel)]="selectedUser.passwordHash" />
+                </mat-form-field>  -->
+                
+                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                    <mat-label>Email</mat-label>
+                    <input matInput required #email="ngModel" name="email" [(ngModel)]="selectedUser.email" />
+                </mat-form-field>
+         </div>
+         <div *ngIf="messagebox"
+         style="background-color: rgb(212, 245, 234); color:rgb(218, 17, 17); padding: 15px;margin: 10px;width: 680; text-align: center; justify-content: center;">
+ 
+         <tbody>
+ 
+           <tr *ngFor="let msg of messages">
+ 
+             <td><strong>{{msg.description}}</strong></td>
+           </tr>
+         </tbody>
+       </div>
+         
+
+         
+             <div fxLayoutAlign="end end">
+             
+       <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveUser()">Submit</button>
+       
+         <button mat-raised-button *ngIf="EditMode" color="primary" (click)="PutUser()">Update</button>
+            
+             <div>  <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+              (click)="Refresh()">
+              <mat-icon>autorenew</mat-icon>
+          </button>
+         </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+   <div class="page_content shadow p-3 position-relative">
+    <!-- <div style="margin-top: 30px;text-align: right;margin-right: 10px;">
       <button mat-raised-button class="mb-05" style="background-color: #1e293b;color:white"
         [routerLink]="['/security/userRegistration']">Add
         New</button>
-    </div>
+    </div>  -->
     <c-card style="padding: 10px; margin-top: 30px;">
       <h5 cCardTitle>User List</h5>
       <c-card-body style="padding: 10px;background-color: rgb(2, 42, 75);margin: 5px;border-radius: 10px;">
@@ -73,8 +145,13 @@
                 </th>
                 <td mat-cell *matCellDef="let row">
                   <div fxLayout="row" fxLayoutAlign="space-around" style="width: 150px; text-align: center;">
-                    <button mat-icon-button mat-sm-button style="color: rgb(43, 3, 25)" class="mr-1"
-                      (click)="EditUser(row)"><mat-icon>edit</mat-icon></button>
+                    <!-- <button mat-icon-button mat-sm-button style="color: rgb(43, 3, 25)" class="mr-1"
+                      (click)="EditUser(row)"><mat-icon>edit</mat-icon></button> -->
+
+                      <button mat-icon-button mat-sm-button (click)="EditUser(row)" style=" color:#1e293b ; "
+                      cTooltip=" Edit User">
+                      <mat-icon>edit</mat-icon>
+                  </button>
 
                     <button mat-icon-button mat-sm-button color="warn" class="mr-1"
                       (click)="DeleteUser(row.id)"><mat-icon>delete</mat-icon></button>
@@ -88,5 +165,4 @@
         </div>
       </c-card-body>
     </c-card>
-  </div>
-</div>
+  <!-- </div> -->

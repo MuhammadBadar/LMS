@@ -3,7 +3,7 @@ import { LoginVM } from './models/LoginVM';
 import { EnumValueVM } from './models/EnumValueVM';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
 import { RoleVM } from './models/role-vm';
 import { OnlineDBSettingVM } from './models/OnlineDBSettingVM';
 import { PermissionVM } from './models/permission-vm';
@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
 import { mapTo } from 'rxjs/operators';
 import { CanActivate, Router } from '@angular/router';
 import { Globals } from 'src/app/globals';
+import { NgForm } from '@angular/forms';
 
 
 @Injectable({

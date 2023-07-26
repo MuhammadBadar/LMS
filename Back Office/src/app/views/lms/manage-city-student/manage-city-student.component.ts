@@ -117,23 +117,48 @@ export class ManageCityStudentComponent {
       },
     })
   }
+  CheckCityStudentValidation() {
+    if (this.selectedCityStudent.cityId === 0 || this.selectedCityStudent.cityId === undefined) {
+      this.CityStudentForm.form.controls['cityId'].setErrors({ 'incorrect': true });
+      return false;
+    }
+    return true;
+  }
+  
+  CheckCityStudentsValidation() {
+    if (this.selectedCityStudent.studentId === 0 || this.selectedCityStudent.studentId === undefined) {
+      this.CityStudentForm.form.controls['studentId'].setErrors({ 'incorrect': true });
+      return false;
+    }
+    return true;
+  }
+  
   SaveCityStudent() {
-    this.CheckCityStudentValidation();
-    this.CheckCityStudentsValidation();
-    if(!this.CityStudentForm.invalid){
+    const cityIsValid = this.CheckCityStudentValidation();
+    const studentIsValid = this.CheckCityStudentsValidation();
+  
+    if (!cityIsValid && !studentIsValid) {
+      this.catSvc.ErrorMsgBar("Please fill all required fields", 5000);
+    } else if (!cityIsValid) {
+      this.catSvc.ErrorMsgBar("City is a required field", 5000);
+    } else if (!studentIsValid) {
+      this.catSvc.ErrorMsgBar("Student is a required field", 5000);
+    }
+  
+    if (cityIsValid && studentIsValid && !this.CityStudentForm.invalid) {
       this.lmsSvc.SaveCityStudent(this.selectedCityStudent).subscribe({
         next: (value) => {
-          this.catSvc.SuccessMsgBar("Successfully Added", 5000)
+          this.catSvc.SuccessMsgBar("Successfully Added", 5000);
           this.Refresh();
-        }, error: (err) => {
-          this.catSvc.ErrorMsgBar("Error Occurred", 5000)
         },
-      })
+        error: (err) => {
+          this.catSvc.ErrorMsgBar("Error Occurred", 5000);
+        },
+      });
     }
-    else this.catSvc.ErrorMsgBar("Please fill all Required fields  ", 5000)
-    
-    
   }
+  
+  
   EditCityStudent(student: CityStudentVM) {
     this.EditMode = true
     this.AddMode = false
@@ -238,14 +263,6 @@ OpenStudentDialog() {
          }
   
  
-    CheckCityStudentValidation() {
-      if (this.selectedCityStudent.cityId == 0 || this.selectedCityStudent.cityId == undefined)
-        this.CityStudentForm.form.controls['cityId'].setErrors({ 'incorrect': true });
-    }
-    CheckCityStudentsValidation() {
-      if (this.selectedCityStudent.studentId == 0 || this.selectedCityStudent.studentId == undefined)
-        this.CityStudentForm.form.controls['studentId'].setErrors({ 'incorrect': true });
-    }
    }
 // function AddClassTimingtoList() {
 //   throw new Error('Function not implemented.');

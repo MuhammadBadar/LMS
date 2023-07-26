@@ -33,8 +33,7 @@ namespace LMS.DAL
                 cmd.Parameters.AddWithValue("@prm_Id", std.Id);
                 cmd.Parameters.AddWithValue("@prm_CityId", std.CityId);
                 cmd.Parameters.AddWithValue("@prm_City", std.City);
-                cmd.Parameters.AddWithValue("@prm_TopicId", std.TopicId);
-                cmd.Parameters.AddWithValue("@prm_Topic", std.Topic);
+                cmd.Parameters.AddWithValue("@prm_CellNo", std.CellNo);
                 cmd.Parameters.AddWithValue("@prm_Name", std.Name);
                 cmd.Parameters.AddWithValue("@prm_Email", std.Email);
                 cmd.Parameters.AddWithValue("@prm_CreatedOn", std.CreatedOn);

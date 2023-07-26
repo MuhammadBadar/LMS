@@ -33,7 +33,7 @@ export class ManageCityComponent {
   type: CitiesTypeVM = new CitiesTypeVM;
   CitiesType?: CitiesTypeVM[];
   
-  @ViewChild('userForm', { static: true }) userForm!: NgForm;
+  @ViewChild('CityForm', { static: true }) CityForm!: NgForm;
   selectedCities = new CitiesVM();
   //vocabDataSource : any
   selectedCity: CityVM 
@@ -73,38 +73,38 @@ export class ManageCityComponent {
     console.warn(this.dialogData.cityId)}
    }
  
-  Search() {
-    debugger
-    if(this.Edit==false)
-    this.settingName=""
-    var setting = new CitiesVM();
-    if (!this.Edit)
-      this.selectedCities.parentId = 0;
-    setting.enumTypeId = this.selectedCities.enumTypeId;
-    if (this.type.parentId != 0 && this.type.parentId != undefined) {
-      setting.enumTypeId = this.type.parentId
-      console.warn(setting)
-      this.catSvc.SearchCities(setting).subscribe({
-        next: (res: CitiesVM[]) => {
-          this.Cities = res;
-          console.warn(this.Cities)
-        }, error: (e) => {
-          this.catSvc.ErrorMsgBar("Error OccurRed!", 5000)
-        }
-      })
-    }
-    else {
-      this.Cities = []
-    }
-    var stng = new CitiesVM();
-    stng.enumTypeId = this.selectedCities.enumTypeId
-    this.catSvc.SearchCities(stng).subscribe((res: CitiesVM[]) => {
-      this.Cities = res;
-      this.dataSource = new MatTableDataSource(res);
-      if (this.DisabledType == true)
-        this.values = res;
-    });
-  }
+  // Search() {
+  //   debugger
+  //   if(this.Edit==false)
+  //   this.settingName=""
+  //   var setting = new CitiesVM();
+  //   if (!this.Edit)
+  //     this.selectedCities.parentId = 0;
+  //   setting.enumTypeId = this.selectedCities.enumTypeId;
+  //   if (this.type.parentId != 0 && this.type.parentId != undefined) {
+  //     setting.enumTypeId = this.type.parentId
+  //     console.warn(setting)
+  //     this.catSvc.SearchCities(setting).subscribe({
+  //       next: (res: CitiesVM[]) => {
+  //         this.Cities = res;
+  //         console.warn(this.Cities)
+  //       }, error: (e) => {
+  //         this.catSvc.ErrorMsgBar("Error OccurRed!", 5000)
+  //       }
+  //     })
+  //   }
+  //   else {
+  //     this.Cities = []
+  //   }
+  //   var stng = new CitiesVM();
+  //   stng.enumTypeId = this.selectedCities.enumTypeId
+  //   this.catSvc.SearchCities(stng).subscribe((res: CitiesVM[]) => {
+  //     this.Cities = res;
+  //     this.dataSource = new MatTableDataSource(res);
+  //     if (this.DisabledType == true)
+  //       this.values = res;
+  //   });
+  // }
   
 
   SaveCity() {
@@ -128,7 +128,7 @@ export class ManageCityComponent {
       if (find == undefined) {
 
         this.proccessing = true
-        if (!this.userForm.invalid) {
+        if (!this.CityForm.invalid) {
           if (this.Edit)
             this.UpdateCity
           else {
@@ -147,7 +147,8 @@ export class ManageCityComponent {
             })
           }
         } else {
-          this.catSvc.ErrorMsgBar("Please Fill all required fields!", 5000)
+          this.catSvc.ErrorMsgBar("City required fields!", 5000)
+          
           this.proccessing = false
         }
       } 

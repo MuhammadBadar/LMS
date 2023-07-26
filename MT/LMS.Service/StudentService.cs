@@ -75,10 +75,8 @@ namespace LMS.Service
                         WhereClause += $" AND CityId={_student.CityId}";
                     if (_student.City != default)
                         WhereClause += $" and City like ''" + _student.City + "''";
-                    if (_student.TopicId != default && _student.TopicId != 0)
-                        WhereClause += $" AND TopicId={_student.TopicId}";
-                    if (_student.Topic != default)
-                        WhereClause += $" and Topic like ''" + _student.Topic + "''";
+                    if (_student.CellNo != default)
+                        WhereClause += $" and CellNo like ''" + _student.CellNo + "''";
                     if (_student.Name != default)
                         WhereClause += $" and Name like ''" + _student.Name + "''";
                     if (_student.Email != default)

@@ -2,8 +2,7 @@ export class StudentVM {
     id!: number
     cityId: number= 0
     city?: string
-    topicId: number= 0
-    topic?: string
+    cellNo?: string
     name?: string
     email?: string
     isActive?: boolean

@@ -1,4 +1,4 @@
-<div class="container-fluid page">
+<!-- <div class="container-fluid page">
   <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
     <div *ngIf="Add">Manage User
     </div>
@@ -24,7 +24,7 @@
               name="passwordHash" [ngClass]="{ 'is-invalid': userForm.submitted && passwordHash.invalid }" #passwordHash="ngModel"
               [(ngModel)]="securityService.selectedUser.passwordHash" required>
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            <!-- <mat-hint>Enter your password</mat-hint> -->
+            <!-- <mat-hint>Enter your password</mat-hint> 
           </mat-form-field>
            <!-- <mat-form-field fxFlex="49% " appearance="outline">
             <mat-label>Name</mat-label>
@@ -35,7 +35,7 @@
             <mat-label>Father Name</mat-label>
             <input class="form-control" matInput name="fatherName" #fatherName="ngModel"
               [(ngModel)]="securityService.selectedUser.fatherName" required>
-          </mat-form-field>-->
+          </mat-form-field>
         </div>
         <!-- <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%" class="form-group">
           <mat-form-field fxFlex="49% " appearance="outline">
@@ -54,7 +54,7 @@
         <!-- <div *ngIf="userForm.submitted && email.invalid" class="invalid-feedback">
           <div style="color: rgb(223, 24, 24);  margin-left: 320px;" *ngIf="['email']"><strong>Must be a valid
               email address</strong> </div>
-        </div> -->
+        </div> 
 
         <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%" class="form-group">
           <mat-form-field fxFlex="49% " appearance="outline">
@@ -70,7 +70,7 @@
               [(ngModel)]="securityService.selectedUser.userPassword" required>
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
              <mat-hint>Enter your password</mat-hint> 
-          </mat-form-field> -->
+          </mat-form-field> 
         </div>
         <!-- <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%" class="form-group">
           <mat-form-field fxFlex="49% " appearance="outline">
@@ -83,7 +83,7 @@
             <input class="form-control" matInput name="address" #address="ngModel"
               [(ngModel)]="securityService.selectedUser.address" required>
           </mat-form-field>
-        </div> -->
+        </div> -
       </div>
       <div *ngIf="messagebox"
         style="background-color: rgb(212, 245, 234); color:rgb(218, 17, 17); padding: 15px;margin: 10px;width: 680; text-align: center; justify-content: center;">
@@ -110,4 +110,4 @@
       </div>
     </form>
   </div>
-</div>
+</div> -->

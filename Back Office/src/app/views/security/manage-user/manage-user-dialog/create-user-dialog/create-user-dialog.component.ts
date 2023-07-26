@@ -31,10 +31,10 @@ export class CreateUserDialogComponent implements OnInit {
   userName: string = '';
   durationInSeconds = 3;
   hide = true;
-  url = "https://localhost:7100/api/Users";
+  //url = "https://localhost:7100/api/Users";
   users?: UserVM[];
   getbyIduser?: UserVM;
-  dialogTitle: string;
+  //dialogTitle: string;
   action?: string;
   dialogRef: any;
   constructor(
@@ -44,7 +44,7 @@ export class CreateUserDialogComponent implements OnInit {
     public securityService: SecurityService,
     private route: ActivatedRoute,
   ) {
-    this.dialogTitle = 'Add User';
+    // this.dialogTitle = 'Add User';
     this.securityService.selectedUser = new UserVM();
   }
   ngOnInit() {
@@ -55,7 +55,7 @@ export class CreateUserDialogComponent implements OnInit {
     if (this.userName != null) {
       this.Edit = true;
       this.Add = false;
-      this.GetUserByName();
+    //  this.GetUserByName();
     }
   }
   // SaveUser() {
@@ -103,100 +103,100 @@ export class CreateUserDialogComponent implements OnInit {
   //     })
   //   }
   // }
-  SaveUser() {
-    //this.spinner.show();
-    debugger;
-    console.warn(this.securityService.selectedUser)
-   // if(this.securityService.selectedUser.directSupervisorId==undefined){
-    //this.securityService.selectedUser.directSupervisorId=this.securityService.selectedUser.id}
-    if (this.userName != null) {
-          this.PutUser();
-        } else {
-    this.securityService.SaveUser(this.securityService.selectedUser).subscribe((data:any) => {
-     // console.warn(data)
-      if(data.succeeded==true){
-        this.messagebox=false;
-        Swal.fire({
-          icon:'success',
-          position:  'center' ,
-         text:'User Registered Successfully',
-          background: "#FFFFFF",
-          confirmButtonColor: "#000000"          
-        })
-        this.dialogRef.close();
-      this.userForm?.reset();}
-      else{
-        this.messagebox=true;
-        this.messages=data.errors
-        console.warn(data)
-      }
-    },
-      (err: any) => {
-        console.warn(err)
-       if(err.status==0){
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          footer: 'Please check your Internet Connection'
-        })}
-        else{
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-          })} 
+  // SaveUser() {
+  //   //this.spinner.show();
+  //   debugger;
+  //   console.warn(this.securityService.selectedUser)
+  //  // if(this.securityService.selectedUser.directSupervisorId==undefined){
+  //   //this.securityService.selectedUser.directSupervisorId=this.securityService.selectedUser.id}
+  //   if (this.userName != null) {
+  //         this.PutUser();
+  //       } else {
+  //   this.securityService.SaveUser(this.securityService.selectedUser).subscribe((data:any) => {
+  //    // console.warn(data)
+  //     if(data.succeeded==true){
+  //       this.messagebox=false;
+  //       Swal.fire({
+  //         icon:'success',
+  //         position:  'center' ,
+  //        text:'User Registered Successfully',
+  //         background: "#FFFFFF",
+  //         confirmButtonColor: "#000000"          
+  //       })
+  //       this.dialogRef.close();
+  //     this.userForm?.reset();}
+  //     else{
+  //       this.messagebox=true;
+  //       this.messages=data.errors
+  //       console.warn(data)
+  //     }
+  //   },
+  //     (err: any) => {
+  //       console.warn(err)
+  //      if(err.status==0){
+  //       Swal.fire({
+  //         icon: 'error',
+  //         title: 'Oops...',
+  //         text: 'Something went wrong!',
+  //         footer: 'Please check your Internet Connection'
+  //       })}
+  //       else{
+  //         Swal.fire({
+  //           icon: 'error',
+  //           title: 'Oops...',
+  //           text: 'Something went wrong!',
+  //         })} 
   
-      });
-     }
-  }
-  GetUserByName() {
-    this.securityService.selectedUser.userName = this.userName
-    this.securityService.SearchUserByName(this.securityService.selectedUser).subscribe({
-      next: (res: UserVM) => {
-        this.getbyIduser = res;
-        this.securityService.selectedUser = this.getbyIduser
-      }, error: (e) => {
-      console.warn(e)
-        this.snack.open('Error Occured!', 'OK', { duration: 4000 })
-      }
-    })
-  }
-  PutUser() {
-    this.securityService.UpdateUser(this.securityService.selectedUser).subscribe({
-      next: (data: any) => {
-        if (data.succeeded == true) {
-          this.messagebox = false;
-          Swal.fire({
-            icon: 'success',
-            position: 'center',
-            text: 'User Successfully Updated',
-            background: "#FFFFFF",
-            confirmButtonColor: "#000000"
-          })
-        }
-        else {
-          this.messagebox = true;
-          this.messages = data.errors
-          console.warn(data)
-        }
-      }, error: (err) => {
-        if (err.status == 0) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-            footer: 'Please check your Internet Connection'
-          })
-        }
-        else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-          })
-        }
-      }
-    })
-  }
+  //     });
+  //    }
+  // }
+  // GetUserByName() {
+  //   this.securityService.selectedUser.userName = this.userName
+  //   this.securityService.SearchUserByName(this.securityService.selectedUser).subscribe({
+  //     next: (res: UserVM) => {
+  //       this.getbyIduser = res;
+  //       this.securityService.selectedUser = this.getbyIduser
+  //     }, error: (e) => {
+  //     console.warn(e)
+  //       this.snack.open('Error Occured!', 'OK', { duration: 4000 })
+  //     }
+  //   })
+  // }
+  // PutUser() {
+  //   this.securityService.UpdateUser(this.securityService.selectedUser).subscribe({
+  //     next: (data: any) => {
+  //       if (data.succeeded == true) {
+  //         this.messagebox = false;
+  //         Swal.fire({
+  //           icon: 'success',
+  //           position: 'center',
+  //           text: 'User Successfully Updated',
+  //           background: "#FFFFFF",
+  //           confirmButtonColor: "#000000"
+  //         })
+  //       }
+  //       else {
+  //         this.messagebox = true;
+  //         this.messages = data.errors
+  //         console.warn(data)
+  //       }
+  //     }, error: (err) => {
+  //       if (err.status == 0) {
+  //         Swal.fire({
+  //           icon: 'error',
+  //           title: 'Oops...',
+  //           text: 'Something went wrong!',
+  //           footer: 'Please check your Internet Connection'
+  //         })
+  //       }
+  //       else {
+  //         Swal.fire({
+  //           icon: 'error',
+  //           title: 'Oops...',
+  //           text: 'Something went wrong!',
+  //         })
+  //       }
+  //     }
+  //   })
+  // }
 }
