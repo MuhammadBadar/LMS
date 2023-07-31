@@ -96,26 +96,72 @@ export class ManageInquiryComponent implements OnInit {
     })
   }
   SaveInquiry() {
-    this.proccessing = true
-    if (!this.InquiryForm.invalid) {
-      this.accSvc.SaveInquiry(this.selectedInquiry).subscribe({
-        next: (res) => {
-          this.catSvc.SuccessMsgBar("Successfully Added!", 5000)
-          this.Add = true;
-          this.Edit = false;
-          this.proccessing = false
-          this.ngOnInit();
-        }, error: (e) => {
-          this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-          console.warn(e);
-          this.proccessing = false
+    
+    const controls = this.InquiryForm.controls;
+    if (this.InquiryForm.invalid) {
+      for (const name in controls) {
+        if (controls[name].invalid) {
+          this.catSvc.ErrorMsgBar(`  ${name} is Required`, 6000)
+          break
         }
-      })
+      }
     } else {
-      this.catSvc.ErrorMsgBar("Please Fill all required fields!", 5000)
-      this.proccessing = false
+      if (this.selectedInquiry.email == null && this.selectedInquiry.email == undefined) {
+        this.catSvc.ErrorMsgBar("Please enter  an email", 8000)
+      } else {
+      this.proccessing = true
+      if (this.Edit) {
+         this.UpdateInquiry();
+      } else {
+        this.accSvc.SaveInquiry(this.selectedInquiry).subscribe((data: any) => {
+                if (data.succeeded == true) {
+                  
+                  Swal.fire({
+                    icon: 'success',
+                    position: 'center',
+                    text: 'Added Successfully',
+                    background: "#FFFFFF",
+                    confirmButtonColor: "#000000"
+                    
+                  })
+                  this.ngOnInit();
+                  this.Refresh();
+                }
+                else {
+              
+                  console.warn(data)
+                } 
+                window.scrollTo(0, 0);
+            this.proccessing = false;
+              
+          }, (err: any) => {
+            console.warn(err);
+            this.catSvc.ErrorMsgBar("Error Occurred !", 6000);
+            this.proccessing = false;
+          });
+      }}
     }
   }
+  //   this.proccessing = true
+  //   if (!this.InquiryForm.invalid) {
+  //     this.accSvc.SaveInquiry(this.selectedInquiry).subscribe({
+  //       next: (res) => {
+  //         this.catSvc.SuccessMsgBar("Successfully Added!", 5000)
+  //         this.Add = true;
+  //         this.Edit = false;
+  //         this.proccessing = false
+  //         this.ngOnInit();
+  //       }, error: (e) => {
+  //         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+  //         console.warn(e);
+  //         this.proccessing = false
+  //       }
+  //     })
+  //   } else {
+  //     this.catSvc.ErrorMsgBar("Please Fill all required fields!", 5000)
+  //     this.proccessing = false
+  //   }
+  // }
   UpdateInquiry() {
     this.proccessing = true
     if (!this.InquiryForm.invalid) {

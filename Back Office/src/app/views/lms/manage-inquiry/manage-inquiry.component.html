@@ -9,8 +9,14 @@
         <form #InquiryForm="ngForm">
             <div fxLayout="row" fxLayoutAlign="space-between">
                 <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
-                    <mat-label> Name</mat-label>
-                    <input matInput required #Name="ngModel" name="name" [(ngModel)]="selectedInquiry.name" />
+                    <mat-label>Name</mat-label>
+                 
+                    <input Name matInput required #Name="ngModel" name="Name" [(ngModel)]="selectedInquiry.name" maxlength="20" minlength="3"/>
+                     <mat-error class="form-text text-danger"
+                    *ngIf="InquiryForm.controls['Name']?.hasError || InquiryForm.controls['Name']?.errors?.['minlength']">
+                    Name is required to be at least 3 characters.
+                  </mat-error> 
+           
                 </mat-form-field>
                 <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
                     <mat-label>Email</mat-label>
@@ -24,8 +30,13 @@
             <div fxLayout="row" fxLayoutAlign="space-between">
                 <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
                     <mat-label> Message</mat-label>
-                    <textarea matInput #message="ngModel" name="message"
-                        [(ngModel)]="selectedInquiry.comments"></textarea>
+                    <input  Message matInput required #message="ngModel" name="message"
+                        [(ngModel)]="selectedInquiry.comments"  maxlength="2000" minlength="10">
+                        <mat-error class="form-text text-danger"
+                       *ngIf="InquiryForm.controls['message']?.hasError || InquiryForm.controls['message']?.errors?.['minlength']">
+                       Message is required to be at least 10 characters.
+                     </mat-error> 
+         
                 </mat-form-field>
             </div>
             <mat-checkbox name="isActive" [(ngModel)]="selectedInquiry.isActive">Is Active</mat-checkbox>
@@ -91,8 +102,8 @@
                                             cTooltip=" Edit Inquiry" (click)="GetInquiryForEdit(row.id)">
                                             <mat-icon>edit</mat-icon>
                                         </button>
-<!-- 
-                                        <button mat-icon-button mat-sm-button color="warn" cTooltip="Delete Inquiry"
+
+                                        <!-- <button mat-icon-button mat-sm-button color="warn" cTooltip="Delete Inquiry"
                                             (click)="DeleteInquiry(row.id)">
                                             <mat-icon>delete</mat-icon>
                                         </button> -->

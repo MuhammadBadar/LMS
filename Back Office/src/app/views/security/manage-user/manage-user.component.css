@@ -21,7 +21,7 @@
   background-image: linear-gradient(to bottom, rgb(2, 33, 58), rgb(7, 95, 122));
   border-radius: 10px;
   font-size: 25px;
-  padding: 10px;
+  padding: 5px;
 
 }
 
@@ -57,11 +57,11 @@ td.mat-column-position {
 }
 
 td {
-  min-width: 150px;
+  min-width: 10px;
 
 }
 
 th {
-  min-width: 150px;
+  min-width: 10px;
 
 }

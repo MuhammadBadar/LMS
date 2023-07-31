@@ -52,6 +52,8 @@ export class ManageStudentComponent implements OnInit {
     City: CityVM[] | undefined;
     proccessing: boolean | undefined;
     isDialog: boolean= false;
+  messagebox: boolean;
+  messages: any;
    
   
     //vocab: VocabularyVM[]=[]
@@ -118,80 +120,68 @@ export class ManageStudentComponent implements OnInit {
        
     }
     
-     SaveStudent() {
-    //   this.proccessing = true;
-    
-    //   if (!this.CheckStudentValidation()) {
-    //     this.catSvc.ErrorMsgBar("City is a required field!", 5000);
-    //     this.proccessing = false;
-    //     return;
-    //   }
-    
-    //   // Check if any required fields (name, email) are empty
-    //   if (!this.selectedStudent.name || this.selectedStudent.name.trim() === '' ||
-    //       !this.selectedStudent.email || this.selectedStudent.email.trim() === '') {
-        
-    //     // Display the appropriate message bar for missing fields
-    //     if (!this.selectedStudent.name || this.selectedStudent.name.trim() === '') {
-    //       this.catSvc.ErrorMsgBar("Name is a required field!", 5000);
-    //     }
-    //     if (!this.selectedStudent.email || this.selectedStudent.email.trim() === '') {
-    //       this.catSvc.ErrorMsgBar("Email is a required field!", 5000);
-    //     }
-    
-    //     this.proccessing = false;
-    //     return;
-    //   }
-    
-    //   // Rest of the code...
-    //   // Only proceed if all required fields are filled in
-    
-    //   this.lmsSvc.GetStudent().subscribe({
-    //     next: (res: StudentVM[]) => {
-    //       // Rest of the code...
-    //     },
-    //     error: (e) => {
-    //       this.catSvc.ErrorMsgBar("Error Occurred", 5000);
-    //       console.warn(e);
-    //     }
-    //   });
-    // }
    
-      this.lmsSvc.GetStudent().subscribe({
-        next: (res: StudentVM[]) => {
-          var list = res;
-          if (this.Edit)
-            list = list.filter(x => x != this.selectedStudent);
-          var find = list.find(x => x.name == this.selectedStudent.name);
-          if (find == undefined) {
-            if (this.selectedStudent.name == undefined || this.selectedStudent.name == null) {
-              this.catSvc.ErrorMsgBar("Please enter a name to continue", 5000);
-            }
-            var find = list.find(x => x.email == this.selectedStudent.email);
-            if (find == undefined) {
-              if (this.selectedStudent.email == undefined || this.selectedStudent.email == null) {
-                this.catSvc.ErrorMsgBar("Please enter an email to continue", 5000);
-              }
-              this.CheckStudentValidation();
-              if (!this.StudentForm.invalid) {
-                this.lmsSvc.SaveStudent(this.selectedStudent).subscribe({
-                  next: (value) => {
-                    this.catSvc.SuccessMsgBar("Successfully Added", 5000);
-                    this.Refresh();
-                  }, 
-                  error: (err) => {
-                    this.catSvc.ErrorMsgBar("Error Occurred", 5000);
-                  },
-                });
-              } else {
-                this.catSvc.ErrorMsgBar("Please fill all Required fields", 5000);
-              }
-            }
-          }
-        }
-      });
-    }
+  SaveStudent() {
+   
     
+     
+    const controls = this.StudentForm.controls;
+    if (this.StudentForm.invalid) {
+      for (const name in controls) {
+        if (controls[name].invalid) {
+          this.catSvc.ErrorMsgBar(`  ${name} is Required`, 6000)
+          break
+        }
+      }
+    } else {
+      this.CheckStudentValidation();
+      if(!this.StudentForm.invalid){
+        this.lmsSvc.SaveStudent(this.selectedStudent).subscribe({
+          next: (value: any) => {
+           this.catSvc.ErrorMsgBar("Added Successfully", 8000)
+            this.Refresh();
+          }
+      })
+    }
+      else {
+      this.proccessing = true
+      if (this.Edit) {
+         this.UpdateStudent();
+      } else {
+        this.lmsSvc.GetStudent().subscribe((data: any) => {
+               
+   
+          if (data.succeeded == true) {
+                  this.messagebox = false;
+                  Swal.fire({
+                    icon: 'success',
+                    position: 'center',
+                    text: 'Added Successfully',
+                    background: "#FFFFFF",
+                    confirmButtonColor: "#000000"
+                    
+                  })
+                  this.ngOnInit();
+                  this.Refresh();
+                }
+                else {
+                  this.messagebox = true;
+                  this.messages = data.errors
+                  console.warn(data)
+                } 
+                window.scrollTo(0, 0);
+            this.proccessing = false;
+              
+          }, (err: any) => {
+            console.warn(err);
+            this.catSvc.ErrorMsgBar("Error Occurred !", 6000);
+            this.proccessing = false;
+          });
+      }}
+    }
+  }
+
+  
     EditStudent(student: StudentVM) {
       this.EditMode = true
       this.AddMode = false

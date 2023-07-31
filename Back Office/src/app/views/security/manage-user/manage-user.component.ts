@@ -94,95 +94,107 @@ export class ManageUserComponent implements OnInit {
       }
     })
   }
+
+
   SaveUser() {
-  //   this.securitySvc.SaveUser(this.selectedUser).subscribe({
-  //     next: (res: any) => {
-  //       var list = res
-  //       if (this.Edit)
-  //         list = list.filter((x: UserVM) => x != this.selectedUser)
-  //       var find = list.find((x: UserVM) => x.email == this.selectedUser.email)
-  //       if (find == undefined) {
-  
-  //         this.proccessing = true
-  //         if (!this.userForm.invalid) {
-  //           if (this.Edit)
-  //             this.securitySvc.UpdateUser
-  //           else {
-  //             this.securitySvc.SaveUser(this.selectedUser).subscribe({
-  //               next: (res) => {
-  //                 this.catSvc.SuccessMsgBar("User Successfully Added!", 5000)
-  //                 this.Add = true;
-  //                 this.Edit = false;
-  //                 this.proccessing = false
-  //                 this.ngOnInit();
-  //               }, error: (e) => {
-  //                 this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-  //                 console.warn(e);
-  //                 this.proccessing = false
-  //               }
-  //             })
-  //           }
-  //         } else {
-  //           this.catSvc.ErrorMsgBar("Please Fill all required fields!", 5000)
-  //           this.proccessing = false
-  //         }
-  //       } 
-  //       else
-  //         this.catSvc.ErrorMsgBar("This Name Address Already Taken ", 5000)
-  //     }, error: (e) => {
-  //       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-  //       console.warn(e);
-  //     }
-  //   })
-  // }
-    debugger;
-    console.warn(this.selectedUser)
-    if (this.Edit)
-      this.PutUser();
 
-    else {
-      this.securitySvc.SaveUser(this.selectedUser).subscribe((data: any) => {
-        if (data.succeeded == true) {
-          this.messagebox = false;
-          Swal.fire({
-            icon: 'success',
-            position: 'center',
-            text: 'User Registered Successfully',
-            background: "#FFFFFF",
-            confirmButtonColor: "#000000"
-            
-          })
-          this.Refresh();
-          this.dialogRef.close();
-          this.userForm?.reset();
-        }
-        else {
-          this.messagebox = true;
-          this.messages = data.errors
-          console.warn(data)
-        }
-      },
-        (err: any) => {
-          console.warn(err)
-          if (err.status == 0) {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-              footer: 'Please check your Internet Connection'
-            })
-          }
-          else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Please fill all required fields!',
-            })
-          }
 
-        });
+    const controls = this.userForm.controls;
+    if (this.userForm.invalid) {
+      for (const name in controls) {
+        if (controls[name].invalid) {
+          this.catSvc.ErrorMsgBar(`  ${name} is Required`, 6000)
+          break
+        }
+      }
+    } else {
+      if (this.selectedUser.email == null && this.selectedUser.email == undefined) {
+        this.catSvc.ErrorMsgBar("Please enter  an email", 8000)
+      } else {
+      this.proccessing = true
+      if (this.Edit) {
+         this.PutUser();
+      } else {
+        this.securitySvc.SaveUser(this.selectedUser).subscribe((data: any) => {
+                if (data.succeeded == true) {
+                  this.messagebox = false;
+                  Swal.fire({
+                    icon: 'success',
+                    position: 'center',
+                    text: 'Added Successfully',
+                    background: "#FFFFFF",
+                    confirmButtonColor: "#000000"
+                    
+                  })
+                  this.ngOnInit();
+                  this.Refresh();
+                }
+                else {
+                  this.messagebox = true;
+                  this.messages = data.errors
+                  console.warn(data)
+                } 
+                window.scrollTo(0, 0);
+            this.proccessing = false;
+              
+          }, (err: any) => {
+            console.warn(err);
+            this.catSvc.ErrorMsgBar("Error Occurred !", 6000);
+            this.proccessing = false;
+          });
+      }}
     }
   }
+  // SaveUser() {
+  //   debugger;
+  //   console.warn(this.selectedUser)
+  //   if (this.Edit)
+  //     this.PutUser();
+
+  //   else {
+  //     this.securitySvc.SaveUser(this.selectedUser).subscribe((data: any) => {
+  //       if (data.succeeded == true) {
+  //         this.messagebox = false;
+  //         Swal.fire({
+  //           icon: 'success',
+  //           position: 'center',
+  //           text: 'Added Successfully',
+  //           background: "#FFFFFF",
+  //           confirmButtonColor: "#000000"
+            
+  //         })
+  //         this.Refresh();
+  //         this.dialogRef.close();
+  //         this.userForm?.reset();
+  //       }
+  //       else {
+  //         this.messagebox = true;
+  //         this.messages = data.errors
+  //         console.warn(data)
+  //       }
+  //     },
+  //       (err: any) => {
+  //         console.warn(err)
+  //         if (err.status == 0) {
+  //           Swal.fire({
+  //             icon: 'error',
+  //             title: 'Oops...',
+  //             text: 'Something went wrong!',
+  //             footer: 'Please check your Internet Connection'
+  //           })
+  //         }
+  //         else {
+  //           Swal.fire({
+  //             icon: 'error',
+  //             title: 'Oops...',
+  //             text: 'Please fill all required fields!',
+  //           })
+  //         }
+
+  //       });
+  //   }
+  // }
+  
   Refresh() {
     this.ngOnInit();
     this.selectedUser = new UserVM

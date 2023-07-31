@@ -62,14 +62,20 @@ namespace LMS.WepAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+        public IActionResult Delete(int id)
+        //{
+        //    InquiryDE Inquiry = new InquiryDE();
+        //    Inquiry.Id = id;
+        //    Inquiry.DBoperation = DBoperations.DeActivate;
+        //    _inqrySVC.ManagementInquiry(Inquiry);
+        //}
+       {
             InquiryDE Inquiry = new InquiryDE();
+            Inquiry.DBoperation = DBoperations.Delete;
             Inquiry.Id = id;
-            Inquiry.DBoperation = DBoperations.DeActivate;
             _inqrySVC.ManagementInquiry(Inquiry);
+            return Ok();
         }
-
         #endregion
     }
 }

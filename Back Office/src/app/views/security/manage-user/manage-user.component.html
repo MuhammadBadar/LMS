@@ -1,42 +1,48 @@
 
 <div class="container-fluid page">
-  
-    <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
-        <div *ngIf="Add">Manage User
-        </div>
-        <div *ngIf="Edit">Edit User
-        </div>
-    </div>
-  
-    <form #userForm="ngForm">
-    <div class="page_content shadow p-3 position-relative">
-         <div fxLayout="row" fxLayoutAlign="space-between">
-             
-              <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+  <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+      <div *ngIf="Add">Manage User
+      </div>
+      <div *ngIf="Edit">Edit User
+      </div>
+  </div>
+  <div class="page_content shadow p-3 position-relative">
+      <form #userForm="ngForm">
+          <div fxLayout="row" fxLayoutAlign="space-between">
+            <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+              <mat-label> User Name</mat-label>
+           
+              <input UserName matInput required #userName="ngModel" name="userName" [(ngModel)]="selectedUser.userName" maxlength="200" minlength="3"/>
+               <mat-error class="form-text text-danger"
+              *ngIf="userForm.controls['userName']?.hasError || userForm.controls['userName']?.errors?.['minlength']">
+              UserName is required to be at least 3 characters.
+            </mat-error> 
+     
+          </mat-form-field>
+              <!-- <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
                   <mat-label>User Name</mat-label>
-                  <input matInput required #userName="ngModel" name="userName" [(ngModel)]="selectedUser.userName" />
+                <input matInput required #userName="ngModel" name="userName" [(ngModel)]="selectedUser.userName" />
+            </mat-form-field> -->
+     
+             <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                  <mat-label>Password</mat-label>
+              <input Password matInput required placeholder="passwordHash" [type]="hide ? 'password' : 'text'" #passwordHash="ngModel"
+             [(ngModel)]="selectedUser.passwordHash" name="passwordHash" maxlength="200" minlength="10"/>
+              <mat-icon style="color: rgb(32, 10, 66);" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off'
+                :
+                'visibility'}}
+              </mat-icon>
+              <mat-error class="form-text text-danger"
+              *ngIf="userForm.controls['passwordHash']?.hasError || userForm.controls['passwordHash']?.errors?.['minlength']">
+              Password is required to be at least 10 characters.
+            </mat-error>
               </mat-form-field>
-       
-               <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
-                    <mat-label>Password</mat-label>
-                <input matInput placeholder="passwordHash" [type]="hide ? 'password' : 'text'" #passwordHash="ngModel"
-                  required="true" [(ngModel)]="selectedUser.passwordHash" name="passwordHash">
-                <mat-icon style="color: rgb(32, 10, 66);" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off'
-                  :
-                  'visibility'}}
-                </mat-icon>
-                </mat-form-field>
-                 <!-- <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
-                    <mat-label>PasswordHash</mat-label>
-                    <input matInput required #passwordHash="ngModel" name="passwordHash" [(ngModel)]="selectedUser.passwordHash" />
-                </mat-form-field>  -->
-                
-                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
-                    <mat-label>Email</mat-label>
-                    <input matInput required #email="ngModel" name="email" [(ngModel)]="selectedUser.email" />
-                </mat-form-field>
-         </div>
-         <div *ngIf="messagebox"
+              <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                  <mat-label>Email</mat-label>
+                  <input matInput  #email="ngModel" name="email" [(ngModel)]="selectedUser.email" required>
+              </mat-form-field>
+          </div>
+          <div *ngIf="messagebox"
          style="background-color: rgb(212, 245, 234); color:rgb(218, 17, 17); padding: 15px;margin: 10px;width: 680; text-align: center; justify-content: center;">
  
          <tbody>
@@ -48,30 +54,27 @@
          </tbody>
        </div>
          
-
-         
-             <div fxLayoutAlign="end end">
-             
-       <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveUser()">Submit</button>
-       
-         <button mat-raised-button *ngIf="EditMode" color="primary" (click)="PutUser()">Update</button>
-            
-             <div>  <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
-              (click)="Refresh()">
-              <mat-icon>autorenew</mat-icon>
-          </button>
+          <div fxLayoutAlign="end end">
+                       <c-spinner *ngIf="proccessing" style="height: 50px;width: 50px;color: rgb(3, 71, 102);"></c-spinner> 
+                      <div style="margin-top: 10px;" *ngIf="!proccessing">
+                        <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveUser()">Submit</button>
+     
+                        <button mat-raised-button *ngIf="EditMode" color="primary" (click)="PutUser()">Update</button>
+                        <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                        (click)="Refresh()">
+                        <mat-icon>autorenew</mat-icon>
+                    </button>
+                       </div>
+                       
          </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-
+              <div>
+                  <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                      (click)="ngOnInit()">
+                      <mat-icon>autorenew</mat-icon>
+                  </button>
+              </div>
+        
+      </form>
 
 
 
@@ -165,4 +168,5 @@
         </div>
       </c-card-body>
     </c-card>
-  <!-- </div> -->
+  </div>
+
