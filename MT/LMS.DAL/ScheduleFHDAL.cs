@@ -33,8 +33,13 @@ namespace LMS.DAL
                 cmd.Parameters.AddWithValue("@prm_UserId", sch.UserId);
                 cmd.Parameters.AddWithValue("@prm_User", sch.User);
                 cmd.Parameters.AddWithValue("@prm_RoleId", sch.RoleId);
+                cmd.Parameters.AddWithValue("@prm_Role", sch.Role);
+                cmd.Parameters.AddWithValue("@prm_EntityId", sch.EntityId);
+                cmd.Parameters.AddWithValue("@prm_Entity", sch.Entity);
+                cmd.Parameters.AddWithValue("@prm_ScheduleTypeId", sch.ScheduleTypeId);
                 cmd.Parameters.AddWithValue("@prm_ScheduleType", sch.ScheduleType);
-                cmd.Parameters.AddWithValue("@prm_WorkingFor", sch.WorkingFor);
+                cmd.Parameters.AddWithValue("@prm_WorkingTypeId", sch.WorkingTypeId);
+                cmd.Parameters.AddWithValue("@prm_WorkingType", sch.WorkingType);
                 cmd.Parameters.AddWithValue("@prm_WorkingHours", sch.WorkingHours);
                 cmd.Parameters.AddWithValue("@prm_CreatedOn", sch.CreatedOn);
                 cmd.Parameters.AddWithValue("@prm_CreatedBy", sch.CreatedById);

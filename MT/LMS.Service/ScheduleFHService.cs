@@ -55,52 +55,105 @@ namespace LMS.Service
         }
 
         //public List<VocabularyDE> SearchVocabulary(VocabularySearchCriteria mod)
-        public List<ScheduleFHDE> SearchScheduleFH(ScheduleFHDE _sch)
+        //        public List<ScheduleFHDE> SearchScheduleFH(ScheduleFHDE _sch)
+        //        {
+        //            // public List<TopicDE> SearchTopic(TopicDE _topic)
+        //            {
+        //                List<ScheduleFHDE> retVal = new List<ScheduleFHDE>();
+        //                bool closeConnectionFlag = false;
+        //                MySqlCommand? cmd = null;
+        //                try
+        //                {
+        //                    cmd = LMSDataContext.OpenMySqlConnection();
+        //                    closeConnectionFlag = true;
+        //                    string WhereClause = "Where 1=1";
+        //                    if (_sch.Id != default)
+        //                        WhereClause += $" AND Id={_sch.Id}";
+        //                    if (_sch.UserId != default)
+        //                        WhereClause += $" and UserId like ''" + _sch.UserId + "''";
+        //                    if (_sch.User != default)
+        //                        WhereClause += $" and User like ''" + _sch.User + "''";
+        //                    if (_sch.RoleId != default)
+        //                        WhereClause += $" and RoleId like ''" + _sch.RoleId + "''";
+        //                    if (_sch.Role != default)
+        //                        WhereClause += $" and Role like ''" + _sch.Role + "''";
+        //                    if (_sch.EntityId != default && _sch.EntityId != 0)
+        //                        WhereClause += $" AND EntityId={_sch.EntityId}";
+        //                    if (_sch.Entity != default)
+        //                        WhereClause += $" and Entity like ''" + _sch.Entity + "''";
+        //                    if (_sch.ScheduleTypeId != default && _sch.ScheduleTypeId != 0)
+        //                        WhereClause += $" AND ScheduleTypeId={_sch.ScheduleTypeId}";
+        //                    if (_sch.ScheduleType != default)
+        //                        WhereClause += $" and ScheduleType like ''" + _sch.ScheduleType + "''";
+        //                    if (_sch.WorkingTypeId != default && _sch.WorkingTypeId != 0)
+        //                        WhereClause += $" AND WorkingTypeId={_sch.WorkingTypeId}";
+        //                    if (_sch.WorkingType != default)
+        //                        WhereClause += $" and WorkingType like ''" + _sch.WorkingType + "''";
+        //                    if (_sch.WorkingHours != default)
+        //                        WhereClause += $" and WorkingHours like ''" + _sch.WorkingHours + "''";
+        //                    if (_sch.IsActive != default)
+        //                        WhereClause += $" AND IsActive={_sch.IsActive}";
+
+        //                    retVal = _schDAL.SearchScheduleFH(WhereClause, cmd);
+        //                    return retVal;
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    _logger.Error(ex);
+        //                    throw;
+        //                }
+        //                finally
+        //                {
+        //                    if (closeConnectionFlag)
+        //                        LMSDataContext.CloseMySqlConnection(cmd);
+        //                }
+        //            }
+
+        //        }
+        //    }
+        //}
+        public List<ScheduleFHDE> SearchScheduleFH(ScheduleFHDE mod)
         {
-            // public List<TopicDE> SearchTopic(TopicDE _topic)
+            List<ScheduleFHDE> list = new List<ScheduleFHDE>();
+            bool closeConnectionFlag = false;
+            MySqlCommand? cmd = null;
+            try
             {
-                List<ScheduleFHDE> retVal = new List<ScheduleFHDE>();
-                bool closeConnectionFlag = false;
-                MySqlCommand? cmd = null;
-                try
-                {
-                    cmd = LMSDataContext.OpenMySqlConnection();
-                    closeConnectionFlag = true;
-                    string WhereClause = "Where 1=1";
-                    if (_sch.Id != default)
-                        WhereClause += $" AND Id={_sch.Id}";
-                    if (_sch.UserId != default && _sch.UserId != 0)
-                        WhereClause += $" AND UserId={_sch.UserId}";
-                    if (_sch.User != default)
-                        WhereClause += $" and User like ''" + _sch.User + "''";
-                    if (_sch.RoleId != default && _sch.RoleId != 0)
-                        WhereClause += $" AND RoleId={_sch.RoleId}";
-                    if (_sch.ScheduleType != default)
-                        WhereClause += $" and ScheduleType like ''" + _sch.ScheduleType + "''";
-                    if (_sch.WorkingFor != default)
-                        WhereClause += $" and WorkingFor like ''" + _sch.WorkingFor + "''";
-                    if (_sch.WorkingHours != default)
-                        WhereClause += $" and WorkingHours like ''" + _sch.WorkingHours + "''";
-                    if (_sch.IsActive != default)
-                        WhereClause += $" AND IsActive={_sch.IsActive}";
+                cmd = LMSDataContext.OpenMySqlConnection();
+                LMSDataContext.StartTransaction(cmd);
 
-                    retVal = _schDAL.SearchScheduleFH(WhereClause, cmd);
-                    return retVal;
-                }
-                catch (Exception ex)
-                {
-                    _logger.Error(ex);
-                    throw;
-                }
-                finally
-                {
-                    if (closeConnectionFlag)
-                        LMSDataContext.CloseMySqlConnection(cmd);
-                }
+                //#region Search
+
+                //string whereClause = " Where 1=1";
+                //if (mod.I != default)
+                //    whereClause += $" AND Id={mod.Id}";
+                //if (mod.Name != default)
+                //    whereClause += $" AND Name like ''" + mod.Name + "''";
+                //if (mod.IsActive != default)
+                //    whereClause += $" AND IsActive ={mod.IsActive}";
+                //Feature = _featDAL.SearchFeatures(whereClause);
+
+                //#endregion
+                list = _schDAL.SearchScheduleFH("");
+
+
+
+                LMSDataContext.EndTransaction(cmd);
             }
-
+            catch (Exception exp)
+            {
+                LMSDataContext.CancelTransaction(cmd);
+                throw exp;
+            }
+            finally
+            {
+                if (closeConnectionFlag)
+                    LMSDataContext.CloseMySqlConnection(cmd);
+            }
+            return list;
         }
     }
 }
+
 
 

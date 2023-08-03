@@ -58,7 +58,8 @@ namespace LMS.WebAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            ScheduleDE Schedule = new ScheduleDE { Id = id, DBoperation = DBoperations.Delete };
+            ScheduleDE Schedule = new ScheduleDE
+            { Id = id, DBoperation = DBoperations.Delete };
             _ScheduleSVC.ManagementSchedule(Schedule);
         }
 
