@@ -54,29 +54,30 @@ export class ManageUserComponent implements OnInit {
     this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
   }
   ngOnInit(): void {
-
-    // this.route.queryParams.subscribe(params => {
-    //   this.userName = params['name'];
-    // });
-    // if (this.userName != null) {
-    //   this.Edit = true;
-    //   this.Add = false;
-    //   this.GetUserByName();
+    // this.securitySvc.getUserList().subscribe((res: UserVM[]) => {
+    //   this.users = res;
+    //   console.warn(res)
+    //   this.dataSource = new MatTableDataSource(this.users);
     // }
-
-    this.securitySvc.getUserList().subscribe((res: UserVM[]) => {
-      this.users = res;
-      console.warn(res)
-      this.dataSource = new MatTableDataSource(this.users);
-    }
-    );
+    // );
+   this.GetUser();
+  }
+  GetUser() {
+    var user = new UserVM
+    user.isActive = true;
+    this.securitySvc.getUserList().subscribe({
+      next: (res: UserVM[]) => {
+        this.users = res;
+        console.warn(res)
+        this.dataSource = new MatTableDataSource(this.users);
+      }, error: (e) => {
+        this.catSvc.ErrorMsgBar("Error Occurred!", 4000)
+        console.warn(e);
+      }
+    })
   }
   EditUser(user: UserVM) {
-    // this.routee.navigate(['/security/userRegistration'], {
-    //   queryParams: {
-    //     name: user.userName
-    //   }
-    // });
+    
 
       this.EditMode = true
       this.AddMode = false
@@ -97,8 +98,6 @@ export class ManageUserComponent implements OnInit {
 
 
   SaveUser() {
-
-
     const controls = this.userForm.controls;
     if (this.userForm.invalid) {
       for (const name in controls) {
@@ -145,55 +144,7 @@ export class ManageUserComponent implements OnInit {
       }}
     }
   }
-  // SaveUser() {
-  //   debugger;
-  //   console.warn(this.selectedUser)
-  //   if (this.Edit)
-  //     this.PutUser();
 
-  //   else {
-  //     this.securitySvc.SaveUser(this.selectedUser).subscribe((data: any) => {
-  //       if (data.succeeded == true) {
-  //         this.messagebox = false;
-  //         Swal.fire({
-  //           icon: 'success',
-  //           position: 'center',
-  //           text: 'Added Successfully',
-  //           background: "#FFFFFF",
-  //           confirmButtonColor: "#000000"
-            
-  //         })
-  //         this.Refresh();
-  //         this.dialogRef.close();
-  //         this.userForm?.reset();
-  //       }
-  //       else {
-  //         this.messagebox = true;
-  //         this.messages = data.errors
-  //         console.warn(data)
-  //       }
-  //     },
-  //       (err: any) => {
-  //         console.warn(err)
-  //         if (err.status == 0) {
-  //           Swal.fire({
-  //             icon: 'error',
-  //             title: 'Oops...',
-  //             text: 'Something went wrong!',
-  //             footer: 'Please check your Internet Connection'
-  //           })
-  //         }
-  //         else {
-  //           Swal.fire({
-  //             icon: 'error',
-  //             title: 'Oops...',
-  //             text: 'Please fill all required fields!',
-  //           })
-  //         }
-
-  //       });
-  //   }
-  // }
   
   Refresh() {
     this.ngOnInit();
@@ -212,62 +163,7 @@ export class ManageUserComponent implements OnInit {
     },
   })
 }
-  
-    // this.securitySvc.UpdateUser(this.selectedUser).subscribe({
-    //   next: (value: any) => {
-    //     if (value.succeeded == true) { // Use 'value' instead of 'data'
-    //       this.messagebox = false;
-    //       Swal.fire({
-    //         icon: 'success',
-    //         position: 'center',
-    //         text: 'User Successfully Updated',
-    //         background: "#FFFFFF",
-    //         confirmButtonColor: "#000000"
-    //       });
-    //     }
-    //   },
-    //   error: (err) => { // Handle error separately
-    //     this.messagebox = true;
-    //     this.messages = err.errors;
-    //     console.warn(err);
-    //   }
-    // });
-  // }
-  // this.securitySvc.UpdateUser(this.securitySvc.selectedUser).subscribe({
-  //   next: (data: any) => {
-  //     if (data.succeeded == true) {
-  //       this.messagebox = false;
-  //       Swal.fire({
-  //         icon: 'success',
-  //         position: 'center',
-  //         text: 'User Successfully Updated',
-  //         background: "#FFFFFF",
-  //         confirmButtonColor: "#000000"
-  //       })
-  //     }
-  //     else {
-  //       this.messagebox = true;
-  //       this.messages = data.errors
-  //       console.warn(data)
-  //     }
-  //   }, error: (err) => {
-  //     if (err.status == 0) {
-  //       Swal.fire({
-  //         icon: 'error',
-  //         title: 'Oops...',
-  //         text: 'Something went wrong!',
-  //         footer: 'Please check your Internet Connection'
-  //       })
-  //     }
-  //     else {
-  //       Swal.fire({
-  //         icon: 'error',
-  //         title: 'Oops...',
-  //         text: 'Something went wrong!',
-  //       })
-  //     }
-  //   }
-  // })
+ 
 
   DeleteUser(id: any) {
     Swal.fire({

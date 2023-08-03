@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CatalogService } from '../../catalog/catalog.service';
 @Component({
   selector: 'app-manage-role',
   templateUrl: './manage-role.component.html',
@@ -26,15 +27,31 @@ export class ManageRoleComponent implements OnInit {
   constructor(
     public securitySvc: SecurityService,
     private snack: MatSnackBar,
+    private catSvc: CatalogService,
   ) {
     this.securitySvc.selectedRole = new RoleVM;
   }
   ngOnInit(): void {
-    this.securitySvc.selectedRole = new RoleVM;
-    this.securitySvc.getRolesList().subscribe((res: RoleVM[]) => {
-      this.roles = res;
-      this.dataSource = new MatTableDataSource(this.roles);
-    });
+    // this.securitySvc.selectedRole = new RoleVM;
+    // this.securitySvc.getRolesList().subscribe((res: RoleVM[]) => {
+    //   this.roles = res;
+    //   this.dataSource = new MatTableDataSource(this.roles);
+    // });
+    this.GetRole();
+  }
+  GetRole() {
+    var role = new RoleVM
+    role.isActive = true;
+    this.securitySvc.getRolesList().subscribe({
+      next: (res: RoleVM[]) => {
+        this.roles = res;
+        console.warn(res)
+        this.dataSource = new MatTableDataSource(this.roles);
+      }, error: (e) => {
+        this.catSvc.ErrorMsgBar("Error Occurred!", 4000)
+        console.warn(e);
+      }
+    })
   }
   SaveRole() {
     debugger

@@ -2,6 +2,8 @@ export enum EnumTypeVM {
 
     BackOffice = 1001,
     SideMenu,
-    WeekDays
-
+    WeekDays,
+    Entities,
+    ScheduleType,
+    WorkingType
 }

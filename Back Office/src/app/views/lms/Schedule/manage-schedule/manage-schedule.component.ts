@@ -89,7 +89,7 @@ export class ManageScheduleComponent implements OnInit {
   }
   GetWeekDays() {
     var stng = new SettingsVM
-    stng.enumTypeId = EnumTypeVM.WeekDays
+    stng.enumTypeId = EnumTypeVM.WeekDays //entities,scheduletype nd working type
     this.itmSvc.SearchSettings(stng).subscribe({
       next: (res: SettingsVM[]) => {
         this.WeekDays = res;
@@ -102,8 +102,6 @@ export class ManageScheduleComponent implements OnInit {
   GetCourses() {
     var course = new CourseVM
     course.isActive = true;
-
-   
     this.lmsSvc.SearchCourse(course).subscribe({
       next: (res: CourseVM[]) => {
         this.Courses = res;

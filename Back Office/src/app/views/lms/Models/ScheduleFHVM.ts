@@ -1,11 +1,15 @@
 export class ScheduleFHVM {
     id!: number
-    userId: number= 0
+    userId: string
     user?: string
-    roleId: number= 0
-    //topic?: string
+    roleId: string
+    role?: string
+    entityId: number = 0;
+    entity?: string
+    scheduleTypeId: number = 0;
     scheduleType?: string
-    workingFor?: string
+    workingTypeId?: number = 0;
+    workingType?: string
     workingHours?: string
     isActive?: boolean
   parentId: number | undefined

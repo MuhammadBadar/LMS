@@ -3,11 +3,16 @@ import { LMSService } from '../lms.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CatalogService } from '../../catalog/catalog.service';
 import { ScheduleFHVM } from '../Models/ScheduleFHVM';
-import { UserVM } from '../Models/UserVM';
-import { ManageUserComponent } from '../manage-user/manage-user.component';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
+import { UserVM } from '../../security/models/user-vm';
+import { SecurityService } from '../../security/security.service';
+import { EnumTypeVM } from '../../security/models/EnumTypeVM';
+import { SettingsVM } from '../../items/Models/SettingsVM';
+import { ManageUserComponent } from '../../security/manage-user/manage-user.component';
+import { RoleVM } from '../../security/models/role-vm';
+import { ManageRoleComponent } from '../../security/manage-role/manage-role.component';
 
 @Component({
   selector: 'app-manage-schedule-fh',
@@ -17,9 +22,9 @@ import { NgForm } from '@angular/forms';
 export class ManageScheduleFHComponent {
 
   @ViewChild('scheduleFHForm', { static: true }) scheduleFHForm!: NgForm;
-  displayedColumns: string[] = [`user`,`scheduleType`,`workingFor`,`workingHours`,'isActive', 'actions'];
+  displayedColumns: string[] = [`user`,`role`,`scheduleType`,`workingType`,`workingHours`,'isActive', 'actions'];
   selectedScheduleFH: ScheduleFHVM;
-  User: UserVM[] | undefined;
+  users: UserVM[] | undefined;
   dialogRef: any;
   ScheduleFH: ScheduleFHVM[] |  any;
   dataSource: any;
@@ -30,12 +35,19 @@ export class ManageScheduleFHComponent {
   Add: boolean = true;
   dialogData: any;
   dialogRefe: any;
-Schedulefh: any;
+// Schedulefh: any;
+//selectedFrequency: string = 'day'; // Set the default value to 'day' for the radio buttons
+
+  Entities: SettingsVM[];
+  ScheduleType: SettingsVM[];
+  WorkingType: SettingsVM[];
+  roles: RoleVM[];
 
   constructor(private injector: Injector,
     private lmsSvc: LMSService,
     private catSvc: CatalogService,
     public dialog: MatDialog,
+    public securitySvc: SecurityService,
    ) {
     this.selectedScheduleFH = new ScheduleFHVM
     
@@ -46,17 +58,67 @@ Schedulefh: any;
   ngOnInit(): void {
     this.GetScheduleFH();
     this.GetUser();
+    this.GetRole();
+       this.GetSettings(EnumTypeVM.Entities)
+       this.GetSettings(EnumTypeVM.ScheduleType)
+       this.GetSettings(EnumTypeVM.WorkingType)
        this.selectedScheduleFH.isActive = true;
   }
+  GetSettings(etype: EnumTypeVM) {
+    var setting = new SettingsVM()
+    setting.enumTypeId = etype
+    setting.isActive = true
+    this.catSvc.SearchSettings(setting).subscribe({
+      next: (res: SettingsVM[]) => {
+        if (etype === EnumTypeVM.Entities) {
+          this.Entities = res;
+        } else if (etype === EnumTypeVM.ScheduleType) {
+          this.ScheduleType = res;
+        } else if (etype === EnumTypeVM.WorkingType) {
+          this.WorkingType = res;
+        }
+      }, error: (e) => {
+        this.catSvc.ErrorMsgBar("Error Occurred", 4000)
+        console.warn(e);
+      }
+    })
+  }
+  GetRole() {
+    var role = new RoleVM
+    role.isActive = true;
+    this.securitySvc.getRolesList().subscribe({
+      next: (res: RoleVM[]) => {
+        this.roles = res;
+      }, error: (e) => {
+        this.catSvc.ErrorMsgBar("Error Occurred!", 4000)
+        console.warn(e);
+      }
+    })
+  }
+  OpenRoleDialog() {
+    // this.isDialogOpen = true;
+     this.dialogRef = this.dialog.open(ManageRoleComponent, {
+       width: '1200px',
+       height: '950px',
+       //data: { isDialogue: true, userId: this.selectedScheduleFH.userId },
+      // disableClose: false // Enable the close button for the dialog
+     });
+   
+     this.dialogRef.afterClosed().subscribe((res: any) => {
+      this.GetRole();
+      // this.isDialogOpen = false;
+     });
+   }
   GetUser() {
     var user = new UserVM
-    user.isActive= true;
-    this.lmsSvc.SearchUser(user).subscribe({
+    user.isActive = true;
+    this.securitySvc.getUserList().subscribe({
       next: (res: UserVM[]) => {
-        this.User = res;
-      //  this.dataSource = new MatTableDataSource(this.City);
+        this.users = res;
+        // console.warn(res)
+        // this.dataSource = new MatTableDataSource(this.users);
       }, error: (e) => {
-        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+        this.catSvc.ErrorMsgBar("Error Occurred!", 4000)
         console.warn(e);
       }
     })
@@ -71,7 +133,7 @@ Schedulefh: any;
     });
   
     this.dialogRef.afterClosed().subscribe((res: any) => {
-      this.GetUser();
+     this.GetUser();
      // this.isDialogOpen = false;
     });
   }
@@ -113,47 +175,7 @@ Schedulefh: any;
       this.proccessing = false
     }
   }
-//   SaveScheduleFH() {
-//     this.lmsSvc.GetScheduleFH().subscribe({
-//     next: (res: ScheduleFHVM[]) => {
-//       var list = res
-//       if (this.Edit)
-//         list = list.filter(x => x != this.selectedScheduleFH)
-//       var find = list.find(x => x.workingFor == this.selectedScheduleFH.workingFor)
-//       if (find == undefined) {
 
-//         this.proccessing = true
-//         if (!this.scheduleFHForm.invalid) {
-//           if (this.Edit)
-//             this.UpdateScheduleFH
-//           else {
-//             this.lmsSvc.SaveScheduleFH(this.selectedScheduleFH).subscribe({
-//               next: (res) => {
-//                 this.catSvc.SuccessMsgBar("User Successfully Added!", 5000)
-//                 this.Add = true;
-//                 this.Edit = false;
-//                 this.proccessing = false
-//                 this.ngOnInit();
-//               }, error: (e) => {
-//                 this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-//                 console.warn(e);
-//                 this.proccessing = false
-//               }
-//             })
-//           }
-//         } else {
-//           this.catSvc.ErrorMsgBar("Please Fill all required fields!", 5000)
-//           this.proccessing = false
-//         }
-//       } 
-//       else
-//         this.catSvc.ErrorMsgBar("This Name Address Already Taken ", 5000)
-//     }, error: (e) => {
-//       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-//       console.warn(e);
-//     }
-//   })
-// }
 EditScheduleFH(scheduleFH: ScheduleFHVM) {
   this.EditMode = true
   this.AddMode = false
