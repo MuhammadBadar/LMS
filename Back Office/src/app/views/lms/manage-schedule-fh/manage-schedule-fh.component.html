@@ -20,22 +20,70 @@
         <mat-label>Entity:</mat-label>
         <div fxLayout="row" fxLayoutAlign="space-between">
             <mat-radio-group fxFlex="49%" required [(ngModel)]="selectedScheduleFH.entityId" name="entityId">
-              <mat-radio-button value="user">User</mat-radio-button>
-              <mat-radio-button value="role">Role</mat-radio-button>
+              <mat-radio-button *ngFor="let val of Entities" [value]="val.id">
+                {{val.name}}
+            </mat-radio-button>
             </mat-radio-group>
-          </div>
-       
           
+          
+            <div *ngIf="selectedScheduleFH.entityId == user">
+              <Row>
+                <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
+                  <mat-form-field appearance="outline" fxFlex="49%">
+                    <mat-label>Please Select User*</mat-label>
+                    <mat-select name="userId" [(ngModel)]="selectedScheduleFH.userId">
+                      <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
+                      <mat-option *ngFor="let val of users" [value]="val.id">
+                        {{ val.userName }}
+                      </mat-option>
+                    </mat-select>
+                    <div matSuffix>
+                      <button mat-icon-button style="color:#940540;" (click)="OpenUserDialog(); $event.stopPropagation()"
+                        cTooltip="Explore ScheduleFHType">
+                        <mat-icon>add</mat-icon>
+                      </button>
+                    </div>
+                  </mat-form-field>
+                </div>
+              </Row>
+            </div>
+            
+           
+              <div *ngIf="selectedScheduleFH.entityId == role">
+                <Row>
+                  <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
+                    <mat-form-field appearance="outline" fxFlex="49%">
+                      <mat-label>Please Select Role*</mat-label>
+                      <mat-select name="roleId" [(ngModel)]="selectedScheduleFH.roleId">
+                        <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
+                        <mat-option *ngFor="let val of roles" [value]="val.id">
+                          {{ val.name }}
+                        </mat-option>
+                      </mat-select>
+                      <div matSuffix>
+                        <button mat-icon-button style="color:#940540;" 
+                        (click)="OpenRoleDialog(); $event.stopPropagation()"
+                          cTooltip="Explore ScheduleFHType">
+                          <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+                    </mat-form-field>
+                  </div>
+                </Row>
+              </div>       
+          
+          </div>
 
-        <form scheduleFHForm="ngForm">
-            <Row>
+        <!-- <form scheduleFHForm="ngForm">
+           <div *ngIf="selectedScheduleFH.entityId == user">
+              <Row>
                 <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
                     <mat-form-field appearance="outline" fxFlex="49%">
                         <mat-label>Please Select User*</mat-label>
                         <mat-select name="userId" [(ngModel)]="selectedScheduleFH.userId">
                             <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
                             <mat-option *ngFor="let val of users" [value]="val.id">
-                                <!-- [value]="val.id" (click) = "Search()" > -->
+                               
                                 {{val.userName}}
                             </mat-option>
                         </mat-select>
@@ -49,7 +97,8 @@
                 </div>
                 </Row>
             
-                 <Row>
+                 <div *ngIf="selectedScheduleFH.entityId == role">
+                                <Row>
                         <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
                             <mat-form-field appearance="outline" fxFlex="49%">
                                 <mat-label>Please Select Role*</mat-label>
@@ -68,35 +117,11 @@
                             </mat-form-field>
                         </div>
                         </Row>
-                        </form> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                         -->
+ 
 <!-- 
-                        <div class="page_content shadow p-3 position-relative">
-                            <form #scheduleFHForm="ngForm">
-                              <mat-label>Entity:</mat-label>
-                              <div fxLayout="row" fxLayoutAlign="space-between">
-                                <mat-radio-group fxFlex="49%" required [(ngModel)]="selectedScheduleFH.entityId" name="entityId">
-                                  <mat-radio-button value="user">User</mat-radio-button>
-                                  <mat-radio-button value="role">Role</mat-radio-button>
-                                </mat-radio-group>
-                              </div>
                           
-                              <div *ngIf="selectedScheduleFH.entityId === 'user'">
+                              <div *ngIf="selectedScheduleFH.entityId == user">
                                 <Row>
                                   <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
                                     <mat-form-field appearance="outline" fxFlex="49%">
@@ -118,7 +143,7 @@
                                 </Row>
                               </div>
                           
-                              <div *ngIf="selectedScheduleFH.entityId === 'role'">
+                              <div *ngIf="selectedScheduleFH.entityId == role">
                                 <Row>
                                   <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
                                     <mat-form-field appearance="outline" fxFlex="49%">
@@ -140,8 +165,8 @@
                                 </Row>
                               </div>
                             </form>
-                          </div>
-                           -->
+                          </div> -->
+                          
 
 
 
@@ -172,44 +197,21 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-          <!-- <mat-label>Schedule Type:</mat-label>
-        <div fxLayout="row" fxLayoutAlign="space-between">
-            <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
-                <mat-label>ScheduleType</mat-label>
-                <input matInput required #name="ngModel" name="scheduleTypeId" [(ngModel)]="selectedScheduleFH.scheduleTypeId" />
-            </mat-form-field>
-        </div> -->
-        <!-- Working Type Section -->
-<!-- <mat-label>Working Type:</mat-label>
-<div fxLayout="row" fxLayoutAlign="space-between">
-  <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
-    <mat-label>Select Working Type</mat-label>
-    <mat-select name="workingTypeId" #workingTypeId="ngModel" required="true" [(ngModel)]="selectedScheduleFH">
-      <mat-option [value]="0">--Please Select--</mat-option>
-      <mat-option *ngFor="let wt of WorkingType" [value]="wt.id">
-        {{ wt.name }}
-      </mat-option>
-      <div fxLayout="row" fxLayoutAlign="space-between">
-        <mat-radio-group name="frequency" [(ngModel)]="selectedScheduleFH">
-          <mat-radio-button class="radio-button-margin" [value]="'day'">Day</mat-radio-button>
-          <mat-radio-button class="radio-button-margin" [value]="'week'">Week</mat-radio-button>
-          <mat-radio-button class="radio-button-margin" [value]="'month'">Month</mat-radio-button>
-        </mat-radio-group>
-      </div>
-    </mat-select>
-  </mat-form-field>
-</div> -->
-
+     
 
 
 
         <mat-label>Working Type:</mat-label>
-        <div fxLayout="row" fxLayoutAlign="space-between">
-            <mat-radio-group fxFlex="49%" required #name="ngModel" name="workingTypeId" [(ngModel)]="selectedScheduleFH.workingTypeId" >
-             <mat-radio-button value="day">Day</mat-radio-button>
-              <mat-radio-button value="week">Week</mat-radio-button>
-              <mat-radio-button value="month">Month</mat-radio-button>
-            </mat-radio-group>
+        <div fxLayout="row" fxLayoutAlign="space-between"> 
+          <mat-radio-group fxFlex="48%" appearance="outline" class="form-group">
+          <!-- <mat-label> Select WorkingType</mat-label> -->
+          <mat-radio-group fxFlex="49%" required="true" name="workingTypeId"  #workingTypeId="ngModel"
+           [(ngModel)]="selectedScheduleFH.workingTypeId" >
+                <mat-radio-button *ngFor="let pt of WorkingType" [value]=" pt.id">
+                     {{ pt.name}}
+                </mat-radio-button>
+              </mat-radio-group>
+          </mat-radio-group>
           </div> 
 
 

@@ -13,7 +13,7 @@ import { SettingsVM } from '../../items/Models/SettingsVM';
 import { ManageUserComponent } from '../../security/manage-user/manage-user.component';
 import { RoleVM } from '../../security/models/role-vm';
 import { ManageRoleComponent } from '../../security/manage-role/manage-role.component';
-
+import { Entities } from  '../../lms/models/Enums/Entities';
 @Component({
   selector: 'app-manage-schedule-fh',
   templateUrl: './manage-schedule-fh.component.html',
@@ -34,7 +34,11 @@ export class ManageScheduleFHComponent {
   Edit: boolean = false;
   Add: boolean = true;
   dialogData: any;
+  // entity: Entities[] | undefined;
+  user: number;
+  role: number;
   dialogRefe: any;
+  
 // Schedulefh: any;
 //selectedFrequency: string = 'day'; // Set the default value to 'day' for the radio buttons
 
@@ -50,8 +54,8 @@ export class ManageScheduleFHComponent {
     public securitySvc: SecurityService,
    ) {
     this.selectedScheduleFH = new ScheduleFHVM
-    
-    
+    this.user= Entities.user;
+    this.role=Entities.role;
     this.dialogRefe = this.injector.get(MatDialogRef, null);
     this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
   }
