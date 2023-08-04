@@ -32,6 +32,14 @@ namespace LMS.Service
             try
             {
                 cmd = LMSDataContext.OpenMySqlConnection();
+                if (mod.DBoperation == DBoperations.Insert)
+                {
+                    mod.Id = _corDAL.GetnextLineId(TableNames.enumline.ToString(), (int)mod.EnumTypeId, "EnumTypeId");
+                    if (mod.Id == 0)
+                        mod.Id = int.Parse(mod.EnumTypeId + "001");
+                    else
+                        mod.Id += 1;
+                }
                 retVal = _settingsDAL.ManageSettings(mod);
                 if (retVal == true)
                     mod.DBoperation = DBoperations.NA;
