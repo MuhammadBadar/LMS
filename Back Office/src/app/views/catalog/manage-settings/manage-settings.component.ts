@@ -1,15 +1,15 @@
-import { SettingsVM } from './../Models/SettingsVM';
+import { SettingsVM } from '../Models/SettingsVM';
 import { ManageSettingsTypeComponent } from './../manage-settings-type/manage-settings-type.component';
-import { SettingsTypeVM } from './../Models/SettingsTypeVM';
+import { SettingsTypeVM } from '../Models/SettingsTypeVM';
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
-import { ItemsService } from '../items.service';
+import { ItemsService } from '../../items/items.service';
 import { ActivatedRoute } from '@angular/router';
-import { CatalogService } from '../../catalog/catalog.service';
+import { CatalogService } from '../catalog.service';
 
 @Component({
   selector: 'app-manage-settings',
@@ -63,7 +63,7 @@ export class ManageSettingsComponent implements OnInit {
    
     this.route.queryParams.subscribe(params => {
       this.typeId = + params['type']
-      console.warn(this.typeId)
+    
       if (!Number.isNaN(this.typeId)) {
         var type = new SettingsTypeVM()
         type.id = params['type'];
