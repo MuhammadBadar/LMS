@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { CatalogService } from 'src/app/views/catalog/catalog.service';
 import { ItemsService } from 'src/app/views/items/items.service';
-import { SettingsVM } from 'src/app/views/items/Models/SettingsVM';
+import { SettingsVM } from 'src/app/views/catalog/Models/SettingsVM';
 import { EnumTypeVM } from 'src/app/views/security/models/EnumTypeVM';
 import Swal from 'sweetalert2';
 
