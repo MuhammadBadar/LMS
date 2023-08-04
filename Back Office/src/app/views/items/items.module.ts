@@ -53,8 +53,8 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ItemsRoutingModule } from './items-routing.module';
-import { ManageSettingsComponent } from './manage-settings/manage-settings.component';
-import { ManageSettingsTypeComponent } from './manage-settings-type/manage-settings-type.component';
+// import { ManageSettingsComponent } from './manage-settings/manage-settings.component';
+// import { ManageSettingsTypeComponent } from './manage-settings-type/manage-settings-type.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 // import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
@@ -63,8 +63,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
-    ManageSettingsComponent,
-    ManageSettingsTypeComponent,
+    // ManageSettingsComponent,
+    // ManageSettingsTypeComponent,
 
   ],
   imports: [

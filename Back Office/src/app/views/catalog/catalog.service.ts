@@ -3,9 +3,8 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Globals } from 'src/app/globals';
-import { SettingsTypeVM } from '../items/Models/SettingsTypeVM';
-import { SettingsVM } from '../items/Models/SettingsVM';
-
+import { SettingsTypeVM } from './Models/SettingsTypeVM';
+import { SettingsVM } from '../catalog/Models/SettingsVM';
 import { CityStudentsTypeVM } from '../items/Models/CityStudentsTypeVM';
 import { StudentsTypeVM } from '../items/Models/StudentsTypeVM';
 import { CitiesTypeVM } from '../items/Models/CitiesTypeVM';

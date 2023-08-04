@@ -1,5 +1,6 @@
 import { CatalogService } from './catalog.service';
-
+import{ManageSettingsComponent}from './manage-settings/manage-settings.component';
+import{ManageSettingsTypeComponent}from './manage-settings-type/manage-settings-type.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { CatalogRoutingModule } from './catalog-routing.module';
@@ -21,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
+
 import {
   AccordionModule,
   BadgeModule,
@@ -54,10 +56,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SettingsTypeVM } from './Models/SettingsTypeVM';
+import { SettingsVM } from './Models/SettingsVM';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ManageSettingsTypeComponent,
+    ManageSettingsComponent,
+  ],
   imports: [
     CommonModule,
     CatalogRoutingModule,
@@ -121,6 +128,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatTooltipModule,
     HttpClientModule,
     FlexLayoutModule,
+   
   ],
   providers: [DatePipe, CatalogService],
 })
