@@ -2,7 +2,7 @@ import { Component, Injector, ViewChild } from '@angular/core';
 import { LMSService } from '../lms.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CatalogService } from '../../catalog/catalog.service';
-import { ScheduleFHVM } from '../Models/ScheduleFHVM';
+import { ScheduleVM } from '../Models/ScheduleVM';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
@@ -13,20 +13,20 @@ import { SettingsVM } from '../../items/Models/SettingsVM';
 import { ManageUserComponent } from '../../security/manage-user/manage-user.component';
 import { RoleVM } from '../../security/models/role-vm';
 import { ManageRoleComponent } from '../../security/manage-role/manage-role.component';
-import { Entities } from  '../../lms/models/Enums/Entities';
+import { Entities } from  '../models/Enums/Entities';
 @Component({
-  selector: 'app-manage-schedule-fh',
-  templateUrl: './manage-schedule-fh.component.html',
-  styleUrls: ['./manage-schedule-fh.component.css']
+  selector: 'app-manage-schedule',
+  templateUrl: './manage-schedule.component.html',
+  styleUrls: ['./manage-schedule.component.css']
 })
-export class ManageScheduleFHComponent {
+export class ManageScheduleComponent {
 
   @ViewChild('scheduleFHForm', { static: true }) scheduleFHForm!: NgForm;
   displayedColumns: string[] = [`user`,`role`,`scheduleType`,`workingType`,`workingHours`,'isActive'];
-  selectedScheduleFH: ScheduleFHVM;
+  selectedScheduleFH: ScheduleVM;
   users: UserVM[] | undefined;
   dialogRef: any;
-  ScheduleFH: ScheduleFHVM[] |  any;
+  ScheduleFH: ScheduleVM[] |  any;
   dataSource: any;
   proccessing: boolean | undefined;
   AddMode: boolean = true
@@ -53,7 +53,7 @@ export class ManageScheduleFHComponent {
     public dialog: MatDialog,
     public securitySvc: SecurityService,
    ) {
-    this.selectedScheduleFH = new ScheduleFHVM
+    this.selectedScheduleFH = new ScheduleVM
     this.user= Entities.user;
     this.role=Entities.role;
     this.dialogRefe = this.injector.get(MatDialogRef, null);
@@ -63,6 +63,7 @@ export class ManageScheduleFHComponent {
     this.GetScheduleFH();
     this.GetUser();
     this.GetRole();
+    this.Refresh();
        this.GetSettings(EnumTypeVM.Entities)
        this.GetSettings(EnumTypeVM.ScheduleType)
        this.GetSettings(EnumTypeVM.WorkingType)
@@ -143,13 +144,14 @@ export class ManageScheduleFHComponent {
   }
   
   GetScheduleFH() {
-    var Schfh = new ScheduleFHVM
+    var Schfh = new ScheduleVM
     Schfh.isActive= true;
-    this.lmsSvc.GetScheduleFH().subscribe({
-      next: (value: ScheduleFHVM[]) => {
+    this.lmsSvc.GetSchedule().subscribe({
+      next: (value: ScheduleVM[]) => {
         this.ScheduleFH = value
         console.warn(this.ScheduleFH)
         this.dataSource = new MatTableDataSource(this.ScheduleFH)
+       
       }, error: (err) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
       },
@@ -161,7 +163,7 @@ export class ManageScheduleFHComponent {
     console.warn(this.selectedScheduleFH)
     this.proccessing = true
     if (!this.scheduleFHForm.invalid) {
-      this.lmsSvc.SaveScheduleFH(this.selectedScheduleFH).subscribe({
+      this.lmsSvc.SaveSchedule(this.selectedScheduleFH).subscribe({
         next: (res) => {
           this.catSvc.SuccessMsgBar("Successfully Added!", 5000)
           this.Add = true;
@@ -180,13 +182,13 @@ export class ManageScheduleFHComponent {
     }
   }
 
-EditScheduleFH(scheduleFH: ScheduleFHVM) {
+EditScheduleFH(scheduleFH: ScheduleVM) {
   this.EditMode = true
   this.AddMode = false
   this.selectedScheduleFH = scheduleFH
 }
 UpdateScheduleFH() {
-  this.lmsSvc.UpdateScheduleFH(this.selectedScheduleFH).subscribe({
+  this.lmsSvc.UpdateSchedule(this.selectedScheduleFH).subscribe({
     next: (value) => {
       this.catSvc.SuccessMsgBar("Successfully Updated", 5000)
       this.Refresh();
@@ -198,7 +200,7 @@ UpdateScheduleFH() {
 
 Refresh() {
   this.GetScheduleFH();
-  this.selectedScheduleFH = new ScheduleFHVM
+  this.selectedScheduleFH = new ScheduleVM
   this.EditMode = false
   this.AddMode = true
 }
@@ -213,7 +215,7 @@ DeleteScheduleFH(id: number) {
     confirmButtonText: 'Yes, delete it!'
   }).then((result) => {
     if (result.value) {
-      this.lmsSvc.DeleteScheduleFH(id).subscribe({
+      this.lmsSvc.DeleteSchedule(id).subscribe({
         next: (data) => {
           Swal.fire(
             'Deleted!',

@@ -1,6 +1,6 @@
 import { TopicVM } from './Models/TopicVM';
 import { CourseDetailVM } from './Models/CourseDetailVM';
-import { ScheduleVM } from './Models/ScheduleVM';
+import { CourseScheduleVM } from './Models/CourseScheduleVM';
 import { CourseVM } from './Models/CourseVM';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -13,7 +13,7 @@ import{AssignTaskVM}from './Models/AssignTaskVM';
 import { StudentVM } from './Models/StudentVM';
 import { CityVM } from './Models/CityVM';
 
-import { ScheduleFHVM } from './Models/ScheduleFHVM';
+import {  ScheduleVM } from './Models/ScheduleVM';
 import { CityStudentVM } from './Models/CityStudentVM';
 import { VocabularyVM } from './Models/VocabularyVM';
 @Injectable({
@@ -83,23 +83,23 @@ export class LMSService {
   }
 
 
-  UpdateSchedule(value: ScheduleVM): Observable<ScheduleVM> {
-    return this.http.put<ScheduleVM>(Globals.BASE_API_URL + 'Schedule', value);
+  UpdateCourseSchedule(value: CourseScheduleVM): Observable<CourseScheduleVM> {
+    return this.http.put<CourseScheduleVM>(Globals.BASE_API_URL + 'CourseSchedule', value);
   }
-  GetScheduleById(id: number): Observable<ScheduleVM[]> {
-    return this.http.get<ScheduleVM[]>(Globals.BASE_API_URL + 'Schedule/' + id).pipe()
+  GetCourseScheduleById(id: number): Observable<CourseScheduleVM[]> {
+    return this.http.get<CourseScheduleVM[]>(Globals.BASE_API_URL + 'CourseSchedule/' + id).pipe()
   }
-  SearchSchedule(value: ScheduleVM): Observable<ScheduleVM[]> {
-    return this.http.post<ScheduleVM[]>(Globals.BASE_API_URL + 'Schedule/Search', value).pipe();
+  SearchCourseSchedule(value: CourseScheduleVM): Observable<CourseScheduleVM[]> {
+    return this.http.post<CourseScheduleVM[]>(Globals.BASE_API_URL + 'CourseSchedule/Search', value).pipe();
   }
-  GetSchedule(): Observable<ScheduleVM[]> {
-    return this.http.get<ScheduleVM[]>(Globals.BASE_API_URL + 'Schedule').pipe();
+  GetCourseSchedule(): Observable<CourseScheduleVM[]> {
+    return this.http.get<CourseScheduleVM[]>(Globals.BASE_API_URL + 'CourseSchedule').pipe();
   }
-  SaveSchedule(value: ScheduleVM): Observable<ScheduleVM> {
-    return this.http.post<ScheduleVM>(Globals.BASE_API_URL + 'Schedule', value);
+  SaveCourseSchedule(value: CourseScheduleVM): Observable<CourseScheduleVM> {
+    return this.http.post<CourseScheduleVM>(Globals.BASE_API_URL + 'CourseSchedule', value);
   }
-  DeleteSchedule(id: number) {
-    return this.http.delete(Globals.BASE_API_URL + 'Schedule/' + id);
+  DeleteCourseSchedule(id: number) {
+    return this.http.delete(Globals.BASE_API_URL + 'CourseSchedule/' + id);
   }
 
 
@@ -239,20 +239,20 @@ export class LMSService {
   }
 
 
-  GetScheduleFH(): Observable<ScheduleFHVM[]> {
-    return this.http.get<ScheduleFHVM[]>(Globals.BASE_API_URL + 'ScheduleFH').pipe();
+  GetSchedule(): Observable<ScheduleVM[]> {
+    return this.http.get<ScheduleVM[]>(Globals.BASE_API_URL + 'Schedule').pipe();
   }
-  SaveScheduleFH(value: ScheduleFHVM) {
-    return this.http.post(Globals.BASE_API_URL + 'ScheduleFH', value)
+  SaveSchedule(value: ScheduleVM) {
+    return this.http.post(Globals.BASE_API_URL + 'Schedule', value)
   }
-  UpdateScheduleFH(value: ScheduleFHVM) {
-    return this.http.put(Globals.BASE_API_URL + 'ScheduleFH', value)
+  UpdateSchedule(value: ScheduleVM) {
+    return this.http.put(Globals.BASE_API_URL + 'Schedule', value)
   }
-  DeleteScheduleFH(id: number) {
-    return this.http.delete(Globals.BASE_API_URL + 'ScheduleFH/' + id)
+  DeleteSchedule(id: number) {
+    return this.http.delete(Globals.BASE_API_URL + 'Schedule/' + id)
   }
-  SearchScheduleFH(value: ScheduleFHVM): Observable<ScheduleFHVM[]> {
-    return this.http.post<ScheduleFHVM[]>(Globals.BASE_API_URL + 'ScheduleFH/Search', value).pipe();
+  SearchSchedule(value: ScheduleVM): Observable<ScheduleVM[]> {
+    return this.http.post<ScheduleVM[]>(Globals.BASE_API_URL + 'Schedule/Search', value).pipe();
   }
 
 }

@@ -1,4 +1,4 @@
-import { ManageScheduleComponent } from './Schedule/manage-schedule/manage-schedule.component';
+import { ManageCoursescheduleComponent } from './Schedule/manage-courseschedule/manage-courseschedule.component';
 import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -77,7 +77,7 @@ import { ManageVocabularyComponent } from './manage-vocabulary/manage-vocabulary
 import { ManageCityComponent } from './manage-city/manage-city.component';
 import { ManageCityStudentComponent } from './manage-city-student/manage-city-student.component';
 import { ManageStudentComponent } from './manage-student/manage-student.component';
-import { ManageScheduleFHComponent } from './manage-schedule-fh/manage-schedule-fh.component';
+import { ManageScheduleComponent } from './manage-schedule/manage-schedule.component';
 import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
@@ -86,7 +86,7 @@ import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-ta
   declarations: [
     ManageUserComponent,
     ManageCourseComponent,
-    ManageScheduleComponent,
+    ManageCoursescheduleComponent,
     ManageInquiryComponent,
     ManageCourseDetailComponent,
     ScheduleListComponent,
@@ -97,7 +97,7 @@ import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-ta
     ManageCityComponent,
     ManageCityStudentComponent,
     ManageStudentComponent,
-    ManageScheduleFHComponent,
+    ManageScheduleComponent,
   ],
   imports: [
     NgxMatDatetimePickerModule,

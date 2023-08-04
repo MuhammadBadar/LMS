@@ -1,7 +1,7 @@
 import { ManageCourseDetailComponent } from './manage-course-detail/manage-course-detail.component';
 import { ManageInquiryComponent } from './manage-inquiry/manage-inquiry.component';
 import { ScheduleListComponent } from './Schedule/schedule-list/schedule-list.component';
-import { ManageScheduleComponent } from './Schedule/manage-schedule/manage-schedule.component';
+import { ManageCoursescheduleComponent } from './Schedule/manage-courseschedule/manage-courseschedule.component';
 import { ManageCourseComponent } from './manage-course/manage-course.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
 import { NgModule } from '@angular/core';
@@ -12,7 +12,7 @@ import { ManageCityComponent } from './manage-city/manage-city.component';
 import { ManageVocabularyComponent } from './manage-vocabulary/manage-vocabulary.component';
 import { ManageCityStudentComponent } from './manage-city-student/manage-city-student.component';
 import { ManageStudentComponent } from './manage-student/manage-student.component';
-import { ManageScheduleFHComponent } from './manage-schedule-fh/manage-schedule-fh.component';
+import { ManageScheduleComponent } from './manage-schedule/manage-schedule.component';
 import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
 
 const routes: Routes = [{
@@ -38,7 +38,7 @@ const routes: Routes = [{
     },
     {
       path: "schedule",
-      component: ManageScheduleComponent,
+      component: ManageCoursescheduleComponent,
       pathMatch: "full"
     },
     {
@@ -95,7 +95,7 @@ const routes: Routes = [{
     },
     {
       path: "ScheduleFH",
-      component: ManageScheduleFHComponent,
+      component: ManageScheduleComponent,
       pathMatch: "full"
     },
   ]

@@ -32,6 +32,7 @@ namespace LMS.DAL
             {
                 throw ex;
             }
+           
         }
 
         //      public static MySqlCommand OpenMySqlConnection()
@@ -84,6 +85,10 @@ namespace LMS.DAL
             {
                 throw ex;
             }
+            finally
+            {
+                cmd.Dispose();
+            }
         }
 
         public static MySqlCommand EndTransaction(MySqlCommand cmd)
@@ -96,6 +101,10 @@ namespace LMS.DAL
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                cmd.Dispose();
             }
         }
 
@@ -110,6 +119,10 @@ namespace LMS.DAL
             {
                 throw ex;
             }
+            finally
+            {
+                cmd.Dispose();
+            }
         }
 
         internal static MySqlCommand SetStoredProcedure(MySqlCommand cmd, string GetNextId)
@@ -123,6 +136,10 @@ namespace LMS.DAL
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                cmd.Dispose();
             }
         }
 
@@ -139,6 +156,10 @@ namespace LMS.DAL
             {
                 throw ex;
             }
+            finally
+            {
+                cmd.Dispose();
+            }
         }
 
         internal static int ExecuteScalar(MySqlCommand cmd)
@@ -152,6 +173,10 @@ namespace LMS.DAL
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                cmd.Dispose();
             }
         }
 

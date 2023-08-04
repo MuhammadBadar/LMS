@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManageScheduleFHComponent } from './manage-schedule-fh.component';
+import { ManageScheduleComponent } from './manage-schedule.component';
 
 describe('ManageScheduleFHComponent', () => {
-  let component: ManageScheduleFHComponent;
-  let fixture: ComponentFixture<ManageScheduleFHComponent>;
+  let component: ManageScheduleComponent;
+  let fixture: ComponentFixture<ManageScheduleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ManageScheduleFHComponent ]
+      declarations: [ ManageScheduleComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ManageScheduleFHComponent);
+    fixture = TestBed.createComponent(ManageScheduleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

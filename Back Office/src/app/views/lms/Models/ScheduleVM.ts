@@ -1,22 +1,17 @@
 export class ScheduleVM {
     id!: number
-    courseId: number = 0
-    description?: string
-    logoBase64Path?: string
-    orientationClass?: Date
-    startDate?: Date
-    classTimings?: ClassTimingVM[] = new Array();
-    course?: string
-    isActive?:boolean
-}
-export class ClassTimingVM {
-    id!: number
-    weekDayId: number = 0
-    timeFrom?: string
-    timeTo?: string
-    isActive: boolean = true;
-    dBoperation?: number;
-    schId?: number;
-    editMode: boolean = false
-    weekDay?: string
+    userId: string
+    user?: string
+    roleId: string
+    role?: string
+    entityId: number = 0;
+    entity?: string
+    scheduleTypeId: number = 0;
+    scheduleType?: string
+    workingTypeId?: number = 0;
+    workingType?: string
+    workingHours?: string
+    isActive?: boolean
+  parentId: number | undefined
+  enumTypeId: number | undefined
 }

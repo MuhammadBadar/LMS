@@ -8,7 +8,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import Swal from 'sweetalert2';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ClassTimingVM, ScheduleVM } from '../../Models/ScheduleVM';
+import { ClassTimingVM, CourseScheduleVM } from '../../Models/CourseScheduleVM';
 
 @Component({
   selector: 'app-schedule-list',
@@ -24,9 +24,9 @@ import { ClassTimingVM, ScheduleVM } from '../../Models/ScheduleVM';
   ],
 })
 export class ScheduleListComponent implements OnInit {
-  Schedule: ScheduleVM[] | undefined;;
+  Schedule: CourseScheduleVM[] | undefined;;
   selectedRowIndex = -1;
-  selectedRow: ScheduleVM
+  selectedRow: CourseScheduleVM
   Edit: boolean = true;
   isPosted: boolean = false
   columnsToDisplay = ['expand', 'course', 'logo', 'orientationClass', 'startDate', 'description','isActive', 'Action'];
@@ -44,21 +44,21 @@ export class ScheduleListComponent implements OnInit {
     public catSvc: CatalogService,
     //  private _loc: Location,
   ) {
-    this.selectedRow = new ScheduleVM;
+    this.selectedRow = new CourseScheduleVM;
   }
   ngOnInit(): void {
     this.GetSchedule();
   }
-  highlight(row: ScheduleVM) {
+  highlight(row: CourseScheduleVM) {
     debugger
-    this.selectedRow = new ScheduleVM
+    this.selectedRow = new CourseScheduleVM
     this.selectedRowIndex = row.id;
     this.selectedRow = row
   }
   GetSchedule() {
-    this.selectedRow = new ScheduleVM;
-    this.lmsSvc.GetSchedule().subscribe({
-      next: (res: ScheduleVM[]) => {
+    this.selectedRow = new CourseScheduleVM;
+    this.lmsSvc.GetCourseSchedule().subscribe({
+      next: (res: CourseScheduleVM[]) => {
         this.Schedule = res;
         this.dataSource = new MatTableDataSource(this.Schedule);
       }, error: (e) => {
@@ -67,7 +67,7 @@ export class ScheduleListComponent implements OnInit {
       }
     })
   }
-  EditSchedule(Schedule: ScheduleVM) {
+  EditSchedule(Schedule: CourseScheduleVM) {
     this.route.navigate(['/lms/schedule'], {
       queryParams: {
         id: Schedule.id
@@ -86,7 +86,7 @@ export class ScheduleListComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        this.lmsSvc.DeleteSchedule(id).subscribe({
+        this.lmsSvc.DeleteCourseSchedule(id).subscribe({
           next: (data: any) => {
             Swal.fire(
               'Deleted!',
@@ -104,6 +104,6 @@ export class ScheduleListComponent implements OnInit {
   }
   Refresh() {
     this.selectedRowIndex = -1
-    this.selectedRow = new ScheduleVM
+    this.selectedRow = new CourseScheduleVM
   }
 }
