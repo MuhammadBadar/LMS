@@ -1,21 +1,13 @@
-<div class="event-dialog-wrapper" style="z-index: 100;">
-    <mat-toolbar matDialogTitle class="mat-primary m-0"
-        style="background-color:  rgb(2, 42, 75);color: black; height: 50px; margin-top: 15px;">
-        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 13px;">
-            <span *ngIf="Add" class="title dialog-title" style="color:white;">
-                <p>Manage ScheduleFH</p>
-            </span>
-            <span *ngIf="Edit" class="title dialog-title" style="color:rgb(224, 26, 26);">
-                <p>Edit ScheduleFH</p>
-            </span>
-           
-        </div>
-    </mat-toolbar>
-    </div>
+<div class="container-fluid page">
+  <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+      <div *ngIf="Add">Manage ScheduleFH
+      </div>
+      <div *ngIf="Edit">Edit ScheduleFH
+      </div>
+  </div>
 
 
-
-            <div class="page_content shadow p-3 position-relative">
+     <div class="page_content shadow p-3 position-relative">
      <form #scheduleFHForm="ngForm">
         <mat-label>Entity:</mat-label>
         <div fxLayout="row" fxLayoutAlign="space-between">
@@ -29,7 +21,7 @@
             <div *ngIf="selectedScheduleFH.entityId == user">
               <Row>
                 <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
-                  <mat-form-field appearance="outline" fxFlex="49%">
+                  <mat-form-field appearance="outline" fxFlex="100%">
                     <mat-label>Please Select User*</mat-label>
                     <mat-select name="userId" [(ngModel)]="selectedScheduleFH.userId">
                       <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
@@ -52,7 +44,7 @@
               <div *ngIf="selectedScheduleFH.entityId == role">
                 <Row>
                   <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
-                    <mat-form-field appearance="outline" fxFlex="49%">
+                    <mat-form-field appearance="outline" fxFlex="100%">
                       <mat-label>Please Select Role*</mat-label>
                       <mat-select name="roleId" [(ngModel)]="selectedScheduleFH.roleId">
                         <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
@@ -72,121 +64,42 @@
                 </Row>
               </div>       
           
-          </div>
+         
 
-        <!-- <form scheduleFHForm="ngForm">
-           <div *ngIf="selectedScheduleFH.entityId == user">
-              <Row>
-                <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
-                    <mat-form-field appearance="outline" fxFlex="49%">
-                        <mat-label>Please Select User*</mat-label>
-                        <mat-select name="userId" [(ngModel)]="selectedScheduleFH.userId">
-                            <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
-                            <mat-option *ngFor="let val of users" [value]="val.id">
-                               
-                                {{val.userName}}
-                            </mat-option>
-                        </mat-select>
-                        <div matSuffix>
-                            <button mat-icon-button style="color:#940540 ; "
-                                (click)="OpenUserDialog(); $event.stopPropagation()" cTooltip="Explore ScheduleFHType ">
-                                <mat-icon>add</mat-icon>
-                            </button>
-                        </div>
-                    </mat-form-field>
-                </div>
-                </Row>
-            
-                 <div *ngIf="selectedScheduleFH.entityId == role">
-                                <Row>
-                        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
-                            <mat-form-field appearance="outline" fxFlex="49%">
-                                <mat-label>Please Select Role*</mat-label>
-                                <mat-select name="roleId" [(ngModel)]="selectedScheduleFH.roleId">
-                                    <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
-                                    <mat-option *ngFor="let val of roles" [value]="val.id">
-                                        {{val.name}}
-                                    </mat-option>
-                                </mat-select>
-                                <div matSuffix>
-                                    <button mat-icon-button style="color:#940540 ; "
-                                        (click)="OpenRoleDialog(); $event.stopPropagation()" cTooltip="Explore ScheduleFHType ">
-                                        <mat-icon>add</mat-icon>
-                                    </button>
-                                </div>
-                            </mat-form-field>
-                        </div>
-                        </Row>
-                         -->
- 
+          
 <!-- 
-                          
-                              <div *ngIf="selectedScheduleFH.entityId == user">
-                                <Row>
-                                  <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
-                                    <mat-form-field appearance="outline" fxFlex="49%">
-                                      <mat-label>Please Select User*</mat-label>
-                                      <mat-select name="userId" [(ngModel)]="selectedScheduleFH.userId">
-                                        <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
-                                        <mat-option *ngFor="let val of users" [value]="val.id">
-                                          {{ val.userName }}
-                                        </mat-option>
-                                      </mat-select>
-                                      <div matSuffix>
-                                        <button mat-icon-button style="color:#940540;" (click)="OpenUserDialog(); $event.stopPropagation()"
-                                          cTooltip="Explore ScheduleFHType">
-                                          <mat-icon>add</mat-icon>
-                                        </button>
-                                      </div>
-                                    </mat-form-field>
-                                  </div>
-                                </Row>
-                              </div>
-                          
-                              <div *ngIf="selectedScheduleFH.entityId == role">
-                                <Row>
-                                  <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
-                                    <mat-form-field appearance="outline" fxFlex="49%">
-                                      <mat-label>Please Select Role*</mat-label>
-                                      <mat-select name="roleId" [(ngModel)]="selectedScheduleFH.roleId">
-                                        <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
-                                        <mat-option *ngFor="let val of roles" [value]="val.id">
-                                          {{ val.name }}
-                                        </mat-option>
-                                      </mat-select>
-                                      <div matSuffix>
-                                        <button mat-icon-button style="color:#940540;" (click)="OpenRoleDialog(); $event.stopPropagation()"
-                                          cTooltip="Explore ScheduleFHType">
-                                          <mat-icon>add</mat-icon>
-                                        </button>
-                                      </div>
-                                    </mat-form-field>
-                                  </div>
-                                </Row>
-                              </div>
-                            </form>
-                          </div> -->
-                          
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <mat-label>Schedule Type:</mat-label>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+          <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+              <mat-label> Select ScheduleType</mat-label>
+              <mat-select name="scheduleTypeId" #scheduleTypeId="ngModel" required="true"
+                  [(ngModel)]="selectedScheduleFH.scheduleTypeId">
+                  <mat-option [value]="0">--Please Select--</mat-option>
+                  <mat-option *ngFor="let pt of ScheduleType" [value]=" pt.id">
+                      {{ pt.name}}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
+          
+     <mat-radio-group fxFlex="48%" appearance="outline" class="form-group">
+     <mat-label>Working Type</mat-label>
+    <mat-radio-group fxFlex="49%" required="true" name="workingTypeId"  #workingTypeId="ngModel"
+     [(ngModel)]="selectedScheduleFH.workingTypeId" >
+          <mat-radio-button *ngFor="let pt of WorkingType" [value]=" pt.id">
+               {{ pt.name}}
+          </mat-radio-button>
+        </mat-radio-group>
+    </mat-radio-group>
+  
+          
+      </div> -->
+   
+      <div fxLayout="row" fxLayoutAlign="space-between">
+                
+               
                 <div fxLayout="row" fxLayoutAlign="space-between">
-                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                  <!-- <mat-label>Schedule Type:</mat-label> -->
+                <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
                     <mat-label> Select ScheduleType</mat-label>
                     <mat-select name="scheduleTypeId" #scheduleTypeId="ngModel" required="true"
                         [(ngModel)]="selectedScheduleFH.scheduleTypeId">
@@ -197,32 +110,31 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-     
+            <!-- <mat-label>Working Hours:</mat-label> -->
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
+                    <mat-label>WorkingHours</mat-label>
+                    <input matInput required #name="ngModel" name="workingHours" [(ngModel)]="selectedScheduleFH.workingHours" />
+                </mat-form-field>
+            </div>
+          </div>  
 
-
+        </div>
 
         <mat-label>Working Type:</mat-label>
         <div fxLayout="row" fxLayoutAlign="space-between"> 
           <mat-radio-group fxFlex="48%" appearance="outline" class="form-group">
-          <!-- <mat-label> Select WorkingType</mat-label> -->
-          <mat-radio-group fxFlex="49%" required="true" name="workingTypeId"  #workingTypeId="ngModel"
+         
+          <mat-radio-group fxFlex="100%" required="true" name="workingTypeId"  #workingTypeId="ngModel"
            [(ngModel)]="selectedScheduleFH.workingTypeId" >
                 <mat-radio-button *ngFor="let pt of WorkingType" [value]=" pt.id">
                      {{ pt.name}}
                 </mat-radio-button>
               </mat-radio-group>
           </mat-radio-group>
-          </div> 
+          </div>  
 
-
-          <mat-label>Working Hours:</mat-label>
-          <div fxLayout="row" fxLayoutAlign="space-between">
-              <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
-                  <mat-label>WorkingHours</mat-label>
-                  <input matInput required #name="ngModel" name="workingHours" [(ngModel)]="selectedScheduleFH.workingHours" />
-              </mat-form-field>
-          </div>
-          
+         
         <mat-checkbox name="isActive" [(ngModel)]="selectedScheduleFH.isActive">Is Active</mat-checkbox>
         <div fxLayoutAlign="end end">
             <c-spinner *ngIf="proccessing" style="height: 50px;width: 50px;color: rgb(3, 71, 102);"></c-spinner>
@@ -237,64 +149,70 @@
 </div>
 </div>
 
-
-<c-card style="padding: 10px; margin-top: 30px;" class="mat-elevation-z8">
-    <h5 cCardTitle>ScheduleFh List</h5>
-    <c-card-body style="padding: 10px;margin: 5px;border-radius: 10px;">
-        <div class="example-table-container">
-<section class=" example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;margin-top: 20px;">
- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin-top: 20px;">
-
-<ng-container matColumnDef="role">
-<th mat-header-cell *matHeaderCellDef>Role </th>
-<td mat-cell *matCellDef="let element"> {{element.role}} </td>
-</ng-container>
-
-<ng-container matColumnDef="user">
-<th mat-header-cell *matHeaderCellDef>User </th>
-<td mat-cell *matCellDef="let element"> {{element.user}} </td>
-</ng-container>
-
-<ng-container matColumnDef="scheduleType">
-<th mat-header-cell *matHeaderCellDef>ScheduleType </th>
-<td mat-cell *matCellDef="let element"> {{element.scheduleType}} </td>
-</ng-container>
-
-<ng-container matColumnDef="workingType">
-<th mat-header-cell *matHeaderCellDef> WorkingFor </th>
-<td mat-cell *matCellDef="let element"> {{element.workingType}} </td>
-</ng-container>
-
-
-<ng-container matColumnDef="workingHours">
-<th mat-header-cell *matHeaderCellDef> Working Hours </th>
-<td mat-cell *matCellDef="let element"> {{element.workingHours}} </td>
-</ng-container>
-
-
-<ng-container matColumnDef="isActive">
-<th mat-header-cell *matHeaderCellDef> Is Active </th>
-<td mat-cell *matCellDef="let element"> {{element.isActive ? 'Yes' : 'No'}} </td>
-</ng-container>
-
-<ng-container matColumnDef="actions" stickyEnd="true">
-<th mat-header-cell *matHeaderCellDef>
-<p style="font-size: 14px;text-align: center;">Actions</p>
-</th>
-<td mat-cell *matCellDef="let row">
-<div style="text-align: center;">
-    <button mat-icon-button mat-sm-button (click)="EditScheduleFH(row)" style=" color:#1e293b ; "
-        cTooltip=" Edit ScheduleFH">
-        <mat-icon>edit</mat-icon>
-    </button>
-
-     <button mat-icon-button mat-sm-button color="warn" (click)="DeleteScheduleFH(row.id)"
-        cTooltip="Delete ScheduleFH">
-        <mat-icon>delete</mat-icon>
-    </button> 
-</div>
-</td>
-</ng-container>
-<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+ <c-card style="padding: 10px; margin-top: 30px;" class="mat-elevation-z8">
+    <h5 cCardTitle>ScheduleFH List</h5>
+      <c-card-body style="padding: 10px;margin: 5px;border-radius: 10px;">
+          <div class="example-table-container">
+            <section class="example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <ng-container matColumnDef="id" id="id">
+                      <th mat-header-cell *matHeaderCellDef>Sr No </th>
+                      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="role">
+                      <th mat-header-cell *matHeaderCellDef>Role </th>
+                      <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+                    </ng-container>
+          
+                    <ng-container matColumnDef="user">
+                      <th mat-header-cell *matHeaderCellDef>User </th>
+                      <td mat-cell *matCellDef="let element"> {{element.user}} </td>
+                    </ng-container>
+          
+                    <ng-container matColumnDef="scheduleType">
+                      <th mat-header-cell *matHeaderCellDef>ScheduleType </th>
+                      <td mat-cell *matCellDef="let element"> {{element.scheduleType}} </td>
+                    </ng-container>
+          
+                    <ng-container matColumnDef="workingType">
+                      <th mat-header-cell *matHeaderCellDef> WorkingFor </th>
+                      <td mat-cell *matCellDef="let element"> {{element.workingType}} </td>
+                    </ng-container>
+          
+                    
+                    <ng-container matColumnDef="workingHours">
+                      <th mat-header-cell *matHeaderCellDef> Working Hours </th>
+                      <td mat-cell *matCellDef="let element"> {{element.workingHours}} </td>
+                    </ng-container>
+                    
+                    
+                    <ng-container matColumnDef="isActive">
+                      <th mat-header-cell *matHeaderCellDef> Is Active </th>
+                      <td mat-cell *matCellDef="let element"> {{element.isActive ? 'Yes' : 'No'}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="actions" stickyEnd="true">
+                      <th mat-header-cell *matHeaderCellDef>
+                      <p style="font-size: 14px;text-align: center;">Actions</p>
+                      </th>
+                      <td mat-cell *matCellDef="let row">
+                      <div style="text-align: center;">
+                        <button mat-icon-button mat-sm-button (click)="EditScheduleFH(row)" style=" color:#1e293b ; "
+                        cTooltip=" Edit ScheduleFH">
+                        <mat-icon>edit</mat-icon>
+                        </button>
+                    
+                        <button mat-icon-button mat-sm-button color="warn" (click)="DeleteScheduleFH(row.id)"
+                        cTooltip="Delete ScheduleFH">
+                        <mat-icon>delete</mat-icon>
+                        </button> 
+                      </div>
+                      </td>
+                    </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+               </table>
+          </section>
+       </div>
+    </c-card-body>
+ </c-card>

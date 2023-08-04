@@ -183,12 +183,12 @@ namespace LMS.Tests
         [Test]
         public void service_ScheduleFH_crud()
         {
-            ScheduleFHService schsvc = new ScheduleFHService();
+            ScheduleService schsvc = new ScheduleService();
 
             //var list = new list<coursede>();
             //list = crssvc.searchcourse();
 
-            var sch = new ScheduleFHDE();
+            var sch = new ScheduleDE();
             sch.Id = 1;
             sch.UserId = 2;
             sch.User = "related to";

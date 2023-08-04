@@ -1,14 +1,20 @@
 ﻿using Dapper;
 using LMS.Core.Entities;
 using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace LMS.DAL
 {
     public class ScheduleDAL
     {
-        #region Schedule Operations
-        public bool ManageSchedule(ScheduleDE _sch, MySqlCommand cmd = null)
+        #region Operations
+
+        public bool ManageSchedule(ScheduleDE sch, MySqlCommand? cmd)
         {
             bool closeConnectionFlag = false;
             try
@@ -22,35 +28,70 @@ namespace LMS.DAL
                     Console.WriteLine("Connection  has been created");
                 else
                     Console.WriteLine("Connection error");
-                cmd.CommandText = "ManageSchedule";
-                cmd.Parameters.AddWithValue("@id", _sch.Id);
-                cmd.Parameters.AddWithValue("@logoBase64Path", _sch.LogoBase64Path);
-                cmd.Parameters.AddWithValue("@description", _sch.Description);
-                cmd.Parameters.AddWithValue("@courseId", _sch.CourseId);
-                cmd.Parameters.AddWithValue("@orientationClass", _sch.OrientationClass);
-                cmd.Parameters.AddWithValue("@startDate", _sch.StartDate);
-                cmd.Parameters.AddWithValue("@createdOn", _sch.CreatedOn);
-                cmd.Parameters.AddWithValue("@createdById", _sch.CreatedById);
-                cmd.Parameters.AddWithValue("@modifiedOn", _sch.ModifiedOn);
-                cmd.Parameters.AddWithValue("@modifiedById", _sch.ModifiedById);
-                cmd.Parameters.AddWithValue("@isActive", _sch.IsActive);
-                cmd.Parameters.AddWithValue("@DBoperation", _sch.DBoperation.ToString());
-
+                cmd.CommandText = "Manage_Schedule";
+                cmd.Parameters.AddWithValue("@prm_Id", sch.Id);
+                cmd.Parameters.AddWithValue("@prm_UserId", sch.UserId);
+                cmd.Parameters.AddWithValue("@prm_User", sch.User);
+                cmd.Parameters.AddWithValue("@prm_RoleId", sch.RoleId);
+                cmd.Parameters.AddWithValue("@prm_Role", sch.Role);
+                cmd.Parameters.AddWithValue("@prm_EntityId", sch.EntityId);
+                cmd.Parameters.AddWithValue("@prm_Entity", sch.Entity);
+                cmd.Parameters.AddWithValue("@prm_ScheduleTypeId", sch.ScheduleTypeId);
+                cmd.Parameters.AddWithValue("@prm_ScheduleType", sch.ScheduleType);
+                cmd.Parameters.AddWithValue("@prm_WorkingTypeId", sch.WorkingTypeId);
+                cmd.Parameters.AddWithValue("@prm_WorkingType", sch.WorkingType);
+                cmd.Parameters.AddWithValue("@prm_WorkingHours", sch.WorkingHours);
+                cmd.Parameters.AddWithValue("@prm_CreatedOn", sch.CreatedOn);
+                cmd.Parameters.AddWithValue("@prm_CreatedBy", sch.CreatedById);
+                cmd.Parameters.AddWithValue("@prm_ModifiedOn", sch.ModifiedOn);
+                cmd.Parameters.AddWithValue("@prm_ModifiedBy", sch.ModifiedById);
+                cmd.Parameters.AddWithValue("@prm_IsActive", sch.IsActive);
+                cmd.Parameters.AddWithValue("@prm_DBoperation", sch.DBoperation.ToString());
+                cmd.Parameters.AddWithValue("@prm_Filter", sch.DBoperation.ToString());
                 cmd.ExecuteNonQuery();
                 return true;
             }
-            catch (Exception )
+            catch (Exception)
             {
-                throw;
+                return false;
             }
             finally
             {
                 if (closeConnectionFlag)
                     LMSDataContext.CloseMySqlConnection(cmd);
-                cmd.Parameters.Clear();
             }
         }
-        public List<ScheduleDE> SearchSchedules(string whereClause, MySqlCommand cmd = null)
+        public bool AlterSchedule(ScheduleDE sch, int? Id = null, MySqlCommand cmd = null)
+        {
+            bool closeConnectionFlag = false;
+            try
+            {
+                if (cmd == null)
+                {
+                    cmd = LMSDataContext.OpenMySqlConnection();
+                    closeConnectionFlag = true;
+                }
+                if (cmd.Connection.State == ConnectionState.Open)
+                    Console.WriteLine("Connection  has been created");
+                else
+                    Console.WriteLine("Connection error");
+                cmd.CommandText = "AlterSchedule";
+                cmd.Parameters.AddWithValue("@id", Id);
+                cmd.Parameters.AddWithValue("@DBoperation", sch.DBoperation.ToString());
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                if (closeConnectionFlag)
+                    LMSDataContext.CloseMySqlConnection(cmd);
+            }
+        }
+        public List<ScheduleDE> SearchSchedule(string whereClause, MySqlCommand cmd = null)
         {
             List<ScheduleDE> top = new List<ScheduleDE>();
             bool closeConnectionFlag = false;
@@ -70,87 +111,16 @@ namespace LMS.DAL
             }
             catch (Exception)
             {
-                throw;
-            }
-            finally
-            {
-                if (closeConnectionFlag)
-                    LMSDataContext.CloseMySqlConnection(cmd);
-                cmd.Parameters.Clear();
-            }
-        }
-        #endregion
-        #region ClassTiming Operations
-        public bool ManageClassTiming(ClassTimingDE ClassTiming, MySqlCommand cmd = null)
-        {
-            bool closeConnectionFlag = false;
-            try
-            {
-                if (cmd == null)
-                {
-                    cmd = LMSDataContext.OpenMySqlConnection();
-                    closeConnectionFlag = true;
-                }
-                if (cmd.Connection.State == ConnectionState.Open)
-                    Console.WriteLine("Connection  has been created");
-                else
-                    Console.WriteLine("Connection error");
-                cmd.CommandText = "ManageClassTiming";
-                cmd.Parameters.AddWithValue("@id", ClassTiming.Id);
-                cmd.Parameters.AddWithValue("@schId", ClassTiming.SchId);
-                cmd.Parameters.AddWithValue("@weekDayId", ClassTiming.WeekDayId);
-                cmd.Parameters.AddWithValue("@timeFrom", ClassTiming.TimeFrom);
-                cmd.Parameters.AddWithValue("@timeTo", ClassTiming.TimeTo);
-                cmd.Parameters.AddWithValue("@createdOn", ClassTiming.CreatedOn);
-                cmd.Parameters.AddWithValue("@createdById", ClassTiming.CreatedById);
-                cmd.Parameters.AddWithValue("@modifiedOn", ClassTiming.ModifiedOn);
-                cmd.Parameters.AddWithValue("@modifiedById", ClassTiming.ModifiedById);
-                cmd.Parameters.AddWithValue("@isActive", ClassTiming.IsActive);
-                cmd.Parameters.AddWithValue("@DBoperation", ClassTiming.DBoperation.ToString());
 
-                cmd.ExecuteNonQuery();
-                return true;
-            }
-            catch (Exception )
-            {
                 throw;
             }
             finally
             {
                 if (closeConnectionFlag)
                     LMSDataContext.CloseMySqlConnection(cmd);
-                cmd.Parameters.Clear();
             }
         }
-        public List<ClassTimingDE> SearchClassTimings(string whereClause, MySqlCommand cmd = null)
-        {
-            List<ClassTimingDE> top = new List<ClassTimingDE>();
-            bool closeConnectionFlag = false;
-            try
-            {
-                if (cmd == null)
-                {
-                    cmd = LMSDataContext.OpenMySqlConnection();
-                    closeConnectionFlag = true;
-                }
-                if (cmd.Connection.State == ConnectionState.Open)
-                    Console.WriteLine("Connection  has been created");
-                else
-                    Console.WriteLine("Connection error");
-                top = cmd.Connection.Query<ClassTimingDE>("call lms.SearchClassTiming( '" + whereClause + "')").ToList();
-                return top;
-            }
-            catch (Exception exp)
-            {
-                return top;
-            }
-            finally
-            {
-                if (closeConnectionFlag)
-                    LMSDataContext.CloseMySqlConnection(cmd);
-                cmd.Parameters.Clear();
-            }
-        }
+
         #endregion
     }
 }

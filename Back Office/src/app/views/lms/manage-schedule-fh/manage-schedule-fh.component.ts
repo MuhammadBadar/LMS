@@ -17,12 +17,12 @@ import { Entities } from  '../../lms/models/Enums/Entities';
 @Component({
   selector: 'app-manage-schedule-fh',
   templateUrl: './manage-schedule-fh.component.html',
-  styleUrls: ['./manage-schedule-fh.component.scss']
+  styleUrls: ['./manage-schedule-fh.component.css']
 })
 export class ManageScheduleFHComponent {
 
   @ViewChild('scheduleFHForm', { static: true }) scheduleFHForm!: NgForm;
-  displayedColumns: string[] = [`user`,`role`,`scheduleType`,`workingType`,`workingHours`,'isActive', 'actions'];
+  displayedColumns: string[] = [`user`,`role`,`scheduleType`,`workingType`,`workingHours`,'isActive'];
   selectedScheduleFH: ScheduleFHVM;
   users: UserVM[] | undefined;
   dialogRef: any;
