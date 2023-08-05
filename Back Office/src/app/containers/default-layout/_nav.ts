@@ -102,7 +102,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Settings',
-    url: '/items/manageSetting',
+    url: '/catalog/manageSetting',
   },
   // {
   //   name: 'Security',

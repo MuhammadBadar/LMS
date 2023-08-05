@@ -18,24 +18,15 @@
                       <mat-icon>close</mat-icon>
                     </button>
                   </div>
-                
-             <!-- <button mat-icon-button style="color:white;margin-top: 0; padding-top: 0;" (click)="dialogRefe.close()"
-                    aria-label="Close dialog">
-                    <mat-icon>close</mat-icon>
-                </button>   -->
-
-                <!-- <button mat-icon-button style="color:#940540 ; "
-                (click)="dialogRefe.close(); $event.stopPropagation()" cTooltip="Explore CityType "
-                *ngIf="isDialogOpen">
-                <mat-icon>add</mat-icon>
-              </button>
-               -->
+           
             </div>
         </mat-toolbar>
         </div>
        
                     <div class="page_content shadow p-3 position-relative">
                         <form #CityForm="ngForm">
+
+                            <ROW>
                             <div fxLayout="row" fxLayoutAlign="space-between">
                                
                                 <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
@@ -43,11 +34,12 @@
                                     <input matInput required #name="ngModel" name="name" [(ngModel)]="selectedCity.name" />
                                 </mat-form-field>
                             </div>
+                        </ROW>
                             <mat-checkbox name="isActive" [(ngModel)]="selectedCity.isActive">Is Active</mat-checkbox>
                             <div fxLayoutAlign="end end">
                                 <c-spinner *ngIf="proccessing" style="height: 50px;width: 50px;color: rgb(3, 71, 102);"></c-spinner>
                                 <div style="margin-top: 10px;" *ngIf="!proccessing">
-                                    <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveCity()">Submit</button>
+                                    <button mat-raised-button  color="primary" (click)="SaveCity()">Submit</button>
                     <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateCity()">Update</button>
                      </div>
                    <div>  <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"

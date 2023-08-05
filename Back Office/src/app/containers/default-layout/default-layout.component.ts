@@ -5,9 +5,9 @@ import { Component, OnInit, ChangeDetectorRef, IterableDiffers } from '@angular/
 import { INavData } from '@coreui/angular';
 
 import { navItems } from './_nav';
-import { SettingsTypeVM } from 'src/app/views/items/Models/SettingsTypeVM';
+import { SettingsTypeVM } from 'src/app/views/catalog/Models/SettingsTypeVM';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SettingsVM } from 'src/app/views/items/Models/SettingsVM';
+import { SettingsVM } from 'src/app/views/catalog/Models/SettingsVM';
 import { BehaviorSubject } from 'rxjs';
 import { EnumTypeVM } from 'src/app/views/security/models/EnumTypeVM';
 import { CatalogService } from 'src/app/views/catalog/catalog.service';
@@ -15,6 +15,7 @@ import { CatalogService } from 'src/app/views/catalog/catalog.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './default-layout.component.html',
+
 })
 export class DefaultLayoutComponent implements OnInit {
   navItems: INavData[] = [];
