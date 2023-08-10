@@ -6,5 +6,7 @@ export enum EnumTypeVM {
 	cities=1004,
     Entities,
     ScheduleType,
-    WorkingType
+    WorkingType,
+    EventType,
+    Location=1009
 }

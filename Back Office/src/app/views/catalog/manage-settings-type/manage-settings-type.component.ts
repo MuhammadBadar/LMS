@@ -5,7 +5,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
-import { ItemsService } from '../items.service';
+import { ItemsService } from '../../items/items.service';
 import { SettingsVM } from '../Models/SettingsVM';
 import { CatalogService } from '../../catalog/catalog.service';
 

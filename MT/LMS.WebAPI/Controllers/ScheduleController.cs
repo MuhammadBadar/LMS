@@ -32,10 +32,17 @@ namespace LMS.WebAPI.Controllers
             List<ScheduleDE> list = _schSVC.SearchSchedule(schedule);
             return Ok(list);
         }
+        [HttpGet("{id}")]
+        public ActionResult GetScheduleById(int id)
+        {
+            ScheduleDE Schedule = new ScheduleDE { Id = id };
+            var values = _schSVC.SearchSchedule(Schedule);
+            return Ok(values);
+        }
         [HttpGet]
 
         public IActionResult GetSchedule()
-      {
+     {
             ScheduleDE schSC = new ScheduleDE();
             List<ScheduleDE> schedule = _schSVC.SearchSchedule(schSC);
             return Ok(schedule);

@@ -34,6 +34,35 @@ namespace LMS.DAL
 			
             return retVal;
         }
+
+
+        public int GetMaxId(string mod)
+        {
+            int retVal = 0;
+            MySqlCommand cmd = LMSDataContext.OpenMySqlConnection();
+            try
+            {
+                cmd = LMSDataContext.SetStoredProcedure(cmd, "GetMaxId");
+                retVal = LMSDataContext.ExecuteScalar(LMSDataContext.AddParameters(cmd
+                    , "@prm_TableName", mod.ToString()
+                    ));
+               // retVal += 1;
+                //if (retVal != -1)
+                //    retVal += 1;
+                //else     
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                LMSDataContext.CloseMySqlConnection(cmd);
+            }
+
+            return retVal;
+        }
+
         public List<EnumValueDE> GetEnumValues(EnumType type, MySqlCommand cmd = null)
         {
             List<EnumValueDE> top = new List<EnumValueDE>();
@@ -106,7 +135,7 @@ namespace LMS.DAL
                                 "@prm_HeaderId", headerId,
                                 "@prm_ColumnName", columnName
                     ));
-                retVal += 1;
+                //retVal += 1;
                 //if (retVal != -1)
                 //    retVal += 1;
                 //else     
