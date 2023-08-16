@@ -14,12 +14,13 @@ namespace LMS.Core.Entities
         #region Class Properties
         public string? UserId { get; set; }
         public string? RoleId { get; set; }
-        public int? DAYId { get; set; }
         public int? EntityId { get; set; }
         public int? ScheduleTypeId { get; set; }
         public int? WorkingTypeId { get; set; }
         public string? WorkingHours { get; set; }
-        public List<ScheduleDaysEventsDE> ScheduleDayEvents { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public List<ScheduleDaysEventsDE> ScheduleDaysEvents { get; set; }
 
       
         #region View Properties
@@ -29,14 +30,13 @@ namespace LMS.Core.Entities
         public string? Entity { get; set; }
         public string? ScheduleType { get; set; }
         public string? WorkingType { get; set; }
-        public string? Day { get; set; }
 
         #endregion
 
         #endregion
         public ScheduleDE()
         {
-            this.ScheduleDayEvents = new List<ScheduleDaysEventsDE>();
+            this.ScheduleDaysEvents = new List<ScheduleDaysEventsDE>();
         }
     }
 }

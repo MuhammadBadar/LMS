@@ -6,14 +6,14 @@ export class ScheduleVM {
     role?: string
     entityId: number = 0;
     entity?: string
-    dayId: number = 0;
-    day?: any
-    scheduleDayEvent?: ScheduleDayEventsVM[] = new Array();
+    ScheduleDaysEvents?: ScheduleDayEventsVM[] = new Array();
     scheduleTypeId: number = 0;
     scheduleType?: string
     workingTypeId?: number = 0;
     workingType?: string
     workingHours?: string
+    startDate?: Date
+    endDate?: Date
     isActive?: boolean
   parentId: number | undefined
   enumTypeId: number | undefined
@@ -36,5 +36,6 @@ export class ScheduleDayEventsVM {
   dBoperation?: number;
   scheduleId?: number;
   editMode: boolean = false
+  userId: string
 
 }

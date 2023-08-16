@@ -37,7 +37,8 @@ namespace LMS.DAL
                 cmd.Parameters.AddWithValue("@prm_ScheduleTypeId", sch.ScheduleTypeId);
                 cmd.Parameters.AddWithValue("@prm_WorkingTypeId", sch.WorkingTypeId);
                 cmd.Parameters.AddWithValue("@prm_WorkingHours", sch.WorkingHours);
-                cmd.Parameters.AddWithValue("@prm_DAYId", sch.DAYId);
+                cmd.Parameters.AddWithValue("@prm_StartDate", sch.StartDate);
+                cmd.Parameters.AddWithValue("@prm_EndDate", sch.EndDate);
                 cmd.Parameters.AddWithValue("@prm_CreatedOn", sch.CreatedOn);
                 cmd.Parameters.AddWithValue("@prm_CreatedBy", sch.CreatedById);
                 cmd.Parameters.AddWithValue("@prm_ModifiedOn", sch.ModifiedOn);
@@ -139,8 +140,8 @@ namespace LMS.DAL
                 cmd.Parameters.AddWithValue("@StartTime", Events.StartTime);
                 cmd.Parameters.AddWithValue("@EndTime", Events.EndTime);
                 cmd.Parameters.AddWithValue("@EventTypeId", Events.EventTypeId);
-                cmd.Parameters.AddWithValue("@ScheduleTypeId", Events.ScheduleTypeId);
-                cmd.Parameters.AddWithValue("@DayId", Events.DayId);
+                cmd.Parameters.AddWithValue("@schId", Events.SchId); 
+                cmd.Parameters.AddWithValue("@prm_DAYId", Events.DAYId);
                 cmd.Parameters.AddWithValue("@LocationId", Events.LocationId);
                 cmd.Parameters.AddWithValue("@createdOn", Events.CreatedOn);
                 cmd.Parameters.AddWithValue("@createdById", Events.CreatedById);

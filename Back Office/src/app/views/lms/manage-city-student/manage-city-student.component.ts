@@ -17,7 +17,7 @@ import { ManageStudentComponent } from '../manage-student/manage-student.compone
 @Component({
   selector: 'app-manage-city-student',
   templateUrl: './manage-city-student.component.html',
-  styleUrls: ['./manage-city-student.component.scss']
+  styleUrls: ['./manage-city-student.component.css']
 })
 export class ManageCityStudentComponent {
  

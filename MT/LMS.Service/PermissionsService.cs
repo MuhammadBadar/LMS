@@ -58,6 +58,7 @@ namespace LMS.Services
             try
             {
                 cmd = LMSDataContext.OpenMySqlConnection();
+                closeConnectionFlag = true;
                 #region Search
 
                 string whereClause = " Where 1=1";

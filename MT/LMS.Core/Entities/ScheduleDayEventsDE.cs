@@ -11,15 +11,14 @@ namespace LMS.Core.Entities
        
         public string? StartTime { get; set; }
         public string? EndTime { get; set; }
+        public int SchId { get; set; }
         public int EventTypeId { get; set; }
-        public int ScheduleTypeId { get; set; }
         public int LocationId { get; set; }
-        public int DayId { get; set; }
+        public int? DAYId { get; set; }
 
         #region View Properties
 
         public string? EventType { get; set; }
-        public string? ScheduleType { get; set; }
         public string? Location { get; set; }
         public string? Day { get; set; }
 

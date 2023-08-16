@@ -7,7 +7,9 @@
         enums,
         enumline,
         course,
-        City, ScheduleDayEvents,
+        City,
+        Schedule,
+        
         CityStudent,
         Vocabulary,
         Student,

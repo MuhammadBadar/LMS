@@ -41,7 +41,10 @@ namespace LMS.Service
                     {
                         line.SchId = mod.Id;
                         if (line.DBoperation == DBoperations.Insert)
+                        {
                             line.Id = _corDAL.GetnextLineId(TableNames.classtiming.ToString(), mod.Id, "SchId");
+                            line.Id += 1;
+                                }
                         retVal = _CourseScheduleDAL.ManageClassTiming(line, cmd);
                     }
                 if (retVal == true)
@@ -70,6 +73,7 @@ namespace LMS.Service
             try
             {
                 cmd = LMSDataContext.OpenMySqlConnection();
+                closeConnectionFlag = true;
                 #region Search
 
                 string whereClause = " Where 1=1";

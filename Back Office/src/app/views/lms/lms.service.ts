@@ -261,22 +261,22 @@ export class LMSService {
 
 
   
-  GetScheduleDayEvents(): Observable<ScheduleDayEventsVM[]> {
-    return this.http.get<ScheduleDayEventsVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent').pipe();
-  }
-   GetScheduleDayEventsById(id: number): Observable<ScheduleDayEventsVM[]> {
-    return this.http.get<ScheduleDayEventsVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent/' + id).pipe()
-  }
-  SaveScheduleDayEvents(value: ScheduleDayEventsVM) {
-    return this.http.post(Globals.BASE_API_URL + 'ScheduleDayEvent', value)
-  }
-  UpdateScheduleDayEvents(value: ScheduleDayEventsVM) {
-    return this.http.put(Globals.BASE_API_URL + 'ScheduleDayEvent', value)
-  }
-  DeleteScheduleDayEvents(id: number) {
-    return this.http.delete(Globals.BASE_API_URL + 'ScheduleDayEvent/' + id)
-  }
-  SearchScheduleDayEvents(value: ScheduleDayEventsVM): Observable<ScheduleDayEventsVM[]> {
-    return this.http.post<ScheduleDayEventsVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent/Search', value).pipe();
-  }
+  // GetScheduleDayEvents(): Observable<ScheduleDayEventsVM[]> {
+  //   return this.http.get<ScheduleDayEventsVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent').pipe();
+  // }
+  //  GetScheduleDayEventsById(id: number): Observable<ScheduleDayEventsVM[]> {
+  //   return this.http.get<ScheduleDayEventsVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent/' + id).pipe()
+  // }
+  // SaveScheduleDayEvents(value: ScheduleDayEventsVM) {
+  //   return this.http.post(Globals.BASE_API_URL + 'ScheduleDayEvent', value)
+  // }
+  // UpdateScheduleDayEvents(value: ScheduleDayEventsVM) {
+  //   return this.http.put(Globals.BASE_API_URL + 'ScheduleDayEvent', value)
+  // }
+  // DeleteScheduleDayEvents(id: number) {
+  //   return this.http.delete(Globals.BASE_API_URL + 'ScheduleDayEvent/' + id)
+  // }
+  // SearchScheduleDayEvents(value: ScheduleDayEventsVM): Observable<ScheduleDayEventsVM[]> {
+  //   return this.http.post<ScheduleDayEventsVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent/Search', value).pipe();
+  // }
 }

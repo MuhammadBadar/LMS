@@ -31,6 +31,7 @@ namespace LMS.Service
             try
             {
                 cmd = LMSDataContext.OpenMySqlConnection();
+
                 if (mod.DBoperation == DBoperations.Insert)
                     mod.Id = _corDAL.GetnextId(TableNames.course.ToString());
                 retVal = _CourseDAL.ManageCourse(mod);
@@ -57,6 +58,7 @@ namespace LMS.Service
             try
             {
                 cmd = LMSDataContext.OpenMySqlConnection();
+                closeConnectionFlag = true;
                 #region Search
 
                 string whereClause = " Where 1=1";

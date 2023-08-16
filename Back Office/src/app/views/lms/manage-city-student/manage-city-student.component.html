@@ -1,4 +1,4 @@
-<div class="event-dialog-wrapper" style="z-index: 100;">
+<!-- <div class="event-dialog-wrapper" style="z-index: 100;">
     <mat-toolbar matDialogTitle class="mat-primary m-0"
         style="background-color:  rgb(2, 42, 75);color: black; height: 50px; margin-top: 15px;">
         <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 13px;">
@@ -18,8 +18,20 @@
     
         </div>
     </mat-toolbar>
-    </div>
+    </div> -->
 
+    <div class="container-fluid page">
+        <div class="d-flex page_box p-3 mt-2 header-sticky" style="position: sticky;">
+          <div *ngIf="Add">Manage CityStudent</div>
+          <div *ngIf="Edit">Edit CityStudent</div>
+          <div fxFlex fxLayout="row" fxLayoutAlign="end center" style="margin-top: 0; padding-top: 0;" *ngIf="isDialog">
+            <button mat-icon-button style="color: white; margin-top: 0; padding-top: 0;" 
+                (click)="dialogRefe.close()"
+                aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
 <form>
    
         <div class="page_content shadow p-3 position-relative">
@@ -119,4 +131,4 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
             </section>
-        </div>
+        

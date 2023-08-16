@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-manage-vocabulary',
   templateUrl: './manage-vocabulary.component.html',
-  styleUrls: ['./manage-vocabulary.component.scss']
+  styleUrls: ['./manage-vocabulary.component.css']
 })
 export class ManageVocabularyComponent implements OnInit {
  
