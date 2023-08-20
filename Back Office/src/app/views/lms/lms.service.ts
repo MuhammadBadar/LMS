@@ -12,7 +12,10 @@ import{LectureVM} from './Models/LectureVM';
 import{AssignTaskVM}from './Models/AssignTaskVM';
 import { StudentVM } from './Models/StudentVM';
 import { CityVM } from './Models/CityVM';
-
+import {AttendanceVM} from './Models/AttendanceVM';
+import {UserattbydateVM} from './Models/UserattbydateVM';
+import { TaskVM } from './Models/TaskVM';
+import { UserTaskbydateVM } from './Models/UsertaskbydateVM';
 import {  ScheduleDayEventsVM, ScheduleVM } from './Models/ScheduleVM';
 import { CityStudentVM } from './Models/CityStudentVM';
 import { VocabularyVM } from './Models/VocabularyVM';
@@ -258,7 +261,87 @@ export class LMSService {
     return this.http.post<ScheduleVM[]>(Globals.BASE_API_URL + 'Schedule/Search', value).pipe();
   }
 
+//Attendance lms services
+GetAttendance(): Observable<AttendanceVM[]>{
+  return this.http.get<AttendanceVM[]>(Globals.BASE_API_URL + 'Attendance').pipe();
+}
+GetAttendanceById(id: number): Observable<AttendanceVM[]> {
+  return this.http.get<AttendanceVM[]>(Globals.BASE_API_URL + 'Attendance/' + id).pipe()
+}
+SaveAttendance(value:AttendanceVM){
+  return this.http.post(Globals.BASE_API_URL + 'Attendance',value);
+}
+UpdateAttendance(value:AttendanceVM){
+  return this.http.post(Globals.BASE_API_URL + 'Attendance',value);
+}
+DeleteAttendance(id:number){
+  return this.http.delete(Globals.BASE_API_URL + 'Attendance/' + id);
+}
+SearchAttendance(value:AttendanceVM): Observable<AttendanceVM[]>{
+  return this.http.post<AttendanceVM[]>(Globals.BASE_API_URL + 'Attendance',value).pipe();
+}
 
+
+//Userattbydate lms services
+GetUserattbydate(): Observable<UserattbydateVM[]>{
+  return this.http.get<UserattbydateVM[]>(Globals.BASE_API_URL + 'Userattbydate').pipe();
+}
+GetUserattbydateById(id: number): Observable<UserattbydateVM[]> {
+  return this.http.get<UserattbydateVM[]>(Globals.BASE_API_URL + 'Userattbydate/' + id).pipe()
+}
+SaveUserattbydate(value:UserattbydateVM){
+  return this.http.post(Globals.BASE_API_URL + 'Userattbydate',value);
+}
+UpdateUserattbydate(value:UserattbydateVM){
+  return this.http.post(Globals.BASE_API_URL + 'Userattbydate',value);
+}
+DeleteUserattbydate(id:number){
+  return this.http.delete(Globals.BASE_API_URL + 'Userattbydate/' + id);
+}
+SearchUserattbydate(value:UserattbydateVM): Observable<UserattbydateVM[]>{
+  return this.http.post<UserattbydateVM[]>(Globals.BASE_API_URL + 'Userattbydate',value).pipe();
+}
+
+
+//UserTaskbydateVM lms services
+GetUserTaskbydate(): Observable<UserTaskbydateVM[]>{
+  return this.http.get<UserTaskbydateVM[]>(Globals.BASE_API_URL + 'UserTaskbydate').pipe();
+}
+GetUserTaskbydateId(id: number): Observable<UserTaskbydateVM[]> {
+  return this.http.get<UserTaskbydateVM[]>(Globals.BASE_API_URL + 'UserTaskbydate/' + id).pipe()
+}
+SaveUserTaskbydate(value:UserTaskbydateVM){
+  return this.http.post(Globals.BASE_API_URL + 'UserTaskbydate',value);
+}
+UpdateUserTaskbydate(value:UserTaskbydateVM){
+  return this.http.post(Globals.BASE_API_URL + 'UserTaskbydate',value);
+}
+DeleteUserTaskbydate(id:number){
+  return this.http.delete(Globals.BASE_API_URL + 'UserTaskbydate/' + id);
+}
+SearchUserTaskbydate(value:UserTaskbydateVM): Observable<UserTaskbydateVM[]>{
+  return this.http.post<UserTaskbydateVM[]>(Globals.BASE_API_URL + 'UserTaskbydate',value).pipe();
+}
+
+//UserTaskVM lms services
+GetTask(): Observable<TaskVM[]>{
+  return this.http.get<TaskVM[]>(Globals.BASE_API_URL + 'Task').pipe();
+}
+GetTaskId(id: number): Observable<TaskVM[]> {
+  return this.http.get<TaskVM[]>(Globals.BASE_API_URL + 'Task/' + id).pipe()
+}
+SaveTask(value:TaskVM){
+  return this.http.post(Globals.BASE_API_URL + 'Task',value);
+}
+UpdateTask(value:TaskVM){
+  return this.http.post(Globals.BASE_API_URL + 'Task',value);
+}
+DeleteTask(id:number){
+  return this.http.delete(Globals.BASE_API_URL + 'Task/' + id);
+}
+SearchTask(value:TaskVM): Observable<TaskVM[]>{
+  return this.http.post<TaskVM[]>(Globals.BASE_API_URL + 'Task',value).pipe();
+}
 
   
   // GetScheduleDayEvents(): Observable<ScheduleDayEventsVM[]> {

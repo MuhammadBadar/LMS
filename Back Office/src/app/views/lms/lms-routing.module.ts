@@ -14,6 +14,10 @@ import { ManageCityStudentComponent } from './manage-city-student/manage-city-st
 import { ManageStudentComponent } from './manage-student/manage-student.component';
 import { ManageScheduleComponent } from './manage-schedule/manage-schedule.component';
 import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
+import { ManageAttendanceComponent } from './manage-attendance/manage-attendance.component';
+import { ManageUserattbydateComponent } from './manage-userattbydate/manage-userattbydate.component';
+import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
+import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-usertaskbydate.component';
 
 const routes: Routes = [{
   path: '',
@@ -94,8 +98,31 @@ const routes: Routes = [{
       pathMatch: "full"
     },
     {
-      path: "ScheduleFH",
+      path: "Schedule",
       component: ManageScheduleComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "Attendance",
+      component: ManageAttendanceComponent,
+      pathMatch: "full"
+    },
+
+    {
+      path: "Userattbydate",
+      component: ManageUserattbydateComponent,
+      pathMatch: "full"
+    },
+
+    {
+      path: "Tasks",
+      component: ManageTasksComponent,
+      pathMatch: "full"
+    },
+
+    {
+      path: "Usertaskbydate",
+      component: ManageUsertaskbydateComponent,
       pathMatch: "full"
     },
   ]

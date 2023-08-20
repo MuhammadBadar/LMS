@@ -79,6 +79,10 @@ import { ManageCityStudentComponent } from './manage-city-student/manage-city-st
 import { ManageStudentComponent } from './manage-student/manage-student.component';
 import { ManageScheduleComponent } from './manage-schedule/manage-schedule.component';
 import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
+import { ManageAttendanceComponent } from './manage-attendance/manage-attendance.component';
+import { ManageUserattbydateComponent } from './manage-userattbydate/manage-userattbydate.component';
+import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
+import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-usertaskbydate.component';
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
 
@@ -98,6 +102,10 @@ import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-ta
     ManageCityStudentComponent,
     ManageStudentComponent,
     ManageScheduleComponent,
+    ManageAttendanceComponent,
+    ManageUserattbydateComponent,
+    ManageTasksComponent,
+    ManageUsertaskbydateComponent,
   ],
   imports: [
     NgxMatDatetimePickerModule,
