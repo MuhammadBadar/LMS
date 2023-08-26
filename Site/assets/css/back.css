@@ -1,0 +1,94 @@
+body{
+	
+	font-family:"Helvetica Neue", Helvetica, Arial;
+}
+.col-lg-3{
+	padding-left: 0px !important;
+}
+.logo{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+#sidebar{
+	background-color:	#0096FF !important;
+	width:350px;
+
+    height: 100vh;
+	position:absolute;
+	top:0px;	
+	font-size: 25px;
+	font-weight: 500;
+}
+
+ul{
+	margin:0px;
+	padding:0px;
+	
+}
+
+ul li{
+	list-style:none;
+}
+
+ul li a{
+	
+	color:#ccc;
+	border-bottom:2px solid #fff;
+	display:block;
+	margin-bottom: 20px;
+	padding:10px;
+	text-decoration: none;
+}
+
+#sidebar-btn{
+	display:inline-block;
+	vertical-align: middle;
+	width:29;
+	height:15px;
+	cursor:pointer;
+	margin:20px;
+	position:absolute;
+	top:0px;
+	right:-60px;
+}
+
+#sidebar-btn span{
+	height:1px;
+	background:#111;
+	margin-bottom:5px;
+	display:block;
+}
+
+#sidebar-btn span:nth-child(2){
+	width:75%;
+}
+
+#sidebar-btn span:nth-child(3){
+	width:50%;
+}
+.menu-link{
+    margin-top: 50px;
+    
+}
+
+.user-id a{
+	color:cadetblue;
+	font-size: 20px;
+	font-weight: 500;
+}
+.user-id i{
+	color:black;;
+	font-size: 25px;
+	margin-right: 8px;
+}
+.user-id{
+	position: absolute;
+	right: 0;
+	margin-right: 20px;
+	margin-top: 10px;
+	color:cadetblue;
+	font-size: 20px;
+}

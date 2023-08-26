@@ -1,0 +1,41 @@
+
+
+#main{
+    background-color: #f8f9fe;
+    padding-bottom: 60px;
+}
+
+
+
+.row-row-1-sch{
+    margin-top: 70px;
+}
+.btn-primary{
+    width: 100%;
+    
+    border: none;
+    margin-top: 20px;
+}
+.card{
+    box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.68);
+}
+.card{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+#bar-sch{
+    background-color: #f26522;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: -1px 6px 5px 0px rgba(0,0,0,0.6);
+    border-top: 8px black solid;
+    
+}
+.bar-sch{
+    text-align: center;
+    font-size: 28px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 400;
+}

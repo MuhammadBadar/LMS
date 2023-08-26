@@ -1,0 +1,120 @@
+#main{
+    background-color: #f8f9fe;
+    padding-bottom: 60px;
+}
+
+
+
+
+.main-data h1{
+    color: #2b71e8;
+    font-size: 55px;
+    font-weight: 400;
+}
+
+.main-btn{
+    padding: 8px 10px;
+    background: #0096FF;
+    color: white;
+    border: none;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+.main-data{
+    margin-top: 200px;
+}
+.main-img{
+    margin-top: 100px;
+}
+.stats{
+    background-color: #e9edf1;
+}
+
+.landing-form-btn{
+    background-color: white;
+    padding: 5px 16px;
+    color: #2b71e8;
+    font-weight: 500;
+    border: none;
+    margin-top: 10px;
+}
+
+.form-landing h3{
+    color: white;
+    margin-bottom: 30px;
+}
+
+.main-data p{
+    margin-top: 20px;
+}
+
+.courses-data{
+    margin-top: 100px;
+    
+}
+
+.courses-data h3{
+    font-size: 30px;
+    color: #424242;
+}
+
+.courses-data p{
+    margin-top: 20px;
+    color: darkgray;
+}
+.form-landing{
+background-color: #4169E1	;;
+    padding: 50px;
+}
+.modal-body{
+    padding: 0!important;
+}
+
+
+.holder { 
+    background-color:#ccc;
+    width:300px;
+    height:250px;
+    overflow:hidden;
+    padding:10px;
+    font-family:Helvetica;
+  }
+  .holder .mask {
+    position: relative;
+    left: 0px;
+    top: 10px;
+    width:300px;
+    height:240px;
+    overflow: hidden;
+  }
+  .holder ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    position: relative;
+  }
+  .holder ul li {
+    padding:10px 0px;
+  }
+  .holder ul li a {
+    color:darkred;
+    text-decoration:none;
+  }
+
+
+
+#footer{
+    padding-top: 100px;
+    padding-bottom: 50px;
+    background-color: 	#ADD8E6;
+}
+.footer-about p{
+    color: white;
+    margin-top: 50px;
+    margin-right: 50px;
+}
+#footer a{
+    color: white;
+
+}

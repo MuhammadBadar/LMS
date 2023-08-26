@@ -1,0 +1,126 @@
+#main-contact-bg{
+    background-image: url('../images/contact-bg.jpg');
+    height: 200px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.contact-home{
+    margin-top: 30px;
+    margin-bottom: 50px;
+    }
+
+#main{
+    background-color: #f8f9fe;
+    padding-bottom: 60px;
+}
+ul{
+    margin-left:200px;
+}
+ul li a{
+    margin-right: 20px;
+    color: white
+}
+#navbar{
+    box-shadow: 2px 10px 5px 2px rgba(0,0,0,0.57);
+
+   
+}
+
+.navbar .btn{
+    background-color: white;
+    color: rgba(9,9,121,1);
+   border: 1px solid blue;
+   margin-left: 150px;
+}
+#contact-bar{
+    background-color: #f26522	;
+    box-shadow: -1px 6px 5px 0px rgba(0,0,0,0.6);
+    border-top: 8px black solid;
+    
+}
+.contact-bar{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.contact-bar h2{
+    text-align: center;
+    font-size: 28px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+.contact-head h5{
+    margin-top: 70px;
+    color: rgba(9,9,121,1);
+font-size: 20px;
+}
+
+.contact-head h1{
+    font-style:normal;
+    color: black;
+    font-size: 40px;
+    font-weight: 700;
+
+
+}
+.contact-head p{
+    margin-top: 30px;
+    font-size: 15px;
+    color: #333;
+}
+.contact-head {
+    margin-bottom: 50px;
+}
+
+
+.contact-icon i{
+    background-color: #4169E1	;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.contact-icon{
+    margin-bottom: 40px;
+}
+.contact-icon p{
+    color: darkgray;
+}
+
+.location h3{
+    font-size: 10px;
+}
+.location p{
+    font-size: 5px;
+}
+.class h3{
+    font-size:10px;
+}
+
+.contact-form{
+    margin-top: 120px;
+}
+
+.contact-form form{
+    padding:40px;
+    background-color: #4169E1	;
+    border-radius: 10px;
+}
+
+.contact-btn{
+    background-color: palevioletred;
+    width: 100%;
+    color: white;
+    border:none;
+    border-radius: 5px;
+    padding-top: 7px;
+    padding-bottom: 7px;    
+}
+
+.form-group{
+    margin-bottom: 30px;
+}
