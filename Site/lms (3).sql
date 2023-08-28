@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 26, 2023 at 10:43 AM
+-- Generation Time: Aug 28, 2023 at 03:05 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -38,7 +38,9 @@ CREATE TABLE `announcement` (
 --
 
 INSERT INTO `announcement` (`id`, `title`, `description`) VALUES
-(2, 'WEb DEVELOPMENT', 'TESTING...');
+(2, 'WEb DEVELOPMENT', 'TESTING...'),
+(4, ' dd', 'dd'),
+(7, ' web', 'c');
 
 -- --------------------------------------------------------
 
@@ -62,15 +64,10 @@ INSERT INTO `course` (`Id`, `Fee`, `ShortDescription`, `Title`, `LogoPath`) VALU
 (2, 12000, 'Odoo is a flexible business software suite with applications for CRM, sales, inventory, HR, and accounting. Its user-friendly design and modular structure streamline operations and support businesses of all sizes.', 'Odoo', './assets/images/odoo-main.png'),
 (3, 12000, 'Flutter is an open-source framework by Google for building apps on iOS, Android, web, and desktop platforms. With a single codebase, it offers beautiful UI, fast performance, and ', 'Flutter.......', './assets/images/flutter-main.jpg'),
 (4, 12000, 'PHP web development uses the PHP language for dynamic websites. It\'s server-based, integrates with HTML, handles databases, and supports frameworks. Used in CMS, e-commerce. Secure, scalable, and and popular.', 'PHP Web Development', './assets/images/php-main.png'),
-(25, 0, 'Hypertext Preprocessor Language', 'php..............', 'use input type here'),
-(26, 0, 'this is a frontend language', 'react', 'angular-main.jpg'),
-(28, 0, 'hello', 'odoo', 'odoo-main.png'),
-(29, 0, 'Testing', 'abc', '.net2.png'),
-(30, 0, 'yuuu', 'huuu', 'angular-main.png'),
-(31, 0, 'Hypertext Preprocessor Language', 'oop', '.net.png'),
-(33, 0, 'Hypertext Preprocessor Language', 'oop', '6ec677d9-a18b-4ea3-8842-3586e8e8cd5b.jpg'),
-(34, 0, 'Hypertext Preprocessor Language', 'oop', 'angular-main.png'),
-(35, 0, 'Hypertext Preprocessor Language', 'PHP', '6ec677d9-a18b-4ea3-8842-3586e8e8cd5b.jpg');
+(37, 0, 'nmuhn j', 'gjvhjty', 'uploads/Architecture.png'),
+(38, 0, 'hhhhhhhhhhhhhhhh', 'abc', 'uploads/.net.png'),
+(39, 0, 'Description 1', 'Course 1', 'uploads/.net2.png'),
+(40, 0, 'Testing for angular course', 'Angular', 'uploads/Hira.png');
 
 -- --------------------------------------------------------
 
@@ -90,7 +87,7 @@ CREATE TABLE `coursedetails` (
 
 INSERT INTO `coursedetails` (`id`, `courseId`, `courseDetails`) VALUES
 (1, 1, '<u><b>Course Title:</b></u> Comprehensive Angular Development<u><b><br></b></u><div><u><b>Angular Course Outline:</b></u></div><div>1:Introduction to Angular</div><div>2:Components and Templates</div><div>3:Directives and Pipes</div><div>4:Services and Dependency Injection</div><div>5:Routing and Navigation</div><div>6:Forms and Validation</div><div>7:HTTP and Observables</div><div>8:State Management with NgRx (Optional)</div><div>9:Unit Testing and Debugging</div>\r\n\r\n\r\n\r\n'),
-(2, 2, '<div><u><b>Course Title:</b></u><span style=\"font-weight: bold;\"> </span>Mastering Odoo Development and Customization<u><b><br></b></u><div><u><b>Odoo Course outline:</b></u></div><div>1:Introduction to Odoo</div><div>&nbsp;2:Setting Up Odoo Development Environment</div><div>&nbsp;3:Building Odoo Modules</div><div>4:Data Management in Odoo</div><div>5:Odoo User Interface Customization</div><div>6:Business Logic with Odoo APIs</div><div>7:Odoo Workflows and Business Processes</div><div>8:Security and Access Control</div><div>9:Integrating with Other Systems</div><div>10:Odoo Deployment and Performance Optimization</div></div><div><br></div>'),
+(2, 2, '<div style=\"text-align: left;\"><u style=\"font-weight: bold;\"></u><h3 style=\"\"><u style=\"font-weight: bold;\">Course Title</u>: <span style=\"font-weight: normal;\">Mastering Odoo Development and Customization</span></h3><div><span style=\"font-weight: normal;\"><br></span></div><div><div style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px;\"><u style=\"font-weight: bolder;\">Odoo Course outline:</u><span style=\"font-weight: bolder;\">&nbsp;</span></div><div style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px;\"><b><br>Introduction to Odoo</b><br><ul><li>Setting Up Odoo Development Environment</li><li>Building Odoo Modules</li><li>Data Management in Odoo</li><li>Odoo User Interface Customization</li><li>Business Logic with Odoo APIs</li><li>Odoo Workflows and Business Processes</li><li>Security and Access Control</li><li>Integrating with Other Systems</li><li>Odoo Deployment and Performance Optimization</li></ul></div></div><b><h4></h4><h1></h1> &nbsp;</b></div>oyment and Performance Optimization</div></div><div><br></div>'),
 (3, 3, '<div><u style=\"font-weight: bold;\">Course Title: </u>Complete Flutter Development<br></div><div><u><b>Flutter Course Outline:</b></u></div><div>1:Introduction to Flutter</div><div>2:Dart Programming Basics</div><div>3:Flutter Widgets and UI</div><div>&nbsp;4:Navigation and Routing</div><div>5:State Management</div><div>6:Networking and API Integration</div><div>7:Forms and User Input</div><div>8:Persistence and Local Storage</div><div>9:Flutter Animation and Effects</div><div>10:Flutter Widgets for UI Polish</div>'),
 (4, 4, '<div><u><b>Course Title</b></u>: Complete PHP Web Development</div><div><div><u><b>Introduction to PHP</b></u></div><div>&nbsp;1:PHP Basics</div><div>&nbsp;2:Working with HTML and PHP</div><div>&nbsp;3:PHP Arrays</div><div>&nbsp;4:PHP and Databases</div><div>&nbsp;5:PHP Object-Oriented Programming (OOP)</div><div>&nbsp;6:PHP Security</div><div>&nbsp;7:PHP and APIs</div><div>&nbsp;8:Error Handling and Debugging</div><div>&nbsp;9:PHP Frameworks&nbsp;</div><div>10:Building a Complete Web Application</div></div><div><br></div>'),
 (5, 5, '<b>Course Title:</b> Angular Development<div><b><u><br></u></b></div><div><b><u>Course Outlines:</u></b><div><ul><li>Line1</li><li>Line2</li><li>Line 3</li> <li>Line4</li><li>Line5</li></ul></div><div><br>\r\n</div></div>'),
@@ -98,7 +95,7 @@ INSERT INTO `coursedetails` (`id`, `courseId`, `courseDetails`) VALUES
 (7, 7, '<b>Course Title:</b> React<div><b><u><br></u></b></div><div><b><u>Course Outlines:</u></b><div><ul><li>Line 1</li><li>Line 2</li><li>Line 3</li><li>Line 4</li><li>Line 5</li><li>Line 6</li><li>Line 7</li> </ul></div><div><br>\r\n</div></div>'),
 (8, 8, '<b>Course Title:</b> Js<div><b><u><br></u></b></div><div><b><u>Course Outlines:</u></b><div><ul><li>Line 1</li><li>Line 2</li><li>Line 3</li><li>Line 4</li><li>Line 5</li><li>Line 6</li><li>Line 7</li><li>Line 8</li> </ul></div><div><br>\r\n</div></div>'),
 (9, 9, '<b>Course Title:</b> C#<div><b><u><br></u></b></div><div><b><u>Course Outlines:</u></b><div><ul><li>Line 1</li><li>Line 2</li><li>Line 3</li><li>Line 4</li><li>Line 5</li><li>Line 6</li><li>Line 7</li><li>Line 8</li><li>Line 9</li> </ul></div><div><br></div></div>'),
-(10, 10, '<b>Course Title:</b> MySQL<div><b><u><br></u></b></div><div><b><u>Course Outlines:</u></b><div><ul><li>Line 1</li><li>Line 2</li><li>Line 3</li><li>Line 4</li><li>Line 5</li><li>Line 6</li><li>Line 7</li><li>Line 8</li><li>Line 9</li><li>Line 10</li> </ul></div><div><br></div></div>'),
+(10, 10, '<div style=\"text-align: left;\"><u style=\"font-weight: bold;\"></u><h3 style=\"\"><u style=\"font-weight: bold;\">Course Title</u>: <span style=\"font-weight: normal;\">Mastering Odoo Development and Customization</span></h3><div><span style=\"font-weight: normal;\"><br></span></div><div><div style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px;\"><u style=\"font-weight: bolder;\">Odoo Course outline:</u><span style=\"font-weight: bolder;\">&nbsp;</span></div><div style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px;\"><b><br>Introduction to Odoo</b><br><ul><li>Setting Up Odoo Development Environment</li><li>Building Odoo Modules</li><li>Data Management in Odoo</li><li>Odoo User Interface Customization</li><li>Business Logic with Odoo APIs</li><li>Odoo Workflows and Business Processes</li><li>Security and Access Control</li><li>Integrating with Other Systems</li><li>Odoo Deployment and Performance Optimization</li></ul></div></div><b><h4></h4><h1></h1> &nbsp;</b></div>'),
 (11, 11, '<b>Course Title:</b> MySQL<div><b><u><br></u></b></div><div><b><u>Course Outlines:</u></b><div><ul><li>Line 1</li><li>Line 2</li><li>Line 3</li><li>Line 4</li><li>Line 5</li><li>Line 6</li><li>Line 7</li><li>Line 8</li><li>Line 9</li><li>Line 10</li> <li>Line 11</li></ul></div><div><br></div></div>');
 
 -- --------------------------------------------------------
@@ -195,7 +192,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `cellno`, `message`, `createdbyid`, 
 (58, 'Hira Naeem', 'hiranaeem789z@gmail.com', '03007922180', 'test', 0, NULL, NULL, 0, b'0'),
 (59, 'Hira Naeem', 'hiranaeem789z@gmail.com', '03007922180', 'test', 0, NULL, NULL, 0, b'0'),
 (60, 'Hira Naeem', 'hiranaeem789z@gmail.com', '03007922180', 'Hira', 0, NULL, NULL, 0, b'0'),
-(62, 'Hira princess', 'hiraprincess@gmail.com', '03191195639', 'hi,hira here.', 0, NULL, NULL, 0, b'0');
+(62, 'Hira princess', 'hiraprincess@gmail.com', '03191195639', 'hi,hira here.', 0, NULL, NULL, 0, b'0'),
+(67, 'ii', 'abc@gmail.com', '399934949', 'Testing ...', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, b'0'),
+(68, 'Hira Naeem', 'hiranaeem789z@gmail.com', '03007922180', 'aa', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, b'0');
 
 -- --------------------------------------------------------
 
@@ -274,13 +273,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -304,7 +303,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
