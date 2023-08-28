@@ -14,7 +14,6 @@ if(isset($_SESSION['username'])){
 echo "<h1>Welcome". $_SESSION['username']."</h1>";
 echo " <a href = '.php'></a> <br>";
 
-
 echo "<br> <a href = 'logout.php'><input type=button  value=logout name=logout></a>";
 }
 else{

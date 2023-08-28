@@ -27,7 +27,6 @@ if(!isset($_SESSION['loggedin'])){
 	exit();
 }
 
-
 ?>
 <head>
 	<title>SideBar Menu</title>
@@ -64,7 +63,25 @@ if(!isset($_SESSION['loggedin'])){
 		</ul>
     </div>
 	
-	
+	<?php
+    $title = "";
+    $shortdescription = "";
+    if(isset($_GET['Id'])){
+        $id = $_GET['Id'];
+    
+    // Select data associated with this particular id
+    $res = mysqli_query($mysqli, "SELECT * FROM course WHERE Id = $id ");
+    
+    // Fetch the next row of a result set as an associative array
+    $resultData = mysqli_fetch_assoc($res);
+    
+    $Fee = $resultData['Fee'];
+    $shortdescription = $resultData['ShortDescription'];
+    $logopath = $resultData['LogoPath'];
+    $title = $resultData['Title'];
+
+    }
+    ?>
 
 
 	
@@ -79,16 +96,17 @@ if(!isset($_SESSION['loggedin'])){
         <div class="col-lg-12 main-manage-course">
 <div class="form-manage-course">
              <h1>Manage Course</h1>
-        <form action="addcourses.php" method="POST">
+        <form action="<?php if(isset($_GET['Id'])){ echo "editAction.php";}else{ echo "addcourses.php";}?>" method="POST" enctype="multipart/form-data">
             <div class="row">
-                <div class="col">
+                <div class="col"><input type="hidden" name="Id" value="<?php if(isset($_GET['Id'])){ echo $_GET['Id'];  } ?>">
             <div class="form-group">
-                <input type="text" class="form-control" name="Title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Course Title" required>
+                
+                <input type="text" class="form-control" name="Title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Course Title" required value="<?php if(isset($_GET['Id'])){ echo $title; } ?>">
             </div>
             </div>
             <div class="col">
             <div class="form-group">
-                <input type="text" class="form-control" name="ShortDescription" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Short Description" required>
+                <input type="text" class="form-control" name="ShortDescription" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Short Description" required value="<?php if(isset($_GET['Id'])){ echo $shortdescription;  } ?>">
             </div>
             </div>
             </div>
@@ -106,7 +124,7 @@ if(!isset($_SESSION['loggedin'])){
             
             </div>
             </div>
-            <input value="send" name="submit" type="submit" class="landing-form-btn">
+            <input value="<?php if(isset($_GET['Id'])){ echo "Update"; }else{ echo "Submit"; }?>" name="<?php if(isset($_GET['Id'])){ echo "update"; }else{ echo "submit"; }?>" type="submit" class="landing-form-btn">
         </form>
     </div>
     
@@ -134,8 +152,8 @@ if(!isset($_SESSION['loggedin'])){
 			// echo "<td>".$res['Fee']."</td>";
 			echo "<td>".$res['Title']."</td>";
 			echo "<td>".$res['ShortDescription']."</td>";	
-            echo "<td>".$res['LogoPath']."</td>";	
-            echo "<td><a href=\"edit.php?Id=$res[Id]\">Edit</a> | 
+            echo "<td><img src='".$res['LogoPath']."' style='height: 70px; width: 70px; object-fit:cover; border-radius: 50%;' alt='course image'></td>";	
+            echo "<td><a href=\"ManageCourse.php?Id=$res[Id]\">Edit</a> | 
 			<a href=\"delete.php?Id=$res[Id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
 		}
 		?> 
@@ -146,20 +164,10 @@ if(!isset($_SESSION['loggedin'])){
 
 
 <?php
-// Assuming you have fetched the username from the database and stored it in $username variable
-$username = "Hira"; // Replace this with your database retrieval code
+
 
 // The rest of your HTML code
-$html = '
-<div class="col-lg-2">
-	<div class="user-id">
-		<h2>Hello ' . $username . '</h2>
-		<a href=""><i class="fa-solid fa-right-from-bracket"></i>Sign Out</a>
-	</div>
-</div>
-</div>
-</div>
-';
+include "logoutCode.php";
 
 // Output the HTML
 echo $html;

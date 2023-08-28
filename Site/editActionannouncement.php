@@ -24,6 +24,8 @@ if (isset($_POST['update'])) {
             // Display success message
             echo "<p><font color='green'>Data updated successfully!</p>";
             echo "<a href='ManageAnnouncement.php'>View Result</a>";
+
+            header('location: ManageAnnouncement.php');
         } else {
             // Display error message
             echo "<p><font color='red'>Error updating data: " . $mysqli->error . "</font></p>";

@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
 	// Escape special characters in string for use in SQL statement	
 	$title = mysqli_real_escape_string($mysqli, $_POST['title']);
 	$description = mysqli_real_escape_string($mysqli, $_POST['description']);
-	// $logopath = mysqli_real_escape_string($mysqli, $_POST['LogoPath']);
+
 		
 	// Check for empty fields
 	if (empty($title) || empty($description) ) {
@@ -26,6 +26,7 @@ if (isset($_POST['submit'])) {
 	} else {  
 		// Insert data into database
 		$result = mysqli_query($mysqli, "INSERT INTO announcement (`title`, `description`) VALUES ('$title', '$description')");
+		header('location: ManageAnnouncement.php');
 	}
 }
 ?>

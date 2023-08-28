@@ -61,19 +61,8 @@ if(!isset($_SESSION['loggedin'])){
 	</div>
 </div>
 <?php
-$username = "Hira"; 
-$html = '
-<div class="col-lg-2">
-	<div class="user-id">
-		<h2>Hello ' . $username . '</h2>
-		<a href=""><i class="fa-solid fa-right-from-bracket"></i>Sign Out</a>
-	</div>
-</div>
-</div>
-</div>
-';
-
-// Output the HTML
+// Assuming you have fetched the username from the database and stored it in $username variable
+include "logoutCode.php";
 echo $html;
 ?>
 

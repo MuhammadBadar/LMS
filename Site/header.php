@@ -59,7 +59,13 @@
 
 
         <li class="nav-item sign-in-li">
-          <a class="nav-link" href="login.php">Sign In</a>
+          <?php
+            if(isset($_SESSION['loggedin'])){
+          ?>
+          <a class="nav-link" href="ManageCourse.php">Go to Backoffice</a>
+          <?php }else{ ?>
+            <a class="nav-link" href="login.php">Sign In</a>
+            <?php } ?>
         </li>
       
       

@@ -3,6 +3,7 @@
 require_once("dbConnection.php");
 
 // Get id from URL parameter
+
 $id = $_GET['id'];
 
 // Select data associated with this particular id

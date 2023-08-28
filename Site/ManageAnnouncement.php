@@ -41,7 +41,26 @@ session_start();
 	</div>
 </div>
 
+	
+<?php
+    $title = "";
+    $description = "";
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+    
+    // Select data associated with this particular id
+    $res = mysqli_query($mysqli, "SELECT * FROM announcement WHERE id = $id ");
+    
+    // Fetch the next row of a result set as an associative array
+    $resultData = mysqli_fetch_assoc($res);
+    
+    
+    $description = $resultData['description'];
+  
+    $title = $resultData['title'];
 
+    }
+    ?>
 
 
 
@@ -52,19 +71,18 @@ session_start();
         <div class="col-lg-12 main-manage-course">
 <div class="form-manage-course">
              <h1>Manage Announcment</h1>
-
-
-             
-        <form action="addannouncment.php" method="POST">
+          <form action="<?php if(isset($_GET['id'])){ echo "editActionannouncement.php";}else{ echo "addannouncment.php";}?>" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col"><input type="hidden" name="id" value="<?php if(isset($_GET['id'])){ echo $_GET['id'];  } ?>">
             <div class="row">
                 <div class="col">
             <div class="form-group">
-                <input type="text" class="form-control" name="title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title" required>
+                <input type="text" class="form-control" name="title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title"  required value = " <?php if(isset($_GET['id'])){ echo $title; } ?>">
             </div>
             </div>
             <div class="col">
             <div class="form-group">
-                <input type="text" class="form-control" name="description" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" required>
+                <input type="text" class="form-control" name="description" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description" required value="<?php if(isset($_GET['id'])){ echo $description;  } ?>">
             </div>
             </div>
             </div>
@@ -72,7 +90,7 @@ session_start();
             <div class="col">
              </div>
             </div>
-            <input value="send" name="submit" type="submit" class="landing-form-btn">
+            <input value="<?php if(isset($_GET['id'])){ echo "Update"; }else{ echo "Submit"; }?>" name="<?php if(isset($_GET['id'])){ echo "update"; }else{ echo "submit"; }?>" type="submit" class="landing-form-btn">
         </form>
     </div>
     </div>
@@ -90,32 +108,21 @@ session_start();
 			 echo "<tr>";
 			echo "<td>".$res['title']."</td>";
 			echo "<td>".$res['description']."</td>";		
-            echo "<td><a href=\"editAnnouncement.php?id=$res[id]\">Edit</a> | 
+            echo "<td><a href=\"ManageAnnouncement.php?id=$res[id]\">Edit</a> | 
 			<a href=\"deleteAnnouncement.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
 		}
 		?> 
 	</table>
     </div>
+    <?php
+// Assuming you have fetched the username from the database and stored it in $username variable
+include "logoutCode.php";
+echo $html;
+?>
 	</div>
     
 </div>
-<?php
-// Assuming you have fetched the username from the database and stored it in $username variable
-$username = "Hira"; // Replace this with your database retrieval code
-// The rest of your HTML code
-$html = '
-<div class="col-lg-2">
-	<div class="user-id">
-		<h2>Hello ' . $username . '</h2>
-		<a href=""><i class="fa-solid fa-right-from-bracket"></i>Sign Out</a>
-	</div>
-</div>
-</div>
-</div>
-';
-// Output the HTML
-echo $html;
-?>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script>
 	$(document).ready(function(){

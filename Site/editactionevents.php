@@ -21,12 +21,13 @@ if (isset($_POST['update'])) {
         $stmt->close();
 
         if ($result) {
-            // Display success message
-            // echo "<p><font color='green'>Data updated successfully!</p>";
-            // echo "<a href='ManageUpcomingevents.php'>View Result</a>";
+           
             $_SESSION['status'] = "Inquiry Posted Successfully. Soon you will get response";
-			// Redirect to index.php after successful data insertion
-			header("Location: ManageUpcomingevents.php");
+			
+            echo "<p><font color='green'>Data updated successfully!</p>";
+            echo "<a href='ManageUpcomingevents.php'>View Result</a>";
+
+            header('location: ManageUpcomingevents.php');
         } else {
             // Display error message
             echo "<p><font color='red'>Error updating data: " . $mysqli->error . "</font></p>";

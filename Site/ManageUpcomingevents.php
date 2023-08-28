@@ -49,35 +49,62 @@ if(!isset($_SESSION['loggedin'])){
 			
 		</ul>
     </div>	
+
+
+
+	<?php
+    $eventtitle = "";
+    $eventplace = "";
+    $starttime = "";
+    $enstime = "";
+    $eventDate = "";
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+    
+    // Select data associated with this particular id
+    $res = mysqli_query($mysqli, "SELECT * FROM events WHERE Id = $id ");
+    
+    // Fetch the next row of a result set as an associative array
+    $resultData = mysqli_fetch_assoc($res);
+    
+    $eventtitle = $resultData['eventTitle'];
+$eventplace = $resultData['eventPlace'];
+$starttime = $resultData['startTime'];
+$endtime = $resultData['endTime'];
+$eventDate = $resultData['eventDate'];
+ }
+?>
+
 	</div>
 </div>
 <div class="col-lg-7">
 <div class="container">
     <div class="row">
         <div class="col-lg-12 main-manage-course">
-<div class="form-manage-course">
+      <div class="form-manage-course">
              <h1>Manage  Upcoming Events</h1>
-        <form action="upcomingAction.php" method="POST">
+             <form action="<?php if(isset($_GET['id'])){ echo "editactionevents.php";}else{ echo "addevent.php";}?>" method="POST" enctype="multipart/form-data">
+             <div class="row">
+                <div class="col"><input type="hidden" name="id" value="<?php if(isset($_GET['id'])){ echo $_GET['id'];  } ?>">
             <div class="row">
                 <div class="col">
             <div class="form-group">
-                <input type="text" class="form-control" name="eventTitle" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Event Title" required>
+                <input type="text" class="form-control" name="eventTitle" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Event Title" required value="<?php if(isset($_GET['id'])){ echo $eventtitle; } ?>">
             </div>
             </div>
             <div class="col">
             <div class="form-group">
-                <input type="text" class="form-control" name="eventPlace" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Event Place" required>
+                <input type="text" class="form-control" name="eventPlace" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Event Place" required value="<?php if(isset($_GET['id'])){ echo $eventplace; } ?>">
             </div>
             </div>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="startTime" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Start Time" required>
+                <input type="text" class="form-control" name="startTime" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Start Time" required value="<?php if(isset($_GET['id'])){ echo $starttime; } ?>">
             </div> 
             <div class="form-group">
-                <input type="text" class="form-control" name="endTime" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="End Time" required>
-            </div>
+                <input type="text" class="form-control" name="endTime" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="End Time" required value="<?php if(isset($_GET['id'])){ echo $endtime; } ?>">
             <div class="form-group">
-                <input type="text" class="form-control" name="eventDate" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Event Date" required>
+                <input type="text" class="form-control" name="eventDate" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Event Date" required value="<?php if(isset($_GET['id'])){ echo $eventDate; } ?>">
             </div>
             </div>
 
@@ -122,12 +149,17 @@ if(!isset($_SESSION['loggedin'])){
             echo "<td>".$res['startTime']."</td>";	
             echo "<td>".$res['endTime']."</td>";	
             echo "<td>".$res['eventDate']."</td>";	
-            echo "<td><a href=\"eventedit.php?id=$res[id]\">Edit</a> | 
+            echo "<td><a href=\"ManageUpcomingevents.php?id=$res[id]\">Edit</a> | 
 			<a href=\"deleteevent.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
 		}
 		?> 
 	</table>
     </div>
+    <?php
+// Assuming you have fetched the username from the database and stored it in $username variable
+include "logoutCode.php";
+echo $html;
+?>
     </div>
 
 

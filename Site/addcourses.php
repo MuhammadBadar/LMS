@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
 	// Escape special characters in string for use in SQL statement	
 	$title = mysqli_real_escape_string($mysqli, $_POST['Title']);
 	$shortdescription = mysqli_real_escape_string($mysqli, $_POST['ShortDescription']);
-	$logopath = mysqli_real_escape_string($mysqli, $_POST['LogoPath']);
+	$logopath = $_FILES['LogoPath']['name'];
 	
 		
 	// Check for empty fields
@@ -33,10 +33,15 @@ if (isset($_POST['submit'])) {
 		// echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	} else { 
 		// If all the fields are filled (not empty) 
+		$dir = "uploads/";
+		$file = $dir.basename($_FILES['LogoPath']['name']);
+		if(move_uploaded_file($_FILES['LogoPath']['tmp_name'], $file)){
+			$path = $file;
+			$result = mysqli_query($mysqli, "INSERT INTO course (`Title`, `ShortDescription`, `LogoPath`) VALUES ('$title', '$shortdescription', '$path')");
+			header('location: ManageCourse.php');
+		}
 
 		// Insert data into database
-		$result = mysqli_query($mysqli, "INSERT INTO course (`Title`, `ShortDescription`, `LogoPath`) VALUES ('$title', '$shortdescription', '$logopath')");
-		
 		// Display success message
 		// echo "<p><font color='green'>Data added successfully!</p>";
 		// echo "<href='ManageCourse.php'>";
