@@ -76,22 +76,18 @@ unset( $_SESSION['status']);
 </div>
             </div>
             <div class="col-lg-4">
-            <div class="holder">
-  <ul id="ticker01">
-							<li><span>10/10/2007</span><a href="#">The first thing that most Javascript programmers</a></li>
-							<li><span>10/10/2007</span><a href="#">End up doing is adding some code</a></li>
-							<li><span>10/10/2007</span><a href="#">The code that you want to run</a></li>
-							<li><span>08/10/2007</span><a href="#">Inside of which is the code that you want to run</a></li>
-							<li><span>08/10/2007</span><a href="#">Right when the page is loaded</a></li>
-							<li><span>05/10/2007</span><a href="#">Problematically, however, the Javascript code</a></li>
-							<li><span>04/10/2007</span><a href="#">The first thing that most Javascript programmers</a></li>
-							<li><span>04/10/2007</span><a href="#">End up doing is adding some code</a></li>
-							<li><span>04/10/2007</span><a href="#">The code that you want to run</a></li>
-							<li><span>03/10/2007</span><a href="#">Inside of which is the code that you want to run</a></li>
-							<li><span>03/10/2007</span><a href="#">Right when the page is loaded</a></li>
-							<li><span>01/10/2007</span><a href="#">Problematically, however, the Javascript code</a></li>
-				</ul>
-</div>
+           
+            <div class="anc-home">
+  
+<marquee behavior="scroll" direction="up" scrollamount="3" onmouseover="this.stop();" onmouseout="this.start();">
+  
+   <ul>
+   <?php $result = mysqli_query($mysqli, "SELECT * FROM events ORDER BY id DESC");?>
+
+   </ul>
+</marquee>
+    </div>
+  
                
           
             </div>
