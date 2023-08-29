@@ -17,6 +17,7 @@ import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-ta
 import { ManageAttendanceComponent } from './manage-attendance/manage-attendance.component';
 import { ManageUserattbydateComponent } from './manage-userattbydate/manage-userattbydate.component';
 import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
+import { ManageUserreportComponent } from './manage-userreport/manage-userreport.component';
 import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-usertaskbydate.component';
 
 const routes: Routes = [{
@@ -123,6 +124,11 @@ const routes: Routes = [{
     {
       path: "Usertaskbydate",
       component: ManageUsertaskbydateComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "Userreport",
+      component: ManageUserreportComponent,
       pathMatch: "full"
     },
   ]

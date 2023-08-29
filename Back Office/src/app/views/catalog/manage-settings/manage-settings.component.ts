@@ -41,7 +41,7 @@ export class ManageSettingsComponent implements OnInit {
   selectedSettings = new SettingsVM();
   private dialogRef?: MatDialogRef<ManageSettingsTypeComponent>;
   @ViewChild('userForm', { static: true }) userForm!: NgForm;
-  displayedColumns: string[] = ['name', 'keyCode', 'parent', 'description','isActive', 'actions'];
+  displayedColumns: string[] = ['name','keyCode', 'parent', 'description','isActive', 'actions'];
   dataSource: any;
   constructor(
     private route: ActivatedRoute,

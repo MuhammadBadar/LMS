@@ -25,6 +25,11 @@
                         </button>
                     </div>
                 </mat-form-field>
+                
+                <!-- <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                    <mat-label>value</mat-label>
+                    <input matInput  #value="ngModel" name="value" [(ngModel)]="selectedSettings.value" />
+                </mat-form-field> -->
                 <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
                     <mat-label>Code</mat-label>
                     <input matInput #keyCode="ngModel" name="KeyCode" type="text" required="true"
@@ -94,6 +99,14 @@
                                 <th mat-header-cell *matHeaderCellDef> Sr No </th>
                                 <td mat-cell *matCellDef="let element"> {{element.id}} </td>
                             </ng-container>
+                            <!-- <ng-container matColumnDef="value">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div style="min-width:150px"> Value</div>
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div style="min-width:150px"> {{element.value}}</div>
+                                </td>
+                            </ng-container> -->
                             <ng-container matColumnDef="name">
                                 <th mat-header-cell *matHeaderCellDef>
                                     <div style="min-width:150px"> Name</div>

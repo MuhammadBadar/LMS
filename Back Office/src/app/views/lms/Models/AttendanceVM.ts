@@ -3,7 +3,7 @@ export class AttendanceVM {
     userId!: string
     user?: string
     inTime?: string
-    outTtime?: string        
+    outTime?: string        
     workedHours? :string
-    Date? :  Date    
+    date? :  Date    
 }
