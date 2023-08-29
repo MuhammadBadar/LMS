@@ -124,3 +124,9 @@ font-size: 20px;
 .form-group{
     margin-bottom: 30px;
 }
+
+.after-message-contact{
+    color: white;
+    font-size: 14px;
+    margin-top: 20px;
+}

@@ -46,6 +46,7 @@ if (isset($_POST['submit'])) {
 		$result = mysqli_query($mysqli, "INSERT INTO users (`name`,`email`,`cellno`,`message`,`createdon`,`createdbyid`,`modifiedon`,`modifiedbyid`,`isactive`) VALUES ('$name','$email', '$cellno','$message','$createdon','$createdbyid','$modifiedon','$modifiedbyid','$isactive')");
 		
 		if ($result) {
+			
 		$_SESSION['status'] = "Inquiry Posted Successfully. Soon you will get response";
 			// Redirect to index.php after successful data insertion
 			header("Location: index.php");

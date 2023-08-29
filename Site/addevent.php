@@ -16,20 +16,23 @@ if (isset($_POST['submit'])) {
     $eventdate = mysqli_real_escape_string($mysqli, $_POST['eventDate']);
 		
 	// Check for empty fields
-	if (empty($name) || empty($email) || empty($cellno) || empty($message)) {
-		if (empty($name)) {
+	if (empty($eventtitle) || empty($eventplace) || empty($starttime) || empty($endtime) || empty($eventdate)) {
+		if (empty($eventtitle)) {
 			echo "<font color='red'>Name field is empty.</font><br/>";
 		}
 		
-		if (empty($email)) {
+		if (empty($eventdate)) {
 			echo "<font color='red'>Email field is empty.</font><br/>";
 		}
 		
-		if (empty($cellno)) {
+		if (empty($starttime)) {
 			echo "<font color='red'>Cell No field is empty.</font><br/>";
 		}
 		
-		if (empty($message)) {
+		if (empty($endtime)) {
+			echo "<font color='red'>Message field is empty.</font><br/>";
+		}
+		if (empty($eventdate)) {
 			echo "<font color='red'>Message field is empty.</font><br/>";
 		}
 		// Show link to the previous page
@@ -39,7 +42,7 @@ if (isset($_POST['submit'])) {
 		$result = mysqli_query($mysqli, "INSERT INTO events (`eventTitle`,`eventPlace`,`startTime`,`endTime`,`eventDate`) VALUES ('$eventtitle','$eventplace', '$starttime','$endtime','$eventdate')");
 		
 		if ($result) {
-		$_SESSION['status'] = "Inquiry Posted Successfully. Soon you will get response";
+		// $_SESSION['status'] = "Inquiry Posted Successfully. Soon you will get response";
 			// Redirect to index.php after successful data insertion
 			header("Location: ManageUpcomingevents.php");
 		

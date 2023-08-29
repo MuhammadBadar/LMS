@@ -1,4 +1,7 @@
 <!doctype html>
+<head>
+  <title>UPCOMING EVENTS - QamSoft</title>
+</head>
 <html lang="en">
     <?php include 'header.php';?>
 	<?php
@@ -39,14 +42,19 @@ $result = mysqli_query($mysqli, "SELECT * FROM events");
                 <!---course------>
                 <div class="card">
                     <div class="card-body">
+                      <div class="event-bg">
+                       <div class="event-title">
                         <?php 
                            echo "EventTitle: " . $resultData['eventTitle'] . "<br>";
-
+                           ?>
+                           </div> 
+                           <?php 
                             echo "EventPlace: " .$resultData['eventPlace'] . "<br>";
                             echo"StartTime: " . $resultData['startTime'] . "<br>";
                             echo "EndTime: " . $resultData['endTime'] . "<br>";
                             echo "Date: " . $resultData['eventDate'] . "<br>";
                         ?>
+                        </div>
                     </div>
                 </div>
             </div>

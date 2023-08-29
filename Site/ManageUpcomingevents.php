@@ -80,8 +80,8 @@ $eventDate = $resultData['eventDate'];
 <div class="col-lg-7">
 <div class="container">
     <div class="row">
-        <div class="col-lg-12 main-manage-course">
-      <div class="form-manage-course">
+        <div class="col-lg-12 main-manage-Upcomingevents">
+      <div class="form-manage-Upcomingevents">
              <h1>Manage  Upcoming Events</h1>
              <form action="<?php if(isset($_GET['id'])){ echo "editactionevents.php";}else{ echo "addevent.php";}?>" method="POST" enctype="multipart/form-data">
              <div class="row">

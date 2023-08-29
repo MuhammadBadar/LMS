@@ -1,4 +1,7 @@
 <!doctype html>
+<head>
+  <title>Course Details - Qamsoft</title>
+</head>
  <?php include 'header.php';?>
 
     
@@ -27,8 +30,9 @@ if(isset($_GET['id'])){
 
 ?>
   <div class="container">
+    <div class="single-course-head">
 	<h2>About</h2>	  
-
+  </div>
 
  
  <section id="course-detail">
@@ -51,7 +55,9 @@ if(isset($_GET['id'])){
         </div>
         <div class="row">
           <div class="col-lg-2">
-            <div class="img-trainer"></div>
+            <div class="img-trainer">
+              <img src="./assets/images/teacher.jpeg" class="img-fluid" alt="">
+            </div>
           </div>
           <div class="col-lg-10">
             <div class="about-trainer">
@@ -62,8 +68,13 @@ if(isset($_GET['id'])){
             </div>
           </div>
         </div>
+        </div>
+    </div>
+    </div>
       </div>
       <?php include 'footer.php';?>
+     
+    
       <!-- <div class="col-lg-4">
         <div class="course-details">
           <div class="course-info">

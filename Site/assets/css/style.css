@@ -3,9 +3,42 @@
     padding-bottom: 60px;
 }
 
+.anc-home{
+    margin-top: 100px;
+    padding: 30px;
+    background-color: #0096FF;
+    
+}
+.anc-home marquee{
+    height: 400px;
+    width: 100%;
+}
+.anc-home marquee ul{
+    margin-left: 0 !important;
+}
+.anc-home marquee ul li{
 
+    color: white;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+.event-title{
+    background-color: #0096FF;
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
 
+.after-message p{
+    margin-top: 20px;
+     color: #0096FF;
+     font-size: 14px;
 
+}
 .main-data h1{
     color: #2b71e8;
     font-size: 55px;
@@ -30,7 +63,11 @@
 .stats{
     background-color: #e9edf1;
 }
-
+#why-choose-us{
+background-color: #e9edf1;
+padding-top: 100px;
+padding-bottom: 100px;
+}
 .landing-form-btn{
     background-color: white;
     padding: 5px 16px;
@@ -39,7 +76,19 @@
     border: none;
     margin-top: 10px;
 }
+.why-choose-data h2{
+    color: #424242;
+    font-size: 36px;
 
+}
+.why-li{
+    margin-top: 30px;
+}
+.why-li li{
+    color: #0096FF;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
 .form-landing h3{
     color: white;
     margin-bottom: 30px;

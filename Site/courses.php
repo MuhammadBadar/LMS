@@ -1,5 +1,7 @@
 <!doctype html>
-
+<head>
+  <title>QamSoft - Courses</title>
+</head>
     <?php include 'header.php';?>
 <!----------main landing-->
 <?php
@@ -14,8 +16,6 @@ $result = mysqli_query($mysqli, "SELECT * FROM course");
 ?>
   
    <!-- <div class="container">
-   
-   
   <div class="row">
     <div class="col-lg-12">
 
@@ -81,7 +81,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM course");
 	
 	
  </div>
- 
+  </div>
  <?php include 'footer.php';?>
 
 

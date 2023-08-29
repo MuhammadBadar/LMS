@@ -1,7 +1,7 @@
 <!doctype html>
 <head>
-  <title>Qamsoft</title>
-  <link rel="icon" type="image/x-icon" href="./assets/images/icon.PNG">
+  <title>QamSoft - Trainings | Solutions | Consultancy</title>
+  <link rel="icon" type="image/x-icon" href="./assets/images/fav.png">
  
 
     <?php include 'header.php';?>
@@ -21,16 +21,29 @@ require_once("dbConnection.php");
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Register Now
 </button>
-
+<div class="after-message">
+  <p><?php
+if(isset($_SESSION['status'])){
+echo $_SESSION['status'];
+unset( $_SESSION['status']);
+}
+?></p>
+</div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Post Inquiry</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+</div>
       
       <div class="modal-body">
 	  <div class="form-landing">
 
 <form action="addAction.php" method="POST">
-  <h3>Post Inquiry </h3>
+
   <div class="form-group">
 
 	
@@ -56,21 +69,34 @@ require_once("dbConnection.php");
 
 
 </form>
-<?php
-if(isset($_SESSION['status'])){
-echo $_SESSION['status'];
-unset( $_SESSION['status']);
-}
-?>
+
 </div>
       </div>
+   
+      
       
     </div>
 
   </div>
 </div>
 </div>
-
+<style>
+  .place{
+    font-size: 12px;
+    margin: 0px;
+    padding: 0px;
+  }
+  .date{
+    font-size: 10px;
+    margin: 0px;
+    padding: 0px;
+  }
+  .datetime{
+    font-size: 10px;
+    float: right;
+    text-align: right;
+  }
+</style>
 <div class="row stats">
     
 </div>
@@ -80,9 +106,16 @@ unset( $_SESSION['status']);
             <div class="anc-home">
   
 <marquee behavior="scroll" direction="up" scrollamount="3" onmouseover="this.stop();" onmouseout="this.start();">
-  
+<?php $result = mysqli_query($mysqli, "SELECT * FROM announcement ORDER BY id DESC");?>
    <ul>
-   <?php $result = mysqli_query($mysqli, "SELECT * FROM events ORDER BY id DESC");?>
+   <?php
+   foreach ($result as $r) { ?>
+    <li>
+      <h6><?php echo $r['title']; ?></h6>
+      <p class="place"><?php echo $r['description']?></p>
+    </li>
+   <?php }
+   ?>
 
    </ul>
 </marquee>
@@ -93,6 +126,37 @@ unset( $_SESSION['status']);
             </div>
         </div>
     </div>
+</section>
+<section id="why-choose-us">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="why-choose-us">
+          <div class="row">
+          <div class="col-lg-6">
+           <div class="why-choose-data">
+            <h2>Why Choose Us</h2>
+            <div class="why-li">
+              <li>Project Based Training</li>
+              <li>Client Oriented Software</li>
+              <li>8 to 12 hour per day support</li>
+              <li>Pure Sofware Industry Envoriment for learning to get help from seniors & every level</li>
+              <li>12/7 support for the task assigned</li>
+              <li>Tasked based training</li>
+              <li>Applying schedual & tasked based attendence to make students/ internees more productive and responsible</li>
+            </div>
+           </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="why-choose-img">
+              <img src="./assets/images/why.png" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

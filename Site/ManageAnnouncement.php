@@ -114,14 +114,17 @@ session_start();
 		?> 
 	</table>
     </div>
-    <?php
-// Assuming you have fetched the username from the database and stored it in $username variable
-include "logoutCode.php";
-echo $html;
-?>
+    
 	</div>
     
 </div>
+<?php
+// Assuming you have fetched the username from the database and stored it in $username variable
+
+include "logoutCode.php";
+
+echo $html;
+?>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script>

@@ -59,12 +59,7 @@ session_start();
                 <label class="form-check-label" for="exampleCheck1">Keep Me Signed In</label>
               </div>
               <input value="SignIn" name="submit" type="submit" class="landing-form-btn"> 
-              <?php
-            if(isset($_SESSION['status'])){
-              echo $_SESSION['status'];
-              unset( $_SESSION['status']);
-            }
-             ?>
+            
             </form>
 
 

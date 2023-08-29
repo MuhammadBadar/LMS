@@ -1,7 +1,13 @@
 <!doctype html>
+<head>
+  <title>Conctact - Qamsoft</title>
+</head>
 <html lang="en">
   <?php include 'header.php';?>
-  <?php require_once("dbConnection.php");?>
+  <?php
+session_start();
+require_once("dbConnection.php");
+?>
      <section id="contact-bar">
      <div class="container">
       <div class="row">
@@ -51,7 +57,7 @@
           <div class="col-lg-5">
             <div class="contact-form">
             <!-- <form action="addcontact.php" method="POST"> -->
-            <form action="addAction.php" method="POST">
+            <form action="addActioncontact.php" method="POST">
                 <h3>Post Inquiry </h3>
               <div class="form-group">
                 
@@ -71,12 +77,15 @@
                 <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3" placeholder="Your Message"></textarea>
               </div>
               <input value="Post" name="submit" type="submit" class="landing-form-btn">
-              <?php
-            if(isset($_SESSION['status'])){
-              echo $_SESSION['status'];
-              unset( $_SESSION['status']);
-            }
-             ?>
+              <div class="after-message-contact">
+  <p><?php
+if(isset($_SESSION['status'])){
+echo $_SESSION['status'];
+unset( $_SESSION['status']);
+}
+?></p>
+</div>
+          
             </form>
           </div>
           </div>
