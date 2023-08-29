@@ -58,12 +58,12 @@ td.mat-column-position {
 }
 
 td {
-    min-width: 150px;
+    min-width: 100px;
 
 }
 
 th {
-    min-width: 150px;
+    min-width: 100px;
 
 }
 
@@ -72,41 +72,16 @@ tr:nth-child(even) {
 }
 
 th {
-    background-color: aqua;
     color: white;
     font-weight: normal
 }
 
-.gallery-img img {
-    cursor: zoom-in;
-    box-shadow: 0 1px 5px gray;
-
+.height{
+    max-height: 100vh;
 }
-
-.lightbox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 1000;
-    background-color: rgba(0, 0, 0, .85);
+.active{
+    margin-top: 3rem;
 }
-
-.close-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0;
-    width: 7%;
-    height: 10%;
-    z-index: 2;
-    background: 0 0;
-    border: 0;
-    cursor: pointer;
-    margin-top: 60px;
-
+.btn{
+    margin-top: -2rem;
 }
