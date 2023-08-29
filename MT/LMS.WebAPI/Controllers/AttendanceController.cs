@@ -37,8 +37,23 @@ namespace LMS.WebAPI.Controllers
             var values = attSVC.SearchAttendance(att);
             return Ok(values);
         }
-      
 
+
+        [HttpPost("{Search}")]
+        public IActionResult SearchAttendance(AttendanceVM Attendance)
+        {
+            
+            List<AttendanceVM> list = attSVC.SearchAttendance(Attendance);
+            return Ok(list);
+        }
+
+        //[HttpPost]
+        //public IActionResult PostCity(CityDE city)
+        //{
+        //    city.DBoperation = LMS.Core.Enums.DBoperations.Insert;
+        //    bool cty = _ctySVC.ManageCity(city);
+        //    return Ok(cty);
+        //}
         #endregion
     }
 }

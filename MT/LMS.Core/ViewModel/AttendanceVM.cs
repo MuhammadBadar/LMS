@@ -8,6 +8,7 @@ namespace LMS.Core.ViewModel
 {
     public class AttendanceVM : BaseViewModel
     {
+
         public string? User { get; set; }
         public string? InTime { get; set; }
         public string? OutTime { get; set; }
