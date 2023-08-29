@@ -13,7 +13,7 @@ import { TaskVM } from '../Models/TaskVM';
     styleUrls: ['./manage-tasks.component.css']
   })
   export class ManageTasksComponent implements OnInit{
-  displayedColumns: string[] = ['user','priority', 'status','module', 'taskTiltle','storyPoints','sps','date'];
+  displayedColumns: string[] = ['user','priority', 'status','module', 'taskTitle','storyPoints','sPs','date'];
   AddMode: boolean;
   selectedTask: TaskVM;
   dataSource:any

@@ -1,7 +1,7 @@
 export class UserattbydateVM {
     user?: string
     Date? :  Date
-    totalWorkedHours? :number
+    totalWorkedHours? :string
     attendanceDetails? :string
     
 }

@@ -1,0 +1,301 @@
+<div class="container-fluid page height">
+  <div class="d-flex page_box p-3 mt-2 header-sticky" position="sticky">
+    <div *ngIf="AddMode">Manage Patient</div>
+    <div *ngIf="EditMode">Edit Patient</div>
+  </div>
+
+  <div class="page_content shadow p-3 position-relative">
+    <form #PatientForm="ngForm">
+      <Row>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <mat-form-field appearance="outline" fxFlex="49%" class="form-group">
+            <mat-label>Patient Name</mat-label>
+            <input
+              matInput
+              class="form-control"
+              placeholder="Patient Name"
+              [type]="hide ? 'patientName' : 'text'"
+              name="patientName"
+              [ngClass]="{
+                'is-invalid': PatientForm.submitted && patientName.invalid
+              }"
+              #patientName="ngModel"
+              [(ngModel)]="selectedPatient.patientName"
+              required
+              maxlength="200"
+              minlength="3"
+            />
+            <mat-error
+              class="form-text text-danger"
+              *ngIf="PatientForm.controls['patientName']?.hasError || PatientForm.controls['patientName']?.errors?.['minlength']"
+            >
+              Patient Name is required to be at least 3 characters.
+                  </mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex="49%" class="form-group">
+            <mat-label>Date of Birth</mat-label>
+            <input
+              [matDatepicker]="picker"
+              matInput
+              class="form-control"
+              placeholder="Date of Birth"
+              [type]="hide ? 'dateOfBirth' : 'text'"
+              name="dateOfBirth"
+              [ngClass]="{
+                'is-invalid': PatientForm.submitted && dateOfBirth.invalid
+              }"
+              #dateOfBirth="ngModel"
+              [(ngModel)]="selectedPatient.dateOfBirth"
+              required
+              maxlength="200"
+              minlength="3"
+            />
+            <mat-error
+              class="form-text text-danger"
+              *ngIf="PatientForm.controls['dateOfBirth']?.hasError || PatientForm.controls['dateOfBirth']?.errors?.['minlength']"
+            >
+              Date Of Birth is required to be at least 3 characters.
+                  </mat-error
+            >
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>          
+        </div>
+      </Row>
+      <br />
+
+      <Row>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <mat-form-field appearance="outline" fxFlex="49%" class="form-group">
+            <mat-label>Gender</mat-label>
+            <input matInput class="form-control" placeholder="Gender" [type]="hide ? 'gender' : 'text'"
+                   name="gender" [ngClass]="{ 'is-invalid': PatientForm.submitted && gender.invalid }"
+                   #gender="ngModel" [(ngModel)]="selectedPatient.gender" required maxlength="200" minlength="3">
+                   <mat-error class="form-text text-danger"
+                   *ngIf="PatientForm.controls['gender']?.hasError || PatientForm.controls['gender']?.errors?.['minlength']">
+                   Gender is required to be at least 3 characters.
+                 </mat-error> 
+          </mat-form-field>
+          <!-- <mat-form-field appearance="outline" fxFlex="49%" class="form-group">
+            <mat-label>Gender</mat-label>
+            <input
+              matInput
+              class="form-control"
+              required
+              placeholder="Gender"
+              [type]="hide ? 'gender' : 'text'"
+              name="gender"
+              [ngClass]="{
+                'is-invalid': PatientForm.submitted && gender.invalid
+              }"
+              #gender="ngModel"
+              [(ngModel)]="selectedPatient.gender"
+              required
+              maxlength="200"
+              minlength="3"
+            />
+            <mat-error
+              class="form-text text-danger"
+              *ngIf="PatientForm.controls['gender']?.hasError || PatientForm.controls['gender']?.errors?.['minlength']"
+            >
+              Gender is required to be at least 3 characters.     </mat-error
+            >
+          </mat-form-field> -->
+
+          <mat-form-field appearance="outline" fxFlex="49%" class="form-group">
+            <mat-label>Contact Number</mat-label>
+            <input matInput class="form-control" placeholder="Contact Number" [type]="hide ? 'contactNo' : 'text'"
+                   name="contactNo" [ngClass]="{ 'is-invalid': PatientForm.submitted && contactNo.invalid }"
+                   #contactNo="ngModel" [(ngModel)]="selectedPatient.contactNo" required maxlength="200" minlength="3">
+                   <mat-error class="form-text text-danger"
+                   *ngIf="PatientForm.controls['contactNo']?.hasError || PatientForm.controls['contactNo']?.errors?.['minlength']">
+                   Contact No is required to be at least 3 characters.
+                 </mat-error> 
+          </mat-form-field>
+          
+        </div>
+      </Row>
+
+      <br />
+      <Row>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
+            <mat-label> House No</mat-label>
+            <input
+              matInput
+              #houseNo="ngModel"
+              required
+              name="reference"
+              [(ngModel)]="selectedPatient.houseNo"
+            />
+          </mat-form-field>
+        </div>
+      </Row>
+
+      <Row>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
+            <mat-label>Address</mat-label>
+            <input
+              matInput
+              required
+              #address="ngModel"
+              name="address"
+              [(ngModel)]="selectedPatient.address"
+            />
+          </mat-form-field>
+        </div>
+      </Row>
+
+      <Row>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
+            <mat-label>Remarks</mat-label>
+            <input
+              matInput
+              required
+              #remarks="ngModel"
+              name="remarks"
+              [(ngModel)]="selectedPatient.remarks"
+            />
+          </mat-form-field>
+        </div>
+      </Row>
+
+      <Row>
+        <mat-checkbox
+          name="isActive"
+          [(ngModel)]="selectedPatient.isActive"
+          checked
+          >Is Active</mat-checkbox
+        >
+
+        <div fxLayoutAlign="end end">
+          <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SavePatient()">Submit</button>
+          <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdatePatient()">Update</button>
+          <div>
+              <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                  (click)="Refresh()">
+                  <mat-icon>autorenew</mat-icon>
+              </button>
+          </div>
+      </div>
+        <!-- <div fxLayoutAlign="end end">
+          <button
+            mat-raised-button
+            *ngIf="AddMode"
+            color="primary"
+            (click)="SavePatient()"
+          >
+            Submit
+          </button>
+          <button
+            mat-raised-button
+            *ngIf="EditMode"
+            color="primary"
+            (click)="SavePatient()"
+          >
+            Update
+          </button>
+          <div>
+            <button
+              mat-icon-button
+              mat-sm-button
+              color="primary"
+              cTooltip="Refresh"
+              cTooltipPlacement="top"
+              (click)="Refresh()"
+            >
+              <mat-icon>autorenew</mat-icon>
+            </button>
+          </div>
+        </div> -->
+      </Row>
+    </form>
+
+    <section
+      class="example-container mat-elevation-z8"
+      tabindex="0"
+      style="border-radius: 5px; margin-top: 20px"
+    >
+      <table mat-table [dataSource]="patDataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="patientName">
+          <th mat-header-cell *matHeaderCellDef>Patient Name</th>
+          <td mat-cell *matCellDef="let pat">{{ pat.patientName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateOfBirth">
+          <th mat-header-cell *matHeaderCellDef>Date Of Birth</th>
+          <td mat-cell *matCellDef="let pat">{{ pat.dateOfBirth | date:"dd/MM/yyyy"}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef>Gender</th>
+          <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="contactNo">
+          <th mat-header-cell *matHeaderCellDef>Contact No</th>
+          <td mat-cell *matCellDef="let pat">{{ pat.contactNo }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="houseNo">
+          <th mat-header-cell *matHeaderCellDef>House No</th>
+          <td mat-cell *matCellDef="let element">{{ element.houseNo }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef>Address</th>
+          <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="remarks">
+          <th mat-header-cell *matHeaderCellDef>Remarks</th>
+          <td mat-cell *matCellDef="let element">{{ element.remarks }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="isActive">
+          <th mat-header-cell *matHeaderCellDef>Is Active</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.isActive ? "Yes" : "No" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions" stickyEnd="true">
+          <th mat-header-cell *matHeaderCellDef>
+            <p style="margin-top: 15px; font-size: 16px; text-align: center">
+              Actions
+            </p>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <div style="text-align: center">
+              <button
+                mat-icon-button
+                mat-sm-button
+                (click)="EditPatient(row)"
+                style="color: #1e293b"
+                cTooltip=" Edit Patient"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                mat-sm-button
+                color="warn"
+                (click)="DeletePatient(row.id)"
+                cTooltip="Delete Patient"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="patColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: patColumns"></tr>
+      </table>
+    </section>
+  </div>
+</div>

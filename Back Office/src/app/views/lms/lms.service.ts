@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 import { Globals } from 'src/app/globals';
 import { InquiryVM } from './Models/InquiryVM';
 import { UserVM } from './Models/UserVM';
+
+import { UserreportVM } from './Models/UserreportVM';
 import{LectureVM} from './Models/LectureVM';
 import{AssignTaskVM}from './Models/AssignTaskVM';
 import { StudentVM } from './Models/StudentVM';
@@ -278,7 +280,7 @@ DeleteAttendance(id:number){
   return this.http.delete(Globals.BASE_API_URL + 'Attendance/' + id);
 }
 SearchAttendance(value:AttendanceVM): Observable<AttendanceVM[]>{
-  return this.http.post<AttendanceVM[]>(Globals.BASE_API_URL + 'Attendance',value).pipe();
+  return this.http.post<AttendanceVM[]>(Globals.BASE_API_URL + 'Attendance/Search',value).pipe();
 }
 
 
@@ -343,6 +345,25 @@ SearchTask(value:TaskVM): Observable<TaskVM[]>{
   return this.http.post<TaskVM[]>(Globals.BASE_API_URL + 'Task',value).pipe();
 }
 
+//UserTaskVM lms services
+GetUserreport(): Observable<UserreportVM[]>{
+  return this.http.get<UserreportVM[]>(Globals.BASE_API_URL + 'Userreport').pipe();
+}
+GetUserreportId(id: number): Observable<UserreportVM[]> {
+  return this.http.get<UserreportVM[]>(Globals.BASE_API_URL + 'Userreport/Search' + id).pipe()
+}
+// SaveTask(value:TaskVM){
+//   return this.http.post(Globals.BASE_API_URL + 'Task',value);
+// }
+// UpdateTask(value:TaskVM){
+//   return this.http.post(Globals.BASE_API_URL + 'Task',value);
+// }
+// DeleteTask(id:number){
+//   return this.http.delete(Globals.BASE_API_URL + 'Task/' + id);
+// }
+// SearchTask(value:TaskVM): Observable<TaskVM[]>{
+//   return this.http.post<TaskVM[]>(Globals.BASE_API_URL + 'Task',value).pipe();
+// }
   
   // GetScheduleDayEvents(): Observable<ScheduleDayEventsVM[]> {
   //   return this.http.get<ScheduleDayEventsVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent').pipe();

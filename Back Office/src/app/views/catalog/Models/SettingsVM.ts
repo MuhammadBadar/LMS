@@ -1,5 +1,6 @@
 export class SettingsVM {
     name: string = "";
+    value: string = "";
     description?: string;
     id: number = 0;
     parentId: number = 0;

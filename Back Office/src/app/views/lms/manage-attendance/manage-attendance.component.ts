@@ -5,21 +5,32 @@ import { MatTableDataSource } from '@angular/material/table';
 import { LMSService } from '../lms.service';
 import { CatalogService } from '../../catalog/catalog.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-
+import { UserattbydateVM } from '../Models/UserattbydateVM';
 @Component({
-  selector: 'app-manage-attendance',
-  templateUrl: './manage-attendance.component.html',
-  styleUrls: ['./manage-attendance.component.css']
-})
-export class ManageAttendanceComponent implements OnInit{
+    selector: 'app-manage-attendance',
+    templateUrl: './manage-attendance.component.html',
+    styleUrls: ['./manage-attendance.component.css']
+  })
+  export class ManageAttendanceComponent implements OnInit{
   displayedColumns: string[] = ['user', 'inTime','outTime', 'workedHours','date'];
-  AddMode: boolean;
+  // Attendance:AttendanceVM [] = [];
+  AddMode: boolean = true
+  proccessing: boolean = false;
+  EditMode: boolean = false
+
+  Add: boolean = true;
+  Edit: boolean = false;
+
+  dialogRef: any
+  dialogref: any
+
   selectedAttendance: AttendanceVM;
   dataSource:any
-  teachers?:AttendanceVM[]
+  attendance?:AttendanceVM[]
+  // userattbydate?:UserattbydateVM[]
   dialogData: any;
   dialogRefe: MatDialogRef<any, any>;
-  attendance: AttendanceVM[];
+  // attendance: AttendanceVM[];
 
   constructor(
     private injector: Injector,
@@ -51,4 +62,46 @@ export class ManageAttendanceComponent implements OnInit{
       },
     })
   }
+
+  Refresh() {
+    this.GetAttendance();
+    this.selectedAttendance = new AttendanceVM
+    this.EditMode = false
+    this.AddMode = true
+    // this.selectedAttendance.isActive = true;
+  }
+
+  Search() {
+    var usr = new AttendanceVM();
+    usr.userId = this.selectedAttendance.userId;
+    console.warn(usr);
+    this.lmsSvc.SearchAttendance(usr).subscribe({
+      next: (value: AttendanceVM[]) => {
+        this.attendance= value
+        this.dataSource = new MatTableDataSource(this.attendance)
+     
+      }, error: (err) => {
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+     console.warn(err) ;
+    },
+    })
+    
+  }
+
+
+  OpenAttendanceDialog() {
+    this.dialogRef = this.dialog.open(ManageAttendanceComponent, {
+      width: '1200px', height: '950px',
+      data:{isDialog : true}
+     })
+      this.dataSource = new MatTableDataSource(this.attendance)
+    this.dialogRef.afterClosed()
+      .subscribe((res: any) => {
+        this.GetAttendance()
+      }
+      );
+  }
+
+
+
     }

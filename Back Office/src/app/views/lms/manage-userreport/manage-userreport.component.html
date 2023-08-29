@@ -1,0 +1,116 @@
+<section class=" example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;margin-top: 20px;">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            
+      <!-- UserId Column -->
+      <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef>UserId</th>
+        <td mat-cell *matCellDef="let element">{{ element.userId }}</td>
+      </ng-container>
+
+      <!-- UserName Column -->
+      <ng-container matColumnDef="userName">
+        <th mat-header-cell *matHeaderCellDef>UserName</th>
+        <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
+      </ng-container>
+
+      <!-- WorkTime in Column -->
+      <ng-container matColumnDef="workTime">
+        <th mat-header-cell *matHeaderCellDef>WorkTime</th>
+        <td mat-cell *matCellDef="let element">{{ element.workTime }}</td>
+      </ng-container>
+
+      <!-- Day Column -->
+      <ng-container matColumnDef="day">
+        <th mat-header-cell *matHeaderCellDef>Day</th>
+        <td mat-cell *matCellDef="let element">{{ element.day }}</td>
+      </ng-container>
+
+
+      <!-- Date Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.date|date:"dd/MM/yyyy" }}</td>
+      </ng-container>
+    
+        <!-- InTime/OutTime Column -->
+        <ng-container matColumnDef="inTimeOutTime">
+            <th mat-header-cell *matHeaderCellDef>InTime/OutTime</th>
+            <td mat-cell *matCellDef="let element">{{ element.inTimeOutTime }}</td>
+          </ng-container>
+    
+          <!-- TodaysTargets Column -->
+          <ng-container matColumnDef="todaysTargets">
+            <th mat-header-cell *matHeaderCellDef>TodaysTargets</th>
+            <td mat-cell *matCellDef="let element">{{ element.todaysTargets }}</td>
+          </ng-container>
+    
+          <!-- scoreSPs in Column -->
+          <ng-container matColumnDef="ScoreSPs">
+            <th mat-header-cell *matHeaderCellDef>ScoreSPs</th>
+            <td mat-cell *matCellDef="let element">{{ element.scoreSPs }}</td>
+          </ng-container>
+    
+          <!-- dueTime Column -->
+          <ng-container matColumnDef="dueTime">
+            <th mat-header-cell *matHeaderCellDef>DueTime</th>
+            <td mat-cell *matCellDef="let element">{{ element.DueTime }}</td>
+          </ng-container>
+    
+    
+          <!-- overTime Column -->
+          <ng-container matColumnDef="overTime">
+            <th mat-header-cell *matHeaderCellDef>OverTime</th>
+            <td mat-cell *matCellDef="let element">{{ element.overTime }}</td>
+          </ng-container>
+
+          
+
+      <!-- missingTime Column -->
+      <ng-container matColumnDef="missingTime">
+        <th mat-header-cell *matHeaderCellDef>MissingTime</th>
+        <td mat-cell *matCellDef="let element">{{ element.missingTime}}</td>
+      </ng-container>
+    
+        <!-- scheduleTime Column -->
+        <ng-container matColumnDef="scheduleTime">
+            <th mat-header-cell *matHeaderCellDef>ScheduleTime</th>
+            <td mat-cell *matCellDef="let element">{{ element.scheduleTime }}</td>
+          </ng-container>
+    
+          <!-- storyPoints Column -->
+          <ng-container matColumnDef="storyPoints">
+            <th mat-header-cell *matHeaderCellDef>StoryPoints</th>
+            <td mat-cell *matCellDef="let element">{{ element.storyPoints }}</td>
+          </ng-container>
+    
+          <!-- scoreSPs in Column -->
+          <ng-container matColumnDef="scoreSPs">
+            <th mat-header-cell *matHeaderCellDef>ScoreSPs</th>
+            <td mat-cell *matCellDef="let element">{{ element.scoreSPs }}</td>
+          </ng-container>
+    
+          <!-- DueSps Column -->
+          <ng-container matColumnDef="dueSps">
+            <th mat-header-cell *matHeaderCellDef>DueSps</th>
+            <td mat-cell *matCellDef="let element">{{ element.dueSps }}</td>
+          </ng-container>
+    
+    
+          <!-- SPsGap Column -->
+          <ng-container matColumnDef="sPsGap">
+            <th mat-header-cell *matHeaderCellDef>SPsGap</th>
+            <td mat-cell *matCellDef="let element">{{ element.sPsGap }}</td>
+          </ng-container>
+
+          <!-- DayEndStatus Column -->
+          <ng-container matColumnDef="dayEndStatus">
+            <th mat-header-cell *matHeaderCellDef>DayEndStatus</th>
+            <td mat-cell *matCellDef="let element">{{ element.dayEndStatus }}</td>
+          </ng-container>
+    
+      
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </section>

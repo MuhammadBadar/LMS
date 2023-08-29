@@ -12,7 +12,7 @@ namespace LMS.Core.ViewModel
         public string? User { get; set; }
         public DateTime? Date { get; set; }
         public string? AttendanceDetails { get; set; }
-        public double? TotalWorkedHours { get; set; }
+        public string? TotalWorkedHours { get; set; }
 
 
     }

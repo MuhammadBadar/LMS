@@ -53,13 +53,6 @@ namespace LMS.WebAPI.Controllers
             return Ok(list);
         }
 
-
-
-
-
-
-
-        // POST api/<VocabularyController>
         [HttpPost]
         public IActionResult PostCity(CityDE city)
         {

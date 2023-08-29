@@ -83,6 +83,7 @@ import { ManageAttendanceComponent } from './manage-attendance/manage-attendance
 import { ManageUserattbydateComponent } from './manage-userattbydate/manage-userattbydate.component';
 import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-usertaskbydate.component';
+import { ManageUserreportComponent } from './manage-userreport/manage-userreport.component';
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
 
@@ -106,6 +107,7 @@ import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-us
     ManageUserattbydateComponent,
     ManageTasksComponent,
     ManageUsertaskbydateComponent,
+    ManageUserreportComponent,
   ],
   imports: [
     NgxMatDatetimePickerModule,

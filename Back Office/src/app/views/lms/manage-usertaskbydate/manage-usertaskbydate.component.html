@@ -1,1 +1,56 @@
-<p>manage-usertaskbydate works!</p>
+<section class=" example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;margin-top: 20px;">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            
+      <!-- UserId Column -->
+      <ng-container matColumnDef="userName">
+        <th mat-header-cell *matHeaderCellDef>Username</th>
+        <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
+      </ng-container>
+
+      <!-- User Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.date|date:"dd/MM/yyyy" }}</td>
+      </ng-container>
+
+      <!-- Time in Column -->
+      <ng-container matColumnDef="taskDetails">
+        <th mat-header-cell *matHeaderCellDef>Task Details</th>
+        <td mat-cell *matCellDef="let element">{{ element.taskDetails }}</td>
+      </ng-container>
+
+      <!-- Time out Column -->
+      <ng-container matColumnDef="storyPoints">
+        <th mat-header-cell *matHeaderCellDef>StoryPoints</th>
+        <td mat-cell *matCellDef="let element">{{ element.storyPoints }}</td>
+      </ng-container>
+
+      <!-- Worked hours Column -->
+      <ng-container matColumnDef="totalSp">
+        <th mat-header-cell *matHeaderCellDef>TotalSp</th>
+        <td mat-cell *matCellDef="let element">{{ element.totalSp }}</td>
+      </ng-container>
+
+      <!-- Date Column -->
+      <ng-container matColumnDef="dayEndStatus">
+        <th mat-header-cell *matHeaderCellDef>DayEndStatus</th>
+        <td mat-cell *matCellDef="let element">{{ element.dayEndStatus }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="taskScore">
+        <th mat-header-cell *matHeaderCellDef>TaskScore</th>
+        <td mat-cell *matCellDef="let element">{{ element.taskScore }}</td>
+      </ng-container>
+
+
+      <!-- Date Column      'userName','date', 'taskDetails','storyPoints', 'totalSp','dayEndStatus','taskScore','sPsGap'];
+  -->
+      <ng-container matColumnDef="sPsGap">
+        <th mat-header-cell *matHeaderCellDef>SPsGap</th>
+        <td mat-cell *matCellDef="let element">{{ element.sPsGap }}</td>
+      </ng-container>         
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </section>

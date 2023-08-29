@@ -64,6 +64,7 @@ td {
 
 th {
     min-width: 100px;
+    
 
 }
 
@@ -84,4 +85,7 @@ th {
 }
 .btn{
     margin-top: -2rem;
+}
+.calander{
+    color: white;
 }
