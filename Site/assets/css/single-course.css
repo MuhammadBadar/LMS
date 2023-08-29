@@ -1,0 +1,32 @@
+.single-course-head{
+    margin-top: 100px;
+}
+.single-course-head h2{
+    color: #333;
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.about-trainer h3{
+    color: #333;
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.trainer-head{
+    margin-top: 50px;
+    
+}
+.trainer-head h2{
+    font-size: 25px ;
+    font-weight: 600;
+    color: #333;
+}
+.about-trainer{
+    margin-bottom: 50px;
+}
+.img-trainer{
+    margin-top: 30px;
+}
