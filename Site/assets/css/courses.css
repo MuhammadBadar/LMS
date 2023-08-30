@@ -33,6 +33,21 @@ ul li a{
     
 }
 
+.course-head-title{
+    padding-top: 10px;
+    padding-bottom: 10px;
+   background-color: #0096FF;
+   text-align: center;
+   margin:20px;
+
+}
+.course-head-title h2{
+    color: white;
+    font-size: 23px;
+    font-weight: 600;
+
+
+}
 .navbar .btn{
     background-color: white;
     color: rgba(9,9,121,1);
@@ -40,7 +55,6 @@ ul li a{
    margin-left: 150px;
 }
 #bar{
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
     box-shadow: -1px 6px 5px 0px rgba(0,0,0,0.6);
 
 }

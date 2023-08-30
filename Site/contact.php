@@ -57,7 +57,7 @@ require_once("dbConnection.php");
           <div class="col-lg-5">
             <div class="contact-form">
             <!-- <form action="addcontact.php" method="POST"> -->
-            <form action="addActioncontact.php" method="POST">
+            <form action="addAction.php" method="POST">
                 <h3>Post Inquiry </h3>
               <div class="form-group">
                 

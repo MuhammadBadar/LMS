@@ -29,13 +29,22 @@ ul li a{
     background-color:	#0096FF !important;
 }
 
+@media screen and (max-width: 768px) {
+    #navbar ul{
+        margin-left: 20px !important;
+    }
+  }
+
+  .navbar-toggler{
+    Background-color: #fff
+    
+    }
+
 .navbar .btn:hover{
     background-color: #FFAC1C;
     color: white;
 }
-.navbar-brand{
-    margin-left: 150px;
-}
+
 
 ul li a:hover{
     color: #FFAC1C;

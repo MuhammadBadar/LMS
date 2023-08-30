@@ -24,7 +24,7 @@
     margin-bottom: 50px;
 }
 #bar-sch{
-    background-color: #f26522;
+    background-color: #f26522 !important;
     padding-top: 20px;
     padding-bottom: 20px;
     box-shadow: -1px 6px 5px 0px rgba(0,0,0,0.6);

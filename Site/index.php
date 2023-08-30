@@ -15,9 +15,8 @@ require_once("dbConnection.php");
         <div class="row">
             <div class="col-lg-8">
 <div class="main-data">
-    <h1>Learn with Qamsoft Technologies</h1>
+    <h1>Learn & Practice with Qamsoft Technologies</h1>
     <p>QamSoft Technologies stands as a beacon of excellence in the realm of programming training institutes. With an unwavering commitment to fostering unparalleled expertise and nurturing aspiring programmers, QamSoft has emerged as the definitive choice for those seeking the finest programming education.</p>
-
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Register Now
 </button>
@@ -135,15 +134,15 @@ unset( $_SESSION['status']);
           <div class="row">
           <div class="col-lg-6">
            <div class="why-choose-data">
-            <h2>Why Choose Us</h2>
+            <h2>Why to Choose Us?</h2>
             <div class="why-li">
-              <li>Project Based Training</li>
-              <li>Client Oriented Software</li>
-              <li>8 to 12 hour per day support</li>
-              <li>Pure Sofware Industry Envoriment for learning to get help from seniors & every level</li>
-              <li>12/7 support for the task assigned</li>
-              <li>Tasked based training</li>
-              <li>Applying schedual & tasked based attendence to make students/ internees more productive and responsible</li>
+              <li>Project & Tasks Based Trainings</li>
+              <li>Working on Client Oriented Softwares</li>
+              <li>8 Hours/day Onsite Support and 12 Hours/day Online Support in assigned Tasks</li>
+              <li>Sofware Industry Environment for learning to get help from seniors of every level</li>
+              <li>Applying Schedual & Task based Attendence to make Students & Internees more productive and Responsible</li>
+              <li>Video Lectures based Support to revise topics regularly</li>
+              <li>Providing Problem Solving Statements plus assistance to make Basics of Programming Stronger</li>
             </div>
            </div>
           </div>

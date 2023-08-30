@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
 		echo "<br/><a href='contact.php'>Go back</a>";
 	} else {
 		// Insert data into database
-		$result = mysqli_query($mysqli, "INSERT INTO users (`name`,`email`,`cellno`,`message`,`createdon`,`createdbyid`,`modifiedon`,`modifiedbyid`,`isactive`) VALUES ('$name','$email', '$cellno','$message','$createdon','$createdbyid','$modifiedon','$modifiedbyid','$isactive')");
+		$result = mysqli_query($mysqli, "INSERT INTO users (`name`,`email`,`cellno`,`message`,`createdon`) VALUES ('$name','$email', '$cellno','$message',Now())");
 		
 		if ($result) {
 			

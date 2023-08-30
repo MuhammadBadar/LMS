@@ -49,8 +49,16 @@ $result = mysqli_query($mysqli, "SELECT * FROM course");
 	  
         <!---course------>
 		
+
         <div class="card">
 		   
+        <div class="course-head-title">
+        <h2>
+              <?php
+              echo "" .$resultData['Title']."<br>";
+              ?>
+            </h2>
+        </div>
 		    <?php $logo = $resultData['LogoPath'] ?>
 		    <?php  echo "<img src='".$resultData['LogoPath']."'>" ?>
 
@@ -58,15 +66,16 @@ $result = mysqli_query($mysqli, "SELECT * FROM course");
           <div class="card-body">
             <?php 
             
-                echo "Title: " .$resultData['Title']."<br>";
+                // echo "Title: " .$resultData['Title']."<br>";
                 // echo $resultData['Fee']."<br>";
-                echo "Description: " . $resultData['ShortDescription']."<br>";	
+                echo $resultData['ShortDescription']."<br>";	
             ?>
 
           <div class="text-center">
-            <a href="single-course.php?id=<?php echo $resultData['Id']; ?>" class="btn btn-primary btn-block">Course Details</a>
+            <!-- <a href="single-course.php?id=<?php echo $resultData['Id']; ?>" class="btn btn-primary btn-block">Course Details</a> -->
             <!-- <a href="videolec.php?id=<?php echo $resultData['Id']; ?>" class="btn btn-primary btn-block">view Lectures</a> -->
          
+            <a href="contact.php" class="btn btn-primary btn-block">Post Inquiry</a>
           </div>
         
           </div>
