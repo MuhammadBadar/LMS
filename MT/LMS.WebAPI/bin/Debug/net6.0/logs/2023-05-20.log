@@ -1,3 +1,0 @@
-2023-05-20 00:01:19.9245 ERROR MySql.Data.MySqlClient.MySqlException: Parameter '@id' has already been defined.
-2023-05-20 00:13:55.6228 ERROR MySql.Data.MySqlClient.MySqlException: Duplicate entry '1' for key 'classtiming.PRIMARY'
-2023-05-20 04:04:25.8568 ERROR MySql.Data.MySqlClient.MySqlException: Data too long for column 'ShortDescription' at row 1

@@ -1,3 +1,0 @@
-2023-05-19 22:28:18.4186 ERROR MySql.Data.MySqlClient.MySqlException: Data too long for column 'logoBase64Path' at row 1
-2023-05-19 22:29:49.1705 ERROR MySql.Data.MySqlClient.MySqlException: Data too long for column 'logoBase64Path' at row 1
-2023-05-19 23:53:26.2773 ERROR System.ArgumentException: Parameter 'orientationClass' not found in the collection.
