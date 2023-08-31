@@ -39,6 +39,8 @@ namespace LMS.Service
                 #region Search
 
                 string whereClause = " Where 1=1";
+                if (mod.UserId != default)
+                    whereClause += $" and UserId like ''" + mod.UserId + "''";
                 if (mod.Id != default && mod.Id != 0)
                     whereClause += $" AND Id={mod.Id}";
                 if (mod.IsActive != default)

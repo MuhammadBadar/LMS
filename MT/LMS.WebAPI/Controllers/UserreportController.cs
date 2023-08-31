@@ -38,6 +38,14 @@ namespace LMS.WebAPI.Controllers
             return Ok(values);
         }
 
+        [HttpPost("{Search}")]
+        public IActionResult SearchUserreport(UserreportVM Userreport)
+        {
+
+            List<UserreportVM> list = usrSVC.SearchUserreport(Userreport);
+            return Ok(list);
+        }
+
 
         #endregion
     }

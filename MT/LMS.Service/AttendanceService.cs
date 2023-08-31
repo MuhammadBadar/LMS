@@ -42,7 +42,7 @@ namespace LMS.Service
                 closeConnectionFlag = true;
 
                 if (Attendance.DBoperation == DBoperations.Insert)
-                    Attendance.Id = _corDAL.GetnextId(TableNames.City.ToString());
+                    Attendance.Id = _corDAL.GetnextId(TableNames.attendance.ToString());
                 retVal = attDAL.ManageAttendance(Attendance, cmd);
                 return retVal;
             }
@@ -70,11 +70,13 @@ namespace LMS.Service
                 #region Search
 
                 string whereClause = " Where 1=1";
+                if (mod.UserId!= default)
+                    whereClause += $" and UserId like ''" + mod.UserId + "''";
                 if (mod.Id != default && mod.Id != 0)
                     whereClause += $" AND Id={mod.Id}";
                 if (mod.IsActive != default)
                     whereClause += $" AND IsActive ={mod.IsActive}";
-                att = attDAL.SearchAttendance(whereClause);
+                att = attDAL.SearchAttendance(whereClause,cmd);
 
                 #endregion
             }

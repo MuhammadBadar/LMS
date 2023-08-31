@@ -5,81 +5,67 @@ using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace MicroERP.WebAPI.Controllers
+namespace LMS.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class VocabularyController : ControllerBase
     {
-        // GET: api/<VocabularyController>
-        #region Class Variables
-
-        private VocabularyService _vcbSVC;
-
-        #endregion
-        #region Constructors
+        private VocabularyService _vcbSvc;
         public VocabularyController()
         {
-            _vcbSVC = new VocabularyService();
+            _vcbSvc = new VocabularyService();
         }
-
-        #endregion
-        #region Http Verbs
-
+        // HTTP Methods 
         [HttpGet]
-        //[HttpGet("{Vocabulary}")]
-
         public IActionResult GetVocabulary()
         {
-            VocabularyDE vcbSC = new VocabularyDE();
-            List<VocabularyDE> vocab = _vcbSVC.SearchVocabulary(vcbSC);
-            return Ok(vocab);
+            List<VocabularyDE> list = new List<VocabularyDE>();
+            list = _vcbSvc.SearchVocabulary(new VocabularyDE());
+            return Ok(list);
         }
 
-        //// GET api/<VocabularyController>/5
-        //[HttpGet("{id}")]
-        //public IActionResult GetVocabularyById(int id)
-        //{
-        //    return "value";
-        //}
+        [HttpPost("{Search}")]
+        public IActionResult SaveVocabulary(VocabularyDE vocabulary)
+        {
+            List<VocabularyDE> list = _vcbSvc.SearchVocabulary(vocabulary);
+            return Ok(list);
+        }
 
 
+        [HttpGet("{id}")]
+        public IActionResult GetVocabularyById(int id)
+        {
+            List<VocabularyDE> list = new List<VocabularyDE>();
+            list = _vcbSvc.SearchVocabulary(new VocabularyDE { Id = id });
+            return Ok(list[0]);
 
+        }
 
-
-
-
-
-
-
-        // POST api/<VocabularyController>
         [HttpPost]
-        public IActionResult PostVocabulary(VocabularyDE vocab)
+        public IActionResult PostVocabulary(VocabularyDE vocabulary)
         {
-            vocab.DBoperation = LMS.Core.Enums.DBoperations.Insert;
-            bool vcb = _vcbSVC.ManageVocabulary(vocab);
-            return Ok(vcb);
+            vocabulary.DBoperation = DBoperations.Insert;
+            _vcbSvc.ManageVocabulary(vocabulary);
+            return Ok();
         }
 
-
-        // PUT api/<VocabularyController>/5
         [HttpPut]
-        public IActionResult PutVocabulary(VocabularyDE vocab)
+        public IActionResult PutVocabulary(VocabularyDE vocabulary)
         {
-            vocab.DBoperation = DBoperations.Update;
-            _vcbSVC.ManageVocabulary(vocab);
+            vocabulary.DBoperation = DBoperations.Update;
+            _vcbSvc.ManageVocabulary(vocabulary);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteVocabulary(int id)
         {
-            VocabularyDE vocab = new VocabularyDE();
-            vocab.DBoperation = DBoperations.Delete;
-            vocab.Id = id;
-            _vcbSVC.ManageVocabulary(vocab);
+            VocabularyDE vocabularyDE = new VocabularyDE();
+            vocabularyDE.DBoperation = DBoperations.Delete;
+            vocabularyDE.Id = id;
+            _vcbSvc.ManageVocabulary(vocabularyDE);
             return Ok();
         }
     }
-    #endregion
 }

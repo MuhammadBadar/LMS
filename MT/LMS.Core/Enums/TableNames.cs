@@ -9,9 +9,10 @@
         course,
         City,
         Schedule,
-        
+        attendance,
         CityStudent,
-        Vocabulary,
+        vocabulary,
+        patient,
         Student,
         ScheduleDaysEvents,
         user,

@@ -1,125 +1,81 @@
-﻿using Dapper;
-using LMS.Core.Entities;
-using LMS.DAL;
-using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dapper;
+using LMS.Core.Entities;
+using MySql.Data.MySqlClient;
 
 namespace LMS.DAL
 {
     public class VocabularyDAL
     {
-        #region Operations
-
-        public bool ManageVocabulary(VocabularyDE vcb, MySqlCommand? cmd)
+        #region DbOperations
+        public bool ManageVocabulary(VocabularyDE _vcb, MySqlCommand? cmd)
         {
-            bool closeConnectionFlag = false;
+            bool closeConnection = false;
             try
             {
                 if (cmd == null)
                 {
                     cmd = LMSDataContext.OpenMySqlConnection();
-                    closeConnectionFlag = true;
+                    closeConnection = true;
                 }
-                if (cmd.Connection.State == ConnectionState.Open)
-                    Console.WriteLine("Connection  has been created");
-                else
-                    Console.WriteLine("Connection error");
-                cmd.CommandText = "Manage_Vocabulary";
-                cmd.Parameters.AddWithValue("@prm_Id", vcb.Id);
-                cmd.Parameters.AddWithValue("@prm_Word", vcb.Word);
-                cmd.Parameters.AddWithValue("@prm_Meaning", vcb.Meaning);
-                cmd.Parameters.AddWithValue("@prm_Reference", vcb.Reference);
-                cmd.Parameters.AddWithValue("@prm_Sentance", vcb.Sentance);
-                cmd.Parameters.AddWithValue("@prm_Pronunciation", vcb.Pronunciation);
-                cmd.Parameters.AddWithValue("@prm_Translation", vcb.Translation);
-                cmd.Parameters.AddWithValue("@prm_CreatedOn", vcb.CreatedOn);
-                cmd.Parameters.AddWithValue("@prm_CreatedBy", vcb.CreatedById);
-                cmd.Parameters.AddWithValue("@prm_ModifiedOn", vcb.ModifiedOn);
-                cmd.Parameters.AddWithValue("@prm_ModifiedBy", vcb.ModifiedById);
-                cmd.Parameters.AddWithValue("@prm_IsActive", vcb.IsActive);
-                cmd.Parameters.AddWithValue("@prm_DBoperation", vcb.DBoperation.ToString());
-                cmd.Parameters.AddWithValue("@prm_Filter", vcb.DBoperation.ToString());
+                cmd.CommandText = "ManageVocabulary";
+                cmd.Parameters.AddWithValue("id", _vcb.Id);
+                cmd.Parameters.AddWithValue("word", _vcb.Word);
+                cmd.Parameters.AddWithValue("englishMeaning", _vcb.EnglishMeaning);
+                cmd.Parameters.AddWithValue("reference", _vcb.Reference);
+                cmd.Parameters.AddWithValue("sentance", _vcb.Sentance);
+                cmd.Parameters.AddWithValue("pronunciation", _vcb.Pronunciation);
+                cmd.Parameters.AddWithValue("comment", _vcb.Comment);
+                cmd.Parameters.AddWithValue("urduMeaning", _vcb.UrduMeaning);
+                cmd.Parameters.AddWithValue("createdOn", _vcb.CreatedOn);
+                cmd.Parameters.AddWithValue("createdById", _vcb.CreatedById);
+                cmd.Parameters.AddWithValue("modifiedOn", _vcb.ModifiedOn);
+                cmd.Parameters.AddWithValue("modifiedById", _vcb.ModifiedById);
+                cmd.Parameters.AddWithValue("isActive", _vcb.IsActive);
+                cmd.Parameters.AddWithValue("DbOperation", _vcb.DBoperation.ToString());
                 cmd.ExecuteNonQuery();
                 return true;
             }
             catch (Exception)
             {
-                return false;
+
+                throw;
             }
             finally
             {
-                if (closeConnectionFlag)
+                if (closeConnection)
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
         }
-        public bool AlterVocabulary(VocabularyDE vcb, int? Id = null, MySqlCommand cmd = null)
+        public List<VocabularyDE> SearchVocabulary(string WhereClause, MySqlCommand cmd)
         {
-            bool closeConnectionFlag = false;
+            bool closeConnection = false;
+            //WhereClause = string.Empty;
+            List<VocabularyDE> lec = new List<VocabularyDE>();
             try
             {
                 if (cmd == null)
                 {
                     cmd = LMSDataContext.OpenMySqlConnection();
-                    closeConnectionFlag = true;
+                    closeConnection = true;
                 }
-                if (cmd.Connection.State == ConnectionState.Open)
-                    Console.WriteLine("Connection  has been created");
-                else
-                    Console.WriteLine("Connection error");
-                cmd.CommandText = "AlterVocabulary";
-                cmd.Parameters.AddWithValue("@id", Id);
-                cmd.Parameters.AddWithValue("@DBoperation", vcb.DBoperation.ToString());
-                cmd.ExecuteNonQuery();
-                return true;
+                lec = cmd.Connection.Query<VocabularyDE>("call lms.SearchVocabulary('" + WhereClause + "')").ToList();
+                return lec;
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             finally
             {
-                if (closeConnectionFlag)
+                if (closeConnection)
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
         }
-        public List<VocabularyDE> SearchVocabulary(string whereClause, MySqlCommand cmd = null)
-        {
-            List<VocabularyDE> top = new List<VocabularyDE>();
-            bool closeConnectionFlag = false;
-            try
-            {
-                if (cmd == null)
-                {
-                    cmd = LMSDataContext.OpenMySqlConnection();
-                    closeConnectionFlag = true;
-                }
-                if (cmd.Connection.State == ConnectionState.Open)
-                    Console.WriteLine("Connection  has been created");
-                else
-                    Console.WriteLine("Connection error");
-                top = cmd.Connection.Query<VocabularyDE>("call lms.Get_Vocabulary( '" + whereClause + "')").ToList();
-                return top;
-            }
-            catch (Exception)
-            {
-
-                return top;
-            }
-            finally
-            {
-                if (closeConnectionFlag)
-                    LMSDataContext.CloseMySqlConnection(cmd);
-            }
-        }
-
         #endregion
-
     }
 }
-    
-
