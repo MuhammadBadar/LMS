@@ -21,6 +21,7 @@ import { UserTaskbydateVM } from './Models/UsertaskbydateVM';
 import {  ScheduleDayEventsVM, ScheduleVM } from './Models/ScheduleVM';
 import { CityStudentVM } from './Models/CityStudentVM';
 import { VocabularyVM } from './Models/VocabularyVM';
+import { PatientVM } from './Models/PatientVM';
 @Injectable({
   providedIn: 'root'
 })
@@ -352,6 +353,30 @@ GetUserreport(): Observable<UserreportVM[]>{
 GetUserreportId(id: number): Observable<UserreportVM[]> {
   return this.http.get<UserreportVM[]>(Globals.BASE_API_URL + 'Userreport/Search' + id).pipe()
 }
+SearchUserreport(value:UserreportVM): Observable<UserreportVM[]>{
+  return this.http.post<UserreportVM[]>(Globals.BASE_API_URL + 'Userreport/Search' ,value).pipe();
+}
+
+//PatientVM lms services
+GetPatient(): Observable<PatientVM[]>{
+  return this.http.get<PatientVM[]>(Globals.BASE_API_URL + 'Patient').pipe();
+}
+GetPatientId(id: number): Observable<PatientVM[]> {
+  return this.http.get<PatientVM[]>(Globals.BASE_API_URL + 'Patient/' + id).pipe()
+}
+SavePatient(value:PatientVM){
+  return this.http.post(Globals.BASE_API_URL + 'Patient',value);
+}
+UpdatePatient(value:PatientVM){
+  return this.http.put(Globals.BASE_API_URL + 'Patient',value);
+}
+DeletePatient(id:number){
+  return this.http.delete(Globals.BASE_API_URL + 'Patient/' + id);
+}
+SearchPatient(value:PatientVM): Observable<PatientVM[]>{
+  return this.http.post<PatientVM[]>(Globals.BASE_API_URL + 'Patient/Search' ,value).pipe();
+}
+
 // SaveTask(value:TaskVM){
 //   return this.http.post(Globals.BASE_API_URL + 'Task',value);
 // }

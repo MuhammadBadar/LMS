@@ -1,5 +1,52 @@
-<section class=" example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;margin-top: 20px;">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<div class="container-fluid page">
+  <div class="d-flex page_box p-3 mt-2 header-sticky" position="sticky">
+    <div *ngIf="AddMode">Attendance Report</div>
+    <div *ngIf="EditMode">Edit Attendance Report</div>
+  </div>
+  <div class="page_content shadow p-3 position-relative">
+    <form #topicForm="ngForm">
+      <Row>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
+          <mat-form-field appearance="outline" fxFlex="49%">
+            <mat-label>--Please Select User--</mat-label>
+            <mat-select name="UserId" [(ngModel)]="selectedUserreport.userId">
+              <mat-option [value]="0" (click)="Refresh()"
+                >--Please Select--</mat-option
+              >
+              <mat-option
+                *ngFor="let val of User"
+                [value]="val.id"
+                (click)="Search()"
+              >
+                {{ val.userName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- <mat-form-field appearance="outline" fxFlex="49%">
+            <mat-label>--Please Select Date--</mat-label>
+            <mat-select name="date" [(ngModel)]="selectedAttendance.date">
+              <mat-option [value]="0" (click)="Refresh()"
+                >--Please Select--</mat-option
+              >
+              <mat-option
+                *ngFor="let val of attendance"
+                [value]="val.id"
+                (click)="Search()"
+              >
+                {{ val.date }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+        </div>
+      </Row>
+    </form>
+
+
+<section class=" example-container mat-elevation-z8" 
+tabindex="0" 
+style="border-radius: 5px;margin-top: 20px;">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             
       <!-- UserId Column -->
       <ng-container matColumnDef="userId">
@@ -114,3 +161,5 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </section>
+</div>
+</div>

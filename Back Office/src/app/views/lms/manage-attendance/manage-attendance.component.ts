@@ -1,3 +1,4 @@
+import { User } from './../../security/models/user.model';
 
 import { Component, Injector, OnInit } from '@angular/core';
 import { AttendanceVM } from '../Models/AttendanceVM';
@@ -6,6 +7,8 @@ import { LMSService } from '../lms.service';
 import { CatalogService } from '../../catalog/catalog.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { UserattbydateVM } from '../Models/UserattbydateVM';
+import { UserVM } from '../../security/models/user-vm';
+import { SecurityService } from '../../security/security.service';
 @Component({
     selector: 'app-manage-attendance',
     templateUrl: './manage-attendance.component.html',
@@ -13,13 +16,15 @@ import { UserattbydateVM } from '../Models/UserattbydateVM';
   })
   export class ManageAttendanceComponent implements OnInit{
   displayedColumns: string[] = ['user', 'inTime','outTime', 'workedHours','date'];
-  // Attendance:AttendanceVM [] = [];
+  Attendance:AttendanceVM[]
+  User:UserVM[]
   AddMode: boolean = true
   proccessing: boolean = false;
   EditMode: boolean = false
 
   Add: boolean = true;
   Edit: boolean = false;
+
 
   dialogRef: any
   dialogref: any
@@ -35,6 +40,7 @@ import { UserattbydateVM } from '../Models/UserattbydateVM';
   constructor(
     private injector: Injector,
     private lmsSvc: LMSService,
+    private secSvc: SecurityService,
     private catSvc: CatalogService,
     public dialog: MatDialog,) {
     this.selectedAttendance = new AttendanceVM
@@ -48,10 +54,24 @@ import { UserattbydateVM } from '../Models/UserattbydateVM';
 
   ngOnInit(): void {    
     this.AddMode = true;
-    
+    this.GetUser();
     this.GetAttendance();    
     this.selectedAttendance = new AttendanceVM(); 
        }
+
+
+       GetUser() {
+        var usr = new UserVM
+        usr.isActive = true;
+        // this.selectedAttendance.isActive = true;
+        this.secSvc.getUserList().subscribe({
+          next: (res: UserVM[]) => {
+            this.User = res
+          }, error: (err) => {
+            this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+          },
+        })
+      }
   GetAttendance() {
     this.lmsSvc.GetAttendance().subscribe({
       next:(value: AttendanceVM[])=> {
@@ -70,6 +90,24 @@ import { UserattbydateVM } from '../Models/UserattbydateVM';
     this.AddMode = true
     // this.selectedAttendance.isActive = true;
   }
+
+
+  SearchbyUser(date : Date ){
+  debugger
+    var usr = new AttendanceVM
+    usr.date = date;
+    this.lmsSvc.SearchAttendance(usr).subscribe({
+     next: (value: AttendanceVM[]) => {
+       this.Attendance = value
+       this.dataSource = new MatTableDataSource(value)
+       console.warn(this.selectedAttendance.date)
+     }, error: (err) => {
+    
+       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+     },
+   })}
+
+
 
   Search() {
     var usr = new AttendanceVM();

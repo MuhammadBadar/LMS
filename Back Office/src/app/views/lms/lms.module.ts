@@ -1,3 +1,4 @@
+
 import { ManageCoursescheduleComponent } from './Schedule/manage-courseschedule/manage-courseschedule.component';
 import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -78,6 +79,7 @@ import { ManageCityComponent } from './manage-city/manage-city.component';
 import { ManageCityStudentComponent } from './manage-city-student/manage-city-student.component';
 import { ManageStudentComponent } from './manage-student/manage-student.component';
 import { ManageScheduleComponent } from './manage-schedule/manage-schedule.component';
+import { ManagePatientComponent } from './manage-patient/manage-patient.component';
 import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
 import { ManageAttendanceComponent } from './manage-attendance/manage-attendance.component';
 import { ManageUserattbydateComponent } from './manage-userattbydate/manage-userattbydate.component';
@@ -104,6 +106,7 @@ import { ManageUserreportComponent } from './manage-userreport/manage-userreport
     ManageStudentComponent,
     ManageScheduleComponent,
     ManageAttendanceComponent,
+    ManagePatientComponent,
     ManageUserattbydateComponent,
     ManageTasksComponent,
     ManageUsertaskbydateComponent,

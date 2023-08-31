@@ -14,14 +14,30 @@
                 >--Please Select--</mat-option
               >
               <mat-option
-                *ngFor="let val of attendance"
+                *ngFor="let val of User"
                 [value]="val.id"
                 (click)="Search()"
               >
-                {{ val.user }}
+                {{ val.userName }}
               </mat-option>
             </mat-select>
           </mat-form-field>
+
+          <!-- <mat-form-field appearance="outline" fxFlex="49%">
+            <mat-label>--Please Select Date--</mat-label>
+            <mat-select name="date" [(ngModel)]="selectedAttendance.date">
+              <mat-option [value]="0" (click)="Refresh()"
+                >--Please Select--</mat-option
+              >
+              <mat-option
+                *ngFor="let val of Attendance"
+                [value]="val.date"
+                (click)="Search()"
+              >
+                {{ val.date }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
 
           <!-- <mat-form-field appearance="outline" fxFlex="49%">
             <mat-label>--Please Select Date--</mat-label>
@@ -41,13 +57,13 @@
         </div>
       </Row>
     </form>
-
+    <h5 cCardTitle>Attendance List</h5>
     <section
       class="example-container mat-elevation-z8"
       tabindex="0"
       style="border-radius: 5px; margin-top: 20px"
     >
-    <h5 cCardTitle>Attendance List</h5>
+    
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <!-- UserId Column -->
         <ng-container matColumnDef="userId">

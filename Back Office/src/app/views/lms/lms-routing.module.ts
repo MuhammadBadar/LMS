@@ -1,3 +1,4 @@
+import { ManagePatientComponent } from './manage-patient/manage-patient.component';
 import { ManageCourseDetailComponent } from './manage-course-detail/manage-course-detail.component';
 import { ManageInquiryComponent } from './manage-inquiry/manage-inquiry.component';
 import { ScheduleListComponent } from './Schedule/schedule-list/schedule-list.component';
@@ -10,6 +11,7 @@ import { ManageTopicComponent } from './manage-topic/manage-topic.component';
 import { ManageLectureComponent } from './manage-lecture/manage-lecture.component';
 import { ManageCityComponent } from './manage-city/manage-city.component';
 import { ManageVocabularyComponent } from './manage-vocabulary/manage-vocabulary.component';
+
 import { ManageCityStudentComponent } from './manage-city-student/manage-city-student.component';
 import { ManageStudentComponent } from './manage-student/manage-student.component';
 import { ManageScheduleComponent } from './manage-schedule/manage-schedule.component';
@@ -80,6 +82,11 @@ const routes: Routes = [{
     {
       path: "Vocabulary",
       component: ManageVocabularyComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "patient",
+      component: ManagePatientComponent,
       pathMatch: "full"
     },
     {

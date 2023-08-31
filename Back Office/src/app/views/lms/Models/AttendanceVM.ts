@@ -1,6 +1,6 @@
 export class AttendanceVM {
     id!: number
-    userId!: string
+    userId?: string
     user?: string
     inTime?: string
     outTime?: string        
