@@ -48,6 +48,7 @@ INSERT INTO `announcement` (`id`, `title`, `description`) VALUES
 -- Table structure for table `course`
 --
 
+DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
   `Id` int(11) NOT NULL,
   `Fee` double NOT NULL,
@@ -60,16 +61,37 @@ CREATE TABLE `course` (
 -- Dumping data for table `course`
 --
 
-INSERT INTO `course` (`Id`, `Fee`, `ShortDescription`, `Title`, `LogoPath`) VALUES
-(2, 12000, 'Odoo is a flexible business software suite with applications for CRM, sales, inventory, HR, and accounting. Its user-friendly design and modular structure streamline operations and support businesses of all sizes.', 'Odoo', './assets/images/odoo-main.png'),
-(3, 12000, 'Flutter is an open-source framework by Google for building apps on iOS, Android, web, and desktop platforms. With a single codebase, it offers beautiful UI, fast performance, and ', 'Flutter.......', './assets/images/flutter-main.jpg'),
-(4, 12000, 'PHP web development uses the PHP language for dynamic websites. It\'s server-based, integrates with HTML, handles databases, and supports frameworks. Used in CMS, e-commerce. Secure, scalable, and and popular.', 'PHP Web Development', './assets/images/php-main.png'),
-(37, 0, 'nmuhn j', 'gjvhjty', 'uploads/Architecture.png'),
-(38, 0, 'hhhhhhhhhhhhhhhh', 'abc', 'uploads/.net.png'),
-(39, 0, 'Description 1', 'Course 1', 'uploads/.net2.png'),
-(40, 0, 'Testing for angular course', 'Angular', 'uploads/Hira.png');
+INSERT INTO `course` (`Id`, `Title`, `ShortDescription`, `LogoPath`, `Fee`) VALUES
+(1, 'Odoo ERP Development' 
+, 'Odoo is a flexible business software suite with applications for CRM, sales, inventory, HR, and accounting. Its user-friendly design and modular 
+structure streamline operations and support businesses of all sizes.'
+, './assets/images/odoo-main.png')
+,
+(2, 'Flutter Mobile Development' 
+, 'Flutter is an open-source framework by Google for building apps on iOS and Android mostly by using a single codebase which results in the faster 
+application launch and also the coste effective methodology.'
+, './assets/images/flutter-main.jpg')
+,
+(3, 'PHP Web Development' 
+, 'PHP web development uses the PHP language for dynamic websites. It is server-based, integrates with HTML, handles databases, and supports frameworks. 
+Used in CMS, e-commerce. Secure, scalable, and very popular.'
+, './assets/images/php-main.png')
+,
+(4, 'React Web Development' 
+, 'React is a Frontend Development Library developed by Facebook, mostly used for building interactive user interfaces and web applications quickly and 
+efficiently with significantly less code than other frameworks.'
+, './assets/images/php-main.png')
+,
+(5, 'Angular Web Development' 
+, 'Angular is a Frontend Development Framework provided by Google, mostly used to build responsive, scalable and Single Page Web (SPA) Applications. 
+This is the most demanding framework for the Software Industry.'
+, '/assets/images/angular-main.png')
+
 
 -- --------------------------------------------------------
+
+27-Jun-2022 — It's used for building interactive user interfaces and web applications quickly and efficiently with significantly less code than you would with ...
+
 
 --
 -- Table structure for table `coursedetails`

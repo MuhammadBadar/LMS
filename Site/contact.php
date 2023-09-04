@@ -23,7 +23,6 @@ require_once("dbConnection.php");
         <div class="row">
           <div class="col-lg-7">
             <div class="contact-head">
-              <h5>Contact Us</h5>
               <h1>Get In Touch With Us</h1>
               <p>At QamSoft, we offer more than just courses – we deliver transformative experiences. Our faculty comprises luminaries in the programming world, whose proficiency is matched only by their passion for teaching. With meticulously crafted curricula, hands-on projects, and real-world simulations, our students are exposed to the dynamic challenges they will face in their careers.</p>
 </div>
@@ -34,10 +33,11 @@ require_once("dbConnection.php");
                 </div>
               </div>
               <div class="col-lg-10">
-                <h3>HEAD OFFICE</h3>
-                <p>508, Siddiq Trade Center, Lahore, Pakistan</p>
-                <p><b>Phone:</b> +92 323 4027206</p>
+                <h3>Head Office</h3>
+                <p>508-A, Siddique Trade Center, Gulberg 2 Lahore, Pakistan</p>
+                <p><b>Phone:</b> +92 323 4027206, +92 309 4052891</p>
                 <p><b>Email:</b> info@qamsoft.com</p>
+				<p><b>Blog:</b> badar@qamsoft.com</p>
               </div>
               </div>
               <div class="row contact-home">
@@ -47,10 +47,11 @@ require_once("dbConnection.php");
                 </div>
               </div>
               <div class="col-lg-10">
-                <h3>Branch OFFICE</h3>
-                <p>Fatima Height near Nobal Hospital Rehmanpura, Lahore, Pakistan</p>
-                <p><b>Phone:</b> +92 323 4027206</p>
+                <h3>Branch Office</h3>
+                <p>Fatima Heights near Nobal Hospital, Rehmanpura Lahore, Pakistan</p>
+                <p><b>Phone:</b> +92 323 4027206, +92 309 4052891</p>
                 <p><b>Email:</b> info@qamsoft.com</p>
+				<p><b>Blog:</b> badar@qamsoft.com</p>
               </div>
 </div>
             </div>
