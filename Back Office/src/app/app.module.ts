@@ -66,6 +66,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { RowComponent } from './row/row.component';
 
 
 
@@ -80,7 +81,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS],
+  declarations: [AppComponent, ...APP_CONTAINERS, RowComponent],
   imports: [
     NgxMatDatetimePickerModule,
     PerfectScrollbarModule,

@@ -1,3 +1,4 @@
+import { ManageUseraccountComponent } from './../security/manage-useraccount/manage-useraccount.component';
 import { ManagePatientComponent } from './manage-patient/manage-patient.component';
 import { ManageCourseDetailComponent } from './manage-course-detail/manage-course-detail.component';
 import { ManageInquiryComponent } from './manage-inquiry/manage-inquiry.component';
@@ -5,6 +6,7 @@ import { ScheduleListComponent } from './Schedule/schedule-list/schedule-list.co
 import { ManageCoursescheduleComponent } from './Schedule/manage-courseschedule/manage-courseschedule.component';
 import { ManageCourseComponent } from './manage-course/manage-course.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ManageTopicComponent } from './manage-topic/manage-topic.component';
@@ -36,6 +38,11 @@ const routes: Routes = [{
     {
       path: "user",
       component: ManageUserComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "useraccount",
+      component: ManageUseraccountComponent,
       pathMatch: "full"
     },
     {

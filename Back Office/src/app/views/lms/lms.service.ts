@@ -1,3 +1,4 @@
+import { UserAccountVM } from './Models/UserAccountVM';
 import { TopicVM } from './Models/TopicVM';
 import { CourseDetailVM } from './Models/CourseDetailVM';
 import { CourseScheduleVM } from './Models/CourseScheduleVM';
@@ -8,6 +9,7 @@ import { Observable } from 'rxjs';
 import { Globals } from 'src/app/globals';
 import { InquiryVM } from './Models/InquiryVM';
 import { UserVM } from './Models/UserVM';
+
 
 import { UserreportVM } from './Models/UserreportVM';
 import{LectureVM} from './Models/LectureVM';
@@ -376,6 +378,27 @@ DeletePatient(id:number){
 SearchPatient(value:PatientVM): Observable<PatientVM[]>{
   return this.http.post<PatientVM[]>(Globals.BASE_API_URL + 'Patient/Search' ,value).pipe();
 }
+
+//useraccount lms servises
+GetUserAccount(): Observable<UserAccountVM[]> {
+  return this.http.get<UserAccountVM[]>(Globals.BASE_API_URL + 'UserAccount').pipe();
+}
+GetUserAccountById(id: number): Observable<UserAccountVM> {
+  return this.http.get<UserAccountVM>(Globals.BASE_API_URL + 'UserAccount/' + id).pipe()
+}
+SaveUserAccount(value: UserAccountVM): Observable<any> {
+  return this.http.post(Globals.BASE_API_URL + 'UserAccount', value);
+}
+UpdateUserAccount(value: UserAccountVM) {
+  return this.http.put(Globals.BASE_API_URL + 'UserAccount', value);
+}
+DeleteUserAccount(id: number) {
+  return this.http.delete(Globals.BASE_API_URL + 'UserAccount/' + id);
+}
+SearchUserAccount(value: UserAccountVM): Observable<UserAccountVM[]> {
+  return this.http.post<UserAccountVM[]>(Globals.BASE_API_URL + 'UserAccount/Search', value).pipe();
+}
+
 
 // SaveTask(value:TaskVM){
 //   return this.http.post(Globals.BASE_API_URL + 'Task',value);

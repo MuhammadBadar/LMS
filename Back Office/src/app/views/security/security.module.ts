@@ -64,6 +64,7 @@ import {
 
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
+import { ManageUseraccountComponent } from './manage-useraccount/manage-useraccount.component';
 
 
 @NgModule({
@@ -127,7 +128,7 @@ import { IconModule } from '@coreui/icons-angular';
     MatTooltipModule
 
   ],
-  declarations: [ManageRoleComponent, ManageUserComponent, CreateUserDialogComponent, AssignRoleToUserComponent, CreateUserRoleComponent, LoginComponent],
+  declarations: [ManageRoleComponent, ManageUserComponent, CreateUserDialogComponent, AssignRoleToUserComponent, CreateUserRoleComponent, LoginComponent, ManageUseraccountComponent],
   providers: [
     DatePipe,
     // { provide: HTTP_INTERCEPTORS, useClass: httpInterceptor, multi: true },
