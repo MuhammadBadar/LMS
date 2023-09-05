@@ -31,14 +31,22 @@
                       
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                           <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
+                            <li class="nav-item">
+                              <a class="nav-link" href="https://qamsoft.com">Home</a>
+                            </li>
+							<li class="nav-item active">
                               <a class="nav-link" href="courses.php">Courses <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
                               <a class="nav-link" href="schedual.php">Upcoming Events</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.php">Contact</a>
+                                <a class="nav-link" href="contact.php">Contact Us</a>
+                              </li>
+							  <li class="nav-item">
+                                <a class="nav-link" href="https://badar.qamsoft.com/" target="_blank">Blog</a>
+								
+
                               </li>
                               <li class="nav-item sign-in">
                                 <a class="nav-link" href="login.php">Sign In</a>
