@@ -1,0 +1,25 @@
+<div class="container-fluid page">
+  <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+      <div *ngIf="Add">Manage User Account
+      </div>
+      <div *ngIf="Edit">Edit User Account
+      </div>
+  </div>
+  <div class="page_content shadow p-3 position-relative">
+    <form #UseraccountForm="ngForm">
+        <!-- <Row> -->
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                    <mat-label> User Name</mat-label>
+                 
+                    <input UserName matInput required #userName="ngModel" name="userName" [(ngModel)]="selectedUserAccount.userName" maxlength="200" minlength="3"/>
+                     <mat-error class="form-text text-danger"
+                    *ngIf="UseraccountForm.controls['userName']?.hasError || UseraccountForm.controls['userName']?.errors?.['minlength']">
+                    UserName is required to be at least 3 characters.
+                  </mat-error>            
+                </mat-form-field>
+            </div>
+        <!-- </Row> -->
+    </form>
+  </div>
+</div>
