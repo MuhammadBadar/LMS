@@ -1,229 +1,158 @@
-<div class="container-fluid page height">
-  <div class="d-flex page_box p-3 mt-2 header-sticky" position="sticky">
-    <div *ngIf="AddMode">Manage Vocabulary</div>
-    <div *ngIf="EditMode">Edit Vocabulary</div>
-  </div>
-
-  <div class="page_content shadow p-3 position-relative">
-    <form #VocabularyForm="ngForm">
-      <Row>
-        <div fxLayout="row" fxLayoutAlign="space-between">          
-          <mat-form-field appearance="outline" fxFlex="49%" class="form-group">
-            <mat-label>Word</mat-label>
-            <input matInput class="form-control" placeholder="Word" [type]="hide ? 'word' : 'text'"
-                   name="Word" [ngClass]="{ 'is-invalid': VocabularyForm.submitted && title.invalid }"
-                   #title="ngModel" [(ngModel)]="selectedVocabulary.word" required maxlength="200" minlength="3">
-                   <mat-error class="form-text text-danger"
-                   *ngIf="VocabularyForm.controls['Word']?.hasError || VocabularyForm.controls['Word']?.errors?.['minlength']">
-                   Word is required to be at least 3 characters.
-                 </mat-error> 
-          </mat-form-field>
-
-          <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
-            <mat-label>Pronunciation</mat-label>
-            <input
-              matInput
-              #pronunciation="ngModel"
-              name="pronunciation"
-              [(ngModel)]="selectedVocabulary.pronunciation"
-            />
-          </mat-form-field>
+<div class="container-fluid page">
+    <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+        <div *ngIf="Add">Manage Vocaulary
         </div>
-      </Row>
-      <br>
+       
+    </div>
+  
+    <form>
+    <div class="page_content shadow p-3 position-relative">
+        <form #VocabularyForm="ngForm">
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                    <mat-label> Word</mat-label>
+                    <input matInput required #Word="ngModel" name="word" [(ngModel)]="selectedVocabulary.word" />
+                </mat-form-field>
 
-      <Row>
-        <div fxLayout="row" fxLayoutAlign="space-between" >
-          <mat-form-field appearance="outline" fxFlex="49%" class="form-group">
-            <mat-label>English Meaning</mat-label>
-            <textarea matInput required name="englishMeaning" [(ngModel)]="selectedVocabulary.englishMeaning" maxlength="1000" minlength="3"></textarea>
-            <mat-error class="form-text text-danger"
-            *ngIf="VocabularyForm.controls['englishMeaning']?.hasError || VocabularyForm.controls['englishMeaning']?.errors?.['minlength']">
-            English Meaning is required to be at least 3 characters.
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" fxFlex="49%" class="form-group">
-          <mat-label>Urdu Meaning</mat-label>
-          <textarea matInput required name="urduMeaning" [(ngModel)]="selectedVocabulary.urduMeaning" maxlength="1000" minlength="3"></textarea>
-          <mat-error class="form-text text-danger"
-          *ngIf="VocabularyForm.controls['urduMeaning']?.hasError || VocabularyForm.controls['urduMeaning']?.errors?.['minlength']">
-          Urdu Meaning is required to be at least 3 characters.
-        </mat-error>
-      </mat-form-field>
-        </div>
-      </Row>
-
-      <br>
-      <Row>
-        <div fxLayout="row" fxLayoutAlign="space-between">
-          <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
-            <mat-label> Sentance</mat-label>
-            <textarea
-              matInput
-              
-              #sentance="ngModel"
-              name="sentance"
-              [(ngModel)]="selectedVocabulary.sentance"
-            ></textarea>
-          </mat-form-field>
-        </div>
-      </Row>
-
-      <Row>
-        <div fxLayout="row" fxLayoutAlign="space-between">
-          <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
-            <mat-label>Reference</mat-label>
-            <input
-              matInput
-              
-              #reference="ngModel"
-              name="reference"
-              [(ngModel)]="selectedVocabulary.reference"
-            />
-          </mat-form-field>
-        </div>
-      </Row>
-
-      <Row>
-        <div fxLayout="row" fxLayoutAlign="space-between">
-          <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
-            <mat-label>Comment</mat-label>
-            <input
-              matInput
-              
-              #comment="ngModel"
-              name="comment"
-              [(ngModel)]="selectedVocabulary.comment"
-            />
-          </mat-form-field>
-        </div>
-      </Row>
-
-      <Row>
-        <mat-checkbox
-          name="isActive"
-          [(ngModel)]="selectedVocabulary.isActive"
-          checked
-          >Is Active</mat-checkbox
-        >
-
-        <div fxLayoutAlign="end end">
-          <button
-            mat-raised-button
-            *ngIf="AddMode"
-            color="primary"
-            (click)="SaveVocabulary()"
-          >
-            Submit
-          </button>
-          <button
-            mat-raised-button
-            *ngIf="EditMode"
-            color="primary"
-            (click)="SaveVocabulary()"
-          >
-            Update
-          </button>
-          <div>
-            <button
-              mat-icon-button
-              mat-sm-button
-              color="primary"
-              cTooltip="Refresh"
-              cTooltipPlacement="top"
-              (click)="Refresh()"
-            >
-              <mat-icon>autorenew</mat-icon>
-            </button>
-          </div>
-        </div>
-      </Row>
-    </form>
-
-    <section
-      class="example-container mat-elevation-z8"
-      tabindex="0"
-      style="border-radius: 5px; margin-top: 20px"
-    >
-      <table mat-table [dataSource]="vocabDataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="word">
-          <th mat-header-cell *matHeaderCellDef>Word</th>
-          <td mat-cell *matCellDef="let vocab">{{ vocab.word }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="pronunciation">
-          <th mat-header-cell *matHeaderCellDef>Pronunciation</th>
-          <td mat-cell *matCellDef="let vocab">{{ vocab.pronunciation }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="englishMeaning">
-          <th mat-header-cell *matHeaderCellDef>English Meaning</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.englishMeaning }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="reference">
-          <th mat-header-cell *matHeaderCellDef>Reference</th>
-          <td mat-cell *matCellDef="let vocab">{{ vocab.reference }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="sentance">
-          <th mat-header-cell *matHeaderCellDef>Sentance</th>
-          <td mat-cell *matCellDef="let element">{{ element.sentance }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="comment">
-          <th mat-header-cell *matHeaderCellDef>Comment</th>
-          <td mat-cell *matCellDef="let element">{{ element.comment }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="urduMeaning">
-          <th mat-header-cell *matHeaderCellDef>Urdu Meaning</th>
-          <td mat-cell *matCellDef="let element">{{ element.urduMeaning }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="isActive">
-          <th mat-header-cell *matHeaderCellDef>Is Active</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.isActive ? "Yes" : "No" }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="actions" stickyEnd="true">
-          <th mat-header-cell *matHeaderCellDef>
-            <p style="margin-top: 15px; font-size: 16px; text-align: center">
-              Actions
-            </p>
-          </th>
-          <td mat-cell *matCellDef="let row">
-            <div style="text-align: center">
-              <button
-                mat-icon-button
-                mat-sm-button
-                (click)="EditVocabulary(row)"
-                style="color: #1e293b"
-                cTooltip=" Edit Vocabulary"
-              >
-                <mat-icon>edit</mat-icon>
-              </button>
-
-              <button
-                mat-icon-button
-                mat-sm-button
-                color="warn"
-                (click)="DeleteVocabulary(row.id)"
-                cTooltip="Delete Vocabulary"
-              >
-                <mat-icon>delete</mat-icon>
-              </button>
+                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                    <mat-label>Meaning</mat-label>
+                    <input matInput required #meaning="ngModel" name="meaning" [(ngModel)]="selectedVocabulary.meaning" />
+                </mat-form-field>
+                
+                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                    <mat-label>Reference</mat-label>
+                    <input matInput required #reference="ngModel" name="cell" [(ngModel)]="selectedVocabulary.reference" />
+                </mat-form-field>
             </div>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="vocabColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: vocabColumns"></tr>
-      </table>
-    </section>
-  </div>
+            <br><br> 
+            <div class="page_content shadow p-3 position-relative">
+                <form #VocabularyForm="ngForm">
+                    <div fxLayout="row" fxLayoutAlign="space-between">
+                        <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                            <mat-label> Sentance</mat-label>
+                            <input matInput required #sentance="ngModel" name="sentance" [(ngModel)]="selectedVocabulary.sentance" />
+                        </mat-form-field>
+        
+                        <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                            <mat-label>Pronunciation</mat-label>
+                            <input matInput required #pronunciation="ngModel" name="pronunciation" [(ngModel)]="selectedVocabulary.pronunciation" />
+                        </mat-form-field>
+                        
+                        <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                            <mat-label>Translation</mat-label>
+                            <input matInput required #translation="ngModel" name="translation" [(ngModel)]="selectedVocabulary.translation" />
+                        </mat-form-field>
+                    </div>
+     
+
+    <!-- <br><br><div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field appearance="outline" fxFlex="19%">
+            <br><br> <label>Word</label>
+            <input matInput name="word" [(ngModel)]="selectedVocabulary.word">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="19%">
+            <label>Meaning</label>
+            <textarea matInput name="Meaning" [(ngModel)]="selectedVocabulary.meaning"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="19%">
+            <br><br> <label>Reference</label>
+            <input matInput name="reference" [(ngModel)]="selectedVocabulary.reference">
+        </mat-form-field> -->
+        <!-- <mat-form-field appearance="outline" fxFlex="19%">
+            <br><br>  <label>Sentance</label>
+            <textarea matInput name="sentance" [(ngModel)]="selectedVocabulary.sentance"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="19%">
+            <br><br> <label>Pronunciation</label>
+            <input matInput name="pronunciation" [(ngModel)]="selectedVocabulary.pronunciation">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="19%">
+            <br><br> <label>Translation</label>
+            <textarea matInput name="translation" [(ngModel)]="selectedVocabulary.translation"></textarea>
+        </mat-form-field> -->
+  
+    <mat-checkbox name="isActive" [(ngModel)]="selectedVocabulary.isActive">Is Active</mat-checkbox>
+    <div fxLayoutAlign="end end">
+        <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveVocabulary()">Submit</button>
+        <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateVocabulary()">Update</button>
+    </div>
+    
+</form> 
+<c-card style="padding: 10px; margin-top: 30px;" class="mat-elevation-z8">
+    <h5 cCardTitle>Vocabulary List</h5>
+    <c-card-body style="padding: 10px;margin: 5px;border-radius: 10px;">
+        <div class="example-table-container">
+            <section class="example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;">
+                
+<table mat-table [dataSource]="vocabDataSource" class="mat-elevation-z8" style="margin-top: 20px;">
+
+
+    <ng-container matColumnDef="word">
+        <th mat-header-cell *matHeaderCellDef> Word </th>
+        <td mat-cell *matCellDef="let vocab"> {{vocab.word}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="meaning">
+        <th mat-header-cell *matHeaderCellDef> Meaning</th>
+        <td mat-cell *matCellDef="let element"> {{element.meaning}} </td>
+    </ng-container>
+
+    
+
+    <ng-container matColumnDef="reference">
+        <th mat-header-cell *matHeaderCellDef> Reference </th>
+        <td mat-cell *matCellDef="let vocab"> {{vocab.reference}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="sentance">
+        <th mat-header-cell *matHeaderCellDef> Sentance</th>
+        <td mat-cell *matCellDef="let element"> {{element.sentance}} </td>
+    </ng-container>
+    
+
+    <ng-container matColumnDef="pronunciation">
+        <th mat-header-cell *matHeaderCellDef> Pronunciation </th>
+        <td mat-cell *matCellDef="let vocab"> {{vocab.pronunciation}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="translation">
+        <th mat-header-cell *matHeaderCellDef> Translation</th>
+        <td mat-cell *matCellDef="let element"> {{element.translation}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="isActive">
+        <th mat-header-cell *matHeaderCellDef> Is Active </th>
+        <td mat-cell *matCellDef="let element"> {{element.isActive ? 'Yes' : 'No'}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="actions" stickyEnd="true">
+        <th mat-header-cell *matHeaderCellDef>
+            <p style="font-size: 14px;text-align: center;">Actions</p>
+        </th>
+        <td mat-cell *matCellDef="let row">
+            <div style="text-align: center;">
+                <button mat-icon-button mat-sm-button (click)="EditVocabulary(row)" style=" color:#1e293b ; "
+                    cTooltip=" Edit Vocabulary">
+                    <mat-icon>edit</mat-icon>
+                </button>
+<!-- 
+                 <button mat-icon-button mat-sm-button color="warn" (click)="DeleteVocabulary(row.id)"
+                    cTooltip="Delete Vocabulary">
+                    <mat-icon>delete</mat-icon>
+                    
+                </button>  -->
+            </div>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="vocabColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: vocabColumns;"></tr>
+
+    
+</table>
+</section>
 </div>
+</c-card-body>
+</c-card>

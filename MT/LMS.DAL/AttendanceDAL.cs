@@ -8,6 +8,7 @@ namespace LMS.DAL
 {
     public class AttendanceDAL
     {
+      
         public bool ManageAttendance(AttendanceVM Attendance, MySqlCommand? cmd)
         {
             bool closeConnection = false;

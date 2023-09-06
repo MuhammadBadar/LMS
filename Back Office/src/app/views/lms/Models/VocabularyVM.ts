@@ -1,11 +1,10 @@
 export class VocabularyVM {
     id!: number
     word?:string
-    pronunciation?:string
-    englishMeaning?:string
-    urduMeaning?:string
+    meaning?:string
     reference?:string
     sentance?:string
-    comment?:string
+    pronunciation?:string
+    translation?:string
     isActive?: boolean
 }

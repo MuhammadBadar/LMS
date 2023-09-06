@@ -10,7 +10,7 @@ import { EnumTypeVM } from '../../security/models/EnumTypeVM';
 @Component({
   selector: 'app-manage-city',
   templateUrl: './manage-city.component.html',
-  styleUrls: ['./manage-city.component.css']
+  styleUrls: ['./manage-city.component.scss']
 })
 export class ManageCityComponent {
  displayedColumns: string[] = [`name`,'isActive', 'actions'];  

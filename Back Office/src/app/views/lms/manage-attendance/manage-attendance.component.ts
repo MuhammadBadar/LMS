@@ -1,4 +1,3 @@
-import { User } from './../../security/models/user.model';
 
 import { Component, Injector, OnInit } from '@angular/core';
 import { AttendanceVM } from '../Models/AttendanceVM';
@@ -9,7 +8,8 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { UserattbydateVM } from '../Models/UserattbydateVM';
 import { UserVM } from '../../security/models/user-vm';
 import { SecurityService } from '../../security/security.service';
-import Swal from 'sweetalert2';
+import { DateAdapter } from '@angular/material/core';
+import * as moment from 'moment';
 @Component({
     selector: 'app-manage-attendance',
     templateUrl: './manage-attendance.component.html',
@@ -17,19 +17,17 @@ import Swal from 'sweetalert2';
   })
   export class ManageAttendanceComponent implements OnInit{
   displayedColumns: string[] = ['user', 'inTime','outTime', 'workedHours','date'];
-  Attendance:AttendanceVM[]
-  User:UserVM[]
+  // Attendance:AttendanceVM [] = [];
   AddMode: boolean = true
   proccessing: boolean = false;
   EditMode: boolean = false
-
+  
+  users?: UserVM[]
   Add: boolean = true;
   Edit: boolean = false;
-
-
   dialogRef: any
   dialogref: any
-
+  maxDate: Date;
   selectedAttendance: AttendanceVM;
   dataSource:any
   attendance?:AttendanceVM[]
@@ -41,38 +39,30 @@ import Swal from 'sweetalert2';
   constructor(
     private injector: Injector,
     private lmsSvc: LMSService,
-    private secSvc: SecurityService,
     private catSvc: CatalogService,
-    public dialog: MatDialog,) {
+    public dialog: MatDialog,
+    private secSvs: SecurityService,
+    private dateAdapter: DateAdapter<Date>) {
     this.selectedAttendance = new AttendanceVM
-    
-    //private injector: Injector,
+    this.maxDate = new Date();
+    // this.maxDate.setDate(this.maxDate.getDate() + 1);
+    // this.maxDate.setMilliseconds(this.maxDate.getMilliseconds() - 1);
+    this.dateAdapter.setLocale('en'); // Set your desired locale
     this.dialogRefe = this.injector.get(MatDialogRef, null);
     this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
-    //this.selectedVocabulary = new VocabularyVM
-  }
+   }
 
-
-  ngOnInit(): void {    
+   selectedAtt = {
+    from: new Date(), 
+    to: new Date() // Set initial value to current date
+  };
+  ngOnInit(): void { 
+    this.SearchbyDate() ;  
     this.AddMode = true;
-    this.GetUser();
-    this.GetAttendance();    
+  this.GetUser();
+   // this.GetAttendance();    
     this.selectedAttendance = new AttendanceVM(); 
        }
-
-
-       GetUser() {
-        var usr = new UserVM
-        usr.isActive = true;
-        // this.selectedAttendance.isActive = true;
-        this.secSvc.getUserList().subscribe({
-          next: (res: UserVM[]) => {
-            this.User = res
-          }, error: (err) => {
-            this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-          },
-        })
-      }
   GetAttendance() {
     this.lmsSvc.GetAttendance().subscribe({
       next:(value: AttendanceVM[])=> {
@@ -83,40 +73,23 @@ import Swal from 'sweetalert2';
       },
     })
   }
-
-  DeleteAttendance(id: number) {
-    debugger
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.value) {
-        this.lmsSvc.DeleteAttendance(id).subscribe({
-          next: (data) => {
-            Swal.fire(
-              'Deleted!',
-              'Attendance has been deleted.',
-              'success'
-            )
-            this.ngOnInit();
-          }, error: (e) => {
-            this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-            console.warn(e);
-          }
-        })
-      }
-    })
-  }
   SaveAttendance() {
     this.lmsSvc.SaveAttendance(this.selectedAttendance).subscribe({
       next: (value) => {
         this.catSvc.SuccessMsgBar("Successfully Added", 5000)
         this.Refresh();
+      }, error: (err) => {
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+      },
+    })
+  }
+  GetUser() {
+    var usrz = new UserVM
+    usrz.isActive = true;
+   // this.selectedAttendance.isActive = true;
+    this.secSvs.getUserList().subscribe({
+      next: (res: UserVM[]) => {
+        this.users = res
       }, error: (err) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
       },
@@ -130,24 +103,6 @@ import Swal from 'sweetalert2';
     // this.selectedAttendance.isActive = true;
   }
 
-
-  SearchbyUser(date : Date ){
-  debugger
-    var usr = new AttendanceVM
-    usr.date = date;
-    this.lmsSvc.SearchAttendance(usr).subscribe({
-     next: (value: AttendanceVM[]) => {
-       this.Attendance = value
-       this.dataSource = new MatTableDataSource(value)
-       console.warn(this.selectedAttendance.date)
-     }, error: (err) => {
-    
-       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-     },
-   })}
-
-
-
   Search() {
     var usr = new AttendanceVM();
     usr.userId = this.selectedAttendance.userId;
@@ -156,28 +111,62 @@ import Swal from 'sweetalert2';
       next: (value: AttendanceVM[]) => {
         this.attendance= value
         this.dataSource = new MatTableDataSource(this.attendance)
-     
       }, error: (err) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
      console.warn(err) ;
     },
-    })
-    
-  }
+    }) }
+  SearchbyDate( ){
+    debugger
+   
+    var usr = new AttendanceVM();
+    usr.from = this.selectedAtt.from;
+    usr.to = this.selectedAtt.to;
+    usr.from = moment(usr.from).toDate()
+      usr.from = new Date(Date.UTC(usr.from.getFullYear(), 
+      usr.from.getMonth(), usr.from.getDate()))
+
+      usr.to = moment(usr.to).toDate()
+      usr.to = new Date(Date.UTC(usr.to.getFullYear(), 
+      usr.to.getMonth(), usr.to.getDate()))
+    console.warn(usr);
+    this.lmsSvc.SearchAttendance(usr).subscribe({
+      next: (value: AttendanceVM[]) => {
+        this.attendance= value
+        this.dataSource = new MatTableDataSource(value)
+             console.warn(this.selectedAtt.from)
+             console.warn(this.selectedAtt.to)
+           }, error: (err) => {
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+     console.warn(err) ;
+    },
+    })}
+
+  // Search(){
+  //   var  att = new AttendanceVM();
+  //   att.date = this.selectedAttendance.date;
+  //   this.lmsSvc.SearchAttendance(att).subscribe({
+  //    next: (value: AttendanceVM[]) => {
+  //      this.attendance = value
+  //      this.dataSource = new MatTableDataSource(this.attendance)
+  //    }, error: (err) => {
+  //      this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+  //    },
+  //  })}
 
 
-  OpenAttendanceDialog() {
-    this.dialogRef = this.dialog.open(ManageAttendanceComponent, {
-      width: '1200px', height: '950px',
-      data:{isDialog : true}
-     })
-      this.dataSource = new MatTableDataSource(this.attendance)
-    this.dialogRef.afterClosed()
-      .subscribe((res: any) => {
-        this.GetAttendance()
-      }
-      );
-  }
+  // OpenAttendanceDialog() {
+  //   this.dialogRef = this.dialog.open(ManageAttendanceComponent, {
+  //     width: '1200px', height: '950px',
+  //     data:{isDialog : true}
+  //    })
+  //     this.dataSource = new MatTableDataSource(this.attendance)
+  //   this.dialogRef.afterClosed()
+  //     .subscribe((res: any) => {
+  //       this.GetAttendance()
+  //     }
+  //     );
+  // }
 
 
 

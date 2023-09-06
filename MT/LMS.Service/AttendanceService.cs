@@ -70,14 +70,19 @@ namespace LMS.Service
                 #region Search
 
                 string whereClause = " Where 1=1";
-                if (mod.UserId!= default)
-                    whereClause += $" and UserId like ''" + mod.UserId + "''";
                 if (mod.Id != default && mod.Id != 0)
                     whereClause += $" AND Id={mod.Id}";
+                if (mod.UserId != default)
+                    whereClause += $" and UserId like ''" + mod.UserId + "''";
+                if (mod.from.HasValue)
+                    whereClause += $" and Date >= ''{mod.from.Value:yyyy-MM-dd} 00:00:00''";
+
+                if (mod.to.HasValue )
+                    whereClause += $" AND Date <= ''{mod.to.Value:yyyy-MM-dd} 23:59:59''";
                 if (mod.IsActive != default)
                     whereClause += $" AND IsActive ={mod.IsActive}";
-                att = attDAL.SearchAttendance(whereClause,cmd);
-
+                att = attDAL.SearchAttendance(whereClause, cmd);
+                return att;
                 #endregion
             }
             catch (Exception exp)
@@ -90,7 +95,7 @@ namespace LMS.Service
                 if (closeConnectionFlag)
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
-            return att;
+         
         }
 
     }

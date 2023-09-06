@@ -28,7 +28,7 @@ export class ManageScheduleComponent {
 
 
   @ViewChild('scheduleFHForm', { static: true }) scheduleFHForm!: NgForm;
-  displayedColumns: string[] = [`user`,`role`,`scheduleType`,`workingType`,`workingHours`,`day`,'isActive'];
+  displayedColumns: string[] = [`user`,`role`,`scheduleType`,`workingType`,`workingHours`,`startDate`,`endDate`,`day`,'isActive'];
    displayedRoles: string[] = [`role`,`scheduleType`,`workingType`,`workingHours`,'isActive'];
    displayedUsers: string[] = [`user`,`scheduleType`,`workingType`,`workingHours`,'isActive'];
    ScheduleDayEvent: ScheduleDayEventsVM[] = []

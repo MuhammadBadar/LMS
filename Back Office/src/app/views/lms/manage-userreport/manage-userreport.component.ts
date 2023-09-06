@@ -4,8 +4,8 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { CatalogService } from '../../catalog/catalog.service';
 import { LMSService } from '../lms.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { SecurityService } from '../../security/security.service';
 import { UserVM } from '../../security/models/user-vm';
+import { SecurityService } from '../../security/security.service';
 
 @Component({
   selector: 'app-manage-userreport',
@@ -13,7 +13,7 @@ import { UserVM } from '../../security/models/user-vm';
   styleUrls: ['./manage-userreport.component.css']
 })
 export class ManageUserreportComponent implements  OnInit{
-  displayedColumns: string[] = ['userName','userId' ,'date', 'day','workTime','inTimeOutTime' ,'todaysTargets', 'scoreSPs','dueTime','overTime' ,'missingTime', 'scheduleTime','storyPoints','dayEndStatus' ,'dueSps', 'sPsGap'];
+  displayedColumns: string[] = ['userName','date', 'day','workTime','inTimeOutTime' ,'todaysTargets', 'scoreSPs','dueTime','overTime' ,'missingTime', 'scheduleTime','storyPoints','dayEndStatus' ,'dueSps', 'sPsGap'];
  
   AddMode: boolean = true
   EditMode: boolean = false
@@ -116,5 +116,3 @@ export class ManageUserreportComponent implements  OnInit{
   }
   
 }
-
-

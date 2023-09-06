@@ -7,6 +7,7 @@
         enums,
         enumline,
         course,
+        UserTargets,
         City,
         Schedule,
         attendance,
@@ -23,8 +24,7 @@
         topic,
         lecture,
         assignTask,
-        student,
-        useraccount
+        student
 
     }
 }

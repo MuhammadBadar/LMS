@@ -1,23 +1,20 @@
-import { ManageUseraccountComponent } from './../security/manage-useraccount/manage-useraccount.component';
-import { ManagePatientComponent } from './manage-patient/manage-patient.component';
 import { ManageCourseDetailComponent } from './manage-course-detail/manage-course-detail.component';
 import { ManageInquiryComponent } from './manage-inquiry/manage-inquiry.component';
 import { ScheduleListComponent } from './Schedule/schedule-list/schedule-list.component';
 import { ManageCoursescheduleComponent } from './Schedule/manage-courseschedule/manage-courseschedule.component';
 import { ManageCourseComponent } from './manage-course/manage-course.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ManageTopicComponent } from './manage-topic/manage-topic.component';
 import { ManageLectureComponent } from './manage-lecture/manage-lecture.component';
 import { ManageCityComponent } from './manage-city/manage-city.component';
 import { ManageVocabularyComponent } from './manage-vocabulary/manage-vocabulary.component';
-
 import { ManageCityStudentComponent } from './manage-city-student/manage-city-student.component';
 import { ManageStudentComponent } from './manage-student/manage-student.component';
 import { ManageScheduleComponent } from './manage-schedule/manage-schedule.component';
 import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
+import { ManagePatientComponent } from './manage-patient/manage-patient.component';
 import { ManageAttendanceComponent } from './manage-attendance/manage-attendance.component';
 import { ManageUserattbydateComponent } from './manage-userattbydate/manage-userattbydate.component';
 import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
@@ -38,11 +35,6 @@ const routes: Routes = [{
     {
       path: "user",
       component: ManageUserComponent,
-      pathMatch: "full"
-    },
-    {
-      path: "useraccount",
-      component: ManageUseraccountComponent,
       pathMatch: "full"
     },
     {
@@ -92,11 +84,6 @@ const routes: Routes = [{
       pathMatch: "full"
     },
     {
-      path: "patient",
-      component: ManagePatientComponent,
-      pathMatch: "full"
-    },
-    {
       path: "City",
       component: ManageCityComponent,
       pathMatch: "full"
@@ -117,6 +104,12 @@ const routes: Routes = [{
       component: ManageScheduleComponent,
       pathMatch: "full"
     },
+    {
+      path: "Patient",
+      component: ManagePatientComponent,
+      pathMatch: "full"
+    },
+
     {
       path: "Attendance",
       component: ManageAttendanceComponent,

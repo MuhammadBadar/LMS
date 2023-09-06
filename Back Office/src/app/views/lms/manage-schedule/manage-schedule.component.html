@@ -102,6 +102,25 @@
                 <mat-label>WorkingHours</mat-label>
                 <input matInput required #name="ngModel" name="workingHours" [(ngModel)]="selectedScheduleFH.workingHours" />
             </mat-form-field>
+            <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+              <mat-label>StartDate</mat-label>
+              <input matInput [matDatepicker]="pickerFrom" name="startDate" readonly="true"
+                     #startDate="ngModel" [(ngModel)]="selectedScheduleFH.startDate" />
+              <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFrom 
+      
+              ></mat-datepicker>
+            </mat-form-field>
+            
+            
+          
+            <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+              <mat-label>EndDate</mat-label>
+              <input matInput [matDatepicker]="pickerTo" name="endDate" readonly="true"
+                     #endDate="ngModel" [(ngModel)]="selectedScheduleFH.endDate" />
+              <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+              <mat-datepicker #pickerTo ></mat-datepicker>
+            </mat-form-field>
         </div> 
         </div>
         <form #ScheduleDayEventsForm="ngForm">

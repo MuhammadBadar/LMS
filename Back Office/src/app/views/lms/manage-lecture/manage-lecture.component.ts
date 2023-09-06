@@ -245,28 +245,28 @@ export class ManageLectureComponent implements OnInit {
       }
       );
   }
-  Search() {
-    var topic = new TopicVM();
-    topic.courseId = this.selectedlec.courseId;
-    topic.isActive = true;
-    this.lmsSvc.SearchTopic(topic).subscribe({
-      next: (value: TopicVM[]) => {
-        this.topics = value
-      }, error: (err) => {
-        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-      },
-    })
-     var lec = new LectureVM();
-    lec.courseId = this.selectedlec.courseId;
-    this.lmsSvc.SearchLecture(lec).subscribe({
-      next: (value: LectureVM[]) => {
-        this.lecs = value
-        this.dataSource = new MatTableDataSource(this.lecs)
-      }, error: (err) => {
-        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-      },
-    })
-  }
+    Search() {
+      var topic = new TopicVM();
+      topic.courseId = this.selectedlec.courseId;
+      topic.isActive = true;
+      this.lmsSvc.SearchTopic(topic).subscribe({
+        next: (value: TopicVM[]) => {
+          this.topics = value
+        }, error: (err) => {
+          this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+        },
+      })
+      var lec = new LectureVM();
+      lec.courseId = this.selectedlec.courseId;
+      this.lmsSvc.SearchLecture(lec).subscribe({
+        next: (value: LectureVM[]) => {
+          this.lecs = value
+          this.dataSource = new MatTableDataSource(this.lecs)
+        }, error: (err) => {
+          this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+        },
+      })
+    }
   validateNo(e: any): boolean {
     const charCode = e.which ? e.which : e.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
