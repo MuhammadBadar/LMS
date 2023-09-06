@@ -15,6 +15,7 @@
         vocabulary,
         patient,
         Student,
+        useraccount,
         ScheduleDaysEvents,
         user,
         coursedetail,
