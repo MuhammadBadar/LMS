@@ -45,14 +45,15 @@ $result = mysqli_query($mysqli, "SELECT * FROM events");
                       <div class="event-bg">
                        <div class="event-title">
                         <?php 
-                           echo "EventTitle: " . $resultData['eventTitle'] . "<br>";
+                           echo $resultData['eventTitle'] . "<br>";
                            ?>
                            </div> 
                            <?php 
-                            echo "EventPlace: " .$resultData['eventPlace'] . "<br>";
-                            echo"StartTime: " . $resultData['startTime'] . "<br>";
-                            echo "EndTime: " . $resultData['endTime'] . "<br>";
+                            echo $resultData['eventPlace'] . "<br>";
                             echo "Date: " . $resultData['eventDate'] . "<br>";
+							echo "Start Time: " . $resultData['startTime'] . "<br>";
+                            echo "End Time: " . $resultData['endTime'] . "<br>";
+                            
                         ?>
                         </div>
                     </div>

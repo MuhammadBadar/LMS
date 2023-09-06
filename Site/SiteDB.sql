@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `announcement`
 --
-
+DROP TABLE IF EXISTS `announcement`;
 CREATE TABLE `announcement` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -38,9 +38,14 @@ CREATE TABLE `announcement` (
 --
 
 INSERT INTO `announcement` (`id`, `title`, `description`) VALUES
-(2, 'WEb DEVELOPMENT', 'TESTING...'),
-(4, ' dd', 'dd'),
-(7, ' web', 'c');
+(1, 'AI Based Attendance System', 'Task & Scheduling Based Attendance System would be launched sooner'),
+(2, 'English Vocabulary Assistant', 'Now our kids would be able to read, pronounce and understand the most difficult and the most vocabulary rich novel (A Christmas Carol) by our AI based Software'),
+(3, 'Accounts & Inventory System', 'Accounts & Inventory system would be launched sooner'),
+(4, 'Inquiry Management System', 'Work on Dynamic field based Inquiry Management System is in progress and is planned to release till end of October, 2023'),
+(5, 'Patient Visity History Management System', 'Patient Visit History system is going to launch in First Week of October, 2023'),
+(6, 'Odoo ERP Development', 'A New Course of Odoo ERP Development is launched. Odoo is a flexible & modular platform for enterprise resource planning and it delivers arrays of applications and modules for business management. ),
+(7, 'Project & Task Based Trainings', 'Project & Task-Based Trainings of Software Development Technologies by experienced Software Industry Specialists')
+
 
 -- --------------------------------------------------------
 
@@ -51,10 +56,10 @@ INSERT INTO `announcement` (`id`, `title`, `description`) VALUES
 DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
   `Id` int(11) NOT NULL,
-  `Fee` double NOT NULL,
-  `ShortDescription` mediumtext NOT NULL,
   `Title` varchar(200) NOT NULL,
-  `LogoPath` varchar(100) NOT NULL
+  `ShortDescription` mediumtext NOT NULL,
+  `LogoPath` varchar(100) NOT NULL,
+  `Fee` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -62,30 +67,30 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`Id`, `Title`, `ShortDescription`, `LogoPath`, `Fee`) VALUES
-(1, 'Odoo ERP Development' 
-, 'Odoo is a flexible business software suite with applications for CRM, sales, inventory, HR, and accounting. Its user-friendly design and modular 
-structure streamline operations and support businesses of all sizes.'
-, './assets/images/odoo-main.png')
+(1, 'Angular Web Development' 
+, 'Angular is a Frontend Development Framework provided by Google, mostly used to build responsive, scalable and Single Page Web (SPA) Applications. 
+This is the most demanding framework for the Software Industry.'
+, '/assets/images/angular-main.png',0)
 ,
-(2, 'Flutter Mobile Development' 
-, 'Flutter is an open-source framework by Google for building apps on iOS and Android mostly by using a single codebase which results in the faster 
-application launch and also the coste effective methodology.'
-, './assets/images/flutter-main.jpg')
+(2, 'React Web Development' 
+, 'React is a Frontend Development Library developed by Facebook, mostly used for building interactive user interfaces and web applications quickly and 
+efficiently with significantly less code than other frameworks. It is simple to learn and SEO friendly as well.'
+, './assets/images/react.png',0)
 ,
 (3, 'PHP Web Development' 
 , 'PHP web development uses the PHP language for dynamic websites. It is server-based, integrates with HTML, handles databases, and supports frameworks. 
 Used in CMS, e-commerce. Secure, scalable, and very popular.'
-, './assets/images/php-main.png')
+, './assets/images/php-main.png',0)
 ,
-(4, 'React Web Development' 
-, 'React is a Frontend Development Library developed by Facebook, mostly used for building interactive user interfaces and web applications quickly and 
-efficiently with significantly less code than other frameworks.'
-, './assets/images/php-main.png')
+(4, 'Flutter Mobile Development' 
+, 'Flutter is an open-source framework by Google for building apps on iOS and Android mostly by using a single codebase which results in the faster 
+application launch and also the coste effective methodology.'
+, './assets/images/flutter-main.jpg',0)
 ,
-(5, 'Angular Web Development' 
-, 'Angular is a Frontend Development Framework provided by Google, mostly used to build responsive, scalable and Single Page Web (SPA) Applications. 
-This is the most demanding framework for the Software Industry.'
-, '/assets/images/angular-main.png')
+(5, 'Odoo ERP Development' 
+, 'Odoo is a flexible business software suite with applications for CRM, sales, inventory, HR, and accounting. Its user-friendly design and modular 
+structure streamline operations and support businesses of all sizes.'
+, './assets/images/odoo-main.png',0)
 
 
 -- --------------------------------------------------------
@@ -126,6 +131,7 @@ INSERT INTO `coursedetails` (`id`, `courseId`, `courseDetails`) VALUES
 -- Table structure for table `events`
 --
 
+DROP TABLE IF EXISTS `events`;
 CREATE TABLE `events` (
   `id` int(11) NOT NULL,
   `eventTitle` varchar(255) NOT NULL,
@@ -140,9 +146,36 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `eventTitle`, `eventPlace`, `startTime`, `endTime`, `eventDate`) VALUES
-(1, 'Web Development', 'Qam-Soft Technologies', '00:00:22', '00:00:23', '0000-00-00'),
-(7, 'web', 'software', '12:00:00', '13:00:00', '2023-12-23'),
-(8, 'web', 'software', '12:00:00', '13:00:00', '2023-12-23');
+(1, 'Angular Orientation Class', 'A Free Orientation Class of Angular Web Development using Angular & WebAPI Core is scheduled', '11:00:00', '12:30:00', '2023-09-09'),
+(2, 'Php Orientation Class', 'A Free Orientation Class of Web Development using PhP is scheduled', '12:30:00', '14:00:00', '2023-09-09'),
+(3, 'React Orientation Class', 'A Free Orientation Class of Web Development using React & WebAPI Core is scheduled', '14:00:00', '15:30:00', '2023-09-09'),
+(4, 'Flutter Orientation Class', 'A Free Orientation Class of Android & IOS Development using Flutter is scheduled', '15:30:00', '17:00:00', '2023-09-09'),
+
+(5, 'Angular Orientation Class', 'A Free Orientation Class of Angular Web Development using Angular & WebAPI Core is scheduled', '11:00:00', '12:30:00', '2023-09-16'),
+(6, 'Php Orientation Class', 'A Free Orientation Class of Web Development using PhP is scheduled', '12:30:00', '14:00:00', '2023-09-16'),
+(7, 'React Orientation Class', 'A Free Orientation Class of Web Development using React & WebAPI Core is scheduled', '14:00:00', '15:30:00', '2023-09-16'),
+(8, 'Flutter Orientation Class', 'A Free Orientation Class of Android & IOS Development using Flutter is scheduled', '15:30:00', '17:00:00', '2023-09-16')
+
+
+
+DROP TABLE IF EXISTS `Events`;
+CREATE TABLE `Events` (
+  `id` int(11) NOT NULL,
+  `eventTitle` varchar(255) NOT NULL,
+  `eventPlace` varchar(200) NOT NULL,
+  `startTime` time NOT NULL,
+  `endTime` time NOT NULL,
+  `eventDate` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `eventTitle`, `eventPlace`, `startTime`, `endTime`, `eventDate`) VALUES
+(1, 'Angular Orientation Class', 'A Free Orientation Class of Angular Web Development in Angular is planned on coming Satuday', '11:00:00', '12:30:00', '2023-09-09'),
+(2, 'Php Orientation Class', 'A Free Orientation Class of Web Development in PhP is planned on coming Satuday', '12:30:00', '14:00:00', '2023-09-09'),
+
 
 -- --------------------------------------------------------
 
