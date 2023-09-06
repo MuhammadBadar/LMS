@@ -46,14 +46,27 @@ namespace LMS.WebAPI.Controllers
             List<AttendanceVM> list = attSVC.SearchAttendance(Attendance);
             return Ok(list);
         }
+        [HttpPost]
+        public IActionResult PostAttendance(AttendanceVM Attendance)
+        {
+            Attendance.DBoperation = DBoperations.Insert;
+            attSVC.ManageAttendance(Attendance);
+            return Ok();
+        }
 
-        //[HttpPost]
-        //public IActionResult PostCity(CityDE city)
-        //{
-        //    city.DBoperation = LMS.Core.Enums.DBoperations.Insert;
-        //    bool cty = _ctySVC.ManageCity(city);
-        //    return Ok(cty);
-        //}
+        [HttpPut]
+        public ActionResult Put(AttendanceVM Attendance)
+        {
+            Attendance.DBoperation = DBoperations.Update;
+            attSVC.ManageAttendance(Attendance);
+            return Ok();
+        }
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            AttendanceVM Attendance = new AttendanceVM { Id = id, DBoperation = DBoperations.Delete };
+            attSVC.ManageAttendance(Attendance);
+        }
         #endregion
     }
 }

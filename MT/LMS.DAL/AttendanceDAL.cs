@@ -18,17 +18,22 @@ namespace LMS.DAL
                     cmd = LMSDataContext.OpenMySqlConnection();
                     closeConnection = true;
                 }
-                cmd.CommandText = "ManageAttendance";
+                cmd.CommandText = "Manage_Attendance";
                 cmd.Parameters.AddWithValue("prm_Id", Attendance.Id);
                 cmd.Parameters.AddWithValue("prm_User", Attendance.User);
+
+                cmd.Parameters.AddWithValue("prm_UserId", Attendance.UserId);
                 cmd.Parameters.AddWithValue("prm_InTime", Attendance.InTime);
                 cmd.Parameters.AddWithValue("prm_OutTime", Attendance.OutTime);
                 cmd.Parameters.AddWithValue("prm_WorkedHours", Attendance.WorkedHours);
                 cmd.Parameters.AddWithValue("prm_Date", Attendance.Date);
-                //cmd.Parameters.AddWithValue("modifiedOn", Attendance.ModifiedOn);
-                //cmd.Parameters.AddWithValue("modifiedById", Attendance.ModifiedById);
-                //cmd.Parameters.AddWithValue("isActive", Attendance.IsActive);
-                //cmd.Parameters.AddWithValue("DbOperation", Attendance.DBoperation.ToString());
+                cmd.Parameters.AddWithValue("prm_CreatedOn", Attendance.CreatedOn);
+                cmd.Parameters.AddWithValue("prm_CreatedBy", Attendance.CreatedById);
+                cmd.Parameters.AddWithValue("prm_ModifiedOn", Attendance.ModifiedOn);
+                cmd.Parameters.AddWithValue("prm_ModifiedBy", Attendance.ModifiedById);
+                cmd.Parameters.AddWithValue("prm_IsActive", Attendance.IsActive);
+                cmd.Parameters.AddWithValue("prm_DBoperation", Attendance.DBoperation.ToString());
+                cmd.Parameters.AddWithValue("prm_Filter", Attendance.DBoperation.ToString());
                 cmd.ExecuteNonQuery();
                 return true;
             }

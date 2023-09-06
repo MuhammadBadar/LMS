@@ -5,10 +5,10 @@
   </div>
   <div class="page_content shadow p-3 position-relative">
     <form #topicForm="ngForm">
-      <Row>
+      
         <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
           <mat-form-field appearance="outline" fxFlex="49%">
-            <mat-label>--Please Select User--</mat-label>
+            <mat-label>Please Select User</mat-label>
             <mat-select name="UserId" [(ngModel)]="selectedAttendance.userId">
               <mat-option [value]="0" (click)="Refresh()"
                 >--Please Select--</mat-option
@@ -21,26 +21,25 @@
                 {{ val.userName }}
               </mat-option>
             </mat-select>
+            
           </mat-form-field>
+           <mat-form-field appearance="outline" fxFlex="49%">
+            <mat-label>Select Time In</mat-label>
+            <textarea matInput required name="inTime" [(ngModel)]="selectedAttendance.inTime"></textarea>
+          </mat-form-field> 
 
-          <!-- <mat-form-field appearance="outline" fxFlex="49%">
-            <mat-label>--Please Select Date--</mat-label>
-            <mat-select name="date" [(ngModel)]="selectedAttendance.date">
-              <mat-option [value]="0" (click)="Refresh()"
-                >--Please Select--</mat-option
-              >
-              <mat-option
-                *ngFor="let val of Attendance"
-                [value]="val.date"
-                (click)="Search()"
-              >
-                {{ val.date }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field> -->
+          <mat-form-field appearance="outline" fxFlex="49%">
+            <mat-label>Select Time Out</mat-label>
+            <textarea matInput required name="outTime" [(ngModel)]="selectedAttendance.outTime"></textarea>
+          </mat-form-field> 
 
-          <!-- <mat-form-field appearance="outline" fxFlex="49%">
-            <mat-label>--Please Select Date--</mat-label>
+          <mat-form-field appearance="outline" fxFlex="49%">
+            <mat-label>Select Worked Hours</mat-label>
+            <textarea matInput required name="workedHours"[(ngModel)]="selectedAttendance.workedHours"></textarea>
+          </mat-form-field> 
+
+        <!----- <mat-form-field appearance="outline" fxFlex="49%">
+            <mat-label>Select Date</mat-label>
             <mat-select name="date" [(ngModel)]="selectedAttendance.date">
               <mat-option [value]="0" (click)="Refresh()"
                 >--Please Select--</mat-option
@@ -55,7 +54,18 @@
             </mat-select>
           </mat-form-field> -->
         </div>
-      </Row>
+
+        <div fxLayoutAlign="end end">
+          <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveAttendance()">Submit</button>
+          <button mat-raised-button *ngIf="EditMode" color="primary" (click)="SaveAttendance()">Update</button>
+          <div>
+              <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                  (click)="Refresh()">
+                  <mat-icon>autorenew</mat-icon>
+              </button>
+          </div>
+      </div>
+
     </form>
     <h5 cCardTitle>Attendance List</h5>
     <section

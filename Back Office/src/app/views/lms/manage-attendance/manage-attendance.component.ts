@@ -9,6 +9,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { UserattbydateVM } from '../Models/UserattbydateVM';
 import { UserVM } from '../../security/models/user-vm';
 import { SecurityService } from '../../security/security.service';
+import Swal from 'sweetalert2';
 @Component({
     selector: 'app-manage-attendance',
     templateUrl: './manage-attendance.component.html',
@@ -83,6 +84,44 @@ import { SecurityService } from '../../security/security.service';
     })
   }
 
+  DeleteAttendance(id: number) {
+    debugger
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.lmsSvc.DeleteAttendance(id).subscribe({
+          next: (data) => {
+            Swal.fire(
+              'Deleted!',
+              'Attendance has been deleted.',
+              'success'
+            )
+            this.ngOnInit();
+          }, error: (e) => {
+            this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+            console.warn(e);
+          }
+        })
+      }
+    })
+  }
+  SaveAttendance() {
+    this.lmsSvc.SaveAttendance(this.selectedAttendance).subscribe({
+      next: (value) => {
+        this.catSvc.SuccessMsgBar("Successfully Added", 5000)
+        this.Refresh();
+      }, error: (err) => {
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+      },
+    })
+  }
   Refresh() {
     this.GetAttendance();
     this.selectedAttendance = new AttendanceVM

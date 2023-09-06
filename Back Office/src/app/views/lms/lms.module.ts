@@ -111,6 +111,7 @@ import { ManageUserreportComponent } from './manage-userreport/manage-userreport
     ManageTasksComponent,
     ManageUsertaskbydateComponent,
     ManageUserreportComponent,
+  
   ],
   imports: [
     NgxMatDatetimePickerModule,
