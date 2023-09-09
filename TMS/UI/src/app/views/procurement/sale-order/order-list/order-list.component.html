@@ -1,0 +1,88 @@
+
+  <mat-label>
+    <h2 >
+        <strong>Order List</strong>
+    </h2>
+</mat-label>
+<div  fxLayout="row">
+<button  mat-raised-button color="primary" style="margin-top: 20px;margin-left: 90%;" [routerLink]="['/procurement/sOrder']">Create New</button>
+<!-- <button  mat-raised-button color="primary" style=" margin-top: 20px; margin-left: 2px;">Filter Date</button> -->
+</div>
+<br>
+<div>
+<mat-form-field style="margin-left: 600px;">
+  <input 
+  matInput 
+  placeholder="Date From" 
+  [matDatepicker]="picker1"
+  [(ngModel)]="fromDate"
+  
+  (click)="picker1.open()"
+  >
+  <mat-datepicker-toggle 
+  matSuffix [for]="picker1"
+  ></mat-datepicker-toggle>
+  <mat-datepicker 
+  #picker1></mat-datepicker>
+</mat-form-field>
+<mat-form-field style="margin-left: 10px;margin-right: 10px;">
+  <input 
+  matInput 
+  placeholder="To Date" 
+  [matDatepicker]="picker2"
+  [(ngModel)]="toDate"
+  
+  (click)="picker2.open()"
+  >
+  <mat-datepicker-toggle 
+  matSuffix [for]="picker2"
+  ></mat-datepicker-toggle>
+  <mat-datepicker 
+  #picker2></mat-datepicker>
+</mat-form-field>
+<button 
+mat-icon-button 
+matTooltip="Get Order List in Date Range"
+(click)="applyDateFilter()"
+><mat-icon>search</mat-icon></button>
+<button mat-icon-button mat-sm-button color="primary" matTooltip="Refresh Order List"  (click)="Refresh()"><mat-icon>autorenew</mat-icon></button></div>
+<h4><strong>{{this.length}} number of rows appeared</strong></h4>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin-top: 20px;">
+
+  <ng-container matColumnDef="createdOn">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.createdOn|date}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="customerName">
+    <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+  </ng-container>
+
+    <ng-container matColumnDef="balance">
+      <th mat-header-cell *matHeaderCellDef > Balance </th>
+      <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
+    </ng-container>
+    
+      <ng-container matColumnDef="netPayable" >
+        <th mat-header-cell *matHeaderCellDef > Sale Amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.netPayable}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="Action" >
+        <mat-header-cell  *matHeaderCellDef > Actions </mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+   
+          <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="EditSaleOrder(row)" routerLinkActive="active" ><mat-icon>edit</mat-icon></button>
+          <button mat-icon-button mat-sm-button color="warn" (click)="DeleteSaleOrder(row.id)"  ><mat-icon>delete</mat-icon></button>
+          <button mat-button mat-sm-button style="color: rgb(66, 3, 47);" (click)="ViewSaleOrder(row)"><strong>View</strong></button>
+ 
+        </mat-cell>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+

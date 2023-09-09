@@ -1,0 +1,83 @@
+<mat-label>
+    <h2><strong>Customer Ledger</strong></h2>     
+ </mat-label>
+
+ <mat-card style="margin-top: 20px;">
+ <form name="eventForm"  onsubmit="return false;"class="event-form" fxFlex >
+    <div fxLayout="row" fxLayoutAlign="space-between" >
+        <mat-form-field fxFlex="30%">
+            <mat-label>Customer</mat-label>
+            <mat-select required>
+                <mat-option value="a">A</mat-option>
+                <mat-option value="b">B</mat-option>
+                <mat-option value="c">C</mat-option>
+                <mat-option value="d">D</mat-option>
+            </mat-select>
+        </mat-form-field> 
+        <mat-form-field fxFlex="30% " >
+            <mat-label>From</mat-label>
+            <input matInput [matDatepicker]="picker" required  />
+            <mat-datepicker-toggle matSuffix [for]="picker"  ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+           </mat-form-field>
+           <mat-form-field fxFlex="30% " style="margin-right: 20px;">
+            <mat-label>To</mat-label>
+            <input matInput [matDatepicker]="picker" required  />
+            <mat-datepicker-toggle matSuffix [for]="picker"  ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+           </mat-form-field>          
+     </div>
+     
+     
+    <div style="margin-left: 900px;" >
+        
+         <mat-form-field fxFlex="70%"><mat-label>Net Balance</mat-label>
+             <input matInput type="number">
+            </mat-form-field>
+    </div>
+    <div style="margin-left: 900px;" >
+        
+        <mat-form-field fxFlex="70%"><mat-label>Opening Balance</mat-label>
+            <input matInput type="number">
+           </mat-form-field>
+   </div>
+ </form>
+ </mat-card>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin-top: 30px;">
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="comment">
+      <th mat-header-cell *matHeaderCellDef > Comments </th>
+        <td mat-cell *matCellDef="let element" > {{element.comment}} </td>  
+    </ng-container>
+  
+    <ng-container matColumnDef="sale">
+      <th mat-header-cell *matHeaderCellDef > Sale Amount </th>
+      <td mat-cell *matCellDef="let element"> {{element.sale}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="receipt">
+        <th mat-header-cell *matHeaderCellDef > Receipt Amount</th>
+        <td mat-cell *matCellDef="let element"> {{element.receipt}} </td> 
+      </ng-container>
+  
+      <ng-container matColumnDef="balance">
+        <th mat-header-cell *matHeaderCellDef > Balance</th>
+        <td mat-cell *matCellDef="let element"> {{element.balance}} </td> 
+      </ng-container>
+
+    <ng-container matColumnDef="Action" >
+        <mat-header-cell  *matHeaderCellDef  > Action </mat-header-cell>
+        <mat-cell *matCellDef="let row" >   
+          <button mat-icon-button mat-sm-button color="primary" class="mr-1"  ><mat-icon>edit</mat-icon></button>
+        </mat-cell>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

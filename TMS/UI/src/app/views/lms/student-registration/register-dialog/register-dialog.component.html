@@ -1,0 +1,111 @@
+
+<app-header></app-header>
+<div>
+  <mat-label>
+    <div *ngIf="Add">
+      <h2><strong>Manage Student Registration</strong></h2>
+    </div>
+    <div *ngIf="Edit">
+      <h2><strong>Edit Registered Student</strong></h2>
+    </div>
+  </mat-label>
+  <mat-card style="margin-top: 20px;">
+    <form name="eventForm" #userForm="ngForm" class="event-form" fxFlex>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <!-- <mat-form-field fxFlex="45%">
+            <input matInput name="StudentName" #studentName="ngModel" [(ngModel)]="lmsService.selectedRegisterStudent.studentName" placeholder="Student Name"
+              required>
+          </mat-form-field> -->
+        <mat-form-field fxFlex="45%">
+          <input matInput name="StudentName" #studentName="ngModel"
+            [(ngModel)]="lmsService.selectedRegisterStudent.studentName" placeholder="Student Name" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="45%">
+          <input matInput name="CNIC" #cnic="ngModel" [(ngModel)]="lmsService.selectedRegisterStudent.cnic"
+            placeholder="CNIC" required>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="45%">
+          <input matInput name="CellNo" #cellNo="ngModel" [(ngModel)]="lmsService.selectedRegisterStudent.cellNo"
+            placeholder="Cell No" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="45%">
+          <input matInput name="WhatsApp" #whatsApp="ngModel" [(ngModel)]="lmsService.selectedRegisterStudent.whatsApp"
+            placeholder="whatsApp No" required>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <!-- <mat-form-field fxFlex="45%">
+          <input matInput name="Email" #email="ngModel" [(ngModel)]="lmsService.selectedRegisterStudent.email"
+            placeholder="Email" required>
+        </mat-form-field>-->
+        <mat-form-field fxFlex="45%"> 
+          <input matInput class="form-control" placeholder="Enter your email" name="Email" #email="ngModel"
+              required [(ngModel)]="lmsService.selectedRegisterStudent.email" [ngClass]="{ 'is-invalid':  email.invalid }"
+              required email>
+          <mat-error *ngIf="email.errors?.email">Not a valid email</mat-error>
+      </mat-form-field>
+        <mat-form-field fxFlex="45%">
+          <input matInput name="GuardianName" #guardianName="ngModel"
+            [(ngModel)]="lmsService.selectedRegisterStudent.guardianName" placeholder="Guardian Name" required>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="45%">
+          <input matInput name="GuardianRelation" #guardianRelation="ngModel"
+            [(ngModel)]="lmsService.selectedRegisterStudent.guardianRelation" placeholder="Guardian Relation" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="45%">
+          <input matInput name="GuardianCell" #guardianCell="ngModel"
+            [(ngModel)]="lmsService.selectedRegisterStudent.guardianCell" placeholder="Guardian Cell No" required>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="45%">
+          <input matInput name="GuardianWhatsApp" #guardianWhatsApp="ngModel"
+            [(ngModel)]="lmsService.selectedRegisterStudent.guardianWhatsApp" placeholder="Guardian WhatsApp No"
+            required>
+        </mat-form-field>
+        <mat-form-field fxFlex="45%">
+          <input matInput name="GuardianEmail" #guardianEmail="ngModel"
+            [(ngModel)]="lmsService.selectedRegisterStudent.guardianEmail" placeholder="Guardian Email" required>
+        </mat-form-field>
+        <!-- <mat-form-field fxFlex="45%"> 
+          <input matInput class="form-control" placeholder="Enter your email" name="GuardianEmail" #guardianEmail="ngModel"
+              required [(ngModel)]="lmsService.selectedRegisterStudent.guardianEmail" 
+              [ngClass]="{ 'is-invalid':  guardianEmail.invalid }"
+              required guardianEmail>
+          <mat-error *ngIf="guardianEmail.errors?.guardianEmail">Not a valid email</mat-error>
+      </mat-form-field> -->
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="45%">
+          <input matInput name="UserName" #userName="ngModel" [(ngModel)]="lmsService.selectedRegisterStudent.userName"
+            placeholder="User Name" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="45%">
+          <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" required name="Password"
+            #password="ngModel" [(ngModel)]="lmsService.selectedRegisterStudent.password">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-hint>Enter your password</mat-hint>
+        </mat-form-field>
+      </div>
+      <div *ngIf="messagebox" style="background-color: rgb(212, 245, 234); color:rgb(218, 17, 17); padding: 5px;">
+        <tbody>
+          <tr *ngFor="let msg of message">
+            <td><strong>{{msg.description}}</strong></td>
+          </tr>
+        </tbody>
+      </div>
+      <div fxLayoutAlign="end end">
+        <button mat-raised-button color="primary" *ngIf="  !Edit" [disabled]="userForm.invalid"
+          style=" margin-top: 20px;" (click)="SaveStudentRegistration()">Submit </button>
+        <button mat-raised-button color="primary" *ngIf=" !Add" [disabled]="userForm.invalid" style=" margin-top: 20px;"
+          (click)="SaveStudentRegistration()">Update </button>
+        <button mat-raised-button color="accent" [routerLink]="['/lms/stdregistration']"
+          style="margin-left: 5px; margin-top: 20x;"><strong>Cancel</strong> </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

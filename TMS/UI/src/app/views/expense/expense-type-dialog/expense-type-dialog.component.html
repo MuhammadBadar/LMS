@@ -1,0 +1,47 @@
+<div class="event-dialog-wrapper">
+  <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color: rgb(18, 4, 56);color: black;">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span *ngIf="Add" class="title dialog-title" style="color:white;"><strong>Add Expense Type</strong></span>
+      <span *ngIf="Edit" class="title dialog-title" style="color:white;"><strong>Edit Expense Type</strong></span>
+      <button mat-icon-button style="color:white;" (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  <div mat-dialog-content class="p-1 m-0">
+    <form name="eventForm" #userForm="ngForm" class="event-form" fxLayout="column" fxFlex>
+      <div fxLayout.lt-sm="column" fxLayout="column">
+        <div>
+          <mat-form-field fxFlex="100%">
+            <input matInput name="Type" #type="ngModel" [(ngModel)]="this.expSvc.selectedExpenseType.type"
+              placeholder="Expense Type" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field fxFlex="100%">
+            <input matInput name="Comment" #comment="ngModel" [(ngModel)]="this.expSvc.selectedExpenseType.comment"
+              placeholder="Comment">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="pull-right" style="text-align:end">
+        <button mat-raised-button color="primary" style=" margin-right:5px" *ngIf=" !Edit" [disabled]="userForm.invalid"
+          (click)="SaveExpenseType()" aria-label="SUBMIT">
+          <strong>
+            Submit
+          </strong>
+        </button>
+        <button mat-raised-button color="primary" style=" margin-right:5px" *ngIf=" !Add" [disabled]="userForm.invalid"
+          (click)="SaveExpenseType()" aria-label="Update">
+          <strong>
+            Update
+          </strong>
+        </button>
+        <button mat-raised-button style="background-color:darkgray;color:black;" (click)="dialogRef.close()"
+          type="button" aria-label="SUBMIT"><strong>
+            Cancel</strong>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

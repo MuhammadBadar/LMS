@@ -1,0 +1,57 @@
+<mat-label>
+  <div *ngIf="Add">
+    <h2 ><strong>Manage Item</strong></h2>  
+   </div> 
+   <div *ngIf="Edit">
+     <h2 ><strong>Edit Item</strong></h2>  
+    </div>    
+ </mat-label>
+ <mat-card style="margin-top: 40px;">
+    <form   #userForm="ngForm"   fxFlex >
+        <div fxLayout="row" fxLayoutAlign="space-between">
+            <mat-form-field fxFlex="45%">
+                <mat-label>Item Code</mat-label>
+              <input type="number" matInput  min="1001" 
+              name="itemCode" [(ngModel)]="proSvc.selectedItem.itemCode"
+                required>
+            </mat-form-field>
+            <mat-form-field fxFlex="45%">
+                <mat-label>Item Name</mat-label>
+              <input  matInput   name="itemName"  
+               [(ngModel)]="proSvc.selectedItem.itemName"
+                required>
+            </mat-form-field>       
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between">
+            <mat-form-field fxFlex="45%">
+                <mat-label>UOM</mat-label>
+                <mat-select name="uoMId" [(ngModel)]="proSvc.selectedItem.uoMId">
+                  <mat-option *ngFor="let uom of UOM" [value]=" uom.id" >
+                    {{ uom.value}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="45%">
+                <mat-label>Sale Price</mat-label>
+              <input  matInput   
+              name="salePrice" [(ngModel)]="proSvc.selectedItem.salePrice"
+                required>
+            </mat-form-field>    
+          </div>
+          <div>
+            <mat-form-field fxFlex="45%">
+                <mat-label>Description</mat-label>
+                <textarea matInput
+                name="itemDescription" [(ngModel)]="proSvc.selectedItem.itemDescription"
+                ></textarea>
+              </mat-form-field>
+          </div>
+          <div fxLayoutAlign="end end">
+            <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid"
+              style=" margin-top: 20px;" *ngIf="Add" (click)="SaveItem();userForm.reset()">Submit </button>
+              <button mat-raised-button color="primary"  [disabled]="userForm.invalid"
+              style=" margin-top: 20px;" *ngIf="Edit" (click)="SaveItem()">Update </button>
+            <button mat-raised-button color="accent" [routerLink]="['/procurement/itemList']" style="margin-left: 5px; margin-top: 20x;margin-right: 20px;"><strong>Cancel</strong>  </button>
+          </div>  
+    </form>
+</mat-card>
+

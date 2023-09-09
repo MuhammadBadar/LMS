@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\QST.MicroERP.WebAPI.props" />
+</Project>

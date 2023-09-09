@@ -1,0 +1,57 @@
+<div class="page-layout plain overflow-hidden pb-8">
+  <div class="header blue"></div>
+  
+  <div class="content">
+    <div class="content-header blue p-24" fxLayout="row wrap" fxLayoutAlign="start stre">
+      <h1 class="text-white m-0">Typography</h1>
+    </div>
+
+    <div class="content-body">
+          <mat-tab-group>
+              <mat-tab label="Headings">
+                <div class="p-24">
+                  <mat-card>
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="mb-24">
+                      <span class="mat-display-1 my-0 mr-16">Display 1</span>
+                      <div>
+                          <pre><code [egretHighlight]="
+                            '<span class=&quot;mat-display-1&quot;></span>'
+                          "></code></pre>
+                        </div>
+                    </div>
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="mb-24">
+                        <span class="mat-display-2 my-0 mr-16">Display 2</span>
+                        <div>
+                            <pre><code [egretHighlight]="
+                              '<span class=&quot;mat-display-2&quot;></span>'
+                            "></code></pre>
+                          </div>
+                    </div>
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="mb-24">
+                        <span class="mat-display-3 my-0 mr-16">Display 3</span>
+                        <div>
+                            <pre><code [egretHighlight]="
+                              '<span class=&quot;mat-display-3&quot;></span>'
+                            "></code></pre>
+                          </div>
+                    </div>
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="mb-24">
+                        <span class="mat-display-4 my-0 mr-16">Display 4</span>
+                        <div>
+                            <pre><code [egretHighlight]="
+                              '<span class=&quot;mat-display-4&quot;></span>'
+                            "></code></pre>
+                          </div>
+                    </div>
+                    
+                  </mat-card>
+                </div>
+              </mat-tab>
+              <mat-tab label="Second"> Content 2 </mat-tab>
+              <mat-tab label="Third"> Content 3 </mat-tab>
+          </mat-tab-group>
+    </div>
+
+  </div>
+
+</div>

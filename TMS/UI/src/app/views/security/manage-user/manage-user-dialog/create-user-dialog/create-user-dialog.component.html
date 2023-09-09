@@ -1,0 +1,152 @@
+<div class="event-dialog-wrapper">
+
+
+
+  <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color: rgb(43, 3, 25);">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span *ngIf="Add" class="title dialog-title" style="color:white; "><strong>{{dialogTitle}}</strong></span>
+      <span *ngIf="Edit" class="title dialog-title" style="color:white;"><strong>Edit User</strong></span>
+      <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+
+  <div mat-dialog-content class="p-1 m-0">
+
+    <form name="form" #userForm="ngForm" (ngSubmit)="userForm.form.valid && SaveUser() " novalidate class="event-form"
+      fxFlex>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column">
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%" class="form-group">
+          <mat-form-field fxFlex="49% ">
+            <input class="form-control" matInput name="UserName" #userName="ngModel"
+              [(ngModel)]="securityService.selectedUser.userName"
+              [ngClass]="{ 'is-invalid': userForm.submitted && userName.invalid }" placeholder="Name" required>
+          </mat-form-field>
+          <mat-form-field fxFlex="49% ">
+            <input class="form-control" matInput name="Email" #email="ngModel"
+              [(ngModel)]="securityService.selectedUser.email"
+              [ngClass]="{ 'is-invalid': userForm.submitted && email.invalid }" placeholder="Email" required email>
+          </mat-form-field>
+
+        </div>
+        <div *ngIf="userForm.submitted && email.invalid" class="invalid-feedback">
+          <div style="color: rgb(223, 24, 24);  margin-left: 320px;" *ngIf="email.errors.email"><strong>Must be a valid
+              email address</strong> </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%" class="form-group">
+
+
+          <mat-form-field fxFlex="49% ">
+            <!-- <span matPrefix>+1 &nbsp;</span> -->
+            <input type="tel" #phoneNumber="ngModel" matInput placeholder="Cell Number" required maxlength="15"
+              name="phoneNumber" [(ngModel)]="securityService.selectedUser.phoneNumber">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="49% ">
+            <input matInput class="form-control" placeholder="Password" [type]="hide ? 'password' : 'text'"
+              name="Password" [ngClass]="{ 'is-invalid': userForm.submitted && password.invalid }" #password="ngModel"
+              [(ngModel)]="securityService.selectedUser.passwordHash" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <!-- <mat-hint>Enter your password</mat-hint> -->
+
+          </mat-form-field>
+        </div>
+        
+      </div>
+      <div>
+        <mat-form-field fxFlex="49% ">
+          <mat-label>Direct Supervisor</mat-label>
+          <mat-select matNativeControl name="directSupervisorId" #directSupervisorId="ngModel"
+            [(ngModel)]="securityService.selectedUser.directSupervisorId">
+            <mat-option *ngFor="let u of users" [value]="u.id">
+              {{u.userName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="messagebox" style="background-color: rgb(212, 245, 234); color:rgb(218, 17, 17); padding: 5px;">
+
+        <tbody>
+
+          <tr *ngFor="let msg of message">
+
+            <td><strong>{{msg.description}}</strong></td>
+          </tr>
+        </tbody>
+      </div>
+      <div mat-dialog-actions class="m-0 p-1" fxLayout="row" fxLayoutAlign="space-between center">
+
+        <button mat-raised-button *ngIf=" !Edit"
+          style="margin-left: 425px;background-color:  rgb(43, 3, 25);color:white" aria-label="SUBMIT">
+          <strong>
+            Submit
+          </strong>
+        </button>
+        <button mat-raised-button *ngIf=" !Add" style="margin-left: 425px;background-color:  rgb(43, 3, 25);color:white"
+          aria-label="Update">
+          <strong>
+            Update
+          </strong>
+        </button>
+        <button mat-raised-button style="background-color: rgb(224, 209, 142);color:rgb(43, 3, 25)"
+          (click)="dialogRef.close()" type="button" aria-label="SUBMIT"><strong>
+            Cancel</strong>
+        </button>
+
+      </div>
+    </form>
+
+  </div>
+
+</div>
+<!-- <div class="event-dialog-wrapper">
+  <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color: rgb(11, 10, 70);">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span *ngIf="Add" class="title dialog-title" style="color:white;"><strong>{{dialogTitle}}</strong></span>
+      <span *ngIf="Edit" class="title dialog-title" style="color:white;"><strong>Edit User</strong></span>
+      <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-1 m-0">
+<form *ngIf="!success" #f="ngForm" (ngSubmit)="SaveUser()">
+
+  <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+  <div class="form-group">
+  
+      <label for="name" class="sr-only">Name</label>
+      <input  type="text" id="userName" name="userName" [(ngModel)]="securityService.selectedUser.userName" class="form-control" placeholder="Your name" required autoFocus>
+ 
+    </div>
+
+  <div class="form-group">
+    
+      <label for="email" class="sr-only">Email address</label>
+      <input  type="email" id="email" name="email" #email="ngModel" [(ngModel)]="securityService.selectedUser.email" class="form-control" placeholder="Email address" email required>
+      <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small>
+
+    </div>
+  <div class="form-group">
+    
+      <label for="password" class="sr-only">Password</label>
+      <input  type="password" id="password" name="password" [(ngModel)]="securityService.selectedUser.passwordHash" class="form-control" placeholder="Password" aria-describedby="passwordHelp" required>     
+      <small id="passwordHelp" class="form-text text-muted">Min. 6 characters with at least one non alphanumeric characters</small>
+  
+    </div>   
+  <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!f.form.valid">Go</button>
+  
+  <div *ngIf="error" class="alert alert-danger mt-3" role="alert">
+      <strong>Oops!</strong> {{error}}
+  </div>     
+</form>      
+<div *ngIf="success" class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Well done!</h4>
+    <p>Your account was created successfully,  to continue.</p>        
+</div> 
+</div>
+
+</div>  -->

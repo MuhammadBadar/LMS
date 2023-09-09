@@ -1,0 +1,59 @@
+<div class="event-dialog-wrapper">
+  <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color: rgb(43, 3, 25);">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span *ngIf="Add" class="title dialog-title" style="color:white;"><strong>{{dialogTitle}}</strong></span>
+        <span *ngIf="Edit" class="title dialog-title" style="color:white;"><strong>Edit Feature</strong></span>
+      <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-1 m-0">
+
+    <form name="eventForm" #featureForm="ngForm"  class="event-form" fxLayout="column" fxFlex>
+      <div fxFlex="100" fxLayout.lt-sm="column">
+        <mat-form-field class="full-width">
+          <input matInput name="Name"placeholder="Feature" required
+          #Name="ngModel"
+          [(ngModel)]="securityService.selectedFeature.name" readonly="{{Edit}}" (keyup)="SearchFeature();" >
+        </mat-form-field>
+        <div *ngIf="Error " style="margin-bottom: 10px; background-color: rgb(211, 238, 248); padding: 5px;color: rgb(228, 30, 30);">Oops! This Feature is Already Added</div>
+      </div>
+     
+      <div fxFlex="100%" fxLayout.lt-sm="column">
+        <mat-form-field class="full-width">
+          <textarea matInput #desscription="ngModel"
+          name="Description"
+          [(ngModel)]="securityService.selectedFeature.description"
+           placeholder="Description" max-rows="4" required>
+            </textarea>
+        </mat-form-field>
+      </div>
+      <!-- <div fxLayout="row wrap" style="margin-left: 65px;" *ngIf=" Add">
+        <mat-checkbox style="margin-left: 250px;"
+        name="IsActive" #isActive="ngModel" [(ngModel)]="securityService.selectedFeature.isActive"
+        ><strong>IsActive</strong></mat-checkbox>
+      </div> -->
+    
+      <div mat-dialog-actions class="m-0 p-1" fxLayout="row" fxLayoutAlign="space-between center">
+
+        <button mat-raised-button color="primary" *ngIf=" !Edit" [disabled]="featureForm.invalid" (click)="SaveFeature()" style="margin-left: 220px;background-color: rgb(43, 3, 25);color:white;" aria-label="SUBMIT">
+          <strong>
+            Submit
+          </strong>
+        </button>
+        <button mat-raised-button color="primary"  *ngIf=" !Add"[disabled]="featureForm.invalid" (click)="SaveFeature()" style="margin-left: 220px;background-color: rgb(43, 3, 25);color:white;" aria-label="Update">
+          <strong>
+            Update
+          </strong>
+        </button>
+        <button mat-raised-button style="background-color: rgb(224, 209, 142);color:rgb(43, 3, 25)" type="button" aria-label="CANCEL" (click)="dialogRef.close()"><strong> Cancel</strong>
+        </button>
+
+      </div>
+    </form>
+
+  </div>
+
+</div>

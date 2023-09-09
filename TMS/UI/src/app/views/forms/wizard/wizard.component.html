@@ -1,0 +1,298 @@
+<mat-card class="p-0">
+  <mat-card-title class="">
+       <div class="card-title-text">Quotation</div>
+       <mat-divider></mat-divider>
+  </mat-card-title>
+
+  <mat-card-content fxLayout="column">
+
+       <h4><strong>Quotation Details</strong></h4>
+       <form [formGroup]="quotationForm">
+            <div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+                 <div>
+                      <mat-form-field fxFill>
+                           <input matInput name="title" formControlName="qtitle" required maxlength="50"
+                                placeholder="Title" value="">
+                      </mat-form-field>
+                 </div>
+
+                 <div>
+                      <mat-form-field fxFill>
+                           <mat-select required formControlName="shipTo" placeholder="Ship To">
+                                <mat-option *ngFor="let st of shipTo " [value]="st">
+                                     {{st}}
+                                </mat-option>
+                           </mat-select>
+                      </mat-form-field>
+                 </div>
+
+            </div>
+            <div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+
+                 <div>
+                      <mat-form-field fxFill>
+                           <input matInput name="clientName" formControlName="cname" required maxlength="50"
+                                placeholder="Client Name" value="" autocomplete>
+                      </mat-form-field>
+                 </div>
+
+                 <div>
+                      <mat-form-field fxFill>
+                           <input matInput name="quoteValidity" formControlName="quoteValidity"
+                                placeholder="Quote Validity" required [matDatepicker]="appDatepicker">
+
+                           <mat-datepicker-toggle matSuffix [for]="appDatepicker"></mat-datepicker-toggle>
+                      </mat-form-field>
+                      <mat-datepicker #appDatepicker></mat-datepicker>
+                 </div>
+            </div>
+       </form>
+  </mat-card-content>
+
+
+  <mat-card-content>
+
+       <h4><strong>Discount Details</strong></h4>
+       <form [formGroup]="quotationForm">
+
+            <mat-formcard-contet fxLayout="row">
+
+
+                 <div class="pr-1" fxFlex="100" fxFlex.gt-xs="50" fxLayout="column" fxLayoutGap="10px">
+                      <div>
+                           <mat-form-field fxFill>
+                                <mat-select required formControlName="discountType"
+                                     placeholder="Select Discount Type">
+                                     <mat-option *ngFor="let dt of DiscountType" [value]="dt.value">
+                                          {{dt.viewValue}}
+                                     </mat-option>
+                                </mat-select>
+                           </mat-form-field>
+                      </div>
+                      <div>
+                           <mat-form-field fxFill>
+                                <mat-select required formControlName="discountMethod"
+                                     placeholder="Select Discount Method">
+                                     <mat-option value="percentage">
+                                          Percentage
+                                     </mat-option>
+                                     <mat-option value="value">
+                                          Value
+                                     </mat-option>
+                                </mat-select>
+                           </mat-form-field>
+                      </div>
+
+
+
+                 </div>
+                 <div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" class="pr-1" fxLayoutGap="10px">
+                      <mat-form-field>
+                           <mat-select [formControl]="applyDiscount" multiple placeholder="Apply Discount">
+                                <mat-option *ngFor="let ad of applyDiscount" [value]="ad">{{ad}}
+                                </mat-option>
+                           </mat-select>
+                      </mat-form-field>
+                      <div>
+                           <mat-form-field fxFill>
+                                <input formControlName="discountnumber" matInput type="number"
+                                     placeholder="Discount Number" required />
+                           </mat-form-field>
+                      </div>
+
+
+                 </div>
+            </mat-formcard-contet>
+       </form>
+  </mat-card-content>
+
+
+  <mat-card-content>
+
+       <h4><strong>Delievery Details</strong></h4>
+       <form [formGroup]="quotationForm" fxLayout="row">
+            <div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" class="pr-1" fxLayoutGap="10px">
+
+
+                 <div>
+                      <mat-form-field class="align-right" fxFill>
+                           <input matInput name="deliveryDate" formControlName="deliveryDate"
+                                placeholder="Delivery Date" required [matDatepicker]="dtDatepicker">
+
+                           <mat-datepicker-toggle matSuffix [for]="dtDatepicker"></mat-datepicker-toggle>
+                      </mat-form-field>
+                      <mat-datepicker #dtDatepicker></mat-datepicker>
+                 </div>
+                 <div>
+                      <mat-form-field fxFill>
+                           <mat-select required formControlName="status" placeholder="Status">
+                                <mat-option *ngFor="let sts of status " [value]="sts">
+                                     {{sts}}
+                                </mat-option>
+                           </mat-select>
+                      </mat-form-field>
+                 </div>
+            </div>
+            <div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" class="pr-1" fxLayoutGap="10px">
+
+                 <div>
+                      <mat-form-field fxFill>
+                           <mat-select required formControlName="delieveryMethod" placeholder="Delievery Method">
+                                <mat-option *ngFor="let dm of delieveryMethod " [value]="dm">
+                                     {{dm}}
+                                </mat-option>
+                           </mat-select>
+                      </mat-form-field>
+                 </div>
+
+                 <div>
+                      <mat-form-field fxFill>
+                           <input formControlName="description" matInput type="textarea" AutoSize
+                                placeholder="Description" maxlength='500'>
+                      </mat-form-field>
+                 </div>
+            </div>
+
+       </form>
+  </mat-card-content>
+
+  <mat-card-content>
+
+       <form [formGroup]="quotationForm">
+
+
+            <div fxLayout="row">
+                 <table style="width: 100%;">
+
+                      <tbody>
+                           <div formArrayName="item" class="item-form-list">
+                                <div class="item-form-list-head-line">
+                                     <tr style="background-color:cadetblue;">
+                                          <td style="width: 5%; text-align:center; padding-left:5px;">#</td>
+                                          <td style="width: 10%; text-align:center; padding-left:5px;"><strong> Item
+                                                    Name
+                                               </strong></td>
+                                          <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                                                    Quantity
+                                               </strong></td>
+                                          <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                                                    Quoted Price
+                                               </strong></td>
+                                          <td style="width: 7%; text-align:center; padding-left: 5px;"><strong> UOM
+                                               </strong>
+                                          </td>
+                                          <td style="width: 10%; text-align:center; padding-left: 5px;"><strong> Line
+                                                    Total
+                                               </strong></td>
+                                          <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                                                    Discount
+                                                    Method </strong></td>
+                                          <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                                                    Discount Value
+                                               </strong></td>
+                                          <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                                                    Total
+                                                    DiscountPrice </strong></td>
+                                          <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                                                    Shipment
+                                                    Charges </strong></td>
+                                          <td style="width: 15%; text-align:center; padding-left: 5px;"><strong> Net
+                                                    Total
+                                               </strong></td>
+                                          <td>
+
+                                               <button mat-mini-fab color="accent" type="button"
+                                                    (click)="addNewItem(emptyFormObject)">+</button>
+                                          </td>
+                                     </tr>
+                                </div>
+                                <div *ngFor="let item of quotationArray.controls; let i = index" [formGroup]="item"
+                                     class="form-rows">
+
+                                     <tr style="background-color:rgb(168, 173, 173);">
+                                          <td style="width: 4.5%; text-align:center; padding-left:5px;
+                                          border: 2px solid white;">
+                                               <span>{{ i + 1
+                                                    }}</span>
+                                          </td>
+                                          <td style="width: 10%; text-align:center; padding-left:5px;
+                                          border: 2px solid white;">
+                                               <input formControlName="iname" matInput #iname required />
+                                          </td>
+                                          <td style="width: 10%; text-align:center; padding-left: 5px;
+                                          border: 2px solid white;">
+                                               <input type="number" formControlName="quantity" matInput #quantity
+                                                    required />
+                                          </td>
+                                          <td style="width: 10%; text-align:center; padding-left: 5px;
+                                          border: 2px solid white;">
+                                               <input type="number" formControlName="quotedPrice" matInput
+                                                    #quotedPrice appTwoDigitDecimaNumber required />
+                                          </td>
+                                          <td style="width: 7%; text-align:center; padding-left: 5px;
+                                          border: 2px solid white;">
+                                               <mat-select required formControlName="uom">
+                                                    <mat-option *ngFor="let um of uom " [value]="um">
+                                                         {{um}}
+                                                    </mat-option>
+                                               </mat-select>
+                                          </td>
+                                          <td style="width: 10%; text-align:center; padding-left: 5px;
+                                          border: 2px solid white;">
+                                               <span>{{ quantity.value * quotedPrice.value
+                                                    }}</span>
+                                          </td>
+                                          <td style="width: 10%; text-align:center; padding-left: 5px;
+                                          border: 2px solid white;">
+                                               <mat-select required formControlName="disMethod" #disMethod>
+                                                    <mat-option value="percentage">
+                                                         Percentage
+                                                    </mat-option>
+                                                    <mat-option value="value">
+                                                         Value
+                                                    </mat-option>
+                                               </mat-select>
+                                          </td>
+                                          <td style="width: 10%; text-align:center; padding-left: 5px; 
+                                          border: 2px solid white;
+                                          border: 2px solid white;">
+                                               <input type="number" formControlName="discvalue" matInput #discvalue
+                                                    required />
+                                          </td>
+                                          <td style="width: 10.5%; text-align:center; padding-left: 5px;
+                                          border: 2px solid white;">
+
+                                               <input type="number" formControlName="totaldiscvalue" matInput
+                                                    #totaldiscvalue required />
+                                          </td>
+                                          <td style="width: 10%; text-align:center; padding-left: 5px;
+                                          border: 2px solid white;">
+                                               <input type="number" formControlName="shipmentCharges" matInput
+                                                    #shipmentCharges required />
+                                          </td>
+                                          <td style="width: 15%; text-align:center; padding-left: 5px;
+                                          border: 2px solid white;">
+                                               <span>{{ add(totaldiscvalue.value , shipmentCharges.value) }}</span>
+                                          </td>
+                                          <td>
+
+                                               <button mat-mini-fab color="accent" type="button"
+                                                    (click)="deleteItem(i)">-</button>
+                                          </td>
+
+                                     </tr>
+                                </div>
+                           </div>
+                      </tbody>
+                 </table>
+            </div>
+       </form>
+  </mat-card-content>
+  <mat-card-content class="align-right">
+
+       <form [formGroup]="quotationForm">
+            <button mat-raised-button color="primary" [disabled]="quotationForm.invalid ">Submit</button>
+     <button style="margin-left: 5px;" mat-raised-button color="accent">Cancel</button>
+ </form>
+  </mat-card-content>
+</mat-card>

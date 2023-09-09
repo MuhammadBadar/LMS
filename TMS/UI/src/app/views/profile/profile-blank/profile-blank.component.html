@@ -1,0 +1,608 @@
+<!--  <form >
+
+  <table mat-table style="width: 100%;"  multiTemplateDataRows [dataSource]="data" class="mat-elevation-z8" style="margin-top: 50px;">
+    <div *ngIf="isEdit">
+      <ng-container matColumnDef="Code" >
+        <th mat-header-cell *matHeaderCellDef style=" width:350px;"> Item Code </th>
+        <td mat-cell *matCellDef="let element">
+          <div  > 
+            <div *ngFor="let itm of items">       
+            <mat-form-field fxFlex="95%" *ngIf="codeshow" >
+             <input type="number" readonly matInput  placeholder="Item Code" min="1001"  
+            value="{{itm.itemCode}}"
+              required>
+             </mat-form-field>  
+            </div>       
+          <mat-form-field fxFlex="95%" *ngIf="Codeshow"  >
+           <input type="number" matInput  placeholder="Item Code" min="1001"  (keypress)="SearchItemByCode()"
+           name="ItemCode" [(ngModel)]="proSvc.selectedItem.itemCode"
+            required>
+           </mat-form-field>
+         </div>
+        
+         </td>
+         
+      </ng-container>
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef style=" width:350px;"> Item Name </th>
+          <td mat-cell *matCellDef="let element" >  
+           
+            <div >
+              <div *ngIf="isShown">
+                <mat-form-field fxFlex="95%"  >
+                  <mat-label>Item Name</mat-label>
+                  <input type="text"
+                 
+                  matTooltip="{{proSvc.selectedItem.itemName}}"
+                         placeholder="Item Name "
+                         (keyup)="Search()"
+                         matInput
+                         [(ngModel)]="proSvc.selectedItem.itemName" name= "ItemName" #itemName="ngModel"
+                         [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                       
+                      <mat-option matTooltip="{{itms.itemName}}" *ngFor="let itms of itm" [value]=" itms.itemName" required  (click)="SearchItem()">
+                        {{ itms.itemName}}</mat-option>
+              
+                  </mat-autocomplete>
+                </mat-form-field>
+     
+              </div>
+              <div  *ngFor="let itm of items" >
+                <mat-form-field fxFlex="95%" *ngIf="IsShown">
+                  <mat-label>Item Name</mat-label>
+                  <input type="text"  matInput  placeholder="Item Name" value="{{itm.itemName}}"
+                 
+                  >
+                </mat-form-field>
+              </div>
+             
+
+            </div>
+       </td>  
+
+      </ng-container>
+      <ng-container matColumnDef="UOM">
+        <th mat-header-cell *matHeaderCellDef style=" width:350px;"> UOM </th>
+        <td mat-cell *matCellDef="let element" >
+          <div >
+          <div *ngFor="let itm of items">
+            <mat-form-field fxFlex="95%" *ngFor ="let itm of items" >
+              <input type="text" disabled matInput  placeholder="UOM" value="{{itm.uom}}"
+              maxlength="1"
+               >
+             </mat-form-field>
+      </div>
+    </div> 
+     </td>
+      </ng-container>
+      <ng-container matColumnDef="QTY">
+        <th mat-header-cell *matHeaderCellDef style=" width:350px;"> QTY </th>
+        <td mat-cell *matCellDef="let element"> 
+          <div>
+          <mat-form-field fxFlex="95%"> 
+          <input type="number" matInput  placeholder="QTY" min="1" name="QTY"  #focusto
+          value="1"
+          [(ngModel)]="proSvc.selectedSaleOrder.qty" (keyup)="addRows()"
+           required>
+           </mat-form-field>
+          </div>
+       </td>
+      </ng-container>
+      <ng-container matColumnDef="Price" >
+        <th mat-header-cell *matHeaderCellDef style=" width:350px;"> Price </th>
+        <td mat-cell *matCellDef="let element" > 
+          <div>
+          <div *ngFor="let itm of items">
+          <mat-form-field fxFlex="95%" *ngFor ="let itm of items">
+          <input type="number" matInput  placeholder="Price" required  min="1" 
+          value="{{itm.salePrice}}"
+           > 
+          </mat-form-field>
+        </div>
+        </div>
+      </td>
+      </ng-container>
+      <ng-container matColumnDef="LineTotal" >
+        <th mat-header-cell *matHeaderCellDef style=" width:350px;"> Total </th>
+        <td mat-cell *matCellDef="let element"> 
+          <div>
+            <mat-form-field fxFlex="95%"  *ngFor="let itm of items">
+            <input type="number" matInput readonly  value="{{proSvc.selectedSaleOrder.qty * itm.salePrice}}"
+             > 
+            </mat-form-field>
+          </div>
+        </td>
+ 
+      </ng-container>
+      <ng-container matColumnDef="Action" >
+        <mat-header-cell  *matHeaderCellDef > Actions </mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+        </mat-cell>
+      </ng-container>
+    </div> 
+    <div *ngIf="!isEdit">
+      <ng-container matColumnDef="itemCode" >
+       
+        <td mat-cell *matCellDef="let element">
+          <div>
+            <mat-form-field fxFlex="95%" >
+               <input  readonly matInput    
+          
+                required>
+              </mat-form-field>
+            </div>
+         </td>
+         
+      </ng-container>  
+      <ng-container matColumnDef="itemName">
+   
+          <td mat-cell *matCellDef="let element" >  
+           
+            <div>
+              <mat-form-field fxFlex="95%" >
+                 <input  readonly matInput    
+            
+                  required>
+                </mat-form-field>
+              </div>
+         
+       </td>  
+    
+      </ng-container>   
+      <ng-container matColumnDef="uom">
+       
+        <td mat-cell *matCellDef="let element" > 
+          <div >
+            <mat-form-field fxFlex="95%" >
+               <input  readonly matInput    
+          
+                required>
+              </mat-form-field>
+            </div>
+     </td>
+      </ng-container>   
+      <ng-container matColumnDef="qty">
+          
+          <td mat-cell *matCellDef="let element"> 
+            
+            <div>
+              <mat-form-field fxFlex="95%" >
+                 <input  readonly matInput    
+            
+                  required>
+                </mat-form-field>
+              </div>
+         </td>
+      </ng-container>  
+      <ng-container matColumnDef="salePrice" >
+       
+        <td mat-cell *matCellDef="let element" > 
+          <div>
+            <mat-form-field fxFlex="95%" >
+               <input  readonly matInput    
+          
+                required>
+              </mat-form-field>
+            </div>
+      </td>
+      </ng-container>
+      <ng-container matColumnDef="lineTotal" >
+          <th mat-header-cell *matHeaderCellDef style=" width:350px;"> Total </th>
+          <td mat-cell *matCellDef="let element"> 
+            <div>
+              <mat-form-field fxFlex="95%" >
+                 <input  readonly matInput    
+            
+                  required>
+                </mat-form-field>
+              </div>
+          </td>
+        
+      </ng-container>    
+      <ng-container matColumnDef="Actions" >
+          <mat-header-cell  *matHeaderCellDef ></mat-header-cell>
+          <mat-cell *matCellDef="let row" >
+     
+            <button fxLayout="column" mat-icon-button mat-sm-button color="primary"   class="mr-1" ><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button mat-sm-button color="warn" (click)="delete(row.id)"><mat-icon>delete</mat-icon></button>
+           
+   
+          </mat-cell>
+      </ng-container>
+    </div>
+   
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <div  > 
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </div>
+      <tr mat-row *matRowDef="let row; columns: displayedColumn;"></tr>
+   
+    </table>
+   
+ 
+  </form> 
+  <form >
+
+    <table mat-table style="width: 100%;"  multiTemplateDataRows [dataSource]="data" class="mat-elevation-z8" style="margin-top: 50px;">
+      <div >
+        <ng-container matColumnDef="Code" >
+          <th mat-header-cell *matHeaderCellDef style=" width:350px;"> Item Code </th>
+          <td mat-cell *matCellDef="let element">
+            <div *ngIf="!isEdit" > 
+              <div *ngFor="let itm of items">       
+              <mat-form-field fxFlex="95%" *ngIf="codeshow" (click)="code()">
+               <input type="number" readonly matInput  placeholder="Item Code" min="1001"   
+              value="{{itm.itemCode}}"
+                required>
+               </mat-form-field>  
+              </div>       
+            <mat-form-field fxFlex="95%" *ngIf="Codeshow"  >
+             <input type="number" matInput  placeholder="Item Code" min="1001"  (keypress)="SearchItemByCode()"
+             name="ItemCode" [(ngModel)]="proSvc.selectedItem.itemCode"
+              required>
+             </mat-form-field>
+           </div>
+            <div *ngIf="isEdit">
+            <div *ngFor="let itm of items">
+              <div *ngIf="Codeshow== true">
+                <mat-form-field fxFlex="95%" >
+                   <input  readonly matInput    
+                   value="{{proSvc.selectedItem.itemCode}}"
+                    required>
+                  </mat-form-field>
+                </div>
+                <div *ngIf="codeshow== true"> 
+                  <mat-form-field fxFlex="95%" >
+                     <input  readonly matInput    
+                     value="{{itm.itemCode}}"
+                      required>
+                    </mat-form-field>
+                  </div>
+            </div>
+           </div> 
+           </td>
+           
+        </ng-container>
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef style=" width:350px;"> Item Name </th>
+            <td mat-cell *matCellDef="let element" >  
+             
+              <div *ngIf="!isEdit">
+                <div *ngIf="isShown">
+                  <mat-form-field fxFlex="95%"  >
+                    <mat-label>Item Name</mat-label>
+                    <input type="text"
+                  
+                    matTooltip="{{proSvc.selectedItem.itemName}}"
+                           placeholder="Item Name "
+                           (keyup)="AutoCompleteSearch()"
+                           matInput
+                           [(ngModel)]="proSvc.selectedItem.itemName" name= "ItemName" #itemName="ngModel"
+                           [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                         
+                        <mat-option matTooltip="{{itms.itemName}}" *ngFor="let itms of itm" [value]=" itms.itemName" required  (click)="SearchItemByName()">
+                          {{ itms.itemName}}</mat-option>
+                
+                    </mat-autocomplete>
+                  </mat-form-field>
+                  <mat-form-field fxFlex="95%">
+                    <mat-label>Item Name</mat-label>
+                    <mat-select [(ngModel)]="proSvc.selectedItem.id" name= "id" >
+                      <mat-option *ngFor="let itms of itm" [value]=" itms.id" required  (click)="SearchItem()">
+                        {{ itms.itemName}}</mat-option>
+                    </mat-select>
+                  </mat-form-field> 
+                </div>
+                <div  *ngFor="let itm of items" >
+                  <mat-form-field fxFlex="95%" *ngIf="IsShown" (click)="itemNameinput()">
+                    <mat-label>Item Name</mat-label>
+                    <input type="text"   matInput  placeholder="Item Name" value="{{itm.itemName}}"
+                   
+                    >
+                  </mat-form-field>
+                </div>
+               
+              <mat-form-field fxFlex="95%">
+              <input matInput name="ItemName" placeholder="Item Name"
+             #itemName="ngModel" [(ngModel)]="proSvc.line.itemName" 
+               required>
+               </mat-form-field> 
+              </div>
+               <div *ngIf="isEdit"> 
+                <div *ngFor="let itm of items">
+                 <div *ngIf="isShown== true">
+                   <mat-form-field fxFlex="95%" >
+                      <input  readonly matInput    
+                      value="{{proSvc.selectedItem.itemName}}"
+                       required>
+                     </mat-form-field>
+                   </div>
+                   <div  *ngIf="IsShown== true">
+                     <mat-form-field fxFlex="95%" >
+                        <input  readonly matInput    
+                        value="{{itm.itemName}}"
+                         required>
+                       </mat-form-field>
+                     </div>
+                   </div>
+              </div>  
+         </td>  
+             <td mat-footer-cell *matFooterCellDef> Total </td> 
+        </ng-container>
+        <ng-container matColumnDef="UOM">
+          <th mat-header-cell *matHeaderCellDef style=" width:350px;"> UOM </th>
+          <td mat-cell *matCellDef="let element" >
+            <div *ngIf="!isEdit">
+            <div *ngFor="let itm of items">
+              <mat-form-field fxFlex="95%" *ngFor ="let itm of items" >
+                <input type="text" disabled matInput  placeholder="UOM" value="{{itm.uom}}" 
+                maxlength="1"
+                 >
+               </mat-form-field>
+           </div>
+           </div>
+            <div *ngIf="isEdit">
+            <div *ngFor="let itm of items">
+              <mat-form-field fxFlex="95%" >
+                 <input  readonly matInput    
+             value="{{itm.uom}}"
+                  required>
+                </mat-form-field>
+              </div>
+            </div>  
+       </td>
+        </ng-container>
+        <ng-container matColumnDef="QTY">
+          <th mat-header-cell *matHeaderCellDef style=" width:350px;"> QTY </th>
+          <td mat-cell *matCellDef="let element"> 
+            <div *ngIf="!isEdit">
+            <mat-form-field fxFlex="95%"> 
+            <input type="number"   placeholder="QTY" min="1" name="QTY"  #focusto
+            value="1"
+            [(ngModel)]="proSvc.selectedSaleOrder.qty" (keyup)="addRows() "   matInput 
+             required>
+             </mat-form-field>
+            </div>
+             <div *ngIf="isEdit">
+              <mat-form-field fxFlex="95%" >
+                 <input  readonly matInput    
+            value="{{proSvc.selectedSaleOrder.qty}}"
+                  required>
+                </mat-form-field>
+            </div> 
+         </td>
+        </ng-container>
+        <ng-container matColumnDef="Price" >
+          <th mat-header-cell *matHeaderCellDef style=" width:350px;"> Price </th>
+          <td mat-cell *matCellDef="let element" > 
+            <div *ngIf="!isEdit">
+            <div *ngFor="let itm of items">
+            <mat-form-field fxFlex="95%" *ngFor ="let itm of items">
+            <input type="number" matInput  placeholder="Price" required  min="1" 
+            value="{{itm.salePrice}}"
+             > 
+            </mat-form-field>
+          </div>
+            </div>
+             <div *ngIf="isEdit">
+            <div *ngFor ="let itm of items">
+              <mat-form-field fxFlex="95%" >
+                 <input  readonly matInput    
+               value="{{itm.salePrice}}"
+                  required>
+                </mat-form-field>
+              </div>
+           </div> 
+        </td>
+        </ng-container>
+        <ng-container matColumnDef="LineTotal" >
+          <th mat-header-cell *matHeaderCellDef style=" width:350px;"> Total </th>
+          <td mat-cell *matCellDef="let element"> 
+            <div *ngIf="!isEdit">
+              <mat-form-field fxFlex="95%"  *ngFor="let itm of items">
+              <input type="number" matInput readonly  value="{{proSvc.selectedSaleOrder.qty * itm.salePrice}}"
+               > 
+              </mat-form-field>
+            </div>
+             <div *ngIf="isEdit">
+              <div *ngFor="let itm of items">
+                <mat-form-field fxFlex="95%" >
+                   <input  readonly matInput    
+                   value="{{proSvc.selectedSaleOrder.qty * itm.salePrice}}"
+                    required>
+                  </mat-form-field>
+                </div>
+            </div> 
+          </td>
+           <td mat-footer-cell *matFooterCellDef> 15000 </td> 
+        </ng-container>
+        <ng-container matColumnDef="Action" >
+          <div *ngIf="!isEdit">
+          <mat-header-cell  *matHeaderCellDef > Actions </mat-header-cell>
+          <mat-cell *matCellDef="let row" >
+          </mat-cell>
+        </div>
+         <div *ngIf="isEdit">
+          <mat-header-cell  *matHeaderCellDef ></mat-header-cell>
+          <mat-cell *matCellDef="let row" >
+     
+            <button fxLayout="column" mat-icon-button mat-sm-button color="primary"   class="mr-1" ><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button mat-sm-button color="warn" (click)="delete(row.id)"><mat-icon>delete</mat-icon></button>
+           
+    
+          </mat-cell>
+        </div> 
+        </ng-container>
+      </div> 
+      <div >
+        <ng-container matColumnDef="itemCode" >
+         <div *ngFor="let itm of items">
+          <td mat-cell *matCellDef="let element">
+            <div>
+            <div *ngIf="Codeshow== true">
+              <mat-form-field fxFlex="95%" >
+                 <input  readonly matInput    
+                 value="{{proSvc.selectedItem.itemCode}}"
+                  required>
+                </mat-form-field>
+              </div>
+              <div *ngIf="codeshow== true"> 
+                <mat-form-field fxFlex="95%" >
+                   <input  readonly matInput    
+                   value="{{itm.itemCode}}"
+                    required>
+                  </mat-form-field>
+                </div>
+              </div>
+           </td>
+          </div>
+        </ng-container>  
+        <ng-container matColumnDef="itemName">
+        <div *ngFor="let itm of items">
+            <td mat-cell *matCellDef="let element" >
+              <div> 
+             <div *ngFor="let itm of items">
+              <div *ngIf="isShown== true">
+                <mat-form-field fxFlex="95%" >
+                   <input  readonly matInput    
+                   value="{{proSvc.selectedItem.itemName}}"
+                    required>
+                  </mat-form-field>
+                </div>
+                <div  *ngIf="IsShown== true">
+                  <mat-form-field fxFlex="95%" >
+                     <input  readonly matInput    
+                     value="{{itm.itemName}}"
+                      required>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div> 
+         </td>  
+        </div>
+        </ng-container>   
+        <ng-container matColumnDef="uom">
+         <div *ngFor="let itm of items">
+          <td mat-cell *matCellDef="let element" > 
+            <div >
+              <mat-form-field fxFlex="95%" >
+                 <input  readonly matInput    
+             value="{{itm.uom}}"
+                  required>
+                </mat-form-field>
+              </div>
+       </td>
+      </div>
+        </ng-container>   
+        <ng-container matColumnDef="qty">
+            <div>
+            <td mat-cell *matCellDef="let element"> 
+              
+              <div>
+                <mat-form-field fxFlex="95%" >
+                   <input  readonly matInput    
+              value="{{proSvc.selectedSaleOrder.qty}}"
+                    required>
+                  </mat-form-field>
+                </div>
+           </td>
+          </div>
+        </ng-container>  
+        <ng-container matColumnDef="salePrice" >
+         <div *ngFor="let itm of items">
+          <td mat-cell *matCellDef="let element" > 
+            <div>
+            <div>
+              <mat-form-field fxFlex="95%" >
+                 <input  readonly matInput    
+               value="{{itm.salePrice}}"
+                  required>
+                </mat-form-field>
+              </div>
+            </div>
+        </td>
+      </div>
+        </ng-container>
+        <ng-container matColumnDef="lineTotal" >
+         <div *ngFor="let itm of items">
+            <td mat-cell *matCellDef="let element"> 
+              <div>
+              <div>
+                <mat-form-field fxFlex="95%" >
+                   <input  readonly matInput    
+                   value="{{proSvc.selectedSaleOrder.qty * itm.salePrice}}"
+                    required>
+                  </mat-form-field>
+                </div>
+              </div>
+            </td>
+          </div>
+           <td mat-footer-cell *matFooterCellDef> 15000 </td> 
+        </ng-container>    
+        <ng-container matColumnDef="Actions" >
+          <div>
+            <mat-cell *matCellDef="let row" >
+       
+              <button fxLayout="column" mat-icon-button mat-sm-button color="primary"   class="mr-1" ><mat-icon>edit</mat-icon></button>
+              <button mat-icon-button mat-sm-button color="warn" (click)="delete(row.id)"><mat-icon>delete</mat-icon></button>
+             
+     
+            </mat-cell>
+          </div>
+        </ng-container>
+      </div>
+       <ng-container matColumnDef="Action" >
+            <mat-header-cell  *matHeaderCellDef  style="margin-top: 10px;"> 
+               <button mat-icon-button mat-sm-button color="warn" class="mr-1"  (click)="addRows()"><mat-icon>add</mat-icon></button>
+               </mat-header-cell>
+            <mat-cell *matCellDef="let row" style="margin-top: 10px;">   
+             
+              <button mat-icon-button mat-sm-button color="warn" class="mr-1" (click)="delete(row.id)" ><mat-icon>remove</mat-icon></button>
+            </mat-cell>
+          </ng-container> 
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <div  > 
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </div>
+        <tr mat-row *matRowDef="let row; columns: displayedColumn;"></tr>
+       <tr mat-footer-row *matFooterRowDef="displayedColumn"></tr> 
+      </table>
+       <div fxLayout="row" >
+      <mat-form-field  fxFlex="10%">
+        <input type="number" matInput name="ItemCode" placeholder="ItemCode"
+       #ItemCode="ngModel" [(ngModel)]="proSvc.selectedSaleOrder.itemCode" 
+         required>
+       </mat-form-field>
+       <mat-form-field fxFlex="10%">
+        <input type="number" matInput name="ItemCode" placeholder="ItemCode"
+       #ItemCode="ngModel" [(ngModel)]="proSvc.selectedSaleOrder.itemCode" 
+         required>
+       </mat-form-field>
+       <mat-form-field fxFlex="10%">
+        <input type="number" matInput name="ItemName" placeholder="ItemCode"
+       #itemName="ngModel" [(ngModel)]="proSvc.selectedSaleOrder.itemName" 
+         required>
+         </mat-form-field>
+         <mat-form-field >
+          <input type="number" matInput name="ItemName" placeholder="ItemCode"
+         #itemName="ngModel" [(ngModel)]="proSvc.selectedSaleOrder.itemName" 
+           required>
+           </mat-form-field>
+           <mat-form-field >
+            <input type="number" matInput name="ItemName" placeholder="ItemCode"
+           #itemName="ngModel" [(ngModel)]="proSvc.selectedSaleOrder.itemName" 
+             required>
+             </mat-form-field>
+             <mat-form-field >
+              <input type="number" matInput name="ItemName" placeholder="ItemCode"
+             #itemName="ngModel" [(ngModel)]="proSvc.selectedSaleOrder.itemName" 
+               required>
+               </mat-form-field>
+               <button mat-icon-button mat-sm-button color="warn" class="mr-1"  ><mat-icon>add</mat-icon></button>
+               <button mat-icon-button mat-sm-button color="warn" class="mr-1"  ><mat-icon>remove</mat-icon></button>
+                </div> 
+    </form> -->

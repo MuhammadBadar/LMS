@@ -1,0 +1,63 @@
+<div class="event-dialog-wrapper">
+  <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color: rgb(43, 3, 25);">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span *ngIf="Add" class="title dialog-title" style="color:white;"><strong>{{dialogTitle}}</strong></span>
+        <span *ngIf="Edit" class="title dialog-title" style="color:white;"><strong>Edit Role</strong></span>
+      <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-1 m-0">
+
+    <form  name="eventForm" #roleForm="ngForm" class="event-form" fxLayout="column" fxFlex>
+      <div fxFlex="100" fxLayout.lt-sm="column">
+        <mat-form-field class="full-width">
+          <input matInput name="Name" #name="ngModel" [(ngModel)]="securityService.selectedRole.name" placeholder="Role"
+            required>
+        </mat-form-field>
+      </div>
+      <!-- <div fxFlex="100%" fxLayout.lt-sm="column">
+        <mat-form-field class="full-width">
+          <textarea matInput name="Responsibility" #responsibility="ngModel" required
+            [(ngModel)]="securityService.selectedRole.responsibility" placeholder="Responsibilites" max-rows="4">
+            </textarea>
+        </mat-form-field>
+      </div> -->
+      <!-- <div fxLayout="row wrap" style="margin-left: 65px;" *ngIf=" Add">
+        <mat-checkbox style="margin-left: 250px;"name="IsActive" #isActive="ngModel" [(ngModel)]="securityService.selectedRole.isActive"
+        ><strong>IsActive</strong></mat-checkbox>
+      </div> -->
+      <div *ngIf="messagebox" style="background-color: wheat;color:rgb(43, 3, 25); padding: 5px;">
+
+        <tbody>
+        
+          <tr *ngFor="let msg of message">
+  
+              <td><strong>{{msg.description}}</strong></td>
+          </tr>
+      </tbody>
+       </div>
+      <div mat-dialog-actions class="m-0 p-1" fxLayout="row" fxLayoutAlign="space-between center">
+
+        <button mat-raised-button color="primary" *ngIf=" !Edit" [disabled]="roleForm.invalid" (click)="SaveRole()" style="margin-left: 220px;background-color: rgb(43, 3, 25);color:white;" aria-label="SUBMIT">
+          <strong>
+            Submit
+          </strong>
+        </button>
+        <button mat-raised-button color="primary"  *ngIf=" !Add"[disabled]="roleForm.invalid" (click)="SaveRole()" style="margin-left: 220px;background-color: rgb(43, 3, 25);color:white;" aria-label="Update">
+          <strong>
+            Update
+          </strong>
+        </button>
+        <button mat-raised-button style="background-color: rgb(224, 209, 142);color:rgb(43, 3, 25)" (click)="dialogRef.close()" type="button" aria-label="SUBMIT"><strong>
+            Cancel</strong>
+        </button>
+
+      </div>
+    </form>
+
+  </div>
+
+</div>

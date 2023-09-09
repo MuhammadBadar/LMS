@@ -1,0 +1,16 @@
+/* .example-container {
+  overflow: scroll;
+} */
+.example-table {
+  position: relative;
+ }
+.example-table-container {
+
+  position: relative;
+}
+table {
+  width: 100%;
+}
+.mat-header-cell,  .mat-cell {
+  min-width: 140px;
+}

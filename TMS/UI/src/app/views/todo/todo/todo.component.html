@@ -1,0 +1,26 @@
+<div class="page-layout overflow-hidden pb-8">
+  <div class="header-bg dark-blue"></div>
+  <div class="content">
+    <div
+      class="content-header"
+      fxLayout="row wrap"
+      fxLayoutAlign="center center"
+    >
+      <div class="search-box mat-elevation-z2" fxFlex="1 1 0%">
+        <button mat-icon-button><mat-icon>search</mat-icon></button>
+        <input
+          type="text"
+          (keyup)="updateSearchTerm(serachTerm.value)"
+          placeholder="Search for a task"
+          #serachTerm
+        />
+      </div>
+    </div>
+
+    <div class="content-body">
+      <div class="content-card default-bg height-100vh" [perfectScrollbar]>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

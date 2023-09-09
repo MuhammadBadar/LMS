@@ -1,0 +1,82 @@
+<div class="event-dialog-wrapper">
+  <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color: rgb(18, 4, 56);color: black;">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span *ngIf="Add" class="title dialog-title" style="color:white;">
+        <h3><strong>Add Field Possible Values</strong></h3>
+      </span>
+      <span *ngIf="Edit" class="title dialog-title" style="color:white;">
+        <h3><strong>Edit Values</strong></h3>
+      </span>
+      <button mat-icon-button style="color:white;" (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  <div mat-dialog-content class="p-1 m-0">
+    <form name="eventForm" #userForm="ngForm" class="event-form" fxLayout="column" fxFlex>
+      <div><span><strong>Type: </strong></span>{{inqSvc.selectedFPValues.type}}</div>
+      <div><span><strong>Field Name: </strong></span>{{inqSvc.selectedFPValues.fieldName}}</div>
+      <div fxLayout.lt-sm="column" fxLayout="row">
+        <mat-form-field fxFlex="100%">
+          <input matInput name="FieldValue" #fieldValue="ngModel" [(ngModel)]="inqSvc.selectedFPValues.fieldValue"
+            placeholder="Field Value" required>
+        </mat-form-field>
+      </div>
+      <!-- <div fxLayout="row wrap" style="margin-left: 80px;" >
+          <mat-checkbox style="margin-left: 320px;"name="IsActive" #isActive="ngModel" [(ngModel)]="inqSvc.selectedLecture.isActive"
+          ><strong>IsActive</strong></mat-checkbox>
+        </div> -->
+      <div class="pull-right" style="text-align:end">
+        <button mat-raised-button color="primary" style=" margin-right:5px" *ngIf=" !Edit" [disabled]="userForm.invalid"
+          (click)="SaveFPValues()" aria-label="SUBMIT">
+          <strong>
+            Submit
+          </strong>
+        </button>
+        <button mat-raised-button color="primary" style=" margin-right:5px" *ngIf=" !Add" [disabled]="userForm.invalid"
+          (click)="SaveFPValues()" aria-label="Update">
+          <strong>
+            Update
+          </strong>
+        </button>
+        <button mat-raised-button style="background-color:darkgray;color:black;" (click)="dialogRef.close()"
+          type="button" aria-label="SUBMIT"><strong>
+            Go to Fields</strong>
+        </button>
+        <button mat-icon-button mat-sm-button color="primary" matTooltip="Go Back to Add Values" *ngIf="Edit"
+          (click)="ngOnInit()">
+          <mat-icon>autorenew</mat-icon>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div style="padding-left:15px;">
+    <h3><strong>Possilble Values List</strong></h3>
+  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef> SrNo </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Value">
+      <th mat-header-cell *matHeaderCellDef> Values </th>
+      <td mat-cell *matCellDef="let element"> {{element.fieldValue}}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <div>
+          <button mat-icon-button mat-sm-button color="primary" class="mr-1" matTooltip="Edit"
+            (click)="GetFieldForEdit(row.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button mat-sm-button color="warn" matTooltip="Delete" (click)="DeleteFPValues(row.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-cell>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

@@ -1,0 +1,253 @@
+<mat-card class="p-0">
+  <mat-card-title class="">
+    <div class="card-title-text">Purchae Order</div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+
+  <form [formGroup]="purchaseOrderForm">
+
+    <h4><strong>Purchase Order Details</strong></h4>
+    <mat-card-content fxLayout="row">
+
+      <div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+        <div>
+          <mat-form-field fxFill>
+            <input matInput type="number" formControlName="isAgainstRFQ" required placeholder="IsAgainstRFQ"
+              name="isAgainstRFQ" value="">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field fxFill>
+            <input matInput name="venderName" formControlName="venderName" required type="text"
+              placeholder="Vender Name" value="">
+          </mat-form-field>
+        </div>
+        <div>
+
+          <mat-form-field fxFill>
+            <mat-select [formControl]="shipTo" multiple placeholder="Ship To">
+              <mat-option *ngFor="let st of shipTo" [value]="st">{{st}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="align-right" fxFill>
+            <input matInput name="deliveryDate" formControlName="deliveryDate" placeholder="Delivery Date" required
+              [matDatepicker]="dtDatepicker">
+
+            <mat-datepicker-toggle matSuffix [for]="dtDatepicker"></mat-datepicker-toggle>
+          </mat-form-field>
+          <mat-datepicker #dtDatepicker></mat-datepicker>
+        </div>
+        <div>
+          <mat-form-field fxFill>
+            <input formControlName="description" matInput type="textarea" AutoSize placeholder="Description"
+              maxlength='500'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+        <div>
+          <mat-form-field fxFill>
+            <input matInput type="number" formControlName="isReference" placeholder="IsReference" name="isReference"
+              value="">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field fxFill>
+            <input matInput name="RFQ" formControlName="RFQ" required type="number" placeholder="RFQ" value="">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field fxFill>
+            <mat-select required formControlName="billTo" placeholder="Bill To">
+              <mat-option *ngFor="let bt of billTo " [value]="bt">
+                {{bt}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field fxFill>
+            <mat-select required formControlName="status" placeholder="Status">
+              <mat-option *ngFor="let sts of status " [value]="sts">
+                {{sts}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field fxFill>
+            <input formControlName="paymentTerms" matInput type="textarea" AutoSize placeholder="Payment Terms"
+              maxlength='500'>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+
+  </form>
+
+  <mat-card-content>
+
+    <form [formGroup]="purchaseOrderForm">
+
+
+      <div fxLayout="row">
+        <table style="width: 100%;">
+
+          <tbody>
+            <div formArrayName="item" class="item-form-list">
+                <tr style="background-color:cadetblue;">
+                  <td style="width: 3%; text-align:center; padding-left:5px;"><strong>Sr No</strong></td>
+                  <td style="width: 5%; text-align:center; padding-left:5px;"><strong> PO ItemId
+                    </strong></td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;"><strong>
+                      Quantity Limit
+                    </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      Item Group
+                    </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      Item Type
+                    </strong>
+                  </td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      Item Category
+                    </strong></td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;"><strong>
+                      Inventory Item Id </strong></td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;"><strong>
+                      SKU
+                    </strong></td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;"><strong>
+                      Quantity</strong></td>
+                  <td style="width: 7%; text-align:center; padding-left: 5px;"><strong>
+                      UOM</strong></td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;"><strong>
+                      Currency
+                    </strong></td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;"><strong>
+                      Purchase Price
+                    </strong></td>
+                  <td style="width: 7%; text-align:center; padding-left: 5px;"><strong>
+                      Line Total
+                    </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      IsSelected
+                    </strong></td>
+                  <td>
+
+                    <button mat-mini-fab  color="accent" type="button" (click)="addNewItem(emptyFormObject)">+</button>
+                  </td>
+                </tr>
+              <div *ngFor="let item of POArray.controls; let i = index" [formGroup]="item" class="form-rows">
+
+                <tr style="background-color:rgb(168, 173, 173); width:100%;">
+                  <td style="width: 3%; text-align:center; padding-left:5px;
+                                             border: 1px solid white;">
+                    <span>{{ i + 1
+                      }}</span>
+                  </td>
+
+                  <td style="width: 5%; text-align:center; padding-left: 5px;
+                                             border: 1px solid white;">
+                    <input type="number" formControlName="POItemId" matInput #POItemId required />
+                  </td>
+                  <td style="width: 6%; text-align:center; padding-left: 5px;
+                                             border: 1px solid white;">
+                    <input type="number" formControlName="QuantityLimit" matInput #QuantityLimit required />
+                  </td>
+
+                  <td style="width: 9.75%; text-align:center; padding-left: 5px;
+                                             border: 1px solid white;">
+                    <mat-select required formControlName="ItemGroup">
+                      <mat-option *ngFor="let ig of ItemGroup " [value]="ig">
+                        {{ig}}
+                      </mat-option>
+                    </mat-select>
+                  </td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;
+                                           border: 1px solid white;">
+                    <mat-select required formControlName="ItemType">
+                      <mat-option *ngFor="let it of ItemType " [value]="it">
+                        {{it}}
+                      </mat-option>
+                    </mat-select>
+                  </td>
+                  <td style="width: 9.75%; text-align:center; padding-left: 5px;
+                                            border: 1px solid white;">
+                    <mat-select required formControlName="ItemCategary">
+                      <mat-option *ngFor="let ic of ItemCategary " [value]="ic">
+                        {{ic}}
+                      </mat-option>
+                    </mat-select>
+                  </td>
+
+                  <td style="width: 6.65%; text-align:center; padding-left: 5px;
+                                               border: 1px solid white;">
+                    <input type="number" formControlName="InventoryItemId" matInput #InventoryItemId required />
+                  </td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;
+                                               border: 1px solid white;">
+                    <input type="number" formControlName="SKU" matInput #SKU required />
+                  </td>
+                  <td style="width: 6%; text-align:center; padding-left: 5px;
+                                               border: 1px solid white;">
+                    <input type="number" formControlName="quantity" matInput #quantity required />
+                  </td>
+                  <td style="width: 7%; text-align:center; padding-left: 5px;
+                                               border: 1px solid white;">
+                    <mat-select required formControlName="uom">
+                      <mat-option *ngFor="let um of uom " [value]="um">
+                        {{um}}
+                      </mat-option>
+                    </mat-select>
+                  </td>
+                  <td style="width: 6.5%; text-align:center; padding-left: 5px;
+                                             border: 1px solid white;">
+                    <mat-select required formControlName="currency">
+                      <mat-option *ngFor="let currency of Currency " [value]="currency">
+                        {{currency}}
+                      </mat-option>
+                    </mat-select>
+                  </td>
+                  <td style="width: 7%; text-align:center; padding-left: 5px;
+                                             border: 1px solid white;">
+                    <input type="number" formControlName="PurchasePrice" matInput #PurchasePrice required />
+                  </td>
+
+                  <td style="width: 7%; text-align:center; padding-left: 5px;
+                                             border: 1px solid white;">
+                    <input type="number" formControlName="LineTotal" matInput #LineTotal required />
+                  </td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;
+                                           border: 1px solid white;">
+                    <mat-select required formControlName="isSelected">
+                      <mat-option *ngFor="let is of isSelected " [value]="is">
+                        {{is}}
+                      </mat-option>
+                    </mat-select>
+                  </td>
+
+                  <td>
+
+                    <button mat-mini-fab color="accent" type="button" (click)="deleteItem(i)">-</button>
+                  </td>
+
+                </tr>
+              </div>
+            </div>
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-content class="align-right">
+
+    <form [formGroup]="purchaseOrderForm">
+      <button mat-raised-button color="primary" [disabled]="purchaseOrderForm.invalid ">Submit</button>
+      <button style="margin-left: 5px;" mat-raised-button color="accent">Cancel</button>
+    </form>
+  </mat-card-content>
+</mat-card>

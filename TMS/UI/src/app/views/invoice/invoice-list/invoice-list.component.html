@@ -1,0 +1,66 @@
+<div class="m-033">
+  <button
+    mat-raised-button
+    color="primary"
+    [routerLink]="['/invoice/add']"
+    routerLinkActive="router-link-active"
+    style="margin-bottom: 10px;"
+  >
+    Add Invoice ...
+  </button>
+  <mat-table [dataSource]="invoiceList" class="mat-elevation-z4" #table>
+    <!-- Number Column -->
+    <ng-container matColumnDef="{{ itemTableColumn[0] }}">
+      <mat-header-cell *matHeaderCellDef>
+        {{ itemTableColumn[0] }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.orderNo }} </mat-cell>
+    </ng-container>
+
+    <!-- Bill from Column -->
+    <ng-container matColumnDef="{{ itemTableColumn[1] }}">
+      <mat-header-cell *matHeaderCellDef>
+        {{ itemTableColumn[1] }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.seller.name }} </mat-cell>
+    </ng-container>
+
+    <!-- Bill to Column -->
+    <ng-container matColumnDef="{{ itemTableColumn[2] }}">
+      <mat-header-cell *matHeaderCellDef>
+        {{ itemTableColumn[2] }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.buyer.name }} </mat-cell>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="{{ itemTableColumn[3] }}">
+      <mat-header-cell *matHeaderCellDef>
+        {{ itemTableColumn[3] }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="text-transform: capitalize;">
+        {{ element.status }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Action column -->
+    <ng-container matColumnDef="{{ itemTableColumn[4] }}">
+      <mat-header-cell *matHeaderCellDef>
+        {{ itemTableColumn[4] }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button
+          mat-button
+          routerLink="/invoice/{{ row.id }}"
+          routerLinkActive="router-link-active"
+        >
+          View
+        </button>
+        <button mat-button (click)="deleteInvoiceById(row.id)">Delete</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="itemTableColumn"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: itemTableColumn"></mat-row>
+  </mat-table>
+</div>

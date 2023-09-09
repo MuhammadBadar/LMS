@@ -1,0 +1,171 @@
+<app-header></app-header>
+<div>
+  <h2><strong>Inquiry List</strong></h2>
+</div>
+
+
+<div class="example-table-container" style=" overflow-x: scroll; ">
+  <table mat-table [dataSource]="DataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Sr No </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef style="min-width:150px"> Name </th>
+      <td mat-cell *matCellDef="let element" style="min-width:150px"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="cell">
+      <th mat-header-cell *matHeaderCellDef style="min-width:150px"> Cell </th>
+      <td mat-cell *matCellDef="let element" style="min-width:150px"> {{element.cell}} </td>
+    </ng-container>
+    <ng-container matColumnDef="service">
+      <th mat-header-cell *matHeaderCellDef style="min-width:150px"> Service </th>
+      <td mat-cell *matCellDef="let element" style="min-width:150px"> {{element.serviceName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef style="min-width:230px"> Email </th>
+      <td mat-cell *matCellDef="let element" style="min-width:230px"> {{element.email}} </td>
+    </ng-container>
+    <div>
+      <ng-container matColumnDef="ifData">
+
+        <th mat-header-cell *matHeaderCellDef="let element" style="min-width:10000px">
+          <div *ngFor="let fld of fields" style="display:inline-block;min-width: 200px;">
+            <div>{{fld?.title}}</div>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element" style="min-width:1000px">
+          <div *ngFor="let ifd of element.ifData " style="display:inline-block;min-width: 200px;">
+            <div>{{ifd?.fieldValue}}</div>
+          </div>
+        </td>
+
+      </ng-container>
+    </div>
+
+    <ng-container matColumnDef="actions" stickyEnd>
+      <mat-header-cell *matHeaderCellDef>
+        <div > Actions</div>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let row">
+      
+        <button mat-icon-button mat-sm-button color="warn" matTooltip="Delete" (click)="DeleteInquiry(row.id)">
+          <mat-icon >delete</mat-icon>
+        </button>
+          <button mat-icon-button mat-sm-button color="primary" matTooltip="Edit" (click)="EditInquiry(row.id)">
+            <mat-icon >edit</mat-icon>
+          </button>
+        
+      </mat-cell>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<ng-template #tpl let-element>
+  <div class="mat-row detail-row" [@detailExpand] style="overflow: hidden" *ngIf="element.ifData.length">
+    <div class="session-form-hold">
+
+      <mat-card>
+        <mat-card-content>
+          <div style="text-align: center;">
+            <h3>Additional Inquiry Fields Data</h3>
+          </div>
+          <table>
+            <tr style=" height: 40px;">
+              <td style=" text-align: center;
+          background-color:rgba(158, 158, 163, 0.568);
+          color:black;
+          border: 1px solid rgb(199, 198, 198);
+          border-collapse: collapse;
+          padding: 5px; ">
+                <h3>Field Name</h3>
+              </td>
+              <td style=" text-align: center;
+          background-color:rgba(158, 158, 163, 0.568);
+          color:black;
+          border: 1px solid rgb(199, 198, 198);
+          border-collapse: collapse;
+          padding: 5px; ">
+                <h3>Field Value</h3>
+              </td>
+
+            </tr>
+
+            <tr style=" height: 40px; " *ngFor="let ifd of element.ifData ">
+              <td style=" text-align: center;border: 1px solid rgb(8, 5, 5) ;
+            border: 1px solid rgb(199, 198, 198);
+          border-collapse: collapse;
+          padding: 5px;"> {{ifd.fieldName}}</td>
+              <td style=" text-align: center;border: 1px solid rgb(37, 22, 22) ; 
+           border: 1px solid rgb(199, 198, 198);
+          border-collapse: collapse;
+          padding: 5px; ">{{ifd.fieldValue}}</td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div *ngIf="!element.ifData.length">
+    <div class="session-form-hold">
+      <mat-card>
+        <mat-card-content>
+          <div>Have no Additional Inquiry Fields Data</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</ng-template>
+<!-- <table mat-table [dataSource]="DataSource" matSort class="mat-elevation-z8">
+          <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Name. </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="cell">
+              <mat-header-cell *matHeaderCellDef > Cell </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.cell}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef > Email </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+        </ng-container>
+
+          <ng-container matColumnDef="service">
+              <mat-header-cell *matHeaderCellDef > Service </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.serviceName}} </mat-cell>
+          </ng-container>
+         
+          <ng-container matColumnDef="ifData">
+            <div>
+            <mat-header-cell *matHeaderCellDef > Service </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.serviceName}} </mat-cell>
+          </div>
+        </ng-container>
+     
+         
+
+          <ng-container matColumnDef="actions" stickyEnd>
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <div style="min-width:20px; padding: 5px;">
+                   
+                    <button mat-icon-button mat-sm-button color="warn" matTooltip="Delete"
+                        (click)="DeleteInquiry(row.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </mat-cell>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   
+         <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row" [cdkDetailRow]="row" [cdkDetailRowTpl]="tpl">
+          </mat-row> 
+      </table> -->
+<!-- <mat-paginator [pageSizeOptions]="[1,5, 10, 25, 100]"></mat-paginator> -->

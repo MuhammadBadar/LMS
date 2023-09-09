@@ -1,0 +1,29 @@
+<div class="event-dialog-wrapper">
+  <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color:rgb(43, 3, 25);">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title" style="color:rgb(248, 247, 245);padding:10px"><strong>Mark
+          Attendance</strong></span>
+      <button mat-icon-button style="color:rgb(248, 247, 245);" (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  <div mat-dialog-content class="p-1 m-0">
+
+    <form name="eventForm" #userForm="ngForm" class="event-form" fxLayout="column" fxFlex>
+      <div fxLayout="row" fxLayoutAlign="space-around">
+
+        <button mat-raised-button color="primary" style=" margin-right:5px" (click)="lwmAttnd()"
+          style="Background-color: rgb(43, 3, 25); color: rgb(248, 247, 245);">
+          Login Without Marking Attendance
+        </button>
+        <button mat-raised-button color="primary" style=" margin-right:5px" (click)="MarkAttendance()"
+          style="Background-color: rgb(43, 3, 25); color: rgb(248, 247, 245);">
+          Mark Attendance
+        </button>
+
+      </div>
+    </form>
+
+  </div>
+</div>

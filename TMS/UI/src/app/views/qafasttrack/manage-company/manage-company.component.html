@@ -1,0 +1,133 @@
+<div>
+    <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color:#801848;">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title" style="color:white;"><strong>Manage Company </strong></span>
+
+            <!-- <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+          </button> -->
+        </div>
+    </mat-toolbar>
+    <mat-card style="margin-top: 20px;">
+        <form name="eventForm" #userForm="ngForm" fxFlex>
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="47%">
+                    <input matInput #Name="ngModel" name="name" type="text" [(ngModel)]="qafastSvc.selectedCom.name"
+                        placeholder=" Name" required>
+                </mat-form-field>
+                <mat-form-field fxFlex="47%">
+                    <input matInput #ContactPerson="ngModel" name="ContactPerson" type="text"
+                        [(ngModel)]="qafastSvc.selectedCom.contactPerson" placeholder=" Contact Person" required>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="47% ">
+                    <span matPrefix>+1 &nbsp;</span>
+                    <input type="tel" #Cell="ngModel" matInput placeholder=" Cell No" required maxlength="10"
+                        name="cell" [(ngModel)]="qafastSvc.selectedCom.cell">
+                </mat-form-field>
+                <mat-form-field fxFlex="47% ">
+                    <span matPrefix>+1 &nbsp;</span>
+                    <input type="tel" matInput placeholder="TelePhone No" required maxlength="10" name="TelePhone"
+                        [(ngModel)]="qafastSvc.selectedCom.telePhone">
+                </mat-form-field>
+
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="47% ">
+                    <span matPrefix>+1 &nbsp;</span>
+                    <input type="tel" matInput placeholder="WhatsApp No" required maxlength="10" name="WhatsAppNo"
+                        [(ngModel)]="qafastSvc.selectedCom.whatsApp">
+                </mat-form-field>
+                <mat-form-field fxFlex="47%">
+                    <mat-label>City</mat-label>
+
+                    <mat-select name="CityId" #cityId="ngModel" [(ngModel)]="qafastSvc.selectedCom.cityId" required>
+                        <div fxLayout="row" style="height:40px; background-color: rgb(214, 233, 241); color:rgb(43, 3, 25);">
+                            <mat-form-field fxFlex="97%"  style="background-color: rgb(214, 233, 241);margin-left: 10px;">
+                            <input type="text" matInput placeholder="Add City" name="City" [(ngModel)]="city"
+                             >
+                            </mat-form-field>
+                            <button matTooltip="Add City" mat-icon-button mat-sm-button 
+                            style="color: rgb(43, 3, 25); margin-right: 20px;margin-top: 10px;"
+                                (click)="InsertNewCity()">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                        <mat-option [value]="1">--Please Select</mat-option>
+                        <mat-option *ngFor="let opt of cities" [value]=" opt.id">
+                            {{ opt.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="47%">
+                    <mat-label>Province</mat-label>
+
+                    <mat-select name="ProvinceId" #provinceId="ngModel" [(ngModel)]="qafastSvc.selectedCom.provinceId"
+                        required>
+                        <div fxLayout="row" style="height:40px; background-color:  rgb(214, 233, 241); color:rgb(43, 3, 25);">
+                            <mat-form-field fxFlex="97%"  style="background-color: rgb(214, 233, 241);margin-left: 10px;">
+                            <input type="text" matInput name="Province" placeholder="Add Province"
+                                [(ngModel)]="province">
+                                </mat-form-field>
+                            <button matTooltip="Add Province" mat-icon-button mat-sm-button
+                            style="color:#801848;; margin-right: 20px;margin-top: 10px;" (click)="InsertNewProvince()">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                        <mat-option [value]="1">--Please Select</mat-option>
+                        <mat-option *ngFor="let opt of provinces" [value]=" opt.id">
+                           
+                            {{ opt.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="47%">
+                    <mat-label>Country</mat-label>
+
+                    <mat-select name="CountryId" #countryId="ngModel" [(ngModel)]="qafastSvc.selectedCom.countryId"
+                        required>
+                        <div fxLayout="row" style="height:40px; background-color:  rgb(214, 233, 241); color:rgb(43, 3, 25);">
+                            <mat-form-field fxFlex="97%"  style="background-color: rgb(214, 233, 241);margin-left: 10px;">
+                            <input type="text" matInput name="Country" placeholder="Add Country" 
+                                [(ngModel)]="country"  >
+                            </mat-form-field>
+                            <button matTooltip="Add Country" mat-icon-button mat-sm-button
+                            style="color: #801848;; margin-right: 20px;margin-top: 10px;" (click)="InsertNewCountry()">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                        <mat-option [value]="1">--Please Select</mat-option>
+                        <mat-option *ngFor="let opt of countries" [value]=" opt.id">
+                           
+                            {{ opt.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="47%">
+                    <textarea matInput placeholder="Address Line1 " required name="addressLine1"
+                        [(ngModel)]="qafastSvc.selectedCom.addressLine1"></textarea>
+                </mat-form-field>
+                <mat-form-field fxFlex="47%">
+                    <textarea matInput placeholder="Address Line2 " required name="addressLine2"
+                        [(ngModel)]="qafastSvc.selectedCom.addressLine2"></textarea>
+                </mat-form-field>
+            </div>
+            <div fxLayoutAlign="end end">
+                <button mat-raised-button [disabled]="userForm.invalid"
+                    style=" margin-top: 20px;background-color: #801848;color: white;"
+                    (click)="SaveManageCompany()">Submit </button>
+                <!-- <button *ngIf="Edit" mat-raised-button color="primary" [type]="'submit' " 
+                style=" margin-top: 20px;" (click)="PutCustomer()">Update </button> -->
+                <button mat-raised-button
+                    style="margin-left: 5px; margin-top: 20x; background-color: wheat;color: #801848;;"><strong>Cancel</strong>
+                </button>
+            </div>
+        </form>
+    </mat-card>
+</div>

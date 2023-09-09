@@ -1,0 +1,367 @@
+<mat-card class="p-0" [@animate]="{ value: '*', params: { scale: '.9', delay: '200ms' } }">
+  <div fxLayout="row wrap">
+      <div
+          fxFlex="100"
+          fxFlex.gt-sm="20"
+          fxFlex.sm="50"
+      >
+          <div class="text-center pt-1 pb-1 border-right-light">
+              <mat-icon class="text-blue">account_balance_wallet</mat-icon>
+              <h4 class="m-0">5040</h4>
+              <small class="m-0 text-muted">Bitcoin Balance</small>
+          </div>
+      </div>
+      <div
+          fxFlex="100"
+          fxFlex.gt-sm="20"
+          fxFlex.sm="50"
+      >
+          <div class="text-center pt-1 pb-1 border-right-light">
+              <mat-icon class="text-orange">attach_money</mat-icon>
+              <h4 class="m-0 ">1200</h4>
+              <small class="m-0 text-muted">USD Balance</small>
+          </div>
+      </div>
+      <div
+          fxFlex="100"
+          fxFlex.gt-sm="20"
+          fxFlex.sm="50"
+      >
+          <div class="text-center pt-1 pb-1 border-right-light">
+              <mat-icon class="text-blue">business_center</mat-icon>
+              <h4 class="m-0 ">16420</h4>
+              <small class="m-0 text-muted">Invesment</small>
+          </div>
+      </div>
+      <div
+          fxFlex="100"
+          fxFlex.gt-sm="20"
+          fxFlex.sm="50"
+      >
+          <div class="text-center pt-1 pb-1 border-right-light">
+              <mat-icon class="text-blue">add</mat-icon>
+              <h4 class="m-0 ">3010</h4>
+              <small class="m-0 text-muted">Profit</small>
+          </div>
+      </div>
+      <div
+          fxFlex="100"
+          fxFlex.gt-sm="20"
+          fxFlex.sm="50"
+      >
+          <div class="text-center pt-1 pb-1">
+              <mat-icon class="text-orange">compare_arrows</mat-icon>
+              <h4 class="m-0 ">270</h4>
+              <small class="m-0 text-muted">Transactions</small>
+          </div>
+      </div>
+  </div>
+</mat-card>
+
+
+
+
+<div fxLayout="row wrap">
+  <div fxFlex="100" fxFlex.gt-sm="66.67" fxFlex.sm="50" 
+  [@animate]="{value:'*',params:{delay:'400ms',scale:'.9'}}">
+  <mat-card>
+    <div fxLayout="row wrap" fxLayoutAlign="start center">
+      <h6 class="m-0">Bitcoin vs Ethereum </h6>
+      <span fxFlex></span>
+      <button mat-icon-button [matMenuTriggerFor]="chartMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #chartMenu="matMenu">
+        <button mat-menu-item>
+          <span>Last 7 days</span>
+        </button>
+        <button mat-menu-item>
+          <span>Last 30 days</span>
+        </button>
+      </mat-menu>
+    </div>
+
+    <div echarts [options]="cryptoChart" [autoResize]="true" style="height: 340px;"></div>
+  </mat-card>
+  </div>
+
+  <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" [@animate]="{value:'*',params:{delay:'400ms',scale:'.9'}}">
+    <div class="m-333">
+        <mat-accordion multi="false">
+            <mat-expansion-panel expanded="true">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  BTC
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="border-bottom pb-1 mb-1">
+                  <div fxLyout="row wrap" class="text-blue font-weight-bold">
+                      <span>BTC vs USD</span>
+                      <span fxFlex></span>
+                      <span>8897.45</span>
+                    </div>
+                    <div fxLyout="row wrap" class="text-muted">
+                      <small>24 hour change</small>
+                      <span fxFlex></span>
+                      <small class="text-green">530(+3.73%)</small>
+                    </div>
+              </div>
+              <div class="border-bottom pb-1 mb-1">
+                  <div fxLyout="row wrap" class="text-blue font-weight-bold">
+                      <span>BTC vs EUR</span>
+                      <span fxFlex></span>
+                      <span>3829.23</span>
+                    </div>
+                    <div fxLyout="row wrap" class="text-muted">
+                      <small>24 hour change</small>
+                      <span fxFlex></span>
+                      <small class="text-red">430(-1.43%)</small>
+                    </div>
+              </div>
+              <div class="">
+                  <div fxLyout="row wrap" class="text-blue font-weight-bold">
+                      <span>BTC vs GBP</span>
+                      <span fxFlex></span>
+                      <span>5836.79</span>
+                    </div>
+                    <div fxLyout="row wrap" class="text-muted">
+                      <small>24 hour change</small>
+                      <span fxFlex></span>
+                      <small class="text-green">210(+2.23%)</small>
+                    </div>
+              </div>
+
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  ETH
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="border-bottom pb-1 mb-1">
+                  <div fxLyout="row wrap" class="text-blue font-weight-bold">
+                      <span>ETH vs USD</span>
+                      <span fxFlex></span>
+                      <span>8897.45</span>
+                    </div>
+                    <div fxLyout="row wrap" class="text-muted">
+                      <small>24 hour change</small>
+                      <span fxFlex></span>
+                      <small class="text-green">530(+3.73%)</small>
+                    </div>
+              </div>
+              <div class="border-bottom pb-1 mb-1">
+                  <div fxLyout="row wrap" class="text-blue font-weight-bold">
+                      <span>ETH vs EUR</span>
+                      <span fxFlex></span>
+                      <span>3829.23</span>
+                    </div>
+                    <div fxLyout="row wrap" class="text-muted">
+                      <small>24 hour change</small>
+                      <span fxFlex></span>
+                      <small class="text-red">430(-1.43%)</small>
+                    </div>
+              </div>
+              <div class="">
+                  <div fxLyout="row wrap" class="text-blue font-weight-bold">
+                      <span>ETH vs GBP</span>
+                      <span fxFlex></span>
+                      <span>5836.79</span>
+                    </div>
+                    <div fxLyout="row wrap" class="text-muted">
+                      <small>24 hour change</small>
+                      <span fxFlex></span>
+                      <small class="text-green">210(+2.23%)</small>
+                    </div>
+              </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    LTC
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+  
+                <div class="border-bottom pb-1 mb-1">
+                    <div fxLyout="row wrap" class="text-blue font-weight-bold">
+                        <span>LTC vs USD</span>
+                        <span fxFlex></span>
+                        <span>8897.45</span>
+                      </div>
+                      <div fxLyout="row wrap" class="text-muted">
+                        <small>24 hour change</small>
+                        <span fxFlex></span>
+                        <small class="text-green">530(+3.73%)</small>
+                      </div>
+                </div>
+                <div class="border-bottom pb-1 mb-1">
+                    <div fxLyout="row wrap" class="text-blue font-weight-bold">
+                        <span>LTC vs EUR</span>
+                        <span fxFlex></span>
+                        <span>3829.23</span>
+                      </div>
+                      <div fxLyout="row wrap" class="text-muted">
+                        <small>24 hour change</small>
+                        <span fxFlex></span>
+                        <small class="text-red">430(-1.43%)</small>
+                      </div>
+                </div>
+                <div class="">
+                    <div fxLyout="row wrap" class="text-blue font-weight-bold">
+                        <span>LTC vs GBP</span>
+                        <span fxFlex></span>
+                        <span>5836.79</span>
+                      </div>
+                      <div fxLyout="row wrap" class="text-muted">
+                        <small>24 hour change</small>
+                        <span fxFlex></span>
+                        <small class="text-green">210(+2.23%)</small>
+                      </div>
+                </div>
+              </mat-expansion-panel>
+          </mat-accordion>
+    </div>
+ 
+    <!-- <mat-card>
+        <div fxLayout="row wrap" fxLayoutAlign="start center">
+            <h6 class="m-0">Balance </h6>
+          </div>
+        <div echarts [options]="cryptoDonutChart" [autoResize]="true" style="height: 318px;"></div>
+    </mat-card> -->
+  </div>
+</div>
+
+<!-- COIN ROW -->
+
+<div fxLayout="row wrap" [@animate]="{value:'*',params:{delay:'600ms',scale:'.9'}}">
+  <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="50" >
+    <mat-card class="rounded-circle" fxLayout="row wrap" fxLayoutAlign="start center">
+      <img class="avatar-md rounded-circle" src="assets/images/cryptocurrencies/BTC.png" alt="">
+      <span style="width: 20px"></span>
+      <div>
+        <p class="m-0 text-14 text-muted line-height-1">Bitcoin</p>
+        <span class="text-18 font-weight-bold text-green">$254 <span class="material-icons mat-icon-18">arrow_drop_up</span></span>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="50" >
+    <mat-card class="rounded-circle" fxLayout="row wrap" fxLayoutAlign="start center">
+      <img class="avatar-md rounded-circle" src="assets/images/cryptocurrencies/ETH.png" alt="">
+      <span style="width: 20px"></span>
+      <div>
+        <p class="m-0 text-14 text-muted line-height-1">Ethereum</p>
+        <span class="text-18 font-weight-bold text-red">$64 <span class="material-icons mat-icon-18">arrow_drop_down</span></span>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="50" >
+    <mat-card class="rounded-circle" fxLayout="row wrap" fxLayoutAlign="start center">
+      <img class="avatar-md rounded-circle" src="assets/images/cryptocurrencies/LTC.png" alt="">
+      <span style="width: 20px"></span>
+      <div>
+        <p class="m-0 text-14 text-muted line-height-1">Litecoin</p>
+        <span class="text-18 font-weight-bold text-green">$45 <span class="material-icons mat-icon-18">arrow_drop_up</span></span>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="50" >
+    <mat-card class="rounded-circle" fxLayout="row wrap" fxLayoutAlign="start center">
+      <img class="avatar-md rounded-circle" src="assets/images/cryptocurrencies/BTS.png" alt="">
+      <span style="width: 20px"></span>
+      <div>
+        <p class="m-0 text-14 text-muted line-height-1">BTS</p>
+        <span class="text-18 font-weight-bold text-red">$10 <span class="material-icons mat-icon-18">arrow_drop_down</span></span>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="50" >
+    <mat-card class="rounded-circle" fxLayout="row wrap" fxLayoutAlign="start center">
+      <img class="avatar-md rounded-circle" src="assets/images/cryptocurrencies/CNX.png" alt="">
+      <span style="width: 20px"></span>
+      <div>
+        <p class="m-0 text-14 text-muted line-height-1">CNX</p>
+        <span class="text-18 font-weight-bold text-green">$80 <span class="material-icons mat-icon-18">arrow_drop_up</span></span>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<!--/ COIN ROW -->
+
+<!-- Table row -->
+<div fxLayout="row wrap" [@animate]="{value:'*',params:{delay:'800ms',scale:'.9'}}">
+  <div fxFlex="100" fxFlex.gt-sm="66.67">
+      <mat-card class="p-0 ">
+          <h6 class="pl-1 pt-1 m-0 ">Active Trades</h6>
+          <ngx-datatable
+          class="material ml-0 mr-0"
+          [rows]="activeTrades"
+          [columnMode]="'flex'"
+          [headerHeight]="50"
+          [footerHeight]="0"
+          [rowHeight]="'auto'">
+          
+          <ngx-datatable-column name="Currency" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <div fxLayout="row wrap" fxLayoutAlign="start center">
+                  <img [src]="row.icon" alt="" class="avatar-xs mr-05">
+                  {{ row?.currency }}
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Balance" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row?.balance}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Buying Rate" [flexGrow]="1">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.buyingRate}}
+              </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Current Rate" [flexGrow]="1">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.currentRate}}
+                  </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Action" [flexGrow]="1">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                        <button mat-stroked-button color="primary">Close</button>
+                  </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>    
+      </mat-card>
+  </div>
+
+  <div fxFlex="100" fxFlex.gt-sm="33.33">
+      <mat-card class="p-0 ">
+          <h6 class="ml-1 mt-1">Trending Currencies</h6>
+          <ngx-datatable
+          class="material ml-0 mr-0"
+          [rows]="trendingCurrencies"
+          [columnMode]="'flex'"
+          [headerHeight]="50"
+          [footerHeight]="0"
+          [rowHeight]="'auto'">
+          
+          <ngx-datatable-column name="Currency" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row?.currency }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Balance" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row?.rate}}
+            </ng-template>
+          </ngx-datatable-column>
+          
+          <ngx-datatable-column name="Action" [flexGrow]="1">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                        <button mat-stroked-button color="warn">Buy</button>
+                  </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>    
+      </mat-card>
+  </div>
+
+</div>

@@ -1,0 +1,92 @@
+<app-header></app-header>
+<div *ngIf="Add">
+  <h3 style="color: rgb(6, 6, 68);">LMS / Assign Lecture </h3>
+</div>
+<div *ngIf="Edit">
+  <h3 style="color: rgb(6, 6, 68);">LMS /Edit Assign Lecture </h3>
+</div>
+<form #userForm="ngForm">
+  <div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%;">
+    <mat-form-field fxFlex="40%">
+      <mat-label>Student</mat-label>
+      <mat-select matNativeControl required name="StudentName" #studentName="ngModel"
+        [(ngModel)]="lmssvc.selectedStudentLecture.studentId">
+        <mat-option (click)="Students()">
+          <div style="color:rgb(5, 83, 97)"><strong>---Students---</strong></div>
+        </mat-option>
+        <mat-option *ngFor="let std of student" [value]=" std.id" (click)="Search()">
+          {{std.studentName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field fxFlex="40%">
+      <mat-label>Lecture</mat-label>
+      <mat-select name="LectureURL" #lectureURL="ngModel" required
+        [(ngModel)]="lmssvc.selectedStudentLecture.lectureId">
+        <mat-option (click)="Students()">
+          <div style="color:rgb(5, 83, 97)"><strong>---Lectures---</strong></div>
+        </mat-option>
+        <mat-option *ngFor="let lec of lecture" [value]=" lec.id" (click)="Search()">{{lec.title}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div style="text-align: right;margin-right: 10px;">
+      <button style="color: white;" mat-raised-button class="mb-05" *ngIf="Add" [disabled]="userForm.invalid"
+        color="primary" (click)="SaveStudentLecture();userForm.reset()">Assign Lecture</button>
+      <button style="color: white;" mat-raised-button class="mb-05" *ngIf="Edit" color="primary"
+        (click)="UpdateStudentLecture();userForm.reset()">Update </button>
+      <button mat-icon-button mat-sm-button color="primary" matTooltip="Go Back For Assigning" *ngIf="Edit"
+        (click)="Refresh()">
+        <mat-icon>autorenew</mat-icon>
+      </button>
+    </div>
+  </div>
+</form>
+<h3 style="color: rgb(6, 6, 68);margin-top: 20px;"> Assigned Lectures List</h3>
+<div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%; margin-top: 10px;">
+  <table mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="student" id="student">
+      <th mat-header-cell *matHeaderCellDef style="width: 15%;"> Student </th>
+      <td mat-cell *matCellDef="let stdlec" style="width: 15%;"> {{stdlec.student}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title" id="title">
+      <th mat-header-cell *matHeaderCellDef style="width: 15%;"> Lecture </th>
+      <td mat-cell *matCellDef="let stdlec" style="width: 15%;"> {{stdlec.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lecture" id="lecture">
+      <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Lecture URL </th>
+      <td mat-cell *matCellDef="let stdlec" style="width: 20%;"> <a target="_blank"
+          style=" text-decoration: underline;color: rgb(23, 8, 110);" href="{{stdlec.lecture}}"><strong>Go to
+            Lecture</strong></a> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description" id="description">
+      <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Description </th>
+      <td mat-cell *matCellDef="let stdlec" style="width: 20%;"> {{stdlec.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="assignedOn" id="assignedOn">
+      <th mat-header-cell *matHeaderCellDef style="width: 20%;">Assigned On </th>
+      <td mat-cell *matCellDef="let stdlec" style="width: 20%;"> {{stdlec.assignedOn | date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <div>
+          <button mat-icon-button mat-sm-button color="primary" class="mr-1" matTooltip="Edit"
+            (click)="GetAssignLec(row.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button mat-sm-button color="warn" matTooltip="Delete" (click)="DeleteAssignLec(row.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

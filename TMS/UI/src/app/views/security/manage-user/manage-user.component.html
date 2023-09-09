@@ -1,0 +1,45 @@
+<!-- <p>manage-user works!</p> -->
+<h3 style="color: rgb(11, 10, 70);"><strong>Security / Users</strong></h3>
+
+<div style="margin-top: 30px;text-align: right;margin-right: 10px;">
+  <button  mat-raised-button class="mb-05"style="background-color: rgb(43, 3, 25);color:white" (click)="addEvent()"><strong>Create</strong></button>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%; margin-top: 10px;" >
+  <table mat-table #table [dataSource]="dataSource" style="width: 100%;">
+
+    <ng-container matColumnDef="id" id="id">
+      <th mat-header-cell *matHeaderCellDef style="width: 20%;">Sr No </th>
+      <td mat-cell *matCellDef="let user" style="width: 20%;"> {{user.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="userName" id="userName">
+      <th mat-header-cell *matHeaderCellDef style="width: 20%;">User Name </th>
+      <td mat-cell *matCellDef="let user" style="width: 20%;"> {{user.userName}} </td>
+    </ng-container>
+     <ng-container matColumnDef="phoneNumber" id="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef style="width: 20%;">Cell No </th>
+      <td mat-cell *matCellDef="let user" style="width: 20%;"> {{user.phoneNumber}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email" id="email"  >
+      <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Email </th>
+      <td mat-cell *matCellDef="let user" style="width: 20%;"> {{user.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action" >
+      <mat-header-cell  *matHeaderCellDef > Action </mat-header-cell>
+      <mat-cell *matCellDef="let row" >
+        <div >
+            <button mat-icon-button mat-sm-button style="color: rgb(43, 3, 25)" class="mr-1" (click)="EditUser(row)"><mat-icon>edit</mat-icon></button>
+        </div>
+        <div >
+          <button mat-icon-button mat-sm-button color="warn" class="mr-1" (click)="DeleteUser(row.id)"><mat-icon>delete</mat-icon></button>
+      </div>
+      </mat-cell>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+  </table>
+</div>

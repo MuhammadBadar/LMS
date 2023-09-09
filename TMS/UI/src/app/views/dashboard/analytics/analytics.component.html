@@ -1,0 +1,367 @@
+<!-- First row -->
+<mat-card
+  class="p-0"
+  [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }"
+>
+  <div fxLayout="row wrap">
+    <div
+      fxFlex="50"
+      fxFlex.gt-sm="20"
+      fxFlex.sm="50"
+    >
+      <div class="text-center pt-1 pb-1 border-right-light">
+        <mat-icon class="text-green">show_chart</mat-icon>
+        <h4 class="m-0 ">5040</h4>
+        <small class="m-0 ">Page views</small>
+      </div>
+    </div>
+    <div
+      fxFlex="50"
+      fxFlex.gt-sm="20"
+      fxFlex.sm="50"
+    >
+      <div class="text-center pt-1 pb-1 border-right-light">
+        <mat-icon class="text-blue">cloud_download</mat-icon>
+        <h4 class="m-0 ">1200</h4>
+        <small class="m-0 ">Downloads</small>
+      </div>
+    </div>
+    <div
+      fxFlex="50"
+      fxFlex.gt-sm="20"
+      fxFlex.sm="50"
+    >
+      <div class="text-center pt-1 pb-1 border-right-light">
+        <mat-icon class="text-green">comment</mat-icon>
+        <h4 class="m-0 ">16420</h4>
+        <small class="m-0 ">Comments</small>
+      </div>
+    </div>
+    <div
+      fxFlex="50"
+      fxFlex.gt-sm="20"
+      fxFlex.sm="50"
+    >
+      <div class="text-center pt-1 pb-1 border-right-light">
+        <mat-icon class="text-blue">person</mat-icon>
+        <h4 class="m-0 ">3010</h4>
+        <small class="m-0 ">Profile views</small>
+      </div>
+    </div>
+    <div
+      fxFlex="50"
+      fxFlex.gt-sm="20"
+      fxFlex.sm="50"
+    >
+      <div class="text-center pt-1 pb-1">
+        <mat-icon class="text-red">favorite</mat-icon>
+        <h4 class="m-0 ">4070</h4>
+        <small class="m-0 ">Likes</small>
+      </div>
+    </div>
+  </div>
+</mat-card>
+<!--/ End first row -->
+
+<!-- 2nd, 3rd row -->
+<div fxLayout="row wrap">
+  <div
+    fxFlex="100"
+    fxFlex.gt-sm="66.67"
+    fxFlex.sm="50"
+    [@animate]="{ value: '*', params: { y: '50px', delay: '600ms' } }"
+  >
+    <mat-card class="p-0 ">
+      <mat-tab-group>
+        <mat-tab label="Traffic Vs Sales">
+          <div
+            echarts
+            [options]="trafficVsSaleOptions"
+            [merge]="trafficVsSale"
+            [autoResize]="true"
+            style="height: 255px;"
+          ></div>
+        </mat-tab>
+        <mat-tab label="Sessions">
+          <div
+            echarts
+            [options]="sessionOptions"
+            [merge]="sessions"
+            [autoResize]="true"
+            style="height: 255px;"
+          ></div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+  <!--/ End tab -->
+
+  <!-- Donut chart -->
+  <div
+    fxFlex="100"
+    fxFlex.gt-sm="33.33"
+    fxFlex.sm="50"
+    [@animate]="{ value: '*', params: { y: '50px', delay: '400ms' } }"
+  >
+    <mat-card class="p-0 ">
+      <p class=" ml-1 mt-1">TRAFFIC SOURCES</p>
+      <div
+        echarts
+        [options]="trafficSourcesChart"
+        [autoResize]="true"
+        style="height: 250px;"
+      ></div>
+    </mat-card>
+  </div>
+  <!--/ End donut chart -->
+  <!--/ End 2nd row -->
+
+  <!-- 3rd row, 1st column -->
+  <div
+    fxFlex="100"
+    fxFlex.gt-sm="33.33"
+    fxFlex.sm="50"
+    [@animate]="{ value: '*', params: { y: '50px', delay: '800ms' } }"
+  >
+    <mat-card class="">
+      <p class="">7 DAY TRAFFIC</p>
+      <div
+        echarts
+        [options]="dailyTrafficChartBar"
+        [autoResize]="true"
+        style="height: 250px;"
+      ></div>
+    </mat-card>
+
+    <mat-card
+      class="p-0"
+    >
+      <mat-card-title class="mb-1">
+        <div class="card-title-text">
+          <span class="font-weight-normal">Top Campaign Performance</span>
+
+          <span fxFlex></span>
+          <button
+            class="card-control"
+            mat-icon-button
+            [matMenuTriggerFor]="menu2"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu2="matMenu">
+            <button mat-menu-item>
+              <mat-icon>settings</mat-icon>
+              <span>Campaign Settings</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>do_not_disturb</mat-icon>
+              <span>Disable All Campaigns</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>close</mat-icon>
+              <span>Remove panel</span>
+            </button>
+          </mat-menu>
+        </div>
+        <mat-divider></mat-divider>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="mb-1">
+          <p class="m-0">
+            Facebook <span class="text-muted">| 9.8 | 90%</span>
+          </p>
+          <mat-progress-bar
+            color="warn"
+            mode="determinate"
+            [value]="90"
+            class="rounded"
+            style="height: 6px"
+          >
+          </mat-progress-bar>
+        </div>
+        <div class="mb-1">
+          <p class="m-0 text-13">
+            Google AdSense <span class="text-muted">| 8.3 | 80%</span>
+          </p>
+          <mat-progress-bar
+            class=""
+            color="primary"
+            mode="determinate"
+            [value]="80"
+            class="rounded"
+            style="height: 6px"
+          >
+          </mat-progress-bar>
+        </div>
+        <div class="mb-1">
+          <p class="m-0 text-13">
+            Twitter <span class="text-muted">| 5.8 | 60%</span>
+          </p>
+          <mat-progress-bar
+            class=""
+            color="accent"
+            mode="determinate"
+            [value]="60"
+            class="rounded"
+            style="height: 6px"
+          >
+          </mat-progress-bar>
+        </div>
+        <div class="">
+          <p class="m-0 text-13">
+            LinkedIn <span class="text-muted">| 4.8 | 40%</span>
+          </p>
+          <mat-progress-bar
+            class=""
+            color="warn"
+            mode="determinate"
+            [value]="40"
+            class="rounded"
+            style="height: 6px"
+          >
+          </mat-progress-bar>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!--/ End 3rd row, 1st column -->
+
+  <!-- 3rd row, 2nd column -->
+  <div
+    fxFlex="100"
+    fxFlex.gt-sm="66.67"
+    fxFlex.sm="50"
+    [@animate]="{ value: '*', params: { y: '50px', delay: '1000ms' } }"
+  >
+    <div fxLayout="row wrap">
+      <div fxFlex="100"
+      fxFlex.gt-sm="50">
+        <mat-card class="p-0">
+          <div fxLayout="row wrap">
+            <div fxFlex="40" class="p-1">
+              <p class="">TRAFFIC</p>
+              <p class="text-24 text-green font-weight-bold mb-0">
+                27% <span class="material-icons">arrow_drop_up</span>
+              </p>
+              <p class="text-muted m-0">This Week</p>
+            </div>
+            <div fxFlex="60">
+              <div
+                echarts
+                [options]="trafficGrowthChart"
+                [autoResize]="true"
+                style="height: 150px; right: -1px"
+              ></div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+      <div fxFlex="100"
+      fxFlex.gt-sm="50">
+        <mat-card class="p-0">
+          <div fxLayout="row wrap">
+            <div fxFlex="40" class="p-1">
+              <p class="">Bounce Rate</p>
+              <p class="text-24 text-red font-weight-bold mb-0">
+                20% <span class="material-icons">arrow_drop_up</span>
+              </p>
+              <p class="text-muted m-0">This Week</p>
+            </div>
+            <div fxFlex="60">
+              <div
+                echarts
+                [options]="bounceRateGrowthChart"
+                [autoResize]="true"
+                style="height: 150px; right: -1px"
+              ></div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+    <mat-card
+      class="p-0 "
+      [@animate]="{ value: '*', params: { scale: '.9', delay: '300ms' } }"
+    >
+      <mat-table [dataSource]="countryTrafficStats" matSort>
+        <ng-container matColumnDef="country">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Country
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="id">
+            <span class="flag-icon {{ row.flag }}"></span>
+            {{ row.country }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="visitor">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Visitor
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="progress">
+            {{ row.visitor }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="pageView">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Page View
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="name">
+            {{ row.pageView }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="download">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Download
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="color">
+            {{ row.download }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="bounceRate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Bounce Rate
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="color">
+            {{ row.bounceRate }}
+          </mat-cell>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+            <mat-cell *matCellDef="let row"> 
+              <button mat-button><mat-icon>keyboard_arrow_right</mat-icon></button>
+            </mat-cell>
+          </ng-container> -->
+
+        <mat-header-row
+          *matHeaderRowDef="[
+            'country',
+            'visitor',
+            'pageView',
+            'download',
+            'bounceRate'
+          ]"
+        ></mat-header-row>
+        <mat-row
+          *matRowDef="
+            let row;
+            columns: [
+              'country',
+              'visitor',
+              'pageView',
+              'download',
+              'bounceRate'
+            ]
+          "
+        >
+        </mat-row>
+      </mat-table>
+    </mat-card>
+  </div>
+  <!--/ End 3rd row, 2nd column -->
+</div>

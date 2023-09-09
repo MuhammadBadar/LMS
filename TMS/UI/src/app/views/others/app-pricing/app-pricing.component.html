@@ -1,0 +1,205 @@
+
+
+
+
+<mat-card>
+  <mat-card-title>
+    <div>Sale Order</div>
+  </mat-card-title>
+  <mat-card-content>
+    <mat-checkbox style="margin-left: 10px ;">IsTempPO! </mat-checkbox>
+    <mat-checkbox style="margin-left: 10px ;">Replace TempPO! </mat-checkbox>
+    <mat-checkbox style="margin-left: 10px ;">IsAgainstQuote! </mat-checkbox>
+    <form>
+      <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+          <div class="pb-1">
+            <mat-form-field class="full-width">
+              <input matInput name="title" type="text" placeholder="Client Name*" value="">
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+          <div fxFlex="50" fxFlex.gt-xs="100" class="pr-1">
+            <mat-form-field fxFill>
+              <input matInput name="title" type="number" placeholder="PO No*" value="">
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+            <div class="pb-1">
+              <mat-form-field class="full-width">
+                <input matInput name="reason" type="text" placeholder="Reference Fields" value="">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+          <div fxFlex="50" fxFlex.gt-xs="100" class="pr-1">
+            <mat-form-field class="full-width">
+              <mat-label>Quote</mat-label>
+              <select matNativeControl required>
+                <option value="internal">I</option>
+                <option value="sale">S</option>
+                <option value="purchase">P</option>
+
+              </select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+          <div fxFlex="50" fxFlex.gt-xs="100" class="pr-1">
+            <mat-form-field class="full-width">
+              <mat-label>Delivery method:</mat-label>
+              <select matNativeControl required>
+                <option value="itemrequest">method1</option>
+                <option value="sale">method2</option>
+                <option value="purchase">method3</option>
+
+              </select>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50" fxFlex.gt-xs="100" class="pr-1">
+            <mat-form-field class="full-width">
+              <mat-label>Ship To:</mat-label>
+              <select matNativeControl required>
+                <option value="">Ship1</option>
+                <option value="department">Ship2</option>
+                <option value="client">Ship3</option>
+
+              </select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row wrap">
+        <div fxFlex="50" fxFlex.gt-xs="50" class="pr-1">
+          <mat-form-field class="full-width">
+            <mat-label>Bill To:</mat-label>
+            <select matNativeControl required>
+              <option value="">b1</option>
+              <option value="department">b2</option>
+              <option value="client">b3</option>
+
+            </select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50" fxFlex.gt-xs="50" class="pr-1">
+          <mat-form-field fxFill>
+            <input matInput [matDatepicker]="picker" placeholder="Delivery date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+          <div fxFlex="50" fxFlex.gt-xs="100" class="pr-1">
+            <mat-form-field class="full-width">
+              <mat-label>Payment Plan:</mat-label>
+              <select matNativeControl required>
+                <option value="">U</option>
+                <option value="department">D</option>
+                <option value="client">C</option>
+
+              </select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.gt-xs="50" class="pr-1">
+          <mat-form-field class="full-width">
+            <mat-label>Payment Terms:</mat-label>
+            <select matNativeControl required>
+              <option value="open">O</option>
+              <option value="pending">P</option>
+              <option value="approved">A</option>
+
+            </select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row wrap">
+        <div fxFlex="50" fxFlex.gt-xs="50" class="pr-1">
+          <mat-form-field class="full-width">
+            <mat-label>Status</mat-label>
+            <select matNativeControl required>
+              <option value="open">Open</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+
+            </select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50" fxFlex.gt-xs="50" class="pr-1">
+          <div class="pb-1">
+            <mat-form-field class="full-width">
+              <textarea matInput name="address" type="text" placeholder="Description*">
+                         </textarea>
+            </mat-form-field>
+
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row wrap">
+
+      </div>
+      <div fxLayout="row">
+        <table style="width: 100%;">
+          <th>
+            <tr>
+              <td style="width: 15%">Item Name</td>
+            </tr>
+          </th>
+          <th>
+            <tr>
+              <td style="width: 15%">Item Name</td>
+            </tr>
+          </th>
+          <th>
+            <tr>
+              <td style="width: 15%">Item Name</td>
+            </tr>
+          </th>
+
+          <tbody>
+            <tr style="background-color:cadetblue;">
+              <td style="width: 25%">
+                <input matInput name="code" type="number" placeholder="Code" value="">
+              </td>
+              <td style="width: 15%; text-align:center; padding-left:5px;">SOItem</td>
+              <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>QuotationItem</strong></td>
+              <td style="width: 10%; text-align:center; padding-left: 5px;"><strong> QuantityLimit </strong></td>
+              <td style="width: 10%; text-align:center; padding-left: 5px;"><strong> ItemGroup </strong></td>
+              <td style="width: 10%; text-align:center; padding-left: 5px;"><strong> ItemType</strong></td>
+              <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>ItemCategory </strong></td>
+              <td style="width: 10%; text-align:center; padding-left: 5px;"><strong> Required Qty </strong></td>
+              <td style="width: 10%; text-align:center; padding-left: 5px;"><strong> ItemName </strong></td>
+              <td style="width: 10%; text-align:center; padding-left: 5px;"><strong> SKU </strong></td>
+              <td style="width: 4%">
+                <button mat-mini-fab color="accent">+</button>
+              </td>
+            </tr>
+            <tr style="background-color:rgb(168, 173, 173);">
+              <td style="width: 8%"> 1005 </td>
+              <td style="width: 20%"> Colgate Herbal - 200 grams </td>
+              <td style="width: 4%; text-align:right; padding-right: 5px;"><strong> 10 </strong></td>
+              <td style="width: 4%; text-align:right; padding-right: 5px;"><strong> NOS </strong></td>
+              <td style="width: 4%; text-align:right; padding-right: 5px;"><strong> 10 </strong></td>
+              <td style="width: 4%; text-align:right; padding-right: 5px;"><strong> 10 </strong></td>
+              <td style="width: 4%; text-align:right; padding-right: 5px;"><strong> 10 </strong></td>
+              <td style="width: 4%; text-align:right; padding-right: 5px;"><strong> 10 </strong></td>
+              <td style="width: 4%; text-align:right; padding-right: 5px;"><strong> 10 </strong></td>
+              <td style="width: 4%; text-align:right; padding-right: 5px;"><strong> 10 </strong></td>
+              <td style="width: 4%">
+                <button mat-mini-fab color="warn">-</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button mat-raised-button color="primary" (click)="onClick()">Print</button>
+      <button style="margin-left: 5px ;" mat-raised-button color="warn">Mail</button>
+      <button style="margin-left: 5px;" mat-raised-button color="accent">Download</button>
+
+    </form>
+  </mat-card-content>
+</mat-card>

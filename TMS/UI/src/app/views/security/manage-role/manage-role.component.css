@@ -1,0 +1,12 @@
+.example-container {
+    height: 500px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%;
+  }
+  .mat-header-cell,  .mat-cell {
+    min-width: 355px;
+    
+  }

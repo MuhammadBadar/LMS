@@ -1,0 +1,128 @@
+<app-header></app-header>
+<div>
+    <mat-label>
+        <div *ngIf="Add">
+            <h3> <strong>Manage Inquiry</strong></h3>
+        </div>
+        <div *ngIf="Edit">
+            <h3><strong>Edit Inquiry </strong></h3>
+        </div>
+    </mat-label>
+    <mat-card>
+        <form name="userForm" #userForm="ngForm" (ngSubmit)="userForm.form.valid  " novalidate class="event-form">
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="49%">
+                    <input matInput required #Name="ngModel" name="name" type="text"
+                        [(ngModel)]="inqSvc.selectedInquiry.name" placeholder="User Name">
+                </mat-form-field>
+                <mat-form-field fxFlex="49%">
+                    <input matInput required #Cell="ngModel" name="cell" type="text"
+                        [(ngModel)]="inqSvc.selectedInquiry.cell" placeholder="Cell No">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="49%" >
+                    <mat-label>Services</mat-label>
+                    <mat-select name="ServiceId" #serviceId="ngModel" required
+                        [(ngModel)]="inqSvc.selectedInquiry.servicesId">
+                        <mat-option *ngFor="let lec of Services" [value]=" lec.id">{{lec.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="49%">
+                    <input matInput class="form-control" placeholder="Enter your email" name="Email" #email="ngModel"
+                        required [(ngModel)]="inqSvc.selectedInquiry.email" [ngClass]="{ 'is-invalid':  email.invalid }"
+                        required email>
+                    <mat-error *ngIf="email.errors?.email">Not a valid email</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field fxFlex="100%">
+                    <textarea matInput placeholder="Comment " name="commnets"
+                        [(ngModel)]="inqSvc.selectedInquiry.comments"></textarea>
+                </mat-form-field>
+            </div>         
+            <div *ngFor="let formData of field" style="display: inline-block;padding: 10px;" [formGroup]="group" [ngSwitch]="true">  
+            <div *ngSwitchCase="formData.type === 'TextBox'" style="min-width: 500px;">
+                    <mat-form-field class="demo-full-width" fxFlex="100%">
+                        <input matInput [formControlName]="formData.title" name="formData.title" [required]=formData.isRequired
+                            [placeholder]="formData.title" />
+                            <ng-container
+                          >
+                            <mat-error
+                              *ngIf="group.get(formData.title).hasError(formData.isRequired)"
+                              >Its Required</mat-error
+                            >
+                          </ng-container>
+                    </mat-form-field>
+                </div>
+                <div *ngSwitchCase="formData.type === 'TextArea'" style="min-width: 500px;">
+                    <mat-form-field class="demo-full-width"  fxFlex="100%">
+                        <textarea
+                        name="formData.title" 
+                          matInput
+                          [formControlName]="formData.title" [required]=formData.isRequired
+                          [placeholder]="formData.title"                        
+                        ></textarea>
+                        </mat-form-field>
+                </div>
+                <div *ngSwitchCase="formData.type === 'DatePicker'" style="min-width: 500px;">
+                    <mat-form-field class="demo-full-width margin-top"  fxFlex="100%" >
+                        <input
+                          matInput
+                          name="formData.title" 
+                          [matDatepicker]="picker"
+                          [formControlName]="formData.title"
+                          [placeholder]="formData.title"
+                          [required]=formData.isRequired
+                        />
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-hint></mat-hint>
+                      </mat-form-field> 
+                </div>
+                <div *ngSwitchCase="formData.type === 'DropDownList'" style="min-width: 500px;">
+                    <mat-form-field class="demo-full-width margin-top"  fxFlex="100%">
+                        <mat-select [placeholder]="formData.title"  name="formData.title"  [formControlName]="formData.title" [required]=formData.isRequired>
+                          <mat-option *ngFor="let item of formData.fpv" [value]="item.fieldValue">{{
+                            item.fieldValue
+                          }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                <div *ngSwitchCase="formData.type === 'RadioButton'" style="min-width: 500px;">
+                    <mat-radio-group [formControlName]="formData.title"  name="formData.title"  [required]=formData.isRequired>
+                       <mat-radio-label>{{formData.title}}:</mat-radio-label>
+                        <mat-radio-button style="margin-left:30px"
+                          *ngFor="let item of formData.fpv"
+                          [value]="item.fieldValue"
+                          >{{ item.fieldValue }}</mat-radio-button
+                        >
+                      </mat-radio-group>
+                </div>
+        </div> 
+            <div style="text-align: right;margin-right: 10px;">
+                <button style="color: white;" mat-raised-button type="submit"  class="mb-05" *ngIf="Add" color="primary"
+                    (click)="SaveInquiry()">Add Inquiry</button>
+                <button style="color: white;" mat-raised-button type="submit" class="mb-05" *ngIf="Edit" color="primary"
+                    (click)="UpdateInquiry()">Update </button>
+                <button style="margin-left: 5px;" mat-raised-button  matTooltip="Go Back "  class="mb-05"  color="accent"
+                (click)="Cancel()">Cancel</button>
+            </div>
+        </form>
+    </mat-card>
+</div>
+<!-- <div class="form" style="display: inline;padding: 10px; width:100% " *ngIf="regConfig.length > 0">
+    <div style="text-align:center">
+        <h1>Inquiry New Fields Data</h1>
+    </div>
+    <div>
+        <dynamic-form [fields]="regConfig"></dynamic-form>
+    </div>
+    <div class="margin-top">
+      {{ form?.value |json}}
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" (click)="submit(form?.value )"  >Submit</button>
+      </div>
+</div> -->
+

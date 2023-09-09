@@ -1,0 +1,155 @@
+<app-header></app-header>
+<mat-card>
+    <div *ngIf="Add">
+        <h2><strong>Manage Task</strong></h2>
+    </div>
+    <div *ngIf="Edit">
+        <h2><strong>Edit Task</strong></h2>
+    </div>
+    <form #taskForm="ngForm">
+        <div *ngIf="Edit" fxLayout="row" fxLayoutAlign="space-between">
+            <mat-form-field fxFlex="45%">
+                <input matInput name="id" type="number" [ngModel]=" taskService.selectedTask.id" placeholder="Task Id"
+                    readonly>
+            </mat-form-field>
+            <mat-form-field fxFlex="45%" fxFill>
+                <mat-label>Status</mat-label>
+                <mat-select [(ngModel)]="taskService.selectedTask.statusId" name="statusId" >
+                    <mat-option *ngFor="let st of Status" [value]="st.id" (click)="PutTask()">
+                        {{st.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+            <mat-form-field fxFlex="45%">
+                <input matInput name="title" [(ngModel)]="taskService.selectedTask.title" required placeholder="Title"
+                    maxlength="100">
+            </mat-form-field>
+            <mat-form-field fxFlex="45% ">
+                <input name="SP" type="number" step=".01" [(ngModel)]="taskService.selectedTask.sp" matInput required
+                    placeholder=" SP" />
+            </mat-form-field>
+            <!-- <mat-form-field fxFlex="45%" fxFill>
+                <mat-label>Module</mat-label>
+                <mat-select name="moduleId" [(ngModel)]="taskService.selectedTask.moduleId" required>
+                    <mat-option *ngFor="let mod of modules" [value]="mod.id">
+                        {{mod.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> -->
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+            <mat-form-field fxFlex="45%" fxFill>
+                <mat-label>Assigned to</mat-label>
+                <mat-select name="userId" [(ngModel)]="taskService.selectedTask.userId">
+                    <mat-option *ngFor="let us of User" [value]="us.id">
+                        {{ us.userName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="45%" fxFill>
+                <mat-label>Priority</mat-label>
+                <mat-select [(ngModel)]="taskService.selectedTask.priorityId" required name="priorityId">
+                    <mat-option *ngFor="let st of Priority" [value]="st.id">
+                        {{st.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <quill-editor matInput name="description" [(ngModel)]="taskService.selectedTask.description"
+                placeholder="Description"></quill-editor>
+        </div>
+        <h2 style="padding-top: 20px;padding-bottom: 20px;">Image Attachments</h2>
+        <div style="border:1px solid rgb(216, 215, 215); min-height:200px">
+            <div>
+                <div style="margin-top:15px">
+                    <a (click)="fileSelector.click()"
+                        style=" text-decoration: underline;color: rgb(23, 8, 110);margin-left: 480px;margin-top: 500px;"><strong>Browse
+                            Images</strong></a>
+                    <mat-form-feild>
+                        <input matinput #fileSelector style="margin-left: 5px;" multiple type="file"
+                            accept=".png, .jpg, .jpeg" (change)="handleFileInput($event)" hidden>
+                    </mat-form-feild>
+                </div>
+            </div>
+            <div class="gallery-lightbox-container">
+                <div class="gallery" class="inline-block" *ngFor="let data of FileDetails; let i=index">
+                    <div class="gallery-img" style="margin-left: 8px; padding: 10px">
+                        <img [src]="data.base64File" (click)="onPreviewImage(i)" height="200" width="300"
+                            style="padding:9px">
+                    </div>
+                    <div style="margin-left:15px">
+                        <div>
+                            <p class="inline-block"> {{data.name}}</p>
+                            <p style="float: right;margin-right: 15px;" class="inline-block">{{data.createdOn| date}}
+                            </p>
+                        </div>
+                        <p style="margin-top: -10px;">{{ data.size/1024/1024 | number:'.2' }} MB</p>
+                    </div>
+                </div>
+                <div *ngIf="showMask" class="lightbox" >
+                    <span class="count" *ngIf="showCount" 
+                        style="width:200px;height:200px">{{currentIndex+1}}/{{totalImageCount}}</span>
+                    <button mat-icon-button *ngIf="previewImage" (click)="onClosePreview()" class="close-button"
+                        style="color:white;margin-right:15px">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <button mat-icon-button *ngIf="previewImage" (click)="Delete()" class="close-button"
+                        style="color:white;margin-right:80px; ">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-icon-button *ngIf="controls" (click)="prev()" class="close-button"
+                        style="color:white;left: 50px;;margin-top:300px">
+                        <mat-icon>chevron_left</mat-icon>
+                    </button>
+                    <button mat-icon-button *ngIf="controls" (click)="next()" class="close-button"
+                        style="color:white;right: 30px;;margin-top:300px">
+                        <mat-icon>chevron_right</mat-icon>
+                    </button>
+                    <div *ngIf="previewImage" class="lightbox-img">
+                        <img [src]="currentLightBoxImage" style="width:800px; height:450px">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="Edit">
+            <div class="chat-input-actions">
+                <form #commentForm="ngForm" class="inputForm" fxLayout="row">
+                    <mat-form-field class="full-width mr-1">
+                        <textarea matInput name="comment" [(ngModel)]="taskService.selectedTaskComment.comment"
+                            placeholder="Type your comment"  rows="10" class="inputText"></textarea>
+                    </mat-form-field>
+                    <!-- <mat-form-field fxFlex="15%" fxFill>
+                        <mat-label>Send as</mat-label>
+                        <mat-select name="userId" [(ngModel)]="taskService.selectedTaskComment.userId">
+                            <mat-option *ngFor="let us of User" [value]=" us.id">
+                                {{ us.userName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+                    <button mat-fab color="primary" type="submit" (click)="SaveTaskComment();  ">
+                        <mat-icon>send</mat-icon>
+                    </button>
+                </form>
+            </div>
+            <mat-divider></mat-divider>
+            <div *ngFor="let cm of comments" appearance="outline">
+                <h4 class="chat-username text-muted">{{cm.user}}</h4>
+                <div class="conversation-msg " class="hello">
+                    {{cm.comment}}
+                </div>
+                <p class="chat-date text-muted">{{cm.datetime}}</p>
+            </div>
+        </div>
+        <div fxLayoutAlign="end end">
+            <button mat-raised-button *ngIf="Add" color="primary" [type]="'submit' " [disabled]="taskForm.invalid"
+                (click)="SaveTask();" style=" margin-top: 20px;">Submit </button>
+            <button mat-raised-button *ngIf="Edit" color="primary" [type]="'submit' " [disabled]="taskForm.invalid"
+                (click)="SaveTask();" style=" margin-top: 20px;">Update </button>
+            <button mat-raised-button color="accent" [routerLink]="['/task/taskslist']"
+                style="margin-left: 5px; margin-top: 20x;"> Cancel </button>
+        </div>
+    </form>
+</mat-card>

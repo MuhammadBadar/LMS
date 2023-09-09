@@ -1,0 +1,83 @@
+<app-header></app-header>
+<div>
+  <h3 style="color: rgb(43, 3, 25);"><strong>Uers Report</strong> </h3>
+</div>
+<div style="text-align:center">
+  <div style="text-align:center">
+    <mat-form-field>
+      <mat-label>Users</mat-label>
+      <mat-select matNativeControl name="UserName" #userName="ngModel"
+        [(ngModel)]="attndSvc.selectedAttendance.userName">
+        <mat-option (click)="ngOnInit()" value="select">-- Please Select --</mat-option>
+        <mat-option *ngFor="let u of Users" [value]="u.userName" (click)="Search()">
+          {{u.userName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div style="text-align:center">
+    <mat-form-field>
+      <input matInput [matDatepicker]="startDateDP" placeholder="Start Date" name="startDate" [(ngModel)]="fromDate">
+      <mat-datepicker-toggle matSuffix [for]="startDateDP"></mat-datepicker-toggle>
+      <mat-datepicker #startDateDP></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field style="margin-left:10px">
+      <input matInput [matDatepicker]="endDateDP" placeholder="End Date" name="endDate" [(ngModel)]="toDate">
+      <mat-datepicker-toggle matSuffix [for]="endDateDP"></mat-datepicker-toggle>
+      <mat-datepicker #endDateDP></mat-datepicker>
+    </mat-form-field>
+    <button mat-icon-button matTooltip="Get record  in Date Range" (click)="transform()">
+      <mat-icon>search</mat-icon>
+    </button>
+    <button mat-icon-button mat-sm-button color="primary" matTooltip="Refresh  List" (click)="ngOnInit()">
+      <mat-icon>autorenew</mat-icon>
+    </button>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%; margin-top: 30px;">
+  <table mat-table #table [dataSource]="dataSource" matSort style="width: 100%;">
+    <ng-container matColumnDef="id" id="id">
+      <th mat-header-cell *matHeaderCellDef style="width: 10%;">Sr No </th>
+      <td mat-cell *matCellDef="let data" style="width: 10%;"> {{data.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="userName" id="userName">
+      <th mat-header-cell *matHeaderCellDef style="width: 15%;"> User Name </th>
+      <td mat-cell *matCellDef="let data" style="width: 15%;"> {{data.userName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdOn" id="createdOn">
+      <th mat-header-cell *matHeaderCellDef style="width: 15%;">Date </th>
+      <td mat-cell *matCellDef="let data" style="width: 15%;"> {{data.createdOn|date:"dd/MM/yyyy"}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="inTime" id="inTime">
+      <th mat-header-cell *matHeaderCellDef style="width: 15%;"> In Time </th>
+      <td mat-cell *matCellDef="let data" style="width: 15%;"> {{data.inTime|date:"HH:mm:ss"}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="outTime" id="outTime">
+      <th mat-header-cell *matHeaderCellDef style="width: 15%;">Out Time </th>
+      <td mat-cell *matCellDef="let data" style="width: 15%;"> {{data.outTime|date:"HH:mm:ss"}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="workingHours" id="workingHours">
+      <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Working Time </th>
+      <td mat-cell *matCellDef="let data" style="width: 20%;"> {{data.workingHours}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <div>
+          <button mat-icon-button mat-sm-button style="color: rgb(43, 3, 25)" class="mr-1">
+            <mat-icon>view</mat-icon>
+          </button>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

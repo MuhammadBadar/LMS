@@ -1,0 +1,56 @@
+<div class="event-dialog-wrapper">
+  <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color: cadetblue;color: black;">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title" style="color:white;"><strong>{{dialogTitle}}</strong></span>
+      <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  <div mat-dialog-content class="p-1 m-0">
+    <form name="eventForm" #userForm="ngForm" class="event-form" (ngSubmit)="SaveStudentLecture()" fxFlex>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column">
+        <div fxFlex="100">
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="picker" required placeholder=" Assigned On" name="AssignedOn"
+              #assignedOn="ngModel" [(ngModel)]="lmsSvc.selectedStudentLecture.assignedOn" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%;">
+          <mat-form-field fxFlex="45%">
+            <mat-label>Student</mat-label>
+            <select matNativeControl required name="StudentName" #studentName="ngModel"
+              [(ngModel)]="lmsSvc.selectedStudentLecture.studentId">
+              <option *ngFor="let std of student" value={{std.id}}>
+                {{std.studentName}}
+              </option>
+            </select>
+          </mat-form-field>
+          <mat-form-field fxFlex="45%">
+            <mat-label>Lecture</mat-label>
+            <mat-select name="LectureURL" #lectureURL="ngModel" [(ngModel)]="lmsSvc.selectedStudentLecture.lectureId"
+              required>
+              <mat-option *ngFor="let lec of lecture" value={{lec.id}}>{{lec.lectureURL}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row wrap" style="margin-left: 70px;">
+        <mat-checkbox style="margin-left: 350px;" name="IsActive" #isActive="ngModel"
+          [(ngModel)]="lmsSvc.selectedStudentLecture.isActive"><strong>IsActive</strong></mat-checkbox>
+      </div>
+      <div mat-dialog-actions class="m-0 p-1" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-raised-button color="primary" type="submit" style="margin-left: 320px;" aria-label="SUBMIT"
+          [disabled]="userForm.invalid"><strong>
+            Submit
+          </strong>
+        </button>
+        <button mat-raised-button color="accent" (click)="dialogRef.close()" type="button" aria-label="CANCEL"><strong>
+            Cancel</strong>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

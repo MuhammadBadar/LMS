@@ -1,0 +1,55 @@
+<div class="event-dialog-wrapper">
+  <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color: rgb(18, 4, 56);color: black;">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span *ngIf="Add" class="title dialog-title" style="color:white;"><strong>{{dialogTitle}}</strong></span>
+      <span *ngIf="Edit" class="title dialog-title" style="color:white;"><strong>Edit Lecture</strong></span>
+      <button mat-icon-button style="color:white;" (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  <div mat-dialog-content class="p-1 m-0">
+    <form name="eventForm" #userForm="ngForm" class="event-form" fxLayout="column" fxFlex>
+      <div fxFlex="100" fxLayout.lt-sm="column">
+        <mat-form-field class="full-width">
+          <input matInput name="Title" #title="ngModel" [(ngModel)]="lmsSvc.selectedLecture.title" placeholder="Title"
+            required>
+        </mat-form-field>
+      </div>
+      <div fxFlex="100%" fxLayout.lt-sm="column">
+        <mat-form-field class="full-width">
+          <textarea matInput name="Description" #description="ngModel" [(ngModel)]="lmsSvc.selectedLecture.description"
+            placeholder="Description" max-rows="4">
+              </textarea>
+        </mat-form-field>
+      </div>
+      <div fxFlex="100" fxLayout.lt-sm="column">
+        <mat-form-field class="full-width">
+          <input matInput name="lectureURL" #lectureURL="ngModel" [(ngModel)]="lmsSvc.selectedLecture.lectureURL"
+            placeholder="Link" required>
+        </mat-form-field>
+      </div>
+      <!-- <div fxLayout="row wrap" style="margin-left: 80px;" >
+          <mat-checkbox style="margin-left: 320px;"name="IsActive" #isActive="ngModel" [(ngModel)]="lmsSvc.selectedLecture.isActive"
+          ><strong>IsActive</strong></mat-checkbox>
+        </div> -->
+      <div mat-dialog-actions class="m-0 p-1" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-raised-button color="primary" *ngIf=" !Edit" [disabled]="userForm.invalid"
+          (click)="SaveLecture();userForm.reset()" style="margin-left: 300px;" aria-label="SUBMIT">
+          <strong>
+            Submit
+          </strong>
+        </button>
+        <button mat-raised-button color="primary" *ngIf=" !Add" [disabled]="userForm.invalid" (click)="SaveLecture()"
+          style="margin-left: 300px;" aria-label="Update">
+          <strong>
+            Update
+          </strong>
+        </button>
+        <button mat-raised-button color="accent" (click)="dialogRef.close()" type="button" aria-label="SUBMIT"><strong>
+            Go to List</strong>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

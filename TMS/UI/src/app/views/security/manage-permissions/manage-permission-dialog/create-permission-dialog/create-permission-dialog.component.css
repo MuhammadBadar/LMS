@@ -1,0 +1,16 @@
+.example-container {
+    height: 500px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%;
+  }
+ /* .mat-radio-button.mat-radio-outer-circle{
+    border-color:rgb(43, 3, 25) !important;
+  }
+  ::ng-deep .mat-radio-button.mat-accent.mat-radio-outer-circle{
+    opacity: 0;
+    background-color:rgb(43, 3, 25) !important;
+  } */
+   

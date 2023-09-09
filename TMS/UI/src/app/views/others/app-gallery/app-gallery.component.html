@@ -1,0 +1,197 @@
+<mat-card class="p-0">
+  <mat-card-title class="">
+    <div class="card-title-text">QCS</div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+
+  <form [formGroup]="QCSForm">
+
+    <mat-card-content fxLayout="row">
+
+      <div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+
+        <div>
+          <mat-form-field fxFill>
+            <input matInput name="RFQ" formControlName="RFQ" required type="number" placeholder="RFQ" value="">
+          </mat-form-field>
+        </div>
+
+
+      </div>
+      <div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+
+        <div>
+          <mat-form-field fxFill>
+            <input formControlName="description" matInput type="textarea" AutoSize placeholder="Description"
+              maxlength='500'>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </form>
+  <h4><strong>Grid Items</strong></h4>
+  <mat-card-content>
+
+    <form [formGroup]="QCSForm">
+
+
+      <div fxLayout="row">
+        <table style="width: 100%;">
+
+          <tbody>
+                <tr style="background-color:cadetblue;">
+                  <td style="width: 5%; text-align:center; padding-left:5px;"><strong>SrNo</strong></td>
+                  <td style="width: 10%; text-align:center; padding-left:5px;"><strong> Item
+                    </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      Supplier
+                    </strong></td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;"><strong>
+                      Required Qty
+                    </strong></td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;"><strong>
+                      Quoted Qty
+                    </strong>
+                  </td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;"><strong>
+                      Orderd Qty
+                    </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      UOM </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      Rate/Unit
+                    </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      Currency</strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      TotalPrice </strong></td>
+
+                  <td style="width: 15%; text-align:center; padding-left: 5px;"><strong>
+                      SelectedVendor
+                    </strong></td>
+
+                  <td>
+
+                    <button mat-mini-fab color="accent" type="button" >+</button>
+                  </td>
+                </tr>
+                <tr style="background-color:rgb(168, 173, 173); width: 100%;">
+                  <td style="width: 5.25%; text-align:center; ">1</td>
+                  <td style="width: 10.25%; text-align:center; ">Name1</td>
+                  <td style="width: 10%; text-align:center;">
+                      Supplier1</td>
+                  <td style="width: 5%; text-align:center; ">4</td>
+                  <td style="width: 5%; text-align:center; ">5
+                  </td>
+                  <td style="width: 5%; text-align:center; ">6</td>
+                  <td style="width: 10%; text-align:center; ">7</td>
+                  <td style="width: 10%; text-align:center; ">35</td>
+                  <td style="width: 10%; text-align:center; ">$</td>
+                  <td style="width: 10%; text-align:center; ">23400</td>
+
+                  <td style="width: 15%; text-align:center; ">Vendor1</td>
+
+                  <td>
+                    <button mat-mini-fab color="accent" type="button" >-</button>
+                  </td>
+                </tr>
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </mat-card-content>
+
+  <h4><strong>Price List</strong></h4>
+
+  <mat-card-content>
+
+    <form [formGroup]="QCSForm">
+
+
+      <div fxLayout="row">
+        <table style="width: 100%;">
+
+          <tbody>
+                <tr style="background-color:cadetblue;">
+                  <td style="width: 5%; text-align:center; padding-left:5px;"><strong>SrNo</strong></td>
+                  <td style="width: 10%; text-align:center; padding-left:5px;"><strong> Item Type
+                    </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      Item Category
+                    </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      Item Name
+                    </strong></td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;"><strong>
+                      SKU
+                    </strong>
+                  </td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;"><strong>
+                      Qty
+                    </strong></td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;"><strong>
+                      Currency </strong></td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;"><strong>
+                      Rate/Unit
+                    </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      MinPurchase Price</strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      MaxPurchase Price </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      AvgPurchase Price
+                    </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      SalePrice Base
+                    </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      Sale PriceMethod
+                    </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      Profit
+                    </strong></td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;"><strong>
+                      Discount Price
+                    </strong></td>
+
+                  <td>
+
+                    <button mat-mini-fab color="accent" type="button" >+</button>
+                  </td>
+                </tr>
+                <tr style="background-color:rgb(168, 173, 173); width:100%;">
+                  <td style="width: 5%; text-align:center; padding-left:5px; "><strong>1</strong></td>
+                  <td style="width: 10%; text-align:center; padding-left:5px; ">Type</td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px; ">Category1</td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;">Name1</td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;">4</td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;">5</td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;">$</td>
+                  <td style="width: 5%; text-align:center; padding-left: 5px;">Unit1</td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;">14344</td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;">234234</td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;">34532</td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;">34567</td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;">Method1</td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;">8765</td>
+                  <td style="width: 10%; text-align:center; padding-left: 5px;">3456</td>
+
+                  <td>
+
+                    <button mat-mini-fab color="accent" type="button">-</button>
+                  </td>
+                </tr>
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-content class="align-right">
+
+    <form [formGroup]="QCSForm">
+        <button mat-raised-button color="primary" [disabled]="QCSForm.invalid ">Submit</button>
+        <button style="margin-left: 5px;" mat-raised-button color="accent">Cancel</button>
+    </form>
+  </mat-card-content>
+</mat-card>

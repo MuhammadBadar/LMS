@@ -1,0 +1,60 @@
+<app-header></app-header>
+<div style="margin-top:20px">
+    <mt-card>
+        <div *ngIf="Add">
+            <h2><strong>Manage Expense</strong></h2>
+        </div>
+        <div *ngIf="Edit">
+            <h2><strong>Edit Expense</strong></h2>
+        </div>
+        <form #expenseForm="ngForm">
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="45%">
+                    <input matInput name="ExpenseTitle" required [(ngModel)]="expSVc.selectedExpense.expenseTitle"
+                        required placeholder="Expense Title">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="46% ">
+                    <input matInput [matDatepicker]="picker" required placeholder=" Expense Date" name="expenseDate"
+                        [(ngModel)]="expSVc.selectedExpense.expenseDate" />
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                \
+                <div fxFlex="46%" fxLayout="row" fxLayoutAlign="space-around">
+                    <mat-form-field fxFlex="97%" fxFill>
+                        <mat-label>Expense Type</mat-label>
+                        <mat-select name="ExpenseTypeId" [(ngModel)]="expSVc.selectedExpense.expenseTypeId" required>
+                            <mat-option *ngFor="let us of ExpenseType" [value]="us.id">
+                                {{ us.type}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+
+                    <button matTooltip="Add New Type" mat-icon-button mat-sm-button color="warn" (click)="Event()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+
+            </div>
+            <div>
+                <mat-form-field fxFlex="100%">
+                    <textarea matInput placeholder="Expense Detail " name="ExpenseDetail"
+                        [(ngModel)]="expSVc.selectedExpense.expenseDetail"></textarea>
+                </mat-form-field>
+            </div>
+            <div fxLayoutAlign="end end">
+                <button mat-raised-button *ngIf="Add" color="primary" [type]="'submit' "
+                    [disabled]="expenseForm.invalid" (click)="SaveExpense();" style=" margin-top: 20px;">Submit
+                </button>
+                <button mat-raised-button *ngIf="Edit" color="primary" [type]="'submit' "
+                    [disabled]="expenseForm.invalid" (click)="SaveExpense();" style=" margin-top: 20px;">Update
+                </button>
+                <button mat-raised-button color="accent" [routerLink]="['/expense/expenselist']"
+                    style="margin-left: 5px; margin-top: 20x;"> Cancel </button>
+            </div>
+        </form>
+    </mt-card>
+</div>

@@ -1,0 +1,32 @@
+<div class="session-form-hold">
+  <mat-progress-bar mode="query" class="session-progress" style="color: wheat;"></mat-progress-bar>
+  <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color:rgb(15, 3, 43);">
+  </mat-toolbar>
+  <mat-card>
+    <mat-card-content>
+      <div class="text-center pt-8 pb-16" style="margin-top: 10px;">
+        <mat-icon color="primary" style="  transform: scale(4)">person_pin</mat-icon>
+      </div>
+      <mat-form-field class="full-width" style="margin-top: 20px;">
+        <input matInput name="UserName" #userName="ngModel" [(ngModel)]="secSrvc.login.userName"
+          placeholder="User Name">
+      </mat-form-field>
+      <mat-form-field class="full-width" style="margin-top: 20px;">
+        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" #password="ngModel"
+          [(ngModel)]="secSrvc.login.password" name="Password">
+        <mat-icon color="primary" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+        </mat-icon>
+        <mat-hint color="primary">Please Enter your password</mat-hint>
+      </mat-form-field>
+      <button mat-raised-button class=" full-width mb-1" color="primary" (click)="Login()" routerLinkActive="active"
+        style="margin-top: 20px;">Sign in</button>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxLayoutAlign="space-around">
+        <div style="margin-top: 30px;">
+          <p>Not Registered Yet?</p>
+        </div>
+        <div style="margin-top: 30px;"><a (click)="addEvent()"><strong>Register Now</strong> </a></div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

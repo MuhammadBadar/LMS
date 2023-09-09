@@ -1,0 +1,68 @@
+<div class="signup3-wrap">
+  <div
+    class="signup3-form-holder mat-elevation-z4 pt-48 pb-16"
+    [perfectScrollbar]="{}"
+    [@animate]="{value:'*',params:{y: '40px', opacity:'0',delay:'100ms', duration: '400ms'}}"
+  >
+    <!-- headline -->
+    <div class="form-headline text-center mb-32">
+      <h1 class="font-weight-bold">Lets get started!</h1>
+      <p class="text-muted">Create an account get unlimited access</p>
+    </div>
+    <div class="mb-32" fxLayout="row wrap" fxLayoutAlign="center center">
+      <img
+        width="200px"
+        src="assets/images/illustrations/posting_photo.svg"
+        alt=""
+      />
+    </div>
+
+    <form [formGroup]="signupForm" class="signup3-form" (ngSubmit)="onSubmit()">
+      <div>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            formControlName="username"
+            type="text"
+            name="username"
+            placeholder="Username"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            type="email"
+            name="email"
+            placeholder="Email"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            type="password"
+            name="password"
+            placeholder="********"
+          />
+        </mat-form-field>
+      </div>
+      <div class="mb-24">
+        <button fxFill mat-raised-button color="primary">Signup</button>
+      </div>
+      <p>
+        Don't have an account?
+        <a
+          class="mat-color-primary font-weight-bold mx-8"
+          routerLink="/sessions/signin3"
+          >Sign In</a
+        >
+      </p>
+    </form>
+  </div>
+</div>

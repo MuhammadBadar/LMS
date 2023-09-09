@@ -1,0 +1,214 @@
+<div >
+<mat-label >
+  <div *ngIf="Add">
+   <h2 ><strong>Manage Customer</strong></h2>  
+  </div> 
+  <div *ngIf="Edit">
+    <h2 ><strong>Edit Customer</strong></h2>  
+   </div>
+   <div *ngIf="View">
+    <h2 ><strong> Customer View</strong></h2>  
+   </div>   
+</mat-label>
+
+<mat-card style="margin-top: 20px;">
+<form name="eventForm" #userForm="ngForm"  fxFlex  >
+    <div fxLayout="row" fxLayoutAlign="space-between"  >
+        <mat-form-field fxFlex="45%" class="form-group" [class.has-error]="CustomerName.invalid">
+          <input matInput #CustomerName="ngModel" name="customerName" type="text"
+          [(ngModel)]="proSvc.selectedCustomer.customerName" readonly="{{View}}" placeholder="Customer Name"
+          required>
+        </mat-form-field>
+        <mat-form-field fxFlex="45% " >
+            <input  matInput [matDatepicker]="picker" required readonly="{{View}}" placeholder=" Customer Since"required
+            name="customerSince" 
+           
+            [(ngModel)]="proSvc.selectedCustomer.customerSince" />
+            <mat-datepicker-toggle matSuffix [for]="picker" *ngIf="!View" ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+           </mat-form-field>          
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between"  >
+        <mat-form-field fxFlex="45% ">
+            <span matPrefix>+1 &nbsp;</span>
+            <input type="tel" readonly="{{View}}"
+            #PrimaryCellNo="ngModel"
+              matInput placeholder="Primary Cell"required maxlength="10"
+            name="primaryCellNo" 
+           
+            [(ngModel)]="proSvc.selectedCustomer.primaryCellNo">
+          </mat-form-field>
+          <mat-form-field fxFlex="45% ">
+            <span matPrefix>+1 &nbsp;</span>
+            <input type="tel" readonly="{{View}}" matInput placeholder="Secondary Cell "required maxlength="10"
+            name="secondaryCellNo" 
+         
+            [(ngModel)]="proSvc.selectedCustomer.secondaryCellNo">
+          </mat-form-field>
+       
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between" >
+        <mat-form-field fxFlex="45%">
+            <mat-label>Primary Email</mat-label>
+          <input type="email" matInput  readonly="{{View}}"  placeholder="Ex. abc@example.com"
+          name="primaryEmail" 
+    
+          [(ngModel)]="proSvc.selectedCustomer.primaryEmail"  
+          required>
+        </mat-form-field>
+        <mat-form-field fxFlex="45%">
+            <mat-label>Secondary Email</mat-label>
+          <input type="email" matInput readonly="{{View}}"  placeholder="Ex. abc@example.com"
+          name="secondaryEmal" 
+       
+          [(ngModel)]="proSvc.selectedCustomer.secondaryEmail" 
+          required>
+        </mat-form-field>       
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between" >
+        <mat-form-field fxFlex="45%" >
+            <mat-label>Credit Limit</mat-label>
+            <input matInput type="number" readonly="{{View}}"class="example-right-align"
+            name="creditLimit" 
+        
+            [(ngModel)]="proSvc.selectedCustomer.creditLimit" required>
+            <span matPrefix>$&nbsp;</span>
+            <span matSuffix>.00</span>
+          </mat-form-field>
+        <mat-form-field fxFlex="45%">
+            <mat-label>Payment Terms</mat-label>
+            <mat-select name="paymentTermsId" 
+        
+            [(ngModel)]="proSvc.selectedCustomer.paymentTermsId" required [disabled]="View">
+              <mat-option *ngFor="let pt of paymentTerm" [value]=" pt.id" >
+                {{ pt.value}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>       
+      </div>
+      <div  >
+      <mat-form-field fxFlex="100%">
+        <textarea matInput placeholder="Address "required
+        name="address" readonly="{{View}}"
+    
+        [(ngModel)]="proSvc.selectedCustomer.address"></textarea>
+      </mat-form-field>
+    </div>
+    <div fxLayoutAlign="end end" >
+      <button mat-raised-button color="primary" *ngIf="!View && !Edit"  [disabled]="userForm.invalid"
+        style=" margin-top: 20px;" (click)="SaveCustomer();userForm.reset()" >Submit </button>
+        <button mat-raised-button color="primary" *ngIf="!View && !Add"  [disabled]="userForm.invalid"
+        style=" margin-top: 20px;" (click)="SaveCustomer()" >Update </button>
+        <!-- <button *ngIf="Edit" mat-raised-button color="primary" [type]="'submit' " 
+        style=" margin-top: 20px;" (click)="PutCustomer()">Update </button> -->
+      <button mat-raised-button color="accent" [routerLink]="['/procurement/custList']" style="margin-left: 5px; margin-top: 20x;"><strong>Cancel</strong>  </button>
+    </div>
+</form>
+</mat-card> 
+
+</div>
+
+ <!-- <div *ngIf="Edit">
+ 
+<mat-label>
+    <h2><strong>Edit Customer</strong></h2>     
+ </mat-label>
+
+ <mat-card style="margin-top: 20px;">
+
+ <form   >
+     <div fxLayout="row" fxLayoutAlign="space-between" *ngFor="let cust of getcustById">
+         <mat-form-field fxFlex="45%" class="form-group" >
+             <mat-label>Customer Name</mat-label>
+           <input matInput  type="text"  #customerName="ngModel" name="CustomerName"
+           [(ngModel)]="proSvc.selectedCustomer.customerName"
+           [ngModel]="cust.customerName"
+          
+            >
+         
+         </mat-form-field>
+         <mat-form-field fxFlex="45% " >
+            <mat-label>Customer Since</mat-label>
+             <input matInput [matDatepicker]="picker" 
+             #customerSince="ngModel"
+             name="CustomerSince" [(ngModel)]="proSvc.selectedCustomer.customerSince"
+             [ngModel]=" cust.customerSince" />
+             <mat-datepicker-toggle matSuffix [for]="picker"  ></mat-datepicker-toggle>
+             <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>          
+       </div>
+       <div fxLayout="row" fxLayoutAlign="space-between" *ngFor="let cust of getcustById">
+         <mat-form-field fxFlex="45% ">
+            <mat-label>Primary Cell No</mat-label>
+             <span matPrefix>+1 &nbsp;</span>
+             <input type="tel" matInput  #primaryCellNo="ngModel"
+         
+             name="PrimaryCellNo" [(ngModel)]="proSvc.selectedCustomer.primaryCellNo"
+             [ngModel]="cust.primaryCellNo">
+           </mat-form-field>
+           <mat-form-field fxFlex="45% ">
+            <mat-label>Secondary Cell No</mat-label>
+             <span matPrefix>+1 &nbsp;</span>
+             <input type="tel" matInput #secondaryCellNo="ngModel"
+         
+             name="SecondaryCellNo" [(ngModel)]="proSvc.selectedCustomer.secondaryCellNo"
+             [ngModel]="cust.secondaryCellNo">
+           </mat-form-field>
+        
+       </div>
+       <div fxLayout="row" fxLayoutAlign="space-between" *ngFor="let cust of getcustById">
+         <mat-form-field fxFlex="45%">
+             <mat-label>Primary primaryEmail</mat-label>
+           <input type="email" matInput   placeholder="Ex. abc@example.com" #primaryEmail="ngModel"
+        
+           name="PrimaryEmail" [(ngModel)]="proSvc.selectedCustomer.primaryEmail"
+           [ngModel]="cust.primaryEmail"  
+           >
+         </mat-form-field>
+         <mat-form-field fxFlex="45%">
+             <mat-label>Secondary Email</mat-label>
+           <input type="email" matInput   placeholder="Ex. abc@example.com" #secondaryEmail="ngModel"
+         
+           name="SecondaryEmal" [(ngModel)]="proSvc.selectedCustomer.secondaryEmail"
+           [ngModel]="cust.secondaryEmail" 
+           >
+         </mat-form-field>       
+       </div>
+       <div fxLayout="row" fxLayoutAlign="space-between" *ngFor="let cust of getcustById">
+         <mat-form-field fxFlex="45%" >
+             
+             <input matInput type="number" #creditLimit="ngModel"
+            
+             name="CreditLimit" [(ngModel)]="proSvc.selectedCustomer.creditLimit"
+             [ngModel]="cust.creditLimit" >
+             <span matPrefix>$&nbsp;</span>
+             <span matSuffix>.00</span>
+           </mat-form-field>
+         <mat-form-field fxFlex="45%">
+             <mat-label> Payment Term</mat-label>
+             <mat-select  name="PaymentTermsId"  [(ngModel)]="proSvc.selectedCustomer.paymentTermsId" 
+             [ngModel]=" cust.paymentTermsId" >
+               <mat-option *ngFor="let pt of paymentTerm" [value]=" pt.id" >
+                 
+                 {{ pt.value}}
+               </mat-option>
+             </mat-select>
+         </mat-form-field>       
+       </div>
+       <div *ngFor="let cust of getcustById">
+       <mat-form-field fxFlex="100%">
+        <mat-label>Address</mat-label>
+         <textarea matInput 
+         #address="ngModel"
+         name="Address" [(ngModel)]="proSvc.selectedCustomer.address"
+         [ngModel]="cust.address"></textarea>
+       </mat-form-field>
+     </div>
+ </form>
+ </mat-card> 
+ <div fxLayoutAlign="end end">
+   <button mat-raised-button color="primary" [type]="'submit' " (click)="PutCustomer()"
+     style=" margin-top: 20px;" >Update </button>
+   <button mat-raised-button color="accent" [routerLink]="['/procurement/custList']"  style="margin-left: 5px;margin-right: 10px; margin-top: 20x;"><strong>Go Back to List</strong>  </button>
+ </div>
+ </div> -->

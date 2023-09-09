@@ -1,0 +1,149 @@
+<mat-toolbar>
+  <button mat-icon-button routerLink="/todo/list">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <mat-checkbox
+    style="margin-left: 16px; font-size: 14px;"
+    [checked]="todo?.done"
+    (change)="todo.done = !todo.done"
+  >
+    <span>
+      {{ todo?.done ? "Mark as undone" : "Mark as done" }}
+    </span>
+  </mat-checkbox>
+
+  <div fxLayout="row" fxFlex="1 1 0%" fxLayoutAlign="end center">
+    <button
+      mat-icon-button
+      (click)="todo.read = !todo.read"
+      matTooltip="{{ todo?.read ? 'Mark as unread' : 'Mark as read' }}"
+    >
+      <mat-icon>{{ todo?.read ? "drafts" : "markunread" }}</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      (click)="todo.important = !todo.important"
+      matTooltip="{{
+        todo?.important ? 'Mark as unimportant' : 'Mark as important'
+      }}"
+    >
+      <mat-icon
+        [ngClass]="{
+          'fill-color-warn': todo?.important
+        }"
+        >{{ todo?.important ? "error" : "error_outline" }}</mat-icon
+      >
+    </button>
+    <button
+      mat-icon-button
+      matTooltip="{{ todo?.starred ? 'Remove star' : 'Mark star' }}"
+      (click)="todo.starred = !todo.starred"
+    >
+      <mat-icon
+        [ngClass]="{
+          'fill-color-accent': todo?.starred
+        }"
+        >{{ todo?.starred ? "star" : "star_outline" }}</mat-icon
+      >
+    </button>
+
+    <!-- drop down menu for tag -->
+    <button
+      mat-icon-button
+      matTooltip="Manage tags"
+      (click)="openTagManaginDialogue()"
+    >
+      <mat-icon>library_add</mat-icon>
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Add tags">
+      <mat-icon>label</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [xPosition]="'before'">
+      <button
+        style="text-transform: capitalize;"
+        mat-menu-item
+        *ngFor="let tag of tagList"
+        (click)="updateTodoTag(tag.id)"
+      >
+        {{ tag.name }}
+      </button>
+    </mat-menu>
+
+    <button mat-icon-button matTooltip="Delete" (click)="deleteTodo()">
+      <mat-icon>delete_outline</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<div style="margin: 20px 0px 0px 16px;">
+  <mat-chip-list #chipList>
+    <div *ngFor="let tagId of todo?.tag">
+      <mat-chip
+        fxLayout="row"
+        *ngIf="tagMap.get(tagId)"
+        fxLayoutAlign="center center"
+        [selectable]="true"
+        [removable]="true"
+        (removed)="removeTagFromTodo(tagId)"
+      >
+        <span>{{ tagMap.get(tagId) }}</span>
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </div>
+  </mat-chip-list>
+</div>
+
+<!-- input fields for title and notes -->
+<form
+  *ngIf="todoForm"
+  [formGroup]="todoForm"
+  fxLayout="column"
+  fxLayoutGap="8px"
+  style="padding: 0px 16px;margin-top: 20px;"
+  (ngSubmit)="saveTodo()"
+>
+  <mat-form-field>
+    <input formControlName="title" matInput placeholder="Title" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea
+      formControlName="note"
+      matInput
+      placeholder="Put your notes"
+      matTextareaAutosize
+      required
+    ></textarea>
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px">
+    <mat-form-field>
+      <input
+        formControlName="startDate"
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Start Date"
+        required
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        formControlName="dueDate"
+        matInput
+        [matDatepicker]="picker2"
+        placeholder="Due Date"
+        required
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+    <button type="button" mat-button routerLink="/todo/list">Cancel</button>
+    <button color="primary" mat-raised-button>Save</button>
+  </div>
+</form>

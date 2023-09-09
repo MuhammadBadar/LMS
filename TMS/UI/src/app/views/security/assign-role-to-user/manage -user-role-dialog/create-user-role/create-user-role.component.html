@@ -1,0 +1,93 @@
+<div class="event-dialog-wrapper">
+  <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color: rgb(43, 3, 25);">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span *ngIf="Add" class="title dialog-title" style="color:white;"><strong>{{dialogTitle}}</strong></span>
+      <span *ngIf="del" class="title dialog-title" style="color:white;"><strong>Delete UserRole</strong></span>  
+      <span *ngIf="Edit" class="title dialog-title" style="color:white;"><strong>Edit UserRole</strong></span>
+      <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-1 m-0">
+
+    <form name="eventForm" #userForm="ngForm"  class="event-form" fxFlex>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column">
+        
+        <div fxFlex="100">
+          <!-- <mat-form-field fxFlex="40%">
+            <mat-label>Lecture</mat-label>
+            <mat-select   name="LectureURL" #lectureURL="ngModel" required  [(ngModel)]="lmssvc.selectedStudentLecture.lectureId" >
+              <mat-option (click)="Students()"><div style="color:rgb(5, 83, 97)"><strong>---Lectures---</strong></div></mat-option>
+              <mat-option *ngFor="let lec of lecture" [value]=" lec.id" (click)="Search()">{{lec.title}}</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+          <mat-form-field class="full-width">
+            <mat-label>User</mat-label>
+            <mat-select matNativeControl required [disabled]="del"
+            name="UserName" #userName="ngModel" [(ngModel)]="securityService.selectedUserRole.userId" >
+              <mat-option *ngFor="let u of user" [value]="u.id" (click)="Search()">
+                {{u.userName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex="100" *ngIf="Edit || Add">
+          <mat-form-field >
+            <mat-label>Roles</mat-label>
+            <mat-select multiple required name="Name" #name="ngModel" [(ngModel)]="securityService.selectedUserRole.role" >
+              <mat-option *ngFor="let r of role" [value]="r.name">{{r.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>  
+        <div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%; margin-top: 10px;" *ngIf="del" >
+        <table mat-table #table [dataSource]="dataSource" style="width: 100%;">
+      
+          <ng-container matColumnDef="role" id="role" >
+            <th mat-header-cell *matHeaderCellDef style="width: 300px;">Role </th>
+            <td mat-cell *matCellDef="let urole" style="width: 300px;"> {{urole}} </td>
+          </ng-container>
+          <ng-container matColumnDef="action" >
+            <mat-header-cell  *matHeaderCellDef style="margin-top: 20px;" > Action </mat-header-cell>
+            <mat-cell *matCellDef="let row" >
+              <div >
+                <button mat-icon-button mat-sm-button  style="color: rgb(43, 3, 25)" class="mr-1" (click)="Delete(row)"><mat-icon>delete</mat-icon></button>
+            </div>
+            </mat-cell>
+          </ng-container>
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+        </table>
+        </div>
+        <div *ngIf="del && msg"><p><strong> No Role Assigned to this user yet</strong></p></div>
+         
+         </div>
+
+     
+
+      <div mat-dialog-actions class="m-0 p-1" fxLayout="row" fxLayoutAlign="space-between center">
+
+        <button mat-raised-button color="primary" *ngIf=" Add" [disabled]="userForm.invalid" (click)="SaveUserRoles()" style="margin-left: 220px;background-color: rgb(43, 3, 25);color:white;" aria-label="SUBMIT">
+          <strong>
+            Submit
+          </strong>
+        </button>
+        <button mat-raised-button color="primary"  *ngIf=" Edit"[disabled]="userForm.invalid"  style="margin-left: 220px;background-color: rgb(43, 3, 25);color:white;" aria-label="Update">
+          <strong>
+            Update
+          </strong>
+        </button>
+        <button *ngIf="del" mat-raised-button style="background-color: rgb(224, 209, 142);color:rgb(43, 3, 25);margin-left: 310px;" (click)="dialogRef.close()" type="button"
+         aria-label="CANCEL"><strong> Cancel</strong>
+        </button>
+        <button *ngIf="!del" mat-raised-button style="background-color: rgb(224, 209, 142);color:rgb(43, 3, 25)" (click)="dialogRef.close()" type="button"
+        aria-label="CANCEL"><strong> Cancel</strong>
+       </button>
+
+      </div>
+    </form>
+  </div>
+</div>

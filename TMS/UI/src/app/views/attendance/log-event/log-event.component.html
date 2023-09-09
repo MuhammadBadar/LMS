@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div>
+  <h3 style="color: rgb(43, 3, 25);"><strong>Log Event</strong> </h3>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%; margin-top: 30px;">
+  <table mat-table #table [dataSource]="dataSource" matSort style="width: 100%;">
+
+    <ng-container matColumnDef="id" id="id">
+      <th mat-header-cell *matHeaderCellDef style="width: 10%;" mat-sort-header>Sr No </th>
+      <td mat-cell *matCellDef="let data" style="width: 10%;"> {{data.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="userName" id="userName">
+      <th mat-header-cell *matHeaderCellDef style="width: 15%;" mat-sort-header>User Name </th>
+      <td mat-cell *matCellDef="let data" style="width: 15%;"> {{data.userName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="createdOn" id="createdOn">
+      <th mat-header-cell *matHeaderCellDef style="width: 15%;" mat-sort-header>Date </th>
+      <td mat-cell *matCellDef="let data" style="width: 15%;"> {{data.createdOn|date:"dd/MM/yyyy"}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="time" id="time">
+      <th mat-header-cell *matHeaderCellDef style="width: 15%;" mat-sort-header> Time </th>
+      <td mat-cell *matCellDef="let data" style="width: 15%;"> {{data.createdOn|date:"HH:mm:ss"}} </td>
+    </ng-container>
+    <ng-container matColumnDef="action" id="action">
+      <th mat-header-cell *matHeaderCellDef style="width: 15%;" mat-sort-header>Action </th>
+      <td mat-cell *matCellDef="let data" style="width: 15%;"> {{data.action}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="message" id="message">
+      <th mat-header-cell *matHeaderCellDef style="width: 50%;" mat-sort-header> Message </th>
+      <td mat-cell *matCellDef="let data" style="width: 50%;"> {{data.message}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+</div>

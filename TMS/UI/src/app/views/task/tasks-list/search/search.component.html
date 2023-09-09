@@ -1,0 +1,63 @@
+<mat-card style=" overflow-y: scroll; " >
+    <mat-label>
+      <h3>Search Task</h3>
+    </mat-label>
+    <form >
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="45%">
+          <input matInput [(ngModel)]="task.title"  placeholder="Title" maxlength="100" name="title">
+        </mat-form-field>
+        <mat-form-field fxFlex="45%">
+          <input matInput [(ngModel)]="task.id"  placeholder="Task No"  name="id">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="45%" fxFill>
+          <mat-label>User</mat-label>
+          
+          <mat-select [(ngModel)]="task.userId" name="User" #userId="ngModel"  >
+            <mat-option></mat-option>
+            <mat-option *ngFor="let us of User" [value]=" us.id"  >
+              {{ us.userName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="45% ">
+          <input type="number" 
+         
+           [(ngModel)]="task.sp" name="SP" matInput  placeholder=" SP" />
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+  
+        <mat-form-field fxFlex="45%" fxFill>
+          <mat-label>Status</mat-label>
+          <mat-select [(ngModel)]="task.statusId" name="TaskStatus" #statusId="ngModel">
+            <mat-option></mat-option>
+            <mat-option *ngFor="let st of Status" [value]=" st.id" >
+              {{ st.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="45%" fxFill>
+          <mat-label>Priority</mat-label>
+          <mat-select [(ngModel)]="task.priorityId" name="TaskPriority" #priorityId="ngModel"   >
+              <mat-option></mat-option>
+            <mat-option *ngFor="let mod of Priority" [value]="mod.id" >
+              {{mod.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+       
+      </div>
+      <div fxLayoutAlign="end end">
+        <button mat-raised-button color="primary" [type]="'submit' "  (click)="SearchTask()"
+          style=" margin-top: 20px;">Search </button>
+         
+          <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="dialogref.close()" type="button"
+          aria-label="CANCEL"><strong> Cancel</strong>
+         </button>
+      </div>
+     
+    </form>
+  </mat-card>

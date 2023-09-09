@@ -1,0 +1,50 @@
+<h3  style="margin-top: 30px;"><strong>Comments List</strong></h3>
+<div style="margin-top: 30px;text-align: right;margin-right: 10px;">
+  <button mat-raised-button class="mb-05" color="accent" (click)="addEvent()">Create</button>
+</div>
+  <div fxLayout="row">
+    <table style="width: 100%;">
+   
+  
+        <tbody>
+          <tr style="background-color:cadetblue; height: 35px;">
+            <td style="width: 10%;  text-align:center;"><strong> SrNo </strong>
+            <td style="width: 10%; text-align:center;"><strong> Task Id </strong></td>
+            <td style="width: 10%;text-align:center;"><strong>Time</strong> </td>
+            <td style="width: 10%;text-align:center;"><strong> Comment </strong></td>
+           </tr>
+           <tr style="background-color:rgb(168, 173, 173);height: 35px;">
+             <td style="width: 10%;  text-align:center;">1 </td>
+             <td style="width: 10%; text-align:center;"> 1 </td>
+             <td style="width: 10%;text-align:center;">Time</td>
+             <td style="width: 10%;text-align:center;">ABC </td>
+            </tr>
+            <tr style="background-color:rgb(168, 173, 173);height: 35px;">
+              <td style="width: 10%;  text-align:center;">2 </td>
+              <td style="width: 10%; text-align:center;"> 1 </td>
+              <td style="width: 10%;text-align:center;">Time</td>
+              <td style="width: 10%;text-align:center;">Comment A</td>
+             </tr>
+             <tr style="background-color:rgb(168, 173, 173);height: 35px;">
+               <td style="width: 10%;  text-align:center;">3 </td>
+               <td style="width: 10%; text-align:center;"> 1 </td>
+               <td style="width: 10%;text-align:center;">Time</td>
+               <td style="width: 10%;text-align:center;">Comment B</td>
+              </tr>
+            <!-- <tr *ngFor="let tsk of tasks" style="background-color:rgb(168, 173, 173);">
+                <td style="width: 10%;text-align:center;"> {{tsk.id}} </td>
+                <td style="width: 10%;text-align:center;"> {{tsk.title}}</td>
+                <td style="width: 10%; text-align:center;"> {{tsk.moduleId}} </td>
+                <td style="width: 10%; text-align:center;"> {{tsk.userId}} </td>
+                <td style="width: 10%; text-align:center;"> {{tsk.sp}} </td>
+                <td style="width: 10%; text-align:center;"> {{tsk.description}} </td>
+                <td style="width: 10%; text-align:center;"> {{tsk.isActive}} </td>
+                <td style="width: 10%;text-align:center;">
+                  <button  mat-raised-button color="accent" (click)="viewComments()">View Comments</button>
+              </td> <td style="width: 10%;text-align:center;">
+                <button mat-mini-fab color="accent" (click)="editTask()" ><mat-icon>edit</mat-icon></button>
+            </td>
+            </tr> -->
+        </tbody>
+    </table>
+  </div>

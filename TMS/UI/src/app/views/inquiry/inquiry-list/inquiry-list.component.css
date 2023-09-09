@@ -1,0 +1,38 @@
+table {
+    width: 100%;
+  }
+  .mat-header-cell,  .mat-cell {
+    min-width: 100px;
+  }
+  td.mat-column-star {
+    min-width: 100px;
+    padding-right: 8px;
+  }
+  
+  th.mat-column-position, td.mat-column-position {
+    padding-left: 8px;
+  }
+  .Fields{
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+    gap: 10px;
+  }
+  table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }

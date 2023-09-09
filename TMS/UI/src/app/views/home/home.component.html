@@ -1,0 +1,47 @@
+<div class="scrollable" [perfectScrollbar]>
+  <section class="home-section section-intro text-center">
+    <div class="container">
+        <span class="egret">Egret</span>
+        <img src="assets/images/5-star.png" alt="">
+        <h1>Angular 9+ Material Design Admin Template</h1>
+        <p>Quick start your project within <strong>few minutes</strong>. 
+          Seed project is included.</p>
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center" class="mb-48">
+          <button mat-raised-button mat-lg-button (click)="goToDashboard(mainVersion)">MAIN DASHBOARD</button>
+          <span fxFlex="8px"></span>
+          <a href="https://themeforest.net/item/egret-angular-4-material-design-admin-template/20161805?ref=mh_rafi" target="_blank">
+            <button mat-raised-button mat-lg-button class="pink pink-500-fg">BUY EGRET</button>
+          </a>
+        </div>
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center" class="pt-48">
+          <a href="http://demos.ui-lib.com/egret-doc/" mat-button color="accent" target="_blank">Documentation</a>
+          <a href="https://ui-lib.com/github-access/" mat-button color="warn" target="_blank">GitHub Access</a>
+        </div>
+    </div>
+  </section>
+  <section id="demos" class="home-section section-demos">
+    <div class="container">
+      <div class="text-center">
+          <h2 class="text-20 text-uppercase mt-0 mb-1">Limitless layout variaitons</h2>
+      </div>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column">
+        <div class="demo-box-wrap" fxFlex="33.33" *ngFor="let v of versions"> 
+          <div class="text-center demo-box" [matTooltip]="v.name" matTooltipPosition="above">
+            <div (click)="goToDashboard(v)" class="p-0 screenshot">
+              <img [src]="v.photo">
+            </div>
+            <!-- <div class="caption">
+              <h3>{{v.name}}</h3>
+              <button mat-raised-button color="primary" (click)="goToDashboard(v)">View Demo</button>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <p>Configure your own layout using customizer.</p>
+        <button mat-fab color="primary" (click)="goToMainDash()"><mat-icon>settings</mat-icon></button>
+      </div>
+    </div>
+  </section>
+</div>

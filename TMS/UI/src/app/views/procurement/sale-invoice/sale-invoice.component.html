@@ -1,0 +1,46 @@
+<mat-label>
+    <h2><strong>Sale Invoice</strong></h2>     
+ </mat-label>
+ <mat-card style="margin-top: 40px;">
+ <form name="eventForm"  onsubmit="return false;"class="event-form" fxFlex >
+    <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="45%">
+            <mat-label>Customer</mat-label>
+            <mat-select>
+                <mat-option value="a">A</mat-option>
+                <mat-option value="b">B</mat-option>
+                <mat-option value="c"> C</mat-option>
+                <mat-option value="d">D</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="45% " >
+            <input matInput [matDatepicker]="picker" required placeholder="Date" />
+            <mat-datepicker-toggle matSuffix [for]="picker"  ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+           </mat-form-field> 
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="45%">
+            <mat-label>Balance</mat-label>
+            <input  matInput  
+              required>
+          </mat-form-field>
+          <mat-form-field fxFlex="45%" >
+            <mat-label>Amount</mat-label>
+            <input matInput type="number" class="example-right-align">
+            <span matSuffix>.00</span>
+          </mat-form-field>
+    </div>
+    <div fxLayout="row">
+        <mat-form-field class="full-width mr-1">
+            <textarea matInput placeholder="Comment "></textarea>
+          </mat-form-field>
+          <button mat-fab color="primary" type="submit" ><mat-icon>send</mat-icon></button>
+    </div>
+    </form>
+</mat-card>
+<div fxLayoutAlign="end end">
+    <button mat-raised-button color="primary" [type]="'submit' " 
+      style=" margin-top: 20px;">Submit </button>
+    <button mat-raised-button color="accent"  style="margin-left: 5px; margin-top: 20x;"><strong>Cancel</strong>  </button>
+  </div>

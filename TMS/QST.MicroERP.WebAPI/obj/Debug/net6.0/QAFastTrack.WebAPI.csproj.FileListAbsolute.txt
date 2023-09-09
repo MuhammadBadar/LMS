@@ -1,0 +1,305 @@
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\appsettings.json
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.exe
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.deps.json
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.runtimeconfig.json
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.pdb
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Dapper.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Humanizer.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\MySql.Data.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Ubiety.Dns.Core.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\ZstdNet.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\MySqlConnector.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Core.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.DAL.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Service.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Core.pdb
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Service.pdb
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.DAL.pdb
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.csproj.AssemblyReference.cache
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.AssemblyInfoInputs.cache
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.AssemblyInfo.cs
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.csproj.CoreCompileInputs.cache
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\scopedcss\bundle\QAFastTrack.WebAPI.styles.css
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.csproj.CopyComplete
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\refint\QAFastTrack.WebAPI.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.pdb
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.genruntimeconfig.cache
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\ref\QAFastTrack.WebAPI.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\appsettings.Development.json
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\appsettings.json
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.exe
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.deps.json
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.runtimeconfig.json
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.pdb
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Dapper.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Google.Protobuf.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Humanizer.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.OpenApi.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\MySql.Data.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Ubiety.Dns.Core.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\ZstdNet.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\MySqlConnector.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Drawing.Common.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Security.Permissions.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Windows.Extensions.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Core.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.DAL.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Service.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Core.pdb
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Service.pdb
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.DAL.pdb
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.csproj.AssemblyReference.cache
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.AssemblyInfoInputs.cache
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.AssemblyInfo.cs
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.csproj.CoreCompileInputs.cache
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.MvcApplicationPartsAssemblyInfo.cache
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\staticwebassets.build.json
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\staticwebassets.development.json
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\scopedcss\bundle\QAFastTrack.WebAPI.styles.css
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.csproj.CopyComplete
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\refint\QAFastTrack.WebAPI.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.pdb
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.genruntimeconfig.cache
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\ref\QAFastTrack.WebAPI.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.staticwebassets.runtime.json
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\WhatsAppApi.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\RestSharp.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\appsettings.Development.json
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\appsettings.json
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.staticwebassets.runtime.json
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.exe
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.deps.json
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.runtimeconfig.json
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.pdb
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Dapper.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Google.Protobuf.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Humanizer.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\MySql.Data.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Ubiety.Dns.Core.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\ZstdNet.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\MySqlConnector.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\RestSharp.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\WhatsAppApi.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Core.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.DAL.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Service.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Core.pdb
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Service.pdb
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.DAL.pdb
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.csproj.AssemblyReference.cache
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.AssemblyInfoInputs.cache
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.AssemblyInfo.cs
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.csproj.CoreCompileInputs.cache
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\staticwebassets.build.json
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\staticwebassets.development.json
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\scopedcss\bundle\QAFastTrack.WebAPI.styles.css
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.csproj.CopyComplete
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\refint\QAFastTrack.WebAPI.dll
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.pdb
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.genruntimeconfig.cache
+C:\QST\Projects\ERP_Latest\QAFastTrack (1)\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.WebAPI\obj\Debug\net6.0\ref\QAFastTrack.WebAPI.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\appsettings.Development.json
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\appsettings.json
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.staticwebassets.runtime.json
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.exe
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.deps.json
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.runtimeconfig.json
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.WebAPI.pdb
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Dapper.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Google.Protobuf.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Humanizer.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\MySql.Data.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Ubiety.Dns.Core.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\ZstdNet.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\MySqlConnector.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\RestSharp.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\WhatsAppApi.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Core.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.DAL.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Service.dll
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Core.pdb
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.Service.pdb
+C:\QST\microerp\QAFastTrack.WebAPI\bin\Debug\net6.0\QAFastTrack.DAL.pdb
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.csproj.AssemblyReference.cache
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.AssemblyInfoInputs.cache
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.AssemblyInfo.cs
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.csproj.CoreCompileInputs.cache
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\staticwebassets.build.json
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\staticwebassets.development.json
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\scopedcss\bundle\QAFastTrack.WebAPI.styles.css
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.csproj.CopyComplete
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.dll
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\refint\QAFastTrack.WebAPI.dll
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.pdb
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\QAFastTrack.WebAPI.genruntimeconfig.cache
+C:\QST\microerp\QAFastTrack.WebAPI\obj\Debug\net6.0\ref\QAFastTrack.WebAPI.dll

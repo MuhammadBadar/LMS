@@ -1,0 +1,173 @@
+<div class="event-dialog-wrapper">
+  <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color: rgb(43, 3, 25);">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span *ngIf="Add" class="title dialog-title" style="color:white;"><strong>{{dialogTitle}}</strong></span>
+      <span *ngIf="Edit" class="title dialog-title" style="color:white;"><strong>Edit Permission</strong></span>
+      <!-- <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button> -->
+    </div>
+  </mat-toolbar>
+
+  <mat-card style="margin-top: 20px;">
+    <form name="eventForm" #perForm="ngForm" fxFlex>
+      <div fxLayout="column">
+
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
+          <mat-form-field fxFlex="45% ">
+            <mat-label>User</mat-label>
+
+            <mat-select matNativeControl name="UserName" #userName="ngModel"
+              [(ngModel)]="securityService.selectedpermission.userId">
+              <mat-option value="select">--Please select--</mat-option>
+              <mat-option *ngFor="let u of user" [value]="u.id" (click)="SearchPermsByUser()">
+                {{u.userName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45% ">
+            <mat-label>Roles</mat-label>
+
+            <mat-select name="RoleId" #roleId="ngModel" [(ngModel)]="securityService.selectedpermission.roleId">
+              <mat-option value="select">--Please select--</mat-option>
+              <mat-option *ngFor="let r of role" [value]="r.id" (click)="SearchPermsByRole()">
+                {{r.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-card-content>
+            <mat-toolbar matDialogTitle class="mat-primary m-0"
+              style="background-color: rgb(43, 3, 25);color:white; height:45px;width:100%">
+              Features</mat-toolbar>
+            <table mat-table #table [dataSource]="dataSource" style="width: 100%;" class="mat-elevation-z8">
+              <div *ngIf="Add">
+                <ng-container matColumnDef="feature" id="feature">
+                  <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Feature </th>
+                  <td mat-cell *matCellDef="let perm" style="width: 20%;"> {{perm.name}} </td>
+                </ng-container>
+                <ng-container matColumnDef="deny">
+                  <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Deny </th>
+                  <td mat-cell *matCellDef="let perm" style="width: 20%;">
+                    <mat-radio-group [name]="perm.id">
+                      <mat-radio-button (change)="radioChange($event,perm.id)" [checked]="Add" [value]=" 1000001">
+                      </mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="readonly">
+                  <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Read Only </th>
+                  <td mat-cell *matCellDef="let perm" style="width: 20%;">
+                    <mat-radio-group [name]="perm.id">
+                      <mat-radio-button (change)="radioChange($event,perm.id)" [value]=" 1000002"></mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="fullaccess">
+                  <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Full Access </th>
+                  <td mat-cell *matCellDef="let perm" style="width: 20%;">
+                    <mat-radio-group [name]="perm.id">
+
+                      <mat-radio-button (change)="radioChange($event,perm.id)" [value]=" 1000003"></mat-radio-button>
+
+                    </mat-radio-group>
+                  </td>
+                </ng-container>
+              </div>
+              <div *ngIf="Edit">
+                <ng-container matColumnDef="feature" id="feature">
+                  <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Feature </th>
+                  <td mat-cell *matCellDef="let perm" style="width: 20%;"> {{perm.feature}} </td>
+                </ng-container>
+                <ng-container matColumnDef="deny">
+                  <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Deny </th>
+                  <td mat-cell *matCellDef="let perm" style="width: 20%;">
+                    <mat-radio-group [value]="perm.permissionValue">
+                      <mat-radio-button (change)="radioChange($event,perm.id)" [value]=" 1000001"></mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="readonly">
+                  <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Read Only </th>
+                  <td mat-cell *matCellDef="let perm" style="width: 20%;">
+                    <mat-radio-group [value]="perm.permissionValue">
+                      <mat-radio-button (change)="radioChange($event,perm.id)" [value]=" 1000002"></mat-radio-button>
+                    </mat-radio-group>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="fullaccess">
+                  <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Full Access </th>
+                  <td mat-cell *matCellDef="let perm" style="width: 20%;">
+                    <mat-radio-group [value]="perm.permissionValue">
+
+                      <mat-radio-button (change)="radioChange($event,perm.id)" [value]=" 1000003"></mat-radio-button>
+
+                    </mat-radio-group>
+                  </td>
+                </ng-container>
+              </div>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </mat-card-content>
+        </div>
+        <!-- <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
+         
+            <mat-form-field fxFlex="45% ">
+              <mat-label>Feature</mat-label>
+              <mat-select name="Name" #name="ngModel" required
+                [(ngModel)]="securityService.selectedpermission.featureId">
+                <mat-option *ngFor="let fea of feature" [value]="fea.id">{{fea.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          
+          <div fxFlex="45% " style="margin-top:10px">
+            <mat-radio-group aria-label="Select an option" 
+            name="permissionValue"
+               [(ngModel)]="securityService.selectedpermission.permissionValue">
+               <mat-label>Access:</mat-label>
+              <mat-radio-button *ngFor="let pr of permissions" [value]=" pr.id" style="margin-left: 5px;">
+                {{pr.value}}</mat-radio-button>
+             
+            </mat-radio-group>
+          </div>
+        </div>  -->
+
+        <div mat-dialog-actions class="m-0 p-1" fxLayout="row" fxLayoutAlign="space-between center">
+         
+          <button mat-raised-button color="primary" *ngIf=" !Edit" [disabled]="perForm.invalid" (click)="fun()"
+            style="margin-left: 860px;background-color: rgb(43, 3, 25);" aria-label="SUBMIT">
+            <strong>
+              Submit
+            </strong>
+          </button>
+          <button mat-raised-button color="primary" *ngIf=" !Add" [disabled]="perForm.invalid" (click)="fun()"
+            style="margin-left: 860px;background-color: rgb(43, 3, 25);" aria-label="Update">
+            <strong>
+              Update
+            </strong>
+          </button>
+          <button mat-raised-button style="background-color: rgb(224, 209, 142);color:rgb(43, 3, 25)" (click)="Reset()"
+            type="button" aria-label="CANCEL"><strong>
+              Cancel</strong>
+          </button>
+
+        </div>
+      </div>
+      <button-loading   color="primary"  style="color:bisque"
+      [loading]="isLoading" style="margin-left: 470px;"
+       ></button-loading
+     >
+      <!-- <div *ngIf="AddMsg"
+        style="height:40px;margin-left:300px;background-color: rgb(224, 209, 142);color:rgb(43, 3, 25);width: 20%;">
+        <p style="text-align: center;padding-top: 10px;"><strong>Submitting Please Wait...</strong> </p>
+      </div>
+      <div *ngIf="EditMsg"
+        style="height:40px;margin-left:300px;background-color: rgb(224, 209, 142);color:rgb(43, 3, 25);width: 20%;">
+        <p style="text-align: center;padding-top: 10px;"><strong>Updating Please Wait...</strong></p>
+      </div> -->
+    </form>
+  </mat-card>
+
+</div>

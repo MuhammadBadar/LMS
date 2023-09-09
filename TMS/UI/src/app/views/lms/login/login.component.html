@@ -1,0 +1,37 @@
+<div>
+  <div class="session-form-hold" >
+    <mat-progress-bar mode="determinate" class="session-progress"></mat-progress-bar>
+    <mat-toolbar matDialogTitle class="mat-primary m-0" style="background-color: rgb(10, 9, 70);">
+    </mat-toolbar>
+    <mat-card>
+      <mat-card-content>
+        <div class="text-center pt-8 pb-16" style="margin-top: 10px;">
+          <mat-icon style="  transform: scale(4); color: rgb(2, 2, 66);">person_outline</mat-icon>
+        </div>
+        <div class="text-center pt-8 pb-16">
+          <p class="text-muted m-0" style="font-size: large;">Sign in </p>
+        </div>
+        <mat-form-field class="full-width" style="margin-top: 20px;">
+          <input matInput name="UserName" #userName="ngModel" [(ngModel)]="lmssvc.selectedStudentLecture.userName"
+            placeholder="Username">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" #password="ngModel"
+            [(ngModel)]="lmssvc.selectedStudentLecture.password" name="Password">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-hint>Enter your password</mat-hint>
+        </mat-form-field>
+        <button mat-raised-button class="mat-primary full-width mb-1" (click)="Login()" routerLinkActive="active"
+          style="margin-top: 20px;">Sign in
+        </button>
+        <mat-divider></mat-divider>
+        <div fxLayout="row" fxLayoutAlign="space-around">
+          <div style="margin-top: 30px;">
+            <p>Not Registered Yet?</p>
+          </div>
+          <div style="margin-top: 30px;"><a [routerLink]="['/lms/student']"><strong>Register Now</strong> </a></div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div> 
+</div>

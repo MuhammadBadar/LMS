@@ -1,0 +1,59 @@
+<h3><strong>Invoice Payable</strong> </h3>
+<mat-card>
+    <form [formGroup]="basicForm" (ngSubmit)="onSubmit()">
+    <div fxLayout="row"fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="48% " >
+            <input matInput required placeholder=" PO No" formControlName="po"/>
+          </mat-form-field>
+         
+          <mat-form-field fxFlex="48% " >
+          <input matInput [matDatepicker]="picker" required placeholder=" PO Date" formControlName="podate" />
+          <mat-datepicker-toggle matSuffix [for]="picker"  ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+         </mat-form-field>
+    </div>
+    <div fxLayout="row"fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="48% " >
+            <input matInput required placeholder=" Supplier Name" formControlName="name" />
+          </mat-form-field>
+          <mat-form-field fxFlex="48% " >
+            <input type="number" matInput required placeholder=" Amount" formControlName="amount"/>
+          </mat-form-field>
+    </div>
+    <div fxLayout="row"fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="48% " >
+            <input matInput [matDatepicker]="picke" required placeholder=" Due Date" formControlName="duedate"/>
+            <mat-datepicker-toggle matSuffix [for]="picke"  ></mat-datepicker-toggle>
+            <mat-datepicker #picke></mat-datepicker>
+           </mat-form-field>
+           <mat-form-field fxFlex="48% " >
+            <input type="number" matInput required placeholder=" Paid" formControlName="paid" />
+          </mat-form-field>
+    </div>
+    <div fxLayout="row"fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="48% " >
+            <input type="number" matInput required placeholder=" Remaining" formControlName="remaining" />
+          </mat-form-field>
+          <mat-form-field fxFlex="48% " >
+            <input type="number" matInput required placeholder=" Due" formControlName="due" />
+          </mat-form-field>
+    </div>
+    <div fxLayout="row"fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="48% " >
+            <input type="number" matInput required placeholder=" Days Over Due" formControlName="daysoverdue"/>
+          </mat-form-field>
+          <mat-form-field fxFlex="48" fxFill>
+            <mat-label>Aged</mat-label>
+            <mat-select formControlName="aged">
+              <mat-option *ngFor="let Ageds of Aged" [value]=" Ageds.value"  >
+                {{ Ageds.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> 
+    </div>
+    <div fxLayoutAlign="end end">
+    <button mat-raised-button color="primary" [type]="'submit'">Submit </button>
+    <button mat-raised-button color="accent" style="margin-left: 5px;"> Cancel </button>
+  </div>
+    </form>
+</mat-card>

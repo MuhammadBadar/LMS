@@ -1,0 +1,86 @@
+<app-header></app-header>
+<h3>LMS / Registered Student List</h3>
+<div style="margin-top: 30px;text-align: right;margin-right: 10px;">
+  <button style="color: white;" mat-raised-button class="mb-05" color="primary" [routerLink]="['/lms/student']">Register
+    Student</button>
+</div>
+<div class="ml-05 mr-05 mt-05 pb-1">
+  <div class="mat-elevation-z8">
+  </div>
+</div>
+<div fxLayout="row">
+</div>
+<div class="example-table-container" style=" overflow-x: scroll; ">
+  <table class="example-table" mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" matSort
+    matSortActive="created" matSortDisableClear matSortDirection="desc">
+    <ng-container matColumnDef="studentName" id="studentName">
+      <th mat-header-cell *matHeaderCellDef>Student Name </th>
+      <td mat-cell *matCellDef="let stdlec"> {{stdlec.studentName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email" id="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let stdlec"> {{stdlec.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cnic" id="cnic">
+      <th mat-header-cell *matHeaderCellDef> CNIC </th>
+      <td mat-cell *matCellDef="let stdlec"> {{stdlec.cnic}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cellNo" id="cellNo">
+      <th mat-header-cell *matHeaderCellDef> Cell No </th>
+      <td mat-cell *matCellDef="let stdlec">{{stdlec.cellNo}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="whatsApp" id="whatsApp">
+      <th mat-header-cell *matHeaderCellDef>Whats App </th>
+      <td mat-cell *matCellDef="let stdlec"> {{stdlec.whatsApp}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="guardianName" id="guardianName">
+      <th mat-header-cell *matHeaderCellDef> Guardian Name </th>
+      <td mat-cell *matCellDef="let stdlec"> {{stdlec.guardianName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="guardianRelation" id="guardianRelation">
+      <th mat-header-cell *matHeaderCellDef> Guardian Relation </th>
+      <td mat-cell *matCellDef="let stdlec"> {{stdlec.guardianRelation}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="guardianCell" id="guardianCell">
+      <th mat-header-cell *matHeaderCellDef> Guardian Cell No</th>
+      <td mat-cell *matCellDef="let stdlec">{{stdlec.guardianCell}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="guardianWhatsApp" id="guardianWhatsApp">
+      <th mat-header-cell *matHeaderCellDef> Guardian WhatsApp No</th>
+      <td mat-cell *matCellDef="let stdlec"> {{stdlec.guardianWhatsApp}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="guardianEmail" id="guardianEmail">
+      <th mat-header-cell *matHeaderCellDef> Guardian Email </th>
+      <td mat-cell *matCellDef="let stdlec"> {{stdlec.guardianEmail}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="userName" id="userName">
+      <th mat-header-cell *matHeaderCellDef> User Name </th>
+      <td mat-cell *matCellDef="let stdlec">{{stdlec.userName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions" stickyEnd>
+      <th *matHeaderCellDef> Actions </th>
+      <td *matCellDef="let row">
+        <button mat-icon-button mat-sm-button (click)="EditStudent(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button mat-sm-button color="warn" (click)="DeleteStudent(row.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

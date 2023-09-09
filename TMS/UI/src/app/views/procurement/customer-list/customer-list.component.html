@@ -1,0 +1,71 @@
+<mat-label>
+    <h2>
+        <strong>Customers</strong>
+    </h2>
+</mat-label>
+<button  mat-raised-button color="primary" style="margin-top: 20px;margin-left: 1000px;" [routerLink]="['/procurement/mngCust']">Create New</button>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin-top: 20px;">
+  <ng-container matColumnDef="Id">
+    <th mat-header-cell *matHeaderCellDef> Sr No </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Cells">
+      <th mat-header-cell *matHeaderCellDef > Cells </th>
+      <td mat-cell *matCellDef="let element" >
+          <div fxLayout="column">
+          <div>{{element.primaryCellNo}}</div>
+          <div>{{element.secondaryCellNo}}</div>
+        </div>  
+        </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Emails">
+      <th mat-header-cell *matHeaderCellDef > Emails </th>
+      <td mat-cell *matCellDef="let element" > 
+       <div fxLayout="column">
+        <div>{{element.primaryEmail}}</div>
+        <div>{{element.secondaryEmail}}</div>
+      </div>   </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Address" >
+      <th mat-header-cell *matHeaderCellDef > Address </th>
+      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="PaymentTerm" >
+      <th mat-header-cell *matHeaderCellDef > PaymentTerm </th>
+      <td mat-cell *matCellDef="let element"> {{element.paymentTerm}} </td>
+    </ng-container>]
+
+    <ng-container matColumnDef="Creditl" >
+      <th mat-header-cell *matHeaderCellDef > Credit Limit </th>
+      <td mat-cell *matCellDef="let element"> {{element.creditLimit}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Action" >
+        <mat-header-cell  *matHeaderCellDef style="margin-left: 15px;"> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let cust" >
+   
+         <!-- <button fxLayout="column" mat-icon-button mat-sm-button color="primary"   class="mr-1" 
+          [routerLink]="['/procurement/mngCust']"><mat-icon>edit</mat-icon></button>  -->
+        
+            <button  mat-icon-button mat-sm-button color="primary"            
+            (click)="EditCustomer(cust)" matTooltip="Edit" style="cursor: pointer;"
+            ><mat-icon>edit</mat-icon></button>
+           
+          <button mat-icon-button mat-sm-button color="warn" matTooltip="Delete" (click)="DeleteCust(cust.id)"><mat-icon>delete</mat-icon></button>
+          <button mat-icon-button mat-sm-button (click)="ViewCustomer(cust)"style="color: rgb(66, 3, 47);"><strong>View</strong></button>
+ 
+        </mat-cell>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

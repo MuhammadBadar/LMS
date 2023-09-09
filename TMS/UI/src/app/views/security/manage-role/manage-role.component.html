@@ -1,0 +1,48 @@
+<h3 style="color: rgb(6, 6, 68);"><strong>Security / Roles </strong></h3>
+
+<!-- Roles:    -->
+<!-- <select id="role12">
+    <option value="" disabled selected>>select an option</option>
+    <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
+  </select> -->
+<div style="margin-top: 30px;text-align: right;margin-right: 10px;">
+    <button mat-raised-button class="mb-05"  style="background-color: rgb(43, 3, 25);color:white" (click)="addEvent()" ><strong>Create</strong></button>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%; margin-top: 10px;" >
+    <table mat-table #table [dataSource]="dataSource" style="width: 100%;">
+  
+      <ng-container matColumnDef="id" id="id">
+        <th mat-header-cell *matHeaderCellDef style="width: 20%;">Sr No </th>
+        <td mat-cell *matCellDef="let stdlec" style="width: 20%;"> {{stdlec.id}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="role" id="role">
+        <th mat-header-cell *matHeaderCellDef style="width: 20%;">Role </th>
+        <td mat-cell *matCellDef="let stdlec" style="width: 20%;"> {{stdlec.name}} </td>
+      </ng-container>
+  
+      <!-- <ng-container matColumnDef="responsibility" id="responsibility"> 
+        <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Responsibility </th>
+        <td mat-cell *matCellDef="let stdlec" style="width: 20%;"> {{stdlec.responsibility}} </td>
+      </ng-container> -->
+  
+      <!-- <ng-container matColumnDef="isActive" id="isActive"  >
+        <th mat-header-cell *matHeaderCellDef style="width: 20%;"> IsActive </th>
+        <td mat-cell *matCellDef="let stdlec" style="width: 20%;"> {{stdlec.isActive}} </td>
+      </ng-container> -->
+  
+      <ng-container matColumnDef="action" >
+        <mat-header-cell  *matHeaderCellDef > Action </mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+          <div >
+              <button mat-icon-button mat-sm-button style="color: rgb(43, 3, 25)" class="mr-1" (click)="EditRole(row)"><mat-icon>edit</mat-icon></button>
+          </div>
+        </mat-cell>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+    </table>
+  </div>
+  

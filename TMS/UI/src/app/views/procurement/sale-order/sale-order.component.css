@@ -1,0 +1,16 @@
+.example-container {
+    height: 500px;
+    overflow: auto;
+  }
+
+  
+  table {
+    width: 100%;
+  } 
+   /* .mat-cell {
+    max-width: 70px;
+ 
+  } */
+  .mat-footer-cell{
+    font-weight: bold;
+  }
