@@ -1,6 +1,6 @@
 
 
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { SecurityRoutingModule } from './security-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -132,7 +132,8 @@ import { IconModule } from '@coreui/icons-angular';
     DatePipe,
     // { provide: HTTP_INTERCEPTORS, useClass: httpInterceptor, multi: true },
     //{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    AuthorizationCheck, SecurityService]
+    AuthorizationCheck, SecurityService],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 
 export class SecurityModule { }

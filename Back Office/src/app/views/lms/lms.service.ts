@@ -1,3 +1,4 @@
+import { SchVM } from './Models/SchVM';
 import { TopicVM } from './Models/TopicVM';
 import { CourseDetailVM } from './Models/CourseDetailVM';
 import { CourseScheduleVM } from './Models/CourseScheduleVM';
@@ -19,6 +20,7 @@ import {UserattbydateVM} from './Models/UserattbydateVM';
 import { TaskVM } from './Models/TaskVM';
 import { UserTaskbydateVM } from './Models/UsertaskbydateVM';
 import {  ScheduleDayEventsVM, ScheduleVM } from './Models/ScheduleVM';
+
 import { CityStudentVM } from './Models/CityStudentVM';
 import { VocabularyVM } from './Models/VocabularyVM';
 import { PatientVM } from './Models/PatientVM';
@@ -374,6 +376,26 @@ DeletePatient(id:number){
 }
 SearchPatient(value:PatientVM): Observable<PatientVM[]>{
   return this.http.post<PatientVM[]>(Globals.BASE_API_URL + 'Patient/Search' ,value).pipe();
+}
+
+//Sch
+GetSch(): Observable<SchVM[]> {
+  return this.http.get<SchVM[]>(Globals.BASE_API_URL + 'Sch').pipe();
+}
+ GetSchById(id: number): Observable<SchVM[]> {
+  return this.http.get<SchVM[]>(Globals.BASE_API_URL + 'Sch/' + id).pipe()
+}
+SaveSch(value: SchVM) {
+  return this.http.post(Globals.BASE_API_URL + 'Sch', value)
+}
+UpdateSch(value: SchVM) {
+  return this.http.put(Globals.BASE_API_URL + 'Sch', value)
+}
+DeleteSch(id: number) {
+  return this.http.delete(Globals.BASE_API_URL + 'Sch/' + id)
+}
+SearchSch(value: SchVM): Observable<SchVM[]> {
+  return this.http.post<SchVM[]>(Globals.BASE_API_URL + 'Sch/Search', value).pipe();
 }
 // SaveTask(value:TaskVM){
 //   return this.http.post(Globals.BASE_API_URL + 'Task',value);

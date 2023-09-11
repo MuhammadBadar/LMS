@@ -1,3 +1,4 @@
+
 <div class="container-fluid page">
   <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
       <div *ngIf="Add">Manage User Account
@@ -6,20 +7,177 @@
       </div>
   </div>
   <div class="page_content shadow p-3 position-relative">
-    <form #UseraccountForm="ngForm">
-        <!-- <Row> -->
-            <div fxLayout="row" fxLayoutAlign="space-between">
-                <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
-                    <mat-label> User Name</mat-label>
-                 
-                    <input UserName matInput required #userName="ngModel" name="userName" [(ngModel)]="selectedUserAccount.userName" maxlength="200" minlength="3"/>
-                     <mat-error class="form-text text-danger"
-                    *ngIf="UseraccountForm.controls['userName']?.hasError || UseraccountForm.controls['userName']?.errors?.['minlength']">
-                    UserName is required to be at least 3 characters.
-                  </mat-error>            
-                </mat-form-field>
-            </div>
-        <!-- </Row> -->
-    </form>
-  </div>
+      <form #userForm="ngForm">
+      
+        <div fxLayout="row" fxLayoutAlign="space-between">            
+              
+          <mat-form-field appearance="outline" fxFlex="33%" class="form-group">
+            <mat-label>User Name</mat-label>
+            <input
+              matInput
+              class="form-control"
+              placeholder="User Name"
+              [type]="hide ? 'userName' : 'text'"
+              name="userName"
+              [ngClass]="{
+                'is-invalid': userForm.submitted && userName.invalid
+              }"
+              #userName="ngModel"
+              [(ngModel)]="selectedUserAccount.userName"
+              required
+              maxlength="200"
+              minlength="3"
+            />
+            <mat-error
+              class="form-text text-danger"
+              *ngIf="userForm.controls['userName']?.hasError || userForm.controls['userName']?.errors?.['minlength']"
+            >
+              User Name is required to be at least 3 characters.
+                  </mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex="33%" class="form-group">
+            <mat-label>Cell</mat-label>
+            <input
+              matInput
+              class="form-control"
+              placeholder="Cell"
+              
+              name="cell"
+              [ngClass]="{
+                'is-invalid': userForm.submitted && cell.invalid
+              }"
+              #cell="ngModel"
+              [(ngModel)]="selectedUserAccount.cell"
+              required
+              maxlength="200"
+              minlength="3"
+            />
+            <mat-error
+              class="form-text text-danger"
+              *ngIf="userForm.controls['cell']?.hasError || userForm.controls['cell']?.errors?.['minlength']"
+            >
+              Cell is required to be at least 3 characters.
+                  </mat-error
+            >
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline" fxFlex="33%" class="form-group">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              class="form-control"
+              placeholder="Email"
+              
+              name="email"
+              [ngClass]="{
+                'is-invalid': userForm.submitted && email.invalid
+              }"
+              #email="ngModel"
+              [(ngModel)]="selectedUserAccount.email"
+              required
+              maxlength="200"
+              minlength="3"
+            />
+            <mat-error
+              class="form-text text-danger"
+              *ngIf="userForm.controls['email']?.hasError || userForm.controls['email']?.errors?.['minlength']"
+            >
+              Email is required to be at least 3 characters.
+                  </mat-error
+            >
+          </mat-form-field>
+          </div>
+          <br>
+          <div fxLayout="row" fxLayoutAlign="space-between">            
+          <mat-form-field appearance="outline" fxFlex="49%" class="form-group">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              class="form-control"
+              placeholder="Password"
+              [type]="hide ? 'password' : 'text'"
+              name="password"
+              [ngClass]="{
+                'is-invalid': userForm.submitted && password.invalid
+              }"
+              #password="ngModel"
+              [(ngModel)]="selectedUserAccount.password"
+              required
+              maxlength="200"
+              minlength="3"
+            />
+            <mat-error
+              class="form-text text-danger"
+              *ngIf="userForm.controls['password']?.hasError || userForm.controls['password']?.errors?.['minlength']"
+            >
+              Password is required to be at least 3 characters.
+                  </mat-error
+            >
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline" fxFlex="49%" class="form-group">
+            <mat-label>Retype Password</mat-label>
+            <input
+              matInput
+              class="form-control"
+              placeholder="Retype Password"
+              [type]="hide ? 'password' : 'text'"
+              name="retypePassword"
+              [ngClass]="{
+                'is-invalid': userForm.submitted && retypePassword.invalid
+              }"
+              #retypePassword="ngModel"
+              [(ngModel)]="selectedUserAccount.retypePassword"
+              required
+              maxlength="200"
+              minlength="3"
+            />
+            <mat-error
+              class="form-text text-danger"
+              *ngIf="userForm.controls['retypePassword']?.hasError || userForm.controls['retypePassword']?.errors?.['minlength']"
+            >
+              Password is required to be at least 3 characters.
+                  </mat-error
+            >
+          </mat-form-field>
+        
+      </div>
+
+      <div *ngIf="messagebox"
+     style="background-color: rgb(212, 245, 234); color:rgb(218, 17, 17); padding: 15px;margin: 10px;width: 680; text-align: center; justify-content: center;">
+
+     <tbody>
+
+       <tr *ngFor="let msg of messages">
+
+         <td><strong>{{msg.description}}</strong></td>
+       </tr>
+     </tbody>
+   </div>
+     
+      <div fxLayoutAlign="end end">
+                   <c-spinner *ngIf="proccessing" style="height: 50px;width: 50px;color: rgb(3, 71, 102);"></c-spinner> 
+                  <div style="margin-top: 10px;" *ngIf="!proccessing">
+                    <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveUserAccount()">Submit</button>
+ 
+                    <button mat-raised-button *ngIf="EditMode" color="primary" (click)="PutUser()">Update</button>
+                    <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                    (click)="Refresh()">
+                    <mat-icon>autorenew</mat-icon>
+                </button>
+                   </div>
+                   
+     </div>
+     <mat-checkbox
+     name="isActive"
+     [(ngModel)]="selectedUserAccount.isActive"
+     checked
+     >Is Active</mat-checkbox>
+      </form>
+
+</div>
 </div>

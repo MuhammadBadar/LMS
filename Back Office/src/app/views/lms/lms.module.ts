@@ -1,3 +1,4 @@
+import { ManageUseraccountComponent } from './../security/manage-useraccount/manage-useraccount.component';
 import { ManageCoursescheduleComponent } from './Schedule/manage-courseschedule/manage-courseschedule.component';
 import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -66,6 +67,7 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 // import { MatNativeDateModule } from '@matheo/datepicker/core';
 import { LMSRoutingModule } from './lms-routing.module';
 import { ManageUserComponent } from './manage-user/manage-user.component';
+
 import { ManageCourseComponent } from './manage-course/manage-course.component';
 import { ManageInquiryComponent } from './manage-inquiry/manage-inquiry.component';
 import { ManageCourseDetailComponent } from './manage-course-detail/manage-course-detail.component';
@@ -85,6 +87,7 @@ import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-usertaskbydate.component';
 import { ManageUserreportComponent } from './manage-userreport/manage-userreport.component';
 import { ManagePatientComponent } from './manage-patient/manage-patient.component';
+import { ManageSchComponent } from './manage-sch/manage-sch.component';
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
 
@@ -110,6 +113,8 @@ import { ManagePatientComponent } from './manage-patient/manage-patient.componen
     ManageUsertaskbydateComponent,
     ManagePatientComponent,
     ManageUserreportComponent,
+    ManageUseraccountComponent,
+    ManageSchComponent,
   ],
   imports: [
     NgxMatDatetimePickerModule,

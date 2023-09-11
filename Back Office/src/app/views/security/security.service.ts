@@ -16,6 +16,7 @@ import { mapTo } from 'rxjs/operators';
 import { CanActivate, Router } from '@angular/router';
 import { Globals } from 'src/app/globals';
 import { NgForm } from '@angular/forms';
+import { UserAccountVM } from '../lms/Models/UserAccountVM';
 
 
 @Injectable({
@@ -150,5 +151,26 @@ export class SecurityService {
   DeleteOnlineDBSetting(id: number) {
     return this.http.delete(Globals.BASE_API_URL + 'OnlineDBSetting/' + id);
   }
+
+    //useraccount lms servises
+GetUserAccount(): Observable<UserAccountVM[]> {
+  return this.http.get<UserAccountVM[]>(Globals.BASE_API_URL + 'UserAccount').pipe();
+}
+GetUserAccountById(id: number): Observable<UserAccountVM> {
+  return this.http.get<UserAccountVM>(Globals.BASE_API_URL + 'UserAccount/' + id).pipe()
+}
+SaveUserAccount(value: UserAccountVM): Observable<any> {
+  return this.http.post(Globals.BASE_API_URL + 'UserAccount', value);
+}
+UpdateUserAccount(value: UserAccountVM) {
+  return this.http.put(Globals.BASE_API_URL + 'UserAccount', value);
+}
+DeleteUserAccount(id: number) {
+  return this.http.delete(Globals.BASE_API_URL + 'UserAccount/' + id);
+}
+SearchUserAccount(value: UserAccountVM): Observable<UserAccountVM[]> {
+  return this.http.post<UserAccountVM[]>(Globals.BASE_API_URL + 'UserAccount/Search', value).pipe();
+}
+
 }
 

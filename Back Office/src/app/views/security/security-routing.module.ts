@@ -7,6 +7,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthorizationCheck } from './AuthorizationCheck';
 import { LoginComponent } from './login/login.component';
+import { ManageUseraccountComponent } from './manage-useraccount/manage-useraccount.component';
 
 const routes: Routes = [
 
@@ -40,6 +41,12 @@ const routes: Routes = [
       {
         path: "users",
         component: ManageUserComponent,
+        pathMatch: "full",
+        // canActivate: [AuthorizationCheck]
+      },
+      {
+        path: "userAccount",
+        component: ManageUseraccountComponent,
         pathMatch: "full",
         // canActivate: [AuthorizationCheck]
       },

@@ -5,6 +5,7 @@ export class SettingsVM {
     id: number = 0;
     parentId: number = 0;
     isActive?: Boolean;
+    isSelected: boolean;
     istAccountLevel: Boolean = false;
     uploadStatus: Boolean = false;
     keyCode: string = "";

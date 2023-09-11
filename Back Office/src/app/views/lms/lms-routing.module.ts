@@ -20,6 +20,7 @@ import { ManageUserattbydateComponent } from './manage-userattbydate/manage-user
 import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { ManageUserreportComponent } from './manage-userreport/manage-userreport.component';
 import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-usertaskbydate.component';
+import { ManageSchComponent } from './manage-sch/manage-sch.component';
 
 const routes: Routes = [{
   path: '',
@@ -45,6 +46,11 @@ const routes: Routes = [{
     {
       path: "schedule",
       component: ManageCoursescheduleComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "sch",
+      component: ManageSchComponent,
       pathMatch: "full"
     },
     {
