@@ -1,0 +1,9 @@
+2023-09-08 11:24:09.6807 ERROR System.ArgumentException: Parameter 'prm_CreatedBy' not found in the collection.
+2023-09-08 11:26:06.6883 ERROR MySql.Data.MySqlClient.MySqlException: Duplicate entry '4' for key 'schline.PRIMARY'
+2023-09-08 13:49:00.9933 ERROR MySql.Data.MySqlClient.MySqlException: Duplicate entry '1' for key 'schline.PRIMARY'
+2023-09-08 13:50:28.5081 ERROR MySql.Data.MySqlClient.MySqlException: Out of range value for column 'prm_EffectiveDate' at row 1
+2023-09-08 14:21:11.9570 ERROR MySql.Data.MySqlClient.MySqlException: Out of range value for column 'prm_EffectiveDate' at row 1
+2023-09-08 14:26:21.6033 ERROR MySql.Data.MySqlClient.MySqlException: Duplicate entry '2' for key 'sch.PRIMARY'
+2023-09-08 15:22:24.8548 ERROR System.ArgumentException: Parameter 'prm_SchId' not found in the collection.
+2023-09-08 15:33:53.3989 ERROR MySql.Data.MySqlClient.MySqlException: Duplicate entry '2' for key 'sch.PRIMARY'
+2023-09-08 15:37:49.5770 ERROR MySql.Data.MySqlClient.MySqlException: Lock wait timeout exceeded; try restarting transaction

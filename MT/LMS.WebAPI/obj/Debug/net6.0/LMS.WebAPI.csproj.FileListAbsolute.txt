@@ -1,0 +1,9 @@
+C:\QST\LMS4\LMS\MT\LMS.WebAPI\obj\Debug\net6.0\LMS.WebAPI.csproj.AssemblyReference.cache
+C:\QST\LMS4\LMS\MT\LMS.WebAPI\obj\Debug\net6.0\LMS.WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\QST\LMS4\LMS\MT\LMS.WebAPI\obj\Debug\net6.0\LMS.WebAPI.AssemblyInfoInputs.cache
+C:\QST\LMS4\LMS\MT\LMS.WebAPI\obj\Debug\net6.0\LMS.WebAPI.AssemblyInfo.cs
+C:\QST\LMS4\LMS\MT\LMS.WebAPI\obj\Debug\net6.0\LMS.WebAPI.csproj.CoreCompileInputs.cache
+C:\QST\LMS4\LMS\MT\LMS.WebAPI\obj\Debug\net6.0\LMS.WebAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\QST\LMS4\LMS\MT\LMS.WebAPI\obj\Debug\net6.0\LMS.WebAPI.dll
+C:\QST\LMS4\LMS\MT\LMS.WebAPI\obj\Debug\net6.0\refint\LMS.WebAPI.dll
+C:\QST\LMS4\LMS\MT\LMS.WebAPI\obj\Debug\net6.0\LMS.WebAPI.pdb

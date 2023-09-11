@@ -10,6 +10,8 @@
         UserTargets,
         City,
         Schedule,
+        sch,
+        schLine,
         attendance,
         CityStudent,
         vocabulary,

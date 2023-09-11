@@ -46,7 +46,7 @@ namespace LMS.DAL
                 retVal = LMSDataContext.ExecuteScalar(LMSDataContext.AddParameters(cmd
                     , "@prm_TableName", mod.ToString()
                     ));
-               // retVal += 1;
+               //retVal += 1;
                 //if (retVal != -1)
                 //    retVal += 1;
                 //else     
