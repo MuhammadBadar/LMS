@@ -55,6 +55,19 @@ namespace LMS.Service
                             retVal = _schDAL.ManageSchLine(line, cmd);
                         }
                     }
+                    //foreach (var day in Sch.DayIds)
+                    //{
+
+                    //    var SchLineDE = new SchLineDE();
+                    //    SchLineDE.DayId= day;
+                    //    SchLineDE.SchId = mod.Id;
+                    //    if (day.DBoperation == DBoperations.Insert)
+                    //    {
+                    //        id += 1;
+                    //        day.Id = id;
+                    //        retVal = _schDAL.ManageSchLine(day, cmd);
+                    //    }
+                    //}
 
                 if (retVal == true)
                 {

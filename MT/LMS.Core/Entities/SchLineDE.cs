@@ -13,6 +13,7 @@ namespace LMS.Core.Entities
 
         #region Class Properties        
         public int? DayId { get; set; }
+        public int? DayIds { get; set; }
         public int SchId { get; set; }
 
         #endregion

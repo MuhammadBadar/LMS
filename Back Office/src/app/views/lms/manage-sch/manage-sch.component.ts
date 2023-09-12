@@ -32,7 +32,7 @@ export class ManageSchComponent {
   
    // exportTime = { hour: 7, minute: 15, meriden: 'PM', format: 12 };
   
-    displayedColumns: string[] = ['user', 'SchType','days', 'effectivedate','isActive'];
+    displayedColumns: string[] = ['user','role', 'scheduleType','day', 'effectivedate','isActive'];
     Schline:SchlineVM[]= []
     AddMode: boolean = true
     proccessing: boolean = false;

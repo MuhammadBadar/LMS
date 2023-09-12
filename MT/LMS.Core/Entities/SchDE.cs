@@ -12,6 +12,7 @@ namespace LMS.Core.Entities
 
 
         #region Class Properties
+        
         public string? UserId { get; set; }
         public string? RoleId { get; set; }
         public int? ScheduleTypeId { get; set; }

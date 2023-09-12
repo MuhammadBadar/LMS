@@ -1,6 +1,5 @@
 export class SchVM {
-  id!: number
-  
+  id!: number  
   userId?: string
   user?: string
   roleId: string
@@ -12,12 +11,12 @@ export class SchVM {
 isActive: boolean
 }
 export class SchlineVM {
-id!: number
 startTime?: string
 endTime?: string
+dayIds: number[]=[] 
 dayId: number 
 day?: string
- scheduleTypeId: number = 0;
+scheduleTypeId: number = 0;
 scheduleType?: string
 eventTypeId: number = 0
 eventType?: string
