@@ -42,32 +42,28 @@ namespace LMS.Service
                 if (mod.DBoperation == DBoperations.Insert)
                     mod.Id = _corDAL.GetnextId(TableNames.sch.ToString());
                 retVal = _schDAL.ManageSch(mod, cmd);
-                var id = _corDAL.GetnextLineId(TableNames.schLine.ToString(), mod.Id,"SchId");
-                if (mod.DBoperation == DBoperations.Insert || mod.DBoperation == DBoperations.Update)
-                    foreach (var line in mod.SchLine)
-                    {
-                        line.SchId = mod.Id;
-                        line.DBoperation = DBoperations.Insert;
-                        if (line.DBoperation == DBoperations.Insert)
-                        {
-                            id +=1;
-                            line.Id =id;
-                            retVal = _schDAL.ManageSchLine(line, cmd);
-                        }
-                    }
-                    //foreach (var day in Sch.DayIds)
+                //var id = _corDAL.GetnextLineId(TableNames.schLine.ToString(), mod.Id,"SchId");
+              //  if (mod.DBoperation == DBoperations.Insert || mod.DBoperation == DBoperations.Update)
+                    //foreach (var line in mod.SchLine)
                     //{
-
-                    //    var SchLineDE = new SchLineDE();
-                    //    SchLineDE.DayId= day;
-                    //    SchLineDE.SchId = mod.Id;
-                    //    if (day.DBoperation == DBoperations.Insert)
+                    //    line.SchId = mod.Id;
+                    //    line.DBoperation = DBoperations.Insert;
+                    //    if (line.DBoperation == DBoperations.Insert)
                     //    {
-                    //        id += 1;
-                    //        day.Id = id;
-                    //        retVal = _schDAL.ManageSchLine(day, cmd);
+                    //        id +=1;
+                    //        line.Id =id;
+                    //        retVal = _schDAL.ManageSchLine(line, cmd);
                     //    }
                     //}
+                foreach (var day in mod.DayIds)
+                {
+
+                    var schline = new SchLineDE();
+                        schline.DayId = day; ;
+                    schline.SchId = mod.Id;
+                        schline.DBoperation = DBoperations.Insert;
+                        retVal = _schDAL.ManageSchLine(schline, cmd);
+                    }
 
                 if (retVal == true)
                 {
@@ -78,6 +74,7 @@ namespace LMS.Service
             }
             catch (Exception ex)
             {
+                LMSDataContext.CancelTransaction(cmd);
                 _logger.Error(ex);
                 throw;
             }
@@ -98,7 +95,6 @@ namespace LMS.Service
             try
             {
                 cmd = LMSDataContext.OpenMySqlConnection();
-                LMSDataContext.StartTransaction(cmd);
 
                 #region Search
 
@@ -118,7 +114,7 @@ namespace LMS.Service
             }
             catch (Exception exp)
             {
-                LMSDataContext.CancelTransaction(cmd);
+                
                 throw exp;
             }
             finally

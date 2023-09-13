@@ -1,10 +1,11 @@
 export class SchVM {
   id!: number  
   userId?: string
+  dayIds: number[]=[] 
   user?: string
   roleId: string
   role?: string
-  effectivDate? :  Date  
+  effectiveDate? :  Date  
   SchLine?: SchlineVM[] = new Array();
   scheduleTypeId: number = 0;
   scheduleType?: string
@@ -13,7 +14,6 @@ isActive: boolean
 export class SchlineVM {
 startTime?: string
 endTime?: string
-dayIds: number[]=[] 
 dayId: number 
 day?: string
 scheduleTypeId: number = 0;

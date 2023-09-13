@@ -559,7 +559,7 @@ export class ManageScheduleComponent {
           this.DayEvent.push(element)
         });
         this.dataSource = new MatTableDataSource(this.DayEvent);
-        console.warn(this.DayEvent)
+        console.warn(this.DayEvent) 
         this.RefreshDetail()
       }, error: (e: any) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000)

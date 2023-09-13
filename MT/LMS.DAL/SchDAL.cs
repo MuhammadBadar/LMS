@@ -102,7 +102,7 @@ namespace LMS.DAL
                     Console.WriteLine("Connection  has been created");
                 else
                     Console.WriteLine("Connection error");
-                top = cmd.Connection.Query<SchDE>("call lms.SearchSchedule( '" + whereClause + "')").ToList();
+                top = cmd.Connection.Query<SchDE>("call lms.SearchSch( '" + whereClause + "')").ToList();
                 return top;
             }
             catch (Exception)
@@ -135,7 +135,6 @@ namespace LMS.DAL
                 else
                     Console.WriteLine("Connection error");
                 cmd.CommandText = "Manage_SchLine";
-                cmd.Parameters.AddWithValue("@prm_Id", Events.Id);
                 cmd.Parameters.AddWithValue("@prm_DayId", Events.DayId);
                 cmd.Parameters.AddWithValue("@prm_SchId", Events.SchId);
                 cmd.Parameters.AddWithValue("@prm_createdOn", Events.CreatedOn);

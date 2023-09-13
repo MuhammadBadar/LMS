@@ -81,7 +81,7 @@
               name="from"
               readonly="true"
               #from="ngModel"
-              [(ngModel)]="selectedSch.effectivDate"
+              [(ngModel)]="selectedSch.effectiveDate"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -100,7 +100,7 @@
             name="dayId"
             #dayIds="ngModel"
             required="true"
-            [(ngModel)]="selectedLine.dayIds"
+            [(ngModel)]="selectedSch.dayIds"
           >
             <mat-option [value]="0">--Please Select--</mat-option>
             <mat-option *ngFor="let pt of WeekDays" [value]="pt.id">{{
@@ -166,12 +166,13 @@
         </ng-container>
 
         <!-- Worked hours Column -->
-        <ng-container matColumnDef="effectivedate">
+        <ng-container matColumnDef="effectiveDate">
           <th mat-header-cell *matHeaderCellDef>Effective Date</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.effectivedate }}
+          <td mat-cell *matCellDef="let element">{{ element.effectiveDate|date:"dd/MM/yyyy"  }}
           </td>
         </ng-container>
+
+        
         <!--is Active Column -->
         <ng-container matColumnDef="isActive">
           <th mat-header-cell *matHeaderCellDef>Is Active</th>
@@ -182,6 +183,35 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
-    </section>
+     
+  </section>
+  <h5 cCardTitle>SchLine List</h5>
+  <section class="example-container mat-elevation-z8"
+    tabindex="0"
+    style="border-radius: 5px; margin-top: 20px"
+  >
+    <table mat-table [dataSource]="SchSource" class="mat-elevation-z8">
+   
+
+      <!-- Time out Column -->
+      <ng-container matColumnDef="day">
+        <th mat-header-cell *matHeaderCellDef>Day</th>
+        <td mat-cell *matCellDef="let element">{{ element.day }}</td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="day">
+        <th mat-header-cell *matHeaderCellDef>
+            <div style="width: 200px;">Day</div>
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <div style="width: 200px;">{{element.weekDay}}</div>
+        </td>
+    </ng-container> -->
+
+      <!-- Date Column -->
+      <tr mat-header-row *matHeaderRowDef="innerDisplayeScheduleolumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: innerDisplayeScheduleolumns"></tr>
+    </table>
+  </section>
   </div>
 </div>

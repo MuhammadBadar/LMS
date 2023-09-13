@@ -386,7 +386,7 @@ GetSch(): Observable<SchVM[]> {
   return this.http.get<SchVM[]>(Globals.BASE_API_URL + 'Sch/' + id).pipe()
 }
 SaveSch(value: SchVM) {
-  return this.http.post(Globals.BASE_API_URL + 'Sch', value)
+  return this.http.post<SchVM>(Globals.BASE_API_URL + 'Sch', value)
 }
 UpdateSch(value: SchVM) {
   return this.http.put(Globals.BASE_API_URL + 'Sch', value)

@@ -1,8 +1,8 @@
-import { Component, Injector, ViewChild } from '@angular/core';
+import { Component, Injector, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { SchVM, SchlineVM } from '../Models/SchVM';
 
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { SecurityService } from '../../security/security.service';
 import { LMSService } from '../lms.service';
@@ -15,6 +15,7 @@ import { NgForm } from '@angular/forms';
 import { RoleVM } from '../../security/models/role-vm';
 import { ManageRoleComponent } from '../../security/manage-role/manage-role.component';
 import { ManageUserComponent } from '../manage-user/manage-user.component';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-manage-sch',
@@ -32,7 +33,8 @@ export class ManageSchComponent {
   
    // exportTime = { hour: 7, minute: 15, meriden: 'PM', format: 12 };
   
-    displayedColumns: string[] = ['user','role', 'scheduleType','day', 'effectivedate','isActive'];
+    displayedColumns: string[] = ['user','role', 'scheduleType', 'effectiveDate','isActive'];
+    innerDisplayeScheduleolumns: string[] = ['day'];
     Schline:SchlineVM[]= []
     AddMode: boolean = true
     proccessing: boolean = false;
@@ -43,6 +45,7 @@ export class ManageSchComponent {
     dialogRef: any
     dialogref: any
     dataSource:any
+    SchSource:any
     schline?:SchVM[]
     ScheduleType: SettingsVM[];
     WeekDays: SettingsVM[];
@@ -62,6 +65,8 @@ export class ManageSchComponent {
     selectedSch: SchVM;
     hide:any;
     selectedsline = new SchlineVM
+  columnsToDisplay: any;
+  selectedRow: SchVM;
     constructor(
       private injector: Injector,
       private lmsSvc: LMSService,
@@ -111,6 +116,7 @@ export class ManageSchComponent {
       
      
   } 
+ 
   GetSchlineById() {
     debugger
     this.lmsSvc.GetSchById(this.ScheduleId).subscribe({
@@ -246,16 +252,17 @@ export class ManageSchComponent {
     // }
 
     this.lmsSvc.SaveSch(this.selectedSch).subscribe({
-      next: (res: SchVM) => {
+     
+      next: (res: SchVM) => { debugger;
         this.catSvc.SuccessMsgBar(" Successfully Added!", 5000)
         this.selectedSch = res
         this.Schline = []
         this.selectedSch.SchLine?.forEach(element => {
           this.Schline.push(element)
-        });
+        }); debugger;
         this.dataSource = new MatTableDataSource(this.Schline);
         console.warn(this.Schline)
-       // this.RefreshDetail()
+        this.Refresh()
       }, error: (e: any) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
         console.warn(e);
