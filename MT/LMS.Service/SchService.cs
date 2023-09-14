@@ -43,27 +43,31 @@ namespace LMS.Service
                     mod.Id = _corDAL.GetnextId(TableNames.sch.ToString());
                 retVal = _schDAL.ManageSch(mod, cmd);
                 //var id = _corDAL.GetnextLineId(TableNames.schLine.ToString(), mod.Id,"SchId");
-              //  if (mod.DBoperation == DBoperations.Insert || mod.DBoperation == DBoperations.Update)
-                    //foreach (var line in mod.SchLine)
-                    //{
-                    //    line.SchId = mod.Id;
-                    //    line.DBoperation = DBoperations.Insert;
-                    //    if (line.DBoperation == DBoperations.Insert)
-                    //    {
-                    //        id +=1;
-                    //        line.Id =id;
-                    //        retVal = _schDAL.ManageSchLine(line, cmd);
-                    //    }
-                    //}
-                foreach (var day in mod.DayIds)
+                //  if (mod.DBoperation == DBoperations.Insert || mod.DBoperation == DBoperations.Update)
+                //foreach (var line in mod.SchLine)
+                //{
+                //    line.SchId = mod.Id;
+                //    line.DBoperation = DBoperations.Insert;
+                //    if (line.DBoperation == DBoperations.Insert)
+                //    {
+                //        id +=1;
+                //        line.Id =id;
+                //        retVal = _schDAL.ManageSchLine(line, cmd);
+                //    }
+                //}
+                if (mod.DayIds != null)
                 {
-
-                    var schline = new SchLineDE();
-                        schline.DayId = day; ;
-                    schline.SchId = mod.Id;
-                        schline.DBoperation = DBoperations.Insert;
-                        retVal = _schDAL.ManageSchLine(schline, cmd);
+                    foreach (var day in mod.DayIds)
+                    {
+                        var SchLine = new SchLineDE();
+                        SchLine.DayId = day;
+                        SchLine.SchId = mod.Id;
+                        SchLine.DBoperation = DBoperations.Insert;
+                        retVal = _schDAL.ManageSchLine(SchLine, cmd);
                     }
+                }
+                
+
 
                 if (retVal == true)
                 {

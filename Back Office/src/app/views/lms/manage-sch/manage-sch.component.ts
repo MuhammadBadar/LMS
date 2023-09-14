@@ -35,7 +35,7 @@ export class ManageSchComponent {
   
     displayedColumns: string[] = ['user','role', 'scheduleType', 'effectiveDate','isActive'];
     innerDisplayeScheduleolumns: string[] = ['day'];
-    Schline:SchlineVM[]= []
+    SchLine:SchlineVM[]= []
     AddMode: boolean = true
     proccessing: boolean = false;
     EditMode: boolean = false
@@ -67,6 +67,7 @@ export class ManageSchComponent {
     selectedsline = new SchlineVM
   columnsToDisplay: any;
   selectedRow: SchVM;
+  addButton: boolean;
     constructor(
       private injector: Injector,
       private lmsSvc: LMSService,
@@ -106,7 +107,7 @@ export class ManageSchComponent {
       else {
         this.Add = true;
         this.Edit = false;
-        this.dataSource = new MatTableDataSource(this.Schline);
+        this.dataSource = new MatTableDataSource(this.SchLine);
       }
       this.lineAddMode = false;
       this.lineEditMode = false;
@@ -116,7 +117,14 @@ export class ManageSchComponent {
       
      
   } 
- 
+  RefreshDetail() {
+    this.lineAddMode = false;
+    this.addButton = true
+    this.lineEditMode = false;
+    this.selectedLine = new SchlineVM
+    if (this.ScheduleId > 0)
+      this.GetSchlineById()
+  }
   GetSchlineById() {
     debugger
     this.lmsSvc.GetSchById(this.ScheduleId).subscribe({
@@ -124,11 +132,11 @@ export class ManageSchComponent {
         debugger
         this.getSchById = res;
         this.selectedSch= this.getSchById[0]
-        this.Schline = []
+        this.SchLine = []
         this.selectedSch.SchLine?.forEach(element => {
-          this.Schline.push(element)
+          this.SchLine.push(element)
         });
-        this.dataSource = new MatTableDataSource(this.Schline);
+        this.dataSource = new MatTableDataSource(this.SchLine);
       }, error: (e) => {
         this.catSvc.ErrorMsgBar("Error Occurred !", 6000)
         console.warn(e);
@@ -253,20 +261,21 @@ export class ManageSchComponent {
 
     this.lmsSvc.SaveSch(this.selectedSch).subscribe({
      
-      next: (res: SchVM) => { debugger;
+      next: (res: SchVM) => { 
+        debugger;
         this.catSvc.SuccessMsgBar(" Successfully Added!", 5000)
         this.selectedSch = res
-        this.Schline = []
+        this.SchLine = []
         this.selectedSch.SchLine?.forEach(element => {
-          this.Schline.push(element)
+          this.SchLine.push(element)
         }); debugger;
-        this.dataSource = new MatTableDataSource(this.Schline);
-        console.warn(this.Schline)
+        this.SchSource = new MatTableDataSource(this.SchLine);
+        console.warn(this.SchLine)
         this.Refresh()
       }, error: (e: any) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
         console.warn(e);
-        this.Schline = []
+        this.SchLine = []
         this.proccessing = false
       }
     })

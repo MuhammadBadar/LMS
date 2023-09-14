@@ -385,11 +385,11 @@ GetSch(): Observable<SchVM[]> {
  GetSchById(id: number): Observable<SchVM[]> {
   return this.http.get<SchVM[]>(Globals.BASE_API_URL + 'Sch/' + id).pipe()
 }
-SaveSch(value: SchVM) {
+SaveSch(value: SchVM): Observable<SchVM>  {
   return this.http.post<SchVM>(Globals.BASE_API_URL + 'Sch', value)
 }
-UpdateSch(value: SchVM) {
-  return this.http.put(Globals.BASE_API_URL + 'Sch', value)
+UpdateSch(value: SchVM): Observable<SchVM>  {
+  return this.http.put<SchVM> (Globals.BASE_API_URL + 'Sch', value)
 }
 DeleteSch(id: number) {
   return this.http.delete(Globals.BASE_API_URL + 'Sch/' + id)
