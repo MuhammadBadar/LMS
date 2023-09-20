@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8HEMFqcE7E3KQOfLXdNMkKGQiF3nvkdpdJRlU3CIZ83J/Cbl4z3CSfXwZZUxlgp7QM2FImhKijYev05KqDKbwg==",
+  "dgSpecHash": "yI4M0bSTfkHR/23BOPykpfqsQOEfXxIqandEZ+aCV/TvLk6G/KKaCPivgqicGeglazBzvCpLNx4RF5lchN1Y9w==",
   "success": true,
-  "projectFilePath": "C:\\QST\\LMS4\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
+  "projectFilePath": "C:\\QST\\LMS.6\\LMS\\MT\\LMS.Tests\\LMS.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ahmad Jilani\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Ahmad Jilani\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",

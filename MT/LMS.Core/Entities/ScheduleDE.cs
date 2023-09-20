@@ -12,6 +12,7 @@ namespace LMS.Core.Entities
 
 
         #region Class Properties
+        public List<int>? DayIds { get; set; }
         public string? UserId { get; set; }
         public string? RoleId { get; set; }
         public int? EntityId { get; set; }
@@ -20,9 +21,9 @@ namespace LMS.Core.Entities
         public string? WorkingHours { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public List<ScheduleDaysEventsDE> ScheduleDaysEvents { get; set; }
+        public List<ScheduleDayDE> ScheduleDays{ get; set; }
 
-      
+
         #region View Properties
 
         public string? User { get; set; }
@@ -36,7 +37,10 @@ namespace LMS.Core.Entities
         #endregion
         public ScheduleDE()
         {
-            this.ScheduleDaysEvents = new List<ScheduleDaysEventsDE>();
+            this.ScheduleDays = new List<ScheduleDayDE>();
+            /*this.ScheduleDays = new List<ScheduleDayDE>();*/
         }
+
+        
     }
 }

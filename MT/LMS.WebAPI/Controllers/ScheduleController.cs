@@ -52,7 +52,7 @@ namespace LMS.WebAPI.Controllers
         // POST api/<StudentController>
         [HttpPost]
         public IActionResult PostSchedule(ScheduleDE Schedule)
-        {
+            {
 
             Schedule.DBoperation = LMS.Core.Enums.DBoperations.Insert;
             ScheduleDE sch = _schSVC.ManageSchedule(Schedule);

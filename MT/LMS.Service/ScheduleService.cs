@@ -42,18 +42,27 @@ namespace LMS.Service
                 if (mod.DBoperation == DBoperations.Insert)
                     mod.Id = _corDAL.GetnextId(TableNames.Schedule.ToString());
                 retVal = _schDAL.ManageSchedule(mod, cmd);
-                if (mod.DBoperation == DBoperations.Insert || mod.DBoperation == DBoperations.Update)
-                    foreach (var line in mod.ScheduleDaysEvents)
-                    {
-                        line.SchId = mod.Id;
-                        line.DBoperation = DBoperations.Insert;
-                        if (line.DBoperation == DBoperations.Insert)
-                        {
-                            line.Id = _corDAL.GetMaxId(TableNames.ScheduleDaysEvents.ToString());
-                            retVal = _schDAL.ManageScheduleDayEvents(line, cmd);
-                        }
-                    }
+                //if (mod.DBoperation == DBoperations.Insert || mod.DBoperation == DBoperations.Update)
+                //    foreach (var day in mod.ScheduleDays
+                //    {
+                //        day.SchId = mod.Id;
+                //        day.DBoperation = DBoperations.Insert;
+                //        day.Id = _corDAL.GetMaxId(TableNames.ScheduleDaysToString());
+                //        retVal = _schDAL.ManageScheduleDay(day, cmd);
 
+                //    }
+                if (mod.DayIds != null)
+                {
+                    foreach (var day in mod.DayIds)
+                    {
+                        var SchLine = new ScheduleDayDE();
+                        SchLine.DayId = day;
+                        SchLine.SchId = mod.Id;
+                        SchLine.DBoperation = DBoperations.Insert;
+                        SchLine.IsActive = true;
+                        retVal = _schDAL.ManageScheduleDay(SchLine, cmd);
+                    }
+                }
                 if (retVal == true)
                 {
                     mod.DBoperation = DBoperations.NA;
@@ -71,7 +80,7 @@ namespace LMS.Service
                 if (closeConnectionFlag)
                     LMSDataContext.CloseMySqlConnection(cmd);
                 string whereClause = " Where 1=1";
-                mod.ScheduleDaysEvents = _schDAL.SearchScheduleDayEvents(whereClause += $" AND SchId={mod.Id} AND IsActive ={true}");
+                mod.ScheduleDays= _schDAL.SearchScheduleDay(whereClause += $" AND SchId={mod.Id} AND IsActive ={true}");
             }
             return mod;
         }
@@ -155,7 +164,7 @@ namespace LMS.Service
                 foreach (var line in list)
                 {
                     whereClause = "where 1=1";
-                    line.ScheduleDaysEvents = _schDAL.SearchScheduleDayEvents(whereClause += $" AND SchId={line.Id} AND IsActive ={true}");
+                    line.ScheduleDays = _schDAL.SearchScheduleDay(whereClause += $" AND SchId={line.Id} AND IsActive ={true}");
                 }
 
                 #endregion
@@ -172,5 +181,7 @@ namespace LMS.Service
             }
             return list;
         }
+
+       
     }
 }

@@ -12,3 +12,17 @@ C:\QST\LMS4\LMS\MT\LMS.Core\obj\Debug\net6.0\refint\LMS.Core.dll
 C:\QST\LMS4\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.pdb
 C:\QST\LMS4\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.genruntimeconfig.cache
 C:\QST\LMS4\LMS\MT\LMS.Core\obj\Debug\net6.0\ref\LMS.Core.dll
+C:\QST\LMS.6\LMS\MT\LMS.Core\bin\Debug\net6.0\LMS.Core.deps.json
+C:\QST\LMS.6\LMS\MT\LMS.Core\bin\Debug\net6.0\LMS.Core.runtimeconfig.json
+C:\QST\LMS.6\LMS\MT\LMS.Core\bin\Debug\net6.0\LMS.Core.dll
+C:\QST\LMS.6\LMS\MT\LMS.Core\bin\Debug\net6.0\LMS.Core.pdb
+C:\QST\LMS.6\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.csproj.AssemblyReference.cache
+C:\QST\LMS.6\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\QST\LMS.6\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.AssemblyInfoInputs.cache
+C:\QST\LMS.6\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.AssemblyInfo.cs
+C:\QST\LMS.6\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.csproj.CoreCompileInputs.cache
+C:\QST\LMS.6\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.dll
+C:\QST\LMS.6\LMS\MT\LMS.Core\obj\Debug\net6.0\refint\LMS.Core.dll
+C:\QST\LMS.6\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.pdb
+C:\QST\LMS.6\LMS\MT\LMS.Core\obj\Debug\net6.0\LMS.Core.genruntimeconfig.cache
+C:\QST\LMS.6\LMS\MT\LMS.Core\obj\Debug\net6.0\ref\LMS.Core.dll

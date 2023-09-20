@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LMS.Core.Entities
 {
-    public class ScheduleDaysEventsDE : BaseDomain
+    public class ScheduleDayEventDE : BaseDomain
     {
        
         public string? StartTime { get; set; }
@@ -14,7 +14,7 @@ namespace LMS.Core.Entities
         public int SchId { get; set; }
         public int EventTypeId { get; set; }
         public int LocationId { get; set; }
-        public int? DAYId { get; set; }
+        public int? ScheduleDayId { get; set; }
 
         #region View Properties
 

@@ -21,6 +21,8 @@ import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { ManageUserreportComponent } from './manage-userreport/manage-userreport.component';
 import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-usertaskbydate.component';
 import { ManageSchComponent } from './manage-sch/manage-sch.component';
+import { ManageScheduleListComponent } from './manage-schedule-list/manage-schedule-list.component';
+import { ManageScheduleDayEventComponent } from './manage-schedule-day-event/manage-schedule-day-event.component';
 
 const routes: Routes = [{
   path: '',
@@ -108,6 +110,16 @@ const routes: Routes = [{
     {
       path: "Schedule",
       component: ManageScheduleComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "manageschedulelist",
+      component: ManageScheduleListComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "scheduledayevent",
+      component: ManageScheduleDayEventComponent,
       pathMatch: "full"
     },
     {

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JPpM8GA1t70TVwDkZ+4ZeqoDVqo+nI+9IIYwFFNhT1Q1U1y0r8rLsbNt1u2HUiT12389aDHPov3XkihLfDBAtQ==",
+  "dgSpecHash": "fwk/15OqWY8+KWrzqi6QEiyQIqZoUBggYjjKZxP49ZskxirvVyL+W8AU0/84+U6ZN9hD+AGycX6wh/HOnw8RZQ==",
   "success": true,
-  "projectFilePath": "C:\\QST\\LMS4\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
+  "projectFilePath": "C:\\QST\\LMS.6\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ahmad Jilani\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Ahmad Jilani\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",

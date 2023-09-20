@@ -1,0 +1,136 @@
+<div class="container-fluid page">
+    <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+        <div *ngIf="Add">Manage Day Evnet</div>
+        <div *ngIf="Edit">Edit Day Evnet</div>    
+    </div>
+  
+  
+       <div class="page_content shadow p-3 position-relative">
+       <form #scheduledayevent="ngForm">            
+        <Row>
+            <div fxLayout="row" fxLayoutAlign="space-between"> 
+                <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                    <mat-label> Select Day</mat-label>
+                    <mat-select disabled name="dayId" #dayId="ngModel" required="true"
+                        [(ngModel)]="selectedScheduleFH.dayIds">
+                        <mat-option [value]="0">--Please Select--</mat-option>
+                        <mat-option *ngFor="let pt of WeekDays" [value]=" pt.id">
+                            {{ pt.name}}
+                        </mat-option>
+                    </mat-select>
+                   </mat-form-field>
+                   <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                        <mat-label> Select Location</mat-label>
+                        <mat-select required name="locationId" #locationId="ngModel" required="true"
+                            [(ngModel)]="selectedDayEvent.locationId">
+                            <mat-option [value]="0">--Please Select--</mat-option>
+                            <mat-option *ngFor="let pt of Location" [value]=" pt.id">
+                                 {{ pt.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>               
+                
+               </div>
+        </Row>       
+
+        <Row>
+            <div fxLayout="row" fxLayoutAlign="space-between"> 
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label>StartTime</mat-label>
+                    <input matInput required #startTime="ngModel" name="startTime" [(ngModel)]="selectedDayEvent.startTime"required="true" />
+                </mat-form-field>
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label>EndTime</mat-label>
+                    <input matInput required #endTime="ngModel" name="endTime" [(ngModel)]="selectedDayEvent.endTime" required="true" />
+                </mat-form-field>
+            <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                <mat-label> Select EventType</mat-label>
+            <mat-select required name="eventTypeId" #eventTypeId="ngModel" required="true"
+                [(ngModel)]="selectedDayEvent.eventTypeId">
+                <mat-option [value]="0">--Please Select--</mat-option>
+                <mat-option *ngFor="let pt of EventType" [value]=" pt.id">
+                    {{ pt.name}}
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+        </div>
+        </Row>               
+        
+
+                
+  
+        
+  
+         <!-- <mat-checkbox name="isActive" [(ngModel)]="selectedScheduleFH.isActive">Is Active</mat-checkbox> -->
+         
+  
+    <Row>
+      
+      <!-- <div fxLayoutAlign="end end">
+          <button mat-icon-button mat-sm-button style="color: rgb(97, 48, 48);"
+              cTooltipPlacement="top" (click)="AddDayEventtoList()">
+              <mat-icon>add</mat-icon>
+          </button>
+          <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh"
+              cTooltipPlacement="top" (click)="RefreshDetail()">
+              <mat-icon>autorenew</mat-icon>
+          </button>
+      </div> -->
+  </Row>
+  <div fxLayoutAlign="end end">
+    <!-- <c-spinner *ngIf="proccessing" style="height: 50px;width: 50px;color: rgb(3, 71, 102);"></c-spinner> -->
+    
+      
+        <!-- <button mat-icon-button style="color:#940540;" (click)="OpenUserDialog(); $event.stopPropagation()"
+          cTooltip="Explore ScheduleFHType">
+          <mat-icon>add</mat-icon>
+        </button> -->
+      
+        <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;width: 100px;"
+            type="submit" (click)="Submit();">
+            Submit
+        </button>
+        <!-- <button *ngIf="Edit" cButton class="me-1" style="background-color:#1e293b ;width: 100px;"
+            type="submit" (click)="UpdateScheduleFH()">
+            Update
+        </button> -->
+       
+    </div>
+    <div>
+      
+          <!-- <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+              (click)="Refresh()">
+              <mat-icon>autorenew</mat-icon>
+        </button> -->
+    </div>
+  
+  
+  </form> 
+  <!-- <div *ngIf="selectedScheduleFH.scheduleTypeId == FWH">
+    <div fxLayoutAlign="end end">
+      <c-spinner *ngIf="proccessing" style="height: 50px;width: 50px;color: rgb(3, 71, 102);"></c-spinner>
+      <div style="margin-top: 10px;" *ngIf="!proccessing">
+          <button *ngIf="AddMode" cButton class="me-1" style="background-color:#1e293b ;width: 100px;"
+              type="submit" (click)="SaveScheduleDayEvents();">
+              Submit
+          </button>
+         
+          <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateScheduleDayEvent()">Update</button>
+                      
+         
+      </div>
+      <div>
+            <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                (click)="Refresh()">
+                <mat-icon>autorenew</mat-icon>
+          </button>
+      </div>
+    </div>
+    </div> -->
+  
+  
+  <!-- </div>
+  </div> -->
+  
+  
+  

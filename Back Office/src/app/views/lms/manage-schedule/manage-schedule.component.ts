@@ -2,7 +2,7 @@ import { Component, Injector, ViewChild } from '@angular/core';
 import { LMSService } from '../lms.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CatalogService } from '../../catalog/catalog.service';
-import { ScheduleDayEventsVM, ScheduleVM } from '../Models/ScheduleVM';
+import { ScheduleDayVM, ScheduleVM } from '../Models/ScheduleVM';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 
@@ -19,6 +19,8 @@ import { Entities } from  '../models/Enums/Entities';
 import { ScheduleTypes } from  '../models/Enums/ScheduleTypes';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import { ManageScheduleListComponent } from '../manage-schedule-list/manage-schedule-list.component';
+import { ManageScheduleDayEventComponent } from '../manage-schedule-day-event/manage-schedule-day-event.component';
 @Component({
   selector: 'app-manage-schedule',
   templateUrl: './manage-schedule.component.html',
@@ -28,18 +30,18 @@ export class ManageScheduleComponent {
 
 
   @ViewChild('scheduleFHForm', { static: true }) scheduleFHForm!: NgForm;
-  displayedColumns: string[] = [`user`,`role`,`scheduleType`,`workingType`,`workingHours`,`startDate`,`endDate`,`day`,'isActive'];
+  displayedColumns: string[] = [`user`,`role`,`scheduleType`,`workingType`,`workingHours`,`day`,'isActive'];
    displayedRoles: string[] = [`role`,`scheduleType`,`workingType`,`workingHours`,'isActive'];
    displayedUsers: string[] = [`user`,`scheduleType`,`workingType`,`workingHours`,'isActive'];
-   ScheduleDayEvent: ScheduleDayEventsVM[] = []
-   selectedDayEvent = new ScheduleDayEventsVM
+   ScheduleDayEvent: ScheduleDayVM[] = []
+   selectedDayEvent = new ScheduleDayVM
   @ViewChild('ScheduleDayEventsForm', { static: true }) ScheduleDayEventsForm!: NgForm;
   selectedScheduleFH: ScheduleVM;
-  selectedDayevent: ScheduleDayEventsVM;
+  selectedDayevent: ScheduleDayVM;
   users: UserVM[] | undefined;
-  ScheduleDay: ScheduleDayEventsVM[] = []
+  ScheduleDay: ScheduleDayVM[] = []
   dialogRef: any;
-  DayEvent: ScheduleDayEventsVM[] |  any;
+  DayEvent: ScheduleDayVM[] |  any;
   ScheduleFH: ScheduleVM[] |  any;
   dataSource: any;
   DayEventSource: any;
@@ -64,7 +66,7 @@ export class ManageScheduleComponent {
   WeekDays: SettingsVM[];
   roles: RoleVM[];
   currentLightBoxImage: any
-  displayeScheduleColumns: string[] = ['startTime', 'endTime', 'location', 'eventType','isActive'];
+  displayeScheduleColumns: string[] = ['day','location','startTime', 'endTime', 'eventType','isActive','actions'];
   addButton = true
   lineAddMode: boolean = false
   lineEditMode: boolean = true
@@ -79,7 +81,7 @@ export class ManageScheduleComponent {
     public securitySvc: SecurityService,
    ) {
     this.selectedScheduleFH = new ScheduleVM
-    this.selectedDayEvent = new ScheduleDayEventsVM()
+    this.selectedDayEvent = new ScheduleDayVM()
     this.user= Entities.user;
     this.role=Entities.role;
     this.FH= ScheduleTypes.FH;
@@ -140,7 +142,7 @@ export class ManageScheduleComponent {
         this.getSchById = res;
         this.selectedScheduleFH = this.getSchById[0]
         this.ScheduleDayEvent = []
-        this.selectedScheduleFH.ScheduleDaysEvents?.forEach(element => {
+        this.selectedScheduleFH.scheduleDays?.forEach(element => {
           this.ScheduleDay.push(element)
         });
         this.dataSource = new MatTableDataSource(this.ScheduleDay);
@@ -154,7 +156,7 @@ export class ManageScheduleComponent {
     this.lineAddMode = false;
     this.addButton = true
     this.lineEditMode = false;
-    this.selectedDayEvent = new ScheduleDayEventsVM
+    this.selectedDayEvent = new ScheduleDayVM
     if (this.ScheduleId > 0)
       this.GetScheduleById()
   }
@@ -229,6 +231,26 @@ export class ManageScheduleComponent {
      this.GetUser();
      });
   }
+  OpenScheduleDialog() {
+    this.dialogRef = this.dialog.open(ManageScheduleListComponent, {
+       width: '1200px',
+       height: '950px',
+      });
+   
+     this.dialogRef.afterClosed().subscribe((res: any) => {
+      this.GetScheduleFH();
+      });
+   }
+   OpenDayEventDialog() {
+    this.dialogRef = this.dialog.open(ManageScheduleDayEventComponent, {
+       width: '1200px',
+       height: '550px',
+      });
+   
+     this.dialogRef.afterClosed().subscribe((res: any) => {
+      this.GetScheduleFH();
+      });
+   }
   // GetScheduleDayEvents() {
   //   var Schfh = new ScheduleDayEventsVM
   //   Schfh.isActive= true;
@@ -334,14 +356,14 @@ export class ManageScheduleComponent {
     }
     return true;
   }
-  validateScheduleEvent() {
+  // validateScheduleEvent() {
    
-    if (this.selectedDayEvent.eventTypeId === 0 || this.selectedDayEvent.eventTypeId === undefined) {
-      this.ScheduleDayEventsForm.form.controls['eventTypeId'].setErrors({ 'incorrect': true });
-      return false;
-    }
-    return true;
-  }
+  //   if (this.selectedDayEvent.eventTypeId === 0 || this.selectedDayEvent.eventTypeId === undefined) {
+  //     this.ScheduleDayEventsForm.form.controls['eventTypeId'].setErrors({ 'incorrect': true });
+  //     return false;
+  //   }
+  //   return true;
+  // }
   validateScheduleDay() {
       if (this.selectedDayEvent.dayId === 0 || this.selectedDayEvent.dayId === undefined) {
         this.ScheduleDayEventsForm.form.controls['dayId'].setErrors({ 'incorrect': true });
@@ -349,15 +371,13 @@ export class ManageScheduleComponent {
       }
       return true;
       }
-  validateScheduleLocation() {
-      if (this.selectedDayEvent.locationId === 0 || this.selectedDayEvent.locationId === undefined) {
-        this.ScheduleDayEventsForm.form.controls['locationId'].setErrors({ 'incorrect': true });
-        return false;
-      }
-      return true;
-    
-      
-    }
+  // validateScheduleLocation() {
+  //     if (this.selectedDayEvent.locationId === 0 || this.selectedDayEvent.locationId === undefined) {
+  //       this.ScheduleDayEventsForm.form.controls['locationId'].setErrors({ 'incorrect': true });
+  //       return false;
+  //     }
+  //     return true;   
+  //   }
     
   // SaveScheduleDayEvents() {
   //     debugger;
@@ -432,143 +452,58 @@ export class ManageScheduleComponent {
     
   //   }
   // }
-  SaveScheduleFH() {
-  //   if(this.selectedScheduleFH.scheduleTypeId == this.FH)
-  // {
-  //       const controls = this.scheduleFHForm.controls;
-  //     if (this.scheduleFHForm.invalid) {
-  //       for (const name in controls) {
-  //         if (controls[name].invalid) {
-  //           this.catSvc.ErrorMsgBar(`  ${name} is Required`, 6000)
-  //           break
-  //         }
-  //       }
-  //     } else
-  //  { 
-  //       const ScheduleTypeValid = this.CheckScheduleTypeValidation();
-  //       const workingtypeIsValid = this.CheckSchedulesValidation();
-  //       const entityIsValid = this.CheckScheduleValidation();
-    
-  //     if (!workingtypeIsValid && !entityIsValid && !ScheduleTypeValid) 
-  //     {
-  //       this.catSvc.ErrorMsgBar("Please fill all required fields", 5000);
-  //     } 
-  //     else if (!ScheduleTypeValid) {
-  //       this.catSvc.ErrorMsgBar("ScheduleType is a required field", 5000);
-  //     } else if (!workingtypeIsValid) {
-  //       this.catSvc.ErrorMsgBar("Workingtype is a required field", 5000);
-  //     } else if (!entityIsValid) {
-  //       this.catSvc.ErrorMsgBar("Entity is a required field", 5000);
-  //     }
-    
-  //     if (workingtypeIsValid && workingtypeIsValid && !this.scheduleFHForm.invalid) {
-  //       this.lmsSvc.SaveSchedule(this.selectedScheduleFH).subscribe({
-  //         next: (value) => {  alert("BB");
-  //           this.catSvc.SuccessMsgBar("Successfully Added", 5000);
-  //         //  this.Refresh();
-  //         },
-  //         error: (err) => {
-  //           this.catSvc.ErrorMsgBar("Error Occurred", 5000);
-  //           },
-  //       });
-  //     }
-  //  }
-  //     }
-
-  //     if(this.selectedScheduleFH.scheduleTypeId == this.FWH){
-  //       debugger;
-  //       const controls = this.ScheduleDayEventsForm.controls;
-  //       if (this.ScheduleDayEventsForm.invalid) {
-  //         for (const name in controls) {
-  //           if (controls[name].invalid) {
-  //             this.catSvc.ErrorMsgBar(`  ${name} is Required`, 6000)
-  //             break
-  //           }
-  //         }
-  //     }
-  //     else { 
-  //       const ScheduleEventTypeValid = this.validateScheduleEvent();
-  //       const DaytypeValid = this.validateScheduleDay();
-  //       const LocationTypeIsValid = this.validateScheduleLocation();
-  
-  //     if (!DaytypeValid && !LocationTypeIsValid && !ScheduleEventTypeValid) 
-  //     {
-  //       this.catSvc.ErrorMsgBar("Please fill all required fields", 5000);
-  //     } 
-  //     else if (!ScheduleEventTypeValid) {
-  //       this.catSvc.ErrorMsgBar("EventType is a required field", 5000);
-  //     } else if (!DaytypeValid) {
-  //       this.catSvc.ErrorMsgBar("Daytype is a required field", 5000);
-  //     } else if (!LocationTypeIsValid) {
-  //       this.catSvc.ErrorMsgBar("Location is a required field", 5000);
-  //     }
-  
-  //     if (ScheduleEventTypeValid && ScheduleEventTypeValid && !this.ScheduleDayEventsForm.invalid) {
-  //       this.lmsSvc.SaveSchedule(this.DayEvent).subscribe({
-  //         next: (value) => { 
-  //           this.catSvc.SuccessMsgBar("Successfully Added", 5000);
-  //           this.Refresh();
-  //         },
-  //         error: (err) => {
-  //           alert("r")
-  //           this.catSvc.ErrorMsgBar("Error Occurred", 5000);
-  //         },
-  //       });
-  //     }else {
-  //       this.proccessing = true
-  //       // if (this.Edit) {
-  //       //   this.UpdateScheduleFH();
-  //       // } else {
-  //         this.lmsSvc.GetSchedule().subscribe((data: any) => {
-                
-    
-  //           if (data.succeeded == true) {
-  //                   Swal.fire({
-  //                     icon: 'success',
-  //                     position: 'center',
-  //                     text: 'Added Successfully',
-  //                     background: "#FFFFFF",
-  //                     confirmButtonColor: "#000000"
-                      
-  //                   })
-  //                   // this.ngOnInit();
-  //                   // this.Refresh();
-  //                 }
-  //                 else {
-  //                   console.warn(data)
-  //                 } 
-  //                 this.proccessing = false;
-                
-  //           }, (err: any) => {
-  //             console.warn(err);
-  //             this.catSvc.ErrorMsgBar("Error Occurred !", 6000);
-  //             this.proccessing = false;
-  //           });
-  //       }
-  //     }
-      
-  //     }
-  //   // }
-  //   }
+  SaveScheduleDay() {
     this.lmsSvc.SaveSchedule(this.selectedScheduleFH).subscribe({
-      next: (res: ScheduleVM) => {
-        this.catSvc.SuccessMsgBar(" Successfully Added!", 5000)
-        this.selectedScheduleFH = res
-        this.DayEvent = []
-        this.selectedScheduleFH.ScheduleDaysEvents?.forEach(element => {
-          this.DayEvent.push(element)
-        });
-        this.dataSource = new MatTableDataSource(this.DayEvent);
-        console.warn(this.DayEvent) 
-        this.RefreshDetail()
-      }, error: (e: any) => {
-        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-        console.warn(e);
-        this.DayEvent = []
-        this.proccessing = false
-      }
-    })
-   }
+    
+     next: (res: ScheduleVM) => { 
+      console.warn(res);
+       debugger;
+       this.catSvc.SuccessMsgBar(" Successfully Added!", 5000)
+       this.selectedScheduleFH = res
+       this.ScheduleDay = []
+       this.selectedScheduleFH.scheduleDays?.forEach(element => {
+         this.ScheduleDay.push(element)
+       }); debugger;
+       this.DayEventSource = new MatTableDataSource(this.ScheduleDay);
+       console.warn(this.ScheduleDay)
+
+      //  this.Refresh()
+     }, error: (e: any) => {
+       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+       console.warn(e);
+       this.ScheduleDay = []
+       this.proccessing = false
+     }
+   })
+  }
+  //  Refresh() {
+  //    this.GetSchline();
+  //    this.selectedSch = new SchVM
+  //    this.EditMode = false
+  //    this.AddMode = true
+  //    // this.selectedAttendance.isActive = true;
+  //  }
+  // SaveScheduleFH() {
+  
+  //   this.lmsSvc.SaveSchedule(this.selectedScheduleFH).subscribe({
+  //     next: (res: ScheduleVM) => {
+  //       this.catSvc.SuccessMsgBar(" Successfully Added!", 5000)
+  //       this.selectedScheduleFH = res
+  //       this.DayEvent = []
+  //       this.selectedScheduleFH.ScheduleDay?.forEach(element => {
+  //         this.DayEvent.push(element)
+  //       });
+  //       this.dataSource = new MatTableDataSource(this.DayEvent);
+  //       console.warn(this.DayEvent) 
+  //       // this.RefreshDetail()
+  //     }, error: (e: any) => {
+  //       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+  //       console.warn(e);
+  //       this.DayEvent = []
+  //       this.proccessing = false
+  //     }
+  //   })
+  //  }
   EditScheduleFH(scheduleFH: ScheduleVM) {
     this.EditMode = true
     this.AddMode = false
@@ -674,7 +609,7 @@ async AddDayEventtoList() {
           if (!this.ScheduleDayEventsForm.invalid) {
           this.selectedDayEvent.dBoperation = 1
          this.ScheduleDay.push(this.selectedDayEvent)
-           this.selectedScheduleFH.ScheduleDaysEvents?.push(this.selectedDayEvent)
+           this.selectedScheduleFH.scheduleDays?.push(this.selectedDayEvent)
           this.DayEventSource= new MatTableDataSource(this.ScheduleDay)
          }
 
@@ -715,28 +650,44 @@ SetDates() {
 // Back() {
 //   this._location.back();
 // }
- Submit() {
-  debugger;
-    this.selectedScheduleFH.ScheduleDaysEvents = this.ScheduleDay
-  this.proccessing = true
-    debugger
-    if (this.selectedScheduleFH.ScheduleDaysEvents.length == 0)
-      this.catSvc.ErrorMsgBar("Please Add some Schedule Detail!", 5000)
-    else
-    this.lmsSvc.SaveSchedule(this.selectedScheduleFH).subscribe({
-      next: (res: ScheduleVM) => {
+//  Submit() {
+//   debugger;
+//     this.selectedScheduleFH.ScheduleDaysEvents = this.ScheduleDay
+//   this.proccessing = true
+//     debugger
+//     if (this.selectedScheduleFH.ScheduleDaysEvents.length == 0)
+//       this.catSvc.ErrorMsgBar("Please Add some Schedule Detail!", 5000)
+//     else
+//     this.lmsSvc.SaveSchedule(this.selectedScheduleFH).subscribe({
+//       next: (res: ScheduleVM) => {
      
      
-        this.proccessing = false
-      }, error: (e: any) => {
-        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-        console.warn(e);
-        this.ScheduleDay = []
-        this.proccessing = false
-      }
-    })
+//         this.proccessing = false
+//       }, error: (e: any) => {
+//         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+//         console.warn(e);
+//         this.ScheduleDay = []
+//         this.proccessing = false
+//       }
+//     })
  
-  this.proccessing = false
+//   this.proccessing = false
+// }
+Submit() {
+  if (!this.selectedScheduleFH.scheduleTypeId) {
+    this.catSvc.ErrorMsgBar("Please fill in all required fields.", 5000);
+    return; // Exit the function if any required field is empty
+  }
+
+  this.lmsSvc.SaveSchedule(this.selectedScheduleFH).subscribe({
+    next: (value) => {
+      this.catSvc.SuccessMsgBar("Successfully Added", 5000);
+      // this.Refresh();
+    }, 
+    error: (err) => {
+      this.catSvc.ErrorMsgBar("Error Occurred", 5000);
+    },
+  });
 }
 // handleFileInput(e: any) {
 //   debugger

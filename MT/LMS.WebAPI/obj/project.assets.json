@@ -3829,11 +3829,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\QST\\LMS4\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
+      "projectUniqueName": "C:\\QST\\LMS.6\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
       "projectName": "LMS.WebAPI",
-      "projectPath": "C:\\QST\\LMS4\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
+      "projectPath": "C:\\QST\\LMS.6\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
       "packagesPath": "C:\\Users\\Ahmad Jilani\\.nuget\\packages\\",
-      "outputPath": "C:\\QST\\LMS4\\LMS\\MT\\LMS.WebAPI\\obj\\",
+      "outputPath": "C:\\QST\\LMS.6\\LMS\\MT\\LMS.WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ahmad Jilani\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3851,11 +3851,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\QST\\LMS4\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
-              "projectPath": "C:\\QST\\LMS4\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
+            "C:\\QST\\LMS.6\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+              "projectPath": "C:\\QST\\LMS.6\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
             },
-            "C:\\QST\\LMS4\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
-              "projectPath": "C:\\QST\\LMS4\\LMS\\MT\\LMS.Service\\LMS.Service.csproj"
+            "C:\\QST\\LMS.6\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
+              "projectPath": "C:\\QST\\LMS.6\\LMS\\MT\\LMS.Service\\LMS.Service.csproj"
             }
           }
         }

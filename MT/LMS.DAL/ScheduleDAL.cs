@@ -120,8 +120,9 @@ namespace LMS.DAL
         }
 
         #endregion
+
         #region ScheduleDayEvents Operations
-        public bool ManageScheduleDayEvents(ScheduleDaysEventsDE Events, MySqlCommand cmd = null)
+        public bool ManageScheduleDayEvent(ScheduleDayEventDE Events, MySqlCommand cmd = null)
         {
             bool closeConnectionFlag = false;
             try
@@ -135,13 +136,13 @@ namespace LMS.DAL
                     Console.WriteLine("Connection  has been created");
                 else
                     Console.WriteLine("Connection error");
-                cmd.CommandText = "ManageScheduleDayEvents";
+                cmd.CommandText = "ManageScheduleDayEvent";
                 cmd.Parameters.AddWithValue("@Id", Events.Id);
                 cmd.Parameters.AddWithValue("@StartTime", Events.StartTime);
                 cmd.Parameters.AddWithValue("@EndTime", Events.EndTime);
                 cmd.Parameters.AddWithValue("@EventTypeId", Events.EventTypeId);
                 cmd.Parameters.AddWithValue("@schId", Events.SchId); 
-                cmd.Parameters.AddWithValue("@prm_DAYId", Events.DAYId);
+                cmd.Parameters.AddWithValue("@ScheduleDayId", Events.ScheduleDayId);
                 cmd.Parameters.AddWithValue("@LocationId", Events.LocationId);
                 cmd.Parameters.AddWithValue("@createdOn", Events.CreatedOn);
                 cmd.Parameters.AddWithValue("@createdById", Events.CreatedById);
@@ -164,9 +165,9 @@ namespace LMS.DAL
                 cmd.Parameters.Clear();
             }
         }
-        public List<ScheduleDaysEventsDE> SearchScheduleDayEvents(string whereClause, MySqlCommand cmd = null)
+        public List<ScheduleDayEventDE> SearchScheduleDayEvent(string whereClause, MySqlCommand cmd = null)
         {
-            List<ScheduleDaysEventsDE> top = new List<ScheduleDaysEventsDE>();
+            List<ScheduleDayEventDE> top = new List<ScheduleDayEventDE>();
             bool closeConnectionFlag = false;
             try
             {
@@ -179,7 +180,83 @@ namespace LMS.DAL
                     Console.WriteLine("Connection  has been created");
                 else
                     Console.WriteLine("Connection error");
-                top = cmd.Connection.Query<ScheduleDaysEventsDE>("call lms.SearchScheduleDayEvents( '" + whereClause + "')").ToList();
+                top = cmd.Connection.Query<ScheduleDayEventDE>("call lms.SearchScheduleDayEvent( '" + whereClause + "')").ToList();
+                return top;
+            }
+            catch (Exception exp)
+            {
+                return top;
+            }
+            finally
+            {
+                if (closeConnectionFlag)
+                    LMSDataContext.CloseMySqlConnection(cmd);
+                cmd.Parameters.Clear();
+            }
+        }
+        #endregion
+
+        #region ScheduleDay Operations
+        public bool ManageScheduleDay(ScheduleDayDE Events, MySqlCommand cmd = null)
+        {
+            bool closeConnectionFlag = false;
+            try
+            {
+                if (cmd == null)
+                {
+                    cmd = LMSDataContext.OpenMySqlConnection();
+                    closeConnectionFlag = true;
+                }
+                if (cmd.Connection.State == ConnectionState.Open)
+                    Console.WriteLine("Connection has been created");
+                else
+                    Console.WriteLine("Connection error");
+
+                cmd.CommandText = "Manage_ScheduleDay";
+
+                // Clear existing parameters before adding new ones
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("@prm_Id", Events.Id);
+                cmd.Parameters.AddWithValue("@prm_DayId", Events.DayId);
+                cmd.Parameters.AddWithValue("@prm_SchId", Events.SchId);
+                cmd.Parameters.AddWithValue("@prm_createdOn", Events.CreatedOn);
+                cmd.Parameters.AddWithValue("@prm_createdBy", Events.CreatedById);
+                cmd.Parameters.AddWithValue("@prm_modifiedOn", Events.ModifiedOn);
+                cmd.Parameters.AddWithValue("@prm_modifiedBy", Events.ModifiedById);
+                cmd.Parameters.AddWithValue("@prm_isActive", Events.IsActive);
+                cmd.Parameters.AddWithValue("@DBoperation", Events.DBoperation.ToString());
+                cmd.Parameters.AddWithValue("@prm_Filter", Events.DBoperation.ToString());
+
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (closeConnectionFlag)
+                    LMSDataContext.CloseMySqlConnection(cmd);
+            }
+        }
+        public List<ScheduleDayDE> SearchScheduleDay(string whereClause, MySqlCommand cmd = null)
+        {
+            List<ScheduleDayDE> top = new List<ScheduleDayDE>();
+            bool closeConnectionFlag = false;
+            try
+            {
+                if (cmd == null)
+                {
+                    cmd = LMSDataContext.OpenMySqlConnection();
+                    closeConnectionFlag = true;
+                }
+                if (cmd.Connection.State == ConnectionState.Open)
+                    Console.WriteLine("Connection  has been created");
+                else
+                    Console.WriteLine("Connection error");
+                top = cmd.Connection.Query<ScheduleDayDE>("call lms.SearchScheduleDay( '" + whereClause + "')").ToList();
                 return top;
             }
             catch (Exception exp)

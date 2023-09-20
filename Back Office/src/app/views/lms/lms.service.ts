@@ -19,7 +19,7 @@ import {AttendanceVM} from './Models/AttendanceVM';
 import {UserattbydateVM} from './Models/UserattbydateVM';
 import { TaskVM } from './Models/TaskVM';
 import { UserTaskbydateVM } from './Models/UsertaskbydateVM';
-import {  ScheduleDayEventsVM, ScheduleVM } from './Models/ScheduleVM';
+import {  ScheduleDayVM, ScheduleVM } from './Models/ScheduleVM';
 
 import { CityStudentVM } from './Models/CityStudentVM';
 import { VocabularyVM } from './Models/VocabularyVM';

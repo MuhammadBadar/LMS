@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\QST\\LMS4\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {}
+    "C:\\QST\\LMS.6\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {}
   },
   "projects": {
-    "C:\\QST\\LMS4\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+    "C:\\QST\\LMS.6\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\QST\\LMS4\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
+        "projectUniqueName": "C:\\QST\\LMS.6\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
         "projectName": "LMS.Core",
-        "projectPath": "C:\\QST\\LMS4\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
+        "projectPath": "C:\\QST\\LMS.6\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
         "packagesPath": "C:\\Users\\Ahmad Jilani\\.nuget\\packages\\",
-        "outputPath": "C:\\QST\\LMS4\\LMS\\MT\\LMS.Core\\obj\\",
+        "outputPath": "C:\\QST\\LMS.6\\LMS\\MT\\LMS.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ahmad Jilani\\AppData\\Roaming\\NuGet\\NuGet.Config",

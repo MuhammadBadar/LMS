@@ -249,18 +249,7 @@ export class ManageSchComponent {
       })
     }
     SaveSchline() {
-    //   this.lmsSvc.SaveSch(this.selectedSch).subscribe({
-    //     next: (value) => {
-    //       this.catSvc.SuccessMsgBar("Successfully Added", 5000)
-    //       this.Refresh();
-    //     }, error: (err) => {
-    //       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-    //     },
-    //   })
-    // }
-
-    this.lmsSvc.SaveSch(this.selectedSch).subscribe({
-     
+    this.lmsSvc.SaveSch(this.selectedSch).subscribe({     
       next: (res: SchVM) => { 
         debugger;
         this.catSvc.SuccessMsgBar(" Successfully Added!", 5000)

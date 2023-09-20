@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VRH0c/xI2oP3gYP7B/Kiq+LJy0Rsh75YXLZ3/ODtRpfe4oN74DYmB0cjZto4km3wBHwGoksP1zSsDCzQb0Slfw==",
+  "dgSpecHash": "suxP5wEtjmPwkgjrPdZhKyHTMkPj1zIcFIEbtb76E53UzhYYkcNMz3gdaOs8XNrAG8DocopMXRLnEgTpWTBLgw==",
   "success": true,
-  "projectFilePath": "C:\\QST\\LMS4\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj",
+  "projectFilePath": "C:\\QST\\LMS.6\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ahmad Jilani\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Ahmad Jilani\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",

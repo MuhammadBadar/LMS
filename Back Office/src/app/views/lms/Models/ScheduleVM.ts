@@ -6,7 +6,7 @@ export class ScheduleVM {
     role?: string
     entityId: number = 0;
     entity?: string
-    ScheduleDaysEvents?: ScheduleDayEventsVM[] = new Array();
+    scheduleDays?: ScheduleDayVM[] = new Array();
     scheduleTypeId: number = 0;
     scheduleType?: string
     workingTypeId?: number = 0;
@@ -17,11 +17,13 @@ export class ScheduleVM {
     isActive?: boolean
   parentId: number | undefined
   enumTypeId: number | undefined
+  dayIds: number[]=[] 
  
   
 }
-export class ScheduleDayEventsVM {
+export class ScheduleDayVM {
   id!: number
+ // dayIds: number[]=[]
   startTime?: string
   endTime?: string
   dayId: number = 0
