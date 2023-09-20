@@ -11,7 +11,7 @@
             <div fxLayout="row" fxLayoutAlign="space-between"> 
                 <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
                     <mat-label> Select Day</mat-label>
-                    <mat-select disabled name="dayId" #dayId="ngModel" required="true"
+                    <mat-select  disabled name="dayId" #dayId="ngModel" required="true"
                         [(ngModel)]="selectedScheduleFH.dayIds">
                         <mat-option [value]="0">--Please Select--</mat-option>
                         <mat-option *ngFor="let pt of WeekDays" [value]=" pt.id">
@@ -35,6 +35,12 @@
 
         <Row>
             <div fxLayout="row" fxLayoutAlign="space-between"> 
+                <!-- <mat-form-field fxFlex="33%" appearance="outline">
+                    <mat-label>Start Time</mat-label>
+                    <input matInput [ngxTimepicker]="inTimepicker" #startTime="ngModel" name="startTime"
+                           [(ngModel)]="selectedDayEvent.startTime" required readonly [format]="24" />
+                    <ngx-material-timepicker [timepickerClass]="'custom-class'" #inTimepicker></ngx-material-timepicker>
+                  </mat-form-field> -->
                 <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
                     <mat-label>StartTime</mat-label>
                     <input matInput required #startTime="ngModel" name="startTime" [(ngModel)]="selectedDayEvent.startTime"required="true" />

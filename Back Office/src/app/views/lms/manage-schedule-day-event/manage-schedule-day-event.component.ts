@@ -1,3 +1,4 @@
+import { ScheduleDayEventVM } from './../Models/ScheduleDayEventVM';
 import { Component, Injector } from '@angular/core';
 import { ScheduleDayVM, ScheduleVM } from '../Models/ScheduleVM';
 import { SettingsVM } from '../../catalog/Models/SettingsVM';
@@ -17,8 +18,8 @@ export class ManageScheduleDayEventComponent {
   Edit: boolean = false;
   Add: boolean = true;
 
-  selectedDayEvent = new ScheduleDayVM
-  selectedScheduleFH: ScheduleVM;
+  selectedDayEvent = new ScheduleDayEventVM
+  selectedScheduleFH: ScheduleDayEventVM;
 
   WeekDays: SettingsVM[];
   Location: SettingsVM[];
@@ -42,8 +43,8 @@ export class ManageScheduleDayEventComponent {
     // public dialog: MatDialog,
     // public securitySvc: SecurityService,
    ) {
-    this.selectedScheduleFH = new ScheduleVM
-    this.selectedDayEvent = new ScheduleDayVM()
+    this.selectedScheduleFH = new ScheduleDayEventVM
+    this.selectedDayEvent = new ScheduleDayEventVM()
     // this.user= Entities.user;
     // this.role=Entities.role;
     // this.FH= ScheduleTypes.FH;
@@ -119,12 +120,13 @@ export class ManageScheduleDayEventComponent {
   }
 
   Submit() {
+    debugger;
     if (!this.selectedDayEvent.locationId) {
       this.catSvc.ErrorMsgBar("Please fill in all required fields.", 5000);
       return; // Exit the function if any required field is empty
     }
   
-    this.lmsSvc.SaveSchedule(this.selectedScheduleFH).subscribe({
+    this.lmsSvc.SaveScheduleDayEvent(this.selectedDayEvent).subscribe({
       next: (value) => {
         this.catSvc.SuccessMsgBar("Successfully Added", 5000);
         // this.Refresh();

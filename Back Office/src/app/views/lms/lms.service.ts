@@ -24,6 +24,7 @@ import {  ScheduleDayVM, ScheduleVM } from './Models/ScheduleVM';
 import { CityStudentVM } from './Models/CityStudentVM';
 import { VocabularyVM } from './Models/VocabularyVM';
 import { PatientVM } from './Models/PatientVM';
+import { ScheduleDayEventVM } from './Models/ScheduleDayEventVM';
 @Injectable({
   providedIn: 'root'
 })
@@ -264,6 +265,25 @@ export class LMSService {
   }
   SearchSchedule(value: ScheduleVM): Observable<ScheduleVM[]> {
     return this.http.post<ScheduleVM[]>(Globals.BASE_API_URL + 'Schedule/Search', value).pipe();
+  }
+
+  GetScheduleDayEvent(): Observable<ScheduleDayEventVM[]> {
+    return this.http.get<ScheduleDayEventVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent').pipe();
+  }
+   GetScheduleDayEventById(id: number): Observable<ScheduleDayEventVM[]> {
+    return this.http.get<ScheduleDayEventVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent/' + id).pipe()
+  }
+  SaveScheduleDayEvent(value: ScheduleDayEventVM) {
+    return this.http.post(Globals.BASE_API_URL + 'ScheduleDayEvent', value)
+  }
+  UpdateScheduleDayEvent(value: ScheduleDayEventVM) {
+    return this.http.put(Globals.BASE_API_URL + 'ScheduleDayEvent', value)
+  }
+  DeleteScheduleDayEvent(id: number) {
+    return this.http.delete(Globals.BASE_API_URL + 'ScheduleDayEvent/' + id)
+  }
+  SearchScheduleDayEvent(value: ScheduleDayEventVM): Observable<ScheduleDayEventVM[]> {
+    return this.http.post<ScheduleDayEventVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent/Search', value).pipe();
   }
 
 //Attendance lms services

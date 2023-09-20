@@ -23,9 +23,6 @@ export class ScheduleVM {
 }
 export class ScheduleDayVM {
   id!: number
- // dayIds: number[]=[]
-  startTime?: string
-  endTime?: string
   dayId: number = 0
   day?: string
    scheduleTypeId: number = 0;

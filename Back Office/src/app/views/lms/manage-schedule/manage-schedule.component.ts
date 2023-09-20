@@ -241,16 +241,29 @@ export class ManageScheduleComponent {
       this.GetScheduleFH();
       });
    }
-   OpenDayEventDialog() {
+   OpenDayEventDialog(row : ScheduleDayVM) {
     this.dialogRef = this.dialog.open(ManageScheduleDayEventComponent, {
        width: '1200px',
        height: '550px',
+       data: { isDialog: true, scheduleLine: row }
       });
-   
-     this.dialogRef.afterClosed().subscribe((res: any) => {
+      console.warn(this.selectedScheduleFH.dayIds)   
+      this.dialogRef.afterClosed().subscribe((res: any) => {
       this.GetScheduleFH();
       });
    }
+  //  OpenTopicDialog() {
+  //   this.dialogRef = this.dialog.open(ManageTopicComponent, {
+  //     width: '1200px', height: '950px'
+  //     , data: { isDialog: true, courseId: this.selectedlec.courseId }
+
+  //   })
+  //   console.warn(this.selectedlec.courseId)
+  //   this.dialogRef.afterClosed().subscribe((res: any) => {
+  //       this.GetTopic()
+  //     }
+  //     );
+  // }
   // GetScheduleDayEvents() {
   //   var Schfh = new ScheduleDayEventsVM
   //   Schfh.isActive= true;

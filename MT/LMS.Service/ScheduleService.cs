@@ -53,14 +53,20 @@ namespace LMS.Service
                 //    }
                 if (mod.DayIds != null)
                 {
+                    int schDayId = 0;
+                    if (mod.DBoperation == DBoperations.Insert)
+                        schDayId = _corDAL.GetnextId(TableNames.scheduleday.ToString());
+
                     foreach (var day in mod.DayIds)
                     {
                         var SchLine = new ScheduleDayDE();
+                        SchLine.Id = schDayId;
                         SchLine.DayId = day;
                         SchLine.SchId = mod.Id;
                         SchLine.DBoperation = DBoperations.Insert;
                         SchLine.IsActive = true;
                         retVal = _schDAL.ManageScheduleDay(SchLine, cmd);
+                        schDayId += 1;
                     }
                 }
                 if (retVal == true)

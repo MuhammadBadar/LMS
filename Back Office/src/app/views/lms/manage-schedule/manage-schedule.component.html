@@ -256,7 +256,7 @@
                         <c-spinner *ngIf="proccessing" style="height: 50px;width: 50px;color: rgb(3, 71, 102);"></c-spinner>
                         <div style="margin-top: 10px; margin-bottom: 10px;" *ngIf="!proccessing">                          
                           <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;width: 100px;"
-                              type="submit" (click)="OpenDayEventDialog(); $event.stopPropagation()">Add Event</button>
+                              type="submit" (click)="OpenDayEventDialog(row); $event.stopPropagation()">Add Event</button>
                             <!-- <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;width: 100px;"
                                 type="submit" (click)="Submit();">
                                 Submit
