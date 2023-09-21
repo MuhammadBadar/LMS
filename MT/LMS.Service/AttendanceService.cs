@@ -74,12 +74,17 @@ namespace LMS.Service
                     whereClause += $" AND Id={mod.Id}";
                 if (mod.UserId != default)
                     whereClause += $" and UserId like ''" + mod.UserId + "''";
-                if (mod.from.HasValue)
-                    whereClause += $" and Date >= ''{mod.from.Value:yyyy-MM-dd} 00:00:00''";
+                if (mod.ScheduleTime != default)
+                    whereClause += $" and SchedualTime like ''" + mod.ScheduleTime + "''";
+                if (mod.Date.HasValue)
+                       whereClause += $" and Date >= ''{mod.Date.Value:yyyy-MM-dd} 00:00:00''";
 
-                if (mod.to.HasValue )
-                    whereClause += $" AND Date <= ''{mod.to.Value:yyyy-MM-dd} 23:59:59''";
-                if (mod.IsActive != default)
+                    //if (mod.from.HasValue)
+                    //    whereClause += $" and Date >= ''{mod.from.Value:yyyy-MM-dd} 00:00:00''";
+
+                    //if (mod.to.HasValue )
+                    //    whereClause += $" AND Date <= ''{mod.to.Value:yyyy-MM-dd} 23:59:59''";
+                    if (mod.IsActive != default)
                     whereClause += $" AND IsActive ={mod.IsActive}";
                 att = attDAL.SearchAttendance(whereClause, cmd);
                 return att;

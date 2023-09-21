@@ -19,14 +19,14 @@ namespace LMS.DAL
                     cmd = LMSDataContext.OpenMySqlConnection();
                     closeConnection = true;
                 }
-                cmd.CommandText = "Manage_Attendance";
+                cmd.CommandText = "ManageAttendance";
                 cmd.Parameters.AddWithValue("prm_Id", Attendance.Id);
                 cmd.Parameters.AddWithValue("prm_User", Attendance.User);
-
                 cmd.Parameters.AddWithValue("prm_UserId", Attendance.UserId);
                 cmd.Parameters.AddWithValue("prm_InTime", Attendance.InTime);
                 cmd.Parameters.AddWithValue("prm_OutTime", Attendance.OutTime);
                 cmd.Parameters.AddWithValue("prm_WorkedHours", Attendance.WorkedHours);
+                cmd.Parameters.AddWithValue("prm_SchedualTime", Attendance.ScheduleTime);
                 cmd.Parameters.AddWithValue("prm_Date", Attendance.Date);
                 cmd.Parameters.AddWithValue("prm_CreatedOn", Attendance.CreatedOn);
                 cmd.Parameters.AddWithValue("prm_CreatedBy", Attendance.CreatedById);

@@ -1,13 +1,36 @@
 <div class="container-fluid page">
   <div class="d-flex page_box p-3 mt-2 header-sticky" position="sticky">
-    <div *ngIf="AddMode">Attendance</div>
+    <div *ngIf="AddMode">Manage Attendance</div>
     <div *ngIf="EditMode">Edit Attendance</div>
   </div>
   <div class="page_content shadow p-3 position-relative">
     <form #attendanceForm="ngForm">
       <Row>
         <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
-        
+          <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="pickerFrom1" name="date" readonly="true"
+                #date="ngModel" [(ngModel)]="selectedAttendance.date " required=" true" />
+            <mat-datepicker-toggle  matSuffix [for]="$any(pickerFrom1)"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrom1 (closed)="SearchbyDatee()" [max]="maxDate"></mat-datepicker>
+ 
+          </mat-form-field>
+          <!-- <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="pickerFrom" name="date" readonly="true"
+                   #from="ngModel" [(ngModel)]="selectedAtt.date" [max]="maxDate" />
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrom (closed)="SearchbyDatee()" [max]="maxDate"></mat-datepicker>
+          </mat-form-field> -->
+
+          <!-- <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+            <mat-label>from</mat-label>
+            <input matInput [matDatepicker]="pickerFrom" name="from" readonly="true"
+                   #from="ngModel" [(ngModel)]="selectedAtt.from" [max]="maxDate" />
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrom (closed)="SearchbyDate()" [max]="maxDate"></mat-datepicker>
+          </mat-form-field> -->
+
           <mat-form-field appearance="outline" fxFlex="24%" class="form-group">
             <mat-label>--Please Select User--</mat-label>
             <mat-select name="userId" [(ngModel)]="selectedAttendance.userId">
@@ -19,55 +42,56 @@
               </mat-select>
           </mat-form-field>
 
-          <mat-form-field appearance="outline" fxFlex="24%" class="form-group">
-            <mat-label>Select Time In</mat-label>
-            <input matInput required name="inTime" [(ngModel)]="selectedAttendance.inTime">
-          </mat-form-field> 
+          <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+            <mat-label>Schedule Time</mat-label>
+            <input matInput required #name="ngModel" name="ScheduleTime" [(ngModel)]="selectedAttendance.ScheduleTime"/>
+        </mat-form-field>
 
-          <mat-form-field appearance="outline" fxFlex="24%" class="form-group">
-            <mat-label>Select Time Out</mat-label>
-            <input matInput required name="outTime" [(ngModel)]="selectedAttendance.outTime"/>
-          </mat-form-field> 
+          <!-- <mat-form-field fxFlex="49%" appearance="outline">
+            <mat-label>In Time </mat-label>
+            <input matInput [ngxTimepicker]="fullTime" #time="ngModel" name="inTime"
+                [(ngModel)]="selectedAttendance.inTime" required readonly [format]="24" />
+            <ngx-material-timepicker [timepickerClass]="'custome-class'" #fullTime></ngx-material-timepicker>
+        </mat-form-field>
+       
 
-          <mat-form-field appearance="outline" fxFlex="24%" class="form-group">
-            <mat-label>Select Worked Hours</mat-label>
-            <input matInput required name="workedHours"[(ngModel)]="selectedAttendance.workedHours"/>
-          </mat-form-field>
+          <mat-form-field fxFlex="49%" appearance="outline">
+            <mat-label>Out Time</mat-label>
+            <input matInput [ngxTimepicker]="fullTime" #outTime="ngModel" name="outTime"
+                [(ngModel)]="selectedAttendance.outTime" required readonly [format]="24" />
+            <ngx-material-timepicker [timepickerClass]="'custome-class'" #fullTime></ngx-material-timepicker>
+        </mat-form-field>
+           -->
+
+
+
+
+        <!-- In Time -->
+<mat-form-field fxFlex="49%" appearance="outline">
+  <mat-label>In Time</mat-label>
+  <input matInput [ngxTimepicker]="inTimepicker" #inTime="ngModel" name="inTime"
+         [(ngModel)]="selectedAttendance.inTime" required readonly [format]="24" />
+  <ngx-material-timepicker [timepickerClass]="'custom-class'" #inTimepicker></ngx-material-timepicker>
+</mat-form-field>
+
+<!-- Out Time -->
+<mat-form-field fxFlex="49%" appearance="outline">
+  <mat-label>Out Time</mat-label>
+  <input matInput [ngxTimepicker]="outTimepicker" #outTime="ngModel" name="outTime"
+         [(ngModel)]="selectedAttendance.outTime" required readonly [format]="24" />
+  <ngx-material-timepicker [timepickerClass]="'custom-class'" #outTimepicker></ngx-material-timepicker>
+</mat-form-field>
+
+          <!-- <mat-form-field fxFlex="49%" appearance="outline">
+            <mat-label>Out Time </mat-label>
+            <input matInput [ngxTimepicker]="fullTime" #time="ngModel" name="outTime"
+                [(ngModel)]="selectedAttendance.outTime" required readonly [format]="24" />
+            <ngx-material-timepicker [timepickerClass]="'custome-class'" #fullTime></ngx-material-timepicker>
+        </mat-form-field> -->
+
+          
           </div>
           </Row>
-          <Row>
-            <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
-              <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                <mat-label>Date</mat-label>
-                <input matInput [ngxMatDatetimePicker]="pickerFrom1" name="date" readonly="true"
-                    #date="ngModel" [(ngModel)]="selectedAttendance.date " required=" true" />
-                <mat-datepicker-toggle  matSuffix [for]="$any(pickerFrom1)"></mat-datepicker-toggle>
-                <ngx-mat-datetime-picker #pickerFrom1 style="height:300px">
-                  <div class="custom-header-color"> <!-- Apply the custom CSS class here -->
-                    <!-- Header content -->
-                  </div>
-                </ngx-mat-datetime-picker>
-              </mat-form-field>
-              
-
-        <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-          <mat-label>from</mat-label>
-          <input matInput [matDatepicker]="pickerFrom" name="from" readonly="true"
-                 #from="ngModel" [(ngModel)]="selectedAtt.from" [max]="maxDate" />
-          <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
-          <mat-datepicker #pickerFrom (closed)="SearchbyDate()" [max]="maxDate"></mat-datepicker>
-        </mat-form-field>
-      
-        <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-          <mat-label>To</mat-label>
-          <input matInput [matDatepicker]="pickerTo" name="to" readonly="true"
-                 #to="ngModel" [(ngModel)]="selectedAtt.to" [min]="selectedAtt.from"/>
-          <mat-datepicker-toggle  matSuffix [for]="pickerTo"></mat-datepicker-toggle>
-          <mat-datepicker  #pickerTo (closed)="SearchbyDate()"></mat-datepicker>
-        </mat-form-field>
-     
-        </div>
-      </Row>
       <div fxLayoutAlign="end end">
         <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveAttendance()">Submit</button>
         <!-- <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateAttendance()">Update</button> -->

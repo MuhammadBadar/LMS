@@ -1,5 +1,5 @@
 
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AttendanceVM } from '../Models/AttendanceVM';
 import { MatTableDataSource } from '@angular/material/table';
 import { LMSService } from '../lms.service';
@@ -10,6 +10,9 @@ import { UserVM } from '../../security/models/user-vm';
 import { SecurityService } from '../../security/security.service';
 import { DateAdapter } from '@angular/material/core';
 import * as moment from 'moment';
+import { NgForm } from '@angular/forms';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import Swal from 'sweetalert2';
 @Component({
     selector: 'app-manage-attendance',
     templateUrl: './manage-attendance.component.html',
@@ -31,9 +34,14 @@ import * as moment from 'moment';
   selectedAttendance: AttendanceVM;
   dataSource:any
   attendance?:AttendanceVM[]
+  @ViewChild('attendanceForm', { static: true }) attendanceForm!: NgForm;
+
   // userattbydate?:UserattbydateVM[]
   dialogData: any;
   dialogRefe: MatDialogRef<any, any>;
+  messagebox: boolean;
+  messages: any;
+  timepicker: any;
   // attendance: AttendanceVM[];
 
   constructor(
@@ -53,16 +61,19 @@ import * as moment from 'moment';
    }
 
    selectedAtt = {
+    date: new Date(),
     from: new Date(), 
     to: new Date() // Set initial value to current date
   };
   ngOnInit(): void { 
     this.SearchbyDate() ;  
+    this.Search() ;  
     this.AddMode = true;
   this.GetUser();
-   // this.GetAttendance();    
+   this.GetAttendance();    
     this.selectedAttendance = new AttendanceVM(); 
        }
+       
   GetAttendance() {
     this.lmsSvc.GetAttendance().subscribe({
       next:(value: AttendanceVM[])=> {
@@ -73,16 +84,110 @@ import * as moment from 'moment';
       },
     })
   }
-  SaveAttendance() {
-    this.lmsSvc.SaveAttendance(this.selectedAttendance).subscribe({
-      next: (value) => {
-        this.catSvc.SuccessMsgBar("Successfully Added", 5000)
-        this.Refresh();
-      }, error: (err) => {
-        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-      },
+//   SaveAttendance() {
+//     const controls = this.attendanceForm.controls;
+//     if (this.attendanceForm.invalid) {
+//       for (const name in controls) {
+//         if (controls[name].invalid) {
+//           this.catSvc.ErrorMsgBar(`  ${name} is Required`, 6000)
+//           break
+//         }
+//       }
+//     } else {
+//       this.CheckAttendanceValidation();
+//       if(!this.attendanceForm.invalid){
+//         this.lmsSvc.SaveAttendance(this.selectedAttendance).subscribe({
+//           next: (value: any) => {
+//            this.catSvc.ErrorMsgBar("Added Successfully", 8000)
+//             this.Refresh();
+//           }
+//       })
+//     }
+//     else
+//     {
+//     this.lmsSvc.SaveAttendance(this.selectedAttendance).subscribe({
+//       next: (value) => {
+//         this.catSvc.SuccessMsgBar("Successfully Added", 5000)
+//         this.Refresh();
+//       }
+//     })
+//   }
+// }}
+openTimepicker() {
+  this.timepicker.open();
+}
+SaveAttendance() {
+  const controls = this.attendanceForm.controls;
+  if (this.attendanceForm.invalid) {
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        this.catSvc.ErrorMsgBar(`  ${name} is Required`, 6000)
+        break
+      }
+    }
+  } else {
+    this.CheckAttendanceValidation();
+    if(!this.attendanceForm.invalid){
+      this.lmsSvc.SaveAttendance(this.selectedAttendance).subscribe({
+        next: (value: any) => {
+         this.catSvc.ErrorMsgBar("Added Successfully", 8000)
+          this.Refresh();
+        }
     })
   }
+    else {
+    this.proccessing = true
+    if (this.Edit) {
+       this.UpdateAttendance();
+    } else {
+      this.lmsSvc.GetAttendance().subscribe((data: any) => {
+             
+ 
+        if (data.succeeded == true) {
+                this.messagebox = false;
+                Swal.fire({
+                  icon: 'success',
+                  position: 'center',
+                  text: 'Added Successfully',
+                  background: "#FFFFFF",
+                  confirmButtonColor: "#000000"
+                  
+                })
+                this.ngOnInit();
+                this.Refresh();
+              }
+              else {
+                this.messagebox = true;
+                this.messages = data.errors
+                console.warn(data)
+              } 
+              window.scrollTo(0, 0);
+          this.proccessing = false;
+            
+        }, (err: any) => {
+          console.warn(err);
+          this.catSvc.ErrorMsgBar("Error Occurred !", 6000);
+          this.proccessing = false;
+        });
+    }}
+  }
+}
+
+UpdateAttendance() {
+  this.lmsSvc.UpdateAttendance(this.selectedAttendance).subscribe({
+    next: (value) => {
+      this.catSvc.SuccessMsgBar("Successfully Updated", 5000)
+      this.Refresh();
+    }, error: (err) => {
+      this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+    },
+  })
+}
+CheckAttendanceValidation() {
+if (this.selectedAttendance.userId == undefined || this.selectedAttendance.userId == undefined) 
+   this.attendanceForm.form.controls['userId'].setErrors({ 'incorrect': true });
+}
+
   GetUser() {
     var usrz = new UserVM
     usrz.isActive = true;
@@ -102,6 +207,7 @@ import * as moment from 'moment';
     this.AddMode = true
     // this.selectedAttendance.isActive = true;
   }
+ 
 
   Search() {
     var usr = new AttendanceVM();
@@ -116,26 +222,51 @@ import * as moment from 'moment';
      console.warn(err) ;
     },
     }) }
-  SearchbyDate( ){
+    SearchbyDate( ){
+      debugger
+     
+      var usr = new AttendanceVM();
+      usr.from = this.selectedAtt.from;
+      usr.to = this.selectedAtt.to;
+      usr.from = moment(usr.from).toDate()
+        usr.from = new Date(Date.UTC(usr.from.getFullYear(), 
+        usr.from.getMonth(), usr.from.getDate()))
+  
+        usr.to = moment(usr.to).toDate()
+        usr.to = new Date(Date.UTC(usr.to.getFullYear(), 
+        usr.to.getMonth(), usr.to.getDate()))
+      console.warn(usr);
+      this.lmsSvc.SearchAttendance(usr).subscribe({
+        next: (value: AttendanceVM[]) => {
+          this.attendance= value
+          this.dataSource = new MatTableDataSource(value)
+               console.warn(this.selectedAtt.from)
+               console.warn(this.selectedAtt.to)
+             }, error: (err) => {
+          this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+       console.warn(err) ;
+      },
+      })}
+  SearchbyDatee( ){
     debugger
    
     var usr = new AttendanceVM();
-    usr.from = this.selectedAtt.from;
-    usr.to = this.selectedAtt.to;
-    usr.from = moment(usr.from).toDate()
-      usr.from = new Date(Date.UTC(usr.from.getFullYear(), 
-      usr.from.getMonth(), usr.from.getDate()))
+     usr.date = this.selectedAtt.date;
+    // usr.to = this.selectedAtt.to;
+    usr.date = moment(usr.date).toDate()
+      usr.from = new Date(Date.UTC(usr.date.getFullYear(), 
+      usr.from.getMonth(), usr.date.getDate()))
 
-      usr.to = moment(usr.to).toDate()
-      usr.to = new Date(Date.UTC(usr.to.getFullYear(), 
-      usr.to.getMonth(), usr.to.getDate()))
-    console.warn(usr);
+    //   usr.to = moment(usr.to).toDate()
+    //   usr.to = new Date(Date.UTC(usr.to.getFullYear(), 
+    //   usr.to.getMonth(), usr.to.getDate()))
+    // console.warn(usr);
     this.lmsSvc.SearchAttendance(usr).subscribe({
       next: (value: AttendanceVM[]) => {
         this.attendance= value
         this.dataSource = new MatTableDataSource(value)
-             console.warn(this.selectedAtt.from)
-             console.warn(this.selectedAtt.to)
+              console.warn(this.selectedAtt.date)
+            //  console.warn(this.selectedAtt.to)
            }, error: (err) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
      console.warn(err) ;

@@ -5,6 +5,7 @@ export class AttendanceVM {
     inTime?: string
     outTime?: string        
     workedHours? :string
+    ScheduleTime? :string
     date? :  Date  
     from? :  Date = new Date 
     to? :  Date   = new Date
