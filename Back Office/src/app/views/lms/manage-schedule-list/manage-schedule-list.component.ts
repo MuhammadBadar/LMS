@@ -92,6 +92,7 @@ export class ManageScheduleListComponent {
   
   ngOnInit(): void {
     this.GetScheduleFH();
+    // this.GetScheduleById();
     // this.GetScheduleDayEvents();
     this.GetUser();
     this.GetRole();

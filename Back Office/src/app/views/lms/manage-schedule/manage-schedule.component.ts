@@ -86,8 +86,8 @@ export class ManageScheduleComponent {
     this.role=Entities.role;
     this.FH= ScheduleTypes.FH;
     this.FWH=ScheduleTypes.FWH;
-    this.dialogRefe = this.injector.get(MatDialogRef, null);
-    this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
+    // this.dialogRefe = this.injector.get(MatDialogRef, null);
+    // this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
   }
 
 
@@ -465,30 +465,98 @@ export class ManageScheduleComponent {
     
   //   }
   // }
+  // SaveScheduleDay() {
+  //   // Log the selectedScheduleFH object to verify its contents
+  //   console.log("Selected ScheduleFH:", this.selectedScheduleFH);
+  
+  //   // Check if both user and schedule type are selected
+  //   if (!this.selectedScheduleFH.user && !this.selectedScheduleFH.scheduleType) {
+  //     // Display an error message if either user or schedule type is missing
+  //     this.catSvc.ErrorMsgBar("Please select both User and Schedule Type.", 5000);
+  //     return; // Exit the method without saving
+  //   }
+  
+  //   // Log a message to indicate that saving is in progress
+  //   console.log("Saving...");
+  
+  //   // Proceed with saving
+  //   this.lmsSvc.SaveSchedule(this.selectedScheduleFH).subscribe({
+  //     next: (res: ScheduleVM) => {
+  //       console.warn(res);
+  //       debugger;
+  //       this.catSvc.SuccessMsgBar("Successfully Added!", 5000);
+  //       this.selectedScheduleFH = res;
+  //       this.ScheduleDay = [];
+  //       this.selectedScheduleFH.scheduleDays?.forEach((element) => {
+  //         this.ScheduleDay.push(element);
+  //       });
+  //       debugger;
+  //       this.DayEventSource = new MatTableDataSource(this.ScheduleDay);
+  //       console.warn(this.ScheduleDay);
+  //       // this.Refresh()
+  //     },
+  //     error: (e: any) => {
+  //       this.catSvc.ErrorMsgBar("Error Occurred", 5000);
+  //       console.warn(e);
+  //       this.ScheduleDay = [];
+  //       this.proccessing = false;
+  //     },
+  //   });
+  // }
   SaveScheduleDay() {
-    this.lmsSvc.SaveSchedule(this.selectedScheduleFH).subscribe({
-    
-     next: (res: ScheduleVM) => { 
-      console.warn(res);
-       debugger;
-       this.catSvc.SuccessMsgBar(" Successfully Added!", 5000)
-       this.selectedScheduleFH = res
-       this.ScheduleDay = []
-       this.selectedScheduleFH.scheduleDays?.forEach(element => {
-         this.ScheduleDay.push(element)
-       }); debugger;
-       this.DayEventSource = new MatTableDataSource(this.ScheduleDay);
-       console.warn(this.ScheduleDay)
+    // Check if both user and schedule type are selected
+    if(this.selectedScheduleFH.userId == null || this.selectedScheduleFH.userId == undefined)
+    {
+      
+      // selectedScheduleFH.userId
+      this.catSvc.ErrorMsgBar("Please select User.", 5000);
+      return; // Exit the function if either user or schedule type is empty
+    }
+    debugger;
+    if(this.selectedScheduleFH.scheduleTypeId <= 0)
+    {
+      this.catSvc.ErrorMsgBar("Please select Schedule Type.", 5000);
+      return; // Exit the function if either user or schedule type is empty
+    }
+    if(this.selectedScheduleFH.dayIds <= [] )
+    {
+      this.catSvc.ErrorMsgBar("Please select Day.", 5000);
+      return; // Exit the function if either user or schedule type is empty
+    }
 
-      //  this.Refresh()
-     }, error: (e: any) => {
-       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-       console.warn(e);
-       this.ScheduleDay = []
-       this.proccessing = false
-     }
-   })
+    // if (!this.selectedScheduleFH.user && !this.selectedScheduleFH.scheduleType) {
+    //   // Display an error message if either user or schedule type is missing
+    //   this.catSvc.ErrorMsgBar("Please select both User and Schedule Type.", 5000);
+    //   return; // Exit the function if either user or schedule type is empty
+    // }
+  
+    // Proceed with saving
+    this.lmsSvc.SaveSchedule(this.selectedScheduleFH).subscribe({
+      next: (res: ScheduleVM) => {
+        console.warn(res);
+        debugger;
+        this.catSvc.SuccessMsgBar("Successfully Added!", 5000);
+        this.selectedScheduleFH = res;
+        this.ScheduleDay = [];
+        this.selectedScheduleFH.scheduleDays?.forEach((element) => {
+          this.ScheduleDay.push(element);
+        });
+        debugger;
+        this.DayEventSource = new MatTableDataSource(this.ScheduleDay);
+        console.warn(this.ScheduleDay);
+        // this.Refresh()
+      },
+      error: (e: any) => {
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000);
+        console.warn(e);
+        this.ScheduleDay = [];
+        this.proccessing = false;
+      },
+    });
   }
+  
+  
+  
   //  Refresh() {
   //    this.GetSchline();
   //    this.selectedSch = new SchVM

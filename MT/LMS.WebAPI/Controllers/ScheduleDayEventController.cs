@@ -118,13 +118,14 @@ namespace LMS.WebAPI.Controllers
             var values = _schSVC.SearchScheduleDayEvent(Schedule);
             return Ok(values);
         }
-        [HttpGet]
+
+        [HttpGet("GetScheduleDayEvents")]
 
         public IActionResult GetScheduleDayEvents()
         {
             ScheduleDayEventDE schSC = new ScheduleDayEventDE();
-            List<ScheduleDayEventDE> schedule = _schSVC.SearchScheduleDayEvent(schSC);
-            return Ok(schedule);
+            List<ScheduleDayEventDE> schDayEvents = _schSVC.SearchScheduleDayEvent(schSC);
+            return Ok(schDayEvents);
         }
 
 

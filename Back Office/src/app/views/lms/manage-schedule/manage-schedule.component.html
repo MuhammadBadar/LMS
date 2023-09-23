@@ -6,41 +6,7 @@
 
 
      <div class="page_content shadow p-3 position-relative">
-     <form #scheduleFHForm="ngForm">
-
-      <Row>
-        <div fxLayout="row" fxLayoutAlign="space-between">
-          <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
-              <mat-label> Select ScheduleType</mat-label>
-              <mat-select required name="scheduleTypeId" #scheduleTypeId="ngModel" required="true"
-             [(ngModel)]="selectedScheduleFH.scheduleTypeId">
-             <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
-                  <mat-option *ngFor="let pt of ScheduleType" [value]=" pt.id">
-                      {{ pt.name}}
-                  </mat-option>
-              </mat-select>
-          </mat-form-field>
-          </div>
-        </Row>
-        <div *ngIf="selectedScheduleFH.scheduleTypeId == FWH">
-
-        <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
-          <mat-label> Select Day</mat-label>
-          <mat-select
-            multiple
-            name="dayId"
-            #dayIds="ngModel"
-            required="true"
-            [(ngModel)]="selectedScheduleFH.dayIds"
-          >
-            <mat-option [value]="0">--Please Select--</mat-option>
-            <mat-option *ngFor="let pt of WeekDays" [value]="pt.id">{{
-              pt.name
-            }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-        
+     <form #scheduleFHForm="ngForm">        
         <Row>
           <div fxLayout="row" fxLayoutAlign="space-between">
            <mat-radio-group fxFlex="100%" required [(ngModel)]="selectedScheduleFH.entityId" name="entityId">
@@ -56,7 +22,7 @@
             <div *ngIf="selectedScheduleFH.entityId == user">
                 <mat-form-field appearance="outline" fxFlex="100%">
                     <mat-label>Please Select User*</mat-label>
-                    <mat-select name="userId" [(ngModel)]="selectedScheduleFH.userId">
+                    <mat-select required name="user" [(ngModel)]="selectedScheduleFH.userId">
                       <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
                       <mat-option *ngFor="let val of users" [value]="val.id">
                         {{ val.userName }}
@@ -75,7 +41,7 @@
               <div *ngIf="selectedScheduleFH.entityId == role">
                  <mat-form-field appearance="outline" fxFlex="100%">
                       <mat-label>Please Select Role*</mat-label>
-                      <mat-select name="roleId" [(ngModel)]="selectedScheduleFH.roleId">
+                      <mat-select required name="role" [(ngModel)]="selectedScheduleFH.roleId">
                         <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
                         <mat-option *ngFor="let val of roles" [value]="val.id">
                           {{ val.name }}
@@ -92,6 +58,38 @@
               </div>     
   </Row>
   <br>
+  <Row>
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
+          <mat-label> Select ScheduleType</mat-label>
+          <mat-select required name="scheduleTypeId" #scheduleTypeId="ngModel" required="true"
+         [(ngModel)]="selectedScheduleFH.scheduleTypeId">
+         <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
+              <mat-option *ngFor="let pt of ScheduleType" [value]=" pt.id">
+                  {{ pt.name}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+      </div>
+    </Row>
+    <div *ngIf="selectedScheduleFH.scheduleTypeId == FWH">
+
+    <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
+      <mat-label> Select Day</mat-label>
+      <mat-select
+        multiple
+        name="dayId"
+        #dayIds="ngModel"
+        required="true"
+        [(ngModel)]="selectedScheduleFH.dayIds"
+      >
+        <mat-option [value]="0">--Please Select--</mat-option>
+        <mat-option *ngFor="let pt of WeekDays" [value]="pt.id">{{
+          pt.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
   
 
     <div *ngIf="selectedScheduleFH.scheduleTypeId == FH">

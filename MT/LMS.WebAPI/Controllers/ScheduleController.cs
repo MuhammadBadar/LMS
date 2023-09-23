@@ -36,8 +36,8 @@ namespace LMS.WebAPI.Controllers
         public ActionResult GetScheduleById(int id)
         {
             ScheduleDE Schedule = new ScheduleDE { Id = id };
-            var values = _schSVC.SearchSchedule(Schedule);
-            return Ok(values);
+            var schedules = _schSVC.SearchSchedule(Schedule); //.OrderBy(model => model.Id).LastOrDefault();
+            return Ok(schedules);
         }
         [HttpGet]
 

@@ -6,6 +6,9 @@ import { EnumTypeVM } from '../../security/models/EnumTypeVM';
 import { CatalogService } from '../../catalog/catalog.service';
 import { ActivatedRoute } from '@angular/router';
 import { LMSService } from '../lms.service';
+import Swal from 'sweetalert2';
+import { MatTableDataSource } from '@angular/material/table';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-manage-schedule-day-event',
@@ -13,10 +16,17 @@ import { LMSService } from '../lms.service';
   styleUrls: ['./manage-schedule-day-event.component.css']
 })
 export class ManageScheduleDayEventComponent {
+  displayeScheduleColumns: string[] = ['day','location','startTime', 'endTime', 'eventType','isActive','actions'];
+  DayEventSource: any;
+  proccessing: boolean | undefined;
   AddMode: boolean = true
   EditMode: boolean = false
   Edit: boolean = false;
   Add: boolean = true;
+  dataSource: any;
+  ScheduleDayEvents: ScheduleDayEventVM[] |  any;
+  DayEvent: ScheduleDayVM[] |  any;
+  ScheduleDay: ScheduleDayVM[] = []
 
   selectedDayEvent = new ScheduleDayEventVM
   selectedScheduleFH: ScheduleDayEventVM;
@@ -28,11 +38,15 @@ export class ManageScheduleDayEventComponent {
   ScheduleType: SettingsVM[];
   WorkingType: SettingsVM[];
   
+  dialogRefe: any;
+  dialogData: any;
+  isDialog : boolean = false;
+
 
   lineAddMode: boolean = false
   lineEditMode: boolean = true
-
-  
+schDay:ScheduleDayVM
+ day:string 
 
 
   constructor(private injector: Injector,
@@ -49,12 +63,23 @@ export class ManageScheduleDayEventComponent {
     // this.role=Entities.role;
     // this.FH= ScheduleTypes.FH;
     // this.FWH=ScheduleTypes.FWH;
-    // this.dialogRefe = this.injector.get(MatDialogRef, null);
-    // this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
+    this.dialogRefe = this.injector.get(MatDialogRef, null);
+    this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
   }
   
   ngOnInit(): void {
+    debugger;
     // this.GetScheduleFH();
+     if (this.dialogData  != null) {
+      this.isDialog = this.dialogData.isDialog;
+      this.isDialog = true;
+    console.warn(this.dialogData.scheduleLine)
+      if (this.dialogData.scheduleLine != undefined) {
+        this.schDay = this.dialogData.scheduleLine
+        this.day= this.schDay.day
+         this.SearchbyCourse()
+       }
+    }
     // this.GetScheduleDayEvents();
     // this.GetUser();
     // this.GetRole();
@@ -91,6 +116,8 @@ export class ManageScheduleDayEventComponent {
       
      
   } 
+
+  
 
   GetSettings(etype: EnumTypeVM) {
     var setting = new SettingsVM()
@@ -130,6 +157,7 @@ export class ManageScheduleDayEventComponent {
       next: (value) => {
         this.catSvc.SuccessMsgBar("Successfully Added", 5000);
         // this.Refresh();
+        this.SearchbyCourse()
       }, 
       error: (err) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000);
@@ -137,6 +165,90 @@ export class ManageScheduleDayEventComponent {
     });
   }
 
+  GetScheduleFH() {
+    debugger;
+    var Schfh = new ScheduleDayEventVM
+    Schfh.isActive= true;
+    debugger;
+    this.lmsSvc.GetScheduleDayEvent().subscribe({
+    
+      next: (value: ScheduleDayEventVM[]) => {
+        debugger;
+        this.ScheduleDayEvents = value
+        console.warn(this.ScheduleDayEvents)
+        this.dataSource = new MatTableDataSource(this.ScheduleDayEvents)
+       
+      }, error: (err) => {
+        alert("i");
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+      },
+    })
+  }
 
+  EditScheduleDayEvents(scheduleFH: ScheduleDayEventVM) {
+    this.EditMode = true
+    this.AddMode = false
+    this.selectedDayEvent = scheduleFH
+  }
+  UpdateScheduleFH() {
+   this.lmsSvc.SaveScheduleDayEvent(this.selectedDayEvent).subscribe({
+      next: (res: ScheduleDayEventVM) => {   
+        this.proccessing = false
+      }, error: (e: any) => {
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+        console.warn(e);
+        this.ScheduleDay = []
+        this.proccessing = false
+      }
+    })
+  }
+  Refresh() {
+    this.GetScheduleFH();
+    this.selectedDayEvent = new ScheduleDayEventVM
+    this.EditMode = false
+    this.AddMode = true
+  }
+  DeleteScheduleDayEvents(id: number) {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.value) {
+      this.lmsSvc.DeleteScheduleDayEvent(id).subscribe({
+        next: (data) => {
+          Swal.fire(
+            'Deleted!',
+            'Topic has been deleted.',
+            'success'
+          )
+          this.Refresh();
+        }, error: (e) => {
+          alert("e");
+          this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+          console.warn(e);
+        }
+      })
+    }
+  })
+} 
+SearchbyCourse( ){
+  debugger
+    var evt = new ScheduleDayEventVM
+   evt.schId=this.schDay.scheduleId
+   evt.schDayId= this.schDay.dayId
+    this.lmsSvc.SearchScheduleDayEvent(evt).subscribe({
+     next: (value: ScheduleDayEventVM[]) => {
+      console.warn(value)
+       this.dataSource = new MatTableDataSource(value)
+     }, error: (err) => {
+    
+       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+     },
+   })}
 
 }

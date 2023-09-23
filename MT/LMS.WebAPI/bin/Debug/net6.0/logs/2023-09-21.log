@@ -1,0 +1,2 @@
+2023-09-21 11:50:50.7369 ERROR MySql.Data.MySqlClient.MySqlException: Duplicate entry '15' for key 'scheduleday.PRIMARY'
+2023-09-21 11:50:50.7369 ERROR MySql.Data.MySqlClient.MySqlException: Duplicate entry '15' for key 'scheduleday.PRIMARY'

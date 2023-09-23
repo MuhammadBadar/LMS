@@ -110,3 +110,9 @@ th {
     margin-top: 60px;
 
 }
+.my-tooltip {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    /* Add more styles as needed */
+  }

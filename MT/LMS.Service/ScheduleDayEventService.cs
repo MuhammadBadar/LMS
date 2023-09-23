@@ -66,9 +66,9 @@ namespace LMS.Service
                 if (_pat.Id != default)
                     WhereClause += $" AND Id={_pat.Id}";
                 if (_pat.SchId != default)
-                    WhereClause += $" AND SchId={_pat.Id}";
-                if (_pat.ScheduleDayId != default)
-                    WhereClause += $" AND ScheduleDayId={_pat.ScheduleDayId}";
+                    WhereClause += $" AND SchId={_pat.SchId}";
+                if (_pat.SchDayId != default)
+                    WhereClause += $" AND SchDayId={_pat.SchDayId}";
                 if (_pat.StartTime != default)
                     WhereClause += $" and StartTime like ''" + _pat.StartTime + "''";
                 if (_pat.EndTime != default)

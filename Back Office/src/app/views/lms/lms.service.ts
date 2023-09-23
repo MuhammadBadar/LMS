@@ -268,7 +268,7 @@ export class LMSService {
   }
 
   GetScheduleDayEvent(): Observable<ScheduleDayEventVM[]> {
-    return this.http.get<ScheduleDayEventVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent').pipe();
+    return this.http.get<ScheduleDayEventVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent/GetScheduleDayEvents').pipe();
   }
    GetScheduleDayEventById(id: number): Observable<ScheduleDayEventVM[]> {
     return this.http.get<ScheduleDayEventVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent/' + id).pipe()
