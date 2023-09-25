@@ -14,7 +14,7 @@ namespace LMS.Core.Entities
         public int SchId { get; set; }
         public int EventTypeId { get; set; }
         public int LocationId { get; set; }
-        public int? SchDayId { get; set; }
+        public int? ScheduleDayId { get; set; }
 
         #region View Properties
 
