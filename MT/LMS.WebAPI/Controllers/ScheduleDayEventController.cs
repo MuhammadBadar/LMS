@@ -119,6 +119,7 @@ namespace LMS.WebAPI.Controllers
             return Ok(values);
         }
 
+
         [HttpGet("GetScheduleDayEvents")]
 
         public IActionResult GetScheduleDayEvents()

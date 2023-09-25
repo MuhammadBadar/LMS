@@ -65,6 +65,9 @@ export class ManageScheduleListComponent {
   addButton = true
   lineAddMode: boolean = false
   lineEditMode: boolean = true
+  isDialog: boolean = false;
+  dialogref: any;
+  
   
 
   constructor(private injector: Injector,

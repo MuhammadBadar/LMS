@@ -1,7 +1,8 @@
 <div class="container-fluid page">
   <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
       <div *ngIf="Add">Manage Schedule</div>
-      <div *ngIf="Edit">Edit Schedule</div>    
+      <div *ngIf="Edit">Edit Schedule</div>   
+       
   </div>
 
 
@@ -22,9 +23,9 @@
             <div *ngIf="selectedScheduleFH.entityId == user">
                 <mat-form-field appearance="outline" fxFlex="100%">
                     <mat-label>Please Select User*</mat-label>
-                    <mat-select required name="user" [(ngModel)]="selectedScheduleFH.userId">
+                    <mat-select required name="user" (selectionChange)="getScheduleByUserId($event.value)" [(ngModel)]="selectedScheduleFH.userId">
                       <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
-                      <mat-option *ngFor="let val of users" [value]="val.id">
+                      <mat-option *ngFor="let val of users" [value]="val.id" (click)="Search()">
                         {{ val.userName }}
                       </mat-option>
                     </mat-select>
@@ -35,6 +36,21 @@
                       </button>
                     </div>
                   </mat-form-field>
+                  <!-- <mat-form-field appearance="outline" fxFlex="49%">
+                    <mat-label>--Please Select User--</mat-label>
+                    <mat-select name="UserId" [(ngModel)]="selectedScheduleFH.userId">
+                      <mat-option [value]="0" (click)="Refresh()"
+                        >--Please Select--</mat-option
+                      >
+                      <mat-option
+                        *ngFor="let val of users"
+                        [value]="val.id"
+                        (click)="Search()"
+                      >
+                        {{ val.userName }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field> -->
             </div>
             
            

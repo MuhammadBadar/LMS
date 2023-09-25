@@ -254,6 +254,9 @@ export class LMSService {
    GetScheduleById(id: number): Observable<ScheduleVM[]> {
     return this.http.get<ScheduleVM[]>(Globals.BASE_API_URL + 'Schedule/' + id).pipe()
   }
+  GetScheduleByUserId(GetScheduleByUserId: ScheduleVM): Observable<ScheduleVM[]> {
+    return this.http.get<ScheduleVM[]>(Globals.BASE_API_URL + 'Schedule/GetScheduleByUserId' + GetScheduleByUserId).pipe()
+  }
   SaveSchedule(value: ScheduleVM) {
     return this.http.post(Globals.BASE_API_URL + 'Schedule', value)
   }

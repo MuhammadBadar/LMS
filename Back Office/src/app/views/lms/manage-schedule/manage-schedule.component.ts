@@ -71,6 +71,8 @@ export class ManageScheduleComponent {
   lineAddMode: boolean = false
   lineEditMode: boolean = true
   
+  
+  
 
   constructor(private injector: Injector,
     private lmsSvc: LMSService,
@@ -86,8 +88,8 @@ export class ManageScheduleComponent {
     this.role=Entities.role;
     this.FH= ScheduleTypes.FH;
     this.FWH=ScheduleTypes.FWH;
-    // this.dialogRefe = this.injector.get(MatDialogRef, null);
-    // this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
+    this.dialogRefe = this.injector.get(MatDialogRef, null);
+    this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
   }
 
 
@@ -781,6 +783,49 @@ Submit() {
 //     };
 //   }
 //   this.onBlur()
+// }
+Search(){ debugger;
+  var  usr = new ScheduleVM();
+  usr.userId = this.selectedScheduleFH.userId;
+  this.lmsSvc.SearchSchedule(usr).subscribe({
+   next: (value: ScheduleVM[]) => {
+     this.ScheduleFH = value
+     this.dataSource = new MatTableDataSource(this.ScheduleFH)
+   }, error: (err) => {
+     this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+   },
+ })}
+
+ getScheduleByUserId(val: any){
+  alert(val);
+  var  usr = new ScheduleVM();
+  usr.userId = this.selectedScheduleFH.userId;
+  this.lmsSvc.GetScheduleByUserId(val).subscribe({
+   next: (value: ScheduleVM[]) => {
+     this.ScheduleFH = value
+     this.dataSource = new MatTableDataSource(this.ScheduleFH)
+   }, error: (err) => {
+     this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+   },
+ })
+  //alert('i m called');
+ }
+// Search() {
+//   debugger;
+//   var usr = new ScheduleVM();
+//   usr.userId = this.selectedScheduleFH.userId;
+//   console.warn(usr);
+//   this.lmsSvc.SearchSchedule(usr).subscribe({
+//     next: (value: ScheduleVM[]) => {
+//       this.ScheduleFH= value
+//       this.dataSource = new MatTableDataSource(this.ScheduleFH)
+   
+//     }, error: (err) => {
+//       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+//    console.warn(err) ;
+//   },
+//   })
+  
 // }
 
 }

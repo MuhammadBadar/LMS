@@ -1,7 +1,15 @@
 <div class="container-fluid page">
     <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
         <div *ngIf="Add">Manage Day Event</div>
-        <div *ngIf="Edit">Edit Day Event</div>    
+        <div *ngIf="Edit">Edit Day Event</div> 
+        <div fxFlex fxLayout="row" fxLayoutAlign="end center" style="margin-top: 0; padding-top: 0;" >
+          <button mat-icon-button style="color: white; margin-top: 0; padding-top: 0;" 
+              (click)="dialogRefe.close()"
+              aria-label="Close dialog">
+              <mat-icon>close</mat-icon>
+          </button>
+        </div>
+ 
     </div>
   
   

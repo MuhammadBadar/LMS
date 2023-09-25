@@ -223,7 +223,7 @@ export class ManageTopicComponent implements OnInit {
   //   if (this.selectedTopic.courseId == 0 || this.selectedTopic.courseId == undefined)
   //     this.topicForm.form.controls['courseId'].setErrors({ 'incorrect': true });
   // }
-Search(){
+Search(){ debugger;
   var  topic = new TopicVM();
   topic.courseId = this.selectedTopic.courseId;
   this.lmsSvc.SearchTopic(topic).subscribe({

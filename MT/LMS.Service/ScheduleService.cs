@@ -164,6 +164,8 @@ namespace LMS.Service
                 string whereClause = " Where 1=1";
                 if (mod.Id != default && mod.Id != 0)
                     whereClause += $" AND Id={mod.Id}";
+                if (mod.UserId != default && mod.UserId != null)
+                    whereClause += $" AND UserId=\"{mod.UserId}\"";
                 if (mod.IsActive != default)
                     whereClause += $" AND IsActive ={mod.IsActive}";
                 list = _schDAL.SearchSchedule(whereClause);
