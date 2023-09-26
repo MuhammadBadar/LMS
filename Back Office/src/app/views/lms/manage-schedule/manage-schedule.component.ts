@@ -57,6 +57,8 @@ export class ManageScheduleComponent {
   FWH: number;
   ScheduleId!: number
   getSchById!: ScheduleVM[];
+  getSchByUserId!: ScheduleVM;
+  
   dialogRefe: any;
   Entities: SettingsVM[];
   ScheduleType: SettingsVM[];
@@ -70,6 +72,7 @@ export class ManageScheduleComponent {
   addButton = true
   lineAddMode: boolean = false
   lineEditMode: boolean = true
+  UserId!: string
   
   
   
@@ -117,6 +120,7 @@ export class ManageScheduleComponent {
         this.Edit = true;
         this.Add = false;
         this.GetScheduleById();
+        
       }
       else {
         this.Add = true;
@@ -254,87 +258,7 @@ export class ManageScheduleComponent {
       this.GetScheduleFH();
       });
    }
-  //  OpenTopicDialog() {
-  //   this.dialogRef = this.dialog.open(ManageTopicComponent, {
-  //     width: '1200px', height: '950px'
-  //     , data: { isDialog: true, courseId: this.selectedlec.courseId }
-
-  //   })
-  //   console.warn(this.selectedlec.courseId)
-  //   this.dialogRef.afterClosed().subscribe((res: any) => {
-  //       this.GetTopic()
-  //     }
-  //     );
-  // }
-  // GetScheduleDayEvents() {
-  //   var Schfh = new ScheduleDayEventsVM
-  //   Schfh.isActive= true;
-  //   this.lmsSvc.GetSchedule().subscribe({
-  //     next: (value: ScheduleDayEventsVM[]) => {
-  //       this.DayEvent = value
-  //       console.warn(this.DayEvent)
-  //       this.DayEventSource = new MatTableDataSource(this.DayEvent)
-       
-  //     }, error: (err) => {
-  //       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-  //     },
-  //   })
-  // }
-  // UpdateScheduleDayEvent() {
-  //   this.proccessing = true
-  //   if (!this.ScheduleDayEventsForm.invalid) {
-  //     this.lmsSvc.UpdateSchedule(this.selectedDayevent).subscribe({
-  //       next: (res) => {
-  //         this.catSvc.SuccessMsgBar(" Successfully Updated!", 5000)
-  //         this.Add = true;
-  //         this.Edit = false;
-  //         this.proccessing = false
-  //         this.ngOnInit();
-  //       }, error: (e) => {
-  //         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-  //         console.warn(e);
-  //         this.proccessing = false
-  //       }
-  //     })
-  //   }
-  //   else {
-  //     this.catSvc.ErrorMsgBar("Please Fill all required fields!", 5000)
-  //     this.proccessing = false
-  //   }
-  // }
-  // DeleteScheduleDayEvents(id: number) {
-  //   debugger
-  //   Swal.fire({
-  //     title: 'Are you sure?',
-  //     text: "You won't be able to revert this!",
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: '#d33',
-  //     confirmButtonText: 'Yes, delete it!'
-  //   }).then((result) => {
-  //     if (result.value) {
-  //       this.lmsSvc.DeleteSchedule(id).subscribe({
-  //         next: (data) => {
-  //           Swal.fire(
-  //             'Deleted!',
-  //             'Inquiry has been deleted.',
-  //             'success'
-  //           )
-  //           this.ngOnInit();
-  //         }, error: (e) => {
-  //           this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-  //           console.warn(e);
-  //         }
-  //       })
-  //     }
-  //   })
-  // }
-  // EditScheduleDayEvents(scheduleday: ScheduleDayEventsVM) {
-  //   this.EditMode = true
-  //   this.AddMode = false
-  //   this.selectedDayevent = scheduleday
-  // }
+  
   GetScheduleFH() {
     var Schfh = new ScheduleVM
     Schfh.isActive= true;
@@ -467,44 +391,7 @@ export class ManageScheduleComponent {
     
   //   }
   // }
-  // SaveScheduleDay() {
-  //   // Log the selectedScheduleFH object to verify its contents
-  //   console.log("Selected ScheduleFH:", this.selectedScheduleFH);
   
-  //   // Check if both user and schedule type are selected
-  //   if (!this.selectedScheduleFH.user && !this.selectedScheduleFH.scheduleType) {
-  //     // Display an error message if either user or schedule type is missing
-  //     this.catSvc.ErrorMsgBar("Please select both User and Schedule Type.", 5000);
-  //     return; // Exit the method without saving
-  //   }
-  
-  //   // Log a message to indicate that saving is in progress
-  //   console.log("Saving...");
-  
-  //   // Proceed with saving
-  //   this.lmsSvc.SaveSchedule(this.selectedScheduleFH).subscribe({
-  //     next: (res: ScheduleVM) => {
-  //       console.warn(res);
-  //       debugger;
-  //       this.catSvc.SuccessMsgBar("Successfully Added!", 5000);
-  //       this.selectedScheduleFH = res;
-  //       this.ScheduleDay = [];
-  //       this.selectedScheduleFH.scheduleDays?.forEach((element) => {
-  //         this.ScheduleDay.push(element);
-  //       });
-  //       debugger;
-  //       this.DayEventSource = new MatTableDataSource(this.ScheduleDay);
-  //       console.warn(this.ScheduleDay);
-  //       // this.Refresh()
-  //     },
-  //     error: (e: any) => {
-  //       this.catSvc.ErrorMsgBar("Error Occurred", 5000);
-  //       console.warn(e);
-  //       this.ScheduleDay = [];
-  //       this.proccessing = false;
-  //     },
-  //   });
-  // }
   SaveScheduleDay() {
     // Check if both user and schedule type are selected
     if(this.selectedScheduleFH.userId == null || this.selectedScheduleFH.userId == undefined)
@@ -566,42 +453,13 @@ export class ManageScheduleComponent {
   //    this.AddMode = true
   //    // this.selectedAttendance.isActive = true;
   //  }
-  // SaveScheduleFH() {
   
-  //   this.lmsSvc.SaveSchedule(this.selectedScheduleFH).subscribe({
-  //     next: (res: ScheduleVM) => {
-  //       this.catSvc.SuccessMsgBar(" Successfully Added!", 5000)
-  //       this.selectedScheduleFH = res
-  //       this.DayEvent = []
-  //       this.selectedScheduleFH.ScheduleDay?.forEach(element => {
-  //         this.DayEvent.push(element)
-  //       });
-  //       this.dataSource = new MatTableDataSource(this.DayEvent);
-  //       console.warn(this.DayEvent) 
-  //       // this.RefreshDetail()
-  //     }, error: (e: any) => {
-  //       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-  //       console.warn(e);
-  //       this.DayEvent = []
-  //       this.proccessing = false
-  //     }
-  //   })
-  //  }
   EditScheduleFH(scheduleFH: ScheduleVM) {
     this.EditMode = true
     this.AddMode = false
     this.selectedScheduleFH = scheduleFH
   }
   UpdateScheduleFH() {
-  //   this.lmsSvc.UpdateSchedule(this.selectedScheduleFH).subscribe({
-  //     next: (value) => {
-  //       this.catSvc.SuccessMsgBar("Successfully Updated", 5000)
-  //       this.Refresh();
-  //     }, error: (err) => {
-  //       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-  //     },
-  //   })
-  // }
    this.lmsSvc.SaveSchedule(this.selectedScheduleFH).subscribe({
       next: (res: ScheduleVM) => {
      
@@ -620,6 +478,7 @@ export class ManageScheduleComponent {
     this.selectedScheduleFH = new ScheduleVM
     this.EditMode = false
     this.AddMode = true
+    this.selectedScheduleFH.isActive = true;
   }
   DeleteScheduleFH(id: number) {
   Swal.fire({
@@ -797,19 +656,39 @@ Search(){ debugger;
  })}
 
  getScheduleByUserId(val: any){
+  debugger
   alert(val);
-  var  usr = new ScheduleVM();
-  usr.userId = this.selectedScheduleFH.userId;
-  this.lmsSvc.GetScheduleByUserId(val).subscribe({
-   next: (value: ScheduleVM[]) => {
-     this.ScheduleFH = value
-     this.dataSource = new MatTableDataSource(this.ScheduleFH)
-   }, error: (err) => {
-     this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-   },
- })
+  debugger
+  this.UserId=val;
+  this.lmsSvc.GetScheduleByUserId(this.UserId).subscribe({
+    next: (val: ScheduleVM) => {
+      debugger
+      
+      this.getSchByUserId = val;
+      this.selectedScheduleFH = this.getSchByUserId
+      this.ScheduleDayEvent = []
+      this.selectedScheduleFH.scheduleDays?.forEach(element => {
+        this.ScheduleDay.push(element)
+      });
+      this.dataSource = new MatTableDataSource(this.ScheduleDay);
+    }, error: (e) => {
+      this.catSvc.ErrorMsgBar("Error Occurred !", 6000)
+      console.warn(e);
+    }
+  })
+//   var  usr = new ScheduleVM();
+//   usr.userId = this.selectedScheduleFH.userId;
+//   this.lmsSvc.GetScheduleByUserId(val).subscribe({
+//    next: (value: ScheduleVM[]) => {
+//      this.ScheduleFH = value
+//      this.dataSource = new MatTableDataSource(this.ScheduleFH)
+//    }, error: (err) => {
+//      this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+//    },
+//  })
   //alert('i m called');
  }
+ 
 // Search() {
 //   debugger;
 //   var usr = new ScheduleVM();
