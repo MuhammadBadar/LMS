@@ -48,12 +48,19 @@ namespace LMS.WebAPI.Controllers
             List<AttendanceVM> list = attSVC.SearchAttendance(Attendance);
             return Ok(list);
         }
+        //[HttpPost]
+        //public IActionResult PostAttendance(AttendanceVM Attendance)
+        //{
+        //    Attendance.DBoperation = DBoperations.Insert;
+        //    attSVC.ManageAttendance(Attendance);
+        //    return Ok();
+        //}
         [HttpPost]
         public IActionResult PostAttendance(AttendanceVM Attendance)
         {
             Attendance.DBoperation = DBoperations.Insert;
-            attSVC.ManageAttendance(Attendance);
-            return Ok();
+            bool std = attSVC.ManageAttendance(Attendance);
+            return Ok(std);
         }
 
         [HttpPut]

@@ -43,11 +43,8 @@ export class ManageCityStudentComponent {
   dialogref: any
   isDialog : boolean = false;
   dialogData: any;
-  
   lineAddMode: boolean = false
   lineEditMode: boolean = true
-  
-
   selectedCityStudent: CityStudentVM 
   citystudents?: CityStudentVM[]=[]
   public Refstudent?: MatDialogRef<ManageStudentComponent>;

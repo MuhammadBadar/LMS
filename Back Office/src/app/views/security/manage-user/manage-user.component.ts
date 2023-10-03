@@ -38,7 +38,8 @@ export class ManageUserComponent implements OnInit {
   dialogRef: any;
   messages: any;
   dialogData: any;
-  dialogRefe: MatDialogRef<any, any> | null;
+  dialogRefe: any;
+  isDialog : boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     public securitySvc: SecurityService,
