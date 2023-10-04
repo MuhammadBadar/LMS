@@ -116,61 +116,71 @@ import Swal from 'sweetalert2';
 openTimepicker() {
   this.timepicker.open();
 }
-SaveAttendance() {
-  const controls = this.attendanceForm.controls;
-  if (this.attendanceForm.invalid) {
-    for (const name in controls) {
-      if (controls[name].invalid) {
-        this.catSvc.ErrorMsgBar(`  ${name} is Required`, 6000)
-        break
-      }
-    }
-  } else {
-    this.CheckAttendanceValidation();
-    if(!this.attendanceForm.invalid){
-      this.lmsSvc.SaveAttendance(this.selectedAttendance).subscribe({
-        next: (value: any) => {
-         this.catSvc.ErrorMsgBar("Added Successfully", 8000)
-          this.Refresh();
-        }
-    })
-  }
-    else {
-    this.proccessing = true
-    if (this.Edit) {
-       this.UpdateAttendance();
-    } else {
-      this.lmsSvc.GetAttendance().subscribe((data: any) => {
+// SaveAttendance() {
+//   const controls = this.attendanceForm.controls;
+//   if (this.attendanceForm.invalid) {
+//     for (const name in controls) {
+//       if (controls[name].invalid) {
+//         this.catSvc.ErrorMsgBar(`  ${name} is Required`, 6000)
+//         break
+//       }
+//     }
+//   } else {
+//     this.CheckAttendanceValidation();
+//     if(!this.attendanceForm.invalid){
+//       this.lmsSvc.SaveAttendance(this.selectedAttendance).subscribe({
+//         next: (value: any) => {
+//          this.catSvc.ErrorMsgBar("Added Successfully", 8000)
+//           this.Refresh();
+//         }
+//     })
+//   }
+//     else {
+//     this.proccessing = true
+//     if (this.Edit) {
+//        this.UpdateAttendance();
+//     } else {
+//       this.lmsSvc.GetAttendance().subscribe((data: any) => {
              
  
-        if (data.succeeded == true) {
-                this.messagebox = false;
-                Swal.fire({
-                  icon: 'success',
-                  position: 'center',
-                  text: 'Added Successfully',
-                  background: "#FFFFFF",
-                  confirmButtonColor: "#000000"
+//         if (data.succeeded == true) {
+//                 this.messagebox = false;
+//                 Swal.fire({
+//                   icon: 'success',
+//                   position: 'center',
+//                   text: 'Added Successfully',
+//                   background: "#FFFFFF",
+//                   confirmButtonColor: "#000000"
                   
-                })
-                this.ngOnInit();
-                this.Refresh();
-              }
-              else {
-                this.messagebox = true;
-                this.messages = data.errors
-                console.warn(data)
-              } 
-              window.scrollTo(0, 0);
-          this.proccessing = false;
+//                 })
+//                 this.ngOnInit();
+//                 this.Refresh();
+//               }
+//               else {
+//                 this.messagebox = true;
+//                 this.messages = data.errors
+//                 console.warn(data)
+//               } 
+//               window.scrollTo(0, 0);
+//           this.proccessing = false;
             
-        }, (err: any) => {
-          console.warn(err);
-          this.catSvc.ErrorMsgBar("Error Occurred !", 6000);
-          this.proccessing = false;
-        });
-    }}
-  }
+//         }, (err: any) => {
+//           console.warn(err);
+//           this.catSvc.ErrorMsgBar("Error Occurred !", 6000);
+//           this.proccessing = false;
+//         });
+//     }}
+//   }
+// }
+SaveAttendance() {
+  this.lmsSvc.SaveAttendance(this.selectedAttendance).subscribe({
+    next: (value) => {
+      this.catSvc.SuccessMsgBar("Successfully Added", 5000)
+      this.Refresh();
+    }, error: (err) => {
+      this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+    },
+  })
 }
 
 UpdateAttendance() {

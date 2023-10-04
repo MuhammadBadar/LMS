@@ -58,10 +58,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {
   NgxMatDatetimePickerModule,
-  NgxMatNativeDateModule
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
 } from '@angular-material-components/datetime-picker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 // import { MatDatepickerModule } from '@matheo/datepicker';
 // import { MatNativeDateModule } from '@matheo/datepicker/core';
@@ -123,7 +124,7 @@ import { ManageScheduleDayEventComponent } from './manage-schedule-day-event/man
   imports: [
     NgxMatDatetimePickerModule,
     MatDatepickerModule,
-    NgxMatTimepickerModule,
+    NgxMaterialTimepickerModule,
    // NgxMaterialTimepickerModule,
     NgxMatNativeDateModule,
     FlexLayoutModule,
@@ -154,6 +155,7 @@ import { ManageScheduleDayEventComponent } from './manage-schedule-day-event/man
     MatRadioModule,
     MatSelectModule,
     MatCheckboxModule,
+    NgxMatTimepickerModule,
     MatButtonModule,
     MatIconModule,
     MatStepperModule,
