@@ -57,7 +57,7 @@ export class ManageScheduleComponent {
   FWH: number;
   ScheduleId!: number
   getSchById!: ScheduleVM[];
-  getSchByUserId!: ScheduleVM;
+  //selectedSchedule!: ScheduleVM;
   
   dialogRefe: any;
   Entities: SettingsVM[];
@@ -260,6 +260,7 @@ export class ManageScheduleComponent {
    }
   
   GetScheduleFH() {
+    debugger;
     var Schfh = new ScheduleVM
     Schfh.isActive= true;
     this.lmsSvc.GetSchedule().subscribe({
@@ -657,15 +658,13 @@ Search(){ debugger;
 
  getScheduleByUserId(val: any){
   debugger
-  alert(val);
-  debugger
+  //alert(val);
   this.UserId=val;
+  
   this.lmsSvc.GetScheduleByUserId(this.UserId).subscribe({
     next: (val: ScheduleVM) => {
       debugger
-      
-      this.getSchByUserId = val;
-      this.selectedScheduleFH = this.getSchByUserId
+      this.selectedScheduleFH = val;
       this.ScheduleDayEvent = []
       this.selectedScheduleFH.scheduleDays?.forEach(element => {
         this.ScheduleDay.push(element)
@@ -676,18 +675,28 @@ Search(){ debugger;
       console.warn(e);
     }
   })
-//   var  usr = new ScheduleVM();
-//   usr.userId = this.selectedScheduleFH.userId;
-//   this.lmsSvc.GetScheduleByUserId(val).subscribe({
-//    next: (value: ScheduleVM[]) => {
-//      this.ScheduleFH = value
-//      this.dataSource = new MatTableDataSource(this.ScheduleFH)
-//    }, error: (err) => {
-//      this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-//    },
-//  })
-  //alert('i m called');
  }
+
+// getScheduleByUserId(val: any){
+//   debugger;
+//   this.lmsSvc.GetScheduleByUserId(this.UserId).subscribe({
+//     next: (val: ScheduleVM) => {
+//       console.log('Subscription next', val); // Add this line for debugging
+//       this.selectedScheduleFH = val;
+//       this.ScheduleDayEvent = []
+//       this.selectedScheduleFH.scheduleDays?.forEach(element => {
+//         this.ScheduleDay.push(element)
+//       });
+//       this.dataSource = new MatTableDataSource(this.ScheduleDay);
+//     },
+//     error: (e) => {
+//       console.error('Subscription error', e); // Add this line for debugging
+//       this.catSvc.ErrorMsgBar("Error Occurred !", 6000)
+//       console.warn(e);
+//     }
+//   })
+  
+// }
  
 // Search() {
 //   debugger;

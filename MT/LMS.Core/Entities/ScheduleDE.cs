@@ -10,6 +10,11 @@ namespace LMS.Core.Entities
     public class ScheduleDE:BaseDomain
     {
 
+        public ScheduleDE()
+        {
+            DayIds = new List<int>();
+            ScheduleDays = new List<ScheduleDayDE>();
+        }
 
         #region Class Properties
         public List<int>? DayIds { get; set; }
@@ -35,11 +40,11 @@ namespace LMS.Core.Entities
         #endregion
 
         #endregion
-        public ScheduleDE()
-        {
-            this.ScheduleDays = new List<ScheduleDayDE>();
-            /*this.ScheduleDays = new List<ScheduleDayDE>();*/
-        }
+        //public ScheduleDE()
+        //{
+        //    this.ScheduleDays = new List<ScheduleDayDE>();
+        //    /*this.ScheduleDays = new List<ScheduleDayDE>();*/
+        //}
 
         
     }

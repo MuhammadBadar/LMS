@@ -190,6 +190,75 @@ namespace LMS.Service
             return list;
         }
 
-       
+        #region GetScheduleByUserId
+
+        public ScheduleDE GetScheduleByUserId(string userId)
+        {
+            //List<ScheduleDE> list = new List<ScheduleDE>();
+            ScheduleDE sch = new ScheduleDE();
+            //bool closeConnectionFlag = false;
+            MySqlCommand? cmd = null;
+            try
+            {
+                //cmd = LMSDataContext.OpenMySqlConnection();
+                //LMSDataContext.StartTransaction(cmd);
+
+                #region Search
+
+                string whereClause = " Where 1=1";
+                if (!string.IsNullOrWhiteSpace(userId))                    
+                whereClause += $" AND UserId=\"{userId}\" AND IsActive ={true}";
+
+                //if (int.dayIds !=default)
+                  //  whereClause += $" AND DayIds=\"{dayIds}\" ";
+
+                //if (mod.IsActive != default)
+                //    whereClause += $" AND IsActive ={mod.IsActive}";
+                var list = _schDAL.SearchSchedule(whereClause);
+                if (list.Count > 0)
+                {
+                    sch = list.LastOrDefault();
+                }
+                
+                whereClause = "where 1=1";
+                    var schDays  = _schDAL.SearchScheduleDay(whereClause += $" AND SchId={sch.Id} AND IsActive ={true}");
+
+                //sch.ScheduleDays = schDays;
+
+                if (schDays != null && schDays.Count > 0)
+                    {
+                        foreach (var schDay in schDays)
+                        {
+                            if(schDay.DayId.HasValue)
+                                sch.DayIds.Add(schDay.DayId.Value);
+
+                            sch.ScheduleDays.Add(schDay);
+                        }
+                    }
+                    
+                
+
+
+                #endregion
+
+
+            }
+
+            catch (Exception exp)
+            {
+                //LMSDataContext.CancelTransaction(cmd);
+                throw exp;
+            }
+            finally
+            {
+                //if (closeConnectionFlag)
+                    //LMSDataContext.CloseMySqlConnection(cmd);
+            }
+            return sch;
+        }
+
+
+        #endregion
+
     }
 }

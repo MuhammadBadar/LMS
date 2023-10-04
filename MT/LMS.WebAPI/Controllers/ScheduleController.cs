@@ -35,26 +35,34 @@ namespace LMS.WebAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult GetScheduleById(int id)
         {
-            ScheduleDE Schedule = new ScheduleDE { Id = id };
-            var schedules = _schSVC.SearchSchedule(Schedule); //.OrderBy(model => model.Id).LastOrDefault();
-            return Ok(schedules);
+            ScheduleDE Schedule;
+            //var schedules = _schSVC.SearchSchedule(Schedule);
+            return Ok();
         }
 
-        [HttpGet("GetScheduleByUserId")]
+        /*[HttpGet("GetScheduleByUserId")]
         public ActionResult GetScheduleByUserId(string userId)
         {
             ScheduleDE Schedule = new ScheduleDE { UserId = userId };
-            var schedules = _schSVC.SearchSchedule(Schedule); //.OrderBy(model => model.Id).LastOrDefault();
-            return Ok(schedules);
+            var schedules = _schSVC.SearchSchedule(Schedule); 
+            var recentSchedule = schedules.LastOrDefault();
+            return Ok(recentSchedule);
+        }*/
+        [HttpGet("GetScheduleByUserId")]
+        public ActionResult GetScheduleByUserId(string userId)
+        {
+            //ScheduleDE Schedule = new ScheduleDE { UserId = userId };
+            var schedule = _schSVC.GetScheduleByUserId(userId); 
+            return Ok(schedule);
         }
 
-        [HttpGet]
+            [HttpGet]
 
         public IActionResult GetSchedule()
         {
-            ScheduleDE schSC = new ScheduleDE();
-            List<ScheduleDE> schedule = _schSVC.SearchSchedule(schSC);
-            return Ok(schedule);
+            //ScheduleDE schSC = new ScheduleDE();
+            //List<ScheduleDE> schedule = _schSVC.SearchSchedule(schSC);
+            return Ok();
         }
 
 
