@@ -669,6 +669,9 @@ Search(){ debugger;
       this.selectedScheduleFH.scheduleDays?.forEach(element => {
         this.ScheduleDay.push(element)
       });
+
+      this.ScheduleDay = this.selectedScheduleFH.scheduleDays;
+      debugger;
       this.dataSource = new MatTableDataSource(this.ScheduleDay);
     }, error: (e) => {
       this.catSvc.ErrorMsgBar("Error Occurred !", 6000)

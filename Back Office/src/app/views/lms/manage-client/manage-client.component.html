@@ -1,0 +1,39 @@
+<div class="container-fluid page height">
+    <div class="d-flex page_box p-3 mt-2 header-sticky" position="sticky">
+      <div *ngIf="AddMode">Manage Client</div>
+      <div *ngIf="EditMode">Edit Client</div>
+    </div>  
+    <div class="page_content shadow p-3 position-relative">
+        <form #ClientForm="ngForm">
+            <Row>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                    <mat-form-field appearance="outline" fxFlex="49%" class="form-group">
+                        <mat-label>Client Name</mat-label>
+                        <input
+                          matInput
+                          class="form-control"
+                          placeholder="Client Name"
+                          [type]="hide ? 'clientName' : 'text'"
+                          name="clientName"
+                          [ngClass]="{
+                            'is-invalid': ClientForm.submitted && clientName.invalid
+                          }"
+                          #clientName="ngModel"
+                          [(ngModel)]="selectedClient.clientName"
+                          required
+                          maxlength="200"
+                          minlength="3"
+                        />
+                        <mat-error
+                          class="form-text text-danger"
+                          *ngIf="ClientForm.controls['clientName']?.hasError || ClientForm.controls['clientName']?.errors?.['minlength']"
+                        >
+                          Client Name is required to be at least 3 characters.
+                              </mat-error
+                        >
+                      </mat-form-field>
+                </div>
+            </Row>
+        </form>
+    </div>
+</div>        

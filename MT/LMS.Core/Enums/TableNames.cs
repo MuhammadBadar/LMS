@@ -27,6 +27,7 @@
         topic,
         lecture,
         assignTask,
+        client,
         student
 
     }

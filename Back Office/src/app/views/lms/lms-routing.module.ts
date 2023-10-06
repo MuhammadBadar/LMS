@@ -15,6 +15,7 @@ import { ManageStudentComponent } from './manage-student/manage-student.componen
 import { ManageScheduleComponent } from './manage-schedule/manage-schedule.component';
 import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
 import { ManagePatientComponent } from './manage-patient/manage-patient.component';
+
 import { ManageAttendanceComponent } from './manage-attendance/manage-attendance.component';
 import { ManageUserattbydateComponent } from './manage-userattbydate/manage-userattbydate.component';
 import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
@@ -23,6 +24,7 @@ import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-us
 import { ManageSchComponent } from './manage-sch/manage-sch.component';
 import { ManageScheduleListComponent } from './manage-schedule-list/manage-schedule-list.component';
 import { ManageScheduleDayEventComponent } from './manage-schedule-day-event/manage-schedule-day-event.component';
+import { ManageClientComponent } from './manage-client/manage-client.component';
 
 const routes: Routes = [{
   path: '',
@@ -125,6 +127,11 @@ const routes: Routes = [{
     {
       path: "Patient",
       component: ManagePatientComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "Client",
+      component: ManageClientComponent,
       pathMatch: "full"
     },
 
