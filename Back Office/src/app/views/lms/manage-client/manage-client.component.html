@@ -7,33 +7,176 @@
         <form #ClientForm="ngForm">
             <Row>
                 <div fxLayout="row" fxLayoutAlign="space-between">
-                    <mat-form-field appearance="outline" fxFlex="49%" class="form-group">
-                        <mat-label>Client Name</mat-label>
-                        <input
-                          matInput
-                          class="form-control"
-                          placeholder="Client Name"
-                          [type]="hide ? 'clientName' : 'text'"
-                          name="clientName"
-                          [ngClass]="{
-                            'is-invalid': ClientForm.submitted && clientName.invalid
-                          }"
-                          #clientName="ngModel"
-                          [(ngModel)]="selectedClient.clientName"
-                          required
-                          maxlength="200"
-                          minlength="3"
-                        />
-                        <mat-error
-                          class="form-text text-danger"
-                          *ngIf="ClientForm.controls['clientName']?.hasError || ClientForm.controls['clientName']?.errors?.['minlength']"
-                        >
-                          Client Name is required to be at least 3 characters.
-                              </mat-error
-                        >
-                      </mat-form-field>
+                  <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                    <mat-label>Client Name</mat-label>
+                    <input                      
+                      matInput
+                      #clientName="ngModel"
+                      required
+                      name="clientName"
+                      [(ngModel)]="selectedClient.clientName"
+                    />                    
+                  </mat-form-field>
+                  <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                    <mat-label>CNIC</mat-label>
+                    <input                        
+                      matInput
+                      #cnic="ngModel"
+                      required
+                      name="cnic"
+                      [(ngModel)]="selectedClient.cnic"
+                    />                      
+                  </mat-form-field>                      
                 </div>
             </Row>
+            <Row>
+              <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                  <mat-label>Cell</mat-label>
+                  <input                      
+                    matInput
+                    #cell="ngModel"
+                    required
+                    name="cell"
+                    [(ngModel)]="selectedClient.cell"
+                  />                    
+                </mat-form-field>
+
+                <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                  <mat-label>Address</mat-label>
+                  <input                        
+                    matInput
+                    #address="ngModel"
+                    required
+                    name="address"
+                    [(ngModel)]="selectedClient.address"
+                  />                      
+                </mat-form-field>
+              </div>
+          </Row>
+          <Row>
+            <div fxLayout="row" fxLayoutAlign="space-between">
+              <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                <mat-label>Email</mat-label>
+                <input                      
+                  matInput
+                  #email="ngModel"
+                  required
+                  name="email"
+                  [(ngModel)]="selectedClient.email"
+                />                    
+              </mat-form-field>              
+              <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                <mat-label> Joining Date</mat-label>
+                <input
+                  [matDatepicker]="picker"
+                  matInput
+                  #joiningDate="ngModel"
+                  required
+                  name="joiningDate"
+                  [(ngModel)]="selectedClient.joiningDate"
+                />
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+        </Row>
+        <Row>
+          <mat-checkbox
+            name="isActive"
+            [(ngModel)]="selectedClient.isActive"
+            checked
+            >Is Active</mat-checkbox
+          >
+  
+          <div fxLayoutAlign="end end">
+            <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveClient()">Submit</button>
+            <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateClient()">Update</button>
+            <div>
+                <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                    (click)="Refresh()">
+                    <mat-icon>autorenew</mat-icon>
+                </button>
+            </div>
+        </div>          
+        </Row>
         </form>
+        <section
+        class="example-container mat-elevation-z8"
+        tabindex="0"
+        style="border-radius: 5px; margin-top: 20px"
+      >
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="clientName">
+            <th mat-header-cell *matHeaderCellDef>Client Name</th>
+            <td mat-cell *matCellDef="let pat">{{ pat.clientName }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="cnic">
+            <th mat-header-cell *matHeaderCellDef>CNIC</th>
+            <td mat-cell *matCellDef="let pat">{{ pat.cnic }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="cell">
+            <th mat-header-cell *matHeaderCellDef>Cell</th>
+            <td mat-cell *matCellDef="let element">{{ element.cell }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef>Address</th>
+            <td mat-cell *matCellDef="let pat">{{ pat.address }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="joiningDate">
+            <th mat-header-cell *matHeaderCellDef>Joining Date</th>
+            <td mat-cell *matCellDef="let element">{{ element.joiningDate| date:"dd/MM/yyyy" }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="isActive">
+            <th mat-header-cell *matHeaderCellDef>Is Active</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.isActive ? "Yes" : "No" }}
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="actions" stickyEnd="true">
+            <th mat-header-cell *matHeaderCellDef>
+              <p style="margin-top: 15px; font-size: 16px; text-align: center">
+                Actions
+              </p>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <div style="text-align: center">
+                <button
+                  mat-icon-button
+                  mat-sm-button
+                  (click)="EditClient(row)"
+                  style="color: #1e293b"
+                  cTooltip=" Edit Patient"
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+  
+                <button
+                  mat-icon-button
+                  mat-sm-button
+                  color="warn"
+                  (click)="DeleteClient(row.id)"
+                  cTooltip="Delete Patient"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+          <tr mat-row *matRowDef="let row; columns: Columns"></tr>
+        </table>
+      </section>
     </div>
 </div>        
