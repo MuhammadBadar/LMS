@@ -670,6 +670,7 @@ Search(){ debugger;
         this.ScheduleDay.push(element)
       });
 
+      debugger;
       this.ScheduleDay = this.selectedScheduleFH.scheduleDays;
       debugger;
       this.dataSource = new MatTableDataSource(this.ScheduleDay);

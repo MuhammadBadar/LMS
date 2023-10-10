@@ -24,8 +24,8 @@
                 <mat-form-field appearance="outline" fxFlex="100%">
                     <mat-label>Please Select User</mat-label>
                     <mat-select required name="user" (selectionChange)="getScheduleByUserId($event.value)" [(ngModel)]="selectedScheduleFH.userId">
-                      <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
-                      <mat-option *ngFor="let val of users" [value]="val.id" (click)="Search()">
+                      <mat-option [value]="0" >--Please Select--</mat-option>
+                      <mat-option *ngFor="let val of users" [value]="val.id" >
                         {{ val.userName }}
                       </mat-option>
                     </mat-select>
