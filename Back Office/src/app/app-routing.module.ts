@@ -41,6 +41,11 @@ const routes: Routes = [
           import('./views/lms/lms.module').then((m) => m.LMSModule)
       },
       {
+        path: 'tms',
+        loadChildren: () =>
+          import('./views/tms/tms.module').then((m) => m.TMSModule)
+      },
+      {
         path: 'account',
         loadChildren: () =>
           import('./views/account/account.module').then((m) => m.AccountModule)

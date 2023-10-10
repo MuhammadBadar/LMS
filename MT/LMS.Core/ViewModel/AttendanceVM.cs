@@ -15,7 +15,7 @@ namespace LMS.Core.ViewModel
         public string? User { get; set; }
         public string? InTime { get; set; }
         public string? OutTime { get; set; }
-        public DateTime? ScheduleTime { get; set; }
+        public string? ScheduleTime { get; set; }
         public string? WorkedHours { get; set; }
         public DateTime? Date { get; set; }
      

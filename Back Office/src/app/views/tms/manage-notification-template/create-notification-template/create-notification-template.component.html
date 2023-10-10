@@ -1,0 +1,49 @@
+<app-header></app-header>
+<div>
+  <mat-label>
+    <div *ngIf="Add">
+      <h2><strong>Manage Template</strong></h2>
+    </div>
+    <div *ngIf="Edit">
+      <h2><strong>Edit Template</strong></h2>
+    </div>
+  </mat-label>
+  <mat-card style="margin-top: 20px;">
+    <form name="eventForm" #userForm="ngForm" class="event-form" fxFlex>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="45%">
+          <input matInput name="KeyCode" #keyCode="ngModel" [(ngModel)]="taskSvc.selectedTemplateData.keyCode"
+            placeholder="Key Code" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="45%">
+          <input matInput name="TemplateName" #TemplateName="ngModel"
+            [(ngModel)]="taskSvc.selectedTemplateData.templateName" placeholder="Template Name">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="45%">
+          <mat-label>Email Subject</mat-label>
+          <input matInput name="Subject" #subject="ngModel" [(ngModel)]="taskSvc.selectedTemplateData.subject"
+            placeholder="Notification Subject" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="45%">
+          <input matInput name="SMS" #sms="ngModel" [(ngModel)]="taskSvc.selectedTemplateData.sms" placeholder="SMS">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field fxFlex="100%">
+          <mat-label>Email Body</mat-label>
+          <textarea matInput required name="body" [(ngModel)]="taskSvc.selectedTemplateData.body"></textarea>
+        </mat-form-field>
+      </div>
+      <div fxLayoutAlign="end end">
+        <button mat-raised-button color="primary" *ngIf="  !Edit" [disabled]="userForm.invalid"
+          style=" margin-top: 20px;" (click)="SaveTemplate();userForm.reset()">Submit </button>
+        <button mat-raised-button color="primary" *ngIf=" !Add" [disabled]="userForm.invalid" style=" margin-top: 20px;"
+          (click)="SaveTemplate()">Update </button>
+        <button mat-raised-button color="accent" [routerLink]="['/task/manageTemplate']"
+          style="margin-left: 5px; margin-top: 20x;"><strong>Cancel</strong> </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

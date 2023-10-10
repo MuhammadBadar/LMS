@@ -1,24 +1,26 @@
 ﻿namespace LMS.Core.Enums
 {
     public enum TableNames
-    {      
+    {
+        attachments,
         permissions,
         feature,
         enums,
         enumline,
         course,
         UserTargets,
-        City,
+        City, client,
         Schedule,
-        sch,
-        scheduleday,
-        attendance,
+        sch, ScheduleDayEvent,
+        notification_log, notificationtemplate,
+        schLine,
+        attendance, scheduleday,
         CityStudent,
         vocabulary,
         patient,
         Student,
         useraccount,
-        ScheduleDayEvent,
+        ScheduleDaysEvents,
         user,
         coursedetail,
         courseschedule,
@@ -27,8 +29,10 @@
         topic,
         lecture,
         assignTask,
-        client,
-        student
+        student,
+        task,
+        Tasks,
+        taskcomment
 
     }
 }

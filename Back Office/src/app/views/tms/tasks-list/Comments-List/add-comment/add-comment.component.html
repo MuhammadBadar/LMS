@@ -1,0 +1,22 @@
+<mat-card>
+    <mat-label>
+      <h3>Manage Task</h3>
+    </mat-label>
+    <form [formGroup]="basicForm1" (ngSubmit)="onSubmit()">
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field class="full-width">
+          <input type="number" matInput required placeholder="Task Id" formControlName="taskId" />
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field class="full-width">
+          <textarea matInput name="comment" type="text" placeholder="Comment">
+           </textarea>
+        </mat-form-field>
+      </div>
+      <div fxLayoutAlign="center end">
+        <button mat-raised-button color="primary" [type]="'submit'" style=" margin-top: 30px;">Submit </button>
+        <button mat-raised-button color="accent" style="margin-left: 5px; margin-top: 30px;"> Cancel </button>
+      </div>
+    </form>
+  </mat-card>

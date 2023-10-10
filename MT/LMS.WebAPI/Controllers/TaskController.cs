@@ -1,42 +1,104 @@
-﻿using LMS.Core.ViewModel;
-using LMS.Service;
-using Microsoft.AspNetCore.Http;
+﻿
+
+using LMS.Core.Entities;
+using LMS.Core.Enums;
+using LMS.Core.SearchCriteria;
+using LMS.Core.ViewModel;
+using LMS.MicroERP.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 
-namespace LMS.WebAPI.Controllers
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace LMS.WepAPI.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class TaskController : ControllerBase
     {
+
         #region Class Variables
-        private TaskService taskSVC;
+
+        private TaskService _taskSVC;
+
         #endregion
-        #region Constructor
+        #region Constructors
         public TaskController()
         {
-            taskSVC = new TaskService();
+            _taskSVC = new TaskService();
         }
+
         #endregion
         #region Http Verbs
 
         [HttpGet]
         public ActionResult Get()
         {
-            TaskVM task = new TaskVM();
-            List<TaskVM> values = taskSVC.SearchTask(task);
-            return Ok(values);
+           
+            TaskSearchCriteria TaskSC = new TaskSearchCriteria { IsActive = true };
+            List<TaskVM> task = _taskSVC.SearchTasks(TaskSC);
+            return Ok(task);
         }
         [HttpGet("{id}")]
         public ActionResult GetTaskById(int id)
         {
-            TaskVM task = new TaskVM { Id = id };
-            var values = taskSVC.SearchTask(task);
-            return Ok(values);
+
+            TaskSearchCriteria tasktSC = new TaskSearchCriteria { Id = id };
+            var tsk = _taskSVC.SearchTasks(tasktSC);
+            return Ok(tsk);
         }
 
+        [HttpPost("{Search}")]
+        public ActionResult Search(TaskSearchCriteria Search)
+        {
+            List<TaskVM> cust = _taskSVC.SearchTasks(Search);
+            return Ok(cust);
+        }
+
+        [HttpPost]
+        public ActionResult Post(TaskDE task)
+        {
+            task.DBoperation = DBoperations.Insert;
+            var retVal = _taskSVC.ManagementTask(task);
+            //retVal.HasErrors = true;
+
+            return (Ok(retVal));
+
+            //if (task.Id != 0)
+            //{
+            //    //TaskSearchCriteria tasktSC = new TaskSearchCriteria { Id = task.Id };
+            //    //var data = _taskSVC.SearchTasks(tasktSC);
+            //    //return (Ok(data));
+            //}
+            //else
+            //{
+            //    return Ok(null);
+            //}
+
+        }
+
+        [HttpPut]
+        public void Put(TaskDE task)
+        {
+
+            task.DBoperation = DBoperations.Update;
+            _taskSVC.ManagementTask(task);
+        }
+
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            TaskDE task = new TaskDE { Id = id, DBoperation = DBoperations.DeActivate };
+            _taskSVC.ManagementTask(task);
+        }
 
         #endregion
+       
+
     }
 }

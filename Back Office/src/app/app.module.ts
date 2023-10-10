@@ -14,7 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSortModule } from '@angular/material/sort';
-
+//import { QuillConfigModule } from 'ngx-quill/config';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {
   PERFECT_SCROLLBAR_CONFIG,
@@ -66,6 +66,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -86,10 +87,17 @@ const APP_CONTAINERS = [
     PerfectScrollbarModule,
     NgxMatNativeDateModule,
     MatNativeDateModule,
+   // QuillConfigModule.forRoot({
+    //   modules: {
+    //     syntax: true,
+        
+    //   }
+    // }),
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatMomentDateModule,
+    MatCardModule,
     MatToolbarModule,
     HttpClientModule,
     MatSortModule,
@@ -133,6 +141,7 @@ const APP_CONTAINERS = [
     ListGroupModule,
     CardModule,
   ],
+  
   providers: [
     {
       provide: LocationStrategy,

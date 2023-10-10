@@ -1,0 +1,19 @@
+.example-container {
+  height: 500px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+.mat-header-cell,  .mat-cell {
+  min-width: 100px;
+}
+td.mat-column-star {
+  min-width: 100px;
+  padding-right: 8px;
+}
+
+th.mat-column-position, td.mat-column-position {
+  padding-left: 8px;
+}

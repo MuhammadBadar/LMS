@@ -7,6 +7,8 @@
         Shift,
         Sources,
         OrderTypes,
-        DiscountTypes
+        DiscountTypes,
+        Status = 1010,
+        Priority = 1011,
     }
 }

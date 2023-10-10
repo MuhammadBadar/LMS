@@ -1,0 +1,92 @@
+<app-header></app-header>
+
+<div fxLayout="column">
+  <div>
+    <div class="header-bg dark-blue"></div>
+    <div class="search-box mat-elevation-z2" style="margin-top: 10px ;" fxLayout="row-wrap">
+      <button mat-icon-button (click)="Search()" matTooltip="Free Search">
+        <mat-icon>search</mat-icon>
+      </button>
+      <input type="text" placeholder="Search" (keyup)='updateFilter($event)' name="FreeSearch" #freeSearch="ngModel"
+        [(ngModel)]="taskSvc.selectedTask.freeSearch" />
+      <div fxLayout="row-wrap">
+        <button mat-raised-button (click)="Event()"><button mat-icon-button style="margin-right:15px;"
+            matTooltip="Advanced Search">
+            <mat-icon>more_horiz</mat-icon>
+          </button></button>
+      </div>
+    </div>
+  </div>
+  <div class="example-container mat-elevation-z8">
+    <br>
+    <div style="display: inline-block;">
+      <h3><strong>{{this.length}} number of rows appeared</strong></h3>
+    </div>
+    <div style="display: inline-block;">
+      <button mat-icon-button (click)=" GetTask()" matTooltip="Refresh Task">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+    <table mat-table #table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="id" id="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let tsk"> {{tsk.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="title" id="title">
+        <th mat-header-cell *matHeaderCellDef>
+          <div style="min-width:160px; padding: 10px;">Title</div>
+        </th>
+        <td mat-cell *matCellDef="let tsk">
+          <div style="min-width:160px ; padding: 10px">{{tsk.title}}</div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="user" id="user">
+        <th mat-header-cell *matHeaderCellDef> User </th>
+        <td mat-cell *matCellDef="let tsk">
+          <div style="min-width:110px "> {{tsk.user}}</div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="status" id="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let tsk">
+          <div style="min-width:110px"> {{tsk.taskStatus}}</div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="priority" id="priority">
+        <th mat-header-cell *matHeaderCellDef> Priority </th>
+        <td mat-cell *matCellDef="let tsk"> {{tsk.taskPriority}} </td>
+      </ng-container>
+      <ng-container matColumnDef="sp" id="sp">
+        <th mat-header-cell *matHeaderCellDef> Story Points </th>
+        <td mat-cell *matCellDef="let tsk"> {{tsk.sp}} </td>
+      </ng-container>
+      <ng-container matColumnDef="description" id="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let tsk">
+          <div class="ql-editor" [innerHTML]="tsk.description" style="min-width:1700px ; padding: 5px">
+          </div>
+          <quill-view [content]="tsk.description"></quill-view>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="actions" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td *matCellDef="let row">
+          <button mat-icon-button mat-sm-button color="primary" (click)="EditTask(row)" data-toggle="Edit" title="Edit"
+            style="cursor: pointer;">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button mat-icon-button mat-sm-button color="warn" (click)="DeleteTask(row.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true "></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+  </div>
+</div>
