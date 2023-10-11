@@ -32,6 +32,9 @@ import { ScheduleDayEventVM } from './Models/ScheduleDayEventVM';
 })
 export class LMSService {
 
+  selectedScheduleId: number;
+  selectedScheduleDayId: number[];
+
   constructor(private http: HttpClient) { }
 
   UpdateInquiry(value: InquiryVM) {

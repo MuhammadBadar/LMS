@@ -16,7 +16,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./manage-schedule-day-event.component.css']
 })
 export class ManageScheduleDayEventComponent {
-  displayeScheduleColumns: string[] = ['day','location','startTime', 'endTime', 'eventType','isActive','actions'];
+  displayeScheduleColumns: string[] = ['location','startTime', 'endTime', 'eventType','actions'];
   DayEventSource: any;
   proccessing: boolean | undefined;
   AddMode: boolean = true
@@ -48,6 +48,8 @@ export class ManageScheduleDayEventComponent {
 schDay:ScheduleDayVM
  day:string 
 
+ timepicker:any;
+
 
   constructor(private injector: Injector,
     private lmsSvc: LMSService,
@@ -77,7 +79,7 @@ schDay:ScheduleDayVM
       if (this.dialogData.scheduleLine != undefined) {
         this.schDay = this.dialogData.scheduleLine
         this.day= this.schDay.day
-         this.SearchbyCourse()
+         this.SearchbyScheduleDayEvent()
        }
     }
     // this.GetScheduleDayEvents();
@@ -117,7 +119,9 @@ schDay:ScheduleDayVM
      
   } 
 
-  
+  openTimepicker() {
+    this.timepicker.open();
+  }
 
   GetSettings(etype: EnumTypeVM) {
     var setting = new SettingsVM()
@@ -145,25 +149,55 @@ schDay:ScheduleDayVM
       }
     })
   }
-
+  
+  
   Submit() {
     debugger;
-    if (!this.selectedDayEvent.locationId) {
-      this.catSvc.ErrorMsgBar("Please fill in all required fields.", 5000);
-      return; // Exit the function if any required field is empty
-    }
-  
-    this.lmsSvc.SaveScheduleDayEvent(this.selectedDayEvent).subscribe({
-      next: (value) => {
-        this.catSvc.SuccessMsgBar("Successfully Added", 5000);
-        // this.Refresh();
-        this.SearchbyCourse()
-      }, 
-      error: (err) => {
-        this.catSvc.ErrorMsgBar("Error Occurred", 5000);
-      },
-    });
+  // Check if both user and schedule type are selected
+  if (this.selectedDayEvent.locationId == null || this.selectedDayEvent.locationId == undefined) {
+    this.catSvc.ErrorMsgBar("Please select Location.", 5000);
+    return;
   }
+  
+  if (this.selectedDayEvent.startTime == null || this.selectedDayEvent.startTime == undefined) {
+    this.catSvc.ErrorMsgBar("Please select Start Time.", 5000);
+    return;
+  }
+  
+  if(this.selectedDayEvent.endTime == null || this.selectedDayEvent.endTime == undefined)
+  {  
+    this.catSvc.ErrorMsgBar("Please select End Time.", 5000);
+    return; // Exit the function if either user or schedule type is empty
+  }
+  if(this.selectedDayEvent.eventType == null || this.selectedDayEvent.eventType == undefined)
+  {  
+    this.catSvc.ErrorMsgBar("Please select Event Type.", 5000);
+    return; // Exit the function if either user or schedule type is empty
+  }
+  this.lmsSvc.SaveScheduleDayEvent(this.selectedDayEvent).subscribe({
+    next: (value) => {
+      this.catSvc.SuccessMsgBar("Successfully Added", 5000);
+      this.Refresh();
+    }, 
+    error: (err) => {
+      this.catSvc.ErrorMsgBar("Error Occurred", 5000);
+    },
+  });
+}
+
+  // Submit() {   
+  //   this.selectedDayEvent.schId = this.lmsSvc.selectedScheduleId;
+  //   this.lmsSvc.SaveScheduleDayEvent(this.selectedDayEvent).subscribe({
+  //     next: (value) => {
+  //       this.catSvc.SuccessMsgBar("Successfully Added", 5000);
+        
+  //       this.SearchbyScheduleDayEvent()
+  //     }, 
+  //     error: (err) => {
+  //       this.catSvc.ErrorMsgBar("Error Occurred", 5000);
+  //     },
+  //   });
+  // }
 
   GetScheduleFH() {
     debugger;
@@ -236,7 +270,7 @@ schDay:ScheduleDayVM
     }
   })
 } 
-SearchbyCourse( ){
+SearchbyScheduleDayEvent( ){
   debugger
     var evt = new ScheduleDayEventVM
    evt.schId=this.schDay.scheduleId

@@ -665,6 +665,10 @@ Search(){ debugger;
     next: (val: ScheduleVM) => {
       debugger
       this.selectedScheduleFH = val;
+      //alert('sch Id: ' + this.selectedScheduleFH.id);
+      // alert('scheduleDay Id: ' + this.selectedScheduleFH.dayIds);
+      this.lmsSvc.selectedScheduleId = this.selectedScheduleFH.id;
+      this.lmsSvc.selectedScheduleDayId = this.selectedScheduleFH.dayIds;
       this.ScheduleDayEvent = []
       this.selectedScheduleFH.scheduleDays?.forEach(element => {
         this.ScheduleDay.push(element)
