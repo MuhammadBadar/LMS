@@ -48,7 +48,10 @@ export class ManageScheduleDayEventComponent {
 schDay:ScheduleDayVM
  day:string 
 
- timepicker:any;
+  timepicker:any; 
+  startTime: null;
+  endTime: null;  
+  timeRangeInvalid: boolean = false;
 
 
   constructor(private injector: Injector,
@@ -119,8 +122,17 @@ schDay:ScheduleDayVM
      
   } 
 
+  
+
   openTimepicker() {
     this.timepicker.open();
+  }
+  validateTimeRange() {
+    if (this.selectedDayEvent.startTime > this.selectedDayEvent.endTime) {
+      this.timeRangeInvalid = true;
+    } else {
+      this.timeRangeInvalid = false;
+    }
   }
 
   GetSettings(etype: EnumTypeVM) {
