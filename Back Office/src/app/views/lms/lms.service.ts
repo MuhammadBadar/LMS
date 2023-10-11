@@ -33,7 +33,7 @@ import { ScheduleDayEventVM } from './Models/ScheduleDayEventVM';
 export class LMSService {
 
   selectedScheduleId: number;
-  selectedScheduleDayId: number[];
+  selectedScheduleDayId: number;
 
   constructor(private http: HttpClient) { }
 
@@ -276,8 +276,8 @@ export class LMSService {
     return this.http.post<ScheduleVM[]>(Globals.BASE_API_URL + 'Schedule/Search', value).pipe();
   }
 
-  GetScheduleDayEvent(): Observable<ScheduleDayEventVM[]> {
-    return this.http.get<ScheduleDayEventVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent/GetScheduleDayEvents').pipe();
+  GetScheduleDayEvents(scheduleDayId:number): Observable<ScheduleDayEventVM[]> {
+    return this.http.get<ScheduleDayEventVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent/GetScheduleDayEvents?scheduleDayId=' + scheduleDayId).pipe();
   }
    GetScheduleDayEventById(id: number): Observable<ScheduleDayEventVM[]> {
     return this.http.get<ScheduleDayEventVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent/' + id).pipe()

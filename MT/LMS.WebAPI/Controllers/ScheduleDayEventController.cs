@@ -122,9 +122,11 @@ namespace LMS.WebAPI.Controllers
 
         [HttpGet("GetScheduleDayEvents")]
 
-        public IActionResult GetScheduleDayEvents()
+        public IActionResult GetScheduleDayEvents(int schId, int scheduleDayId)
         {
             ScheduleDayEventDE schSC = new ScheduleDayEventDE();
+            schSC.SchId = schId;
+            schSC.ScheduleDayId = scheduleDayId;
             List<ScheduleDayEventDE> schDayEvents = _schSVC.SearchScheduleDayEvent(schSC);
             return Ok(schDayEvents);
         }

@@ -1,7 +1,7 @@
 export class ScheduleDayEventVM {
     id!: number    
     schId?: number;
-    schDayId: number
+    scheduleDayId: number
     day?: string
     scheduleTypeId: number = 0;
     scheduleType?: string        

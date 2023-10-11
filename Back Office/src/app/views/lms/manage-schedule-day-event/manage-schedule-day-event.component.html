@@ -39,7 +39,7 @@
 
         <Row>
             <div fxLayout="row" fxLayoutAlign="space-between">                 
-              <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+              <!-- <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
                 <mat-label>Start Time</mat-label>
                 <input matInput [ngxTimepicker]="inTimepicker" #startTime="ngModel" name="startTime"
                        [(ngModel)]="selectedDayEvent.startTime" required readonly [format]="24" (change)="validateTimeRange()" />
@@ -51,16 +51,16 @@
                        [(ngModel)]="selectedDayEvent.endTime" required readonly [format]="24" (change)="validateTimeRange()" />
                 <ngx-material-timepicker [timepickerClass]="'custom-class'" #inTimepicker></ngx-material-timepicker>
               </mat-form-field>
-              <p *ngIf="timeRangeInvalid" style="color: red;">Start Time cannot be greater than End Time.</p>
+              <p *ngIf="timeRangeInvalid" style="color: red;">Start Time cannot be greater than End Time.</p> -->
               
-                <!-- <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
                   <mat-label>Start Time</mat-label>
                   <input matInput required #startTime="ngModel" name="startTime" [(ngModel)]="selectedDayEvent.startTime" required="true" />
               </mat-form-field>
                 <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
                     <mat-label>EndTime</mat-label>
                     <input matInput required #endTime="ngModel" name="endTime" [(ngModel)]="selectedDayEvent.endTime" required="true" />
-                </mat-form-field> -->
+                </mat-form-field>
             <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
                 <mat-label> Select EventType</mat-label>
             <mat-select required name="eventTypeId" #eventTypeId="ngModel" required="true"

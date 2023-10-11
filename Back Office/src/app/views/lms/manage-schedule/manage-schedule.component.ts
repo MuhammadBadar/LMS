@@ -248,6 +248,8 @@ export class ManageScheduleComponent {
       });
    }
    OpenDayEventDialog(row : ScheduleDayVM) {
+    debugger;
+    this.lmsSvc.selectedScheduleDayId = row.id;
     this.dialogRef = this.dialog.open(ManageScheduleDayEventComponent, {
        width: '1200px',
        height: '550px',
@@ -255,7 +257,7 @@ export class ManageScheduleComponent {
       });
       console.warn(this.selectedScheduleFH.dayIds)   
       this.dialogRef.afterClosed().subscribe((res: any) => {
-      this.GetScheduleFH();
+      //this.GetScheduleFH();
       });
    }
   
@@ -668,7 +670,7 @@ Search(){ debugger;
       //alert('sch Id: ' + this.selectedScheduleFH.id);
       // alert('scheduleDay Id: ' + this.selectedScheduleFH.dayIds);
       this.lmsSvc.selectedScheduleId = this.selectedScheduleFH.id;
-      this.lmsSvc.selectedScheduleDayId = this.selectedScheduleFH.dayIds;
+      //this.lmsSvc.selectedScheduleDayId = this.selectedScheduleFH.dayIds;
       this.ScheduleDayEvent = []
       this.selectedScheduleFH.scheduleDays?.forEach(element => {
         this.ScheduleDay.push(element)

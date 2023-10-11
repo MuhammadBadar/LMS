@@ -181,11 +181,14 @@ schDay:ScheduleDayVM
     this.catSvc.ErrorMsgBar("Please select End Time.", 5000);
     return; // Exit the function if either user or schedule type is empty
   }
-  if(this.selectedDayEvent.eventType == null || this.selectedDayEvent.eventType == undefined)
-  {  
-    this.catSvc.ErrorMsgBar("Please select Event Type.", 5000);
-    return; // Exit the function if either user or schedule type is empty
-  }
+  // if(this.selectedDayEvent.eventType == null || this.selectedDayEvent.eventType == undefined)
+  // {  
+  //   this.catSvc.ErrorMsgBar("Please select Event Type.", 5000);
+  //   return; // Exit the function if either user or schedule type is empty
+  // }
+
+  this.selectedDayEvent.schId = this.lmsSvc.selectedScheduleId;
+  this.selectedDayEvent.scheduleDayId = this.lmsSvc.selectedScheduleDayId;
   this.lmsSvc.SaveScheduleDayEvent(this.selectedDayEvent).subscribe({
     next: (value) => {
       this.catSvc.SuccessMsgBar("Successfully Added", 5000);
@@ -211,12 +214,12 @@ schDay:ScheduleDayVM
   //   });
   // }
 
-  GetScheduleFH() {
+  GetScheduleDayEvents() {
     debugger;
     var Schfh = new ScheduleDayEventVM
     Schfh.isActive= true;
     debugger;
-    this.lmsSvc.GetScheduleDayEvent().subscribe({
+    this.lmsSvc.GetScheduleDayEvents(this.lmsSvc.selectedScheduleDayId).subscribe({
     
       next: (value: ScheduleDayEventVM[]) => {
         debugger;
@@ -249,7 +252,7 @@ schDay:ScheduleDayVM
     })
   }
   Refresh() {
-    this.GetScheduleFH();
+    this.GetScheduleDayEvents();
     this.selectedDayEvent = new ScheduleDayEventVM
     this.EditMode = false
     this.AddMode = true
@@ -286,7 +289,8 @@ SearchbyScheduleDayEvent( ){
   debugger
     var evt = new ScheduleDayEventVM
    evt.schId=this.schDay.scheduleId
-   evt.schDayId= this.schDay.dayId
+   //evt.scheduleDayId= this.schDay.dayId
+   evt.scheduleDayId = this.lmsSvc.selectedScheduleDayId;
     this.lmsSvc.SearchScheduleDayEvent(evt).subscribe({
      next: (value: ScheduleDayEventVM[]) => {
       console.warn(value)
