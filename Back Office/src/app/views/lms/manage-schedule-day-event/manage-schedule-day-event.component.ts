@@ -29,7 +29,7 @@ export class ManageScheduleDayEventComponent {
   ScheduleDay: ScheduleDayVM[] = []
 
   selectedDayEvent = new ScheduleDayEventVM
-  selectedScheduleFH: ScheduleDayEventVM;
+  selectedSchedule: ScheduleDayEventVM;
 
   WeekDays: SettingsVM[];
   Location: SettingsVM[];
@@ -62,7 +62,7 @@ schDay:ScheduleDayVM
     // public dialog: MatDialog,
     // public securitySvc: SecurityService,
    ) {
-    this.selectedScheduleFH = new ScheduleDayEventVM
+    this.selectedSchedule = new ScheduleDayEventVM
     this.selectedDayEvent = new ScheduleDayEventVM()
     // this.user= Entities.user;
     // this.role=Entities.role;
@@ -94,7 +94,7 @@ schDay:ScheduleDayVM
        this.GetSettings(EnumTypeVM.WorkingType)
        this.GetSettings(EnumTypeVM.EventType)
        this.GetSettings(EnumTypeVM.Location)
-       this.selectedScheduleFH.isActive = true;
+       this.selectedSchedule.isActive = true;
       //  this.route.queryParams.subscribe(params => {
       //   this.ScheduleId = params['id'];
       // });
@@ -216,8 +216,8 @@ schDay:ScheduleDayVM
 
   GetScheduleDayEvents() {
     debugger;
-    var Schfh = new ScheduleDayEventVM
-    Schfh.isActive= true;
+    var Sch = new ScheduleDayEventVM
+    Sch.isActive= true;
     debugger;
     this.lmsSvc.GetScheduleDayEvents(this.lmsSvc.selectedScheduleDayId).subscribe({
     
@@ -234,12 +234,12 @@ schDay:ScheduleDayVM
     })
   }
 
-  EditScheduleDayEvents(scheduleFH: ScheduleDayEventVM) {
+  EditScheduleDayEvents(schedule: ScheduleDayEventVM) {
     this.EditMode = true
     this.AddMode = false
-    this.selectedDayEvent = scheduleFH
+    this.selectedDayEvent = schedule
   }
-  UpdateScheduleFH() {
+  UpdateSchedule() {
    this.lmsSvc.SaveScheduleDayEvent(this.selectedDayEvent).subscribe({
       next: (res: ScheduleDayEventVM) => {   
         this.proccessing = false

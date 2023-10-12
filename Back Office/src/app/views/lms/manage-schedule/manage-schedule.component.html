@@ -7,10 +7,10 @@
 
 
      <div class="page_content shadow p-3 position-relative">
-     <form #scheduleFHForm="ngForm">        
+     <form #scheduleForm="ngForm">        
         <Row>
           <div fxLayout="row" fxLayoutAlign="space-between">
-           <mat-radio-group fxFlex="100%" required [(ngModel)]="selectedScheduleFH.entityId" name="entityId">
+           <mat-radio-group fxFlex="100%" required [(ngModel)]="selectedSchedule.entityId" name="entityId">
           <mat-label>Schedule for:</mat-label>
               <mat-radio-button *ngFor="let val of Entities" [value]="val.id">
                 {{val.name}}
@@ -20,10 +20,10 @@
             </Row>
 
             <Row>                   
-            <div *ngIf="selectedScheduleFH.entityId == user">
+            <div *ngIf="selectedSchedule.entityId == user">
                 <mat-form-field appearance="outline" fxFlex="100%">
                     <mat-label>Please Select User</mat-label>
-                    <mat-select required name="user" (selectionChange)="getScheduleByUserId($event.value)" [(ngModel)]="selectedScheduleFH.userId">
+                    <mat-select required name="user" (selectionChange)="getScheduleByUserId($event.value)" [(ngModel)]="selectedSchedule.userId">
                       <mat-option [value]="0" >--Please Select--</mat-option>
                       <mat-option *ngFor="let val of users" [value]="val.id" >
                         {{ val.userName }}
@@ -31,7 +31,7 @@
                     </mat-select>
                     <div matSuffix>
                       <button mat-icon-button style="color:#940540;" (click)="OpenUserDialog(); $event.stopPropagation()"
-                        cTooltip="Explore ScheduleFHType">
+                        cTooltip="Explore ScheduleType">
                         <mat-icon>add</mat-icon>
                       </button>
                     </div>
@@ -54,10 +54,10 @@
             </div>
             
            
-              <div *ngIf="selectedScheduleFH.entityId == role">
+              <div *ngIf="selectedSchedule.entityId == role">
                  <mat-form-field appearance="outline" fxFlex="100%">
                       <mat-label>Please Select Role</mat-label>
-                      <mat-select required name="role" [(ngModel)]="selectedScheduleFH.roleId">
+                      <mat-select required name="role" [(ngModel)]="selectedSchedule.roleId">
                         <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
                         <mat-option *ngFor="let val of roles" [value]="val.id">
                           {{ val.name }}
@@ -66,7 +66,7 @@
                       <div matSuffix>
                         <button mat-icon-button style="color:#940540;" 
                         (click)="OpenRoleDialog(); $event.stopPropagation()"
-                          cTooltip="Explore ScheduleFHType">
+                          cTooltip="Explore ScheduleType">
                           <mat-icon>add</mat-icon>
                         </button>
                       </div>
@@ -79,7 +79,7 @@
       <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
           <mat-label> Select ScheduleType</mat-label>
           <mat-select required name="scheduleTypeId" #scheduleTypeId="ngModel" required="true"
-         [(ngModel)]="selectedScheduleFH.scheduleTypeId">
+         [(ngModel)]="selectedSchedule.scheduleTypeId">
          <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
               <mat-option *ngFor="let pt of ScheduleType" [value]=" pt.id">
                   {{ pt.name}}
@@ -90,7 +90,7 @@
       
       </div>
     </Row>
-    <div *ngIf="selectedScheduleFH.scheduleTypeId == FWH">
+    <div *ngIf="selectedSchedule.scheduleTypeId == FWH">
 
     <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
       <mat-label> Select Day</mat-label>
@@ -99,7 +99,7 @@
         name="dayId"
         #dayIds="ngModel"
         required="true"
-        [(ngModel)]="selectedScheduleFH.dayIds"
+        [(ngModel)]="selectedSchedule.dayIds"
       >
         <mat-option [value]="0">--Please Select--</mat-option>
         <mat-option *ngFor="let pt of WeekDays" [value]="pt.id">{{
@@ -110,10 +110,10 @@
   </div>
   
 
-    <div *ngIf="selectedScheduleFH.scheduleTypeId == FH">
+    <div *ngIf="selectedSchedule.scheduleTypeId == FH">
                <div fxLayout="row" fxLayoutAlign="space-between"> 
           <mat-radio-group fxFlex="100%" required="true" name="workingTypeId"  #workingTypeId="ngModel"
-           [(ngModel)]="selectedScheduleFH.workingTypeId" > <mat-label>WorkingType:</mat-label>
+           [(ngModel)]="selectedSchedule.workingTypeId" > <mat-label>WorkingType:</mat-label>
                 <mat-radio-button *ngFor="let pt of WorkingType" [value]=" pt.id">
                      {{ pt.name}}
                 </mat-radio-button>
@@ -121,12 +121,12 @@
               
            <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
                 <mat-label>WorkingHours</mat-label>
-                <input matInput required #name="ngModel" name="workingHours" [(ngModel)]="selectedScheduleFH.workingHours" />
+                <input matInput required #name="ngModel" name="workingHours" [(ngModel)]="selectedSchedule.workingHours" />
             </mat-form-field>
             <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
               <mat-label>StartDate</mat-label>
               <input matInput [matDatepicker]="pickerFrom" name="startDate" readonly="true"
-                     #startDate="ngModel" [(ngModel)]="selectedScheduleFH.startDate" />
+                     #startDate="ngModel" [(ngModel)]="selectedSchedule.startDate" />
               <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
               <mat-datepicker #pickerFrom 
       
@@ -138,7 +138,7 @@
             <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
               <mat-label>EndDate</mat-label>
               <input matInput [matDatepicker]="pickerTo" name="endDate" readonly="true"
-                     #endDate="ngModel" [(ngModel)]="selectedScheduleFH.endDate" />
+                     #endDate="ngModel" [(ngModel)]="selectedSchedule.endDate" />
               <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
               <mat-datepicker #pickerTo ></mat-datepicker>
             </mat-form-field>
@@ -147,7 +147,7 @@
         
        
   <Row>
-    <mat-checkbox name="isActive" [(ngModel)]=" selectedScheduleFH.isActive">Is Active</mat-checkbox>
+    <mat-checkbox name="isActive" [(ngModel)]=" selectedSchedule.isActive">Is Active</mat-checkbox>
     <div fxLayoutAlign="end end">
         <button mat-icon-button mat-sm-button style="color: rgb(97, 48, 48);"
             cTooltipPlacement="top" (click)="AddDayEventtoList()">
@@ -172,7 +172,7 @@
           Submit
       </button>
       <button *ngIf="Edit" cButton class="me-1" style="background-color:#1e293b ;width: 100px;"
-          type="submit" (click)="UpdateScheduleFH()">
+          type="submit" (click)="UpdateSchedule()">
           Update
       </button>
      
@@ -215,7 +215,7 @@
 
 
  
-<div *ngIf="selectedScheduleFH.scheduleTypeId == FWH">
+<div *ngIf="selectedSchedule.scheduleTypeId == FWH">
  <c-card style="padding: 10px; margin-top: 30px;" class="mat-elevation-z8">
   <h5 cCardTitle>Schedule Line List</h5>
     <c-card-body style="padding: 10px;margin: 5px;border-radius: 10px;">
