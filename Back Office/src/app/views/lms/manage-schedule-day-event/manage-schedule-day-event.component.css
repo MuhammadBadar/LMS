@@ -6,6 +6,12 @@
 
 
 }
+.msg-end-time{
+color:red;
+font-size: 13px;
+position: absolute;
+top:62px;
+}
 
 .page_content {
     padding: 20px;

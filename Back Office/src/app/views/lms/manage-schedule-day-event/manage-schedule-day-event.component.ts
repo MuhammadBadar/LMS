@@ -1,5 +1,5 @@
 import { ScheduleDayEventVM } from './../Models/ScheduleDayEventVM';
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, ViewChild } from '@angular/core';
 import { ScheduleDayVM, ScheduleVM } from '../Models/ScheduleVM';
 import { SettingsVM } from '../../catalog/Models/SettingsVM';
 import { EnumTypeVM } from '../../security/models/EnumTypeVM';
@@ -9,6 +9,7 @@ import { LMSService } from '../lms.service';
 import Swal from 'sweetalert2';
 import { MatTableDataSource } from '@angular/material/table';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-manage-schedule-day-event',
@@ -38,6 +39,7 @@ export class ManageScheduleDayEventComponent {
   ScheduleType: SettingsVM[];
   WorkingType: SettingsVM[];
   
+  @ViewChild('dayeventForm', { static: true }) dayeventForm!: NgForm;
   dialogRefe: any;
   dialogData: any;
   isDialog : boolean = false;
@@ -127,13 +129,13 @@ schDay:ScheduleDayVM
   openTimepicker() {
     this.timepicker.open();
   }
-  validateTimeRange() {
-    if (this.selectedDayEvent.startTime > this.selectedDayEvent.endTime) {
-      this.timeRangeInvalid = true;
-    } else {
-      this.timeRangeInvalid = false;
-    }
-  }
+  // validateTimeRange() {
+  //   if (this.selectedDayEvent.startTime > this.selectedDayEvent.endTime) {
+  //     this.timeRangeInvalid = true;
+  //   } else {
+  //     this.timeRangeInvalid = false;
+  //   }
+  // }
 
   GetSettings(etype: EnumTypeVM) {
     var setting = new SettingsVM()
@@ -233,6 +235,14 @@ schDay:ScheduleDayVM
       },
     })
   }
+  validateTimeRange() {
+    if (this.selectedDayEvent.startTime > this.selectedDayEvent.endTime) {
+      this.timeRangeInvalid = true;
+    } else {
+      this.timeRangeInvalid = false;
+    }
+  }
+  
 
   EditScheduleDayEvents(schedule: ScheduleDayEventVM) {
     this.EditMode = true
