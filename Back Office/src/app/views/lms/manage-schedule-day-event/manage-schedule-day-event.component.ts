@@ -205,8 +205,6 @@ schDay:ScheduleDayVM
   });
 }
 
-
-
   GetScheduleDayEvents() {
     // debugger;
     var Sch = new ScheduleDayEventVM

@@ -112,6 +112,13 @@ th {
     --mdc-snackbar-supporting-text-color: #fff;
   }
 }
+.timepicker-overlay {
+  z-index: 1100 !important;
+}
+
+.timepicker-backdrop-overlay {
+  z-index: 1100 !important;
+}
 
 
 
