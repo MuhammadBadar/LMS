@@ -144,6 +144,15 @@
             </mat-form-field>
         </div> 
         </div>
+
+        <Row>
+          <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
+            <mat-label>Effective Date</mat-label>
+            <input [matDatepicker]="picker" matInput #effectiveDate="ngModel" name="effectiveDate" [(ngModel)]="selectedSchedule.effectiveDate"/>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        </Row>
         
        
   <Row>

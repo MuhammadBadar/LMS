@@ -14,6 +14,7 @@ export class ScheduleVM {
     workingHours?: string
     startDate?: Date
     endDate?: Date
+    effectiveDate?:Date
     isActive?: boolean
   parentId: number | undefined
   enumTypeId: number | undefined

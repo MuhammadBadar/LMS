@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\QST\\LMS.2\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj": {}
+    "D:\\QST\\LMS.3\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj": {}
   },
   "projects": {
-    "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+    "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
+        "projectUniqueName": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
         "projectName": "LMS.Core",
-        "projectPath": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
+        "projectPath": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Core\\LMS.Core.csproj",
         "packagesPath": "C:\\Users\\ranag\\.nuget\\packages\\",
-        "outputPath": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Core\\obj\\",
+        "outputPath": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ranag\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -107,14 +107,14 @@
         }
       }
     },
-    "D:\\QST\\LMS.2\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj": {
+    "D:\\QST\\LMS.3\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj",
+        "projectUniqueName": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj",
         "projectName": "LMS.DAL",
-        "projectPath": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj",
+        "projectPath": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj",
         "packagesPath": "C:\\Users\\ranag\\.nuget\\packages\\",
-        "outputPath": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.DAL\\obj\\",
+        "outputPath": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ranag\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -131,8 +131,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
-                "projectPath": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
+              "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+                "projectPath": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
               }
             }
           }
@@ -192,14 +192,14 @@
         }
       }
     },
-    "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
+    "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Service\\LMS.Service.csproj",
+        "projectUniqueName": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Service\\LMS.Service.csproj",
         "projectName": "LMS.Service",
-        "projectPath": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Service\\LMS.Service.csproj",
+        "projectPath": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Service\\LMS.Service.csproj",
         "packagesPath": "C:\\Users\\ranag\\.nuget\\packages\\",
-        "outputPath": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Service\\obj\\",
+        "outputPath": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ranag\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -216,11 +216,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
-                "projectPath": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
+              "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+                "projectPath": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
               },
-              "D:\\QST\\LMS.2\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj": {
-                "projectPath": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj"
+              "D:\\QST\\LMS.3\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj": {
+                "projectPath": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.DAL\\LMS.DAL.csproj"
               }
             }
           }
@@ -280,14 +280,14 @@
         }
       }
     },
-    "D:\\QST\\LMS.2\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj": {
+    "D:\\QST\\LMS.3\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
+        "projectUniqueName": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
         "projectName": "LMS.WebAPI",
-        "projectPath": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
+        "projectPath": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.WebAPI\\LMS.WebAPI.csproj",
         "packagesPath": "C:\\Users\\ranag\\.nuget\\packages\\",
-        "outputPath": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.WebAPI\\obj\\",
+        "outputPath": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ranag\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -304,11 +304,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
-                "projectPath": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
+              "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Core\\LMS.Core.csproj": {
+                "projectPath": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Core\\LMS.Core.csproj"
               },
-              "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
-                "projectPath": "D:\\QST\\LMS.2\\LMS\\MT\\LMS.Service\\LMS.Service.csproj"
+              "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Service\\LMS.Service.csproj": {
+                "projectPath": "D:\\QST\\LMS.3\\LMS\\MT\\LMS.Service\\LMS.Service.csproj"
               }
             }
           }

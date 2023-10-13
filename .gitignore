@@ -1,1 +1,8 @@
 /MT/LMS.Service/obj
+/MT/LMS.Core/bin
+/MT/LMS.Core/obj
+/MT/LMS.DAL/bin
+/MT/LMS.DAL/obj
+/MT/LMS.Service/bin
+/MT/LMS.Tests/bin
+/MT/LMS.Tests/obj

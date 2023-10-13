@@ -25,7 +25,7 @@
               <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
                 <mat-label>Select Location</mat-label>
                 <mat-select required name="locationId" #locationId="ngModel" [(ngModel)]="selectedDayEvent.locationId">
-                  <mat-option [value]="null">--Please Select--</mat-option>
+                  <mat-option [value]="0">--Please Select--</mat-option>
                   <mat-option *ngFor="let pt of Location" [value]="pt.id">
                     {{pt.name}}
                   </mat-option>
@@ -54,12 +54,12 @@
               <p *ngIf="timeRangeInvalid" style="color: red;">Start Time cannot be greater than End Time.</p> -->
               <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
                 <mat-label>Start Time</mat-label>
-                <input matInput required #startTime="ngModel" name="startTime" [(ngModel)]="selectedDayEvent.startTime" (input)="validateTimeRange()" required="true" />
+                <input matInput #startTime="ngModel" name="startTime" [(ngModel)]="selectedDayEvent.startTime" (input)="validateTimeRange()" />
               </mat-form-field>
               
               <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
                 <mat-label>End Time</mat-label>
-                <input matInput required #endTime="ngModel" name="endTime" [(ngModel)]="selectedDayEvent.endTime" (input)="validateTimeRange()" required="true" />
+                <input matInput #endTime="ngModel" name="endTime" [(ngModel)]="selectedDayEvent.endTime" (input)="validateTimeRange()"/>
                 <div *ngIf="timeRangeInvalid" class="error-message msg-end-time">
                   End Time should be greater than Start Time.
                 </div>
@@ -129,8 +129,11 @@
         </button> -->
       
           <button style="background-color:#1e293b ;width: 100px;" class="me-1" mat-raised-button *ngIf="AddMode" color="primary" (click)="Submit()">Submit</button>
-          <button style="background-color:#1e293b ;width: 100px;" class="me-1" mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateSchedule()">Update</button>
+          <button style="background-color:#1e293b ;width: 100px;" class="me-1" mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateScheduleDayEvent()">Update</button>
       
+
+
+          
       
         <!-- <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;width: 100px;"
             type="submit" (click)="Submit();">

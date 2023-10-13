@@ -248,7 +248,7 @@ export class ManageScheduleComponent {
       });
    }
    OpenDayEventDialog(row : ScheduleDayVM) {
-    debugger;
+    // debugger;
     this.lmsSvc.selectedScheduleDayId = row.id;
     this.dialogRef = this.dialog.open(ManageScheduleDayEventComponent, {
        width: '1200px',

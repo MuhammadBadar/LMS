@@ -39,6 +39,7 @@ namespace LMS.DAL
                 cmd.Parameters.AddWithValue("@prm_WorkingHours", sch.WorkingHours);
                 cmd.Parameters.AddWithValue("@prm_StartDate", sch.StartDate);
                 cmd.Parameters.AddWithValue("@prm_EndDate", sch.EndDate);
+                cmd.Parameters.AddWithValue("@prm_EffectiveDate", sch.EffectiveDate);
                 cmd.Parameters.AddWithValue("@prm_CreatedOn", sch.CreatedOn);
                 cmd.Parameters.AddWithValue("@prm_CreatedBy", sch.CreatedById);
                 cmd.Parameters.AddWithValue("@prm_ModifiedOn", sch.ModifiedOn);
