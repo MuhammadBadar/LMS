@@ -1,5 +1,5 @@
 import { ManageUseraccountComponent } from './../security/manage-useraccount/manage-useraccount.component';
-import { ManageCoursescheduleComponent } from './Schedule/manage-courseschedule/manage-courseschedule.component';
+
 import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -72,7 +72,7 @@ import { ManageUserComponent } from './manage-user/manage-user.component';
 import { ManageCourseComponent } from './manage-course/manage-course.component';
 import { ManageInquiryComponent } from './manage-inquiry/manage-inquiry.component';
 import { ManageCourseDetailComponent } from './manage-course-detail/manage-course-detail.component';
-import { ScheduleListComponent } from './Schedule/schedule-list/schedule-list.component';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ManageTopicComponent } from './manage-topic/manage-topic.component';
 import { ManageLectureComponent } from './manage-lecture/manage-lecture.component';
@@ -80,17 +80,13 @@ import { ManageVocabularyComponent } from './manage-vocabulary/manage-vocabulary
 import { ManageCityComponent } from './manage-city/manage-city.component';
 import { ManageCityStudentComponent } from './manage-city-student/manage-city-student.component';
 import { ManageStudentComponent } from './manage-student/manage-student.component';
-import { ManageScheduleComponent } from './manage-schedule/manage-schedule.component';
 import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
-import { ManageAttendanceComponent } from './manage-attendance/manage-attendance.component';
 import { ManageUserattbydateComponent } from './manage-userattbydate/manage-userattbydate.component';
 import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-usertaskbydate.component';
 import { ManageUserreportComponent } from './manage-userreport/manage-userreport.component';
 import { ManagePatientComponent } from './manage-patient/manage-patient.component';
-import { ManageSchComponent } from './manage-sch/manage-sch.component';
-import { ManageScheduleListComponent } from './manage-schedule-list/manage-schedule-list.component';
-import { ManageScheduleDayEventComponent } from './manage-schedule-day-event/manage-schedule-day-event.component';
+
 import { ManageClientComponent } from './manage-client/manage-client.component';
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
@@ -99,10 +95,10 @@ import { ManageClientComponent } from './manage-client/manage-client.component';
   declarations: [
     ManageUserComponent,
     ManageCourseComponent,
-    ManageCoursescheduleComponent,
+   
     ManageInquiryComponent,
     ManageCourseDetailComponent,
-    ScheduleListComponent,
+    
     ManageTopicComponent,
     ManageAssignTaskComponent,
     ManageLectureComponent, 
@@ -110,17 +106,15 @@ import { ManageClientComponent } from './manage-client/manage-client.component';
     ManageCityComponent,
     ManageCityStudentComponent,
     ManageStudentComponent,
-    ManageScheduleComponent,
-    ManageAttendanceComponent,
+   
     ManageUserattbydateComponent,
     ManageTasksComponent,
     ManageUsertaskbydateComponent,
     ManagePatientComponent,
     ManageUserreportComponent,
     ManageUseraccountComponent,
-    ManageSchComponent,
-    ManageScheduleListComponent,
-    ManageScheduleDayEventComponent,
+    
+    
     ManageClientComponent,
   ],
   imports: [

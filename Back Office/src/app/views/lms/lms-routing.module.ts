@@ -1,7 +1,6 @@
 import { ManageCourseDetailComponent } from './manage-course-detail/manage-course-detail.component';
 import { ManageInquiryComponent } from './manage-inquiry/manage-inquiry.component';
-import { ScheduleListComponent } from './Schedule/schedule-list/schedule-list.component';
-import { ManageCoursescheduleComponent } from './Schedule/manage-courseschedule/manage-courseschedule.component';
+
 import { ManageCourseComponent } from './manage-course/manage-course.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
 import { NgModule } from '@angular/core';
@@ -12,18 +11,17 @@ import { ManageCityComponent } from './manage-city/manage-city.component';
 import { ManageVocabularyComponent } from './manage-vocabulary/manage-vocabulary.component';
 import { ManageCityStudentComponent } from './manage-city-student/manage-city-student.component';
 import { ManageStudentComponent } from './manage-student/manage-student.component';
-import { ManageScheduleComponent } from './manage-schedule/manage-schedule.component';
+
 import { ManageAssignTaskComponent } from './manage-assign-task/manage-assign-task.component';
 import { ManagePatientComponent } from './manage-patient/manage-patient.component';
 
-import { ManageAttendanceComponent } from './manage-attendance/manage-attendance.component';
+
 import { ManageUserattbydateComponent } from './manage-userattbydate/manage-userattbydate.component';
 import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { ManageUserreportComponent } from './manage-userreport/manage-userreport.component';
 import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-usertaskbydate.component';
-import { ManageSchComponent } from './manage-sch/manage-sch.component';
-import { ManageScheduleListComponent } from './manage-schedule-list/manage-schedule-list.component';
-import { ManageScheduleDayEventComponent } from './manage-schedule-day-event/manage-schedule-day-event.component';
+
+
 import { ManageClientComponent } from './manage-client/manage-client.component';
 
 const routes: Routes = [{
@@ -47,21 +45,9 @@ const routes: Routes = [{
       component: ManageCourseComponent,
       pathMatch: "full"
     },
-    {
-      path: "schedule",
-      component: ManageCoursescheduleComponent,
-      pathMatch: "full"
-    },
-    {
-      path: "sch",
-      component: ManageSchComponent,
-      pathMatch: "full"
-    },
-    {
-      path: "schList",
-      component: ScheduleListComponent,
-      pathMatch: "full"
-    },
+    
+    
+ 
     {
       path: "inquiry",
       component: ManageInquiryComponent,
@@ -109,21 +95,7 @@ const routes: Routes = [{
       component: ManageStudentComponent,
       pathMatch: "full"
     },
-    {
-      path: "Schedule",
-      component: ManageScheduleComponent,
-      pathMatch: "full"
-    },
-    {
-      path: "manageschedulelist",
-      component: ManageScheduleListComponent,
-      pathMatch: "full"
-    },
-    {
-      path: "scheduledayevent",
-      component: ManageScheduleDayEventComponent,
-      pathMatch: "full"
-    },
+   
     {
       path: "Patient",
       component: ManagePatientComponent,
@@ -135,11 +107,7 @@ const routes: Routes = [{
       pathMatch: "full"
     },
 
-    {
-      path: "Attendance",
-      component: ManageAttendanceComponent,
-      pathMatch: "full"
-    },
+    
 
     {
       path: "Userattbydate",
