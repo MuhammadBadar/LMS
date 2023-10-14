@@ -41,6 +41,16 @@ const routes: Routes = [
           import('./views/lms/lms.module').then((m) => m.LMSModule)
       },
       {
+        path: 'att',
+        loadChildren: () =>
+          import('./views/att/att.module').then((m) => m.AttModule)
+      },
+      {
+        path: 'sch',
+        loadChildren: () =>
+          import('./views/sch/sch.module').then((m) => m.SCHModule)
+      },
+      {
         path: 'tms',
         loadChildren: () =>
           import('./views/tms/tms.module').then((m) => m.TMSModule)

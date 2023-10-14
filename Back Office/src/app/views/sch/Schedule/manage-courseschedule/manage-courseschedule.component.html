@@ -1,0 +1,220 @@
+<div class="container-fluid page">
+    <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+        <div *ngIf="Add"> Manage CourseSchedule
+        </div>
+        <div *ngIf="Edit">Update CourseSchedule
+        </div>
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <form #ScheduleForm="ngForm">
+            <c-card style="padding: 10px; margin-top: 30px; background:   rgb(250, 238, 204);padding: 20px;"
+                class="mat-elevation-z8">
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                    <mat-form-field fxFlex="50%" appearance="outline" class="form-group">
+                        <mat-label> Select Course</mat-label>
+                        <mat-select name="courseId" #courseId="ngModel" required="true"
+                            [(ngModel)]="selectedSchedule.courseId">
+                            <mat-option [value]="0">--Please Select--</mat-option>
+                            <mat-option *ngFor="let pt of Courses" [value]=" pt.id" (click)="onBlur()">
+                                {{ pt.title}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                        <mat-label>Start Date</mat-label>
+                        <input matInput [ngxMatDatetimePicker]="pickerFrom1" name="startDate" readonly="true"
+                            #startDate="ngModel" [(ngModel)]="selectedSchedule.startDate " required=" true" />
+                        <mat-datepicker-toggle matSuffix [for]="$any(pickerFrom1)"></mat-datepicker-toggle>
+                        <ngx-mat-datetime-picker #pickerFrom1 (closed)="onBlur()"
+                            style="height:300px"></ngx-mat-datetime-picker>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="48%" appearance="outline">
+
+                        <mat-label> Orientation Class</mat-label>
+                        <input matInput [ngxMatDatetimePicker]="picker" [format]="12" [min]="1" name="orientationClass"
+                            readonly="true" required="true" #orientationClass="ngModel"
+                            [(ngModel)]="selectedSchedule.orientationClass">
+                        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+                        <ngx-mat-datetime-picker class="datetimepicker" #picker [showSpinners]="true"
+                            [showSeconds]="true" [stepHour]="1" [stepMinute]="1" [stepSecond]="1" [touchUi]="true"
+                            [userTime]="exportTime" [enableMeridian]="true" [disableMinute]="false" [hideTime]="false"
+                            (closed)="onBlur()">
+                        </ngx-mat-datetime-picker>
+
+                    </mat-form-field>
+
+                    <!-- <mat-form-field appearance="outline" fxFlex="48%">
+                        <mat-label>Date time</mat-label>
+                        <input matInput [matDatepicker]="picker2" readonly="true" />
+                        <input matInput class="time-picker" type="time" id="appt" readonly="true" name="appt" />
+
+                        <mat-datepicker-toggle matSuffix [for]="$any(picker2)">
+                            <mat-icon matDatepickerToggleIcon>today</mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field> -->
+
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                    <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                        <mat-label> Description</mat-label>
+                        <textarea matInput required #description="ngModel" name="description" rows="6" (blur)="onBlur()"
+                            [(ngModel)]="selectedSchedule.description"></textarea>
+                    </mat-form-field>
+                    <div>
+                        <div class="gallery-img mat-elevation-z8"
+                            style="border-radius: 15px;width: 170px;height: 170px;">
+                            <img [src]="selectedSchedule.logoBase64Path" (click)="onPreviewImage()" style="padding:9px;border: 6px solid rgb(223, 74, 6);
+                            border-radius: 15px;
+                            width: 170px;height: 170px;
+                            object-fit: cover;">
+                        </div>
+                        <a (click)="fileSelector.click()"
+                            style="padding: 10px;margin-top: 50px; text-decoration: underline;color: rgb(3, 73, 114); cursor: pointer;"><strong>Browse
+                            </strong></a>
+                        <mat-form-feild>
+                            <input matinput #fileSelector multiple type="file" accept=".png, .jpg, .jpeg" required
+                                name="logoBase64Path" (change)="handleFileInput($event)" hidden>
+                        </mat-form-feild>
+                    </div>
+                </div>
+            </c-card>
+            <p style="font-size:20px; font-weight: bolder; color: #04415e;margin-top: 30px;">Class Timing</p>
+            <c-card style=" margin-top: 10px; background: rgb(250, 238, 204);padding: 20px;" class="mat-elevation-z8">
+                <form #ClassTimingForm="ngForm">
+                    <Row>
+                        <div fxLayout="row" fxFlex="100%">
+                            <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+                                <mat-label> Select Day</mat-label>
+                                <mat-select name="weekDayId" #weekDayId="ngModel" required="true"
+                                    [(ngModel)]="selectedClassTiming.weekDayId">
+                                    <mat-option [value]="0">--Please Select--</mat-option>
+                                    <mat-option *ngFor="let pt of WeekDays" [value]=" pt.id">
+                                        {{ pt.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field fxFlex="48%" appearance="outline">
+                                <mat-label>Time From</mat-label>
+                                <input matInput [(ngModel)]="selectedClassTiming.timeFrom" name="timeFrom" readonly
+                                    required="true" [ngxTimepicker]="start" [format]="12" />
+                                <ngx-material-timepicker [timepickerClass]="'custome-class'"
+                                    #start></ngx-material-timepicker>
+                            </mat-form-field>
+                            <mat-form-field fxFlex="48%" appearance="outline">
+                                <mat-label>Time To</mat-label>
+                                <input matInput [(ngModel)]="selectedClassTiming.timeTo" name="timeTo"
+                                    [ngxTimepicker]="end" required readonly [format]="12" />
+                                <ngx-material-timepicker [timepickerClass]="'custome-class'"
+                                    #end></ngx-material-timepicker>
+                            </mat-form-field>
+
+                        </div>
+                    </Row>
+                    <Row>
+                        <mat-checkbox name="isActive" [(ngModel)]=" selectedSchedule.isActive">Is Active</mat-checkbox>
+                        <div fxLayoutAlign="end end">
+                            <button mat-icon-button mat-sm-button style="color: rgb(97, 48, 48);"
+                                cTooltipPlacement="top" (click)="AddClassTimingtoList()">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                            <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh"
+                                cTooltipPlacement="top" (click)="RefreshDetail()">
+                                <mat-icon>autorenew</mat-icon>
+                            </button>
+                        </div>
+                    </Row>
+
+                </form>
+            </c-card>
+            <c-card style="padding: 10px; margin-top: 30px;" class="mat-elevation-z8">
+                <h5 style="font-size:20px;  color: #04415e;margin: 20px;"> Class Timings </h5>
+                <c-card-body
+                    style="padding: 10px;background-image: linear-gradient(to bottom, rgb(2, 33, 58), rgb(7, 95, 122));margin: 5px;border-radius: 10px;">
+                    <div class="example-table-container">
+                        <section class="example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;">
+                            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                                <ng-container matColumnDef="Id">
+                                    <th mat-header-cell *matHeaderCellDef> Sr No </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="day">
+                                    <th mat-header-cell *matHeaderCellDef> Day </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.weekDay}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="timeTo">
+                                    <th mat-header-cell *matHeaderCellDef> Time To </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.timeTo}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="timeFrom">
+                                    <th mat-header-cell *matHeaderCellDef> Time From</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.timeFrom}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="isActive">
+                                    <th mat-header-cell *matHeaderCellDef> Is Active </th>
+                                    <td mat-cell *matCellDef="let element"> {{ element.isActive ? 'yes' : 'no' }} </td>
+                                  </ng-container>
+
+                                <ng-container matColumnDef="actions" stickyEnd>
+                                    <th mat-header-cell *matHeaderCellDef style="width: 100px; text-align: center;">
+                                        <div style="width: 100px; text-align: center;">Action</div>
+                                    </th>
+                                    <td mat-cell *matCellDef="let row">
+                                        <div style="width: 100px; text-align: center;">
+                                            <button mat-icon-button mat-sm-button style="color:#1e293b ; "
+                                                (click)="edit(row)" cTooltip="Edit Settings ">
+                                                <mat-icon>edit</mat-icon>
+                                            </button>
+                                            <!-- <button mat-icon-button mat-sm-button color="warn"
+                                                cTooltip="Delete Settings " (click)="delete(row)"
+                                                [disabled]="row.isSystemDefined">
+                                                <mat-icon>delete</mat-icon>
+                                            </button> -->
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayeScheduleColumns sticky: true"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayeScheduleColumns;">
+                                </tr>
+                            </table>
+                        </section>
+                    </div>
+                </c-card-body>
+            </c-card>
+            <div fxLayoutAlign="end end">
+                <c-spinner *ngIf="proccessing" style="height: 50px;width: 50px;color: rgb(3, 71, 102);"></c-spinner>
+                <div style="margin-top: 10px;" *ngIf="!proccessing">
+                    <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;width: 100px;"
+                        type="submit" (click)="Submit();">
+                        Submit
+                    </button>
+                    <button *ngIf="Edit" cButton class="me-1" style="background-color:#1e293b ;width: 100px;"
+                        type="submit" (click)="Submit()">
+                        Update
+                    </button>
+                    <button cButton class="me-1" style="background-color:#7b7c7e ;width: 100px;" (click)="Back()">
+                        Go Back
+                    </button>
+                </div>
+                <div>
+                    <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                        (click)="ngOnInit()" *ngIf="Add">
+                        <mat-icon>autorenew</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="gallery-lightbox-container">
+    <div *ngIf="previewImage" class="lightbox">
+        <button mat-icon-button *ngIf="previewImage" (click)="onClosePreview()" class="close-button"
+            style="color:white;margin-right:15px">
+            <mat-icon>close</mat-icon>
+        </button>
+        <div *ngIf="previewImage" class="lightbox-img" style="display: flex; overflow: auto;">
+            <img [src]="currentLightBoxImage" style=" height:400px;">
+        </div>
+    </div>
+</div>

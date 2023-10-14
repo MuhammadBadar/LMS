@@ -1,0 +1,135 @@
+.page {
+    color: white;
+    padding: 0 1rem;
+    background: #f1f5f9;
+    width: 100%;
+
+}
+
+.page_content {
+    padding: 20px;
+    min-height: calc(100vh - 178px);
+    border-radius: 15px;
+    margin-top: -2rem;
+    background: white;
+    color: black;
+}
+
+.page_box {
+    min-height: 100px;
+
+    background-image: linear-gradient(to bottom, rgb(2, 33, 58), rgb(7, 95, 122));
+    border-radius: 10px;
+    font-size: 25px;
+    padding: 10px;
+
+}
+
+.example-container {
+
+    width: 100;
+    max-width: 100%;
+    overflow: auto;
+}
+
+table {
+    width: 100;
+    z-index: 1;
+}
+
+
+td.mat-column-star {
+    width: 20%;
+    padding-right: 8px;
+}
+
+th.mat-column-position,
+td.mat-column-position {
+    padding-left: 8px;
+}
+
+.mat-mdc-table-sticky-border-elem-right {
+    border-left: 1px solid #e0e0e0;
+}
+
+.mat-mdc-table-sticky-border-elem-left {
+    border-right: 1px solid #e0e0e0;
+}
+
+/* 
+td {
+    min-width: 150px;
+
+}
+
+th {
+    min-width: 150px;
+
+} */
+
+tr:nth-child(even) {
+    background-color: rgb(247, 233, 193)
+}
+
+th {
+    color: white;
+    font-weight: normal
+}
+
+
+
+
+.gallery-img img {
+    cursor: zoom-in;
+    box-shadow: 0 1px 5px gray;
+
+}
+
+.lightbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, .85);
+}
+
+.close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    width: 7%;
+    height: 10%;
+    z-index: 2;
+    background: 0 0;
+    border: 0;
+    cursor: pointer;
+    margin-top: 60px;
+
+}
+
+.time-picker {
+    position: relative;
+}
+
+.time-picker::-webkit-calendar-picker-indicator {
+    background: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20enable-background%3D%22new%200%200%2024%2024%22%20height%3D%2224px%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224px%22%20fill%3D%22%23000000%22%3E%3Cg%3E%3Crect%20fill%3D%22none%22%20height%3D%2224%22%20width%3D%2224%22%2F%3E%3C%2Fg%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Cpath%20d%3D%22M12%2C2C6.5%2C2%2C2%2C6.5%2C2%2C12s4.5%2C10%2C10%2C10s10-4.5%2C10-10S17.5%2C2%2C12%2C2z%20M16.2%2C16.2L11%2C13V7h1.5v5.2l4.5%2C2.7L16.2%2C16.2z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
+}
+
+:host ::ng-deep .mat-form-field-infix {
+    display: flex;
+}
+
+.mat-form-field {
+    width: 100%;
+}

@@ -1,0 +1,161 @@
+<div class="container-fluid page">
+    <div class="d-flex page_box p-3 mt-2">Schedule List</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="pull-right" style="text-align:end; margin-top: 20px;">
+            <button mat-raised-button style="background-color: rgb(2, 57, 102); color: white;"
+                [routerLink]="['/lms/schedule']">Add New</button>
+            <!-- <mat-checkbox *ngIf="selectedRow.statusId!=DraftId" name="isPosted" [(ngModel)]="selectedRow.isPosted"
+                style="margin: 10px;" ngModel="isPosted" (change)="IsPosteScheduleheck($event)">
+                <mat-label>Post</mat-label>
+            </mat-checkbox> -->
+        </div>
+        <c-card style="padding: 10px; margin-top: 30px;" class="mat-elevation-z8">
+            <c-card-body style="padding: 10px;margin: 5px;border-radius: 10px;">
+                <div class="example-table-container">
+                    <section class="example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;">
+                        <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+                            <ng-container matColumnDef="expand">
+                                <th mat-header-cell *matHeaderCellDef aria-label="row actions"
+                                    style="color: white;background-image: linear-gradient(to bottom, rgb(2, 33, 58), rgb(7, 95, 122));">
+                                    <div>&nbsp;</div>
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div>
+                                        <button mat-icon-button aria-label="expand row"
+                                            (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation();highlight(element)">
+                                            <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+                                            <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+                                        </button>
+                                    </div>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="Id">
+                                <th mat-header-cell *matHeaderCellDef> Sr No </th>
+                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="course">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div style="min-width: 150px;  "> Course </div>
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div style="min-width: 150px;"> {{element.course}}</div>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="logo">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div style="min-width: 150px; "> Logo </div>
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div style="min-width: 150px;"> <img [src]="element.logoBase64Path"
+                                            style="height: 80px;"></div>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="orientationClass">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div style="min-width: 150px;  ">Orientation Class</div>
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div style="min-width: 150px;">
+                                        {{element.orientationClass| date:'MMM d, y, h:mm:ss a'}}</div>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="startDate">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div style="min-width: 150px;  ">Start Date</div>
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div style="min-width: 150px;"> {{element.startDate|date:"dd/MM/yyyy"}}</div>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="description">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <div style="min-width: 150px;  ">Description</div>
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div style="min-width: 150px;">{{element.description}}</div>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="isActive">
+                                <th mat-header-cell *matHeaderCellDef> Is Active </th>
+                                <td mat-cell *matCellDef="let element"> {{ element.isActive ? 'yes' : 'no' }} </td>
+                              </ng-container>
+
+                            <ng-container matColumnDef="Action" stickyEnd="true">
+                                <th mat-header-cell *matHeaderCellDef
+                                    style="width: 100px; text-align: center;font-weight: normal;color: white;background-image: linear-gradient(to bottom, rgb(2, 33, 58), rgb(7, 95, 122));">
+                                    Action
+                                </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <div style="width: 100px;text-align: center;">
+                                        <button mat-icon-button mat-sm-button color="primary"
+                                            (click)="EditSchedule(row)" matTooltip="Edit"
+                                            style="cursor: pointer;"><mat-icon>edit</mat-icon></button>
+                                        <!-- <button mat-icon-button mat-sm-button color="warn" matTooltip="Delete"
+                                            (click)="DeleteSchedule(row.id)"><mat-icon>delete</mat-icon></button> -->
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="expandedDetail">
+                                <td mat-cell *matCellDef="let element"
+                                    [attr.colspan]="columnsToDisplayWithExpand.length">
+                                    <div class="example-element-detail" *ngIf="element.classTimings"
+                                        style="width: 100%;border-radius: 30px;"
+                                        [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                                        <div *ngIf="expandedElement">
+                                            <section class="example-container mat-elevation-z8" tabindex="0"
+                                                style="margin: 50px;border-radius: 30px;max-width: 100%;">
+                                                <table #innerTables mat-table [dataSource]="element.classTimings"
+                                                    class="mat-elevation-z8">
+                                                    <ng-container matColumnDef="day">
+                                                        <th mat-header-cell *matHeaderCellDef>
+                                                            <div style="width: 200px;">Day</div>
+                                                        </th>
+                                                        <td mat-cell *matCellDef="let element">
+                                                            <div style="width: 200px;">{{element.weekDay}}</div>
+                                                        </td>
+                                                    </ng-container>
+                                                    <ng-container matColumnDef="timeTo">
+                                                        <th mat-header-cell *matHeaderCellDef>
+                                                            <div style="width: 200px;">Time To</div>
+                                                        </th>
+                                                        <td mat-cell *matCellDef="let element">
+                                                            <div style="width: 200px;">{{element.timeTo}}</div>
+                                                        </td>
+                                                    </ng-container>
+                                                    <ng-container matColumnDef="timeFrom">
+                                                        <th mat-header-cell *matHeaderCellDef>
+                                                            <div style="width: 200px;">Time From</div>
+                                                        </th>
+                                                        <td mat-cell *matCellDef="let element">
+                                                            <div style="width: 200px;">{{element.timeFrom}}</div>
+                                                        </td>
+                                                    </ng-container>
+
+                                                    <tr mat-header-row *matHeaderRowDef="innerDisplayeScheduleolumns">
+                                                    </tr>
+                                                    <tr mat-row
+                                                        *matRowDef="let row; columns: innerDisplayeScheduleolumns;">
+                                                    </tr>
+                                                </table>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+                            <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+                                class="example-element-row" [class.example-expanded-row]="expandedElement === element"
+                                [ngClass]="{'highlight': selectedRowIndex == element.id}" (click)="highlight(element)">
+                            </tr>
+                            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row">
+                            </tr>
+                        </table>
+                    </section>
+                </div>
+            </c-card-body>
+        </c-card>
+    </div>
+</div>
