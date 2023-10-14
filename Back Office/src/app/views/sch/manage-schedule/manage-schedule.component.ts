@@ -1,4 +1,5 @@
 import { Component, Injector, ViewChild } from '@angular/core';
+import { SCHService } from '../sch.serivce';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CatalogService } from '../../catalog/catalog.service';
 import { ScheduleDayVM, ScheduleVM } from '../Models/ScheduleVM';
@@ -20,7 +21,6 @@ import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { ManageScheduleListComponent } from '../manage-schedule-list/manage-schedule-list.component';
 import { ManageScheduleDayEventComponent } from '../manage-schedule-day-event/manage-schedule-day-event.component';
-import { SCHService } from '../sch.serivce';
 @Component({
   selector: 'app-manage-schedule',
   templateUrl: './manage-schedule.component.html',
@@ -248,7 +248,7 @@ export class ManageScheduleComponent {
       });
    }
    OpenDayEventDialog(row : ScheduleDayVM) {
-    debugger;
+    // debugger;
     this.schSvc.selectedScheduleDayId = row.id;
     this.dialogRef = this.dialog.open(ManageScheduleDayEventComponent, {
        width: '1200px',
@@ -260,7 +260,6 @@ export class ManageScheduleComponent {
       //this.GetScheduleFH();
       });
    }
-   
   
   GetSchedule() {
     debugger;

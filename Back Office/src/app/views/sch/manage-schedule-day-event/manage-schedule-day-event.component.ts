@@ -33,8 +33,8 @@ export class ManageScheduleDayEventComponent {
   selectedSchedule: ScheduleDayEventVM;
 
   WeekDays: SettingsVM[];
-  Location: SettingsVM[];
-  EventType: SettingsVM[];
+  Location: SettingsVM[]=[];
+  EventType: SettingsVM[]=[];
   Entities: SettingsVM[];
   ScheduleType: SettingsVM[];
   WorkingType: SettingsVM[];
@@ -75,6 +75,7 @@ schDay:ScheduleDayVM
   }
   
   ngOnInit(): void {
+    
     debugger;
     // this.GetScheduleFH();
      if (this.dialogData  != null) {
@@ -120,8 +121,6 @@ schDay:ScheduleDayVM
       this.GetSettings(EnumTypeVM.EventType)
       this.GetSettings(EnumTypeVM.Location)
       // ... and so on for other settings
-      
-     
   } 
 
   
@@ -153,8 +152,12 @@ schDay:ScheduleDayVM
           this.WorkingType = res;
         }else if (etype === EnumTypeVM.EventType) {
           this.EventType = res;
+          if(this.EventType.length>0)
+          this.selectedDayEvent.eventTypeId=this.EventType[0].id;
         }else if (etype === EnumTypeVM.Location) {
           this.Location = res;
+          if(this.Location.length>0)
+          this.selectedDayEvent.locationId=this.Location[0].id;
         }
       }, error: (e) => {
         alert("t");
@@ -168,7 +171,7 @@ schDay:ScheduleDayVM
   Submit() {
     debugger;
   // Check if both user and schedule type are selected
-  if (this.selectedDayEvent.locationId == null || this.selectedDayEvent.locationId == undefined) {
+  if (this.selectedDayEvent.locationId == 0) {
     this.catSvc.ErrorMsgBar("Please select Location.", 5000);
     return;
   }
@@ -183,11 +186,10 @@ schDay:ScheduleDayVM
     this.catSvc.ErrorMsgBar("Please select End Time.", 5000);
     return; // Exit the function if either user or schedule type is empty
   }
-  // if(this.selectedDayEvent.eventType == null || this.selectedDayEvent.eventType == undefined)
-  // {  
-  //   this.catSvc.ErrorMsgBar("Please select Event Type.", 5000);
-  //   return; // Exit the function if either user or schedule type is empty
-  // }
+  if (this.selectedDayEvent.eventTypeId == 0) {
+    this.catSvc.ErrorMsgBar("Please select Event Type.", 5000);
+    return;
+  }
 
   this.selectedDayEvent.schId = this.schSvc.selectedScheduleId;
   this.selectedDayEvent.scheduleDayId = this.schSvc.selectedScheduleDayId;
@@ -195,6 +197,7 @@ schDay:ScheduleDayVM
     next: (value) => {
       this.catSvc.SuccessMsgBar("Successfully Added", 5000);
       this.Refresh();
+      this.ngOnInit();
     }, 
     error: (err) => {
       this.catSvc.ErrorMsgBar("Error Occurred", 5000);
@@ -202,32 +205,19 @@ schDay:ScheduleDayVM
   });
 }
 
-  // Submit() {   
-  //   this.selectedDayEvent.schId = this.lmsSvc.selectedScheduleId;
-  //   this.lmsSvc.SaveScheduleDayEvent(this.selectedDayEvent).subscribe({
-  //     next: (value) => {
-  //       this.catSvc.SuccessMsgBar("Successfully Added", 5000);
-        
-  //       this.SearchbyScheduleDayEvent()
-  //     }, 
-  //     error: (err) => {
-  //       this.catSvc.ErrorMsgBar("Error Occurred", 5000);
-  //     },
-  //   });
-  // }
-
   GetScheduleDayEvents() {
-    debugger;
+    // debugger;
     var Sch = new ScheduleDayEventVM
     Sch.isActive= true;
     debugger;
     this.schSvc.GetScheduleDayEvents(this.schSvc.selectedScheduleDayId).subscribe({
     
       next: (value: ScheduleDayEventVM[]) => {
-        debugger;
+        // debugger;
         this.ScheduleDayEvents = value
         console.warn(this.ScheduleDayEvents)
         this.dataSource = new MatTableDataSource(this.ScheduleDayEvents)
+        // this.Refresh();
        
       }, error: (err) => {
         alert("i");
@@ -237,24 +227,10 @@ schDay:ScheduleDayVM
   }
   validateTimeRange() {
     if (this.selectedDayEvent.startTime > this.selectedDayEvent.endTime) {
-     // alert("Start Time is greater than end time");
-        this.timeRangeInvalid = true;
+      this.timeRangeInvalid = true;
     } else {
       this.timeRangeInvalid = false;
     }
-    // if (this.selectedDayEvent.startTime < this.selectedDayEvent.endTime) {
-    //   alert("End Time is greater than start time");
-    //     this.timeRangeInvalid = true;
-    // } else {
-    //   this.timeRangeInvalid = false;
-    // }
-    // if (this.selectedDayEvent.startTime == this.selectedDayEvent.endTime) {
-    //   alert("Start Time is eaual to end time");
-    //     this.timeRangeInvalid = true;
-    // } else {
-    //   this.timeRangeInvalid = false;
-    // }
-   
   }
   
 
@@ -262,16 +238,24 @@ schDay:ScheduleDayVM
     this.EditMode = true
     this.AddMode = false
     this.selectedDayEvent = schedule
+    // this.ngOnInit();
   }
-  UpdateSchedule() {
-   this.schSvc.SaveScheduleDayEvent(this.selectedDayEvent).subscribe({
+  UpdateScheduleDayEvent() {
+    debugger;
+   this.schSvc.UpdateScheduleDayEvent(this.selectedDayEvent).subscribe({
       next: (res: ScheduleDayEventVM) => {   
+        this.catSvc.SuccessMsgBar("Successfully Updated", 5000);
         this.proccessing = false
+        this.Refresh();
+        this.ngOnInit();
       }, error: (e: any) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
         console.warn(e);
         this.ScheduleDay = []
         this.proccessing = false
+        this.Refresh();
+        
+        
       }
     })
   }
@@ -296,10 +280,11 @@ schDay:ScheduleDayVM
         next: (data) => {
           Swal.fire(
             'Deleted!',
-            'Topic has been deleted.',
+            'Schedule Day Event has been deleted.',
             'success'
           )
           this.Refresh();
+          this.ngOnInit();
         }, error: (e) => {
           alert("e");
           this.catSvc.ErrorMsgBar("Error Occurred", 5000)
@@ -326,5 +311,3 @@ SearchbyScheduleDayEvent( ){
    })}
 
 }
-
-
