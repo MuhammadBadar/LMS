@@ -52,7 +52,8 @@ namespace LMS.WebAPI.Controllers
         public ActionResult GetScheduleByUserId(string userId)
         {
             //ScheduleDE Schedule = new ScheduleDE { UserId = userId };
-            var schedule = _schSVC.GetScheduleByUserId(userId); 
+            var schedule = _schSVC.GetScheduleByUserId(userId);
+
             return Ok(schedule);
         }
 
@@ -69,9 +70,12 @@ namespace LMS.WebAPI.Controllers
         // POST api/<StudentController>
         [HttpPost]
         public IActionResult PostSchedule(ScheduleDE Schedule)
-            {
-
-            Schedule.DBoperation = LMS.Core.Enums.DBoperations.Insert;
+        {
+            var existingSchedule = _schSVC.GetScheduleByUserId(Schedule.UserId);
+            if(existingSchedule.Id == 0)
+                Schedule.DBoperation = LMS.Core.Enums.DBoperations.Insert;
+            else
+                Schedule.DBoperation = LMS.Core.Enums.DBoperations.Update;
             ScheduleDE sch = _schSVC.ManageSchedule(Schedule);
             return Ok(sch);
         }

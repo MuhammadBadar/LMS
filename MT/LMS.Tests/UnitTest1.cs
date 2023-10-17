@@ -109,11 +109,11 @@ namespace LMS.Tests
             var vcb = new VocabularyDE();
             vcb.Id = 1;
             vcb.Word = "xxxxxxyz";
-            vcb.Meaning = "Related to";
+            //vcb.Meaning = "Related to";
             vcb.Reference = "from book Zety pg";
             vcb.Sentance = "this referancwe is for creating a cv";
             vcb.Pronunciation = "aaaaaassssddd";
-            vcb.Translation = "urdu  meaning";
+            //vcb.Translation = "urdu  meaning";
 
             //crs.DBoperation = DBoperations.Update;
             vcb.DBoperation = DBoperations.Insert;

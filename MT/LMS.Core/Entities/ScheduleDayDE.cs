@@ -18,6 +18,8 @@ namespace LMS.Core.Entities
         public int? DayId { get; set; }
         public int SchId { get; set; }
 
+        public string Location { get; set; }
+
         #endregion
 
         public string? Day { get; set; }

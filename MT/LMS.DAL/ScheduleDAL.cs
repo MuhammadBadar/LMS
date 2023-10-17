@@ -48,9 +48,9 @@ namespace LMS.DAL
                 cmd.Parameters.AddWithValue("@prm_DBoperation", sch.DBoperation.ToString());
                 cmd.Parameters.AddWithValue("@prm_Filter", sch.DBoperation.ToString());
                 cmd.ExecuteNonQuery();
-                return true;
+                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -59,6 +59,8 @@ namespace LMS.DAL
                 if (closeConnectionFlag)
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
+
+            return true;
         }
         public bool AlterSchedule(ScheduleDE sch, int? Id = null, MySqlCommand cmd = null)
         {

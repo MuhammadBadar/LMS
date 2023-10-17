@@ -54,9 +54,20 @@ namespace LMS.Service
                 if (mod.DayIds != null)
                 {
                     int schDayId = 0;
-                    if (mod.DBoperation == DBoperations.Insert)
-                        schDayId = _corDAL.GetnextId(TableNames.scheduleday.ToString());
+                    //if (mod.DBoperation == DBoperations.Insert)
+                    schDayId = _corDAL.GetnextId(TableNames.scheduleday.ToString());
 
+
+                    if (mod.DBoperation == DBoperations.Update)
+                    {
+                        var sch = GetScheduleByUserId(mod.UserId);
+                        foreach(var schDay in sch.ScheduleDays)
+                        {
+                            schDay.DBoperation = DBoperations.Delete;
+                            _schDAL.ManageScheduleDay(schDay, cmd);
+                        }
+                    }
+                    
                     foreach (var day in mod.DayIds)
                     {
                         var SchLine = new ScheduleDayDE();
@@ -229,10 +240,21 @@ namespace LMS.Service
                     {
                         foreach (var schDay in schDays)
                         {
-                            if(schDay.DayId.HasValue)
+                            if (schDay.DayId.HasValue)
+                            {
                                 sch.DayIds.Add(schDay.DayId.Value);
 
-                            sch.ScheduleDays.Add(schDay);
+                            whereClause = "where 1=1";
+                            var schDayEvents = _schDAL.SearchScheduleDayEvent(whereClause += $" AND ScheduleDayId={schDay.Id} AND IsActive ={true}");
+                            foreach(var schDayEvent in schDayEvents)
+                            {
+                                schDay.Location = schDayEvent.Location;
+
+                            }
+
+
+                        }
+                        sch.ScheduleDays.Add(schDay);
                         }
                     }
                     
@@ -254,6 +276,7 @@ namespace LMS.Service
                 //if (closeConnectionFlag)
                     //LMSDataContext.CloseMySqlConnection(cmd);
             }
+            sch.UserId = userId;
             return sch;
         }
 
