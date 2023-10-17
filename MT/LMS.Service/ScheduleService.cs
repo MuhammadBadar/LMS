@@ -249,6 +249,9 @@ namespace LMS.Service
                             foreach(var schDayEvent in schDayEvents)
                             {
                                 schDay.Location = schDayEvent.Location;
+                                schDay.StartTime = schDayEvent.StartTime;
+                                schDay.EndTime = schDayEvent.EndTime;
+                                schDay.EventType = schDayEvent.EventType;
 
                             }
 

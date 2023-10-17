@@ -19,6 +19,9 @@ namespace LMS.Core.Entities
         public int SchId { get; set; }
 
         public string Location { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
+        public string EventType { get; set; }
 
         #endregion
 
