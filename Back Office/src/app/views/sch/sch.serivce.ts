@@ -62,7 +62,7 @@ export class SCHService {
   }
 
   GetScheduleDayEvents(scheduleDayId:number): Observable<ScheduleDayEventVM[]> {
-    return this.http.get<ScheduleDayEventVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent/GetScheduleDayEvents?scheduleDayId=' + scheduleDayId).pipe();
+    return this.http.get<ScheduleDayEventVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent/GetScheduleDayEvents/' + scheduleDayId).pipe();
   }
    GetScheduleDayEventById(id: number): Observable<ScheduleDayEventVM[]> {
     return this.http.get<ScheduleDayEventVM[]>(Globals.BASE_API_URL + 'ScheduleDayEvent/' + id).pipe()

@@ -32,9 +32,6 @@ import { PatientVM } from './Models/PatientVM';
 })
 export class LMSService {
 
-  selectedScheduleId: number;
-  selectedScheduleDayId: number;
-
   constructor(private http: HttpClient) { }
 
   UpdateInquiry(value: InquiryVM) {
