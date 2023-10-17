@@ -265,7 +265,11 @@ export class ManageScheduleComponent {
       });
       console.warn(this.selectedSchedule.dayIds)   
       this.dialogRef.afterClosed().subscribe((res: any) => {
-      //this.GetScheduleFH();
+      //this.GetScheduleFH(); 
+      alert('I m called');
+      debugger;
+      this.getScheduleByUserId(this.selectedSchedule.userId);
+      //this.RefreshDetail()
       });
    }
   
@@ -526,7 +530,8 @@ Search(){ debugger;
       //this.selectedSchedule.entityId = 1005001;
       this.selectedSchedule = val;
       this.selectedSchedule.entityId = this.user;
-      this.selectedSchedule.isActive = true;      
+      this.selectedSchedule.isActive = true;   
+         
       this.schSvc.selectedScheduleId = this.selectedSchedule.id;
       this.ScheduleDayEvent = [];
       

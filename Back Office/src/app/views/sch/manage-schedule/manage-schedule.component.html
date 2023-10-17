@@ -1,3 +1,6 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
 <div class="container-fluid page">
   <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
       <div *ngIf="Add">Manage Schedule</div>
@@ -73,7 +76,6 @@
                     </mat-form-field>
               </div>     
   </Row>
-  <br>
   <Row>
     <div fxLayout="row" fxLayoutAlign="space-between">
       <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
@@ -280,8 +282,8 @@
                       <div fxLayoutAlign="end end">
                         <c-spinner *ngIf="proccessing" style="height: 50px;width: 50px;color: rgb(3, 71, 102);"></c-spinner>
                         <div style="margin-top: 10px; margin-bottom: 10px;" *ngIf="!proccessing">                          
-                          <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;width: 100px;"
-                              type="submit" (click)="OpenDayEventDialog(row); $event.stopPropagation()">Add Event</button>
+                          <button *ngIf="Add" cButton class="me-1 add-event" style="background-color:#1e293b ;width: 100px;"
+                              type="submit" (click)="OpenDayEventDialog(row); $event.stopPropagation()"  cTooltip="Explore ScheduleDayEvent"><i class="fa-solid fa-list"></i></button>
                             <!-- <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;width: 100px;"
                                 type="submit" (click)="Submit();">
                                 Submit

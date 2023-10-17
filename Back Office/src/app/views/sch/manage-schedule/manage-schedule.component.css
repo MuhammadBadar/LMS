@@ -6,6 +6,10 @@
 
 
 }
+.add-event{
+    width: 40px !important;
+    padding: 0px;
+}
 
 .page_content {
     padding: 20px;
