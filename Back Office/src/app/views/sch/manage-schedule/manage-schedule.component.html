@@ -12,7 +12,7 @@
           <div fxLayout="row" fxLayoutAlign="space-between">
            <mat-radio-group fxFlex="100%" required [(ngModel)]="selectedSchedule.entityId" name="entityId">
           <mat-label>Schedule for:</mat-label>
-              <mat-radio-button *ngFor="let val of Entities" [value]="val.id">
+              <mat-radio-button  *ngFor="let val of Entities" [value]="val.id">
                 {{val.name}}
             </mat-radio-button>
             </mat-radio-group>   
@@ -145,14 +145,14 @@
         </div> 
         </div>
 
-        <Row>
+        <!-- <Row>
           <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
             <mat-label>Effective Date</mat-label>
             <input [matDatepicker]="picker" matInput #effectiveDate="ngModel" name="effectiveDate" [(ngModel)]="selectedSchedule.effectiveDate"/>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        </Row>
+        </Row> -->
         
        
   <Row>
@@ -171,10 +171,10 @@
 <div fxLayoutAlign="end end">
   <c-spinner *ngIf="proccessing" style="height: 50px;width: 50px;color: rgb(3, 71, 102);"></c-spinner>
   <div style="margin-top: 10px;" *ngIf="!proccessing">    
-      <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;width: 100px;"
+      <!-- <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;width: 100px;"
           type="submit" (click)="OpenScheduleDialog(); $event.stopPropagation()">
           SchHistory
-      </button>
+      </button> -->
     
       <button *ngIf="Add" cButton class="me-1" style="background-color:#1e293b ;width: 100px;"
           type="submit" (click)="SaveScheduleDay();">

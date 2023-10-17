@@ -5,11 +5,11 @@ import { SettingsVM } from '../../catalog/Models/SettingsVM';
 import { EnumTypeVM } from '../../security/models/EnumTypeVM';
 import { CatalogService } from '../../catalog/catalog.service';
 import { ActivatedRoute } from '@angular/router';
-import { SCHService } from '../sch.serivce';
 import Swal from 'sweetalert2';
 import { MatTableDataSource } from '@angular/material/table';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
+import { SCHService } from '../sch.serivce';
 
 @Component({
   selector: 'app-manage-schedule-day-event',
@@ -193,6 +193,8 @@ schDay:ScheduleDayVM
 
   this.selectedDayEvent.schId = this.schSvc.selectedScheduleId;
   this.selectedDayEvent.scheduleDayId = this.schSvc.selectedScheduleDayId;
+  this.selectedDayEvent.isActive=true;
+  // this.selectedSchedule.isActive = true;
   this.schSvc.SaveScheduleDayEvent(this.selectedDayEvent).subscribe({
     next: (value) => {
       this.catSvc.SuccessMsgBar("Successfully Added", 5000);
