@@ -56,28 +56,52 @@ namespace LMS.Service
                     int schDayId = 0;
                     //if (mod.DBoperation == DBoperations.Insert)
                     schDayId = _corDAL.GetnextId(TableNames.scheduleday.ToString());
-
+                    var sch = GetScheduleByUserId(mod.UserId);
 
                     if (mod.DBoperation == DBoperations.Update)
                     {
-                        var sch = GetScheduleByUserId(mod.UserId);
+                        //var sch = GetScheduleByUserId(mod.UserId);
                         foreach(var schDay in sch.ScheduleDays)
                         {
-                            schDay.DBoperation = DBoperations.Delete;
-                            _schDAL.ManageScheduleDay(schDay, cmd);
+                            //if(mod.DayIds.Where(m => m == schDay.DayId.Value).FirstOrDefault() != null)
+                            bool shouldDelete = true;
+                            foreach(var scheduleDayId in mod.DayIds)
+                            {
+                                if(schDay.DayId == scheduleDayId)
+                                {
+                                    shouldDelete = false;
+                                }
+                            }
+                            if (shouldDelete)
+                            {
+                                schDay.DBoperation = DBoperations.Delete;
+                                _schDAL.ManageScheduleDay(schDay, cmd);
+                            }
                         }
                     }
                     
                     foreach (var day in mod.DayIds)
                     {
-                        var SchLine = new ScheduleDayDE();
-                        SchLine.Id = schDayId;
-                        SchLine.DayId = day;
-                        SchLine.SchId = mod.Id;
-                        SchLine.DBoperation = DBoperations.Insert;
-                        SchLine.IsActive = true;
-                        retVal = _schDAL.ManageScheduleDay(SchLine, cmd);
-                        schDayId += 1;
+                        bool shouldAdd = true;
+                        foreach (var schDay in sch.ScheduleDays)
+                        {
+                            if(day == schDay.DayId)
+                            {
+                                shouldAdd = false;
+                            }
+                        }
+
+                        if (shouldAdd)
+                        {
+                            var SchLine = new ScheduleDayDE();
+                            SchLine.Id = schDayId;
+                            SchLine.DayId = day;
+                            SchLine.SchId = mod.Id;
+                            SchLine.DBoperation = DBoperations.Insert;
+                            SchLine.IsActive = true;
+                            retVal = _schDAL.ManageScheduleDay(SchLine, cmd);
+                            schDayId += 1;
+                        }
                     }
                 }
                 if (retVal == true)

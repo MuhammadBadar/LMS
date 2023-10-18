@@ -1,5 +1,5 @@
 import { SCHService } from './../sch.serivce';
-import { Component, Injector, ViewChild } from '@angular/core';
+import { Component, Injector, ViewChild, OnInit } from '@angular/core';
 // import { SCHService } from '../sch.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CatalogService } from '../../catalog/catalog.service';
@@ -70,7 +70,7 @@ export class ManageScheduleComponent {
   WeekDays: SettingsVM[];
   roles: RoleVM[];
   currentLightBoxImage: any
-  displayeScheduleColumns: string[] = ['day','location','startTime', 'endTime', 'eventType','isActive','actions'];
+  displayeScheduleColumns: string[] = ['day','location','startTime', 'endTime', 'eventType','actions'];
   addButton = true
   lineAddMode: boolean = false
   lineEditMode: boolean = true
@@ -266,7 +266,7 @@ export class ManageScheduleComponent {
       console.warn(this.selectedSchedule.dayIds)   
       this.dialogRef.afterClosed().subscribe((res: any) => {
       //this.GetScheduleFH(); 
-      alert('I m called');
+      //alert('I m called');
       debugger;
       this.getScheduleByUserId(this.selectedSchedule.userId);
       //this.RefreshDetail()
@@ -422,6 +422,7 @@ export class ManageScheduleComponent {
     })
   }
   Refresh() {
+    this.ngOnInit();
     this.GetSchedule();
     this.selectedSchedule = new ScheduleVM
     this.EditMode = false

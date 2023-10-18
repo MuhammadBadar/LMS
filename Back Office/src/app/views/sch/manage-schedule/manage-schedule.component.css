@@ -9,6 +9,8 @@
 .add-event{
     width: 40px !important;
     padding: 0px;
+    background-color: white !important;
+    color: black;
 }
 
 .page_content {
