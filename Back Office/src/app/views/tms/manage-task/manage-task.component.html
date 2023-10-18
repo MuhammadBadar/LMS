@@ -20,15 +20,12 @@
                         {{st.value}}
                     </mat-option>
                 </mat-select>
-                <mat-error class="form-text text-danger"
-                *ngIf="taskForm.controls['topicTitle']?.hasError('required') || taskForm.controls['topicTitle']?.hasError('minlength')">
-                TopicTitle is required to be at least 20 characters.
-                </mat-error>
+              
             </mat-form-field>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between">
             <mat-form-field fxFlex="95%">
-                <input matInput name="title" [(ngModel)]="taskService.selectedTask.title" required placeholder="Title"
+                <input matInput name="title" [(ngModel)]="taskService.selectedTask.title" required placeholder="Title*"
                     maxlength="100">
             </mat-form-field>
             </div>
@@ -46,7 +43,7 @@
         <div fxLayout="row" fxLayoutAlign="space-between">
             <mat-form-field fxFlex="32% ">
                 <input name="SP" type="number" step=".01" [(ngModel)]="taskService.selectedTask.sp" matInput required
-                    placeholder=" SP" />
+                    placeholder=" SP*" />
             </mat-form-field>
             <mat-form-field fxFlex="32%" fxFill>
                 <mat-label>Assigned to</mat-label>
