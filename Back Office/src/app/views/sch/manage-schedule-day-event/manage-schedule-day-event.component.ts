@@ -228,7 +228,7 @@ schDay:ScheduleDayVM
     })
   }
   validateTimeRange() {
-    if (this.selectedDayEvent.startTime > this.selectedDayEvent.endTime) {
+    if (this.selectedDayEvent.startTime < this.selectedDayEvent.endTime) {
       this.timeRangeInvalid = true;
     } else {
       this.timeRangeInvalid = false;

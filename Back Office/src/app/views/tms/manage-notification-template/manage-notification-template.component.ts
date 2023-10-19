@@ -36,7 +36,7 @@ export class ManageNotificationTemplateComponent implements OnInit {
     });
   }
   EditTemplate(tem) {
-    this.route.navigate(['/task/createTemplate'], { queryParams: { id: tem.id } });
+    this.route.navigate(['/tms/notificationtemplate'], { queryParams: { id: tem.id } });
   }
   
  
