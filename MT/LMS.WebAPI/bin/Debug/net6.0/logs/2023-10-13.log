@@ -1,5 +1,0 @@
-2023-10-13 10:03:48.6882 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'scheduleDayEvent.Id' in 'where clause'
-2023-10-13 10:09:54.3620 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'scheduleDayEvent.Id' in 'where clause'
-2023-10-13 10:42:55.1596 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'scheduleDayEvent.Id' in 'where clause'
-2023-10-13 10:48:13.1528 ERROR MySql.Data.MySqlClient.MySqlException: Table 'lms.scheduledaysevent' doesn't exist
-2023-10-13 10:48:25.3810 ERROR MySql.Data.MySqlClient.MySqlException: Table 'lms.scheduledaysevent' doesn't exist

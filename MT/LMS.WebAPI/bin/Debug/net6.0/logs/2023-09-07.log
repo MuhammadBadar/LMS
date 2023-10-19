@@ -1,4 +1,0 @@
-2023-09-07 15:42:09.4142 ERROR MySql.Data.MySqlClient.MySqlException: Procedure or function '`ManageSchLine`' cannot be found in database ''. Verify that user 'root'@'localhost' has enough privileges to execute.
-2023-09-07 15:43:45.0810 ERROR System.ArgumentException: Parameter 'prm_DayId' not found in the collection.
-2023-09-07 15:47:23.1879 ERROR MySql.Data.MySqlClient.MySqlException: Parameter '@prm_Id' has already been defined.
-2023-09-07 17:00:45.9705 ERROR MySql.Data.MySqlClient.MySqlException: Parameter '@prm_Id' has already been defined.

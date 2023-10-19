@@ -6,3 +6,6 @@
 /MT/LMS.Service/bin
 /MT/LMS.Tests/bin
 /MT/LMS.Tests/obj
+/MT/.vs
+/MT/LMS.WebAPI/bin
+/MT/LMS.WebAPI/obj
