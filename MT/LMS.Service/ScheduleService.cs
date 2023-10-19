@@ -298,7 +298,7 @@ namespace LMS.Service
 
                                 if (schDayEvent != schDayEvents.Last())
                                 {
-                                    eventString += " , ";
+                                    eventString += " ,";
                                 }
 
                                 schDay.SchDayEvents += eventString;
