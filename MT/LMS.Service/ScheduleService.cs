@@ -101,6 +101,12 @@ namespace LMS.Service
                             SchLine.IsActive = true;
                             retVal = _schDAL.ManageScheduleDay(SchLine, cmd);
                             schDayId += 1;
+
+                            // Write code to save Schedule Day Line
+                            ScheduleDayEventDE schDayEvnt = new ScheduleDayEventDE();
+                            schDayEvnt.StartTime = "00:00";
+                            //...
+                            _schDAL.ManageScheduleDayEvent(schDayEvnt);
                         }
                     }
                 }
@@ -270,14 +276,36 @@ namespace LMS.Service
 
                             whereClause = "where 1=1";
                             var schDayEvents = _schDAL.SearchScheduleDayEvent(whereClause += $" AND ScheduleDayId={schDay.Id} AND IsActive ={true}");
-                            foreach(var schDayEvent in schDayEvents)
+                            /*foreach(var schDayEvent in schDayEvents)
                             {
                                 schDay.Location = schDayEvent.Location;
                                 schDay.StartTime = schDayEvent.StartTime;
                                 schDay.EndTime = schDayEvent.EndTime;
                                 schDay.EventType = schDayEvent.EventType;
 
+                                // 15:00 - 18:00 Work - Rehman Pura
+                                schDay.SchDayEvents += schDayEvent.StartTime + " - " + schDayEvent.EndTime + "  " + schDayEvent.EventType + " " + schDayEvent.Location + " ,";
+                            }*/
+                            foreach (var schDayEvent in schDayEvents)
+                            {
+                                schDay.Location = schDayEvent.Location;
+                                schDay.StartTime = schDayEvent.StartTime;
+                                schDay.EndTime = schDayEvent.EndTime;
+                                schDay.EventType = schDayEvent.EventType;
+
+                                // Construct the event string without the trailing comma if this is the last event.
+                                string eventString = schDayEvent.StartTime + " - " + schDayEvent.EndTime + " " + schDayEvent.EventType + " " + schDayEvent.Location;
+
+                                if (schDayEvent != schDayEvents.Last())
+                                {
+                                    eventString += " , ";
+                                }
+
+                                schDay.SchDayEvents += eventString;
                             }
+
+
+
 
 
                         }

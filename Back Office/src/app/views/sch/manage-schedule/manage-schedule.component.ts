@@ -70,7 +70,10 @@ export class ManageScheduleComponent {
   WeekDays: SettingsVM[];
   roles: RoleVM[];
   currentLightBoxImage: any
-  displayeScheduleColumns: string[] = ['day','location','startTime', 'endTime', 'eventType','actions'];
+  //displayeScheduleColumns: string[] = ['day','location','startTime', 'endTime', 'eventType','actions'];
+  displayeScheduleColumns: string[] = ['day','scheduleDayEvents','actions'];
+  
+  //dataSource
   addButton = true
   lineAddMode: boolean = false
   lineEditMode: boolean = true
@@ -368,19 +371,20 @@ export class ManageScheduleComponent {
         console.warn(res);
         debugger;
         this.catSvc.SuccessMsgBar("Successfully Added!", 5000);
-        this.selectedSchedule = res;
+        // this.selectedSchedule = res;
         //alert(this.selectedSchedule.scheduleDays.length);
-        this.ScheduleDay = [];
-        this.ScheduleDay = this.selectedSchedule.scheduleDays;
+        // this.ScheduleDay = [];
+        // this.ScheduleDay = this.selectedSchedule.scheduleDays;
         this.selectedSchedule.isActive = true;
+        this.getScheduleByUserId(this.selectedSchedule.userId);
 
         // this.selectedSchedule.scheduleDays?.forEach((element) => {
         //   this.ScheduleDay.push(element);
         // });
         debugger;
         //this.DayEventSource = new MatTableDataSource(this.ScheduleDay);
-        this.dataSource =  new MatTableDataSource(this.ScheduleDay);
-        console.warn(this.ScheduleDay);
+        //this.dataSource =  new MatTableDataSource(this.ScheduleDay);
+        //console.warn(this.ScheduleDay);
          //this.Refresh()
       },
       error: (e: any) => {
@@ -444,7 +448,7 @@ export class ManageScheduleComponent {
         next: (data) => {
           Swal.fire(
             'Deleted!',
-            'Topic has been deleted.',
+            'Schedule Day Events has been deleted.',
             'success'
           )
           this.Refresh();
@@ -457,6 +461,44 @@ export class ManageScheduleComponent {
     }
   })
 } 
+DeleteScheduleWithEvents(id: number) {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.value) {
+      // First, delete the associated events
+      this.schSvc.DeleteScheduleDayEvent(id).subscribe({
+        next: (data) => {
+          // Events deleted, now delete the schedule day
+          this.schSvc.DeleteSchedule(id).subscribe({
+            next: (data) => {
+              Swal.fire(
+                'Deleted!',
+                'Schedule Day and Events have been deleted.',
+                'success'
+              );
+              this.Refresh();
+            },
+            error: (e) => {
+              console.error(e);
+              this.catSvc.ErrorMsgBar("Error Occurred while deleting the Schedule", 5000);
+            }
+          });
+        },
+        error: (e) => {
+          console.error(e);
+          this.catSvc.ErrorMsgBar("Error Occurred while deleting Schedule Day Events", 5000);
+        }
+      });
+    }
+  });
+}
 
 async AddDayEventtoList() {
   debugger;

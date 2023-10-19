@@ -26,7 +26,7 @@ namespace LMS.Core.Entities
         #endregion
 
         public string? Day { get; set; }
-
+        public string SchDayEvents { get; set; }
         public List<ScheduleDayEventDE> ScheduleDayEvents{ get; set; }
 
     }

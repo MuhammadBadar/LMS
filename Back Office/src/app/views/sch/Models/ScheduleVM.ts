@@ -37,5 +37,6 @@ export class ScheduleDayVM {
   scheduleId?: number;
   editMode: boolean = false
   userId: string
+  schDayEvents: string
 
 }
