@@ -26,7 +26,7 @@ namespace LMS.Service
             _logger = LogManager.GetLogger("fileLogger");
         }
         #endregion
-        #region  Patient
+        #region  Schedule Day Events
         public bool ManageScheduleDayEvent(ScheduleDayEventDE _pat)
         {
             bool retVal = false;

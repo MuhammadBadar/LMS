@@ -33,10 +33,10 @@
 
           <mat-form-field appearance="outline" fxFlex="33%" class="form-group">
             <mat-label>--Please Select User--</mat-label>
-            <mat-select name="userId" [(ngModel)]="selectedAttendance.userId">
-                <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
+            <mat-select name="userId" [(ngModel)]="selectedAttendance.userId" (valueChange)="Search()">
+                <mat-option [value]="0">--Please Select--</mat-option>
                 <mat-option *ngFor="let val of users" 
-                [value]="val.id" (click)="Search()">
+                [value]="val.id" >
                   {{val.userName}}
                 </mat-option>
               </mat-select>
@@ -44,7 +44,7 @@
 
           <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
             <mat-label>Schedule Time</mat-label>
-            <input matInput required #name="ngModel" name="ScheduleTime" [(ngModel)]="selectedAttendance.ScheduleTime"/>
+            <input disabled matInput required #name="ngModel" name="ScheduleTime" [(ngModel)]="selectedAttendance.scheduleTime"/>
         </mat-form-field>
 
           <!-- <mat-form-field fxFlex="49%" appearance="outline">

@@ -40,20 +40,22 @@ namespace LMS.WebAPI.Controllers
             return Ok(values);
         }
 
-        [HttpGet("GetScheduleTime")]
-        public ActionResult GetScheduleTime(string userId, DateTime date)
-        {
+        //[HttpGet("GetScheduleTime")]
+        //public ActionResult GetScheduleTime(string userId, DateTime date)
+        //{
         
-            var values = attSVC.GetScheduleTime(userId, date);
-            return Ok(values);
-        }
+        //    var values = attSVC.GetScheduleTime(userId, date);
+        //    return Ok(values);
+        //}
 
         [HttpPost("{Search}")]
-        public IActionResult SearchAttendance(AttendanceVM Attendance)
+        public IActionResult SearchAttendance(AttendanceVM attendance)
         
         {
+            var schTime = attSVC.GetScheduleTime(attendance.UserId, attendance.Date.Value);
 
-            List<AttendanceVM> list = attSVC.SearchAttendance(Attendance);
+            List<AttendanceVM> list = attSVC.SearchAttendance(attendance);
+            foreach (var item in list) { item.ScheduleTime = schTime; }
             return Ok(list);
         }
         //[HttpPost]

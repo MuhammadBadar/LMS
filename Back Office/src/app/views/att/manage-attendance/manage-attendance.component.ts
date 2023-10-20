@@ -10,7 +10,7 @@ import { UserVM } from '../../security/models/user-vm';
 import { SecurityService } from '../../security/security.service';
 import { DateAdapter } from '@angular/material/core';
 import * as moment from 'moment';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import Swal from 'sweetalert2';
 @Component({
@@ -20,7 +20,6 @@ import Swal from 'sweetalert2';
   })
   export class ManageAttendanceComponent implements OnInit{
   displayedColumns: string[] = ['user', 'inTime','outTime', 'workedHours','date'];
-  
   // Attendance:AttendanceVM [] = [];
   AddMode: boolean = true
   proccessing: boolean = false;
@@ -44,7 +43,6 @@ import Swal from 'sweetalert2';
   messages: any;
   timepicker: any;
   // attendance: AttendanceVM[];
-  myForm:FormGroup;
 
   constructor(
     private injector: Injector,
@@ -68,17 +66,12 @@ import Swal from 'sweetalert2';
     to: new Date() // Set initial value to current date
   };
   ngOnInit(): void { 
-    this.myForm = new FormGroup({    
-      'presentDate': new FormControl((new Date()).toISOString().substring(0,10))
-     });
-
-    this.SearchbyDate() ;  
+    //this.SearchbyDatee() ;  
     this.Search() ;  
     this.AddMode = true;
     this.GetUser(); 
-    this.GetAttendance();    
+   //this.GetAttendance();    
     this.selectedAttendance = new AttendanceVM(); 
-    
        }
        
   GetAttendance() {
@@ -232,38 +225,44 @@ if (this.selectedAttendance.userId == undefined || this.selectedAttendance.userI
     console.warn(usr);
     this.attSvc.SearchAttendance(usr).subscribe({
       next: (value: AttendanceVM[]) => {
-        this.attendance= value
+        this.attendance= value;
+        debugger;
+        // alert(this.attendance[0].scheduleTime);
+        if(this.attendance.length > 0)
+         this.selectedAttendance.scheduleTime=this.attendance[0].scheduleTime;
+        
+        // this.selectedDayEvent.eventTypeId=this.EventType[0].id;
         this.dataSource = new MatTableDataSource(this.attendance)
       }, error: (err) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
      console.warn(err) ;
     },
     }) }
-    SearchbyDate( ){
-      debugger
+    // SearchbyDate( ){
+    //   debugger
      
-      var usr = new AttendanceVM();
-      usr.from = this.selectedAtt.from;
-      usr.to = this.selectedAtt.to;
-      usr.from = moment(usr.from).toDate()
-        usr.from = new Date(Date.UTC(usr.from.getFullYear(), 
-        usr.from.getMonth(), usr.from.getDate()))
+    //   var usr = new AttendanceVM();
+    //   usr.from = this.selectedAtt.from;
+    //   usr.to = this.selectedAtt.to;
+    //   usr.from = moment(usr.from).toDate()
+    //     usr.from = new Date(Date.UTC(usr.from.getFullYear(), 
+    //     usr.from.getMonth(), usr.from.getDate()))
   
-        usr.to = moment(usr.to).toDate()
-        usr.to = new Date(Date.UTC(usr.to.getFullYear(), 
-        usr.to.getMonth(), usr.to.getDate()))
-      console.warn(usr);
-      this.attSvc.SearchAttendance(usr).subscribe({
-        next: (value: AttendanceVM[]) => {
-          this.attendance= value
-          this.dataSource = new MatTableDataSource(value)
-               console.warn(this.selectedAtt.from)
-               console.warn(this.selectedAtt.to)
-             }, error: (err) => {
-          this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-       console.warn(err) ;
-      },
-      })}
+    //     usr.to = moment(usr.to).toDate()
+    //     usr.to = new Date(Date.UTC(usr.to.getFullYear(), 
+    //     usr.to.getMonth(), usr.to.getDate()))
+    //   console.warn(usr);
+    //   this.attSvc.SearchAttendance(usr).subscribe({
+    //     next: (value: AttendanceVM[]) => {
+    //       this.attendance= value
+    //       this.dataSource = new MatTableDataSource(value)
+    //            console.warn(this.selectedAtt.from)
+    //            console.warn(this.selectedAtt.to)
+    //          }, error: (err) => {
+    //       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+    //    console.warn(err) ;
+    //   },
+    //   })}
   SearchbyDatee( ){
     debugger
    

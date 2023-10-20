@@ -18,7 +18,7 @@ namespace LMS.Core.ViewModel
         public string? ScheduleTime { get; set; }
         public string? WorkedHours { get; set; }
         public DateTime? Date { get; set; }
-     
 
+        //public string Schedule { get; set; }
     }
 }

@@ -262,20 +262,20 @@ namespace LMS.Service
                 }
                 
                 whereClause = "where 1=1";
-                    var schDays  = _schDAL.SearchScheduleDay(whereClause += $" AND SchId={sch.Id} AND IsActive ={true}");
+                    sch.ScheduleDays  = _schDAL.SearchScheduleDay(whereClause += $" AND SchId={sch.Id} AND IsActive ={true}");
 
                 //sch.ScheduleDays = schDays;
 
-                if (schDays != null && schDays.Count > 0)
+                if (sch.ScheduleDays != null && sch.ScheduleDays.Count > 0)
                     {
-                        foreach (var schDay in schDays)
+                        foreach (var schDay in sch.ScheduleDays)
                         {
                             if (schDay.DayId.HasValue)
                             {
                                 sch.DayIds.Add(schDay.DayId.Value);
 
                             whereClause = "where 1=1";
-                            var schDayEvents = _schDAL.SearchScheduleDayEvent(whereClause += $" AND ScheduleDayId={schDay.Id} AND IsActive ={true}");
+                            schDay.ScheduleDayEvents = _schDAL.SearchScheduleDayEvent(whereClause += $" AND ScheduleDayId={schDay.Id} AND IsActive ={true}");
                             /*foreach(var schDayEvent in schDayEvents)
                             {
                                 schDay.Location = schDayEvent.Location;
@@ -286,12 +286,40 @@ namespace LMS.Service
                                 // 15:00 - 18:00 Work - Rehman Pura
                                 schDay.SchDayEvents += schDayEvent.StartTime + " - " + schDayEvent.EndTime + "  " + schDayEvent.EventType + " " + schDayEvent.Location + " ,";
                             }*/
-                            foreach (var schDayEvent in schDayEvents)
+                            foreach (var schDayEvent in schDay.ScheduleDayEvents)
                             {
                                 schDay.Location = schDayEvent.Location;
                                 schDay.StartTime = schDayEvent.StartTime;
                                 schDay.EndTime = schDayEvent.EndTime;
                                 schDay.EventType = schDayEvent.EventType;
+
+
+                                // Construct the event string without the trailing comma if this is the last event.
+                                string eventString = schDayEvent.StartTime + " - " + schDayEvent.EndTime + " " + schDayEvent.EventType + " " + schDayEvent.Location;
+
+                                if (schDayEvent != schDay.ScheduleDayEvents.Last())
+                                {
+                                    eventString += " , ";
+                                }
+
+                                schDay.SchDayEvents += eventString;
+                            }
+
+                            /*ScheduleDayEvent previousEvent = null;
+
+                            foreach (var schDayEvent in schDayEvents)
+                            {
+                                schDay.Location = schDayEvent.Location;
+                                schDay.EventType = schDayEvent.EventType;
+
+                                if (previousEvent != null && schDayEvent.StartTime < previousEvent.EndTime)
+                                {
+                                    // Handle the condition where the start time is less than the previous end time.
+                                    // For example, you can set a flag, show a message, or log an error.
+                                }
+
+                                schDay.StartTime = schDayEvent.StartTime;
+                                schDay.EndTime = schDayEvent.EndTime;
 
                                 // Construct the event string without the trailing comma if this is the last event.
                                 string eventString = schDayEvent.StartTime + " - " + schDayEvent.EndTime + " " + schDayEvent.EventType + " " + schDayEvent.Location;
@@ -302,14 +330,17 @@ namespace LMS.Service
                                 }
 
                                 schDay.SchDayEvents += eventString;
-                            }
+
+                                previousEvent = schDayEvent; // Update the previous event for the next iteration.
+                            }*/
+
 
 
 
 
 
                         }
-                        sch.ScheduleDays.Add(schDay);
+                        //sch.ScheduleDays.Add(schDay);
                         }
                     }
                     

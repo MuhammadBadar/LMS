@@ -120,26 +120,35 @@ namespace LMS.Service
             //Thursday = 4,
             //Friday = 5,
             //Saturday = 6
-            switch(dayOfWeekId)
+            switch (dayOfWeekId)
             {
-                case 0: dayId = 1003007;  break;
+                case 0: dayId = 1003007; break;
                 case 1: dayId = 1003001; break;
                 case 2: dayId = 1003002; break;
                 case 3: dayId = 1003003; break;
                 case 4: dayId = 1003004; break;
                 case 5: dayId = 1003005; break;
                 case 6: dayId = 1003006; break;
-
             }
 
-            var schDay =  sch.ScheduleDays.Where(m => m.DayId == dayId).FirstOrDefault();
-            //string dayEvents = string.Empty;
-            foreach(var dayEvent in schDay.ScheduleDayEvents)
+            var schDay = sch.ScheduleDays.Where(m => m.DayId == dayId).FirstOrDefault();
+
+            if (schDay != null)
             {
-                dayEvents += dayEvent.StartTime + " - " + dayEvent.EndTime + " ,";
+                foreach (var dayEvent in schDay.ScheduleDayEvents)
+                {
+                    dayEvents += dayEvent.StartTime + " - " + dayEvent.EndTime + " ,";
+                }
+
+                // Remove the trailing comma
+                if (!string.IsNullOrEmpty(dayEvents))
+                {
+                    dayEvents = dayEvents.TrimEnd(',', ' '); // Trim the last comma and any extra whitespace
+                }
             }
 
             return dayEvents;
         }
+
     }
 }
