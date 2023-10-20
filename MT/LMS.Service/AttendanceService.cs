@@ -20,6 +20,8 @@ namespace LMS.Service
         private CoreDAL _corDAL;
         private Logger _logger;
 
+        private ScheduleService _schSvc; 
+
         #endregion
         #region Constructors
         public AttendanceService()
@@ -27,6 +29,8 @@ namespace LMS.Service
             attDAL = new AttendanceDAL();
             _corDAL = new CoreDAL();
             _logger = LogManager.GetLogger("fileLogger");
+
+            _schSvc = new ScheduleService();
         }
         #endregion
         public bool ManageAttendance(AttendanceVM Attendance)
@@ -103,5 +107,39 @@ namespace LMS.Service
          
         }
 
+        public string GetScheduleTime(string userId, DateTime inputDate)
+        {
+            string dayEvents = string.Empty;
+            var sch = _schSvc.GetScheduleByUserId(userId);
+            int dayOfWeekId = (int)inputDate.DayOfWeek; //
+            int dayId = -1;
+            //Sunday = 0,
+            //Monday = 1,
+            //Tuesday = 2,
+            //Wednesday = 3,
+            //Thursday = 4,
+            //Friday = 5,
+            //Saturday = 6
+            switch(dayOfWeekId)
+            {
+                case 0: dayId = 1003007;  break;
+                case 1: dayId = 1003001; break;
+                case 2: dayId = 1003002; break;
+                case 3: dayId = 1003003; break;
+                case 4: dayId = 1003004; break;
+                case 5: dayId = 1003005; break;
+                case 6: dayId = 1003006; break;
+
+            }
+
+            var schDay =  sch.ScheduleDays.Where(m => m.DayId == dayId).FirstOrDefault();
+            //string dayEvents = string.Empty;
+            foreach(var dayEvent in schDay.ScheduleDayEvents)
+            {
+                dayEvents += dayEvent.StartTime + " - " + dayEvent.EndTime + " ,";
+            }
+
+            return dayEvents;
+        }
     }
 }

@@ -31,6 +31,7 @@ namespace LMS.WebAPI.Controllers
             List<AttendanceVM> values = attSVC.SearchAttendance(Att);
             return Ok(values);
         }
+        
         [HttpGet("{id}")]
         public ActionResult GetAttendanceById(int id)
         {
@@ -39,6 +40,13 @@ namespace LMS.WebAPI.Controllers
             return Ok(values);
         }
 
+        [HttpGet("GetScheduleTime")]
+        public ActionResult GetScheduleTime(string userId, DateTime date)
+        {
+        
+            var values = attSVC.GetScheduleTime(userId, date);
+            return Ok(values);
+        }
 
         [HttpPost("{Search}")]
         public IActionResult SearchAttendance(AttendanceVM Attendance)

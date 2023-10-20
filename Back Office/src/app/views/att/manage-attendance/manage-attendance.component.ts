@@ -10,7 +10,7 @@ import { UserVM } from '../../security/models/user-vm';
 import { SecurityService } from '../../security/security.service';
 import { DateAdapter } from '@angular/material/core';
 import * as moment from 'moment';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import Swal from 'sweetalert2';
 @Component({
@@ -20,6 +20,7 @@ import Swal from 'sweetalert2';
   })
   export class ManageAttendanceComponent implements OnInit{
   displayedColumns: string[] = ['user', 'inTime','outTime', 'workedHours','date'];
+  
   // Attendance:AttendanceVM [] = [];
   AddMode: boolean = true
   proccessing: boolean = false;
@@ -43,6 +44,7 @@ import Swal from 'sweetalert2';
   messages: any;
   timepicker: any;
   // attendance: AttendanceVM[];
+  myForm:FormGroup;
 
   constructor(
     private injector: Injector,
@@ -66,12 +68,17 @@ import Swal from 'sweetalert2';
     to: new Date() // Set initial value to current date
   };
   ngOnInit(): void { 
+    this.myForm = new FormGroup({    
+      'presentDate': new FormControl((new Date()).toISOString().substring(0,10))
+     });
+
     this.SearchbyDate() ;  
     this.Search() ;  
     this.AddMode = true;
-  this.GetUser();
-   this.GetAttendance();    
+    this.GetUser(); 
+    this.GetAttendance();    
     this.selectedAttendance = new AttendanceVM(); 
+    
        }
        
   GetAttendance() {

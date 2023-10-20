@@ -31,7 +31,7 @@
             <mat-datepicker #pickerFrom (closed)="SearchbyDate()" [max]="maxDate"></mat-datepicker>
           </mat-form-field> -->
 
-          <mat-form-field appearance="outline" fxFlex="24%" class="form-group">
+          <mat-form-field appearance="outline" fxFlex="33%" class="form-group">
             <mat-label>--Please Select User--</mat-label>
             <mat-select name="userId" [(ngModel)]="selectedAttendance.userId">
                 <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
@@ -42,7 +42,7 @@
               </mat-select>
           </mat-form-field>
 
-          <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+          <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
             <mat-label>Schedule Time</mat-label>
             <input matInput required #name="ngModel" name="ScheduleTime" [(ngModel)]="selectedAttendance.ScheduleTime"/>
         </mat-form-field>
@@ -63,9 +63,11 @@
         </mat-form-field>
            -->
 
+          </div>
+        </Row>
 
-
-
+<Row>
+  <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
         <!-- In Time -->
 <mat-form-field fxFlex="49%" appearance="outline">
   <mat-label>In Time</mat-label>
@@ -81,7 +83,8 @@
          [(ngModel)]="selectedAttendance.outTime" required readonly [format]="24" />
   <ngx-material-timepicker [timepickerClass]="'custom-class'" #outTimepicker></ngx-material-timepicker>
 </mat-form-field>
-
+</div>
+</Row>
           <!-- <mat-form-field fxFlex="49%" appearance="outline">
             <mat-label>Out Time </mat-label>
             <input matInput [ngxTimepicker]="fullTime" #time="ngModel" name="outTime"
@@ -90,8 +93,7 @@
         </mat-form-field> -->
 
           
-          </div>
-          </Row>
+          
       <div fxLayoutAlign="end end">
         <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveAttendance()">Submit</button>
         <!-- <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateAttendance()">Update</button> -->
