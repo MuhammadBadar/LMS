@@ -9,8 +9,6 @@ namespace LMS.Core.ViewModel
     public class AttendanceVM : BaseViewModel
     {
 
-        //public DateTime? from { get; set; }
-        //public DateTime? to { get; set; }
         public string? UserId { get; set; }
         public string? User { get; set; }
         public string? InTime { get; set; }

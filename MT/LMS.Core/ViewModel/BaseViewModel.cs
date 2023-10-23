@@ -7,8 +7,10 @@ namespace LMS.Core.ViewModel
     {
         public int Id { get; set; }
         public bool IsActive { get; set; }
-        public DateTime DateTo { get; set; }
-        public DateTime DateFrom { get; set; }
+        public DateTime? DateFrom { get; set; }
+
+        public DateTime? DateTo { get; set; }
+        
         public int CreatedById { get; set; }
         public DateTime CreatedOn { get; set; }
         public int ModifiedById { get; set; }

@@ -12,7 +12,7 @@
             <input matInput [matDatepicker]="pickerFrom1" name="date" readonly="true"
                 #date="ngModel" [(ngModel)]="selectedAttendance.date " required=" true" />
             <mat-datepicker-toggle  matSuffix [for]="$any(pickerFrom1)"></mat-datepicker-toggle>
-            <mat-datepicker #pickerFrom1 (closed)="SearchbyDatee()" [max]="maxDate"></mat-datepicker>
+            <mat-datepicker #pickerFrom1 (closed)="Search()" [max]="maxDate"></mat-datepicker>
  
           </mat-form-field>
           <!-- <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
@@ -33,11 +33,11 @@
 
           <mat-form-field appearance="outline" fxFlex="33%" class="form-group">
             <mat-label>--Please Select User--</mat-label>
-            <mat-select name="userId" [(ngModel)]="selectedAttendance.userId" (valueChange)="Search()">
+            <mat-select name="userId" [(ngModel)]="selectedAttendance.userId" (ngModelChange)="Search()" >
                 <mat-option [value]="0">--Please Select--</mat-option>
                 <mat-option *ngFor="let val of users" 
                 [value]="val.id" >
-                  {{val.userName}}
+                  {{val.userName}} 
                 </mat-option>
               </mat-select>
           </mat-form-field>

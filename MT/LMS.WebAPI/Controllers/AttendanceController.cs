@@ -53,7 +53,8 @@ namespace LMS.WebAPI.Controllers
         
         {
             var schTime = attSVC.GetScheduleTime(attendance.UserId, attendance.Date.Value);
-
+            attendance.DateFrom = attendance.Date;
+            attendance.DateTo = attendance.Date;
             List<AttendanceVM> list = attSVC.SearchAttendance(attendance);
             foreach (var item in list) { item.ScheduleTime = schTime; }
             return Ok(list);

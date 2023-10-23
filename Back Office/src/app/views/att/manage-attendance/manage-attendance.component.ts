@@ -211,7 +211,8 @@ if (this.selectedAttendance.userId == undefined || this.selectedAttendance.userI
     })
   }
   Refresh() {
-    this.GetAttendance();
+    // this.GetAttendance();
+    this.Search();
     this.selectedAttendance = new AttendanceVM
     this.EditMode = false
     this.AddMode = true
@@ -220,8 +221,17 @@ if (this.selectedAttendance.userId == undefined || this.selectedAttendance.userI
  
 
   Search() {
+     //alert('Hi')
+    debugger;
     var usr = new AttendanceVM();
     usr.userId = this.selectedAttendance.userId;
+    usr.date = this.selectedAttendance.date;
+    // alert(usr.date);
+    // usr.to = this.selectedAtt.to;
+      usr.date = moment(usr.date).toDate()
+      usr.date = new Date(Date.UTC(usr.date.getFullYear(), 
+      usr.date.getMonth(), usr.date.getDate()))
+
     console.warn(usr);
     this.attSvc.SearchAttendance(usr).subscribe({
       next: (value: AttendanceVM[]) => {
@@ -263,31 +273,31 @@ if (this.selectedAttendance.userId == undefined || this.selectedAttendance.userI
     //    console.warn(err) ;
     //   },
     //   })}
-  SearchbyDatee( ){
-    debugger
+  // SearchbyDatee( ){
+  //   debugger
    
-    var usr = new AttendanceVM();
-     usr.date = this.selectedAtt.date;
-    // usr.to = this.selectedAtt.to;
-    usr.date = moment(usr.date).toDate()
-      usr.from = new Date(Date.UTC(usr.date.getFullYear(), 
-      usr.from.getMonth(), usr.date.getDate()))
+  //   var usr = new AttendanceVM();
+  //    usr.date = this.selectedAtt.date;
+  //   // usr.to = this.selectedAtt.to;
+  //   usr.date = moment(usr.date).toDate()
+  //     usr.date = new Date(Date.UTC(usr.date.getFullYear(), 
+  //     usr.date.getMonth(), usr.date.getDate()))
 
-    //   usr.to = moment(usr.to).toDate()
-    //   usr.to = new Date(Date.UTC(usr.to.getFullYear(), 
-    //   usr.to.getMonth(), usr.to.getDate()))
-    // console.warn(usr);
-    this.attSvc.SearchAttendance(usr).subscribe({
-      next: (value: AttendanceVM[]) => {
-        this.attendance= value
-        this.dataSource = new MatTableDataSource(value)
-              console.warn(this.selectedAtt.date)
-            //  console.warn(this.selectedAtt.to)
-           }, error: (err) => {
-        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-     console.warn(err) ;
-    },
-    })}
+  //   //   usr.to = moment(usr.to).toDate()
+  //   //   usr.to = new Date(Date.UTC(usr.to.getFullYear(), 
+  //   //   usr.to.getMonth(), usr.to.getDate()))
+  //   // console.warn(usr);
+  //   this.attSvc.SearchAttendance(usr).subscribe({
+  //     next: (value: AttendanceVM[]) => {
+  //       this.attendance= value
+  //       this.dataSource = new MatTableDataSource(value)
+  //             console.warn(this.selectedAtt.date)
+  //           //  console.warn(this.selectedAtt.to)
+  //          }, error: (err) => {
+  //       this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+  //    console.warn(err) ;
+  //   },
+  //   })}
 
   // Search(){
   //   var  att = new AttendanceVM();
