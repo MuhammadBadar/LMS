@@ -25,8 +25,8 @@ export class CreateNotificationTemplateComponent implements OnInit {
   }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      // this.temId = params.id;
-      
+       //this.temId = params.id;
+       this.temId = params['id'];
     });
     if (this.temId > 0) {
       this.Edit = true;

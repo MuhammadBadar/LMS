@@ -5,7 +5,7 @@ import { AddCommentComponent } from './add-comment/add-comment.component';
 @Component({
   selector: 'app-comments-list',
   templateUrl: './comments-list.component.html',
-  styleUrls: ['./comments-list.component.scss']
+  styleUrls: ['./comments-list.component.css']
 })
 export class CommentsListComponent  implements OnInit {
   

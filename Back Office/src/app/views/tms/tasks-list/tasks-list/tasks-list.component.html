@@ -50,12 +50,12 @@
       <ng-container matColumnDef="status" id="status">
         <th mat-header-cell *matHeaderCellDef> Status </th>
         <td mat-cell *matCellDef="let tsk">
-          <div style="min-width:110px"> {{tsk.taskStatus}}</div>
+          <div style="min-width:110px"> {{tsk.status}}</div>
         </td>
       </ng-container>
       <ng-container matColumnDef="priority" id="priority">
         <th mat-header-cell *matHeaderCellDef> Priority </th>
-        <td mat-cell *matCellDef="let tsk"> {{tsk.taskPriority}} </td>
+        <td mat-cell *matCellDef="let tsk"> {{tsk.priority}} </td>
       </ng-container>
       <ng-container matColumnDef="sp" id="sp">
         <th mat-header-cell *matHeaderCellDef> Story Points </th>

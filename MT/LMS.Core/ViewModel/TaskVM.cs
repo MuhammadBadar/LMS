@@ -12,9 +12,9 @@ namespace LMS.Core.ViewModel
     {
         public string? User { get; set; }
         public string? Module { get; set; }
-        public string? TaskStatus { get; set; }
+        public string? Status { get; set; }
         public int StatusId { get; set; }
-        public string? TaskPriority { get; set; }
+        public string? Priority { get; set; }
         public int PriorityId { get; set; }
         public string? UserId { get; set; }
         public int ModuleId { get; set; }

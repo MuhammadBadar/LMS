@@ -8,9 +8,9 @@ export class TaskVM {
     id: number;
     user:string;
     module:string;
-    taskStatus:string;
-    taskPriority:string;
-    priorityId:number;
+    status:string;
+    priority:string;
+    priorityId:number= 1011001;
     title: string;
     sp: number;
     description: string;
@@ -21,7 +21,7 @@ export class TaskVM {
     modifiedOn: Date=new Date()
     userId: string; 
     moduleId: number= 0
-    statusId: number= 1004001
+    statusId: number= 1010001
     freeSearch: string
     attachments?:AttachmentsVM[]= new Array()
     hasErrors: boolean

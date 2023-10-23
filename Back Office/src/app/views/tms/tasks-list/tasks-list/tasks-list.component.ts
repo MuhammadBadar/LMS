@@ -13,7 +13,7 @@ import { TMSService } from '../../tms.service';
 @Component({
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
-  styleUrls: ['./tasks-list.component.scss']
+  styleUrls: ['./tasks-list.component.css']
 })
 export class TasksListComponent  implements OnInit {
   length: number;
@@ -119,6 +119,7 @@ export class TasksListComponent  implements OnInit {
       });
   }
   GetTask() {
+    debugger;
     this.taskSvc.getTasksList().subscribe((res: TaskVM[]) => {
       this.tasks = res;
       this.dataSource = new MatTableDataSource(this.tasks);

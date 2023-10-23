@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import {  Input, OnInit, } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { EnumType } from '../models/EnumType';
-import { EnumValueVM } from '../models/EnumValueVM';
 import { AttachmentsVM, TaskVM } from '../models/task-vm';
 import { TaskCommentVM } from '../models/taskcomment-vm';
 import Swal from 'sweetalert2'
@@ -14,6 +12,9 @@ import { UserVM } from '../../security/models/user-vm';
 import { TMSService } from '../tms.service';
 import { NotificationLogService } from '../../notifications/NotificationLogService';
 import { SecurityService } from '../../security/security.service';
+import { CatalogService } from '../../catalog/catalog.service';
+import { SettingsVM } from '../../catalog/Models/SettingsVM';
+import { EnumType } from '../models/EnumType';
 //import { QuillModule } from 'ngx-quill'
 
 @Component({
@@ -24,7 +25,7 @@ import { SecurityService } from '../../security/security.service';
 export class ManageTaskComponent {
   imageId;
   statusId:number;
-  TaskStatus: string;
+  status: string;
   showCount = false;
   previewImage = false;
   showMask = false;
@@ -33,12 +34,12 @@ export class ManageTaskComponent {
   controls = true;
   totalImageCount = 0
   Data;
-  modules: EnumValueVM[];
+  modules: SettingsVM[];
   User: UserVM[]
   commentedUser:UserVM[];
   commentedUserName:string;
-  Status: EnumValueVM[];
-  Priority: EnumValueVM[];
+  Status: SettingsVM[];
+  Priority: SettingsVM[];
   TaskId: number;
   Time;
   CreatedOn = new Date;;
@@ -56,11 +57,12 @@ export class ManageTaskComponent {
   constructor(
     public nLogSVC:NotificationLogService,
     private secSrvc: SecurityService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute, private catSVC: CatalogService,
     public taskService: TMSService,
     private snack: MatSnackBar,
   ) {
-    this.nLogSVC.notification= new NotificationLogVM;
+    this.nLogSVC.notification= new NotificationLogVM; 
+   
     this.taskService.selectedTask = new TaskVM;
     this.taskService.selectedTaskComment = new TaskCommentVM
     this.taskService.file = new AttachmentsVM;
@@ -168,9 +170,12 @@ export class ManageTaskComponent {
 
   }
   GetEnumValues(etype: EnumType) {
-    this.taskService.getEnumValues(etype).subscribe((res: EnumValueVM[]) => {
+    var Settings = new SettingsVM;
+    Settings.enumTypeId = etype;
+    this.catSVC.SearchSettings(Settings).subscribe((res: SettingsVM[]) => {
       if (etype == EnumType.Status)
         this.Status = res;
+         // console.warn(this.Priority);
       else if (etype == EnumType.Priority)
         this.Priority = res;
         console.warn(this.Priority);
@@ -229,7 +234,7 @@ export class ManageTaskComponent {
               data[0].subject = data[0].subject.replace('#TaskId', this.gettaskById[0].id)
               data[0].body = data[0].body.replace('#User', this.gettaskById[0].user)
               data[0].body = data[0].body.replace('#TaskId', this.gettaskById[0].id)
-              data[0].body = data[0].body.replace('#TaskPriority', this.gettaskById[0].taskPriority)
+              data[0].body = data[0].body.replace('#priority', this.gettaskById[0].priority)
               data[0].body = data[0].body.replace('#ContactNumber', this.gettaskById[0].directSupervisorPhoneNumber)
 
                //log sms notification
@@ -292,21 +297,22 @@ export class ManageTaskComponent {
       this.taskService.UpdateTask(this.taskService.selectedTask).subscribe((data) => {
         this.snack.open('Task Updated Successfully!', 'OK', { duration: 4000 })
         console.warn(this.taskService.selectedTask.statusId)
-          if (this.taskService.selectedTask.statusId == 104001) {
-            this.TaskStatus = "Open"
-          } else if (this.taskService.selectedTask.statusId == 104002) {
-            this.TaskStatus = "InProgress"
-          } else if (this.taskService.selectedTask.statusId == 1004003) {
-            this.TaskStatus = "InTesting"
-          } else if (this.taskService.selectedTask.statusId == 1004004) {
-            this.TaskStatus = "Closed"
-          } else if (this.taskService.selectedTask.statusId == 1004005) {
-            this.TaskStatus = "ReOpened"
-          } else if (this.taskService.selectedTask.statusId == 1004006) {
-            this.TaskStatus = "Dependent"
-          } else if (this.taskService.selectedTask.statusId == 1004007) {
-            this.TaskStatus = "RnD"
-          }
+          if (this.taskService.selectedTask.statusId == 1010001) {
+            this.status = "Open"
+          } else if (this.taskService.selectedTask.statusId == 1010002) {
+            this.status = "InProgress"
+          } else if (this.taskService.selectedTask.statusId == 1010003) {
+            this.status = "InTesting"
+          } else if (this.taskService.selectedTask.statusId == 1010004) {
+            this.status = "ReOpen"
+          } else if (this.taskService.selectedTask.statusId == 1010005) {
+            this.status = "Resolve"
+          } else if (this.taskService.selectedTask.statusId == 1010006) {
+            this.status = "Closed"
+          } 
+          // else if (this.taskService.selectedTask.statusId == 1010007) {
+          //   this.status = "RnD"
+          // }
 
           if (loginUser == this.gettaskById[0].user) {
             var data1 = this.templates.filter(e => e.keyCode == 'NotificationToDirectSupervisor_OnStatusChange')
@@ -314,8 +320,8 @@ export class ManageTaskComponent {
             data1[0].subject = data1[0].subject.replace('#TaskId', this.gettaskById[0].id)
             data1[0].body = data1[0].body.replace('#Supervisor', this.gettaskById[0].directSupervisorName)
             data1[0].body = data1[0].body.replace('#TaskId', this.gettaskById[0].id)
-            data1[0].body = data1[0].body.replace('#OldStatus', this.gettaskById[0].taskStatus)
-            data1[0].body = data1[0].body.replace('#NewStatus', this.TaskStatus)
+            data1[0].body = data1[0].body.replace('#OldStatus', this.gettaskById[0].status)
+            data1[0].body = data1[0].body.replace('#NewStatus', this.status)
 
               //log sms notification
               this.nLogSVC.notification.userId=this.taskService.selectedTask.userId
@@ -334,8 +340,8 @@ export class ManageTaskComponent {
             data1[0].subject = data1[0].subject.replace('#TaskId', this.gettaskById[0].id)
             data1[0].body = data1[0].body.replace('#User', this.gettaskById[0].user)
             data1[0].body = data1[0].body.replace('#TaskId', this.gettaskById[0].id)
-            data1[0].body = data1[0].body.replace('#OldStatus', this.gettaskById[0].taskStatus)
-            data1[0].body = data1[0].body.replace('#NewStatus', this.TaskStatus)
+            data1[0].body = data1[0].body.replace('#OldStatus', this.gettaskById[0].Status)
+            data1[0].body = data1[0].body.replace('#NewStatus', this.status)
 
              //log sms notification
              this.nLogSVC.notification.userId=this.taskService.selectedTask.userId

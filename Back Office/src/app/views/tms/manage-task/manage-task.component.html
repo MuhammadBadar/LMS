@@ -17,7 +17,7 @@
                 <mat-label>Status</mat-label>
                 <mat-select [(ngModel)]="taskService.selectedTask.statusId" name="statusId" >
                     <mat-option *ngFor="let st of Status" [value]="st.id" (click)="PutTask()">
-                        {{st.value}}
+                        {{st.name}}
                     </mat-option>
                 </mat-select>
               
@@ -58,7 +58,7 @@
                 <mat-label>Priority</mat-label>
                 <mat-select [(ngModel)]="taskService.selectedTask.priorityId" required name="priorityId">
                     <mat-option *ngFor="let st of Priority" [value]="st.id">
-                        {{st.value}}
+                        {{st.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>

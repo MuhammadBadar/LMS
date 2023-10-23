@@ -3,7 +3,7 @@
     public enum EnumType
     {
         Permissions = 1000,
-        Statuses,
+       // Statuse,
         Shift,
         Sources,
         OrderTypes,
