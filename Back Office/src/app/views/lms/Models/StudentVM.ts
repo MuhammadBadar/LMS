@@ -1,5 +1,5 @@
 export class StudentVM {
-    id!: number
+     id?: number
     cityId: number= 0
     city?: string
     cellNo?: string

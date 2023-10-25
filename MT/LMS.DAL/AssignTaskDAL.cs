@@ -25,8 +25,6 @@ namespace LMS.DAL
                 cmd.Parameters.AddWithValue("id", _assignTask.Id);
                 cmd.Parameters.AddWithValue("lectureId", _assignTask.LectureId);
                 cmd.Parameters.AddWithValue("studentId", _assignTask.StudentId);
-                cmd.Parameters.AddWithValue("topicId", _assignTask.TopicId);
-                cmd.Parameters.AddWithValue("courseId", _assignTask.CourseId);
                 cmd.Parameters.AddWithValue("createdOn", _assignTask.CreatedOn);
                 cmd.Parameters.AddWithValue("createdById", _assignTask.CreatedById);
                 cmd.Parameters.AddWithValue("modifiedOn", _assignTask.ModifiedOn);

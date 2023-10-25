@@ -67,8 +67,6 @@ namespace LMS.Service
                 string WhereClause = "Where 1=1";
                 if (_assignTask.LectureId != default)
                     WhereClause += $" AND LectureId={_assignTask.LectureId}";
-                if (_assignTask.CourseId != default)
-                    WhereClause += $" AND CourseId={_assignTask.CourseId}";
                 if (_assignTask.StudentId != default)
                     WhereClause += $" AND StudentId={_assignTask.StudentId}";
                 if (_assignTask.Id != default)
