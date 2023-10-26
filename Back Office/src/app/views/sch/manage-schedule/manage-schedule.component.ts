@@ -106,7 +106,7 @@ export class ManageScheduleComponent {
 
   
   ngOnInit(): void {
-    this.GetSchedule();
+    this.getScheduleByUserId;
     // this.GetScheduleDayEvents();
     this.GetUser();
     this.GetRole();
@@ -427,7 +427,7 @@ export class ManageScheduleComponent {
   }
   Refresh() {
     this.ngOnInit();
-    this.GetSchedule();
+    this.getScheduleByUserId;
     this.selectedSchedule = new ScheduleVM
     this.EditMode = false
     this.AddMode = true
@@ -472,11 +472,12 @@ DeleteScheduleWithEvents(id: number) {
     confirmButtonText: 'Yes, delete it!'
   }).then((result) => {
     if (result.value) {
+      debugger;
       // First, delete the associated events
       this.schSvc.DeleteScheduleDayEvent(id).subscribe({
         next: (data) => {
           // Events deleted, now delete the schedule day
-          this.schSvc.DeleteSchedule(id).subscribe({
+          this.schSvc.DeleteScheduleDay(id).subscribe({
             next: (data) => {
               Swal.fire(
                 'Deleted!',

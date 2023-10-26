@@ -57,6 +57,9 @@ export class SCHService {
   DeleteSchedule(id: number) {
     return this.http.delete(Globals.BASE_API_URL + 'Schedule/' + id)
   }
+  DeleteScheduleDay(id: number) {
+    return this.http.delete(Globals.BASE_API_URL + 'Schedule/dayid?' + id)
+  }
   
   SearchSchedule(value: ScheduleVM): Observable<ScheduleVM[]> {
     return this.http.post<ScheduleVM[]>(Globals.BASE_API_URL + 'Schedule/Search', value).pipe();
