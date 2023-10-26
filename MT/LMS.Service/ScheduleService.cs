@@ -249,7 +249,8 @@ namespace LMS.Service
                 if(schDay.DBoperation == DBoperations.Delete)
                 {
                     // Write logic to delete schedule day event(s)
-                    var schDayEvents = _schDayEvntSvc.GetScheduleDayEvents(schDay.DayId.Value);
+                    
+                    var schDayEvents = _schDayEvntSvc.GetScheduleDayEvents(schDay.Id);
                     foreach(var schDayEvent in schDayEvents)
                     {
                         schDayEvent.DBoperation = DBoperations.Delete;
@@ -311,9 +312,9 @@ namespace LMS.Service
                     {
                         foreach (var schDay in sch.ScheduleDays)
                         {
-                            if (schDay.DayId.HasValue)
+                            if (schDay.DayId>0)
                             {
-                                sch.DayIds.Add(schDay.DayId.Value);
+                                sch.DayIds.Add(schDay.DayId);
 
                             whereClause = "where 1=1";
                             schDay.ScheduleDayEvents = _schDAL.SearchScheduleDayEvent(whereClause += $" AND ScheduleDayId={schDay.Id} AND IsActive ={true}");

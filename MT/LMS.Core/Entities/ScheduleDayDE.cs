@@ -15,7 +15,7 @@ namespace LMS.Core.Entities
         }
 
         #region Class Properties        
-        public int? DayId { get; set; }
+        public int DayId { get; set; }
         public int SchId { get; set; }
 
         public string Location { get; set; }

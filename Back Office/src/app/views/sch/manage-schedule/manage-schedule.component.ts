@@ -474,8 +474,8 @@ DeleteScheduleWithEvents(id: number) {
     if (result.value) {
       debugger;
       // First, delete the associated events
-      this.schSvc.DeleteScheduleDayEvent(id).subscribe({
-        next: (data) => {
+      // this.schSvc.DeleteScheduleDayEvent(id).subscribe({
+        // next: (data) => {
           // Events deleted, now delete the schedule day
           this.schSvc.DeleteScheduleDay(id).subscribe({
             next: (data) => {
@@ -491,12 +491,12 @@ DeleteScheduleWithEvents(id: number) {
               this.catSvc.ErrorMsgBar("Error Occurred while deleting the Schedule", 5000);
             }
           });
-        },
+        // },
         error: (e) => {
           console.error(e);
           this.catSvc.ErrorMsgBar("Error Occurred while deleting Schedule Day Events", 5000);
         }
-      });
+      // });
     }
   });
 }
