@@ -1,5 +1,6 @@
 ﻿using LMS.Core.Entities;
 using LMS.Core.Enums;
+using LMS.Core.Models;
 using LMS.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -104,9 +105,8 @@ namespace LMS.WebAPI.Controllers
         #endregion
 
         #region Http Verbs
-
         [HttpPost("{Search}")]
-        public IActionResult SearchScheduleDayEvent(ScheduleDayEventDE schedule)
+        public IActionResult SearchScheduleDayEvent(ScheduleDayEventSearchCriteria schedule)
         {
             List<ScheduleDayEventDE> list = _schSVC.SearchScheduleDayEvent(schedule);
             return Ok(list);
@@ -114,7 +114,7 @@ namespace LMS.WebAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult GetScheduleDaysEventById(int id)
         {
-            ScheduleDayEventDE Schedule = new ScheduleDayEventDE { Id = id };
+            ScheduleDayEventSearchCriteria Schedule = new ScheduleDayEventSearchCriteria { Id = id };
             var values = _schSVC.SearchScheduleDayEvent(Schedule);
             return Ok(values);
         }
@@ -124,9 +124,9 @@ namespace LMS.WebAPI.Controllers
 
         public IActionResult GetScheduleDayEvents(int id)
         {
-            ScheduleDayEventDE schSC = new ScheduleDayEventDE();
+            ScheduleDayEventSearchCriteria schSC = new ScheduleDayEventSearchCriteria();
             //schSC.SchId = schId;
-            schSC.ScheduleDayId = id;
+            schSC.SchDayId = id;
             List<ScheduleDayEventDE> schDayEvents = _schSVC.SearchScheduleDayEvent(schSC);
             return Ok(schDayEvents);
         }
