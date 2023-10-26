@@ -8,6 +8,7 @@ using LMS.Core.Enums;
 using LMS.DAL;
 using MySql.Data.MySqlClient;
 using NLog;
+using LMS.Core.Models;
 
 namespace LMS.Service
 {
@@ -53,7 +54,17 @@ namespace LMS.Service
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
         }
-        public List<ScheduleDayEventDE> SearchScheduleDayEvent(ScheduleDayEventDE _pat)
+        public List<ScheduleDayEventDE> GetScheduleDayEvents(int schDayId)
+        {
+            List<ScheduleDayEventDE> mod = null;
+            ScheduleDayEventSearchCriteria sc = new ScheduleDayEventSearchCriteria();
+            sc.SchDayId = schDayId;
+            //sc.IsActive = true;
+            mod = SearchScheduleDayEvent(sc);
+
+            return mod;
+        }
+        public List<ScheduleDayEventDE> SearchScheduleDayEvent(ScheduleDayEventSearchCriteria _pat)
         {
             List<ScheduleDayEventDE> retVal = new List<ScheduleDayEventDE>();
             bool closeConnectionFlag = false;
@@ -67,16 +78,16 @@ namespace LMS.Service
                     WhereClause += $" AND Id={_pat.Id}";
                 if (_pat.SchId != default)
                     WhereClause += $" AND SchId={_pat.SchId}";
-                if (_pat.ScheduleDayId != default)
-                    WhereClause += $" AND ScheduleDayId={_pat.ScheduleDayId}";
+                if (_pat.SchDayId != default)
+                    WhereClause += $" AND ScheduleDayId={_pat.SchDayId}";
                 if (_pat.StartTime != default)
                     WhereClause += $" and StartTime like ''" + _pat.StartTime + "''";
                 if (_pat.EndTime != default)
                     WhereClause += $" and EndTime like ''" + _pat.EndTime + "''";
                 if (_pat.LocationId != default)
                     WhereClause += $" AND LocationId={_pat.LocationId}";
-                if (_pat.EventTypeId != default)
-                    WhereClause += $" AND EventTypeId={_pat.EventTypeId}";                                
+                //if (_pat.EventTypeId != default)
+                //    WhereClause += $" AND EventTypeId={_pat.EventTypeId}";                                
                 if (_pat.IsActive != default && _pat.IsActive == true)
                     WhereClause += $" AND IsActive=1";
 
