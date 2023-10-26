@@ -109,8 +109,8 @@ namespace LMS.WebAPI.Controllers
         //    ScheduleDayDE sch = _schSVC.ManageScheduleDay(Schedule);
         //    return Ok(sch);
         //}
-        [HttpDelete("dayid")]
-        public IActionResult DeleteScheduleByDayId(int id)
+        [HttpDelete("DeleteScheduleDay")]
+        public IActionResult DeleteScheduleDay(int id)
          {
             ScheduleDayDE schDay = new ScheduleDayDE();
             schDay.DBoperation = DBoperations.Delete;
