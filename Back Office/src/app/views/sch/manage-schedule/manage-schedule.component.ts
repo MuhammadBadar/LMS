@@ -106,10 +106,10 @@ export class ManageScheduleComponent {
 
   
   ngOnInit(): void {
-    this.GetSchedule();
+    //this.getScheduleByUserId;
     // this.GetScheduleDayEvents();
-    this.GetUser();
-    this.GetRole();
+    this.GetUsers();
+    this.GetRoles();
       //  this.GetSettings(EnumTypeVM.Entities)
       //  this.GetSettings(EnumTypeVM.WeekDays)
       //  this.GetSettings(EnumTypeVM.ScheduleType)
@@ -124,7 +124,7 @@ export class ManageScheduleComponent {
        if (this.ScheduleId > 0) {
         this.Edit = true;
         this.Add = false;
-        this.GetScheduleById();
+        //this.GetScheduleById();
         
       }
       else {
@@ -201,7 +201,7 @@ export class ManageScheduleComponent {
       }
     })
   }
-  GetRole() {
+  GetRoles() {
     var role = new RoleVM
     role.isActive = true;
     this.securitySvc.getRolesList().subscribe({
@@ -221,10 +221,10 @@ export class ManageScheduleComponent {
        });
    
      this.dialogRef.afterClosed().subscribe((res: any) => {
-      this.GetRole();
+      this.GetRoles();
         });
    }
-  GetUser() {
+  GetUsers() {
     var user = new UserVM
     user.isActive = true;
     // if(this.Entities.length>0)
@@ -245,7 +245,7 @@ export class ManageScheduleComponent {
      });
   
     this.dialogRef.afterClosed().subscribe((res: any) => {
-     this.GetUser();
+     this.GetUsers();
      });
   }
   OpenScheduleDialog() {
@@ -427,7 +427,7 @@ export class ManageScheduleComponent {
   }
   Refresh() {
     this.ngOnInit();
-    this.GetSchedule();
+    this.getScheduleByUserId;
     this.selectedSchedule = new ScheduleVM
     this.EditMode = false
     this.AddMode = true
@@ -472,30 +472,34 @@ DeleteScheduleWithEvents(id: number) {
     confirmButtonText: 'Yes, delete it!'
   }).then((result) => {
     if (result.value) {
+      debugger;
       // First, delete the associated events
-      this.schSvc.DeleteScheduleDayEvent(id).subscribe({
-        next: (data) => {
+      // this.schSvc.DeleteScheduleDayEvent(id).subscribe({
+        // next: (data) => {
           // Events deleted, now delete the schedule day
-          this.schSvc.DeleteSchedule(id).subscribe({
+          // alert(id);
+          this.schSvc.DeleteScheduleDay(id).subscribe({
             next: (data) => {
               Swal.fire(
                 'Deleted!',
                 'Schedule Day and Events have been deleted.',
                 'success'
               );
-              this.Refresh();
+              this.getScheduleByUserId(this.UserId);
+              // this.Refresh();                          
+              //this.ngOnInit();
             },
             error: (e) => {
               console.error(e);
               this.catSvc.ErrorMsgBar("Error Occurred while deleting the Schedule", 5000);
             }
           });
-        },
+        // },
         error: (e) => {
           console.error(e);
           this.catSvc.ErrorMsgBar("Error Occurred while deleting Schedule Day Events", 5000);
         }
-      });
+      // });
     }
   });
 }
@@ -581,6 +585,7 @@ Search(){ debugger;
       this.ScheduleDay = this.selectedSchedule.scheduleDays;
       debugger;
       this.dataSource = new MatTableDataSource(this.ScheduleDay);
+      
     }, error: (e) => {
       this.catSvc.ErrorMsgBar("Error Occurred !", 6000)
       console.warn(e);

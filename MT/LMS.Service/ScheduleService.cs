@@ -16,15 +16,19 @@ namespace LMS.Service
     {
 
         private ScheduleDAL _schDAL;
+        private ScheduleDayEventDAL _schDayEventDAL;
         private CoreDAL _corDAL;
         private Logger _logger;
+        private ScheduleDayEventService _schDayEvntSvc;
 
 
         public ScheduleService()
         {
             _schDAL = new ScheduleDAL();
+            _schDayEventDAL = new ScheduleDayEventDAL();
             _corDAL = new CoreDAL();
             _logger = LogManager.GetLogger("fileLogger");
+            _schDayEvntSvc = new ScheduleDayEventService();
         }
 
         public ScheduleDE ManageSchedule(ScheduleDE mod)
@@ -230,7 +234,45 @@ namespace LMS.Service
             }
             return list;
         }
+         public bool ManageScheduleDay(ScheduleDayDE schDay)
+        {
+            bool retVal = false;
+            bool closeConnectionFlag = false;
+            MySqlCommand? cmd = null;
+            try
+            {
+                cmd = LMSDataContext.OpenMySqlConnection();
+                closeConnectionFlag = true;
 
+                if (schDay.DBoperation == DBoperations.Insert)
+                    schDay.Id = _corDAL.GetnextId(TableNames.scheduleday.ToString());
+                if(schDay.DBoperation == DBoperations.Delete)
+                {
+                    // Write logic to delete schedule day event(s)
+                    
+                    var schDayEvents = _schDayEvntSvc.GetScheduleDayEvents(schDay.Id);
+                    foreach(var schDayEvent in schDayEvents)
+                    {
+                        schDayEvent.DBoperation = DBoperations.Delete;
+                        _schDayEventDAL.ManageScheduleDayEvent(schDayEvent);
+                    }
+
+                }
+                retVal = _schDAL.ManageScheduleDay(schDay, cmd);
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                throw;
+            }
+            finally
+            {
+                if (closeConnectionFlag)
+                    LMSDataContext.CloseMySqlConnection(cmd);
+            }
+        }
+       
         #region GetScheduleByUserId
 
         public ScheduleDE GetScheduleByUserId(string userId)
@@ -270,9 +312,9 @@ namespace LMS.Service
                     {
                         foreach (var schDay in sch.ScheduleDays)
                         {
-                            if (schDay.DayId.HasValue)
+                            if (schDay.DayId>0)
                             {
-                                sch.DayIds.Add(schDay.DayId.Value);
+                                sch.DayIds.Add(schDay.DayId);
 
                             whereClause = "where 1=1";
                             schDay.ScheduleDayEvents = _schDAL.SearchScheduleDayEvent(whereClause += $" AND ScheduleDayId={schDay.Id} AND IsActive ={true}");
