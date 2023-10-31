@@ -14,7 +14,7 @@
               <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
                   <mat-form-field appearance="outline" fxFlex="49%">
                       <mat-label>--Please Select Student--</mat-label>
-                      <mat-select name="studentId" [(ngModel)]="selectedTask.studentId">
+                      <mat-select name="Name" [(ngModel)]="selectedTask.studentId">
                         <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
                         <mat-option *ngFor="let val of stds" [value]="val.id" (click)="Search()">
                           {{val.name}}
@@ -32,7 +32,7 @@
                       <mat-label>--Please Select Lecture--</mat-label>
                       <mat-select name="lectureId" [(ngModel)]="selectedTask.lectureId">
                         <mat-option [value]="0" (click)="Refresh();">--Please Select--</mat-option>
-                        <mat-option *ngFor="let val of lecs" [value]="val.id" (click)="Search();search(val)">
+                        <mat-option *ngFor="let val of lecs" [value]="val.id" (click)="Search()">
                           {{val.title}}
                         </mat-option>
                       </mat-select>

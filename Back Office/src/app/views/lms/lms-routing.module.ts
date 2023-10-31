@@ -21,7 +21,7 @@ import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { ManageUserreportComponent } from './manage-userreport/manage-userreport.component';
 import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-usertaskbydate.component';
 
-
+import { ManageUsertaskComponent } from './manage-usertask/manage-usertask.component';
 import { ManageClientComponent } from './manage-client/manage-client.component';
 
 const routes: Routes = [{
@@ -43,6 +43,12 @@ const routes: Routes = [{
     {
       path: "course",
       component: ManageCourseComponent,
+      pathMatch: "full"
+    },
+
+    {
+      path: "usertask",
+      component: ManageUsertaskComponent,
       pathMatch: "full"
     },
     

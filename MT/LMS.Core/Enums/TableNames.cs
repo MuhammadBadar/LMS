@@ -15,7 +15,7 @@
         notification_log, notificationtemplate,
         schLine,
         attendance, scheduleday,
-        CityStudent,
+        CityStudent,usertask,
         vocabulary,
         patient,
         Student,

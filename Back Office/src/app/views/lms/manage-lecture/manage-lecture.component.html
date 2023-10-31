@@ -62,10 +62,10 @@
                   <mat-label>URL</mat-label>
                   <input matInput class="form-control" placeholder="URL" [type]="hide ? 'url' : 'text'"
                          name="URL" [ngClass]="{ 'is-invalid': lectureForm.submitted && url.invalid }"
-                         #url="ngModel" [(ngModel)]="selectedlec.url" required maxlength="2048" minlength="75" >
+                         #url="ngModel" [(ngModel)]="selectedlec.url" required maxlength="2048" minlength="15" >
                          <mat-error class="form-text text-danger"
                          *ngIf="lectureForm.controls['URL']?.hasError || lectureForm.controls['URL']?.errors?.['minlength']">
-                         URL is required to be at least 75 characters.
+                         URL is required to be at least 15 characters.
                        </mat-error> 
                 </mat-form-field>
               </div>
@@ -144,10 +144,10 @@
                                 <mat-icon>edit</mat-icon>
                             </button>
   
-                         <!-- <button mat-icon-button mat-sm-button color="warn" (click)="DeleteLecture(row.id)"
+                         <button mat-icon-button mat-sm-button color="warn" (click)="DeleteLecture(row.id)"
                                 cTooltip="Delete Course">
                                 <mat-icon>delete</mat-icon>
-                            </button>  -->
+                            </button> 
                         </div>
                     </td>
                 </ng-container>

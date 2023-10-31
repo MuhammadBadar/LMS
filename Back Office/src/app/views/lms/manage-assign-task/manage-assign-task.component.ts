@@ -29,15 +29,14 @@ export class ManageAssignTaskComponent implements OnInit {
   dataSource: any
   selectedTask: AssignTaskVM
   assigntask?:AssignTaskVM[] | undefined;
-  courses?: CourseVM[]
-  topics?: TopicVM[]
   lecs?:LectureVM[]
   stds?:StudentVM[]
   dialogRef?: any;
   tasks?: AssignTaskVM[]
   dialogref: any
   dialogData: any;
-  isDialog: boolean = false;
+  selectedLectures: { [studentId: number]: number[] } = {};
+   isDialog: boolean = false;
   constructor(
     public accSvc: LMSService,
     private lmsSvc: LMSService, 
@@ -59,41 +58,27 @@ export class ManageAssignTaskComponent implements OnInit {
     this.AddMode = false
     this.selectedTask = tsk
   }
-  GetCourseForEdit(id: number) {
-    this.selectedTask = new AssignTaskVM;
-    this.selectedTask.id = id
-    console.warn(this.selectedTask);
-    this.accSvc.SearchCourse(this.selectedTask).subscribe({
-      next: (res: AssignTaskVM[]) => {
-        this.assigntask = res;
-        this.selectedTask = this.assigntask[0]
-        this.EditMode = true;
-        this.AddMode = false;
-      }, error: (e) => {
-        this.catSVC.ErrorMsgBar("Error Occurred", 5000)
-        console.warn(e);
-      }
-    })
-  }
+  // GetCourseForEdit(id: number) {
+  //   this.selectedTask = new AssignTaskVM;
+  //   this.selectedTask.id = id
+  //   console.warn(this.selectedTask);
+  //   this.accSvc.SearchCourse(this.selectedTask).subscribe({
+  //     next: (res: AssignTaskVM[]) => {
+  //       this.assigntask = res;
+  //       this.selectedTask = this.assigntask[0]
+  //       this.EditMode = true;
+  //       this.AddMode = false;
+  //     }, error: (e) => {
+  //       this.catSVC.ErrorMsgBar("Error Occurred", 5000)
+  //       console.warn(e);
+  //     }
+  //   })
+  // }
 
   EditTopic(student: AssignTaskVM) {
     this.EditMode = true
     this.AddMode = false
     this.selectedTask = student
-  }
-
-  GetCourses() {
-
-    var course = new CourseVM
-    course.isActive = true;
-
-    this.lmsSvc.SearchCourse(course).subscribe({
-      next: (res: CourseVM[]) => {
-        this.courses = res
-      }, error: (err) => {
-        this.catSVC.ErrorMsgBar("Error Occurred", 5000)
-      },
-    })
   }
   
 
@@ -104,7 +89,17 @@ export class ManageAssignTaskComponent implements OnInit {
   //     }, error: (err) = res
   //   })
   // }
-
+  Search(){ 
+    var  std = new AssignTaskVM;
+    std.studentId = this.selectedTask.studentId;
+    this.lmsSvc.SearchAssignTask(std).subscribe({
+     next: (value: AssignTaskVM[]) => {
+       this.tasks = value
+       this.dataSource = new MatTableDataSource(this.tasks)
+     }, error: (err) => {
+       this.catSVC.ErrorMsgBar("Error Occurred", 5000)
+     },
+   })}
 
 
   GetLecture() {
@@ -156,51 +151,54 @@ export class ManageAssignTaskComponent implements OnInit {
       }
       );
   }
-  Search(){
+//   Search(){
    
   
- debugger
-    var lecture = new LectureVM
-    lecture.isActive = true;
-    this.lmsSvc.SearchLecture(lecture).subscribe({
-      next: (res: LectureVM[]) => {
-        this.lecs = res
-      }, error: (err) => {
-        this.catSVC.ErrorMsgBar("Error Occurred", 5000)
-      },
-    })
-    var std = new StudentVM
-    std.isActive = true;
-    this.lmsSvc.SearchStudent(std).subscribe({
-      next: (res: StudentVM[]) => {
-        this.stds = res
-      }, error: (err) => {
-        this.catSVC.ErrorMsgBar("Error Occurred", 5000)
-      },
-    })
+//  debugger
+//     var lecture = new LectureVM
+//     lecture.isActive = true;
+//     this.lmsSvc.SearchLecture(lecture).subscribe({
+//       next: (res: LectureVM[]) => {
+//         this.lecs = res
+//       }, error: (err) => {
+//         this.catSVC.ErrorMsgBar("Error Occurred", 5000)
+//       },
+//     })
+//     var std = new StudentVM
+//     std.isActive = true;
+//     this.lmsSvc.SearchStudent(std).subscribe({
+//       next: (res: StudentVM[]) => {
+//         this.stds = res
+//       }, error: (err) => {
+//         this.catSVC.ErrorMsgBar("Error Occurred", 5000)
+//       },
+//     })
 
     
-     var  lec = new AssignTaskVM();
-     this.lmsSvc.SearchAssignTask(lec).subscribe({
-      next: (value: AssignTaskVM[]) => {
-        this.tasks = value
-        this.dataSource = new MatTableDataSource(this.tasks)
-      }, error: (err) => {
-        this.catSVC.ErrorMsgBar("Error Occurred", 5000)
-      },
- })
+//      var  lec = new AssignTaskVM();
+//      this.lmsSvc.SearchAssignTask(lec).subscribe({
+//       next: (value: AssignTaskVM[]) => {
+//         this.tasks = value
+//         this.dataSource = new MatTableDataSource(this.tasks)
+//       }, error: (err) => {
+//         this.catSVC.ErrorMsgBar("Error Occurred", 5000)
+//       },
+//  })
  
-    }
-     UpdateAssignTask() {
-      this.lmsSvc.UpdateAssignTask(this.selectedTask).subscribe({
-        next: (value) => {
-          this.catSVC.SuccessMsgBar("Successfully Updated", 5000)
-          this.Refresh();
-        }, error: (err) => {
-          this.catSVC.ErrorMsgBar("Error Occurred", 5000)
-        },
-      })
-    }
+//     }
+//      UpdateAssignTask() {
+//       this.lmsSvc.UpdateAssignTask(this.selectedTask).subscribe({
+//         next: (value) => {
+//           this.catSVC.SuccessMsgBar("Successfully Updated", 5000)
+//           this.Refresh();
+//         }, error: (err) => {
+//           this.catSVC.ErrorMsgBar("Error Occurred", 5000)
+//         },
+//       })
+//     }
+
+
+
 GetAssignTask(){
   this.lmsSvc.GetAssignTask().subscribe({
 

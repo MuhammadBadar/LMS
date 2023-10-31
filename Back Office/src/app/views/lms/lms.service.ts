@@ -25,12 +25,15 @@ import { UserTaskbydateVM } from './Models/UsertaskbydateVM';
 import { CityStudentVM } from './Models/CityStudentVM';
 import { VocabularyVM } from './Models/VocabularyVM';
 import { PatientVM } from './Models/PatientVM';
+import { UserTaskVM } from './Models/UserTaskVM';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class LMSService {
+
+  userId: string = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
 
   constructor(private http: HttpClient) { }
 
@@ -281,8 +284,9 @@ SearchUserTaskbydate(value:UserTaskbydateVM): Observable<UserTaskbydateVM[]>{
 GetTask(): Observable<TaskVM[]>{
   return this.http.get<TaskVM[]>(Globals.BASE_API_URL + 'Task').pipe();
 }
-GetTaskId(id: number): Observable<TaskVM[]> {
-  return this.http.get<TaskVM[]>(Globals.BASE_API_URL + 'Task/' + id).pipe()
+GetTaskId(userId: string): Observable<TaskVM[]> {
+  debugger;
+  return this.http.get<TaskVM[]>(Globals.BASE_API_URL + 'Task/' + userId).pipe()
 }
 SaveTask(value:TaskVM){
   return this.http.post(Globals.BASE_API_URL + 'Task',value);
@@ -347,4 +351,26 @@ DeleteClient(id:number){
 SearchClient(value:ClientVM): Observable<ClientVM[]>{
   return this.http.post<ClientVM[]>(Globals.BASE_API_URL + 'Client/Search' ,value).pipe();
 }
+
+// usertask lms service 
+GetUsertask(): Observable<UserTaskVM[]> {
+  return this.http.get<UserTaskVM[]>(Globals.BASE_API_URL + 'UserTask').pipe();
+}
+SaveUsertask(task: UserTaskVM) {
+  return this.http.post(Globals.BASE_API_URL + 'UserTask', task)
+}
+SaveUsertasks(tasks: UserTaskVM[]) {
+  debugger;
+  return this.http.post<UserTaskVM[]>(Globals.BASE_API_URL + 'UserTask', tasks)
+}
+UpdateUsertask(value: UserTaskVM) {
+  return this.http.put(Globals.BASE_API_URL + 'UserTask', value)
+}
+DeleteUsertask(id: number) {
+  return this.http.delete(Globals.BASE_API_URL + 'UserTask/' + id)
+}
+SearchUsertask(value: UserTaskVM): Observable<UserTaskVM[]> {
+  return this.http.post<UserTaskVM[]>(Globals.BASE_API_URL + 'UserTask/Search', value).pipe();
+}
+
 }

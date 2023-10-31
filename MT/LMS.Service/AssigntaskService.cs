@@ -20,6 +20,7 @@ namespace LMS.Service
         private CoreDAL _coreDAL;
         private Logger _logger;
         #endregion
+
         #region Constructor
         public AssignTaskService()
         {
@@ -28,6 +29,7 @@ namespace LMS.Service
             _logger = LogManager.GetLogger("fileLogger");
         }
         #endregion
+
         #region Assign Task
         public bool ManageAssignedTask(AssignTaskDE _assignTask)
         {
@@ -55,6 +57,7 @@ namespace LMS.Service
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
         }
+
         public List<AssignTaskDE> SearchAssignedTask(AssignTaskDE _assignTask)
         {
             List<AssignTaskDE> retVal = new List<AssignTaskDE>();
@@ -89,8 +92,21 @@ namespace LMS.Service
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
         }
+
+        public List<AssignTaskDE> GetAvailableLecturesForStudent(int studentId)
+        {
+            List<AssignTaskDE> assignedLectures = SearchAssignedTask(new AssignTaskDE { StudentId = studentId });
+
+            // Get a list of lecture IDs that are already assigned to the student
+            List<int> assignedLectureIds = assignedLectures.Select(a => a.LectureId).ToList();
+
+            // Get all lectures except those that are already assigned to the student
+            string whereClause = $"Where IsActive = 1 AND Id NOT IN ({string.Join(",", assignedLectureIds)})";
+            MySqlCommand? cmd = null; // Initialize MySqlCommand here before usage.
+            List<AssignTaskDE> availableLectures = _assignTaskDAL.SearchAssignTask(whereClause, cmd);
+
+            return availableLectures;
+        }
         #endregion
-
-
     }
 }

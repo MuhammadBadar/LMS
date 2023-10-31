@@ -32,12 +32,14 @@ namespace LMS.WebAPI.Controllers
             return Ok(values);
         }
         [HttpGet("{id}")]
-        public ActionResult GetProductById(int id)
+        public IActionResult GetTaskById(int id)
         {
-            AssignTaskDE assignTask = new AssignTaskDE { Id = id };
-            var values = _AssignTaskSVC.SearchAssignedTask(assignTask);
-            return Ok(values);
+            List<AssignTaskDE> list = new List<AssignTaskDE>();
+            list = _AssignTaskSVC.SearchAssignedTask(new AssignTaskDE { Id = id });
+            return Ok(list[0]);
+
         }
+
         [HttpPost("{Search}")]
         public ActionResult Search(AssignTaskDE assignTask)
         {

@@ -27,7 +27,7 @@ export class ManageVocabularyComponent implements OnInit {
    // selectedTopic: TopicVM
     selectedVocabulary: VocabularyVM
    // topics?: TopicVM[]
-    vocab: VocabularyVM[]=[]
+    vocab: VocabularyVM[]
     constructor(
       private lmsSvc: LMSService,
       private catSvc: CatalogService) {
