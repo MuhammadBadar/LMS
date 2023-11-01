@@ -9,4 +9,5 @@ export enum EnumTypeVM {
     WorkingType,
     EventType,
     Location=1009
+    
 }

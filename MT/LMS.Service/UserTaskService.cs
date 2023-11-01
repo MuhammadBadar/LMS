@@ -95,6 +95,8 @@ namespace LMS.Service
                     WhereClause += $" AND UserId={_tsk.UserId}";
                 if (_tsk.TaskId != default)
                     WhereClause += $" AND TaskId={_tsk.TaskId}";
+                if (_tsk.ClaimId != default)
+                    WhereClause += $" AND ClaimId={_tsk.ClaimId}";
                 if (_tsk.Date != default)
                     WhereClause += $" AND Date={_tsk.Date}";
                 if (_tsk.IsActive != default && _tsk.IsActive == true)

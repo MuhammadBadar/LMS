@@ -18,7 +18,9 @@ namespace LMS.Core.Entities
         public string? Parent { get; set; }
         public DateTime Date { get; set; }
 
+        public int ClaimId { get; set; }
         public string? Claim { get; set; }
+        public float Sp { get; set; }   
         public string? Comments { get; set; }
         public string? ReviewedBy { get; set; }
 

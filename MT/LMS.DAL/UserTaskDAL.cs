@@ -30,7 +30,9 @@ namespace LMS.DAL
 
                 cmd.Parameters.AddWithValue("parent", _tsk.Parent);
                 cmd.Parameters.AddWithValue("date", _tsk.Date);
-                cmd.Parameters.AddWithValue("claim", _tsk.Claim);
+                cmd.Parameters.AddWithValue("claimId", _tsk.ClaimId);
+                /*cmd.Parameters.AddWithValue("claim", _tsk.Claim);*/
+                cmd.Parameters.AddWithValue("sp", _tsk.Sp);
                 cmd.Parameters.AddWithValue("comments", _tsk.Comments);
                 cmd.Parameters.AddWithValue("reviewedby", _tsk.ReviewedBy);
                 cmd.Parameters.AddWithValue("reviewcomments", _tsk.ReviewComments);

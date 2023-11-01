@@ -23,6 +23,7 @@ import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-us
 
 import { ManageUsertaskComponent } from './manage-usertask/manage-usertask.component';
 import { ManageClientComponent } from './manage-client/manage-client.component';
+import { ManageDayStatusComponent } from './manage-day-status/manage-day-status.component';
 
 const routes: Routes = [{
   path: '',
@@ -49,6 +50,11 @@ const routes: Routes = [{
     {
       path: "usertask",
       component: ManageUsertaskComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "daystatus",
+      component: ManageDayStatusComponent,
       pathMatch: "full"
     },
     

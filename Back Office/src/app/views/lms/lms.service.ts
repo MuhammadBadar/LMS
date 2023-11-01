@@ -35,6 +35,8 @@ export class LMSService {
 
   userId: string = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
 
+  selectedTask: UserTaskVM;
+
   constructor(private http: HttpClient) { }
 
   UpdateInquiry(value: InquiryVM) {

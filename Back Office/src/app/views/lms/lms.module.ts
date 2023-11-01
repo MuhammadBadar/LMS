@@ -89,6 +89,7 @@ import { ManagePatientComponent } from './manage-patient/manage-patient.componen
 
 import { ManageClientComponent } from './manage-client/manage-client.component';
 import { ManageUsertaskComponent } from './manage-usertask/manage-usertask.component';
+import { ManageDayStatusComponent } from './manage-day-status/manage-day-status.component';
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
 
@@ -118,6 +119,7 @@ import { ManageUsertaskComponent } from './manage-usertask/manage-usertask.compo
     
     ManageClientComponent,
                 ManageUsertaskComponent,
+                ManageDayStatusComponent,
   ],
   imports: [
     NgxMatDatetimePickerModule,
