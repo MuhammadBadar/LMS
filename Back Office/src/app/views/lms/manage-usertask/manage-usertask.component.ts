@@ -12,11 +12,12 @@ import { SecurityService } from '../../security/security.service';
   styleUrls: ['./manage_usertask.component.css']
 })
 export class ManageUsertaskComponent implements  OnInit {
-  displayedColumns: string[] = ['userName','Task Title', 'sP','Priority','Assign'];
+  displayedColumns: string[] = ['Task Title', 'sP','Priority','Assign'];
  
   AddMode: boolean = true
   EditMode: boolean = false
-  dataSource:any
+  dataSource: MatTableDataSource<TaskVM>;
+
   dialogData: any;
   dialogRefe: MatDialogRef<any, any>;
   userTasks: UserTaskVM[]=[];
@@ -42,9 +43,9 @@ export class ManageUsertaskComponent implements  OnInit {
 ngOnInit(): void {    
   this.AddMode = true;
   debugger;
+ // this.GetTask();
   const userId = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
   this.GetTaskByUserId(userId);
-  // this.GetTask();
   // this.Savetask();
   // this.Searchtask();    
      }
@@ -101,10 +102,10 @@ ngOnInit(): void {
       // alert($event.checked);
       if($event.checked)
       {
-        this.userTask.date = new Date();
         this.userTask = new UserTaskVM();
         this.userTask.taskId = row.id;
-        this.userTask.userId= this.lmsSvc.userId; // "eab689a0-9053-4202-b1ed-8b3ee39b40a2";
+        this.userTask.userId= this.lmsSvc.userId;
+        this.userTask.date = new Date();  // "eab689a0-9053-4202-b1ed-8b3ee39b40a2";
        // this.userTask.userId = "1101"; // get Logged In User Id 
 
         
@@ -158,5 +159,3 @@ debugger;
     this.AddMode = true
   }
 }
-
-    

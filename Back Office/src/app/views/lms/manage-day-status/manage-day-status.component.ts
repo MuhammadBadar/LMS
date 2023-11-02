@@ -7,6 +7,7 @@ import { SettingsVM } from '../../catalog/Models/SettingsVM';
 import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
 import { EnumType } from '../../tms/models/EnumType';
+import { TaskVM } from '../Models/TaskVM';
 
 @Component({
   selector: 'app-manage-day-status',
@@ -21,6 +22,7 @@ export class ManageDayStatusComponent implements  OnInit{
   selectedTask: UserTaskVM;
   hide = true;
   dataSource: any;
+  pat: TaskVM[];
   clien: UserTaskVM[];
   Claim: SettingsVM[] = [];
   proccessing: boolean;
@@ -45,9 +47,27 @@ export class ManageDayStatusComponent implements  OnInit{
 }
 
 ngOnInit(): void {    
-  this.GetUserTask();
+  const userId = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
+  this.GetTaskByUserId(userId);
+  // this.GetUserTask();
   this.GetEnumValues(EnumType.Claim);
      }
+
+
+     GetTaskByUserId(userId: string) {
+      debugger;
+      this.lmsSvc.GetTaskByUserId(userId).subscribe({
+        next: (value: TaskVM[]) => {
+          debugger;
+          this.pat = value;
+          this.dataSource = new MatTableDataSource(this.pat);
+        },
+        error: (err) => {
+          alert('Error to retrieve tasks');
+          // Handle error as needed
+        }
+      });
+    }
 
      GetEnumValues(etype: EnumType) {
       var Settings = new SettingsVM;
