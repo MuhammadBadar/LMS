@@ -126,6 +126,45 @@ namespace LMS.MicroERP.Services
             return mod;
 
         }
+
+
+        public List<TaskVM> GetTasksByUserId(string userId)
+        {
+            List<TaskVM> tasks = new List<TaskVM>();
+            List<AttachmentsDE> attachments = new List<AttachmentsDE>();
+            bool closeConnectionFlag = false;
+            MySqlCommand cmd = null;
+            try
+            {
+                cmd = LMSDataContext.OpenMySqlConnection();
+                LMSDataContext.StartTransaction(cmd);
+
+                string whereClause = $"WHERE UserId = '{userId}' AND IsActive = 1"; // Assuming IsActive is a column indicating active tasks
+
+                tasks = _taskDAL.SearchTasks(whereClause);
+
+                // Fetch attachments for each task
+                foreach (var task in tasks)
+                {
+                    attachments = _taskDAL.SearchAttachments($"AND TaskId = {task.Id}");
+                    task.Attachments = attachments;
+                }
+
+                LMSDataContext.EndTransaction(cmd);
+            }
+            catch (Exception exp)
+            {
+                LMSDataContext.CancelTransaction(cmd);
+                throw exp;
+            }
+            finally
+            {
+                if (closeConnectionFlag)
+                    LMSDataContext.CloseMySqlConnection(cmd);
+            }
+            return tasks;
+        }
+
         public List<TaskVM> SearchTasks(TaskSearchCriteria mod )
         {
             List<TaskVM> Task = new List<TaskVM>();

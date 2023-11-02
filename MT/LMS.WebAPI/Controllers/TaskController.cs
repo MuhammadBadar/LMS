@@ -53,6 +53,14 @@ namespace LMS.WepAPI.Controllers
             return Ok(tsk);
         }
 
+        [HttpGet("GetTasksByUserId/{userId}")]
+        public ActionResult GetTasksByUserId(string userId)
+        {
+            TaskSearchCriteria taskSearchCriteria = new TaskSearchCriteria { UserId = userId, IsActive = true };
+            List<TaskVM> tasks = _taskSVC.SearchTasks(taskSearchCriteria);
+            return Ok(tasks);
+        }
+
         [HttpPost("{Search}")]
         public ActionResult Search(TaskSearchCriteria Search)
         {

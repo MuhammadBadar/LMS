@@ -283,6 +283,11 @@ SearchUserTaskbydate(value:UserTaskbydateVM): Observable<UserTaskbydateVM[]>{
 }
 
 //UserTaskVM lms services
+GetTaskByUserId(userId: string): Observable<TaskVM[]> {
+  debugger;
+  return this.http.get<TaskVM[]>(Globals.BASE_API_URL + 'Task/GetTasksByUserId/' + userId).pipe()
+}
+
 GetTask(): Observable<TaskVM[]>{
   return this.http.get<TaskVM[]>(Globals.BASE_API_URL + 'Task').pipe();
 }

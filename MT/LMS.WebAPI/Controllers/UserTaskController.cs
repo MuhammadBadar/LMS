@@ -61,5 +61,14 @@ namespace LMS.WebAPI.Controllers
         //    UserTaskDE usr = new UserTaskDE { Id = id, DBoperation = DBoperations.Delete };
         //    _tskSvc.Manageusertask(usr);
         //}
+        /*[HttpDelete("{id}")]
+        public IActionResult DeletePatient(int id)
+        {
+            UserTaskDE patDE = new UserTaskDE();
+            patDE.DBoperation = DBoperations.Delete;
+            patDE.Id = id;
+            _tskSvc.Manageusertask(patDE);
+            return Ok();
+        }*/
     }
 }

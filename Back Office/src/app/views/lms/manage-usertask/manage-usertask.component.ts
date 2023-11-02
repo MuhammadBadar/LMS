@@ -42,11 +42,26 @@ export class ManageUsertaskComponent implements  OnInit {
 ngOnInit(): void {    
   this.AddMode = true;
   debugger;
-  this.GetTask();
+  const userId = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
+  this.GetTaskByUserId(userId);
+  // this.GetTask();
   // this.Savetask();
   // this.Searchtask();    
      }
-
+     GetTaskByUserId(userId: string) {
+      debugger;
+      this.lmsSvc.GetTaskByUserId(userId).subscribe({
+        next: (value: TaskVM[]) => {
+          debugger;
+          this.pat = value;
+          this.dataSource = new MatTableDataSource(this.pat);
+        },
+        error: (err) => {
+          alert('Error to retrieve tasks');
+          // Handle error as needed
+        }
+      });
+    }
 
      GetTask() {
       debugger;
@@ -86,6 +101,7 @@ ngOnInit(): void {
       // alert($event.checked);
       if($event.checked)
       {
+        this.userTask.date = new Date();
         this.userTask = new UserTaskVM();
         this.userTask.taskId = row.id;
         this.userTask.userId= this.lmsSvc.userId; // "eab689a0-9053-4202-b1ed-8b3ee39b40a2";

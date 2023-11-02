@@ -45,6 +45,11 @@
               <td mat-cell *matCellDef="let element">{{ element.priority }}</td>
             </ng-container>
 
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef>Date</th>
+              <td mat-cell *matCellDef="let element">{{ element.date|date:"dd/MM/yyyy" }}</td>
+            </ng-container>
+
             <ng-container matColumnDef="Assign" stickyEnd="true">
               <th mat-header-cell *matHeaderCellDef>
                 <p style="font-size: 14px; text-align: center;">Assign</p>

@@ -115,7 +115,7 @@ ngOnInit(): void {
   
       if (this.UserTaskForm && !this.UserTaskForm.invalid && this.selectedTask)
        {
-        this.lmsSvc.UpdatePatient(this.selectedTask).subscribe({
+        this.lmsSvc.UpdateUsertask(this.selectedTask).subscribe({
           next: (value) => {
             this.catSvc.SuccessMsgBar("Successfully Updated", 5000);
             this.Add = true;
@@ -136,7 +136,7 @@ ngOnInit(): void {
     }
 
     GetUserTask() {
-      this.lmsSvc.GetPatient().subscribe({
+      this.lmsSvc.GetUsertask().subscribe({
         next: (value: UserTaskVM[]) => {
           // debugger;
           this.clien = value
@@ -166,7 +166,7 @@ ngOnInit(): void {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.lmsSvc.DeletePatient(id).subscribe({
+          this.lmsSvc.DeleteUsertask(id).subscribe({
             next: (data) => {
               Swal.fire(
                 'Deleted!',

@@ -7,17 +7,20 @@
       <form #DayEndForm="ngForm">
           <Row>
               <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
-                  <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                  <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
                       <mat-label>Task Title</mat-label>
                       <input
                           matInput
                           #title="ngModel"
                           required
                           name="title"
-                          [(ngModel)]="selectedTask.title"
-                      />
+                          [(ngModel)]="selectedTask.title"/>
                   </mat-form-field>
-                  <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+              </div>
+          </Row>
+          <Row>
+            <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
+                <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
                     <mat-label>SP's</mat-label>
                     <input
                       matInput
@@ -28,7 +31,7 @@
                     />
                   </mat-form-field>
                   
-                <mat-form-field fxFlex="33%" fxFill appearance="outline" class="form-group">
+                <mat-form-field fxFlex="49%" fxFill appearance="outline" class="form-group">
                     <mat-label>Percentage Completion</mat-label>
                     <mat-select [(ngModel)]="selectedTask.claimId" required name="ClaimId">
                         <mat-option *ngFor="let st of Claim" [value]="st.id">
@@ -118,7 +121,7 @@ style="border-radius: 5px;margin-top: 20px;">
                   mat-sm-button
                   (click)="EditUserTask(row)"
                   style="color: #1e293b"
-                  cTooltip=" Edit Patient"
+                  cTooltip=" Edit User Task"
                 >
                   <mat-icon>edit</mat-icon>
                 </button>
