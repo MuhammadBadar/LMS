@@ -1,6 +1,8 @@
 ﻿using LMS.Core.Entities;
 using LMS.Core.Enums;
+using LMS.Core.ViewModel;
 using LMS.DAL;
+using LMS.MicroERP.DAL;
 using MySql.Data.MySqlClient;
 using NLog;
 using System;
@@ -79,6 +81,35 @@ namespace LMS.Service
 
             return retVal;
         }
+        //public List<UserTaskDE> GetTasksByUsertaskId(string userId)
+        //{
+        //    List<UserTaskDE> tasks = new List<UserTaskDE>();
+        //    bool closeConnectionFlag = false;
+        //    MySqlCommand cmd = null;
+        //    try
+        //    {
+        //        cmd = LMSDataContext.OpenMySqlConnection();
+        //        LMSDataContext.StartTransaction(cmd);
+
+        //        string whereClause = $"WHERE UserId = {userId} AND IsActive = 1"; // Assuming IsActive is a column indicating active tasks
+
+        //        tasks = _tskDAL.Searchusertask(whereClause);
+
+        //        // Fetch attachments for each task
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        LMSDataContext.CancelTransaction(cmd);
+        //        throw exp;
+        //    }
+        //    finally
+        //    {
+        //        if (closeConnectionFlag)
+        //            LMSDataContext.CloseMySqlConnection(cmd);
+        //    }
+        //    return tasks;
+        //}
+
         public List<UserTaskDE> Searchusertask(UserTaskDE _tsk)
         {
             List<UserTaskDE> retVal = new List<UserTaskDE>();

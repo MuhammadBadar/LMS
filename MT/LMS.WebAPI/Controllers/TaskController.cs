@@ -41,7 +41,7 @@ namespace LMS.WepAPI.Controllers
         {
            
             TaskSearchCriteria TaskSC = new TaskSearchCriteria { IsActive = true };
-            List<TaskVM> task = _taskSVC.SearchTasks(TaskSC);
+            List<UserTaskVM> task = _taskSVC.SearchTasks(TaskSC);
             return Ok(task);
         }
         [HttpGet("{id}")]
@@ -57,14 +57,14 @@ namespace LMS.WepAPI.Controllers
         public ActionResult GetTasksByUserId(string userId)
         {
             TaskSearchCriteria taskSearchCriteria = new TaskSearchCriteria { UserId = userId, IsActive = true };
-            List<TaskVM> tasks = _taskSVC.SearchTasks(taskSearchCriteria);
+            List<UserTaskVM> tasks = _taskSVC.SearchTasks(taskSearchCriteria);
             return Ok(tasks);
         }
 
         [HttpPost("{Search}")]
         public ActionResult Search(TaskSearchCriteria Search)
         {
-            List<TaskVM> cust = _taskSVC.SearchTasks(Search);
+            List<UserTaskVM> cust = _taskSVC.SearchTasks(Search);
             return Ok(cust);
         }
 

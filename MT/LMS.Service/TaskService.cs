@@ -128,9 +128,9 @@ namespace LMS.MicroERP.Services
         }
 
 
-        public List<TaskVM> GetTasksByUserId(string userId)
+        public List<UserTaskVM> GetTasksByUserId(string userId)
         {
-            List<TaskVM> tasks = new List<TaskVM>();
+            List<UserTaskVM> tasks = new List<UserTaskVM>();
             List<AttachmentsDE> attachments = new List<AttachmentsDE>();
             bool closeConnectionFlag = false;
             MySqlCommand cmd = null;
@@ -165,9 +165,9 @@ namespace LMS.MicroERP.Services
             return tasks;
         }
 
-        public List<TaskVM> SearchTasks(TaskSearchCriteria mod )
+        public List<UserTaskVM> SearchTasks(TaskSearchCriteria mod )
         {
-            List<TaskVM> Task = new List<TaskVM>();
+            List<UserTaskVM> Task = new List<UserTaskVM>();
             List < AttachmentsDE> attchmt = new List<AttachmentsDE>();
             bool closeConnectionFlag = false;
             MySqlCommand cmd = null;

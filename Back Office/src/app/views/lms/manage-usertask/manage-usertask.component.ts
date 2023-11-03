@@ -46,6 +46,11 @@ ngOnInit(): void {
  // this.GetTask();
   const userId = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
   this.GetTaskByUserId(userId);
+
+  const storedUserTasks = localStorage.getItem('userTasks');
+  if (storedUserTasks) {
+    this.userTasks = JSON.parse(storedUserTasks);
+  }
   // this.Savetask();
   // this.Searchtask();    
      }
@@ -132,18 +137,25 @@ ngOnInit(): void {
   //   }
   // }
   Savetask() {
-    debugger;
+    const selectedTaskIds = this.userTasks.map(task => task.taskId);
     this.lmsSvc.SaveUsertasks(this.userTasks).subscribe({
       next: (value) => {
-        this.catSvc.SuccessMsgBar("Successfully Added", 5000)
-        // this.Refresh();
-      }, 
-    })
+        this.catSvc.SuccessMsgBar("Successfully Added", 5000);
+        // Remove selected rows from the dataSource
+        this.dataSource.data = this.dataSource.data.filter(task => !selectedTaskIds.includes(task.id));
+        this.userTasks = []; // Clear the selected tasks array
+      },
+      error: (err) => {
+        console.error('Error saving user tasks:', err);
+        this.catSvc.ErrorMsgBar('Error Occurred', 5000);
+      }
+    });
   }
-  Refresh() {
-    // this.Savetask();
-    this.userTask = new UserTaskVM
-    this.EditMode = false
-    this.AddMode = true
-  }
+  
+  // Refresh() {
+  //   // this.Savetask();
+  //   this.userTask = new UserTaskVM
+  //   this.EditMode = false
+  //   this.AddMode = true
+  // }
 }

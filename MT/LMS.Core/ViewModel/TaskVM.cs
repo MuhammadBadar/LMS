@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LMS.Core.ViewModel
 {
-    public class TaskVM:BaseViewModel
+    public class UserTaskVM:BaseViewModel
     {
         public string? User { get; set; }
         public string? Module { get; set; }
@@ -28,7 +28,7 @@ namespace LMS.Core.ViewModel
         public string? DirectSupervisorEmail { get; set; }
         public string? DirectSupervisorName { get; set; }
         public List<AttachmentsDE> Attachments { get; set; }
-        public TaskVM()
+        public UserTaskVM()
         {
             this.Attachments = new List<AttachmentsDE>();
         }

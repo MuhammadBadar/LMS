@@ -10,5 +10,4 @@ export class TaskVM {
     date : Date
     dayEndStatus : number
     ischecked: boolean
-    claimId: number
 }

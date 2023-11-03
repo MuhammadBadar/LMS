@@ -214,10 +214,10 @@ namespace LMS.MicroERP.DAL
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
         }
-        public List<TaskVM> SearchTasks(string whereClause, MySqlCommand cmd = null)
+        public List<UserTaskVM> SearchTasks(string whereClause, MySqlCommand cmd = null)
         {
             // string filter = "FreeSearch";
-            List<TaskVM> top = new List<TaskVM>();
+            List<UserTaskVM> top = new List<UserTaskVM>();
             bool closeConnectionFlag = false;
             try
             {
@@ -233,7 +233,7 @@ namespace LMS.MicroERP.DAL
 
                 //top = cmd.Connection.Query<TaskVM>("call mrcroerp.SearchTasks( '" + whereClause + "'  ) ").ToList();
                 whereClause = " " + whereClause + " order by Id desc";
-                top = cmd.Connection.Query<TaskVM>("call lms.SearchTask( '" + whereClause + "'  ) ").ToList();
+                top = cmd.Connection.Query<UserTaskVM>("call lms.SearchTask( '" + whereClause + "'  ) ").ToList();
                 return top;
             }
             catch (Exception exp)

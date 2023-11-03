@@ -56,7 +56,7 @@ namespace LMS.DAL
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
         }
-        public List<UserTaskDE> Searchusertask(string WhereClause, MySqlCommand cmd)
+        public List<UserTaskDE> Searchusertask(string WhereClause, MySqlCommand cmd=null)
         {
             bool closeConnection = false;
             //WhereClause = string.Empty;
