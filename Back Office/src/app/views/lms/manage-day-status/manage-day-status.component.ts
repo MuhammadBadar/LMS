@@ -131,9 +131,10 @@ ngOnInit(): void {
     
   
     UpdateUserTask() {
+      debugger;
       this.proccessing = true;
   
-      if (this.UserTaskForm && !this.UserTaskForm.invalid && this.selectedTask)
+      if (this.UserTaskForm)
        {
         this.lmsSvc.UpdateUsertask(this.selectedTask).subscribe({
           next: (value) => {

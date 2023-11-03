@@ -5,12 +5,12 @@
   </div>
   <div class="page_content shadow p-3 position-relative">
       <form #DayEndForm="ngForm">
-          <Row>
+          <Row *ngIf="EditMode">
               <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
                   <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
                       <mat-label>Task Title</mat-label>
                       <input
-                          matInput
+                      matInput [disabled]="true"
                           #title="ngModel"
                           required
                           name="title"
@@ -18,12 +18,12 @@
                   </mat-form-field>
               </div>
           </Row>
-          <Row>
+          <Row *ngIf="EditMode">
             <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
                 <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
                     <mat-label>SP's</mat-label>
                     <input
-                      matInput
+                    matInput [disabled]="true"
                       required
                       #sp="ngModel"
                       name="sp"
@@ -31,7 +31,7 @@
                     />
                   </mat-form-field>
                   
-                <mat-form-field fxFlex="49%" fxFill appearance="outline" class="form-group">
+                <mat-form-field fxFlex="49%" fxFill appearance="outline" class="form-group" *ngIf="EditMode">
                     <mat-label>Percentage Completion</mat-label>
                     <mat-select [(ngModel)]="selectedTask.claimId" required name="ClaimId">
                         <mat-option *ngFor="let st of Claim" [value]="st.id">
@@ -42,7 +42,7 @@
                 
               </div>
           </Row>    
-          <Row>
+          <Row *ngIf="EditMode">
             <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
               <mat-label>Comments</mat-label>
               <input
@@ -55,7 +55,7 @@
             </mat-form-field>
           </Row>      
           <div fxLayoutAlign="end end">
-            <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveDayEnd()">Submit</button>
+            <!-- <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveDayEnd()">Submit</button> -->
             <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateUserTask()">Update</button>
             <!-- <div>
                 <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
