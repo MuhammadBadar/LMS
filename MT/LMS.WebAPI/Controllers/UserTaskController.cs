@@ -51,9 +51,14 @@ namespace LMS.WebAPI.Controllers
         [HttpPut]
         public ActionResult Put(UserTaskDE mod)
         {
-            mod.DBoperation = DBoperations.Update;
-            //_tskSvc.Manageusertask(mod);
-            return Ok();
+            List<UserTaskDE> tasks = new List<UserTaskDE>();
+            tasks.Add(mod);
+            foreach(var item in tasks)
+            item.DBoperation = DBoperations.Update;
+            bool retVal = _tskSvc.Manageusertask(tasks);
+            //if(!retVal)
+                
+            return Ok(mod);
         }
         //[HttpDelete("{id}")]
         //public void Delete(int id)

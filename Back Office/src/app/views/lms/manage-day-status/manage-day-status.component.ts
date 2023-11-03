@@ -89,37 +89,37 @@ ngOnInit(): void {
     }
 
 
-     SaveDayEnd() {
-      if (this.selectedTask.title == null) {
-        this.catSvc.ErrorMsgBar("Please Enter Title.", 5000);
-        return;
-      }
+    //  SaveDayEnd() {
+    //   if (this.selectedTask.title == null) {
+    //     this.catSvc.ErrorMsgBar("Please Enter Title.", 5000);
+    //     return;
+    //   }
       
-      if (this.selectedTask.sp == null || this.selectedTask.sp == undefined) {
-        this.catSvc.ErrorMsgBar("Please Enter SP's.", 5000);
-        return;
-      }
+    //   if (this.selectedTask.sp == null || this.selectedTask.sp == undefined) {
+    //     this.catSvc.ErrorMsgBar("Please Enter SP's.", 5000);
+    //     return;
+    //   }
       
-      if(this.selectedTask.claimId == null || this.selectedTask.claimId == undefined)
-      {  
-        this.catSvc.ErrorMsgBar("Please select Percentage Completion.", 5000);
-        return; // Exit the function if either user or schedule type is empty
-      }
-      if (this.selectedTask.comments == null) {
-        this.catSvc.ErrorMsgBar("Please Enter Comments.", 5000);
-        return;
-      }
+    //   if(this.selectedTask.claimId == null || this.selectedTask.claimId == undefined)
+    //   {  
+    //     this.catSvc.ErrorMsgBar("Please select Percentage Completion.", 5000);
+    //     return; // Exit the function if either user or schedule type is empty
+    //   }
+    //   if (this.selectedTask.comments == null) {
+    //     this.catSvc.ErrorMsgBar("Please Enter Comments.", 5000);
+    //     return;
+    //   }
     
-      this.lmsSvc.SaveUsertask(this.selectedTask).subscribe({
-        next: (value) => {
-          this.catSvc.SuccessMsgBar("Successfully Added", 5000);
-          // this.Refresh();
-        }, 
-        error: (err) => {
-          this.catSvc.ErrorMsgBar("Error Occurred", 5000);
-        },
-      });
-    }
+    //   this.lmsSvc.SaveUsertask(this.selectedTask).subscribe({
+    //     next: (value) => {
+    //       this.catSvc.SuccessMsgBar("Successfully Added", 5000);
+    //       // this.Refresh();
+    //     }, 
+    //     error: (err) => {
+    //       this.catSvc.ErrorMsgBar("Error Occurred", 5000);
+    //     },
+    //   });
+    // }
 
     EditUserTask(pat: UserTaskVM) {
       this.EditMode = true
@@ -130,29 +130,56 @@ ngOnInit(): void {
     
     
   
-    UpdateUserTask() {
-      debugger;
-      this.proccessing = true;
+    // UpdateUserTask() {
+    //   debugger;
+    //   this.proccessing = true;
   
-      if (this.UserTaskForm)
-       {
+    //   if (this.UserTaskForm)
+    //    {
+    //     this.lmsSvc.UpdateUsertask(this.selectedTask).subscribe({
+    //       next: (value) => {
+    //         this.catSvc.SuccessMsgBar("Successfully Updated", 5000);
+    //         this.Add = true;
+    //         this.Edit = false;
+    //         this.proccessing = false;
+    //         this.ngOnInit();
+    //       },
+    //       error: (err) => {
+    //         this.catSvc.ErrorMsgBar("Error Occurred", 5000);
+    //         console.warn(err);
+    //         this.proccessing = false;
+    //       }
+    //     });
+    //   } else {
+    //     this.catSvc.ErrorMsgBar("Please Fill all required fields!", 5000);
+    //     this.proccessing = false;
+    //   }
+    // }
+    UpdateUserTask() {
+      // You should implement validation and other necessary logic here
+      if (this.selectedTask.title && this.selectedTask.sp && this.selectedTask.claimId && this.selectedTask.comments) {
+        this.proccessing = true; // Set a flag to indicate that an update operation is in progress
+    
         this.lmsSvc.UpdateUsertask(this.selectedTask).subscribe({
-          next: (value) => {
-            this.catSvc.SuccessMsgBar("Successfully Updated", 5000);
-            this.Add = true;
-            this.Edit = false;
-            this.proccessing = false;
-            this.ngOnInit();
+          next: (res) => {
+            // Handle a successful update operation
+            this.catSvc.SuccessMsgBar("Successfully Updated!", 5000);
+            this.Add = true; // Set to Add mode
+            this.Edit = false; // Disable Edit mode
+            this.proccessing = false; // Reset the processing flag
+            this.ngOnInit(); // Refresh the table
+            this.Refresh();
           },
-          error: (err) => {
+          error: (e) => {
+            // Handle errors if the update operation fails
+            console.warn(e);
             this.catSvc.ErrorMsgBar("Error Occurred", 5000);
-            console.warn(err);
-            this.proccessing = false;
+            this.proccessing = false; // Reset the processing flag
           }
         });
       } else {
-        this.catSvc.ErrorMsgBar("Please Fill all required fields!", 5000);
-        this.proccessing = false;
+        // Handle validation errors or display an error message for missing fields
+        this.catSvc.ErrorMsgBar("Please fill in all required fields!", 5000);
       }
     }
 
