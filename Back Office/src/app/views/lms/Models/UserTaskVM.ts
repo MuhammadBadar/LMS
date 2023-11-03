@@ -8,7 +8,7 @@ export class UserTaskVM {
     parent?: string
     claimId:number =0
     claim?:string 
-    sP : number
+    sp : number
     comments?:string 
     reviewedBy?:string 
     reviewComments?:string 

@@ -48,26 +48,26 @@ export class ManageDayStatusComponent implements  OnInit{
 
 ngOnInit(): void {    
   const userId = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
-  this.GetTaskByUserId(userId);
+  this.GetUserTask();
   // this.GetUserTask();
   this.GetEnumValues(EnumType.Claim);
      }
 
 
-     GetTaskByUserId(userId: string) {
-      debugger;
-      this.lmsSvc.GetTaskByUserId(userId).subscribe({
-        next: (value: TaskVM[]) => {
-          debugger;
-          this.pat = value;
-          this.dataSource = new MatTableDataSource(this.pat);
-        },
-        error: (err) => {
-          alert('Error to retrieve tasks');
-          // Handle error as needed
-        }
-      });
-    }
+    //  GetTaskByUserId(userId: string) {
+    //   debugger;
+    //   this.lmsSvc.GetTaskByUserId(userId).subscribe({
+    //     next: (value: TaskVM[]) => {
+    //       debugger;
+    //       this.pat = value;
+    //       this.dataSource = new MatTableDataSource(this.pat);
+    //     },
+    //     error: (err) => {
+    //       alert('Error to retrieve tasks');
+    //       // Handle error as needed
+    //     }
+    //   });
+    // }
 
      GetEnumValues(etype: EnumType) {
       var Settings = new SettingsVM;
@@ -95,7 +95,7 @@ ngOnInit(): void {
         return;
       }
       
-      if (this.selectedTask.sP == null || this.selectedTask.sP == undefined) {
+      if (this.selectedTask.sp == null || this.selectedTask.sp == undefined) {
         this.catSvc.ErrorMsgBar("Please Enter SP's.", 5000);
         return;
       }

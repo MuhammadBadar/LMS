@@ -6,8 +6,9 @@ export class TaskVM {
     module? :string
     taskTitle? :  string
     storyPoints : string
-    sPs : number
+    sp : number
     date : Date
     dayEndStatus : number
-
+    ischecked: boolean
+    claimId: number
 }

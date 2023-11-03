@@ -94,34 +94,22 @@ ngOnInit(): void {
       })
       
     }
-    toggleRow(row,$event){
-      debugger;
-      //alert(row);
-      // //alert(this.IsChecked);
-      // alert('TaskId: ' + row.id);
-      // alert($event.checked);
-      if($event.checked)
-      {
+    toggleRow(row, $event) {
+      if ($event.checked) {
         this.userTask = new UserTaskVM();
         this.userTask.taskId = row.id;
-        this.userTask.userId= this.lmsSvc.userId;
-        this.userTask.date = new Date();  // "eab689a0-9053-4202-b1ed-8b3ee39b40a2";
-       // this.userTask.userId = "1101"; // get Logged In User Id 
-
-        
+        this.userTask.userId = this.lmsSvc.userId;
+        this.userTask.date = new Date();
+        this.userTask.sp = row.sp; // Assign the sp value from the row
         this.userTasks.push(this.userTask);
-debugger;
-      }
-      else
-      {
-        //channelArray.includes('three'))
-        this.userTasks.forEach( (task) => {
-          //if(task.id == row.id)
-          //this.userTasks.pop(row)
-             
-      });
+      } else {
+        const index = this.userTasks.findIndex(task => task.taskId === row.id);
+        if (index !== -1) {
+          this.userTasks.splice(index, 1);
+        }
       }
     }
+    
   //   SaveAssignTask() {
   //     debugger;
 

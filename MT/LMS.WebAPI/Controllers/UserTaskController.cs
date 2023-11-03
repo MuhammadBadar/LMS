@@ -11,11 +11,11 @@ namespace LMS.WebAPI.Controllers
     [ApiController]
     public class UserTaskController : ControllerBase
     {
-            private UserTaskService _tskSvc;
-            public UserTaskController()
-            {
+        private UserTaskService _tskSvc;
+        public UserTaskController()
+        {
             _tskSvc = new UserTaskService();
-            }
+        }
         // HTTP Methods 
         [HttpGet]
         public ActionResult Get()
@@ -43,7 +43,7 @@ namespace LMS.WebAPI.Controllers
         [HttpPost]
         public ActionResult Post(List<UserTaskDE> mod)
         {
-            foreach(var item in mod)
+            foreach (var item in mod)
                 item.DBoperation = DBoperations.Insert;
             bool usr = _tskSvc.Manageusertask(mod);
             return Ok(usr);
@@ -70,5 +70,14 @@ namespace LMS.WebAPI.Controllers
             _tskSvc.Manageusertask(patDE);
             return Ok();
         }*/
-    }
+        //[HttpDelete("{id}")]
+        //public IActionResult DeleteUsertask(int id)
+        //{
+        //    UserTaskDE patDE = new UserTaskDE();
+        //    patDE.DBoperation = DBoperations.Delete;
+        //    patDE.Id = id;
+        //    _tskSvc.Manageusertask(patDE);
+        //    return Ok();
+        //}
+    } 
 }
