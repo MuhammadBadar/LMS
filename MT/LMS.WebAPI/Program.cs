@@ -31,6 +31,7 @@ LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/NL
 builder.Services.AddIdentity<User, IdentityRole>(
         options =>
         {
+            options.User.RequireUniqueEmail = true;
             options.SignIn.RequireConfirmedAccount = false;
             options.Password.RequiredLength = 4;
             options.Password.RequireLowercase = false;

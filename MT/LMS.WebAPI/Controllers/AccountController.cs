@@ -45,7 +45,7 @@ namespace LMS.Controllers
             #region
             try
             {
-                var user = await _userManager.FindByNameAsync(model.UserName);
+                var user = await _userManager.FindByNameAsync(model.Email);
 
                 if (user != null)
                 {
