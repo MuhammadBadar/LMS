@@ -1,3 +1,4 @@
+import { TokenCheck } from './TokenCheck';
 
 
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
@@ -132,7 +133,7 @@ import { IconModule } from '@coreui/icons-angular';
     DatePipe,
     // { provide: HTTP_INTERCEPTORS, useClass: httpInterceptor, multi: true },
     //{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    AuthorizationCheck, SecurityService],
+    AuthorizationCheck,TokenCheck, SecurityService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 

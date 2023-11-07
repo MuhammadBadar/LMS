@@ -9,13 +9,21 @@ import { AccountModule } from './views/account/account.module';
 import { DefaultLayoutComponent } from './containers';
 import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
-import { LoginComponent } from './views/pages/login/login.component';
+// import { LoginComponent } from './views/pages/login/login.component';
+import { LoginComponent } from './views/security/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
+import { TokenClass } from 'typescript/lib/tsserverlibrary';
+import { TokenCheck } from './views/security/TokenCheck';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'security',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'secLogin',
+    redirectTo: 'secLogin',
     pathMatch: 'full'
   },
   {
@@ -72,6 +80,11 @@ const routes: Routes = [
           import('./views/security/security.module').then((m) => m.SecurityModule)
       },
 
+      {
+        path: 'sLogin',
+        loadChildren: () =>
+          import('./views/security/security.module').then((m) => m.SecurityModule)
+      },
       {
         path: 'dashboard',
         loadChildren: () =>
@@ -152,7 +165,15 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [TokenCheck],
     data: {
+      title: 'Login Page'
+    }
+  },
+  {
+    path: 'secLogin',
+    component: LoginComponent,
+    data:{
       title: 'Login Page'
     }
   },

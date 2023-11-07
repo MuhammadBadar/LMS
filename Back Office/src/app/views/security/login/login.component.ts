@@ -10,7 +10,7 @@ import { LoginVM } from '../models/LoginVM';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class  LoginComponent implements OnInit {
 
   info = new LoginVM;
   hide = true;

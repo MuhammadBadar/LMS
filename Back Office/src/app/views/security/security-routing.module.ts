@@ -8,19 +8,26 @@ import { Routes, RouterModule } from "@angular/router";
 import { AuthorizationCheck } from './AuthorizationCheck';
 import { LoginComponent } from './login/login.component';
 import { ManageUseraccountComponent } from './manage-useraccount/manage-useraccount.component';
+import { TokenCheck } from './TokenCheck';
 
 const routes: Routes = [
 
   {
     path: '',
     data: {
-      title: 'QamSoft Technologies'
+      title: 'KeyAccounting'
     },
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'securityLogin'
+        redirectTo: 'sLogin'
+      },
+      {
+        path: "sLogin",
+        component: LoginComponent,
+        canActivate: [TokenCheck],
+        pathMatch: "full"
       },
       {
         path: "securityLogin",
