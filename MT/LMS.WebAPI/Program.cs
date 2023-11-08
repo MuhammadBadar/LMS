@@ -37,6 +37,7 @@ builder.Services.AddIdentity<User, IdentityRole>(
             options.Password.RequireLowercase = false;
             options.Password.RequireUppercase = false;
             options.Password.RequireNonAlphanumeric = false;
+            options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@._-"; // Allow special characters like '@', '.', and '-'
         }
         )
     .AddEntityFrameworkStores<ApplicationDbContext>();

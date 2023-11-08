@@ -26,7 +26,7 @@ export class  LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   Login() {
-    this.login.userName = this.login.password;
+    // this.login.userName = this.login.password;
     this.secSvc.Login(this.login).subscribe({
       next: (data: any) => {
         console.warn(data.succeeded)

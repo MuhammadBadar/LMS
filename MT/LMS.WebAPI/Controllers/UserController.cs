@@ -41,11 +41,12 @@ namespace LMS.WebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(User user)
         {
+            
             //if (user.DirectSupervisorName != null) {
             //    var u = await userManager.FindByNameAsync(user.DirectSupervisorName);
             User data = new User
             {
-                   UserName = user.UserName,
+                   UserName = user.Email,
                 Email = user.Email,
                 UserPassword = user.PasswordHash,
                 //  PhoneNumber = user.PhoneNumber,
@@ -106,7 +107,7 @@ namespace LMS.WebAPI.Controllers
         public async Task<ActionResult> Update(User users)
         {
             User user = await userManager.FindByIdAsync(users.Id);
-             user.UserName = users.UserName;
+             user.UserName = users.Email;
             user.Email = users.Email;
            // user.PhoneNumber = users.PhoneNumber;
             //  user.DirectSupervisorId=users.DirectSupervisorId;

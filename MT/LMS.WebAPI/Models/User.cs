@@ -47,6 +47,7 @@ namespace LMS.Models
         [PersonalData]
         [Column(TypeName = "int")]
         public int? BranchId { get; set; }
+        public override string? UserName { get; set; }
     }
 
 

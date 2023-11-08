@@ -51,7 +51,7 @@ namespace LMS.Controllers
                 {
                     var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
                     var reslt = await _userManager.CheckPasswordAsync(user, model.Password);
-                    var results = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, true, true);
+                    var results = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, true, true);
                     if (!result.Succeeded)
                     {
                         return Ok(result);
@@ -76,7 +76,7 @@ namespace LMS.Controllers
                         id = user.Id,
                         userName = user.UserName,
                         email = user.Email,
-                        name = user.Name,
+                        /*name = user.Name,*/
                         role = roles,
                         token = _jwtToken.GenerateToken(user, roles)
 
