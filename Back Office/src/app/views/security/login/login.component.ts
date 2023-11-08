@@ -41,7 +41,7 @@ export class  LoginComponent implements OnInit {
             width: 600
           })
           localStorage.setItem("QamSoft Technologies_Token", data.token)
-          this.route.navigate(['/items/manageSetting'], { queryParams: { data: "QamSoft Technologies" } });
+          this.route.navigate(['/catalog/manageSetting'], { queryParams: { data: "QamSoft Technologies" } });
         }
         else {
           Swal.fire({

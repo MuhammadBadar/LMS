@@ -32,6 +32,10 @@
                 <input matInput required #userName="ngModel" name="userName" [(ngModel)]="selectedUser.userName" />
             </mat-form-field> -->
      
+            <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+              <mat-label>Email</mat-label>
+              <input matInput  #email="ngModel" name="email" [(ngModel)]="selectedUser.email" required>
+          </mat-form-field>
              <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
                   <mat-label>Password</mat-label>
               <input Password matInput required placeholder="passwordHash" [type]="hide ? 'password' : 'text'" #passwordHash="ngModel"
@@ -45,10 +49,7 @@
               Password is required to be at least 10 characters.
             </mat-error>
               </mat-form-field>
-              <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
-                  <mat-label>Email</mat-label>
-                  <input matInput  #email="ngModel" name="email" [(ngModel)]="selectedUser.email" required>
-              </mat-form-field>
+              
           </div>
           <div *ngIf="messagebox"
          style="background-color: rgb(212, 245, 234); color:rgb(218, 17, 17); padding: 15px;margin: 10px;width: 680; text-align: center; justify-content: center;">
