@@ -43,25 +43,25 @@ const routes: Routes = [
         path: "roles",
         component: ManageRoleComponent,
         pathMatch: "full",
-        // canActivate: [AuthorizationCheck]
+        canActivate: [AuthorizationCheck]
       },
       {
         path: "users",
         component: ManageUserComponent,
         pathMatch: "full",
-        // canActivate: [AuthorizationCheck]
+        canActivate: [AuthorizationCheck]
       },
       {
         path: "userAccount",
         component: ManageUseraccountComponent,
         pathMatch: "full",
-        // canActivate: [AuthorizationCheck]
+        canActivate: [AuthorizationCheck]
       },
       {
         path: "userrole",
         component: AssignRoleToUserComponent,
         pathMatch: "full",
-        // canActivate: [AuthorizationCheck]
+        canActivate: [AuthorizationCheck]
       },
     ]
   }

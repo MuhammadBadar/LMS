@@ -1,4 +1,13 @@
 
+<form method="post">
+  <input type="text" id="txtUserName" name="txtUserName" value="Ahmad"/> 
+
+  <input type="submit" id="btnSave" name="btnSave" value="Submit" />
+  <input type="button" id="btnCancel" name="btnCancel" value="Cancel" />
+
+</form>
+
+
 <div class="container-fluid page">
   <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
       <div *ngIf="Add">Manage User
@@ -37,6 +46,7 @@
               <input matInput  #email="ngModel" name="email" [(ngModel)]="selectedUser.email" required>
           </mat-form-field>
              <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+              <input type="hidden" id="id" name="id" value="7" />
                   <mat-label>Password</mat-label>
               <input Password matInput required placeholder="passwordHash" [type]="hide ? 'password' : 'text'" #passwordHash="ngModel"
              [(ngModel)]="selectedUser.passwordHash" name="passwordHash" maxlength="200" minlength="10"/>

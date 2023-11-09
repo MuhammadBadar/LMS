@@ -64,8 +64,8 @@
       <c-avatar cTextColor="primary" shape="rounded-8" size="md" style="background-color: whitesmoke;" status="success">
       </c-avatar>
     </button>
-    <!-- <ul cDropdownMenu class="pt-0 pr-5 w-auto">
-      <li>
+    <ul cDropdownMenu class="pt-1 pr-5 w-auto">
+      <!-- <li>
         <h6 cDropdownHeader class="bg-light fw-semibold py-2">Account</h6>
       </li>
       <li>
@@ -140,14 +140,14 @@
       </li>
       <li>
         <hr cDropdownDivider />
-      </li>
+      </li> -->
       <li>
-        <a routerLink="./" cDropdownItem>
+        <a routerLink="./" cDropdownItem (click)="LogOut()">
           <svg cIcon class="me-2" name="cilLockLocked"></svg>
           Lock Account
         </a>
       </li>
       <li></li>
-    </ul> -->
+    </ul>
   </c-dropdown>
 </ng-template>

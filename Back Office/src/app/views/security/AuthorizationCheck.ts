@@ -10,15 +10,19 @@ Info:any;
     }
 
  canActivate(): boolean  
+ 
  {
+   debugger;
+   console.log("Ahmad jilani");
    var token = localStorage.getItem('token');
    if(token){
       return true;
    }
    else
    {
+      localStorage.clear();
        alert("Please First Sign In to Get Access ")
-      this.router.navigate(['/security/userlogin']);
+      this.router.navigate(['/']);
       return true;
    }
 }

@@ -58,6 +58,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SettingsTypeVM } from './Models/SettingsTypeVM';
 import { SettingsVM } from './Models/SettingsVM';
+import { AuthorizationCheck } from '../security/AuthorizationCheck';
 
 
 @NgModule({
@@ -130,6 +131,6 @@ import { SettingsVM } from './Models/SettingsVM';
     FlexLayoutModule,
    
   ],
-  providers: [DatePipe, CatalogService],
+  providers: [DatePipe,AuthorizationCheck, CatalogService],
 })
 export class CatalogModule { }

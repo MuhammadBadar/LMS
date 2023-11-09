@@ -96,10 +96,10 @@ export const navItems: INavData[] = [
   //     }
   //   ]
   // },
-  {
-    name: 'Login',
-    url: '/securityLogin',
-  },
+  // {
+  //   name: 'Login',
+  //   url: '/securityLogin',
+  // },
   {
     name: 'Settings',
     url: '/catalog/manageSetting',

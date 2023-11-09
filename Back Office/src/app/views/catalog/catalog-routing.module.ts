@@ -4,6 +4,7 @@ import { SettingsVM } from './Models/SettingsVM';
 import { SettingsTypeVM } from './Models/SettingsTypeVM';
 import{ManageSettingsComponent}from './manage-settings/manage-settings.component';
 import{ManageSettingsTypeComponent}from './manage-settings-type/manage-settings-type.component';
+import { AuthorizationCheck } from '../security/AuthorizationCheck';
 const routes: Routes = [
   {
     path: '',
@@ -20,13 +21,15 @@ const routes: Routes = [
 {
          path: "manageSetting",
          component: ManageSettingsComponent,
-        pathMatch: "full"
+        pathMatch: "full",
+        canActivate: [AuthorizationCheck]
        },
 
        {
          path: "manageSettingType",
          component: ManageSettingsTypeComponent,
-        pathMatch: "full"
+        pathMatch: "full",
+        
        },
 ]
 }]; 

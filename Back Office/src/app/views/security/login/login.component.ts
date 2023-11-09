@@ -40,7 +40,7 @@ export class  LoginComponent implements OnInit {
             confirmButtonColor: "#000000",
             width: 600
           })
-          localStorage.setItem("QamSoft Technologies_Token", data.token)
+          localStorage.setItem("token", data.token)
           this.route.navigate(['/catalog/manageSetting'], { queryParams: { data: "QamSoft Technologies" } });
         }
         else {

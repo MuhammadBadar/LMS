@@ -6,15 +6,18 @@ import { Injectable } from '@angular/core';
 export class TokenCheck implements CanActivate {
     Info: any;
     constructor(private router: Router,
+        
         private catSvc: CatalogService
     ) {
 
     }
 
     canActivate(): boolean {
+        debugger;
         var token = localStorage.getItem('Token');
         if (token) {
             // this.catSvc.CheckandSet()
+            this.router.navigate(['/catalog/manageSetting'], { queryParams: { data: "QamSoft Technologies" } });
             return true;
         }
         else {
