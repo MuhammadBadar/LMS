@@ -9,7 +9,7 @@ import { ClassToggleService, HeaderComponent } from '@coreui/angular';
 })
 export class DefaultHeaderComponent extends HeaderComponent {
 
-  
+
   LogOut() {
     localStorage.clear()
     // this.catSvc.triggerRefresh()

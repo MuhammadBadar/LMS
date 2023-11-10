@@ -1,6 +1,6 @@
 import { CatalogService } from './catalog.service';
-import{ManageSettingsComponent}from './manage-settings/manage-settings.component';
-import{ManageSettingsTypeComponent}from './manage-settings-type/manage-settings-type.component';
+import { ManageSettingsComponent } from './manage-settings/manage-settings.component';
+import { ManageSettingsTypeComponent } from './manage-settings-type/manage-settings-type.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { CatalogRoutingModule } from './catalog-routing.module';
@@ -129,8 +129,8 @@ import { AuthorizationCheck } from '../security/AuthorizationCheck';
     MatTooltipModule,
     HttpClientModule,
     FlexLayoutModule,
-   
+
   ],
-  providers: [DatePipe,AuthorizationCheck, CatalogService],
+  providers: [DatePipe, AuthorizationCheck, CatalogService],
 })
 export class CatalogModule { }

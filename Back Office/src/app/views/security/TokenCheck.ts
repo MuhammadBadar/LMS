@@ -6,23 +6,23 @@ import { Injectable } from '@angular/core';
 export class TokenCheck implements CanActivate {
     Info: any;
     constructor(private router: Router,
-        
+
         private catSvc: CatalogService
     ) {
 
     }
 
-    canActivate(): boolean {
+    canActivate(routeSnapShot: ActivatedRouteSnapshot): boolean {
         debugger;
         var token = localStorage.getItem('Token');
         if (token) {
-            // this.catSvc.CheckandSet()
-            this.router.navigate(['/catalog/manageSetting'], { queryParams: { data: "QamSoft Technologies" } });
+            this.router.navigate(['/catalog/manageSetting']);
             return true;
         }
         else {
-            //alert("Please First Sign In to Get Access ")
-            this.router.navigate(['/secLogin']);
+            let route = routeSnapShot.data["Route"];
+            if (route != "secLogin")
+                this.router.navigate(['/secLogin']);
             return true;
         }
     }

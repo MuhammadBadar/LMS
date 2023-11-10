@@ -3,27 +3,24 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Activ
 
 @Injectable()
 export class AuthorizationCheck implements CanActivate {
-Info:any;
- constructor(private router: Router,
-  ) {
-      
-    }
+   Info: any;
+   constructor(private router: Router,
+   ) {
 
- canActivate(): boolean  
- 
- {
-   debugger;
-   console.log("Ahmad jilani");
-   var token = localStorage.getItem('token');
-   if(token){
-      return true;
    }
-   else
-   {
-      localStorage.clear();
-       alert("Please First Sign In to Get Access ")
-      this.router.navigate(['/']);
-      return true;
+
+   canActivate(): boolean {
+      debugger;
+      console.log("Ahmad jilani");
+      var token = localStorage.getItem('Token');
+      if (token) {
+         return true;
+      }
+      else {
+         localStorage.clear();
+         // alert("Please First Sign In to Get Access ")
+         this.router.navigate(['/']);
+         return true;
+      }
    }
-}
 }

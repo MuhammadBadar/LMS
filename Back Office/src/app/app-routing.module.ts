@@ -173,8 +173,10 @@ const routes: Routes = [
   {
     path: 'secLogin',
     component: LoginComponent,
-    data:{
-      title: 'Login Page'
+    canActivate: [TokenCheck],
+    data: {
+      title: 'Login Page',
+      Route: 'secLogin'
     }
   },
 

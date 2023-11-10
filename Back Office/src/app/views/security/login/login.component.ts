@@ -10,7 +10,7 @@ import { LoginVM } from '../models/LoginVM';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class  LoginComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   info = new LoginVM;
   hide = true;
@@ -40,8 +40,8 @@ export class  LoginComponent implements OnInit {
             confirmButtonColor: "#000000",
             width: 600
           })
-          localStorage.setItem("token", data.token)
-          this.route.navigate(['/catalog/manageSetting'], { queryParams: { data: "QamSoft Technologies" } });
+          localStorage.setItem("Token", data.token)
+          this.route.navigate(['/catalog/manageSetting']);
         }
         else {
           Swal.fire({
@@ -55,7 +55,7 @@ export class  LoginComponent implements OnInit {
         if (err.status == 400) {
           Swal.fire({
             icon: 'error',
-            title: 'Oops...',                                                                                                                                                            
+            title: 'Oops...',
             text: 'Invalid Request! ',
             footer: 'Please ReCheck  User Name Or Password',
             confirmButtonColor: "#000000"
