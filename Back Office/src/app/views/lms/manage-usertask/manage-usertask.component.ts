@@ -6,6 +6,7 @@ import { CatalogService } from '../../catalog/catalog.service';
 import { LMSService } from '../lms.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { SecurityService } from '../../security/security.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-manage-usertask',
   templateUrl: './manage-usertask.component.html',
@@ -33,9 +34,12 @@ export class ManageUsertaskComponent implements  OnInit {
     private lmsSvc: LMSService,
     private secSvc: SecurityService,
     private catSvc: CatalogService,
+    private route: Router,
     public dialog: MatDialog,) {
     this.selectedusertask = new UserTaskVM;
     this.IsChecked = false;
+    this.dialogRefe = this.injector.get(MatDialogRef, null);
+    this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
 
 
  
@@ -141,6 +145,9 @@ ngOnInit(): void {
     this.lmsSvc.SaveUsertasks(this.userTasks).subscribe({
       next: (value) => {
         this.catSvc.SuccessMsgBar("Successfully Added", 5000);
+        this.route.navigate(['/catalog/manageSetting']);
+        this.dialogRefe.close();
+
         // Remove selected rows from the dataSource
         this.dataSource.data = this.dataSource.data.filter(task => !selectedTaskIds.includes(task.id));
         this.userTasks = []; // Clear the selected tasks array

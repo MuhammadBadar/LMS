@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
 import { SCHService } from '../sch.serivce';
+import { error } from 'console';
 
 @Component({
   selector: 'app-manage-schedule-day-event',
@@ -307,7 +308,7 @@ SearchbyScheduleDayEvent( ){
       console.warn(value)
        this.dataSource = new MatTableDataSource(value)
      }, error: (err) => {
-    
+    console.warn(err)
        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
      },
    })}

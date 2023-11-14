@@ -5,8 +5,8 @@ export class ScheduleDayEventVM {
     day?: string
     scheduleTypeId: number = 0;
     scheduleType?: string        
-    startTime?: Date
-    endTime?: Date
+    startTime?: string
+    endTime?: string
     locationId: number = 0
     location?: string
     eventTypeId: number = 0
