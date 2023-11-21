@@ -24,6 +24,8 @@ import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-us
 import { ManageUsertaskComponent } from './manage-usertask/manage-usertask.component';
 import { ManageClientComponent } from './manage-client/manage-client.component';
 import { ManageDayStatusComponent } from './manage-day-status/manage-day-status.component';
+import { LoginComponent } from '../security/login/login.component';
+import { TokenCheck } from '../security/TokenCheck';
 
 const routes: Routes = [{
   path: '',
@@ -143,6 +145,15 @@ const routes: Routes = [{
       component: ManageUserreportComponent,
       pathMatch: "full"
     },
+    // {
+    //   path: 'secLogin',
+    //   component: LoginComponent,
+    //   canActivate: [TokenCheck],
+    //   data: {
+    //     title: 'Login Page',
+    //     Route: 'secLogin'
+    //   }
+    // },
   ]
   
 },

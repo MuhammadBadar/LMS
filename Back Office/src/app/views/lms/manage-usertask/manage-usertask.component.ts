@@ -22,11 +22,13 @@ export class ManageUsertaskComponent implements  OnInit {
   dialogData: any;
   dialogRefe: MatDialogRef<any, any>;
   userTasks: UserTaskVM[]=[];
+  selectedItems: UserTaskVM[] = [];
   userTask: UserTaskVM;
   selectedusertask: UserTaskVM;
   task: TaskVM[];
   pat: TaskVM[]=[];
   IsChecked: boolean;
+  responseData:any;
 
 
   constructor(
@@ -45,16 +47,36 @@ export class ManageUsertaskComponent implements  OnInit {
  
 }
 ngOnInit(): void {    
-  this.AddMode = true;
-  debugger;
- // this.GetTask();
-  const userId = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
-  this.GetTaskByUserId(userId);
-
   const storedUserTasks = localStorage.getItem('userTasks');
   if (storedUserTasks) {
     this.userTasks = JSON.parse(storedUserTasks);
+
+    // Set isChecked property in the dataSource based on stored state
+    this.dataSource.data.forEach(task => {
+      if (this.userTasks.some(selectedTask => selectedTask.taskId === task.id)) {
+        task.ischecked = true;
+      }
+    });
   }
+  this.AddMode = true;
+  // this.dialogData.data;
+  console.warn(this.dialogData);
+  if(this.dialogData){
+  if(this.dialogData.data){
+    this.responseData=this.dialogData.data;
+    localStorage.setItem('userId',this.responseData.id)
+  }
+}
+  debugger;
+ // this.GetTask();
+
+  const userId = localStorage.getItem('userId');
+  this.GetTaskByUserId(userId);
+
+  // const storedUserTasks = localStorage.getItem('userTasks');
+  // if (storedUserTasks) {
+  //   this.userTasks = JSON.parse(storedUserTasks);
+  // }
   // this.Savetask();
   // this.Searchtask();    
      }
@@ -103,66 +125,64 @@ ngOnInit(): void {
       })
       
     }
+    
+
     toggleRow(row, $event) {
       if ($event.checked) {
+        // If checked, create a new instance of UserTaskVM
         this.userTask = new UserTaskVM();
+    
+        // Set properties of the userTask object based on the row and other values
         this.userTask.taskId = row.id;
         this.userTask.userId = this.lmsSvc.userId;
         this.userTask.date = new Date();
         this.userTask.sp = row.sp; // Assign the sp value from the row
+        this.userTask.isChecked = true; // Set isChecked to true
+    
+        // Add the userTask object to the userTasks array
         this.userTasks.push(this.userTask);
       } else {
+        // If the event is not checked (false), find the index of the task with the specified taskId in userTasks array
         const index = this.userTasks.findIndex(task => task.taskId === row.id);
+    
+        // If the task is found (index is not -1), remove it from the userTasks array
         if (index !== -1) {
           this.userTasks.splice(index, 1);
         }
       }
     }
     
-  //   SaveAssignTask() {
-  //     debugger;
+      
+    Savetask() {
+      const selectedTaskIds = this.userTasks.map(task => task.taskId);
+      this.lmsSvc.SaveUsertasks(this.userTasks).subscribe({
+        next: (value) => {
+          this.catSvc.SuccessMsgBar("Successfully Added", 5000);
+          if (this.dialogRefe) {
+            this.route.navigate(['/catalog/manageSetting']);
+            localStorage.setItem("Token", this.responseData.token);
+            this.dialogRefe.close();
+          }
+    
+          // Update the isChecked property in the dataSource
+          this.dataSource.data.forEach(task => {
+            if (selectedTaskIds.includes(task.id)) {
+              task.ischecked = true;
+            }
+          });
+    
+          // Remove selected rows from the dataSource
+          this.userTasks = []; // Clear the selected tasks array
+        },
+        error: (err) => {
+          console.error('Error saving user tasks:', err);
+          this.catSvc.ErrorMsgBar('Error Occurred', 5000);
+        }
+      });
+    }
+    
 
-  //     // Check if the selectedusertask has been assigned (isChecked is true)
-  //     if (this.selectedusertask.isChecked==true) {
-  //       this.lmsSvc.SaveUsertask(this.selectedusertask).subscribe({
-  //         next: (value) => {
-  //           this.catSvc.SuccessMsgBar('Successfully Added', 5000);
-  //         },
-  //         error: (err) => {
-  //           console.error('Error saving user task:', err);
-  //           this.catSvc.ErrorMsgBar('Error Occurred', 5000);
-  //         }
-  //       });
-  //     } else {
-  //       // Show an error message or handle the case where the user hasn't checked the checkbox.
-  //       console.error('User task not assigned. Please check the checkbox.');
-  //       // You can show an error message to the user here if needed.
-  //     }
-  //   }
-  // }
-  Savetask() {
-    const selectedTaskIds = this.userTasks.map(task => task.taskId);
-    this.lmsSvc.SaveUsertasks(this.userTasks).subscribe({
-      next: (value) => {
-        this.catSvc.SuccessMsgBar("Successfully Added", 5000);
-        this.route.navigate(['/catalog/manageSetting']);
-        this.dialogRefe.close();
-
-        // Remove selected rows from the dataSource
-        this.dataSource.data = this.dataSource.data.filter(task => !selectedTaskIds.includes(task.id));
-        this.userTasks = []; // Clear the selected tasks array
-      },
-      error: (err) => {
-        console.error('Error saving user tasks:', err);
-        this.catSvc.ErrorMsgBar('Error Occurred', 5000);
-      }
-    });
-  }
+    
+    
   
-  // Refresh() {
-  //   // this.Savetask();
-  //   this.userTask = new UserTaskVM
-  //   this.EditMode = false
-  //   this.AddMode = true
-  // }
 }

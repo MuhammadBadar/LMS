@@ -56,7 +56,16 @@ namespace LMS.WebAPI.Controllers
             return Ok(schedule);
         }
 
-            [HttpGet]
+        [HttpGet("GetScheduleByUserIdForLogin")]
+        public ActionResult GetScheduleByUserIdForLogin(string userId)
+        {
+            //ScheduleDE Schedule = new ScheduleDE { UserId = userId };
+            var currentline = _schSVC.GetScheduleByUserIdForLogin(userId);
+                
+            return Ok(currentline);
+        }
+
+        [HttpGet]
 
         public IActionResult GetSchedule()
         {

@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
 import { EnumType } from '../../tms/models/EnumType';
 import { TaskVM } from '../Models/TaskVM';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-day-status',
@@ -29,6 +31,9 @@ export class ManageDayStatusComponent implements  OnInit{
   Add: boolean;
   Edit: boolean;
   @ViewChild('UserTaskForm', { static: true }) UserTaskForm: NgForm;
+
+  // dialogRefe: MatDialogRef<any, any>;
+  dialogrefe: any;
   
 
 
@@ -38,12 +43,14 @@ export class ManageDayStatusComponent implements  OnInit{
     public lmsSvc: LMSService,
     // private secSvc: SecurityService,
     private catSvc: CatalogService,
+    private route: Router,
     // public dialog: MatDialog,
     )
      {
     this.selectedTask = new UserTaskVM();
     this.selectedTask.claimId = 0;
     // this.IsChecked = false; 
+    this.dialogrefe = this.injector.get(MatDialogRef, null);
 }
 
 ngOnInit(): void {    
@@ -163,7 +170,8 @@ ngOnInit(): void {
         this.lmsSvc.UpdateUsertask(this.selectedTask).subscribe({
           next: (res) => {
             // Handle a successful update operation
-            this.catSvc.SuccessMsgBar("Successfully Updated!", 5000);
+            debugger;
+            this.catSvc.SuccessMsgBar("Successfully Updated!", 5000);    
             this.Add = true; // Set to Add mode
             this.Edit = false; // Disable Edit mode
             this.proccessing = false; // Reset the processing flag

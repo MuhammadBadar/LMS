@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    const userId = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
+  const userId = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
   this.GetTaskByUserId(userId);
   }
   GetTaskByUserId(userId: string) {
@@ -52,10 +52,12 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-  OpenUserDialog() {
+  OpenUserDialog(data) {
     this.dialogRef = this.dialog.open(ManageUsertaskComponent, {
        width: '1200px',
        height: '400px',
+       data: {data: data }
+       
       });
    
      this.dialogRef.afterClosed().subscribe((res: any) => {
@@ -70,7 +72,7 @@ export class LoginComponent implements OnInit {
         console.warn(data?.result?.succeeded)
         debugger
         if (data?.result?.succeeded == true) {
-          this.OpenUserDialog();
+          this.OpenUserDialog(data);
           // Swal.fire({
           //   position: 'center',
           //   title: 'Wellcome to QamSoft Technologies ',
@@ -78,7 +80,7 @@ export class LoginComponent implements OnInit {
           //   confirmButtonColor: "#000000",
           //   width: 600
           // })
-          localStorage.setItem("Token", data.token)
+          // localStorage.setItem("Token", data.token)
           // this.route.navigate(['/catalog/manageSetting']);
         }
         else {

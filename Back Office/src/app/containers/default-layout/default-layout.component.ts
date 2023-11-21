@@ -95,6 +95,11 @@ export class DefaultLayoutComponent implements OnInit {
     })
   }
   GetSettings() {
+    this.settings = []
+    this.subSettings = []
+    this.subSettings = []
+    this.navItems = []
+    navItems.splice(0, navItems.length);
     var type = new SettingsVM();
     this.itemSvc.SearchSettings(type).subscribe({
       next: (res: SettingsVM[]) => {

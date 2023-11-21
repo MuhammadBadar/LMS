@@ -139,7 +139,7 @@ namespace LMS.MicroERP.Services
                 cmd = LMSDataContext.OpenMySqlConnection();
                 LMSDataContext.StartTransaction(cmd);
 
-                string whereClause = $"WHERE UserId = '{userId}' AND IsActive = 1"; // Assuming IsActive is a column indicating active tasks
+                string whereClause = $"WHERE UserId = '{userId}' AND IsActive = 1 AND (statusId = {(int)Status.Open} OR statusId = {(int)Status.InProgress} ) "; // Assuming IsActive is a column indicating active tasks
 
                 tasks = _taskDAL.SearchTasks(whereClause);
 

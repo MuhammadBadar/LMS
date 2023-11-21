@@ -272,15 +272,14 @@ namespace LMS.Service
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
         }
-       
-        #region GetScheduleByUserId
 
-        public ScheduleDE GetScheduleByUserId(string userId)
+        #region GetScheduleByUserIdForLogin
+        public int GetScheduleByUserIdForLogin(string userId) 
         {
-            //List<ScheduleDE> list = new List<ScheduleDE>();
             ScheduleDE sch = new ScheduleDE();
             //bool closeConnectionFlag = false;
             MySqlCommand? cmd = null;
+            int dueSps = 0;
             try
             {
                 //cmd = LMSDataContext.OpenMySqlConnection();
@@ -289,45 +288,36 @@ namespace LMS.Service
                 #region Search
 
                 string whereClause = " Where 1=1";
-                if (!string.IsNullOrWhiteSpace(userId))                    
-                whereClause += $" AND UserId=\"{userId}\" AND IsActive ={true}";
+                if (!string.IsNullOrWhiteSpace(userId))
+                    whereClause += $" AND UserId=\"{userId}\" AND IsActive ={true}";
 
-                //if (int.dayIds !=default)
-                  //  whereClause += $" AND DayIds=\"{dayIds}\" ";
-
-                //if (mod.IsActive != default)
-                //    whereClause += $" AND IsActive ={mod.IsActive}";
                 var list = _schDAL.SearchSchedule(whereClause);
                 if (list.Count > 0)
                 {
                     sch = list.LastOrDefault();
                 }
-                
-                whereClause = "where 1=1";
-                    sch.ScheduleDays  = _schDAL.SearchScheduleDay(whereClause += $" AND SchId={sch.Id} AND IsActive ={true}");
 
-                //sch.ScheduleDays = schDays;
+                whereClause = "where 1=1";
+                sch.ScheduleDays = _schDAL.SearchScheduleDay(whereClause += $" AND SchId={sch.Id} AND IsActive ={true}");
 
                 if (sch.ScheduleDays != null && sch.ScheduleDays.Count > 0)
+                {
+                    List<ScheduleDayDE> currentDaySch = sch.ScheduleDays.Where(day => day.Day == DateTime.Now.DayOfWeek.ToString()).ToList();
+                    if(currentDaySch !=null && currentDaySch.Count() >0)
                     {
-                        foreach (var schDay in sch.ScheduleDays)
+                        whereClause = "where 1=1";
+                        currentDaySch[0].ScheduleDayEvents = _schDAL.SearchScheduleDayEvent(whereClause += $" AND ScheduleDayId={currentDaySch[0].Id} AND IsActive ={true}");
+                    }
+                    
+                    /*foreach (var schDay in sch.ScheduleDays)
+                    {
+                        if (schDay.DayId > 0)
                         {
-                            if (schDay.DayId>0)
-                            {
-                                sch.DayIds.Add(schDay.DayId);
+                            sch.DayIds.Add(schDay.DayId);
 
                             whereClause = "where 1=1";
                             schDay.ScheduleDayEvents = _schDAL.SearchScheduleDayEvent(whereClause += $" AND ScheduleDayId={schDay.Id} AND IsActive ={true}");
-                            /*foreach(var schDayEvent in schDayEvents)
-                            {
-                                schDay.Location = schDayEvent.Location;
-                                schDay.StartTime = schDayEvent.StartTime;
-                                schDay.EndTime = schDayEvent.EndTime;
-                                schDay.EventType = schDayEvent.EventType;
 
-                                // 15:00 - 18:00 Work - Rehman Pura
-                                schDay.SchDayEvents += schDayEvent.StartTime + " - " + schDayEvent.EndTime + "  " + schDayEvent.EventType + " " + schDayEvent.Location + " ,";
-                            }*/
                             foreach (var schDayEvent in schDay.ScheduleDayEvents)
                             {
                                 schDay.Location = schDayEvent.Location;
@@ -335,6 +325,110 @@ namespace LMS.Service
                                 schDay.EndTime = schDayEvent.EndTime;
                                 schDay.EventType = schDayEvent.EventType;
 
+                                // Check if the event is for the current day
+                                if (DateTime.TryParse(schDayEvent.StartTime, out DateTime eventStartTime) && eventStartTime.Date == DateTime.Today)
+                                {
+                                    // Process the event for the current day
+
+                                    // Construct the event string without the trailing comma if this is the last event.
+                                    string eventString = schDayEvent.StartTime + " - " + schDayEvent.EndTime + " " + schDayEvent.EventType + " " + schDayEvent.Location;
+
+                                    if (schDayEvent != schDay.ScheduleDayEvents.Last())
+                                    {
+                                        eventString += " , ";
+                                    }
+
+                                    schDay.SchDayEvents += eventString;
+                                }
+                                else
+                                {
+                                    // Break out of the loop once events for the current day are processed
+                                    break;
+                                }
+                            }
+
+
+
+
+                        }
+
+                    }*/
+                }
+                #endregion
+            }
+
+            catch (Exception exp)
+            {
+                //LMSDataContext.CancelTransaction(cmd);
+                throw exp;
+            }
+            finally
+            {
+                //if (closeConnectionFlag)
+                //LMSDataContext.CloseMySqlConnection(cmd);
+            }
+
+            sch.UserId = userId;
+            return dueSps;
+        }
+        #endregion
+
+        
+        #region GetScheduleByUserId
+        // This region defines the method for retrieving a user's schedule.
+        public ScheduleDE GetScheduleByUserId(string userId)
+        {
+            //List<ScheduleDE> list = new List<ScheduleDE>(); // Unused list declaration.
+            ScheduleDE sch = new ScheduleDE(); // Create a new ScheduleDE object to store the user's schedule.
+                                               //bool closeConnectionFlag = false; // Unused boolean variable.
+            MySqlCommand? cmd = null; // Nullable MySqlCommand variable for database commands.
+            try
+            {
+                //cmd = LMSDataContext.OpenMySqlConnection(); // Open a database connection - commented out.
+                //LMSDataContext.StartTransaction(cmd); // Start a database transaction - commented out.
+
+                #region Search // Start of the "Search" region for retrieving schedule-related information.
+
+                string whereClause = " Where 1=1"; // Initial WHERE clause for SQL queries.
+
+                // Check if userId is not null or empty, and add conditions to the WHERE clause.
+                if (!string.IsNullOrWhiteSpace(userId))
+                    whereClause += $" AND UserId=\"{userId}\" AND IsActive ={true}";
+
+                // Search for schedules based on the constructed WHERE clause.
+                var list = _schDAL.SearchSchedule(whereClause);
+
+                // If schedules are found, assign the last one to the 'sch' variable.
+                if (list.Count > 0)
+                {
+                    sch = list.LastOrDefault();
+                }
+
+                whereClause = "where 1=1"; // Reset the WHERE clause for schedule days.
+                                           // Search for schedule days based on the schedule ID and additional conditions.
+                sch.ScheduleDays = _schDAL.SearchScheduleDay(whereClause += $" AND SchId={sch.Id} AND IsActive ={true}");
+
+                // Check if schedule days are not null and not empty.
+                if (sch.ScheduleDays != null && sch.ScheduleDays.Count > 0)
+                {
+                    foreach (var schDay in sch.ScheduleDays)
+                    {
+                        // Iterate through each schedule day.
+                        if (schDay.DayId > 0)
+                        {
+                            sch.DayIds.Add(schDay.DayId); // Add the DayId to the list.
+
+                            whereClause = "where 1=1"; // Reset the WHERE clause for schedule day events.
+                                                       // Search for schedule day events based on the schedule day ID and additional conditions.
+                            schDay.ScheduleDayEvents = _schDAL.SearchScheduleDayEvent(whereClause += $" AND ScheduleDayId={schDay.Id} AND IsActive ={true}");
+
+                            foreach (var schDayEvent in schDay.ScheduleDayEvents)
+                            {
+                                // Iterate through each schedule day event.
+                                schDay.Location = schDayEvent.Location;
+                                schDay.StartTime = schDayEvent.StartTime;
+                                schDay.EndTime = schDayEvent.EndTime;
+                                schDay.EventType = schDayEvent.EventType;
 
                                 // Construct the event string without the trailing comma if this is the last event.
                                 string eventString = schDayEvent.StartTime + " - " + schDayEvent.EndTime + " " + schDayEvent.EventType + " " + schDayEvent.Location;
@@ -346,70 +440,27 @@ namespace LMS.Service
 
                                 schDay.SchDayEvents += eventString;
                             }
-
-                            /*ScheduleDayEvent previousEvent = null;
-
-                            foreach (var schDayEvent in schDayEvents)
-                            {
-                                schDay.Location = schDayEvent.Location;
-                                schDay.EventType = schDayEvent.EventType;
-
-                                if (previousEvent != null && schDayEvent.StartTime < previousEvent.EndTime)
-                                {
-                                    // Handle the condition where the start time is less than the previous end time.
-                                    // For example, you can set a flag, show a message, or log an error.
-                                }
-
-                                schDay.StartTime = schDayEvent.StartTime;
-                                schDay.EndTime = schDayEvent.EndTime;
-
-                                // Construct the event string without the trailing comma if this is the last event.
-                                string eventString = schDayEvent.StartTime + " - " + schDayEvent.EndTime + " " + schDayEvent.EventType + " " + schDayEvent.Location;
-
-                                if (schDayEvent != schDayEvents.Last())
-                                {
-                                    eventString += " , ";
-                                }
-
-                                schDay.SchDayEvents += eventString;
-
-                                previousEvent = schDayEvent; // Update the previous event for the next iteration.
-                            }*/
-
-
-
-
-
-
-                        }
-                        //sch.ScheduleDays.Add(schDay);
                         }
                     }
-                    
-                
-
+                }
 
                 #endregion
-
-
             }
-
             catch (Exception exp)
             {
-                //LMSDataContext.CancelTransaction(cmd);
-                throw exp;
+                //LMSDataContext.CancelTransaction(cmd); // Cancel the database transaction - commented out.
+                throw exp; // Rethrow the exception.
             }
             finally
             {
                 //if (closeConnectionFlag)
-                    //LMSDataContext.CloseMySqlConnection(cmd);
+                //    //LMSDataContext.CloseMySqlConnection(cmd); // Close the database connection - commented out.
             }
-            sch.UserId = userId;
-            return sch;
+            sch.UserId = userId; // Set the UserId property of the 'sch' object.
+            return sch; // Return the 'sch' object containing the user's schedule.
         }
-
-
         #endregion
+
 
     }
 }
