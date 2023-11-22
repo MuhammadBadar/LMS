@@ -351,14 +351,19 @@ namespace LMS.Service
         private float CalculateSchedulePoints(DateTime startTime, DateTime endTime)
         {
             // Your calculation logic goes here
-            // Example: Calculate the difference in hours as SPs
+            // Example: Calculate the difference in hours as SPs with fractional part
             TimeSpan timeDifference = endTime - startTime;
             float schedulePoints = (float)timeDifference.TotalHours;
-            // Round to one decimal place
-            schedulePoints = (float)Math.Round(schedulePoints, 1);
 
-            return schedulePoints;
+            // Round to one decimal place and format the result
+            string formattedSchedulePoints = schedulePoints.ToString("0.0");
+
+            // Convert the formatted string back to float
+            float roundedSchedulePoints = float.Parse(formattedSchedulePoints);
+
+            return roundedSchedulePoints;
         }
+
 
         #endregion
 
