@@ -21,6 +21,8 @@ namespace LMS.Core.Entities
         public string? EventType { get; set; }
         public string? Location { get; set; }
         public string? Day { get; set; }
+        // Add SchedulePoints property
+        public float SchedulePoints { get; set; }
 
         #endregion
 

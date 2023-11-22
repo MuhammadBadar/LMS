@@ -274,12 +274,13 @@ namespace LMS.Service
         }
 
         #region GetScheduleByUserIdForLogin
-        public int GetScheduleByUserIdForLogin(string userId) 
+        public float GetScheduleByUserIdForLogin(string userId)
         {
             ScheduleDE sch = new ScheduleDE();
             //bool closeConnectionFlag = false;
             MySqlCommand? cmd = null;
-            int dueSps = 0;
+            float dueSps = 0;
+
             try
             {
                 //cmd = LMSDataContext.OpenMySqlConnection();
@@ -302,61 +303,35 @@ namespace LMS.Service
 
                 if (sch.ScheduleDays != null && sch.ScheduleDays.Count > 0)
                 {
-                    List<ScheduleDayDE> currentDaySch = sch.ScheduleDays.Where(day => day.Day == DateTime.Now.DayOfWeek.ToString()).ToList();
-                    if(currentDaySch !=null && currentDaySch.Count() >0)
+                    List<ScheduleDayDE> currentDaySch = sch.ScheduleDays
+                        .Where(day => day.Day == DateTime.Now.DayOfWeek.ToString())
+                        .ToList();
+
+                    if (currentDaySch != null && currentDaySch.Count() > 0)
                     {
                         whereClause = "where 1=1";
                         currentDaySch[0].ScheduleDayEvents = _schDAL.SearchScheduleDayEvent(whereClause += $" AND ScheduleDayId={currentDaySch[0].Id} AND IsActive ={true}");
-                    }
-                    
-                    /*foreach (var schDay in sch.ScheduleDays)
-                    {
-                        if (schDay.DayId > 0)
+
+                        // Calculate SPs for each event
+                        foreach (var schDayEvent in currentDaySch[0].ScheduleDayEvents)
                         {
-                            sch.DayIds.Add(schDay.DayId);
+                            
+                            // Assuming StartTime and EndTime are in DateTime format
+                            DateTime startTime = DateTime.Parse(schDayEvent.StartTime);
+                            DateTime endTime = DateTime.Parse(schDayEvent.EndTime);
 
-                            whereClause = "where 1=1";
-                            schDay.ScheduleDayEvents = _schDAL.SearchScheduleDayEvent(whereClause += $" AND ScheduleDayId={schDay.Id} AND IsActive ={true}");
-
-                            foreach (var schDayEvent in schDay.ScheduleDayEvents)
-                            {
-                                schDay.Location = schDayEvent.Location;
-                                schDay.StartTime = schDayEvent.StartTime;
-                                schDay.EndTime = schDayEvent.EndTime;
-                                schDay.EventType = schDayEvent.EventType;
-
-                                // Check if the event is for the current day
-                                if (DateTime.TryParse(schDayEvent.StartTime, out DateTime eventStartTime) && eventStartTime.Date == DateTime.Today)
-                                {
-                                    // Process the event for the current day
-
-                                    // Construct the event string without the trailing comma if this is the last event.
-                                    string eventString = schDayEvent.StartTime + " - " + schDayEvent.EndTime + " " + schDayEvent.EventType + " " + schDayEvent.Location;
-
-                                    if (schDayEvent != schDay.ScheduleDayEvents.Last())
-                                    {
-                                        eventString += " , ";
-                                    }
-
-                                    schDay.SchDayEvents += eventString;
-                                }
-                                else
-                                {
-                                    // Break out of the loop once events for the current day are processed
-                                    break;
-                                }
-                            }
-
-
-
-
+                            // Calculate SPs based on the time difference (assuming SP is a numerical value)
+                            dueSps += CalculateSchedulePoints(startTime, endTime);
+                            
+                            // Assign the calculated SPs directly to the SchedulePoints property
+                            /*  schDayEvent.SchedulePoints = schedulePoints;*/
+                            
                         }
-
-                    }*/
+                        
+                    }
                 }
                 #endregion
             }
-
             catch (Exception exp)
             {
                 //LMSDataContext.CancelTransaction(cmd);
@@ -371,9 +346,23 @@ namespace LMS.Service
             sch.UserId = userId;
             return dueSps;
         }
+
+        // Function to calculate schedule points based on start time and end time
+        private float CalculateSchedulePoints(DateTime startTime, DateTime endTime)
+        {
+            // Your calculation logic goes here
+            // Example: Calculate the difference in hours as SPs
+            TimeSpan timeDifference = endTime - startTime;
+            float schedulePoints = (float)timeDifference.TotalHours;
+            // Round to one decimal place
+            schedulePoints = (float)Math.Round(schedulePoints, 1);
+
+            return schedulePoints;
+        }
+
         #endregion
 
-        
+
         #region GetScheduleByUserId
         // This region defines the method for retrieving a user's schedule.
         public ScheduleDE GetScheduleByUserId(string userId)
