@@ -275,13 +275,13 @@ namespace LMS.Service
         }
 
         #region GetScheduleByUserIdForLogin
-        public int GetScheduleByUserIdForLogin(string userId)
+        public float GetScheduleByUserIdForLogin(string userId)
         {
             ScheduleDE sch = new ScheduleDE();
             //bool closeConnectionFlag = false;
             MySqlCommand? cmd = null;
-            int dueSps = 0;
-            float Sps = 0;
+            float dueSps = 0;
+            TimeSpan Sps = new TimeSpan ();
 
             try
             {
@@ -301,45 +301,25 @@ namespace LMS.Service
                 }
 
                 whereClause = "where 1=1";
-                sch.ScheduleDays = _schDAL.SearchScheduleDay(whereClause += $" AND SchId={sch.Id} AND IsActive ={true}");
-
-                if (sch.ScheduleDays != null && sch.ScheduleDays.Count > 0)
-                {
-                    List<ScheduleDayDE> currentDaySch = sch.ScheduleDays
-                        .Where(day => day.Day == DateTime.Now.DayOfWeek.ToString()).ToList();
-
-                    if (currentDaySch != null && currentDaySch.Count() > 0)
+                List<ScheduleDayDE> currentDaySch = _schDAL.SearchScheduleDay(whereClause += $" AND SchId={sch.Id} and DAY=\"{DateTime.Now.DayOfWeek.ToString ()}\" AND IsActive ={true}");
+                    if (currentDaySch != null && currentDaySch.Count () > 0)
                     {
                         whereClause = "where 1=1";
-                        currentDaySch[0].ScheduleDayEvents = _schDAL.SearchScheduleDayEvent(whereClause += $" AND ScheduleDayId={currentDaySch[0].Id} AND IsActive ={true}");
-
-                        // Calculate SPs for each event
-                        foreach (var schDayEvent in currentDaySch[0].ScheduleDayEvents)
-                        {
-
-                            // Assuming StartTime and EndTime are in DateTime format
-                            TimeSpan startTime = TimeSpan.Parse(schDayEvent.StartTime);
-                            TimeSpan endTime = TimeSpan.Parse(schDayEvent.EndTime);
-
-                            // Calculate the time difference between endTime and startTime
-                            TimeSpan timeDifference = endTime - startTime;
-
-                            // Convert the time difference to total hours as a decimal number
-                            float schedulePoints = (float)timeDifference.TotalHours;
-
-                            // Add the schedule points to the total
-                            
-                            Sps += schedulePoints;
-
-                            // Assign the calculated SPs directly to the SchedulePoints property
-                            /*  schDayEvent.SchedulePoints = schedulePoints;*/
-
-                        }
-                        // Round off the float value to a specified number of decimal places
-                        dueSps = (int)Math.Round(Sps, 2); // Rounds to 2 decimal places
-
-                    }
+                        currentDaySch[0].ScheduleDayEvents = _schDAL.SearchScheduleDayEvent (whereClause += $" AND ScheduleDayId={currentDaySch[0].Id} AND IsActive ={true}");
+                        if (currentDaySch[0].ScheduleDayEvents != null && currentDaySch[0].ScheduleDayEvents.Count > 0)
+                            foreach (var schDayEvent in currentDaySch[0].ScheduleDayEvents)
+                            {
+                                TimeSpan startTime = TimeSpan.Parse (schDayEvent.StartTime);
+                                TimeSpan endTime = TimeSpan.Parse (schDayEvent.EndTime);
+                                TimeSpan timeDifference = endTime - startTime;
+                                Sps += timeDifference;
+                            }
+                        else
+                            Sps = TimeSpan.FromHours (4);
                 }
+                else
+                    Sps = TimeSpan.FromHours (4);
+                dueSps = (float)Math.Round (Sps.TotalHours, 2);
                 #endregion
             }
             catch (Exception exp)
