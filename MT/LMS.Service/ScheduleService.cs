@@ -297,11 +297,9 @@ namespace LMS.Service
                 var list = _schDAL.SearchSchedule(whereClause);
                 if (list.Count > 0)
                 {
-                    sch = list.LastOrDefault();
-                }
-
-                whereClause = "where 1=1";
-                List<ScheduleDayDE> currentDaySch = _schDAL.SearchScheduleDay(whereClause += $" AND SchId={sch.Id} and DAY=\"{DateTime.Now.DayOfWeek.ToString ()}\" AND IsActive ={true}");
+                    sch = list.LastOrDefault ();
+                    whereClause = "where 1=1";
+                    List<ScheduleDayDE> currentDaySch = _schDAL.SearchScheduleDay (whereClause += $" AND SchId={sch.Id} and DAY=\"{DateTime.Now.DayOfWeek.ToString ()}\" AND IsActive ={true}");
                     if (currentDaySch != null && currentDaySch.Count () > 0)
                     {
                         whereClause = "where 1=1";
@@ -316,6 +314,9 @@ namespace LMS.Service
                             }
                         else
                             Sps = TimeSpan.FromHours (4);
+                    }
+                    else
+                        Sps = TimeSpan.FromHours (4);
                 }
                 else
                     Sps = TimeSpan.FromHours (4);
