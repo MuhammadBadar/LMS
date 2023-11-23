@@ -1,4 +1,5 @@
-﻿using LMS.Core.Entities;
+﻿using Google.Protobuf.WellKnownTypes;
+using LMS.Core.Entities;
 using LMS.Core.Enums;
 using LMS.DAL;
 using MySql.Data.MySqlClient;
@@ -274,12 +275,13 @@ namespace LMS.Service
         }
 
         #region GetScheduleByUserIdForLogin
-        public float GetScheduleByUserIdForLogin(string userId)
+        public int GetScheduleByUserIdForLogin(string userId)
         {
             ScheduleDE sch = new ScheduleDE();
             //bool closeConnectionFlag = false;
             MySqlCommand? cmd = null;
-            float dueSps = 0;
+            int dueSps = 0;
+            float Sps = 0;
 
             try
             {
@@ -304,8 +306,7 @@ namespace LMS.Service
                 if (sch.ScheduleDays != null && sch.ScheduleDays.Count > 0)
                 {
                     List<ScheduleDayDE> currentDaySch = sch.ScheduleDays
-                        .Where(day => day.Day == DateTime.Now.DayOfWeek.ToString())
-                        .ToList();
+                        .Where(day => day.Day == DateTime.Now.DayOfWeek.ToString()).ToList();
 
                     if (currentDaySch != null && currentDaySch.Count() > 0)
                     {
@@ -315,19 +316,28 @@ namespace LMS.Service
                         // Calculate SPs for each event
                         foreach (var schDayEvent in currentDaySch[0].ScheduleDayEvents)
                         {
-                            
-                            // Assuming StartTime and EndTime are in DateTime format
-                            DateTime startTime = DateTime.Parse(schDayEvent.StartTime);
-                            DateTime endTime = DateTime.Parse(schDayEvent.EndTime);
 
-                            // Calculate SPs based on the time difference (assuming SP is a numerical value)
-                            dueSps += CalculateSchedulePoints(startTime, endTime);
+                            // Assuming StartTime and EndTime are in DateTime format
+                            TimeSpan startTime = TimeSpan.Parse(schDayEvent.StartTime);
+                            TimeSpan endTime = TimeSpan.Parse(schDayEvent.EndTime);
+
+                            // Calculate the time difference between endTime and startTime
+                            TimeSpan timeDifference = endTime - startTime;
+
+                            // Convert the time difference to total hours as a decimal number
+                            float schedulePoints = (float)timeDifference.TotalHours;
+
+                            // Add the schedule points to the total
                             
+                            Sps += schedulePoints;
+
                             // Assign the calculated SPs directly to the SchedulePoints property
                             /*  schDayEvent.SchedulePoints = schedulePoints;*/
-                            
+
                         }
-                        
+                        // Round off the float value to a specified number of decimal places
+                        dueSps = (int)Math.Round(Sps, 2); // Rounds to 2 decimal places
+
                     }
                 }
                 #endregion
