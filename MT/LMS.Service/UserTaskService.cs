@@ -130,10 +130,16 @@ namespace LMS.Service
                     WhereClause += $" AND ClaimId={_tsk.ClaimId}";
                 if (_tsk.Sp != default)
                     WhereClause += $" AND sp={_tsk.Sp}";
-                if (_tsk.Date != default)
-                    WhereClause += $" AND Date={_tsk.Date}";
+                if (_tsk.Date != default(DateTime))
+                    WhereClause += $" AND Date = '{_tsk.Date.ToString("yyyy-MM-dd")}'";
                 if (_tsk.IsActive != default && _tsk.IsActive == true)
                     WhereClause += $" AND IsActive=1";
+
+                /*if (_tsk.Date != null && _tsk.Date != default(DateTime))
+                {
+                    WhereClause += $" AND Date = '{_tsk.Date.Value.ToString("yyyy-MM-dd")}'";
+                }*/
+
 
 
                 retVal = _tskDAL.Searchusertask(WhereClause, cmd);

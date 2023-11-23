@@ -89,3 +89,11 @@
   .calander{
     color: white;
   }
+
+  .total-sp-message {
+  background-color: rgb(9, 42, 69); /* Green background color */
+  color: white; /* White text color */
+  padding: 10px; /* Add some padding */
+  border-radius: 5px; /* Rounded corners */
+  margin-bottom: 10px; /* Add margin to separate from other elements */
+}
