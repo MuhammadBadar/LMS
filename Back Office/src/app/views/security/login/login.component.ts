@@ -17,6 +17,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class LoginComponent implements OnInit {
 
+  //userId = 0;
   info = new LoginVM;
   hide = true;
   login: LoginVM = new LoginVM
@@ -35,8 +36,8 @@ export class LoginComponent implements OnInit {
 
   }
   ngOnInit(): void {
-  const userId = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
-  this.GetTaskByUserId(userId);
+  //const userId = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
+  //this.GetTaskByUserId(userId);
   }
   GetTaskByUserId(userId: string) {
     debugger;
@@ -71,8 +72,18 @@ export class LoginComponent implements OnInit {
         console.warn(data.succeeded)
         console.warn(data?.result?.succeeded)
         debugger
+        //this.userId = data?.id;
+        this.lmsSvc.userId = data?.id;
+        
         if (data?.result?.succeeded == true) {
-          this.OpenUserDialog(data);
+          if(data?.showDayStartDialogue == true)
+          {
+            this.OpenUserDialog(data);
+          }
+          else
+          {
+            alert("No dialogue is opened");
+          }
           // Swal.fire({
           //   position: 'center',
           //   title: 'Wellcome to QamSoft Technologies ',

@@ -59,7 +59,7 @@ namespace LMS.Service
                     TaskSearchCriteria sc = new TaskSearchCriteria();
 
                     // Set the TaskId property of the search criteria to the Task's Id
-                    sc.TaskId = _tsk.Id;
+                    sc.TaskId = _tsk.TaskId;
                     sc.UserId = _tsk.UserId;
                     sc.Date = _tsk.Date;
                     // Perform a search for existing tasks based on the specified criteria
@@ -152,7 +152,7 @@ namespace LMS.Service
                 if (_tsk.SP != default)
                     WhereClause += $" AND sp={_tsk.SP}";
                 if (_tsk.Date != default(DateTime))
-                    WhereClause += $" AND Date = ''{_tsk.Date.ToString("yyyy-MM-dd")}''";
+                    WhereClause += $" AND DATE(Date) = ''{_tsk.Date.ToString("yyyy-MM-dd")}''";
                 if (_tsk.IsActive != default && _tsk.IsActive == true)
                     WhereClause += $" AND IsActive=1";
 

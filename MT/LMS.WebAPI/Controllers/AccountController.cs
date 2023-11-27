@@ -1,5 +1,8 @@
-﻿using LMS.Core.Services.Token;
+﻿using LMS.Core.SearchCriteria;
+using LMS.Core.Services.Token;
+using LMS.MicroERP.Services;
 using LMS.Models;
+using LMS.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -70,7 +73,22 @@ namespace LMS.Controllers
 
 
                     var roles = await _userManager.GetRolesAsync(user);
-                    return Ok(new
+                    TaskSearchCriteria sc = new TaskSearchCriteria();
+
+                    // Set the TaskId property of the search criteria to the Task's Id
+                    //sc.TaskId = _tsk.TaskId;
+                    sc.UserId = user.Id; // _tsk.UserId;
+                    sc.Date = DateTime.Now; // _tsk.Date;
+                    // Perform a search for existing tasks based on the specified criteria
+                    var existingTask = new UserTaskService().Searchusertask(sc);
+                    // Check if there are no existing tasks found
+                    bool showDialogue = false;
+                    if (existingTask.Count == 0)
+                    {
+                        showDialogue = true;
+                    }
+                        // bool showDayStartDialogue = false;
+                        return Ok(new
                     {
                         result = results,
                         id = user.Id,
@@ -78,9 +96,10 @@ namespace LMS.Controllers
                         email = user.Email,
                         /*name = user.Name,*/
                         role = roles,
-                        token = _jwtToken.GenerateToken(user, roles)
+                        token = _jwtToken.GenerateToken(user, roles),
+                        showDayStartDialogue = showDialogue
 
-                    });
+                    }); ;
                 }
                 else
                 {

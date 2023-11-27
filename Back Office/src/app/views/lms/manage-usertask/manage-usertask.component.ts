@@ -101,6 +101,7 @@ export class ManageUsertaskComponent implements OnInit {
 
   Savetask() {
     const selectedTaskIds = this.userTasks.map(task => task.taskId);
+    debugger;
     this.lmsSvc.SaveUsertasks(this.userTasks).subscribe({
       next: (value) => {
         this.catSvc.SuccessMsgBar('Successfully Added', 5000);

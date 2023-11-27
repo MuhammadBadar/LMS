@@ -1,19 +1,18 @@
 <div class="container-fluid page">
   <div class="d-flex page_box p-3 mt-2 header-sticky" position="sticky">
-      <div *ngIf="AddMode">Day End</div>
-      <div *ngIf="EditMode">Edit Day End</div>
-      <div fxFlex fxLayout="row" fxLayoutAlign="end center" style="margin-top: 0; padding-top: 0;">
-        <button mat-icon-button style="color: white; margin-top: 0; padding-top: 0;" 
-            (click)="dialogrefe.close()" 
-            aria-label="Close dialog">
-            <mat-icon>close</mat-icon>
-        </button>
+    <div *ngIf="AddMode">Day End</div>
+    <div *ngIf="EditMode">Edit Day End</div>
+    <div fxFlex fxLayout="row" fxLayoutAlign="end center" style="margin-top: 0; padding-top: 0;">
+      <button mat-icon-button style="color: white; margin-top: 0; padding-top: 0;" (click)="dialogrefe.close()"
+        aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
     </div>
-    
+
   </div>
   <div class="page_content shadow p-3 position-relative">
-      <form #DayEndForm="ngForm">
-          <!-- <Row *ngIf="EditMode">
+    <form #DayEndForm="ngForm">
+      <!-- <Row *ngIf="EditMode">
               <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
                   <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
                       <mat-label>Task Title</mat-label>
@@ -62,101 +61,93 @@
               />
             </mat-form-field>
           </Row>       -->
-          <div fxLayoutAlign="end end">
-            <!-- <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveDayEnd()">Submit</button> -->
-            <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateUserTask()">Update</button>
-            <!-- <div>
+      <div fxLayoutAlign="end end">
+        <!-- <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveDayEnd()">Submit</button> -->
+        <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateUserTask()">Update</button>
+        <!-- <div>
                 <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
                     (click)="Refresh()">
                     <mat-icon>autorenew</mat-icon>
                 </button>
             </div> -->
-        </div>
-      </form>
+      </div>
+    </form>
 
-      <section class=" example-container mat-elevation-z8" 
-tabindex="0" 
-style="border-radius: 5px;margin-top: 20px;">
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-            
-      <!-- UserId Column -->
-      <ng-container matColumnDef="userId">
-        <th mat-header-cell *matHeaderCellDef>UserId</th>
-        <td mat-cell *matCellDef="let element">{{ element.userId }}</td>
-      </ng-container>
+    <section class=" example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;margin-top: 20px;">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-      <!-- UserName Column -->
-      <ng-container matColumnDef="userName">
-        <th mat-header-cell *matHeaderCellDef>UserName</th>
-        <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
-      </ng-container>
+        <!-- UserId Column -->
+        <ng-container matColumnDef="userId">
+          <th mat-header-cell *matHeaderCellDef>UserId</th>
+          <td mat-cell *matCellDef="let element">{{ element.userId }}</td>
+        </ng-container>
 
-       <!-- scoreSPs in Column -->
-       <ng-container matColumnDef="taskTitle">
-        <th mat-header-cell *matHeaderCellDef>Task Title</th>
-        <td mat-cell *matCellDef="let element">{{ element.title }}</td>
-      </ng-container>      
-    
-          <!-- scoreSPs in Column -->
-          <ng-container matColumnDef="sP">
-            <th mat-header-cell *matHeaderCellDef>SP's</th>
-            <td mat-cell *matCellDef="let element">{{ element.sp }}</td>
-          </ng-container>
-    
-          
-    
-          <!-- scoreSPs in Column -->
-          <ng-container matColumnDef="claim" >
-            <th  mat-header-cell *matHeaderCellDef >Percentage Completion</th>
-            
-            <td mat-cell *matCellDef="let element" >
-              <mat-form-field fxFill appearance="outline" class="form-group">
-                <mat-label>Percentage Completion</mat-label>
-                <mat-select [(ngModel)]="element.claimId" required name="ClaimId" [disabled]="!element.selectedTask">
-                    <mat-option *ngFor="let st of Claim" [value]="st.id">
-                        {{st.name}}
-                    </mat-option>
-                </mat-select>
+        <!-- UserName Column -->
+        <ng-container matColumnDef="userName">
+          <th mat-header-cell *matHeaderCellDef>UserName</th>
+          <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
+        </ng-container>
+
+        <!-- scoreSPs in Column -->
+        <ng-container matColumnDef="taskTitle">
+          <th mat-header-cell *matHeaderCellDef>Task Title</th>
+          <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+        </ng-container>
+
+        <!-- scoreSPs in Column -->
+        <ng-container matColumnDef="sP">
+          <th mat-header-cell *matHeaderCellDef>SP's</th>
+          <td mat-cell *matCellDef="let element">{{ element.sp }}</td>
+        </ng-container>
+
+
+
+        <!-- scoreSPs in Column -->
+        <ng-container matColumnDef="claim">
+          <th mat-header-cell *matHeaderCellDef>Percentage Completion</th>
+
+          <td mat-cell *matCellDef="let element">
+            <mat-form-field fxFill appearance="outline" class="form-group">
+              <mat-label>Percentage Completion</mat-label>
+              <mat-select [(ngModel)]="element.claimId" required name="ClaimId" [disabled]="!element.selectedTask">
+                <mat-option *ngFor="let st of Claim" [value]="st.id">
+                  {{st.name}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
-            </td>
-          </ng-container>   
+          </td>
+        </ng-container>
 
-          <ng-container matColumnDef="comments">
-            <th mat-header-cell *matHeaderCellDef >Comments</th>
-            <td mat-cell *matCellDef="let element" >
-              <mat-form-field  fxFill appearance="outline" class="form-group" >
-                <mat-label>Comments</mat-label>
-                <input
-                [disabled]="!element.selectedTask"
-                  matInput
-                  required
-                  #comments="ngModel"
-                  name="comments"
-                  [(ngModel)]="element.comments"
-                />
-              </mat-form-field>
-            </td>
-          </ng-container>   
+        <ng-container matColumnDef="comments">
+          <th mat-header-cell *matHeaderCellDef>Comments</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-form-field fxFill appearance="outline" class="form-group">
+              <mat-label>Comments</mat-label>
+              <input [disabled]="!element.selectedTask" matInput required #comments="ngModel" name="comments"
+                [(ngModel)]="element.comments" />
+            </mat-form-field>
+          </td>
+        </ng-container>
 
-          <ng-container matColumnDef="actions" stickyEnd="true">
-            <th mat-header-cell *matHeaderCellDef>
-              <p style="margin-top: 15px; font-size: 16px; text-align: center">
-                Actions
-              </p>
-            </th>
-            <td mat-cell *matCellDef="let row">
-              <div style="text-align: center">
-                <button
-                  mat-icon-button
-                  mat-sm-button
-                  (click)="EditUserTask(row)"
-                  style="color: #1e293b"
-                  cTooltip=" Edit User Task"
-                >
-                  <mat-icon>edit</mat-icon>
-                </button>
-  
-                <!-- <button
+        <ng-container matColumnDef="actions" stickyEnd="true">
+          <th mat-header-cell *matHeaderCellDef>
+            <p style="margin-top: 15px; font-size: 16px; text-align: center">
+              Actions
+            </p>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <div style="text-align: center">
+              <button mat-icon-button mat-sm-button (click)="EditUserTask(row)" style="color: #1e293b"
+                cTooltip=" Edit User Task">
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button mat-icon-button mat-sm-button *ngIf="EditMode" (click)="UpdateUserTask()" style="color: #1e293b"
+                cTooltip="Submit">
+                <mat-icon>done</mat-icon>
+              </button>
+
+              <!-- <button
                   mat-icon-button
                   mat-sm-button
                   color="warn"
@@ -165,13 +156,13 @@ style="border-radius: 5px;margin-top: 20px;">
                 >
                   <mat-icon>delete</mat-icon>
                 </button> -->
-              </div>
-            </td>
-          </ng-container>
+            </div>
+          </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-  </section>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </section>
   </div>
 </div>
