@@ -1,5 +1,6 @@
 ﻿using LMS.Core.Entities;
 using LMS.Core.Enums;
+using LMS.Core.SearchCriteria;
 using LMS.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,15 +21,18 @@ namespace LMS.WebAPI.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            UserTaskDE usr = new UserTaskDE();
-            List<UserTaskDE> values = _tskSvc.Searchusertask(usr);
+            //UserTaskDE usr = new UserTaskDE();
+            TaskSearchCriteria sc = new TaskSearchCriteria();
+            List<UserTaskDE> values = _tskSvc.Searchusertask(sc);
             return Ok(values);
         }
         [HttpGet("{id}")]
         public IActionResult GetusertaskById(int id)
         {
             List<UserTaskDE> list = new List<UserTaskDE>();
-            list = _tskSvc.Searchusertask(new UserTaskDE { Id = id });
+            TaskSearchCriteria sc = new TaskSearchCriteria();
+            sc.Id = id;
+            list = _tskSvc.Searchusertask(sc);
             return Ok(list[0]);
 
         }

@@ -13,7 +13,7 @@
   </div>
   <div class="page_content shadow p-3 position-relative">
       <form #DayEndForm="ngForm">
-          <Row *ngIf="EditMode">
+          <!-- <Row *ngIf="EditMode">
               <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
                   <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
                       <mat-label>Task Title</mat-label>
@@ -61,7 +61,7 @@
                 [(ngModel)]="selectedTask.comments"
               />
             </mat-form-field>
-          </Row>      
+          </Row>       -->
           <div fxLayoutAlign="end end">
             <!-- <button mat-raised-button *ngIf="AddMode" color="primary" (click)="SaveDayEnd()">Submit</button> -->
             <button mat-raised-button *ngIf="EditMode" color="primary" (click)="UpdateUserTask()">Update</button>
@@ -106,14 +106,36 @@ style="border-radius: 5px;margin-top: 20px;">
           
     
           <!-- scoreSPs in Column -->
-          <ng-container matColumnDef="claim">
-            <th mat-header-cell *matHeaderCellDef>Percentage Completion</th>
-            <td mat-cell *matCellDef="let element">{{ element.claim }}</td>
+          <ng-container matColumnDef="claim" >
+            <th  mat-header-cell *matHeaderCellDef >Percentage Completion</th>
+            
+            <td mat-cell *matCellDef="let element" >
+              <mat-form-field fxFill appearance="outline" class="form-group">
+                <mat-label>Percentage Completion</mat-label>
+                <mat-select [(ngModel)]="element.claimId" required name="ClaimId" [disabled]="!element.selectedTask">
+                    <mat-option *ngFor="let st of Claim" [value]="st.id">
+                        {{st.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            </td>
           </ng-container>   
 
           <ng-container matColumnDef="comments">
-            <th mat-header-cell *matHeaderCellDef>Comments</th>
-            <td mat-cell *matCellDef="let element">{{ element.comments }}</td>
+            <th mat-header-cell *matHeaderCellDef >Comments</th>
+            <td mat-cell *matCellDef="let element" >
+              <mat-form-field  fxFill appearance="outline" class="form-group" >
+                <mat-label>Comments</mat-label>
+                <input
+                [disabled]="!element.selectedTask"
+                  matInput
+                  required
+                  #comments="ngModel"
+                  name="comments"
+                  [(ngModel)]="element.comments"
+                />
+              </mat-form-field>
+            </td>
           </ng-container>   
 
           <ng-container matColumnDef="actions" stickyEnd="true">

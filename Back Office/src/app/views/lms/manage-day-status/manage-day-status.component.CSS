@@ -121,4 +121,8 @@ th {
     color: #333;
     border: 1px solid #ccc;
     /* Add more styles as needed */
-  }
+  } 
+
+  .mat-mdc-form-field {
+    margin-top: 20px;
+  }  

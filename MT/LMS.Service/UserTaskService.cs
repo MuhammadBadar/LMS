@@ -1,16 +1,9 @@
 ﻿using LMS.Core.Entities;
 using LMS.Core.Enums;
-using LMS.Core.ViewModel;
+using LMS.Core.SearchCriteria;
 using LMS.DAL;
-using LMS.MicroERP.DAL;
 using MySql.Data.MySqlClient;
 using NLog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LMS.Service
 {
@@ -57,11 +50,37 @@ namespace LMS.Service
                             _tsk.Id = lastId;
                         }
 
-                       counter += 1;
+                        counter += 1;
                     }
-                    
-                    retVal = _tskDAL.Manageusertask(_tsk, cmd);
-                    cmd = LMSDataContext.OpenMySqlConnection();
+                    // write code here to validate that a task for a single user can be saved for just one time only
+                    //var existingTask = //Searchusertask()
+
+                    // Create a TaskSearchCriteria object to define search criteria for existing tasks
+                    TaskSearchCriteria sc = new TaskSearchCriteria();
+
+                    // Set the TaskId property of the search criteria to the Task's Id
+                    sc.TaskId = _tsk.Id;
+                    sc.UserId = _tsk.UserId;
+                    sc.Date = _tsk.Date;
+                    // Perform a search for existing tasks based on the specified criteria
+                    var existingTask = Searchusertask(sc);
+                    // Check if there are no existing tasks found
+                    if (existingTask.Count == 0)
+                    {
+                        // If there are no existing tasks, proceed to save the new task
+
+                        // Manage the user task using the _tskDAL.Manageusertask method
+                        // Note: The cmd variable should have been initialized before this point
+                        // (e.g., using a using statement or other means of obtaining a MySqlCommand)
+                        retVal = _tskDAL.Manageusertask(_tsk, cmd);
+
+                        // Open a new MySqlConnection using the LMSDataContext.OpenMySqlConnection() method
+                        cmd = LMSDataContext.OpenMySqlConnection();
+                    }
+                    // If there are existing tasks, you may choose to handle this scenario accordingly
+                    // (e.g., provide a message to the user, log the attempt, etc.)
+                    // Alternatively, you might want to add an else block to handle this case explicitly.
+
 
                 }
 
@@ -110,7 +129,7 @@ namespace LMS.Service
         //    return tasks;
         //}
 
-        public List<UserTaskDE> Searchusertask(UserTaskDE _tsk)
+        public List<UserTaskDE> Searchusertask(TaskSearchCriteria _tsk)
         {
             List<UserTaskDE> retVal = new List<UserTaskDE>();
             bool closeConnectionFlag = false;
@@ -123,15 +142,17 @@ namespace LMS.Service
                 if (_tsk.Id != default)
                     WhereClause += $" AND Id={_tsk.Id}";
                 if (_tsk.UserId != default)
-                    WhereClause += $" AND UserId={_tsk.UserId}";
+                    //WhereClause += $" AND UserId='{_tsk.UserId}'";
+                    // WhereClause += $" and UserId = \'" + _tsk.UserId + "\'";
+                    WhereClause += $" and UserId = ''" + _tsk.UserId + "''";
                 if (_tsk.TaskId != default)
                     WhereClause += $" AND TaskId={_tsk.TaskId}";
                 if (_tsk.ClaimId != default)
                     WhereClause += $" AND ClaimId={_tsk.ClaimId}";
-                if (_tsk.Sp != default)
-                    WhereClause += $" AND sp={_tsk.Sp}";
+                if (_tsk.SP != default)
+                    WhereClause += $" AND sp={_tsk.SP}";
                 if (_tsk.Date != default(DateTime))
-                    WhereClause += $" AND Date = '{_tsk.Date.ToString("yyyy-MM-dd")}'";
+                    WhereClause += $" AND Date = ''{_tsk.Date.ToString("yyyy-MM-dd")}''";
                 if (_tsk.IsActive != default && _tsk.IsActive == true)
                     WhereClause += $" AND IsActive=1";
 
@@ -159,4 +180,3 @@ namespace LMS.Service
         #endregion
     }
 }
-    

@@ -34,9 +34,6 @@ export class ManageDayStatusComponent implements  OnInit{
 
   // dialogRefe: MatDialogRef<any, any>;
   dialogrefe: any;
-  
-
-
 
   constructor(
     private injector: Injector,
@@ -60,22 +57,6 @@ ngOnInit(): void {
   this.GetEnumValues(EnumType.Claim);
      }
 
-
-    //  GetTaskByUserId(userId: string) {
-    //   debugger;
-    //   this.lmsSvc.GetTaskByUserId(userId).subscribe({
-    //     next: (value: TaskVM[]) => {
-    //       debugger;
-    //       this.pat = value;
-    //       this.dataSource = new MatTableDataSource(this.pat);
-    //     },
-    //     error: (err) => {
-    //       alert('Error to retrieve tasks');
-    //       // Handle error as needed
-    //     }
-    //   });
-    // }
-
      GetEnumValues(etype: EnumType) {
       var Settings = new SettingsVM;
       Settings.enumTypeId = etype;
@@ -96,77 +77,21 @@ ngOnInit(): void {
     }
 
 
-    //  SaveDayEnd() {
-    //   if (this.selectedTask.title == null) {
-    //     this.catSvc.ErrorMsgBar("Please Enter Title.", 5000);
-    //     return;
-    //   }
-      
-    //   if (this.selectedTask.sp == null || this.selectedTask.sp == undefined) {
-    //     this.catSvc.ErrorMsgBar("Please Enter SP's.", 5000);
-    //     return;
-    //   }
-      
-    //   if(this.selectedTask.claimId == null || this.selectedTask.claimId == undefined)
-    //   {  
-    //     this.catSvc.ErrorMsgBar("Please select Percentage Completion.", 5000);
-    //     return; // Exit the function if either user or schedule type is empty
-    //   }
-    //   if (this.selectedTask.comments == null) {
-    //     this.catSvc.ErrorMsgBar("Please Enter Comments.", 5000);
-    //     return;
-    //   }
-    
-    //   this.lmsSvc.SaveUsertask(this.selectedTask).subscribe({
-    //     next: (value) => {
-    //       this.catSvc.SuccessMsgBar("Successfully Added", 5000);
-    //       // this.Refresh();
-    //     }, 
-    //     error: (err) => {
-    //       this.catSvc.ErrorMsgBar("Error Occurred", 5000);
-    //     },
-    //   });
-    // }
-
     EditUserTask(pat: UserTaskVM) {
+      this.selectedTask.selectedTask=false;
       this.EditMode = true
       this.AddMode = false
+      pat.selectedTask=true;
       this.selectedTask = pat
       this.selectedTask.isActive = true;
     }
-    
-    
-  
-    // UpdateUserTask() {
-    //   debugger;
-    //   this.proccessing = true;
-  
-    //   if (this.UserTaskForm)
-    //    {
-    //     this.lmsSvc.UpdateUsertask(this.selectedTask).subscribe({
-    //       next: (value) => {
-    //         this.catSvc.SuccessMsgBar("Successfully Updated", 5000);
-    //         this.Add = true;
-    //         this.Edit = false;
-    //         this.proccessing = false;
-    //         this.ngOnInit();
-    //       },
-    //       error: (err) => {
-    //         this.catSvc.ErrorMsgBar("Error Occurred", 5000);
-    //         console.warn(err);
-    //         this.proccessing = false;
-    //       }
-    //     });
-    //   } else {
-    //     this.catSvc.ErrorMsgBar("Please Fill all required fields!", 5000);
-    //     this.proccessing = false;
-    //   }
-    // }
     UpdateUserTask() {
       // You should implement validation and other necessary logic here
-      if (this.selectedTask.title && this.selectedTask.sp && this.selectedTask.claimId && this.selectedTask.comments) {
+      // if (this.selectedTask.title && this.selectedTask.sp && this.selectedTask.claimId && this.selectedTask.comments) 
+      if (this.selectedTask.claimId && this.selectedTask.comments) 
+      {
         this.proccessing = true; // Set a flag to indicate that an update operation is in progress
-    
+        console.warn(this.selectedTask);
         this.lmsSvc.UpdateUsertask(this.selectedTask).subscribe({
           next: (res) => {
             // Handle a successful update operation

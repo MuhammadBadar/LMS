@@ -10,6 +10,10 @@ namespace LMS.Core.SearchCriteria
 {
    public class TaskSearchCriteria:BaseSearchCriteria
     {
+        public int TaskId { get; set; }
+        public int ClaimId { get; set; }
+        public float SP { get; set; }
+        public DateTime Date { get; set; }
         public string? TaskPriority { get; set; }
         public int PriorityId { get; set; }
         public string? UserId { get; set; }
@@ -20,7 +24,7 @@ namespace LMS.Core.SearchCriteria
         public string? TaskStatus { get; set; }
         public string? Status { get; set; }
         public string? Title { get; set; }
-        public int SP { get; set; }
+        //public int SP { get; set; }
         public string? Description { get; set; }
         public List<AttachmentsDE> Attachments { get; set; }
         public TaskSearchCriteria()

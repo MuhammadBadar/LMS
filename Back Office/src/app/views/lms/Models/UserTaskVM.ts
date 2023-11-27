@@ -13,6 +13,7 @@ export class UserTaskVM {
     reviewedBy?:string 
     reviewComments?:string 
     isActive?: boolean
+    selectedTask:boolean = false;
     isChecked?: boolean; // Add this property
 	
 }

@@ -60,7 +60,7 @@ namespace LMS.WebAPI.Controllers
         public ActionResult GetScheduleByUserIdForLogin(string userId)
         {
             //ScheduleDE Schedule = new ScheduleDE { UserId = userId };
-            var currentline = _schSVC.GetScheduleByUserIdForLogin(userId);
+            var currentline = _schSVC.GetDueSPs(userId, DateTime.Now);
                 
             return Ok(currentline);
         }

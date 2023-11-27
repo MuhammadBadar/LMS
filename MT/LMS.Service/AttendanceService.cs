@@ -104,48 +104,56 @@ namespace LMS.Service
          
         }
 
+        // This method retrieves the schedule events for a specific user and day.
         public string GetScheduleTime(string userId, DateTime inputDate)
         {
+            // Initialize an empty string to store the schedule events
             string dayEvents = string.Empty;
-            var sch = _schSvc.GetScheduleByUserId(userId);
-            int dayOfWeekId = (int)inputDate.DayOfWeek; //
+
+            // Get the user's schedule based on the provided user ID
+            var userSchedule = _schSvc.GetScheduleByUserId(userId);
+
+            // Determine the day of the week from the provided date
+            int dayOfWeekId = (int)inputDate.DayOfWeek;
+
+            // Map the day of the week to a corresponding ID
             int dayId = -1;
-            //Sunday = 0,
-            //Monday = 1,
-            //Tuesday = 2,
-            //Wednesday = 3,
-            //Thursday = 4,
-            //Friday = 5,
-            //Saturday = 6
             switch (dayOfWeekId)
             {
-                case 0: dayId = 1003007; break;
-                case 1: dayId = 1003001; break;
-                case 2: dayId = 1003002; break;
-                case 3: dayId = 1003003; break;
-                case 4: dayId = 1003004; break;
-                case 5: dayId = 1003005; break;
-                case 6: dayId = 1003006; break;
+                // Map days of the week to specific IDs
+                case 0: dayId = 1003007; break; // Sunday
+                case 1: dayId = 1003001; break; // Monday
+                case 2: dayId = 1003002; break; // Tuesday
+                case 3: dayId = 1003003; break; // Wednesday
+                case 4: dayId = 1003004; break; // Thursday
+                case 5: dayId = 1003005; break; // Friday
+                case 6: dayId = 1003006; break; // Saturday
             }
 
-            var schDay = sch.ScheduleDays.Where(m => m.DayId == dayId).FirstOrDefault();
+            // Retrieve the schedule for the specified day
+            var daySchedule = userSchedule.ScheduleDays.Where(m => m.DayId == dayId).FirstOrDefault();
 
-            if (schDay != null)
+            // Check if the schedule for the specified day is not null
+            if (daySchedule != null)
             {
-                foreach (var dayEvent in schDay.ScheduleDayEvents)
+                // Iterate through the schedule events for the specified day
+                foreach (var eventDetail in daySchedule.ScheduleDayEvents)
                 {
-                    dayEvents += dayEvent.StartTime + " - " + dayEvent.EndTime + " ,";
+                    // Concatenate the start and end times into the dayEvents string
+                    dayEvents += eventDetail.StartTime + " - " + eventDetail.EndTime + " ,";
                 }
 
-                // Remove the trailing comma
+                // Remove the trailing comma from the concatenated string
                 if (!string.IsNullOrEmpty(dayEvents))
                 {
                     dayEvents = dayEvents.TrimEnd(',', ' '); // Trim the last comma and any extra whitespace
                 }
             }
 
+            // Return the final string representing schedule events for the specified day
             return dayEvents;
         }
+
 
     }
 }

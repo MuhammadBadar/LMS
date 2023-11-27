@@ -30,6 +30,11 @@ export class DefaultHeaderComponent extends HeaderComponent {
     });
   }
 
+  break(){
+    localStorage.clear();
+    this.route.navigate(['/secLogin']);
+  }
+
   LogOut() {
     // Open user dialog before logout
     this.OpenUserDialog();

@@ -274,14 +274,15 @@ namespace LMS.Service
             }
         }
 
-        #region GetScheduleByUserIdForLogin
-        public float GetScheduleByUserIdForLogin(string userId)
+        #region GetDueSPs
+        public float GetDueSPs(string userId, DateTime date)
         {
             ScheduleDE sch = new ScheduleDE();
             //bool closeConnectionFlag = false;
             MySqlCommand? cmd = null;
             float dueSps = 0;
             TimeSpan Sps = new TimeSpan ();
+            Sps = TimeSpan.FromHours(4);
 
             try
             {
@@ -299,7 +300,7 @@ namespace LMS.Service
                 {
                     sch = list.LastOrDefault ();
                     whereClause = "where 1=1";
-                    List<ScheduleDayDE> currentDaySch = _schDAL.SearchScheduleDay (whereClause += $" AND SchId={sch.Id} and DAY=\"{DateTime.Now.DayOfWeek.ToString ()}\" AND IsActive ={true}");
+                    List<ScheduleDayDE> currentDaySch = _schDAL.SearchScheduleDay (whereClause += $" AND SchId={sch.Id} and DAY=\"{date.DayOfWeek.ToString ()}\" AND IsActive ={true}");
                     if (currentDaySch != null && currentDaySch.Count () > 0)
                     {
                         whereClause = "where 1=1";
@@ -312,14 +313,15 @@ namespace LMS.Service
                                 TimeSpan timeDifference = endTime - startTime;
                                 Sps += timeDifference;
                             }
-                        else
-                            Sps = TimeSpan.FromHours (4);
+                        //else
+                         //   Sps = TimeSpan.FromHours (4);
                     }
-                    else
-                        Sps = TimeSpan.FromHours (4);
+                    //else
+                      //  Sps = TimeSpan.FromHours (4);
                 }
-                else
-                    Sps = TimeSpan.FromHours (4);
+                //else
+                  //  Sps = TimeSpan.FromHours (4);
+
                 dueSps = (float)Math.Round (Sps.TotalHours, 2);
                 #endregion
             }
