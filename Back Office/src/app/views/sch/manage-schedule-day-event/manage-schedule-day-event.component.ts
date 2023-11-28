@@ -84,6 +84,7 @@ schDay:ScheduleDayVM
       this.isDialog = true;
     console.warn(this.dialogData.scheduleLine)
       if (this.dialogData.scheduleLine != undefined) {
+        debugger;
         this.schDay = this.dialogData.scheduleLine
         this.day= this.schDay.day
          this.SearchbyScheduleDayEvent()
@@ -193,7 +194,7 @@ schDay:ScheduleDayVM
   }
 
   this.selectedDayEvent.schId = this.schSvc.selectedScheduleId;
-  this.selectedDayEvent.scheduleDayId = this.schSvc.selectedScheduleDayId;
+  this.selectedDayEvent.SchDayId = this.schSvc.selectedScheduleDayId;
   this.selectedDayEvent.isActive=true;
   // this.selectedSchedule.isActive = true;
   this.schSvc.SaveScheduleDayEvent(this.selectedDayEvent).subscribe({
@@ -300,9 +301,11 @@ schDay:ScheduleDayVM
 SearchbyScheduleDayEvent( ){
   debugger
     var evt = new ScheduleDayEventVM
-   evt.schId=this.schDay.scheduleId
+   //evt.schId=this.schDay.scheduleId;
+   evt.schId=this.schDay.schId;
+
    //evt.scheduleDayId= this.schDay.dayId
-   evt.scheduleDayId = this.schSvc.selectedScheduleDayId;
+   evt.SchDayId = this.schSvc.selectedScheduleDayId;
     this.schSvc.SearchScheduleDayEvent(evt).subscribe({
      next: (value: ScheduleDayEventVM[]) => {
       console.warn(value)

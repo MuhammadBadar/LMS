@@ -48,24 +48,54 @@ export class ManageUsertaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    debugger;
+    // Retrieve user tasks from local storage
     const storedUserTasks = localStorage.getItem('userTasks');
+
+    // Check if user tasks are present in local storage
     if (storedUserTasks) {
-      this.userTasks = JSON.parse(storedUserTasks);
-      this.dataSource.data.forEach(task => {
-        if (this.userTasks.some(selectedTask => selectedTask.taskId === task.id)) {
-          task.ischecked = true;
-          this.totalSP += task.sp;
-        }
-      });
+        // Parse user tasks from JSON format
+        this.userTasks = JSON.parse(storedUserTasks);
+
+        // Iterate through dataSource.data to update ischecked property based on userTasks
+        this.dataSource.data.forEach(task => {
+            if (this.userTasks.some(selectedTask => selectedTask.taskId === task.id)) {
+                task.ischecked = true;
+                // Update totalSP based on checked tasks
+                this.totalSP += task.sp;
+            }
+        });
     }
+
+    // Set AddMode to true
     this.AddMode = true;
+
+    // Check if dialogData and dialogData.data exist
     if (this.dialogData && this.dialogData.data) {
-      this.responseData = this.dialogData.data;
-      localStorage.setItem('userId', this.responseData.id);
+        // Assign dialogData.data to responseData
+        this.responseData = this.dialogData.data;
+
+        // Check if responseData has an 'id' property before setting it in local storage
+        if (this.responseData && this.responseData.id) {
+            // Set user ID in local storage
+            localStorage.setItem('userId', this.responseData.id);
+        } else {
+            console.error('User ID is missing in responseData');
+        }
     }
-    const userId = localStorage.getItem('userId');
-    this.GetTaskByUserId(userId);
-  }
+
+    // Retrieve user ID from local storage
+    //const userId =  localStorage.getItem('userId');
+
+    // Check if userId is not null before calling GetTaskByUserId
+    if (this.lmsSvc.userId !== null) {
+        // Load tasks based on user ID
+        this.GetTaskByUserId(this.lmsSvc.userId);
+    } else {
+        console.error('User ID is null');
+    }
+}
+
 
   toggleRow(row, $event) {
     if ($event.checked) {

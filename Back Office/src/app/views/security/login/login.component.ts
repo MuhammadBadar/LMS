@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   
   pat: TaskVM[]=[];
   dataSource: any;
+  responseData: any;
   constructor(
 
     public secSvc: SecurityService,
@@ -73,6 +74,7 @@ export class LoginComponent implements OnInit {
         console.warn(data?.result?.succeeded)
         debugger
         //this.userId = data?.id;
+        this.responseData = data;
         this.lmsSvc.userId = data?.id;
         
         if (data?.result?.succeeded == true) {
@@ -82,7 +84,10 @@ export class LoginComponent implements OnInit {
           }
           else
           {
-            alert("No dialogue is opened");
+            // alert("No dialogue is opened");
+            debugger;
+            this.route.navigate(['/catalog/manageSetting']);
+            localStorage.setItem('Token', this.responseData.token);
           }
           // Swal.fire({
           //   position: 'center',

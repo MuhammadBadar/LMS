@@ -35,6 +35,7 @@ export class ScheduleDayVM {
   isActive: boolean = true;
   dBoperation?: number;
   scheduleId?: number;
+  schId?: number;
   editMode: boolean = false
   userId: string
   schDayEvents: string
