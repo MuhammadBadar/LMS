@@ -92,6 +92,7 @@ export class ManageDayStatusComponent implements OnInit {
     this.selectedTask.isActive = true;
   }
   UpdateUserTask() {
+    debugger;
     // You should implement validation and other necessary logic here
     // if (this.selectedTask.title && this.selectedTask.sp && this.selectedTask.claimId && this.selectedTask.comments)
     if (this.selectedTask.claimId && this.selectedTask.comments) {

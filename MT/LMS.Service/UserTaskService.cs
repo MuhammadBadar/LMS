@@ -65,7 +65,7 @@ namespace LMS.Service
                     // Perform a search for existing tasks based on the specified criteria
                     var existingTask = Searchusertask(sc);
                     // Check if there are no existing tasks found
-                    if (existingTask.Count == 0)
+                    if (_tsk.DBoperation == DBoperations.Insert && existingTask.Count == 0)
                     {
                         // If there are no existing tasks, proceed to save the new task
 
@@ -75,7 +75,11 @@ namespace LMS.Service
                         retVal = _tskDAL.Manageusertask(_tsk, cmd);
 
                         // Open a new MySqlConnection using the LMSDataContext.OpenMySqlConnection() method
-                        cmd = LMSDataContext.OpenMySqlConnection();
+                        //cmd = LMSDataContext.OpenMySqlConnection();
+                    }
+                    else if(_tsk.DBoperation == DBoperations.Update)
+                    {
+                        retVal = _tskDAL.Manageusertask(_tsk, cmd);
                     }
                     // If there are existing tasks, you may choose to handle this scenario accordingly
                     // (e.g., provide a message to the user, log the attempt, etc.)
