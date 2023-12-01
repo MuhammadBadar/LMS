@@ -34,6 +34,7 @@ namespace LMS.DAL
                 /*cmd.Parameters.AddWithValue("claim", _tsk.Claim);*/
                 cmd.Parameters.AddWithValue("sp", _tsk.Sp);
                 cmd.Parameters.AddWithValue("comments", _tsk.Comments);
+                cmd.Parameters.AddWithValue("isDayEnded", _tsk.IsDayEnded);
                 cmd.Parameters.AddWithValue("reviewedby", _tsk.ReviewedBy);
                 cmd.Parameters.AddWithValue("reviewcomments", _tsk.ReviewComments);
                 cmd.Parameters.AddWithValue("createdOn", _tsk.CreatedOn);
@@ -47,11 +48,13 @@ namespace LMS.DAL
             }
             catch (Exception)
             {
+                
 
                 throw;
             }
             finally
             {
+                cmd.Parameters.Clear();
                 if (closeConnection)
                     LMSDataContext.CloseMySqlConnection(cmd);
             }

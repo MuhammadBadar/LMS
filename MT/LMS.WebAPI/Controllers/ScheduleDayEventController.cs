@@ -124,6 +124,7 @@ namespace LMS.WebAPI.Controllers
 
         public IActionResult GetScheduleDayEvents(int id)
         {
+            
             ScheduleDayEventSearchCriteria schSC = new ScheduleDayEventSearchCriteria();
             //schSC.SchId = schId;
             schSC.SchDayId = id;

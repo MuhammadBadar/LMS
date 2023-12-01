@@ -192,7 +192,7 @@ schDay:ScheduleDayVM
     this.catSvc.ErrorMsgBar("Please select Event Type.", 5000);
     return;
   }
-
+  debugger;
   this.selectedDayEvent.schId = this.schSvc.selectedScheduleId;
   this.selectedDayEvent.SchDayId = this.schSvc.selectedScheduleDayId;
   this.selectedDayEvent.isActive=true;

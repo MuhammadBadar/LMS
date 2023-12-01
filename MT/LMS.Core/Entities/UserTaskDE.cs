@@ -11,8 +11,6 @@ namespace LMS.Core.Entities
         public string UserId { get; set; }
         public int TaskId { get; set; }
         public string? Title { get; set; }
-
-
         public string? User { get; set; }
 
         public string? Parent { get; set; }
@@ -22,6 +20,7 @@ namespace LMS.Core.Entities
         public string? Claim { get; set; }
         public float Sp { get; set; }   
         public string? Comments { get; set; }
+        public bool IsDayEnded { get; set; }
         public string? ReviewedBy { get; set; }
 
         public string? ReviewComments { get; set; }

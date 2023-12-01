@@ -21,8 +21,7 @@ export class ManageDayStatusComponent implements OnInit {
     'taskTitle',
     'sP',
     'claim',
-    'comments',
-    'actions',
+    'comments',    
   ];
 
   AddMode: boolean = true;
@@ -31,7 +30,7 @@ export class ManageDayStatusComponent implements OnInit {
   hide = true;
   dataSource: any;
   pat: TaskVM[];
-  clien: UserTaskVM[];
+  _userTasks: UserTaskVM[];
   Claim: SettingsVM[] = [];
   proccessing: boolean;
   Add: boolean;
@@ -95,10 +94,10 @@ export class ManageDayStatusComponent implements OnInit {
     debugger;
     // You should implement validation and other necessary logic here
     // if (this.selectedTask.title && this.selectedTask.sp && this.selectedTask.claimId && this.selectedTask.comments)
-    if (this.selectedTask.claimId && this.selectedTask.comments) {
+    if (this.selectedTask.claimId) {
       this.proccessing = true; // Set a flag to indicate that an update operation is in progress
-      console.warn(this.selectedTask);
-      this.lmsSvc.UpdateUsertask(this.selectedTask).subscribe({
+      //console.warn(this.selectedTask);
+      this.lmsSvc.UpdateUsertasks(this._userTasks).subscribe({
         next: (res) => {
           // Handle a successful update operation
           debugger;
@@ -116,18 +115,18 @@ export class ManageDayStatusComponent implements OnInit {
           this.proccessing = false; // Reset the processing flag
         },
       });
-    } else {
-      // Handle validation errors or display an error message for missing fields
-      this.catSvc.ErrorMsgBar('Please fill in all required fields!', 5000);
-    }
+     } else {
+       // Handle validation errors or display an error message for missing fields
+       this.catSvc.ErrorMsgBar('Please fill Percentage Completion required fields!', 5000);
+     }
   }
 
   GetUserTask() {
     this.lmsSvc.GetUsertask().subscribe({
       next: (value: UserTaskVM[]) => {
         // debugger;
-        this.clien = value;
-        this.dataSource = new MatTableDataSource(this.clien);
+        this._userTasks = value;
+        this.dataSource = new MatTableDataSource(this._userTasks);
       },
       error: (err) => {
         alert('Error to retrieve Patient');

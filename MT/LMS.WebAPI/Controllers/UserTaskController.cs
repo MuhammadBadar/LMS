@@ -53,7 +53,25 @@ namespace LMS.WebAPI.Controllers
             return Ok(usr);
         }
         [HttpPut]
-        public ActionResult Put(UserTaskDE mod)
+        public ActionResult Put(List<UserTaskDE> tasks)
+        {
+            foreach (var item in tasks)
+                item.DBoperation = DBoperations.Update;
+
+            bool retVal = _tskSvc.Manageusertask(tasks);
+
+            if (retVal)
+            {
+                return Ok(tasks);
+            }
+            else
+            {
+                // Handle the case where the update operation failed
+                return BadRequest("Failed to update tasks");
+            }
+        }
+
+        /*public ActionResult Put(UserTaskDE mod)
         {
             List<UserTaskDE> tasks = new List<UserTaskDE>();
             tasks.Add(mod);
@@ -63,7 +81,7 @@ namespace LMS.WebAPI.Controllers
             //if(!retVal)
                 
             return Ok(mod);
-        }
+        }*/
         //[HttpDelete("{id}")]
         //public void Delete(int id)
         //{
@@ -88,5 +106,5 @@ namespace LMS.WebAPI.Controllers
         //    _tskSvc.Manageusertask(patDE);
         //    return Ok();
         //}
-    } 
+    }
 }

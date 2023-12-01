@@ -377,6 +377,9 @@ SaveUsertasks(tasks: UserTaskVM[]) {
 UpdateUsertask(value: UserTaskVM) {
   return this.http.put(Globals.BASE_API_URL + 'UserTask', value)
 }
+UpdateUsertasks(tasks: UserTaskVM[]) {
+  return this.http.put<UserTaskVM[]>(Globals.BASE_API_URL + 'UserTask', tasks)
+}
 DeleteUsertask(id: number) {
   return this.http.delete(Globals.BASE_API_URL + 'UserTask/' + id)
 }
