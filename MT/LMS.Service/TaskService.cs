@@ -167,7 +167,7 @@ namespace LMS.MicroERP.Services
 
         public List<UserTaskVM> SearchTasks(TaskSearchCriteria mod )
         {
-            List<UserTaskVM> Task = new List<UserTaskVM>();
+            List<UserTaskVM> tasks = new List<UserTaskVM>();
             List < AttachmentsDE> attchmt = new List<AttachmentsDE>();
             bool closeConnectionFlag = false;
             MySqlCommand cmd = null;
@@ -180,11 +180,11 @@ namespace LMS.MicroERP.Services
 
                 string whereClause ;
 
-                    whereClause = "where 1=1";
+                    whereClause = "where 1=1 AND ClaimId <> 1013001";
                     if (mod.Id != default)
                         whereClause += $" AND Id={mod.Id}";
-                    if (mod.IsActive != default)
-                        whereClause += $" AND IsActive={mod.IsActive}";
+                    /*if (mod.IsActive != default)
+                        whereClause += $" AND IsActive={mod.IsActive}";*/
                     if (mod.UserId != default)
                         whereClause += $" AND UserId like ''{mod.UserId}''";
                 if (mod.ModuleId != default)
@@ -213,11 +213,20 @@ namespace LMS.MicroERP.Services
                         if (mod.Description !="")
                             whereClause += $" AND Description like ''{mod.Description}''";
                     }
-            
-                Task = _taskDAL.SearchTasks(whereClause);
+
+                tasks = _taskDAL.SearchTasks(whereClause);
+
+
                  whereClause = "where 1=1";
-                foreach (var line in Task)
+                foreach (var line in tasks)
                 {
+                    int x = 60;
+                    int y = 100;
+                    var a = x / y;
+                    var v = a * line.SP;
+                    var b = line.SP - v;
+                    line.RemainingSPs = line.SP - (line.ClaimPercent/100) * line.SP;
+
                     line.Attachments = _taskDAL.SearchAttachments(whereClause += $" AND TaskId={line.Id}");
                 }
 
@@ -235,7 +244,7 @@ namespace LMS.MicroERP.Services
                 if (closeConnectionFlag)
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
-            return Task;
+            return tasks;
         }
 
         #endregion

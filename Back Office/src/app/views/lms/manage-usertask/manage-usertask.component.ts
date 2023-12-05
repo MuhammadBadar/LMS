@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./manage_usertask.component.css']
 })
 export class ManageUsertaskComponent implements OnInit {
-  displayedColumns: string[] = ['Task Title', 'sP', 'Priority', 'Assign'];
+  displayedColumns: string[] = ['Task Title', 'sP', 'Priority', 'ClaimPercent', 'RemainingSPs', 'Assign'];
 
   AddMode: boolean = true;
   EditMode: boolean = false;
@@ -48,12 +48,14 @@ export class ManageUsertaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger;
+    // debugger;
+    const userId = '2d3e9d56-ce3a-45a2-a782-0b2476d48f98';
     // Retrieve user tasks from local storage
     const storedUserTasks = localStorage.getItem('userTasks');
 
     // Check if user tasks are present in local storage
     if (storedUserTasks) {
+      debugger;
         // Parse user tasks from JSON format
         this.userTasks = JSON.parse(storedUserTasks);
 
@@ -90,6 +92,7 @@ export class ManageUsertaskComponent implements OnInit {
     // Check if userId is not null before calling GetTaskByUserId
     if (this.lmsSvc.userId !== null) {
         // Load tasks based on user ID
+        debugger;
         this.GetTaskByUserId(this.lmsSvc.userId);
     } else {
         console.error('User ID is null');
@@ -118,6 +121,7 @@ export class ManageUsertaskComponent implements OnInit {
   }
 
   GetTaskByUserId(userId: string) {
+    debugger;
     this.lmsSvc.GetTaskByUserId(userId).subscribe({
       next: (value: TaskVM[]) => {
         this.pat = value;

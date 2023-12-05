@@ -55,7 +55,7 @@ export class ManageDayStatusComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const userId = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
+    const userId = '2d3e9d56-ce3a-45a2-a782-0b2476d48f98';
     this.GetUserTask();
     // this.GetUserTask();
     this.GetEnumValues(EnumType.Claim);
@@ -94,7 +94,7 @@ export class ManageDayStatusComponent implements OnInit {
     debugger;
     // You should implement validation and other necessary logic here
     // if (this.selectedTask.title && this.selectedTask.sp && this.selectedTask.claimId && this.selectedTask.comments)
-    if (this.selectedTask.claimId) {
+    // if (this.selectedTask.claimId) {
       this.proccessing = true; // Set a flag to indicate that an update operation is in progress
       //console.warn(this.selectedTask);
       this.lmsSvc.UpdateUsertasks(this._userTasks).subscribe({
@@ -115,10 +115,10 @@ export class ManageDayStatusComponent implements OnInit {
           this.proccessing = false; // Reset the processing flag
         },
       });
-     } else {
-       // Handle validation errors or display an error message for missing fields
-       this.catSvc.ErrorMsgBar('Please fill Percentage Completion required fields!', 5000);
-     }
+    //  } else {
+    //    // Handle validation errors or display an error message for missing fields
+    //    this.catSvc.ErrorMsgBar('Please fill Percentage Completion required fields!', 5000);
+    //  }
   }
 
   GetUserTask() {

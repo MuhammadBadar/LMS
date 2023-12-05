@@ -28,6 +28,8 @@ namespace LMS.Core.ViewModel
         public string? DirectSupervisorEmail { get; set; }
         public string? DirectSupervisorName { get; set; }
         public List<AttachmentsDE> Attachments { get; set; }
+        public int ClaimPercent { get; set; }
+        public float RemainingSPs { get; set; }
         public UserTaskVM()
         {
             this.Attachments = new List<AttachmentsDE>();

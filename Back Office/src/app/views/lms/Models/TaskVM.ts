@@ -7,6 +7,8 @@ export class TaskVM {
     taskTitle? :  string
     storyPoints : string
     sp : number
+    claimPercent :number
+    remainingSPs : number
     date : Date
     dayEndStatus : number
     ischecked: boolean

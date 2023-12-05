@@ -33,7 +33,7 @@ import { UserTaskVM } from './Models/UserTaskVM';
 })
 export class LMSService {
 
-  userId: string = '';
+  userId: string = '2d3e9d56-ce3a-45a2-a782-0b2476d48f98';
 
   selectedTask: UserTaskVM;
 
@@ -371,13 +371,14 @@ SaveUsertask(task: UserTaskVM) {
   return this.http.post(Globals.BASE_API_URL + 'UserTask', task)
 }
 SaveUsertasks(tasks: UserTaskVM[]) {
-  debugger;
+  // debugger;
   return this.http.post<UserTaskVM[]>(Globals.BASE_API_URL + 'UserTask', tasks)
 }
 UpdateUsertask(value: UserTaskVM) {
   return this.http.put(Globals.BASE_API_URL + 'UserTask', value)
 }
 UpdateUsertasks(tasks: UserTaskVM[]) {
+  debugger;
   return this.http.put<UserTaskVM[]>(Globals.BASE_API_URL + 'UserTask', tasks)
 }
 DeleteUsertask(id: number) {

@@ -77,8 +77,9 @@ namespace LMS.Service
                         // Open a new MySqlConnection using the LMSDataContext.OpenMySqlConnection() method
                         //cmd = LMSDataContext.OpenMySqlConnection();
                     }
-                    else if(_tsk.DBoperation == DBoperations.Update)
+                    else if(_tsk.DBoperation == DBoperations.Update) // Day End
                     {
+                        _tsk.IsDayEnded = true;
                         retVal = _tskDAL.Manageusertask(_tsk, cmd);
                     }
                     // If there are existing tasks, you may choose to handle this scenario accordingly

@@ -41,6 +41,18 @@
           <td mat-cell *matCellDef="let element">{{ element.sp}}</td>
         </ng-container>
 
+        <!-- ClaimPercent in Column -->
+        <ng-container matColumnDef="ClaimPercent">
+          <th mat-header-cell *matHeaderCellDef>ClaimPercent</th>
+          <td mat-cell *matCellDef="let element">{{ element.claimPercent}}</td>
+        </ng-container>
+
+        <!-- RemainingSPs in Column -->
+        <ng-container matColumnDef="RemainingSPs">
+          <th mat-header-cell *matHeaderCellDef>RemainingSPs</th>
+          <td mat-cell *matCellDef="let element">{{ element.remainingSPs}}</td>
+        </ng-container>
+
         <!-- DayEndStatus Column -->
         <ng-container matColumnDef="Priority">
           <th mat-header-cell *matHeaderCellDef>Priority</th>
