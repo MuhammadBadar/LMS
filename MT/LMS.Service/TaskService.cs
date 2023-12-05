@@ -220,15 +220,11 @@ namespace LMS.MicroERP.Services
                  whereClause = "where 1=1";
                 foreach (var line in tasks)
                 {
-                    int x = 60;
-                    int y = 100;
-                    var a = x / y;
-                    var v = a * line.SP;
-                    var b = line.SP - v;
-                    line.RemainingSPs = line.SP - (line.ClaimPercent/100) * line.SP;
-
+                    float y = 100;
+                    line.RemainingSPs = (float)Math.Round(line.SP - ((line.ClaimPercent / y) * line.SP), 2);
                     line.Attachments = _taskDAL.SearchAttachments(whereClause += $" AND TaskId={line.Id}");
                 }
+
 
                 #endregion
 
