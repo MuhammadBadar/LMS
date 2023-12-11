@@ -31,6 +31,7 @@ export class ManageUsertaskComponent implements OnInit {
   IsChecked: boolean;
   responseData: any;
   totalSP: number = 0;
+  dueSps: number = 0;
   disableSubmitButton: boolean = true;
 
   constructor(
@@ -50,6 +51,7 @@ export class ManageUsertaskComponent implements OnInit {
   ngOnInit(): void {
     // debugger;
     const userId = '2d3e9d56-ce3a-45a2-a782-0b2476d48f98';
+    this.GetDueSps(userId);
     // Retrieve user tasks from local storage
     const storedUserTasks = localStorage.getItem('userTasks');
 
@@ -102,22 +104,23 @@ export class ManageUsertaskComponent implements OnInit {
 
   toggleRow(row, $event) {
     if ($event.checked) {
+      debugger;
       this.userTask = new UserTaskVM();
       this.userTask.taskId = row.id;
       this.userTask.userId = this.lmsSvc.userId;
       this.userTask.date = new Date();
-      this.userTask.sp = row.sp;
+      this.userTask.sp = row.remainingSPs;
       this.userTask.isChecked = true;
       this.userTasks.push(this.userTask);
-      this.totalSP += row.sp;
+      this.totalSP += row.remainingSPs;
     } else {
       const index = this.userTasks.findIndex(task => task.taskId === row.id);
       if (index !== -1) {
         this.userTasks.splice(index, 1);
-        this.totalSP -= row.sp;
+        this.totalSP -= row.remainingSPs;
       }
     }
-    this.disableSubmitButton = this.totalSP < 4;
+    this.disableSubmitButton = this.totalSP < this.dueSps;
   }
 
   GetTaskByUserId(userId: string) {
@@ -126,6 +129,20 @@ export class ManageUsertaskComponent implements OnInit {
       next: (value: TaskVM[]) => {
         this.pat = value;
         this.dataSource = new MatTableDataSource(this.pat);
+      },
+      error: (err) => {
+        alert('Error to retrieve tasks');
+      }
+    });
+  }
+
+  GetDueSps(userId: string) {
+    debugger;
+    this.lmsSvc.GetDueSps(userId).subscribe({
+      next: (value: any) => {
+        this.dueSps =value;
+        // this.pat = value;
+        // this.dataSource = new MatTableDataSource(this.pat);
       },
       error: (err) => {
         alert('Error to retrieve tasks');

@@ -47,52 +47,23 @@
               </mat-form-field> -->
 
               <mat-form-field fxFlex="33%" appearance="outline" class="timecontroller">
-                <mat-label>Start Time</mat-label>
-                <input matInput [ngxTimepicker]="startTimepicker" #startTime="ngModel" name="startTime"
-                  [(ngModel)]="selectedDayEvent.startTime" required readonly [format]="24" (change)="validateTimeRange()" />
-                <ngx-material-timepicker [timepickerClass]="'custom-class'" #startTimepicker></ngx-material-timepicker>
-              </mat-form-field>
+  <mat-label>Start Time</mat-label>
+  <input matInput [ngxTimepicker]="startTimepicker" #startTime="ngModel" name="startTime"
+         [(ngModel)]="selectedDayEvent.startTime" required readonly [format]="24" [min]="selectedDayEvent.endTime" (change)="validateTimeRange()" />
+  <ngx-material-timepicker [timepickerClass]="'custom-class'" #startTimepicker></ngx-material-timepicker>
+</mat-form-field>
+
+<mat-form-field fxFlex="33%" appearance="outline" class="timecontroller">
+  <mat-label>End Time</mat-label>
+  <input matInput [ngxTimepicker]="endTimepicker" #endTime="ngModel" name="endTime"
+         [(ngModel)]="selectedDayEvent.endTime" required readonly [min]="selectedDayEvent.startTime" [format]="24" (change)="validateTimeRange()" />
+  <ngx-material-timepicker [timepickerClass]="'custom-class'" #endTimepicker></ngx-material-timepicker>
+</mat-form-field>
+
               
-              <mat-form-field fxFlex="33%" appearance="outline" class="timecontroller">
-                <mat-label>End Time</mat-label>
-                <input matInput [ngxTimepicker]="endTimepicker" #endTime="ngModel" name="endTime"
-                  [(ngModel)]="selectedDayEvent.endTime" required readonly [format]="24" (change)="validateTimeRange()" />
-                <ngx-material-timepicker [timepickerClass]="'custom-class'" #endTimepicker></ngx-material-timepicker>
-              </mat-form-field>
+              <!-- <p *ngIf="timeRangeInvalid" style="color: red;">Start Time cannot be greater than End Time.</p> -->
               
-              <p *ngIf="timeRangeInvalid" style="color: red;">Start Time cannot be greater than End Time.</p>
-              
-              <!-- <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                <mat-label>Start Time</mat-label>
-                <input matInput #startTime="ngModel" name="startTime" [(ngModel)]="selectedDayEvent.startTime" (input)="validateTimeRange()" />
-              </mat-form-field>
-              
-              <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                <mat-label>End Time</mat-label>
-                <input matInput #endTime="ngModel" name="endTime" [(ngModel)]="selectedDayEvent.endTime" (input)="validateTimeRange()"/>
-                <div *ngIf="timeRangeInvalid" class="error-message msg-end-time">
-                  End Time should be greater than Start Time.
-                </div>
-              </mat-form-field> -->
-              <!-- <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                <mat-label>End Time</mat-label>
-                <input matInput required #endTime="ngModel" name="endTime" [(ngModel)]="selectedDayEvent.endTime" (input)="validateTimeRange()" required="true" />
-              </mat-form-field>
-              <mat-error class="form-text text-danger"
-                                   *ngIf="dayeventForm.controls['endTime']?.hasError('required') || dayeventForm.controls['endTime']?.hasError('minlength')">
-                                   End Time should be greater than Start Time.
-                                  </mat-error> -->
-              <!-- Display an error message when the time range is invalid -->
-             
-              
-                <!-- <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                  <mat-label>Start Time</mat-label>
-                  <input matInput required #startTime="ngModel" name="startTime" [(ngModel)]="selectedDayEvent.startTime" required="true" />
-              </mat-form-field>
-                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                    <mat-label>EndTime</mat-label>
-                    <input matInput required #endTime="ngModel" name="endTime" [(ngModel)]="selectedDayEvent.endTime" required="true" />
-                </mat-form-field> -->
+                
             <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
                 <mat-label> Select EventType</mat-label>
             <mat-select required name="eventTypeId" #eventTypeId="ngModel" required="true"

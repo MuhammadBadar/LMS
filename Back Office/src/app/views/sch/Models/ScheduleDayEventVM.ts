@@ -12,6 +12,7 @@ export class ScheduleDayEventVM {
     eventTypeId: number = 0
     eventType?: string
     isActive?: boolean
+    minEndTime: string;
     // parentId: number | undefined
     // enumTypeId: number | undefined
     

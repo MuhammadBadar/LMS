@@ -55,6 +55,11 @@ schDay:ScheduleDayVM
   startTime: null;
   endTime: null;  
   timeRangeInvalid: boolean = false;
+  previousEndTime: string;
+  // Assuming ScheduleDayEventVM has endTime property
+  minEndTime: string;
+minStartTime: string;
+  
 
 
   constructor(private injector: Injector,
@@ -170,44 +175,88 @@ schDay:ScheduleDayVM
   }
   
   
+  // Submit() {
+  //   // Submission logic here
+
+  //   // Check if both user and schedule type are selected
+  //   if (this.selectedDayEvent.locationId == 0) {
+  //     this.catSvc.ErrorMsgBar("Please select Location.", 5000);
+  //     return;
+  //   }
+
+  //   if (this.selectedDayEvent.startTime == null || this.selectedDayEvent.startTime == undefined) {
+  //     this.catSvc.ErrorMsgBar("Please select Start Time.", 5000);
+  //     return;
+  //   }
+
+  //   if (this.selectedDayEvent.endTime == null || this.selectedDayEvent.endTime == undefined) {
+  //     this.catSvc.ErrorMsgBar("Please select End Time.", 5000);
+  //     return; // Exit the function if either user or schedule type is empty
+  //   }
+
+  //   this.selectedDayEvent.schId = this.schSvc.selectedScheduleId;
+  //   this.selectedDayEvent.SchDayId = this.schSvc.selectedScheduleDayId;
+  //   this.selectedDayEvent.isActive = true;
+
+  //   // Save the event and update the previous end time
+  //   this.schSvc.SaveScheduleDayEvent(this.selectedDayEvent).subscribe({
+  //     next: (value) => {
+  //       this.catSvc.SuccessMsgBar("Successfully Added", 5000);
+  //       this.minEndTime = this.ScheduleDayEvents.map(event => event.endTime);
+  //       this.Refresh();
+  //       this.ngOnInit();
+  //     },
+  //     error: (err) => {
+  //       this.catSvc.ErrorMsgBar("Error Occurred", 5000);
+  //     },
+  //   });
+  // }
+
   Submit() {
     debugger;
-  // Check if both user and schedule type are selected
-  if (this.selectedDayEvent.locationId == 0) {
-    this.catSvc.ErrorMsgBar("Please select Location.", 5000);
-    return;
+    // Check if both user and schedule type are selected
+    if (this.selectedDayEvent.locationId == 0) {
+      this.catSvc.ErrorMsgBar("Please select Location.", 5000);
+      return;
+    }
+  
+    if (this.selectedDayEvent.startTime == null || this.selectedDayEvent.startTime == undefined) {
+      this.catSvc.ErrorMsgBar("Please select Start Time.", 5000);
+      return;
+    }
+  
+    if (this.selectedDayEvent.endTime == null || this.selectedDayEvent.endTime == undefined) {
+      this.catSvc.ErrorMsgBar("Please select End Time.", 5000);
+      return; // Exit the function if either user or schedule type is empty
+    }
+  
+    // Additional validation: Check if start time is greater than previous day event's end time
+    if (this.ScheduleDayEvents && this.ScheduleDayEvents.length > 0) {
+      const previousDayEvent = this.ScheduleDayEvents[this.ScheduleDayEvents.length - 1];
+  
+      if (previousDayEvent.endTime && this.selectedDayEvent.startTime <= previousDayEvent.endTime) {
+        this.catSvc.ErrorMsgBar("Start Time should be greater than the previous day event's End Time.", 5000);
+        return;
+      }
+    }
+  
+    this.selectedDayEvent.schId = this.schSvc.selectedScheduleId;
+    this.selectedDayEvent.SchDayId = this.schSvc.selectedScheduleDayId;
+    this.selectedDayEvent.isActive = true;
+  
+    // Save the event and update the previous end time
+    this.schSvc.SaveScheduleDayEvent(this.selectedDayEvent).subscribe({
+      next: (value) => {
+        this.catSvc.SuccessMsgBar("Successfully Added", 5000);
+        this.Refresh();
+        this.ngOnInit();
+      },
+      error: (err) => {
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000);
+      },
+    });
   }
   
-  if (this.selectedDayEvent.startTime == null || this.selectedDayEvent.startTime == undefined) {
-    this.catSvc.ErrorMsgBar("Please select Start Time.", 5000);
-    return;
-  }
-  
-  if(this.selectedDayEvent.endTime == null || this.selectedDayEvent.endTime == undefined)
-  {  
-    this.catSvc.ErrorMsgBar("Please select End Time.", 5000);
-    return; // Exit the function if either user or schedule type is empty
-  }
-  if (this.selectedDayEvent.eventTypeId == 0) {
-    this.catSvc.ErrorMsgBar("Please select Event Type.", 5000);
-    return;
-  }
-  debugger;
-  this.selectedDayEvent.schId = this.schSvc.selectedScheduleId;
-  this.selectedDayEvent.SchDayId = this.schSvc.selectedScheduleDayId;
-  this.selectedDayEvent.isActive=true;
-  // this.selectedSchedule.isActive = true;
-  this.schSvc.SaveScheduleDayEvent(this.selectedDayEvent).subscribe({
-    next: (value) => {
-      this.catSvc.SuccessMsgBar("Successfully Added", 5000);
-      this.Refresh();
-      this.ngOnInit();
-    }, 
-    error: (err) => {
-      this.catSvc.ErrorMsgBar("Error Occurred", 5000);
-    },
-  });
-}
 
   GetScheduleDayEvents() {
     // debugger;
@@ -219,6 +268,7 @@ schDay:ScheduleDayVM
       next: (value: ScheduleDayEventVM[]) => {
         // debugger;
         this.ScheduleDayEvents = value
+        
         console.warn(this.ScheduleDayEvents)
         this.dataSource = new MatTableDataSource(this.ScheduleDayEvents)
         // this.Refresh();
@@ -232,8 +282,12 @@ schDay:ScheduleDayVM
   validateTimeRange() {
     if (this.selectedDayEvent.startTime < this.selectedDayEvent.endTime) {
       this.timeRangeInvalid = true;
-    } else {
+    } 
+    else {
       this.timeRangeInvalid = false;
+    }
+    if (this.selectedDayEvent.endTime) {
+      this.minStartTime = this.selectedDayEvent.endTime;
     }
   }
   

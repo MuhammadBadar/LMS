@@ -4,6 +4,7 @@ using LMS.Core.ViewModel;
 using LMS.DAL;
 using MySql.Data.MySqlClient;
 using NLog;
+using Org.BouncyCastle.Utilities.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,6 +103,37 @@ namespace LMS.Service
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
          
+        }
+
+        public double GetDueSPs(string user, DateTime inputDate)
+        {
+            double dueSPs = 0.00;
+            string schTimes = GetScheduleTime(user, inputDate);
+            if(schTimes.Contains(','))
+            {
+                var timeIntervals = schTimes.Split(',');
+                foreach (var timeInterval in timeIntervals) 
+                { 
+                  var times = timeInterval.Split("-");
+                    if (times.Length > 1) 
+                    { 
+                        //foreach(var time in times)
+                        {
+                            var timeParts = times[0].Split(':');
+                            TimeSpan startTime = new TimeSpan(Convert.ToInt32(timeParts[0]), Convert.ToInt32(timeParts[1]), 0);
+
+                            timeParts = times[1].Split(':');
+                            TimeSpan endTime = new TimeSpan(Convert.ToInt32(timeParts[0]), Convert.ToInt32(timeParts[1]), 0);
+
+                            dueSPs += (endTime - startTime).TotalHours;
+                        }
+                        // var timeParts = times
+                        //TimeSpan startTime = new TimeSpan((times[0].Split(':'))[0])
+                    }
+                }
+            }
+
+            return dueSPs;
         }
 
         // This method retrieves the schedule events for a specific user and day.

@@ -275,70 +275,70 @@ namespace LMS.Service
         }
 
         #region GetDueSPs
-        public float GetDueSPs(string userId, DateTime date)
-        {
-            ScheduleDE sch = new ScheduleDE();
-            //bool closeConnectionFlag = false;
-            MySqlCommand? cmd = null;
-            float dueSps = 0;
-            TimeSpan Sps = new TimeSpan ();
-            Sps = TimeSpan.FromHours(4);
+        //public float GetDueSPs(string userId, DateTime date)
+        //{
+        //    ScheduleDE sch = new ScheduleDE();
+        //    //bool closeConnectionFlag = false;
+        //    MySqlCommand? cmd = null;
+        //    float dueSps = 0;
+        //    TimeSpan Sps = new TimeSpan ();
+        //    Sps = TimeSpan.FromHours(4);
 
-            try
-            {
-                //cmd = LMSDataContext.OpenMySqlConnection();
-                //LMSDataContext.StartTransaction(cmd);
+        //    try
+        //    {
+        //        //cmd = LMSDataContext.OpenMySqlConnection();
+        //        //LMSDataContext.StartTransaction(cmd);
 
-                #region Search
+        //        #region Search
 
-                string whereClause = " Where 1=1";
-                if (!string.IsNullOrWhiteSpace(userId))
-                    whereClause += $" AND UserId=\"{userId}\" AND IsActive ={true}";
+        //        string whereClause = " Where 1=1";
+        //        if (!string.IsNullOrWhiteSpace(userId))
+        //            whereClause += $" AND UserId=\"{userId}\" AND IsActive ={true}";
 
-                var list = _schDAL.SearchSchedule(whereClause);
-                if (list.Count > 0)
-                {
-                    sch = list.LastOrDefault ();
-                    whereClause = "where 1=1";
-                    List<ScheduleDayDE> currentDaySch = _schDAL.SearchScheduleDay (whereClause += $" AND SchId={sch.Id} and DAY=\"{date.DayOfWeek.ToString ()}\" AND IsActive ={true}");
-                    if (currentDaySch != null && currentDaySch.Count () > 0)
-                    {
-                        whereClause = "where 1=1";
-                        currentDaySch[0].ScheduleDayEvents = _schDAL.SearchScheduleDayEvent (whereClause += $" AND ScheduleDayId={currentDaySch[0].Id} AND IsActive ={true}");
-                        if (currentDaySch[0].ScheduleDayEvents != null && currentDaySch[0].ScheduleDayEvents.Count > 0)
-                            foreach (var schDayEvent in currentDaySch[0].ScheduleDayEvents)
-                            {
-                                TimeSpan startTime = TimeSpan.Parse (schDayEvent.StartTime);
-                                TimeSpan endTime = TimeSpan.Parse (schDayEvent.EndTime);
-                                TimeSpan timeDifference = endTime - startTime;
-                                Sps += timeDifference;
-                            }
-                        //else
-                         //   Sps = TimeSpan.FromHours (4);
-                    }
-                    //else
-                      //  Sps = TimeSpan.FromHours (4);
-                }
-                //else
-                  //  Sps = TimeSpan.FromHours (4);
+        //        var list = _schDAL.SearchSchedule(whereClause);
+        //        if (list.Count > 0)
+        //        {
+        //            sch = list.LastOrDefault ();
+        //            whereClause = "where 1=1";
+        //            List<ScheduleDayDE> currentDaySch = _schDAL.SearchScheduleDay (whereClause += $" AND SchId={sch.Id} and DAY=\"{date.DayOfWeek.ToString ()}\" AND IsActive ={true}");
+        //            if (currentDaySch != null && currentDaySch.Count () > 0)
+        //            {
+        //                whereClause = "where 1=1";
+        //                currentDaySch[0].ScheduleDayEvents = _schDAL.SearchScheduleDayEvent (whereClause += $" AND ScheduleDayId={currentDaySch[0].Id} AND IsActive ={true}");
+        //                if (currentDaySch[0].ScheduleDayEvents != null && currentDaySch[0].ScheduleDayEvents.Count > 0)
+        //                    foreach (var schDayEvent in currentDaySch[0].ScheduleDayEvents)
+        //                    {
+        //                        TimeSpan startTime = TimeSpan.Parse (schDayEvent.StartTime);
+        //                        TimeSpan endTime = TimeSpan.Parse (schDayEvent.EndTime);
+        //                        TimeSpan timeDifference = endTime - startTime;
+        //                        Sps += timeDifference;
+        //                    }
+        //                //else
+        //                 //   Sps = TimeSpan.FromHours (4);
+        //            }
+        //            //else
+        //              //  Sps = TimeSpan.FromHours (4);
+        //        }
+        //        //else
+        //          //  Sps = TimeSpan.FromHours (4);
 
-                dueSps = (float)Math.Round (Sps.TotalHours, 2);
-                #endregion
-            }
-            catch (Exception exp)
-            {
-                //LMSDataContext.CancelTransaction(cmd);
-                throw exp;
-            }
-            finally
-            {
-                //if (closeConnectionFlag)
-                //LMSDataContext.CloseMySqlConnection(cmd);
-            }
+        //        dueSps = (float)Math.Round (Sps.TotalHours, 2);
+        //        #endregion
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        //LMSDataContext.CancelTransaction(cmd);
+        //        throw exp;
+        //    }
+        //    finally
+        //    {
+        //        //if (closeConnectionFlag)
+        //        //LMSDataContext.CloseMySqlConnection(cmd);
+        //    }
 
-            sch.UserId = userId;
-            return dueSps;
-        }
+        //    sch.UserId = userId;
+        //    return dueSps;
+        //}
 
         // Function to calculate schedule points based on start time and end time
         private float CalculateSchedulePoints(DateTime startTime, DateTime endTime)

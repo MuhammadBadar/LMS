@@ -14,12 +14,14 @@ namespace LMS.WebAPI.Controllers
         #region Class Variables
 
         private ScheduleService _schSVC;
+        private AttendanceService _attSvc;
 
         #endregion
         #region Constructors
         public ScheduleController()
         {
             _schSVC = new ScheduleService();
+            _attSvc = new AttendanceService();
         }
 
         #endregion
@@ -56,13 +58,14 @@ namespace LMS.WebAPI.Controllers
             return Ok(schedule);
         }
 
-        [HttpGet("GetScheduleByUserIdForLogin")]
-        public ActionResult GetScheduleByUserIdForLogin(string userId)
+        [HttpGet("GetDueSps")]
+        public ActionResult GetDueSps(string userId)
         {
             //ScheduleDE Schedule = new ScheduleDE { UserId = userId };
-            var currentline = _schSVC.GetDueSPs(userId, DateTime.Now);
+            //var currentline = _schSVC.GetDueSPs(userId, DateTime.Now);
+            var sps = _attSvc.GetDueSPs(userId, DateTime.Now);
                 
-            return Ok(currentline);
+            return Ok(sps);
         }
 
         [HttpGet]

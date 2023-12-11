@@ -287,9 +287,9 @@ GetTaskByUserId(userId: string): Observable<TaskVM[]> {
   debugger;
   return this.http.get<TaskVM[]>(Globals.BASE_API_URL + 'Task/GetTasksByUserId/' + userId).pipe()
 }
-GetScheduleByUserIdForLogin(userId: string): Observable<TaskVM[]> {
+GetDueSps(userId: string): Observable<TaskVM[]> {
   debugger;
-  return this.http.get<TaskVM[]>(Globals.BASE_API_URL + 'Schedule/GetScheduleByUserIdForLogin?userId=' + userId).pipe()
+  return this.http.get<TaskVM[]>(Globals.BASE_API_URL + 'Schedule/GetDueSps?userId=' + userId).pipe()
 }
 
 GetTask(): Observable<TaskVM[]>{
