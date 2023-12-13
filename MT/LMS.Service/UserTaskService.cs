@@ -183,6 +183,40 @@ namespace LMS.Service
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
         }
+
+
+        public List<UserTaskDE> GetTodaysTasks(TaskSearchCriteria _tsk)
+        {
+            List<UserTaskDE> retVal = new List<UserTaskDE>();
+            bool closeConnectionFlag = false;
+            MySqlCommand? cmd = null;
+            try
+            {
+                cmd = LMSDataContext.OpenMySqlConnection();
+                closeConnectionFlag = true;
+                
+
+                /*if (_tsk.Date != null && _tsk.Date != default(DateTime))
+                {
+                    WhereClause += $" AND Date = '{_tsk.Date.Value.ToString("yyyy-MM-dd")}'";
+                }*/
+
+
+
+                retVal = _tskDAL.GetTodaysTasks(_tsk.UserId, cmd);
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                throw;
+            }
+            finally
+            {
+                if (closeConnectionFlag)
+                    LMSDataContext.CloseMySqlConnection(cmd);
+            }
+        }
         #endregion
     }
 }

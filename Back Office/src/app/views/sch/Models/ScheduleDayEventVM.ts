@@ -11,6 +11,7 @@ export class ScheduleDayEventVM {
     location?: string
     eventTypeId: number = 0
     eventType?: string
+    sp?: number
     isActive?: boolean
     minEndTime: string;
     // parentId: number | undefined

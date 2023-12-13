@@ -19,6 +19,7 @@ namespace LMS.Core.Entities
         #region View Properties
 
         public string? EventType { get; set; }
+        public double? Sp { get; set; }  
         public string? Location { get; set; }
         public string? Day { get; set; }
         // Add SchedulePoints property

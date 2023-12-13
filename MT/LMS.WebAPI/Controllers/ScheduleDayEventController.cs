@@ -4,6 +4,7 @@ using LMS.Core.Models;
 using LMS.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace LMS.WebAPI.Controllers
 {
@@ -109,8 +110,21 @@ namespace LMS.WebAPI.Controllers
         public IActionResult SearchScheduleDayEvent(ScheduleDayEventSearchCriteria schedule)
         {
             List<ScheduleDayEventDE> list = _schSVC.SearchScheduleDayEvent(schedule);
+
+            foreach (var val in list)
+            {
+                // Assuming StartTime and EndTime are in "HH:mm" format
+                DateTime startTime = DateTime.ParseExact(val.StartTime, "HH:mm", CultureInfo.InvariantCulture);
+                DateTime endTime = DateTime.ParseExact(val.EndTime, "HH:mm", CultureInfo.InvariantCulture);
+
+                // Calculate time difference and set Sp property
+                TimeSpan timeDifference = endTime - startTime;
+                val.Sp = Math.Round(timeDifference.TotalHours, 2); // Rounding off to 2 decimal places.
+            }
+
             return Ok(list);
         }
+
         [HttpGet("{id}")]
         public ActionResult GetScheduleDaysEventById(int id)
         {

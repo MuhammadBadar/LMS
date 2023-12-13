@@ -23,7 +23,7 @@ namespace LMS.WebAPI.Controllers
         {
             //UserTaskDE usr = new UserTaskDE();
             TaskSearchCriteria sc = new TaskSearchCriteria();
-            List<UserTaskDE> values = _tskSvc.Searchusertask(sc);
+            List<UserTaskDE> values = _tskSvc.GetTodaysTasks(sc);
             return Ok(values);
         }
         [HttpGet("{id}")]
@@ -32,7 +32,7 @@ namespace LMS.WebAPI.Controllers
             List<UserTaskDE> list = new List<UserTaskDE>();
             TaskSearchCriteria sc = new TaskSearchCriteria();
             sc.Id = id;
-            list = _tskSvc.Searchusertask(sc);
+            list = _tskSvc.GetTodaysTasks(sc);
             return Ok(list[0]);
 
         }

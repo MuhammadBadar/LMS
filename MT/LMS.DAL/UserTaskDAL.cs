@@ -84,6 +84,36 @@ namespace LMS.DAL
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
         }
+
+        #region GetTodaysTasks
+        public List<UserTaskDE> GetTodaysTasks(string UserId, MySqlCommand cmd = null)
+        {
+            bool closeConnection = false;
+            //WhereClause = string.Empty;
+            List<UserTaskDE> lec = new List<UserTaskDE>();
+            try
+            {
+                if (cmd == null)
+                {
+                    cmd = LMSDataContext.OpenMySqlConnection();
+                    closeConnection = true;
+                }
+                lec = cmd.Connection.Query<UserTaskDE>("call lms.GetTodaysTasks('" + UserId + "')").ToList();
+                return lec;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (closeConnection)
+                    LMSDataContext.CloseMySqlConnection(cmd);
+            }
+        }
+        #endregion
+
+
         #endregion
     }
 }

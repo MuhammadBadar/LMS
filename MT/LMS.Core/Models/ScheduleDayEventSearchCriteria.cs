@@ -14,6 +14,7 @@ namespace LMS.Core.Models
         public string? StartTime { get; set; }
         public string? EndTime { get; set; }
         public  int LocationId { get; set; }
+        public double Sp { get; set; }
         //public int EventTypeId { get; set; }    
         //public bool IsActive { get; set; }
     }

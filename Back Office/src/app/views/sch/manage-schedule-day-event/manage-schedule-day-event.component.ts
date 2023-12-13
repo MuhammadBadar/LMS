@@ -18,7 +18,7 @@ import { error } from 'console';
   styleUrls: ['./manage-schedule-day-event.component.css']
 })
 export class ManageScheduleDayEventComponent {
-  displayeScheduleColumns: string[] = ['location','startTime', 'endTime', 'eventType','actions'];
+  displayeScheduleColumns: string[] = ['location','startTime', 'endTime', 'eventType', 'sp','actions'];
   DayEventSource: any;
   proccessing: boolean | undefined;
   AddMode: boolean = true

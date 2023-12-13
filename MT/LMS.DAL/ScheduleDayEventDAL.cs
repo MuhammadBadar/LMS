@@ -32,6 +32,7 @@ namespace LMS.DAL
                 cmd.Parameters.AddWithValue("@StartTime", Events.StartTime);
                 cmd.Parameters.AddWithValue("@EndTime", Events.EndTime);
                 cmd.Parameters.AddWithValue("@EventTypeId", Events.EventTypeId);
+                cmd.Parameters.AddWithValue("@Sp", Events.Sp);
                 cmd.Parameters.AddWithValue("@SchId", Events.SchId);
                 cmd.Parameters.AddWithValue("@ScheduleDayId", Events.SchDayId);
                 cmd.Parameters.AddWithValue("@LocationId", Events.LocationId);

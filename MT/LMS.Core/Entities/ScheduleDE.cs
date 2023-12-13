@@ -27,6 +27,7 @@ namespace LMS.Core.Entities
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public DateTime? EffectiveDate { get; set; }
+        public string SchDayEvents { get; set; }
         public List<ScheduleDayDE> ScheduleDays{ get; set; }
 
 
