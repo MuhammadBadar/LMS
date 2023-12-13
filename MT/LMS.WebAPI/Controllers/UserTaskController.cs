@@ -21,11 +21,15 @@ namespace LMS.WebAPI.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            //UserTaskDE usr = new UserTaskDE();
             TaskSearchCriteria sc = new TaskSearchCriteria();
             List<UserTaskDE> values = _tskSvc.GetTodaysTasks(sc);
-            return Ok(values);
+
+            // Filter tasks to include only those with a UserId
+            List<UserTaskDE> filteredValues = values.Where(task => !string.IsNullOrEmpty(task.UserId)).ToList();
+
+            return Ok(filteredValues);
         }
+
         [HttpGet("{id}")]
         public IActionResult GetusertaskById(int id)
         {
