@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
   login: LoginVM = new LoginVM
   @ViewChild('userForm', { static: true }) userForm!: NgForm;
   dialogRef: any;
-  
-  pat: TaskVM[]=[];
+
+  pat: TaskVM[] = [];
   dataSource: any;
   responseData: any;
   constructor(
@@ -37,8 +37,8 @@ export class LoginComponent implements OnInit {
 
   }
   ngOnInit(): void {
-  //const userId = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
-  //this.GetTaskByUserId(userId);
+    //const userId = '0a714c07-6881-4740-8bcb-5a6bfd833eda';
+    //this.GetTaskByUserId(userId);
   }
   GetTaskByUserId(userId: string) {
     debugger;
@@ -56,16 +56,16 @@ export class LoginComponent implements OnInit {
   }
   OpenUserDialog(data) {
     this.dialogRef = this.dialog.open(ManageUsertaskComponent, {
-       width: '1200px',
-       height: '400px',
-       data: {data: data }
-       
-      });
-   
-     this.dialogRef.afterClosed().subscribe((res: any) => {
+      width: '1200px',
+      height: '400px',
+      data: { data: data }
+
+    });
+
+    this.dialogRef.afterClosed().subscribe((res: any) => {
       // this.GetTaskByUserId;
-      });
-   }
+    });
+  }
   Login() {
     // this.login.userName = this.login.password;
     this.secSvc.Login(this.login).subscribe({
@@ -76,14 +76,13 @@ export class LoginComponent implements OnInit {
         //this.userId = data?.id;
         this.responseData = data;
         this.lmsSvc.userId = data?.id;
-        
+
         if (data?.result?.succeeded == true) {
-          if(data?.showDayStartDialogue == true)
-          {
+          localStorage.setItem('userId', this.responseData.id);
+          if (data?.showDayStartDialogue == true) {
             this.OpenUserDialog(data);
           }
-          else
-          {
+          else {
             // alert("No dialogue is opened");
             debugger;
             this.route.navigate(['/catalog/manageSetting']);
