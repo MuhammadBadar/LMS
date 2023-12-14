@@ -41,13 +41,13 @@ namespace LMS.WebAPI.Controllers
 
         }
 
-        //[HttpPost("{Search}")]
-        //public ActionResult Search(UserTaskDE usr)
-        //{
-        //    //assignTask.IsActive = true;
-        //    List<UserTaskDE> values = _tskSvc.Searchusertask(usr);
-        //    return Ok(values);
-        //}
+        [HttpPost ("{Search}")]
+        public ActionResult Search ( TaskSearchCriteria usr )
+        {
+            //assignTask.IsActive = true;
+            List<UserTaskDE> values = _tskSvc.Searchusertask (usr);
+            return Ok (values);
+        }
         [HttpPost]
         public ActionResult Post(List<UserTaskDE> mod)
         {

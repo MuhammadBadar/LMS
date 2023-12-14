@@ -21,7 +21,7 @@ export class ManageDayStatusComponent implements OnInit {
     'taskTitle',
     'sP',
     'claim',
-    'comments',    
+    'comments',
   ];
 
   AddMode: boolean = true;
@@ -41,7 +41,7 @@ export class ManageDayStatusComponent implements OnInit {
   dialogrefe: any;
 
   constructor(
-    private injector: Injector,    
+    private injector: Injector,
     public lmsSvc: LMSService,
     // private secSvc: SecurityService,
     private catSvc: CatalogService,
@@ -95,26 +95,26 @@ export class ManageDayStatusComponent implements OnInit {
     // You should implement validation and other necessary logic here
     // if (this.selectedTask.title && this.selectedTask.sp && this.selectedTask.claimId && this.selectedTask.comments)
     // if (this.selectedTask.claimId) {
-      this.proccessing = true; // Set a flag to indicate that an update operation is in progress
-      //console.warn(this.selectedTask);
-      this.lmsSvc.UpdateUsertasks(this._userTasks).subscribe({
-        next: (res) => {
-          // Handle a successful update operation
-          debugger;
-          this.catSvc.SuccessMsgBar('Successfully Updated!', 5000);
-          this.Add = true; // Set to Add mode
-          this.Edit = false; // Disable Edit mode
-          this.proccessing = false; // Reset the processing flag
-          this.ngOnInit(); // Refresh the table
-          this.Refresh();
-        },
-        error: (e) => {
-          // Handle errors if the update operation fails
-          console.warn(e);
-          this.catSvc.ErrorMsgBar('Error Occurred', 5000);
-          this.proccessing = false; // Reset the processing flag
-        },
-      });
+    this.proccessing = true; // Set a flag to indicate that an update operation is in progress
+    //console.warn(this.selectedTask);
+    this.lmsSvc.UpdateUsertasks(this._userTasks).subscribe({
+      next: (res) => {
+        // Handle a successful update operation
+        debugger;
+        this.catSvc.SuccessMsgBar('Successfully Updated!', 5000);
+        this.Add = true; // Set to Add mode
+        this.Edit = false; // Disable Edit mode
+        this.proccessing = false; // Reset the processing flag
+        this.ngOnInit(); // Refresh the table
+        this.Refresh();
+      },
+      error: (e) => {
+        // Handle errors if the update operation fails
+        console.warn(e);
+        this.catSvc.ErrorMsgBar('Error Occurred', 5000);
+        this.proccessing = false; // Reset the processing flag
+      },
+    });
     //  } else {
     //    // Handle validation errors or display an error message for missing fields
     //    this.catSvc.ErrorMsgBar('Please fill Percentage Completion required fields!', 5000);
@@ -122,14 +122,17 @@ export class ManageDayStatusComponent implements OnInit {
   }
 
   GetUserTask() {
-    this.lmsSvc.GetUsertask().subscribe({
+    var uTasks = new UserTaskVM
+    uTasks.userId = localStorage.getItem("userId")
+    uTasks.isDayEnded = false
+    this.lmsSvc.SearchUsertask(uTasks).subscribe({
       next: (value: UserTaskVM[]) => {
         // debugger;
         this._userTasks = value;
         this.dataSource = new MatTableDataSource(this._userTasks);
       },
       error: (err) => {
-        alert('Error to retrieve Patient');
+        console.warn(err)
         this.catSvc.ErrorMsgBar('Error Occurred', 5000);
       },
     });

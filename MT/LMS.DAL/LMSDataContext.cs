@@ -117,7 +117,7 @@ namespace LMS.DAL
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw ;
             }
             finally
             {

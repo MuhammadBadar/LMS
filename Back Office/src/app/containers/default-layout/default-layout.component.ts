@@ -49,6 +49,7 @@ export class DefaultLayoutComponent implements OnInit {
   }
   GetSettingsType() {
     var type = new SettingsTypeVM();
+    type.isActive = true
     this.itemSvc.SearchSettingsType(type).subscribe({
       next: (res: SettingsTypeVM[]) => {
         this.SettingsType = res;
@@ -101,6 +102,7 @@ export class DefaultLayoutComponent implements OnInit {
     this.navItems = []
     navItems.splice(0, navItems.length);
     var type = new SettingsVM();
+    type.isActive = true
     this.itemSvc.SearchSettings(type).subscribe({
       next: (res: SettingsVM[]) => {
         this.Settings = res

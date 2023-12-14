@@ -24,6 +24,7 @@ namespace LMS.Core.SearchCriteria
         public string? TaskStatus { get; set; }
         public string? Status { get; set; }
         public string? Title { get; set; }
+        public bool? IsDayEnded { get; set; }
         //public int SP { get; set; }
         public string? Description { get; set; }
         public List<AttachmentsDE> Attachments { get; set; }

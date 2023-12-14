@@ -58,17 +58,17 @@ export class ManageUsertaskComponent implements OnInit {
     // Check if user tasks are present in local storage
     if (storedUserTasks) {
       debugger;
-        // Parse user tasks from JSON format
-        this.userTasks = JSON.parse(storedUserTasks);
+      // Parse user tasks from JSON format
+      this.userTasks = JSON.parse(storedUserTasks);
 
-        // Iterate through dataSource.data to update ischecked property based on userTasks
-        this.dataSource.data.forEach(task => {
-            if (this.userTasks.some(selectedTask => selectedTask.taskId === task.id)) {
-                task.ischecked = true;
-                // Update totalSP based on checked tasks
-                this.totalSP += task.sp;
-            }
-        });
+      // Iterate through dataSource.data to update ischecked property based on userTasks
+      this.dataSource.data.forEach(task => {
+        if (this.userTasks.some(selectedTask => selectedTask.taskId === task.id)) {
+          task.ischecked = true;
+          // Update totalSP based on checked tasks
+          this.totalSP += task.sp;
+        }
+      });
     }
 
     // Set AddMode to true
@@ -76,16 +76,16 @@ export class ManageUsertaskComponent implements OnInit {
 
     // Check if dialogData and dialogData.data exist
     if (this.dialogData && this.dialogData.data) {
-        // Assign dialogData.data to responseData
-        this.responseData = this.dialogData.data;
+      // Assign dialogData.data to responseData
+      this.responseData = this.dialogData.data;
 
-        // Check if responseData has an 'id' property before setting it in local storage
-        if (this.responseData && this.responseData.id) {
-            // Set user ID in local storage
-            localStorage.setItem('userId', this.responseData.id);
-        } else {
-            console.error('User ID is missing in responseData');
-        }
+      // Check if responseData has an 'id' property before setting it in local storage
+      if (this.responseData && this.responseData.id) {
+        // Set user ID in local storage
+        localStorage.setItem('userId', this.responseData.id);
+      } else {
+        console.error('User ID is missing in responseData');
+      }
     }
 
     // Retrieve user ID from local storage
@@ -93,13 +93,13 @@ export class ManageUsertaskComponent implements OnInit {
 
     // Check if userId is not null before calling GetTaskByUserId
     if (this.lmsSvc.userId !== null) {
-        // Load tasks based on user ID
-        debugger;
-        this.GetTaskByUserId(this.lmsSvc.userId);
+      // Load tasks based on user ID
+      debugger;
+      this.GetTaskByUserId(this.lmsSvc.userId);
     } else {
-        console.error('User ID is null');
+      console.error('User ID is null');
     }
-}
+  }
 
 
 toggleRow(row, $event) {
@@ -141,7 +141,7 @@ toggleRow(row, $event) {
     debugger;
     this.lmsSvc.GetDueSps(userId).subscribe({
       next: (value: any) => {
-        this.dueSps =value;
+        this.dueSps = value;
         // this.pat = value;
         // this.dataSource = new MatTableDataSource(this.pat);
       },
@@ -152,6 +152,7 @@ toggleRow(row, $event) {
   }
 
   Savetask() {
+    debugger
     const selectedTaskIds = this.userTasks.map(task => task.taskId);
     debugger;
     this.lmsSvc.SaveUsertasks(this.userTasks).subscribe({

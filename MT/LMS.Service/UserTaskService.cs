@@ -161,6 +161,8 @@ namespace LMS.Service
                     WhereClause += $" AND DATE(Date) = ''{_tsk.Date.ToString("yyyy-MM-dd")}''";
                  if (_tsk.IsActive != default && _tsk.IsActive == true)
                     WhereClause += $" AND IsActive=1";
+                if (_tsk.IsDayEnded.HasValue )
+                    WhereClause += $" AND IsDayEnded={_tsk.IsDayEnded}";
 
                 /*if (_tsk.Date != null && _tsk.Date != default(DateTime))
                 {
