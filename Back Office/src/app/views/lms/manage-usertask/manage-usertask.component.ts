@@ -102,26 +102,27 @@ export class ManageUsertaskComponent implements OnInit {
 }
 
 
-  toggleRow(row, $event) {
-    if ($event.checked) {
-      debugger;
-      this.userTask = new UserTaskVM();
-      this.userTask.taskId = row.id;
-      this.userTask.userId = this.lmsSvc.userId;
-      this.userTask.date = new Date();
-      this.userTask.sp = row.remainingSPs;
-      this.userTask.isChecked = true;
-      this.userTasks.push(this.userTask);
-      this.totalSP += row.remainingSPs;
-    } else {
-      const index = this.userTasks.findIndex(task => task.taskId === row.id);
-      if (index !== -1) {
-        this.userTasks.splice(index, 1);
-        this.totalSP -= row.remainingSPs;
-      }
+toggleRow(row, $event) {
+  if ($event.checked) {
+    debugger;
+    this.userTask = new UserTaskVM();
+    this.userTask.taskId = row.id;
+    this.userTask.userId = this.lmsSvc.userId;
+    this.userTask.date = new Date();
+    this.userTask.sp = parseFloat(row.remainingSPs.toFixed(2)); // Round off to 2 decimal places
+    this.userTask.isChecked = true;
+    this.userTasks.push(this.userTask);
+    this.totalSP = parseFloat(this.userTasks.reduce((total, task) => total + task.sp, 0).toFixed(2)); // Round off the total
+  } else {
+    const index = this.userTasks.findIndex(task => task.taskId === row.id);
+    if (index !== -1) {
+      this.userTasks.splice(index, 1);
+      this.totalSP = parseFloat(this.userTasks.reduce((total, task) => total + task.sp, 0).toFixed(2)); // Round off the total
     }
-    this.disableSubmitButton = this.totalSP < this.dueSps;
   }
+  this.disableSubmitButton = this.totalSP < this.dueSps;
+}
+
 
   GetTaskByUserId(userId: string) {
     debugger;
