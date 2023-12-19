@@ -12,6 +12,9 @@ import { NgForm } from '@angular/forms';
   templateUrl: './manage-branchschool.component.html',
   styleUrls: ['./manage-branchschool.component.css']
 })
+
+
+
 export class ManageBranchschoolComponent implements OnInit{
 displayedColumns: string[] = ['name','address','contactPerson','cellNo','isActive','actions']
 proccessing: boolean = false;

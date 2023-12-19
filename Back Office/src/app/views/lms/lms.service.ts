@@ -2,7 +2,13 @@ import { ClientVM } from './Models/ClientVM';
 
 import { TopicVM } from './Models/TopicVM';
 import { CourseDetailVM } from './Models/CourseDetailVM';
-
+import { AssignClassVM } from './Models/AssignClassVM';
+import { FeepaymentschoolVM } from './Models/FeepaymentschoolVM';
+import { FeetypeschoolVM } from './Models/FeetypeschoolVM';
+import { StudentschoolVM } from './Models/StudentschoolVM';
+import { GuardianschoolVM } from './Models/GuardianschoolVM';
+import { BranchschoolVM } from './Models/BranchschoolVM';
+import { SchoolVM } from './Models/SchoolVM';
 import { CourseVM } from './Models/CourseVM';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -387,6 +393,126 @@ DeleteUsertask(id: number) {
 }
 SearchUsertask(value: UserTaskVM): Observable<UserTaskVM[]> {
   return this.http.post<UserTaskVM[]>(Globals.BASE_API_URL + 'UserTask/Search', value).pipe();
+}
+
+GetSchool(): Observable<SchoolVM[]> {
+  return this.http.get<SchoolVM[]>(Globals.BASE_API_URL + 'School').pipe();
+}
+SaveSchool(value: SchoolVM) {
+  return this.http.post(Globals.BASE_API_URL + 'School', value)
+}
+UpdateSchool(value: SchoolVM) {
+  return this.http.put(Globals.BASE_API_URL + 'School', value)
+}
+DeleteSchool(id: number) {
+  return this.http.delete(Globals.BASE_API_URL + 'School/' + id)
+}
+SearchSchool(value: SchoolVM): Observable<SchoolVM[]> {
+  return this.http.post<SchoolVM[]>(Globals.BASE_API_URL + 'School/Search', value).pipe();
+}
+
+
+GetBranchschool(): Observable<BranchschoolVM[]> {
+  return this.http.get<BranchschoolVM[]>(Globals.BASE_API_URL + 'Branchschool').pipe();
+}
+SaveBranchschool(value: BranchschoolVM) {
+  return this.http.post(Globals.BASE_API_URL + 'Branchschool', value)
+}
+UpdateBranchschool(value: BranchschoolVM) {
+  return this.http.put(Globals.BASE_API_URL + 'Branchschool', value)
+}
+DeleteBranchschool(id: number) {
+  return this.http.delete(Globals.BASE_API_URL + 'Branchschool/' + id)
+}
+SearchBranchschool(value: BranchschoolVM): Observable<BranchschoolVM[]> {
+  return this.http.post<BranchschoolVM[]>(Globals.BASE_API_URL + 'Branchschool/Search', value).pipe();
+}
+
+
+GetGuardianschool(): Observable<GuardianschoolVM[]> {
+  return this.http.get<GuardianschoolVM[]>(Globals.BASE_API_URL + 'Guardianschool').pipe();
+}
+SaveGuardianschool(value: GuardianschoolVM) {
+  return this.http.post(Globals.BASE_API_URL + 'Guardianschool', value)
+}
+UpdateGuardianschool(value: GuardianschoolVM) {
+  return this.http.put(Globals.BASE_API_URL + 'Guardianschool', value)
+}
+DeleteGuardianschool(id: number) {
+  return this.http.delete(Globals.BASE_API_URL + 'Guardianschool/' + id)
+}
+SearchGuardianschool(value: GuardianschoolVM): Observable<GuardianschoolVM[]> {
+  return this.http.post<GuardianschoolVM[]>(Globals.BASE_API_URL + 'Guardianschool/Search', value).pipe();
+}
+
+GetStudentschool(): Observable<StudentschoolVM[]> {
+  return this.http.get<StudentschoolVM[]>(Globals.BASE_API_URL + 'Studentschool').pipe();
+}
+SaveStudentschool(value: StudentschoolVM): Observable<Object> {
+  return this.http.post(Globals.BASE_API_URL + 'Studentschool', value)
+}
+UpdateStudentschool(value: StudentschoolVM) {
+  return this.http.put(Globals.BASE_API_URL + 'Studentschool', value)
+}
+DeleteStudentschool(id: number) {
+  return this.http.delete(Globals.BASE_API_URL + 'Studentschool/' + id)
+}
+SearchStudentschool(value: StudentschoolVM): Observable<StudentschoolVM[]> {
+  return this.http.post<StudentschoolVM[]>(Globals.BASE_API_URL + 'Studentschool/Search', value).pipe();
+}
+
+GetFeetypeschool(): Observable<FeetypeschoolVM[]> {
+  return this.http.get<FeetypeschoolVM[]>(Globals.BASE_API_URL + 'Feetypeschool').pipe();
+}
+SaveFeetypeschool(value: FeetypeschoolVM) {
+  return this.http.post(Globals.BASE_API_URL + 'Feetypeschool', value)
+}
+UpdateFeetypeschool(value: FeetypeschoolVM) {
+  return this.http.put(Globals.BASE_API_URL + 'Feetypeschool', value)
+}
+DeleteFeetypeschool(id: number) {
+  return this.http.delete(Globals.BASE_API_URL + 'Feetypeschool/' + id)
+}
+SearchFeetypeschool(value: FeetypeschoolVM): Observable<FeetypeschoolVM[]> {
+  return this.http.post<FeetypeschoolVM[]>(Globals.BASE_API_URL + 'Feetypeschool/Search', value).pipe();
+}
+
+
+GetFeepaymentschool(): Observable<FeepaymentschoolVM[]> {
+  return this.http.get<FeepaymentschoolVM[]>(Globals.BASE_API_URL + 'Feepaymentschool').pipe();
+}
+SaveFeepaymentschool(value: FeepaymentschoolVM) {
+  return this.http.post(Globals.BASE_API_URL + 'Feepaymentschool', value)
+}
+UpdateFeepaymentschool(value: FeepaymentschoolVM) {
+  return this.http.put(Globals.BASE_API_URL + 'Feepaymentschool', value)
+}
+DeleteFeepaymentschool(id: number) {
+  return this.http.delete(Globals.BASE_API_URL + 'Feepaymentschool/' + id)
+}
+SearchFeepaymentschool(value: FeepaymentschoolVM): Observable<FeepaymentschoolVM[]> {
+  return this.http.post<FeepaymentschoolVM[]>(Globals.BASE_API_URL + 'Feepaymentschool/Search', value).pipe();
+}
+
+
+GetAssignClass(): Observable<AssignClassVM[]> {
+  return this.http.get<AssignClassVM[]>(Globals.BASE_API_URL + 'AssignClass').pipe();
+}
+SaveAssignClass(value: AssignClassVM) {
+  return this.http.post(Globals.BASE_API_URL + 'AssignClass', value)
+}
+UpdateAssignClass(value: AssignClassVM) {
+  return this.http.put(Globals.BASE_API_URL + 'AssignClass', value)
+}
+DeleteAssignClass(id: number) {
+  return this.http.delete(Globals.BASE_API_URL + 'AssignClass/' + id)
+}
+SearchAssignClass(value: AssignClassVM): Observable<AssignClassVM[]> {
+  return this.http.post<AssignClassVM[]>(Globals.BASE_API_URL + 'AssignClass/Search', value).pipe();
+}
+
+GetFeetypeschoolTitles(): Observable<string[]> {
+  return this.http.get<string[]>(Globals.BASE_API_URL + 'Feetypeschool/Titles').pipe();
 }
 
 }
