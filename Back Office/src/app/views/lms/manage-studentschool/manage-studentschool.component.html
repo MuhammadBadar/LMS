@@ -1,0 +1,112 @@
+<div class="container-fluid page">
+    <div class="d-flex page_box p-3 mt-2 header-sticky" style="position: sticky;">
+      <div *ngIf="Add">Manage Student</div>
+      <div *ngIf="Edit">Edit Student</div>
+      <div fxFlex fxLayout="row" fxLayoutAlign="end center" style="margin-top: 0; padding-top: 0;" *ngIf="isDialog">
+        <button mat-icon-button (click)="dialogRef.close()" style="color: white;">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+
+
+    <div class="page_content shadow p-3 position-relative">
+        <form #StudentschoolForm="ngForm">
+
+            <div fxLayout="row" fxLayoutAlign="space-between">
+            <mat-form-field fxFlex="66%" appearance="outline" class="form-group">
+                <mat-label>Name</mat-label>
+                <input matInput required #name="ngModel" name="name" [(ngModel)]="selectedStudentschool.name" />
+            </mat-form-field>
+            <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                <mat-label>Gender</mat-label>
+                <mat-select matInput required [(ngModel)]="selectedStudentschool.gender" name="gender">
+                    <mat-option value="male">Male</mat-option>
+                    <mat-option value="female">Female</mat-option>
+                </mat-select>
+            </mat-form-field>
+                </div>
+                
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput [matDatepicker]="dobPicker" required #dateofbirth="ngModel" name="dateofbirth" [(ngModel)]="selectedStudentschool.dateofbirth" />
+                    <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #dobPicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                    <mat-label>Admission Date</mat-label>
+                    <input matInput [matDatepicker]="admissionDatePicker" #admissionDate="ngModel" name="admissionDate" [(ngModel)]="selectedStudentschool.admissionDate" />
+                    <mat-datepicker-toggle matSuffix [for]="admissionDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #admissionDatePicker></mat-datepicker>
+                </mat-form-field>
+                <!-- <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label>Discharge Date</mat-label>
+                    <input matInput [matDatepicker]="leftDatePicker" #leftDate="ngModel" name="leftDate" [(ngModel)]="selectedStudentschool.leftDate" />
+                    <mat-datepicker-toggle matSuffix [for]="leftDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #leftDatePicker></mat-datepicker>
+                </mat-form-field> -->
+            </div>
+
+            <mat-checkbox name="isActive" [(ngModel)]="selectedStudentschool.isActive" checked>Is Active</mat-checkbox>
+            <div fxLayoutAlign="end end">
+                <button mat-raised-button *ngIf="Add" color="primary" (click)="SaveStudentschool()">Submit</button>
+                <button mat-raised-button *ngIf="Edit" color="primary" (click)="SaveStudentschool()">Update</button>
+                <div>
+                    <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                        (click)="Refresh()">
+                        <mat-icon>autorenew</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <section class=" example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;margin-top: 20px;">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+                <ng-container matColumnDef="gender">
+                    <th mat-header-cell *matHeaderCellDef> Gender </th>
+                    <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+                </ng-container>
+                <ng-container matColumnDef="dateofbirth">
+                    <th mat-header-cell *matHeaderCellDef> Date of Birth </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dateofbirth}} </td>
+                </ng-container>
+                <ng-container matColumnDef="admissionDate">
+                    <th mat-header-cell *matHeaderCellDef> Admission Date</th>
+                    <td mat-cell *matCellDef="let element"> {{element.admissionDate}} </td>
+                </ng-container>
+                <!-- <ng-container matColumnDef="leftDate">
+                    <th mat-header-cell *matHeaderCellDef> Discharge Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.leftDate}} </td>
+                </ng-container> -->
+                <ng-container matColumnDef="isActive">
+                    <th mat-header-cell *matHeaderCellDef> Is Active </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.isActive ? 'yes' : 'no' }} </td>
+                  </ng-container> 
+                <ng-container matColumnDef="actions" stickyEnd="true">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <p style="font-size: 14px;text-align: center;">Action</p>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <div style="text-align: center;">
+                            <button mat-icon-button mat-sm-button (click)="EditStudentschool(row)" style=" color:#1e293b ; "
+                                cTooltip=" Edit Studentschool">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                         <button mat-icon-button mat-sm-button color="warn" (click)="DeleteStudentschool(row.id)"
+                                cTooltip="Delete Studentschool">
+                                <mat-icon>delete</mat-icon>
+                            </button> 
+                        </div>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </section>
+</div>
+</div>

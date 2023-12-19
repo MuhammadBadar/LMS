@@ -1,0 +1,90 @@
+<div class="container-fluid page">
+    <div class="d-flex page_box p-3 mt-2 header-sticky" style="position: sticky;">
+      <div *ngIf="Add">Manage School</div>
+      <div *ngIf="Edit">Edit School</div>
+      <div fxFlex fxLayout="row" fxLayoutAlign="end center" style="margin-top: 0; padding-top: 0;" *ngIf="isDialog">
+        <button mat-icon-button (click)="dialogref.close()" style="color: white;">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <form #SchoolForm="ngForm">
+            <div fxLayout="row" fxLayoutAlign="space-between">
+            <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                <mat-label>Name</mat-label>
+                <input matInput required #name="ngModel" name="name" [(ngModel)]="selectedSchool.name" />
+            </mat-form-field>
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label>Contact Person</mat-label>
+                    <input matInput required #contactPerson="ngModel" name="contactPerson" [(ngModel)]="selectedSchool.contactPerson" />
+                </mat-form-field>
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label>Cell No</mat-label>
+                    <input matInput required #cellNo="ngModel" name="cellNo" [(ngModel)]="selectedSchool.cellNo" />
+                </mat-form-field>
+                </div>
+                
+            <div fxLayout="row" fxLayoutAlign="space-between">
+            <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
+                <mat-label>Address</mat-label>
+                <input matInput required #address="ngModel" name="address" [(ngModel)]="selectedSchool.address" />
+            </mat-form-field>
+            </div>
+            <mat-checkbox name="isActive" [(ngModel)]="selectedSchool.isActive" checked>Is Active</mat-checkbox>
+            <div fxLayoutAlign="end end">
+                <button mat-raised-button *ngIf="Add" color="primary" (click)="SaveSchool()">Submit</button>
+                <button mat-raised-button *ngIf="Edit" color="primary" (click)="SaveSchool()">Update</button>
+                <div>
+                    <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                        (click)="Refresh()">
+                        <mat-icon>autorenew</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <section class=" example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;margin-top: 20px;">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef> Address </th>
+                    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                </ng-container>
+                <ng-container matColumnDef="contactPerson">
+                    <th mat-header-cell *matHeaderCellDef> Contact Person </th>
+                    <td mat-cell *matCellDef="let element"> {{element.contactPerson}} </td>
+                </ng-container>
+                <ng-container matColumnDef="cellNo">
+                    <th mat-header-cell *matHeaderCellDef> Cell No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.cellNo}} </td>
+                </ng-container>
+                <ng-container matColumnDef="isActive">
+                    <th mat-header-cell *matHeaderCellDef> Is Active </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.isActive ? 'yes' : 'no' }} </td>
+                  </ng-container> 
+                <ng-container matColumnDef="actions" stickyEnd="true">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <p style="font-size: 14px;text-align: center;">Action</p>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <div style="text-align: center;">
+                            <button mat-icon-button mat-sm-button (click)="EditSchool(row)" style=" color:#1e293b ; "
+                                cTooltip=" Edit School">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                         <button mat-icon-button mat-sm-button color="warn" (click)="DeleteSchool(row.id)"
+                                cTooltip="Delete School">
+                                <mat-icon>delete</mat-icon>
+                            </button> 
+                        </div>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </section>
+</div>

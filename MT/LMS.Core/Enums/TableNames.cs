@@ -32,7 +32,14 @@
         student,
         task,
         Tasks,
-        taskcomment
+        taskcomment,
+        assignclass,
+        branchschool,
+        feepaymentschool,
+        feetypeschool,
+        guardianschool,
+        studentschool,
+        school,
 
     }
 }

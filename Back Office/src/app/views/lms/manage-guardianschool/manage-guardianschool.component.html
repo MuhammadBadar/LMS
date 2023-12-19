@@ -1,0 +1,132 @@
+<div class="container-fluid page">
+    <div class="d-flex page_box p-3 mt-2 header-sticky" style="position: sticky;">
+      <div *ngIf="Add">Manage Guardian</div>
+      <div *ngIf="Edit">Edit Guardian</div>
+      <div fxFlex fxLayout="row" fxLayoutAlign="end center" style="margin-top: 0; padding-top: 0;" *ngIf="isDialog">
+        <button mat-icon-button (click)="dialogref.close()" style="color: white;">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+
+
+    <div class="page_content shadow p-3 position-relative">
+        <form #GuardianschoolForm="ngForm">
+
+            <div fxLayout="row" fxLayoutAlign="space-between">
+            <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                <mat-label>Name</mat-label>
+                <input matInput required #name="ngModel" name="name" [(ngModel)]="selectedGuardianschool.name" />
+            </mat-form-field>
+                <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                    <mat-label> CNIC </mat-label>
+                    <input matInput required #cnic="ngModel" name="cnic" [(ngModel)]="selectedGuardianschool.cnic" />
+                </mat-form-field>
+                </div>
+                
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label> Cell No. 1 </mat-label>
+                    <input matInput required #cell1="ngModel" name="cell1" [(ngModel)]="selectedGuardianschool.cell1" />
+                </mat-form-field>
+            <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                <mat-label> Cell No. 2 </mat-label>
+                <input matInput  #cell2="ngModel" name="cell2" [(ngModel)]="selectedGuardianschool.cell2" />
+            </mat-form-field>
+            <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                <mat-label> Cell No. 3 </mat-label>
+                <input matInput  #cell3="ngModel" name="cell3" [(ngModel)]="selectedGuardianschool.cell3" />
+            </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                    <mat-label> Email </mat-label>
+                    <input matInput  #email="ngModel" name="email" [(ngModel)]="selectedGuardianschool.email" />
+                </mat-form-field>
+                <mat-form-field fxFlex="49%" appearance="outline" class="form-group">
+                    <mat-label> Whatsapp No. </mat-label>
+                    <input matInput required #whatsapp="ngModel" name="whatsapp" [(ngModel)]="selectedGuardianschool.whatsapp" />
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
+                    <mat-label> Address </mat-label>
+                    <input matInput required #address="ngModel" name="address" [(ngModel)]="selectedGuardianschool.address" />
+                </mat-form-field>
+            </div>
+            <mat-checkbox name="isActive" [(ngModel)]="selectedGuardianschool.isActive" checked>Is Active</mat-checkbox>
+            <div fxLayoutAlign="end end">
+                <button mat-raised-button *ngIf="Add" color="primary" (click)="SaveGuardianschool()">Submit</button>
+                <button mat-raised-button *ngIf="Edit" color="primary" (click)="SaveGuardianschool()">Update</button>
+                <div>
+                    <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+                        (click)="Refresh()">
+                        <mat-icon>autorenew</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <section class=" example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;margin-top: 20px;">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+                <ng-container matColumnDef="cnic">
+                    <th mat-header-cell *matHeaderCellDef> CNIC </th>
+                    <td mat-cell *matCellDef="let element"> {{element.cnic}} </td>
+                </ng-container>
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef> Address </th>
+                    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                </ng-container>
+                <ng-container matColumnDef="cell1">
+                    <th mat-header-cell *matHeaderCellDef> Cell No. 1 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.cell1}} </td>
+                </ng-container>
+                <ng-container matColumnDef="cell2">
+                    <th mat-header-cell *matHeaderCellDef> Cell No.2 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.cell2}} </td>
+                </ng-container>
+                <ng-container matColumnDef="cell3">
+                    <th mat-header-cell *matHeaderCellDef> Cell No.3 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.cell3}} </td>
+                </ng-container>
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef> Email </th>
+                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+                <ng-container matColumnDef="whatsapp">
+                    <th mat-header-cell *matHeaderCellDef> Whatsapp No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.whatsapp}} </td>
+                </ng-container>
+                <ng-container matColumnDef="isActive">
+                    <th mat-header-cell *matHeaderCellDef> Is Active </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.isActive ? 'yes' : 'no' }} </td>
+                  </ng-container> 
+                <ng-container matColumnDef="actions" stickyEnd="true">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <p style="font-size: 14px;text-align: center;">Action</p>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <div style="text-align: center;">
+                            <button mat-icon-button mat-sm-button (click)="EditGuardianschool(row)" style=" color:#1e293b ; "
+                                cTooltip=" Edit Guardianschool">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                         <button mat-icon-button mat-sm-button color="warn" (click)="DeleteGuardianschool(row.id)"
+                                cTooltip="Delete Guardianschool">
+                                <mat-icon>delete</mat-icon>
+                            </button> 
+                        </div>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </section>
+</div>
+</div>
