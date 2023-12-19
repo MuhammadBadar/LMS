@@ -102,26 +102,32 @@ export class ManageUsertaskComponent implements OnInit {
   }
 
 
-toggleRow(row, $event) {
-  if ($event.checked) {
-    debugger;
-    this.userTask = new UserTaskVM();
-    this.userTask.taskId = row.id;
-    this.userTask.userId = this.lmsSvc.userId;
-    this.userTask.date = new Date();
-    this.userTask.sp = parseFloat(row.remainingSPs.toFixed(2)); // Round off to 2 decimal places
-    this.userTask.isChecked = true;
-    this.userTasks.push(this.userTask);
-    this.totalSP = parseFloat(this.userTasks.reduce((total, task) => total + task.sp, 0).toFixed(2)); // Round off the total
-  } else {
-    const index = this.userTasks.findIndex(task => task.taskId === row.id);
-    if (index !== -1) {
-      this.userTasks.splice(index, 1);
+  toggleRow(row, $event) {
+    if ($event.checked) {
+      debugger;
+      this.userTask = new UserTaskVM();
+      this.userTask.taskId = row.id;
+      this.userTask.userId = this.lmsSvc.userId;
+      this.userTask.date = new Date();
+      this.userTask.sp = parseFloat(row.remainingSPs.toFixed(2)); // Round off to 2 decimal places
+      this.userTask.isChecked = true;
+      this.userTasks.push(this.userTask);
       this.totalSP = parseFloat(this.userTasks.reduce((total, task) => total + task.sp, 0).toFixed(2)); // Round off the total
+    } else {
+      const index = this.userTasks.findIndex(task => task.taskId === row.id);
+      if (index !== -1) {
+        this.userTasks.splice(index, 1);
+        this.totalSP = parseFloat(this.userTasks.reduce((total, task) => total + task.sp, 0).toFixed(2)); // Round off the total
+      }
     }
+  
+    // Round off both totalSP and dueSps to 2 decimal places
+    const roundedTotalSP = parseFloat(this.totalSP.toFixed(2));
+    const roundedDueSps = parseFloat(this.dueSps.toFixed(2));
+  
+    this.disableSubmitButton = roundedTotalSP < roundedDueSps;
   }
-  this.disableSubmitButton = this.totalSP < this.dueSps;
-}
+  
 
 
   GetTaskByUserId(userId: string) {
@@ -138,18 +144,17 @@ toggleRow(row, $event) {
   }
 
   GetDueSps(userId: string) {
-    debugger;
     this.lmsSvc.GetDueSps(userId).subscribe({
       next: (value: any) => {
-        this.dueSps = value;
-        // this.pat = value;
-        // this.dataSource = new MatTableDataSource(this.pat);
+        // Round off dueSps to 2 decimal places
+        this.dueSps = parseFloat(value.toFixed(2));
       },
       error: (err) => {
         alert('Error to retrieve tasks');
       }
     });
   }
+  
 
   Savetask() {
     debugger
