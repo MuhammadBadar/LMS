@@ -86,10 +86,16 @@ import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { ManageUsertaskbydateComponent } from './manage-usertaskbydate/manage-usertaskbydate.component';
 import { ManageUserreportComponent } from './manage-userreport/manage-userreport.component';
 import { ManagePatientComponent } from './manage-patient/manage-patient.component';
-
+import { ManageAssignClassComponent } from './manage-assign-class/manage-assign-class.component';
 import { ManageClientComponent } from './manage-client/manage-client.component';
 import { ManageUsertaskComponent } from './manage-usertask/manage-usertask.component';
 import { ManageDayStatusComponent } from './manage-day-status/manage-day-status.component';
+import { ManageBranchschoolComponent } from './manage-branchschool/manage-branchschool.component';
+import { ManageFeepaymentschoolComponent } from './manage-feepaymentschool/manage-feepaymentschool.component';
+import { ManageFeetypeschoolComponent } from './manage-feetypeschool/manage-feetypeschool.component';
+import { ManageStudentschoolComponent } from './manage-studentschool/manage-studentschool.component';
+import { ManageGuardianschoolComponent } from './manage-guardianschool/manage-guardianschool.component';
+import { ManageSchoolComponent} from './manage-school/manage-school.component';
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
 
@@ -97,10 +103,15 @@ import { ManageDayStatusComponent } from './manage-day-status/manage-day-status.
   declarations: [
     ManageUserComponent,
     ManageCourseComponent,
-   
+    ManageAssignClassComponent,
     ManageInquiryComponent,
     ManageCourseDetailComponent,
-    
+    ManageBranchschoolComponent,
+    ManageFeepaymentschoolComponent,
+    ManageFeetypeschoolComponent,
+    ManageStudentschoolComponent,
+    ManageGuardianschoolComponent,
+    ManageSchoolComponent,
     ManageTopicComponent,
     ManageAssignTaskComponent,
     ManageLectureComponent, 

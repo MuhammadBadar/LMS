@@ -14,7 +14,7 @@
                 <div fxLayout="row" fxLayoutAlign="space-between">
                     <mat-form-field fxFlex="66%" appearance="outline" class="form-group">
                         <mat-label>----Select Student----</mat-label>
-                        <mat-select name="student" [(value)]="selectedFeepaymentschool.studentschoolId" (valueChange)="onStudentSelected($event)">
+                        <mat-select name="student" [(value)]="selectedFeepaymentschool.studentschoolId" >
                             <mat-option *ngFor="let val of studentschools" [value]="val.id">
                               {{val.name}}
                             </mat-option>

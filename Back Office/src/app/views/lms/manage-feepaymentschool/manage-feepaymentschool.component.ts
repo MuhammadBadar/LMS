@@ -75,24 +75,7 @@ DisabledType: boolean = false;
         }
       });
     }
-    onStudentSelected(studentschoolId: number): void {
-      console.log('onStudentSelected called with studentschoolId:', studentschoolId);
-      this.lmsSvc.GetAssignClassByStudentschoolId(studentschoolId).subscribe(data => {
-        console.log('Data returned by GetAssignClassByStudentschoolId:', data);
-        this.assignClassVM = data;
-        this.selectedFeepaymentschool = {
-          ...this.selectedFeepaymentschool,
-          id: data.id,
-          branchId: data.branchId,
-          classId: data.classId,
-          sectionId: data.sectionId,
-          class: this.assignClassVM.class,
-          branch: this.assignClassVM.branch,
-          section: this.assignClassVM.section
-        };
-        console.log('selectedFeepaymentschool after update:', this.selectedFeepaymentschool);
-      });
-    }
+
     GetFeepaymentschool() {
       this.lmsSvc.GetFeepaymentschool().subscribe({
         next: (res: FeepaymentschoolVM[]) => {

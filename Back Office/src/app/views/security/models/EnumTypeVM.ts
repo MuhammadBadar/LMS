@@ -8,6 +8,9 @@ export enum EnumTypeVM {
     ScheduleType,
     WorkingType,
     EventType,
-    Location=1009
+    Location=1009,
+    Section=1014,
+    Class=1015,
+    Branch=1016,
     
 }

@@ -26,6 +26,7 @@ import { ManageClientComponent } from './manage-client/manage-client.component';
 import { ManageDayStatusComponent } from './manage-day-status/manage-day-status.component';
 import { LoginComponent } from '../security/login/login.component';
 import { TokenCheck } from '../security/TokenCheck';
+import { ManageAssignClassComponent } from './manage-assign-class/manage-assign-class.component';
 
 const routes: Routes = [{
   path: '',
@@ -145,6 +146,7 @@ const routes: Routes = [{
       component: ManageUserreportComponent,
       pathMatch: "full"
     },
+    
     // {
     //   path: 'secLogin',
     //   component: LoginComponent,
