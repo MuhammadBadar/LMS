@@ -27,6 +27,10 @@ import { ManageDayStatusComponent } from './manage-day-status/manage-day-status.
 import { LoginComponent } from '../security/login/login.component';
 import { TokenCheck } from '../security/TokenCheck';
 import { ManageAssignClassComponent } from './manage-assign-class/manage-assign-class.component';
+import { ManageGuardianschoolComponent } from './manage-guardianschool/manage-guardianschool.component';
+import { ManageFeepaymentschoolComponent } from './manage-feepaymentschool/manage-feepaymentschool.component';
+import { ManageFeetypeschoolComponent } from './manage-feetypeschool/manage-feetypeschool.component';
+import { ManageStudentschoolComponent } from './manage-studentschool/manage-studentschool.component';
 
 const routes: Routes = [{
   path: '',
@@ -146,6 +150,32 @@ const routes: Routes = [{
       component: ManageUserreportComponent,
       pathMatch: "full"
     },
+    {
+      path: "GuardianSchool",
+      component: ManageGuardianschoolComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "AssignClass",
+      component: ManageAssignClassComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "FeePayment",
+      component: ManageFeepaymentschoolComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "FeeType",
+      component: ManageFeetypeschoolComponent,
+      pathMatch: "full"
+    },
+    {
+      path: "StudentSchool",
+      component: ManageStudentschoolComponent,
+      pathMatch: "full"
+    },
+    
     
     // {
     //   path: 'secLogin',
