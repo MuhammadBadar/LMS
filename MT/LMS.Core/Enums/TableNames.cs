@@ -35,7 +35,7 @@
         taskcomment,
         assignclass,
         branchschool,
-        feepaymentschool,
+        fee,
         feetypeschool,
         guardianschool,
         studentschool,
