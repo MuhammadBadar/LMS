@@ -1,6 +1,8 @@
 ﻿using Dapper;
 using LMS.Core.Entities;
 using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace LMS.DAL
@@ -8,6 +10,7 @@ namespace LMS.DAL
     public class FeeLineDAL
     {
         #region Operations
+
         public bool ManageFeeLine(FeeLineDE _feeLine, MySqlCommand cmd = null)
         {
             bool closeConnectionFlag = false;
@@ -18,14 +21,20 @@ namespace LMS.DAL
                     cmd = LMSDataContext.OpenMySqlConnection();
                     closeConnectionFlag = true;
                 }
+
                 if (cmd.Connection.State == ConnectionState.Open)
-                    Console.WriteLine("Connection  has been created");
+                    Console.WriteLine("Connection has been created");
                 else
                     Console.WriteLine("Connection error");
+
+                // Clear existing parameters
+                cmd.Parameters.Clear();
+
+                // Add new parameters
                 cmd.CommandText = "ManageFeeLine";
                 cmd.Parameters.AddWithValue("@id", _feeLine.Id);
                 cmd.Parameters.AddWithValue("@feeId", _feeLine.FeeId);
-                cmd.Parameters.AddWithValue("@feeTypeId", _feeLine.FeeTypeId);                
+                cmd.Parameters.AddWithValue("@feeTypeId", _feeLine.FeeTypeId);
                 cmd.Parameters.AddWithValue("@feeAmount", _feeLine.FeeAmount);
                 cmd.Parameters.AddWithValue("@concession", _feeLine.Concession);
                 cmd.Parameters.AddWithValue("@createdOn", _feeLine.CreatedOn);
@@ -48,6 +57,7 @@ namespace LMS.DAL
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
         }
+
         public List<FeeLineDE> SearchFeeLine(string whereClause, MySqlCommand cmd = null)
         {
             List<FeeLineDE> top = new List<FeeLineDE>();
@@ -60,9 +70,10 @@ namespace LMS.DAL
                     closeConnectionFlag = true;
                 }
                 if (cmd.Connection.State == ConnectionState.Open)
-                    Console.WriteLine("Connection  has been created");
+                    Console.WriteLine("Connection has been created");
                 else
                     Console.WriteLine("Connection error");
+
                 top = cmd.Connection.Query<FeeLineDE>("call lms.SearchFeeLine( '" + whereClause + "')").ToList();
                 return top;
             }
@@ -76,6 +87,7 @@ namespace LMS.DAL
                     LMSDataContext.CloseMySqlConnection(cmd);
             }
         }
+
         #endregion
     }
 }

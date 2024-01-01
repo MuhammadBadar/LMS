@@ -9,7 +9,6 @@ namespace LMS.Core.Entities
 {
     public class FeeLineDE : BaseDomain
     {
-
         public int FeeId { get; set; }
         public int? FeeTypeId { get; set; }        
         public int? FeeAmount { get; set; }

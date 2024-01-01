@@ -1,5 +1,4 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
-import { FeepaymentschoolVM } from '../Models/FeepaymentschoolVM';
 import { LMSService } from '../lms.service';
 import { CatalogService } from '../../catalog/catalog.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,231 +7,260 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { NgForm } from '@angular/forms';
 import { StudentschoolVM } from '../Models/StudentschoolVM';
 import { ManageStudentschoolComponent } from '../manage-studentschool/manage-studentschool.component';
-
-import { ManageFeetypeschoolComponent } from '../manage-feetypeschool/manage-feetypeschool.component';
+import { FeeLineVM, FeeVM } from '../Models/FeepaymentschoolVM';
 import { AssignClassVM } from '../Models/AssignClassVM';
+
 @Component({
   selector: 'app-manage-feepaymentschool',
   templateUrl: './manage-feepaymentschool.component.html',
   styleUrls: ['./manage-feepaymentschool.component.css']
 })
-export class ManageFeepaymentschoolComponent implements OnInit{
-  displayedColumns: string[] = ['student','contactNo','amount','isActive','actions']
+export class ManageFeepaymentschoolComponent implements OnInit {
+  displayedColumns: string[] = ['student', 'amount','concession', 'isActive', 'actions'];
   processing: boolean = false;
   Edit: boolean = false;
   Add: boolean = true;
-DisabledType: boolean = false;
-  dataSource: any
+  DisabledType: boolean = false;
+  dataSource: any;
   feetypes: string[];
-  feepayment?: FeepaymentschoolVM[]
-  studentschools?: StudentschoolVM[]
+  feepayment?: FeeVM[];
+  studentschools?: StudentschoolVM[];
   titles: string[];
-  
-  selectedFeepaymentschool= new FeepaymentschoolVM
-  @ViewChild('feepaymentschoolForm', { static: true }) feepaymentschoolForm: NgForm;
-  dialogref: any
+  feeLines: FeeLineVM[]=[ { feeAmount :0,   feetypeId: 1,concession:"",isActive:true },
+    { feeAmount :0,   feetypeId: 1,concession:"",isActive:true }, { feeAmount :0,   feetypeId: 1,concession:"",isActive:true }];
+  // feeLines: FeeLineVM[] = []
+
+  selectedFee = new FeeVM();
+  @ViewChild('feeForm', { static: true }) feeForm: NgForm;
+  dialogref: any;
   dialogData: any;
-    isDialog: boolean = false;
-    isActive?: false
-    hide = true;
-    
+  isDialog: boolean = false;
+  isActive?: false;
+  hide = true;
+
   assignClassVM: AssignClassVM;
-    constructor(
-      private injector: Injector,
-      private lmsSvc: LMSService,
-      private catSvc: CatalogService,
-      private dialog: MatDialog) {
-      this.dialogref = this.injector.get(MatDialogRef, null);
-      this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
-      this.selectedFeepaymentschool = new FeepaymentschoolVM();
-      this.selectedFeepaymentschool = {
-        branch: '',
-        class: '',
-        section: '',
-        contactNo: '',
-        amount: 0,
-        isActive: false
-      };
-    }
-    ngOnInit(): void {
-      this.GetFeepaymentschool()
-      this.GetTitles(); 
-      this.Add = true;
-      this.GetStudentschool();
-      
-      this.selectedFeepaymentschool.isActive = true;
-      this.isDialog = this.dialogData.isDialog; 
+  selectedFeeLine: FeeLineVM;
 
-    }
-    
-    GetTitles() {
-      this.lmsSvc.GetFeetypeschoolTitles().subscribe({
-        next: (res: string[]) => {
-          this.titles = res;
-        },
-        error: (e) => {
-          console.warn(e);
-        }
-      });
-    }
+  constructor(
+    private injector: Injector,
+    private lmsSvc: LMSService,
+    private catSvc: CatalogService,
+    private dialog: MatDialog
+  ) {
+    this.dialogref = this.injector.get(MatDialogRef, null);
+    this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
+    this.selectedFee = new FeeVM();
+    this.selectedFeeLine = new FeeLineVM();
+    this.selectedFeeLine = {
+      feeAmount: 0,
+      isActive: true
+    };
+  }
 
-    GetFeepaymentschool() {
-      this.lmsSvc.GetFeepaymentschool().subscribe({
-        next: (res: FeepaymentschoolVM[]) => {
-          this.dataSource = new MatTableDataSource(res);},
-        error: (e) => {
-          console.warn(e);
-        }
-      });
-    }
-    
+  ngOnInit(): void {
+    this.GetFee();
+    this.GetTitles();
+    this.Add = true;
+    this.GetStudentschool();
 
-    DeleteFeepaymentschool(id: number) {
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.value) {
-          this.lmsSvc.DeleteFeepaymentschool(id).subscribe({
-            next: (data) => {
-              Swal.fire(
-                'Deleted!',
-                'Feepayment has been deleted.',
-                'success'
-              );
-              this.ngOnInit();
-            },
-            error: (e) => {
-              console.warn(e);
-            }
-          });
-        }
-      });
+    this.selectedFee.isActive = true;
+    this.isDialog = this.dialogData.isDialog;
+  }
+
+  GetTitles() {
+    this.lmsSvc.GetFeetypeschoolTitles().subscribe({
+      next: (res: string[]) => {
+        this.titles = res;
+      },
+      error: (e) => {
+        console.warn(e);
+      }
+    });
+  }
+
+  GetFee() {
+    this.lmsSvc.GetFee().subscribe({
+      next: (res: FeeVM[]) => {
+        this.dataSource = new MatTableDataSource(res);
+      },
+      error: (e) => {
+        console.warn(e);
+      }
+    });
+  }
+
+  SaveFee() {
+    debugger;
+    if (!this.selectedFee.amount || !this.selectedFee.concession) {
+      this.catSvc.ErrorMsgBar("Please fill in all required fields.", 5000);
+      return; // Exit the function if any required field is empty
     }
   
-    SaveFeepaymentschool() {
-      if (  this.selectedFeepaymentschool.contactNo) {
-          this.processing = true; 
-          if (this.Edit) {
-              this.UpdateFeepaymentschool();
-          } else {
-              this.lmsSvc.SaveFeepaymentschool(this.selectedFeepaymentschool).subscribe({
-                  next: (res) => {
-                      this.catSvc.SuccessMsgBar("Successfully Added!", 6000);
-                      this.ngOnInit();
-                      this.Refresh(); 
-                      window.scrollTo(0, 0);
-                      this.processing = false; 
-                  },
-                  error: (e) => {
-                      console.warn(e);
-                      this.catSvc.ErrorMsgBar("Error Occurred!", 6000);
-                      this.processing = false; 
-                  }
-              });
-          }
-      } else {
-          this.catSvc.ErrorMsgBar("Please fill in all required fields!", 5000);
-      }
+    this.selectedFee.feeLines = this.feeLines;
+    this.lmsSvc.SaveFee(this.selectedFee).subscribe({
+      next: (value) => {
+        this.catSvc.SuccessMsgBar("Successfully Added", 5000);
+        this.Refresh();
+      }, 
+      error: (err) => {
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000);
+      },
+    });
   }
-    
-    EditFeepaymentschool(feepaymentschool: FeepaymentschoolVM) {
-      this.Edit = true
-      this.Add = false
-      this.selectedFeepaymentschool = feepaymentschool
-      this.selectedFeepaymentschool.isActive = true;
+  
 
-    }
-    GetFeepaymentschoolForEdit(id: number) {
-      this.selectedFeepaymentschool = new FeepaymentschoolVM();
-      this.selectedFeepaymentschool.id = id;
-      console.warn(this.selectedFeepaymentschool);  
-      this.lmsSvc.SearchFeepaymentschool(this.selectedFeepaymentschool).subscribe({
-        next: (res: FeepaymentschoolVM[]) => {
-          if (res.length > 0) {
-            this.selectedFeepaymentschool = res[0];
-            this.Edit = true;
-            this.Add = false;
-          } else {
-            console.log('Payment not found for editing.');
-          }
+//   SaveFee() {
+//     debugger;
+//     if (  this.selectedFee) {
+//       this.selectedFee.feeLines = this.feeLines;
+//         this.processing = true; 
+//         if (this.Edit) {
+//             this.UpdateFee();
+//         } else {
+//             this.lmsSvc.SaveFee(this.selectedFee).subscribe({
+//                 next: (res) => {
+//                     this.catSvc.SuccessMsgBar("Successfully Added!", 6000);
+//                     this.ngOnInit();
+//                     this.Refresh(); 
+//                     window.scrollTo(0, 0);
+//                     this.processing = false; 
+//                 },
+//                 error: (e) => {
+//                     console.warn(e);
+//                     this.catSvc.ErrorMsgBar("Error Occurred!", 6000);
+//                     this.processing = false; 
+//                 }
+//             });
+//         }
+//     } else {
+//         this.catSvc.ErrorMsgBar("Please fill in all required fields!", 5000);
+//     }
+// }
+  
+  UpdateFee() {
+    if (this.selectedFee.student) {
+      this.processing = true;
+
+      this.lmsSvc.UpdateFee(this.selectedFee).subscribe({
+        next: (res) => {
+          this.catSvc.SuccessMsgBar('Successfully Updated!', 5000);
+          this.Add = true;
+          this.Edit = false;
+          this.processing = false;
+          this.ngOnInit();
         },
         error: (e) => {
           console.warn(e);
+          this.catSvc.ErrorMsgBar('Error Occurred', 5000);
+          this.processing = false;
         }
       });
+    } else {
+      this.catSvc.ErrorMsgBar('Please fill in all required fields!', 5000);
     }
+  }
 
-    UpdateFeepaymentschool() {
-      if (  this.selectedFeepaymentschool.contactNo  ) {
-        this.processing = true; 
+  Refresh() {
+    this.Add = true;
+    this.Edit = false;
+    this.selectedFee = new FeeVM();
+  }
 
-        this.lmsSvc.UpdateFeepaymentschool(this.selectedFeepaymentschool).subscribe({
-          next: (res) => {
-            this.catSvc.SuccessMsgBar("Successfully Updated!", 5000);
-            this.Add = true;
-            this.Edit = false; 
-            this.processing = false;
+
+  EditFee(feepaymentschool: FeeVM) {
+    this.Edit = true;
+    this.Add = false;
+    this.selectedFee = feepaymentschool;
+    this.selectedFee.isActive = true;
+  }
+  DeleteFee(id: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.lmsSvc.DeleteFee(id).subscribe({
+          next: (data) => {
+            Swal.fire(
+              'Deleted!',
+              'Feepayment has been deleted.',
+              'success'
+            );
             this.ngOnInit();
           },
           error: (e) => {
             console.warn(e);
-            this.catSvc.ErrorMsgBar("Error Occurred", 5000);
-            this.processing = false; 
           }
         });
-      } else {
-        this.catSvc.ErrorMsgBar("Please fill in all required fields!", 5000);
       }
-    }
-    Refresh() {
-      this.Add = true;
-      this.Edit = false;
-      this.selectedFeepaymentschool = new FeepaymentschoolVM();
-    }
-    GetStudentschool() {
-      var studentschool = new StudentschoolVM
-      studentschool.isActive = true;
-      this.selectedFeepaymentschool.isActive = true;
-      this.lmsSvc.SearchStudentschool(studentschool).subscribe({
-        next: (res: StudentschoolVM[]) => {
-          this.studentschools = res
-        }, error: (err) => {
-          this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-        },
-      })
-    }
-    OpenStudentschoolDialog() {
-      this.dialogref = this.dialog.open(ManageStudentschoolComponent, {
-        width: '1200px', height: '950px',
-        data:{isDialog : true}
-       })
-        this.dataSource = new MatTableDataSource(this.studentschools)
-      this.dialogref.afterClosed()
-        .subscribe((res: any) => {
-          this.GetStudentschool()
-        }
-        );
-    }
-    
-    Search(){ debugger;
-      var  feePayment = new FeepaymentschoolVM();
-      feePayment.studentschoolId = this.selectedFeepaymentschool.studentschoolId;
-      feePayment.feetypeschoolId = this.selectedFeepaymentschool.feetypeschoolId;
-      this.lmsSvc.SearchFeepaymentschool(feePayment).subscribe({
-       next: (value: FeepaymentschoolVM[]) => {
-         this.feepayment = value
-         this.dataSource = new MatTableDataSource(this.feepayment)
-       }, error: (err) => {
-         this.catSvc.ErrorMsgBar("Error Occurred", 5000)
-       },
-     }
-     )}
-   
+    });
   }
+
+  GetFeepaymentschoolForEdit(id: number) {
+    this.selectedFee = new FeeVM();
+    this.selectedFee.id = id;
+    console.warn(this.selectedFee);
+    this.lmsSvc.SearchFee(this.selectedFee).subscribe({
+      next: (res: FeeVM[]) => {
+        if (res.length > 0) {
+          this.selectedFee = res[0];
+          this.Edit = true;
+          this.Add = false;
+        } else {
+          console.log('Payment not found for editing.');
+        }
+      },
+      error: (e) => {
+        console.warn(e);
+      }
+    });
+  }
+
   
+  GetStudentschool() {
+    var studentschool = new StudentschoolVM();
+    studentschool.isActive = true;
+    this.selectedFee.isActive = true;
+    this.lmsSvc.SearchStudentschool(studentschool).subscribe({
+      next: (res: StudentschoolVM[]) => {
+        this.studentschools = res;
+      },
+      error: (err) => {
+        this.catSvc.ErrorMsgBar('Error Occurred', 5000);
+      }
+    });
+  }
+
+  OpenStudentschoolDialog() {
+    this.dialogref = this.dialog.open(ManageStudentschoolComponent, {
+      width: '1200px',
+      height: '950px',
+      data: { isDialog: true }
+    });
+    this.dataSource = new MatTableDataSource(this.studentschools);
+    this.dialogref.afterClosed().subscribe((res: any) => {
+      this.GetStudentschool();
+    });
+  }
+
+  Search() {
+    debugger;
+    var feePayment = new FeeVM();
+    feePayment.studentId = this.selectedFee.studentId;
+    feePayment.feetypeschoolId = this.selectedFee.feetypeschoolId;
+    this.lmsSvc.SearchFee(feePayment).subscribe({
+      next: (value: FeeVM[]) => {
+        this.feepayment = value;
+        this.dataSource = new MatTableDataSource(this.feepayment);
+      },
+      error: (err) => {
+        this.catSvc.ErrorMsgBar('Error Occurred', 5000);
+      }
+    });
+  }
+}

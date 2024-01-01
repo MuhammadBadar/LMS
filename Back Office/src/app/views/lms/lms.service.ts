@@ -3,7 +3,6 @@ import { ClientVM } from './Models/ClientVM';
 import { TopicVM } from './Models/TopicVM';
 import { CourseDetailVM } from './Models/CourseDetailVM';
 import { AssignClassVM } from './Models/AssignClassVM';
-import { FeepaymentschoolVM } from './Models/FeepaymentschoolVM';
 import { FeetypeschoolVM } from './Models/FeetypeschoolVM';
 import { StudentschoolVM } from './Models/StudentschoolVM';
 import { GuardianschoolVM } from './Models/GuardianschoolVM';
@@ -32,6 +31,7 @@ import { CityStudentVM } from './Models/CityStudentVM';
 import { VocabularyVM } from './Models/VocabularyVM';
 import { PatientVM } from './Models/PatientVM';
 import { UserTaskVM } from './Models/UserTaskVM';
+import { FeeVM } from './Models/FeepaymentschoolVM';
 
 
 @Injectable({
@@ -478,20 +478,21 @@ SearchFeetypeschool(value: FeetypeschoolVM): Observable<FeetypeschoolVM[]> {
 }
 
 
-GetFeepaymentschool(): Observable<FeepaymentschoolVM[]> {
-  return this.http.get<FeepaymentschoolVM[]>(Globals.BASE_API_URL + 'Feepaymentschool').pipe();
+GetFee(): Observable<FeeVM[]> {
+  return this.http.get<FeeVM[]>(Globals.BASE_API_URL + 'Fee').pipe();
 }
-SaveFeepaymentschool(value: FeepaymentschoolVM) {
-  return this.http.post(Globals.BASE_API_URL + 'Feepaymentschool', value)
+SaveFee(value: FeeVM) {
+  debugger;
+  return this.http.post(Globals.BASE_API_URL + 'Fee', value)
 }
-UpdateFeepaymentschool(value: FeepaymentschoolVM) {
-  return this.http.put(Globals.BASE_API_URL + 'Feepaymentschool', value)
+UpdateFee(value: FeeVM) {
+  return this.http.put(Globals.BASE_API_URL + 'Fee', value)
 }
-DeleteFeepaymentschool(id: number) {
-  return this.http.delete(Globals.BASE_API_URL + 'Feepaymentschool/' + id)
+DeleteFee(id: number) {
+  return this.http.delete(Globals.BASE_API_URL + 'Fee/' + id)
 }
-SearchFeepaymentschool(value: FeepaymentschoolVM): Observable<FeepaymentschoolVM[]> {
-  return this.http.post<FeepaymentschoolVM[]>(Globals.BASE_API_URL + 'Feepaymentschool/Search', value).pipe();
+SearchFee(value: FeeVM): Observable<FeeVM[]> {
+  return this.http.post<FeeVM[]>(Globals.BASE_API_URL + 'Fee/Search', value).pipe();
 }
 
 

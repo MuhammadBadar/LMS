@@ -1,74 +1,87 @@
 <div class="container-fluid page">
     <div class="d-flex page_box p-3 mt-2 header-sticky" style="position: sticky;">
-      <div *ngIf="Add">Manage FeePayment</div>
-      <div *ngIf="Edit">Edit FeePayment</div>
-      <div fxFlex fxLayout="row" fxLayoutAlign="end center" style="margin-top: 0; padding-top: 0;" *ngIf="isDialog">
-        <button mat-icon-button (click)="dialogref.close()" style="color: white;">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
+        <div *ngIf="Add">Manage FeePayment</div>
+        <div *ngIf="Edit">Edit FeePayment</div>
+        <div fxFlex fxLayout="row" fxLayoutAlign="end center" style="margin-top: 0; padding-top: 0;" *ngIf="isDialog">
+            <button mat-icon-button (click)="dialogref.close()" style="color: white;">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
     </div>
 
     <div class="page_content shadow p-3 position-relative">
-        <form #FeepaymentschoolForm="ngForm">
-                <div fxLayout="row" fxLayoutAlign="space-between">
-                    <mat-form-field fxFlex="66%" appearance="outline" class="form-group">
-                        <mat-label>----Select Student----</mat-label>
-                        <mat-select name="student" [(value)]="selectedFeepaymentschool.studentschoolId" >
-                            <mat-option *ngFor="let val of studentschools" [value]="val.id">
-                              {{val.name}}
-                            </mat-option>
-                          </mat-select>
-                        <div matSuffix>
-                          <button mat-icon-button style="color:#940540;" (click)="OpenStudentschoolDialog(); $event.stopPropagation()" cTooltip="Explore SettingsType">
+        <form #FeeForm="ngForm">
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label>Select Student</mat-label>
+                    <mat-select name="student" [(value)]="selectedFee.studentId">
+                        <mat-option *ngFor="let val of studentschools" [value]="val.id">
+                            {{val.name}}
+                        </mat-option>
+                    </mat-select>
+                    <div matSuffix>
+                        <button mat-icon-button style="color:#940540;"
+                            (click)="OpenStudentschoolDialog(); $event.stopPropagation()"
+                            cTooltip="Explore SettingsType">
                             <mat-icon>add</mat-icon>
-                          </button>
-                        </div>
-                      </mat-form-field>
-                    <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                        <mat-label> Branch </mat-label>
-                        <input matInput required #branch="ngModel" name="branch" [(ngModel)]="selectedFeepaymentschool.branch" />
-                    </mat-form-field>
-                  
-                </div>
-                <div fxLayout="row" fxLayoutAlign="space-between">
-                    <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                        <mat-label> Class </mat-label>
-                        <input matInput required #class="ngModel" name="class" [(ngModel)]="selectedFeepaymentschool.class" />
-                    </mat-form-field>
-                    <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                        <mat-label> Section </mat-label>
-                        <input matInput required #section="ngModel" name="section" [(ngModel)]="selectedFeepaymentschool.section" />
-                    </mat-form-field>
-                    <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                        <mat-label> Contact No. </mat-label>
-                        <input matInput required #contactNo="ngModel" name="contactNo" [(ngModel)]="selectedFeepaymentschool.contactNo" />
-                    </mat-form-field>
-                </div>
-                <div *ngFor="let title of titles; let i = index">
-                    <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                      <input matInput readonly value="{{ title }}" />
-                    </mat-form-field>
-                    <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                      <mat-label> Amount </mat-label>
-                      <input matInput required [(ngModel)]="selectedFeepaymentschool.amount[i]" />
-                    </mat-form-field>
-                  </div>
-       
+                        </button>
+                    </div>
+                </mat-form-field>
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label> Amount </mat-label>
+                    <input matInput required #amount="ngModel" name="amount" [(ngModel)]="selectedFee.amount" />
+                </mat-form-field>
+
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label> Concession </mat-label>
+                    <input matInput required #concession="ngModel" name="concession" [(ngModel)]="selectedFee.concession" />
+                </mat-form-field>
                 
-                
-              
-                <mat-checkbox name="isActive" [(ngModel)]="selectedFeepaymentschool.isActive" checked>Is Active</mat-checkbox>
-                <div fxLayoutAlign="end end">
-                <button mat-raised-button *ngIf="Add" color="primary" (click)="SaveFeepaymentschool()">Submit</button>
-                <button mat-raised-button *ngIf="Edit" color="primary" (click)="SaveFeepaymentschool()">Update</button>
+
+            </div>
+            <!-- <div fxLayout="row" fxLayoutAlign="space-between">
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label> Branch </mat-label>
+                    <input matInput required #branch="ngModel" name="branch" [(ngModel)]="selectedFee.branch" />
+                </mat-form-field>
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label> Class </mat-label>
+                    <input matInput required #class="ngModel" name="class" [(ngModel)]="selectedFee.class" />
+                </mat-form-field>
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label> Section </mat-label>
+                    <input matInput required #section="ngModel" name="section" [(ngModel)]="selectedFee.section" />
+                </mat-form-field>
+            </div> -->
+            <!-- <div *ngFor="let title of titles; let i = index">
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label> {{ title }} </mat-label>
+                    <input matInput required [(ngModel)]="selectedFeeLine.feeAmount[i]" />
+                </mat-form-field>
+            </div> -->
+            <div *ngFor="let title of titles; let i = index">
+                <!-- <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                  <input matInput readonly value="{{ title }}" />
+                </mat-form-field> -->
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                  <mat-label> {{ title }} </mat-label>
+                  <input matInput [(ngModel)]="feeLines[i].feeAmount" name="feeAmount" />
+                </mat-form-field>
+              </div>
+
+
+
+            <mat-checkbox name="isActive" [(ngModel)]="selectedFee.isActive" checked>Is Active</mat-checkbox>
+            <div fxLayoutAlign="end end">
+                <button mat-raised-button *ngIf="Add" color="primary" (click)="SaveFee()">Submit</button>
+                <button mat-raised-button *ngIf="Edit" color="primary" (click)="UpdateFee()">Update</button>
                 <div>
                     <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
                         (click)="Refresh()">
                         <mat-icon>autorenew</mat-icon>
                     </button>
                 </div>
-                </div>
+            </div>
         </form>
         <section class=" example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;margin-top: 20px;">
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -89,32 +102,33 @@
                     <th mat-header-cell *matHeaderCellDef> Section </th>
                     <td mat-cell *matCellDef="let element"> {{element.section}} </td>
                  </ng-container> -->
-                <ng-container matColumnDef="contactNo">
-                    <th mat-header-cell *matHeaderCellDef> Contact No. </th>
-                    <td mat-cell *matCellDef="let element"> {{element.contactNo}} </td>
-                </ng-container>
+
                 <ng-container matColumnDef="amount">
                     <th mat-header-cell *matHeaderCellDef> Amount </th>
                     <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
                 </ng-container>
+                <ng-container matColumnDef="concession">
+                    <th mat-header-cell *matHeaderCellDef>Concession</th>
+                    <td mat-cell *matCellDef="let element"> {{element.concession}} </td>
+                </ng-container>
                 <ng-container matColumnDef="isActive">
                     <th mat-header-cell *matHeaderCellDef> Is Active </th>
                     <td mat-cell *matCellDef="let element"> {{ element.isActive ? 'yes' : 'no' }} </td>
-                  </ng-container> 
+                </ng-container>
                 <ng-container matColumnDef="actions" stickyEnd="true">
                     <th mat-header-cell *matHeaderCellDef>
                         <p style="font-size: 14px;text-align: center;">Action</p>
                     </th>
                     <td mat-cell *matCellDef="let row">
                         <div style="text-align: center;">
-                            <button mat-icon-button mat-sm-button (click)="EditFeepaymentschool(row)" style=" color:#1e293b ; "
-                                cTooltip=" Edit Feepaymentschool">
+                            <button mat-icon-button mat-sm-button (click)="EditFee(row)"
+                                style=" color:#1e293b ; " cTooltip=" Edit Feepaymentschool">
                                 <mat-icon>edit</mat-icon>
                             </button>
-                         <button mat-icon-button mat-sm-button color="warn" (click)="DeleteFeepaymentschool(row.id)"
+                            <button mat-icon-button mat-sm-button color="warn" (click)="DeleteFee(row.id)"
                                 cTooltip="Delete Feepaymentschool">
                                 <mat-icon>delete</mat-icon>
-                            </button> 
+                            </button>
                         </div>
                     </td>
                 </ng-container>

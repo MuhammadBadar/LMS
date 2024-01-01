@@ -36,6 +36,7 @@
         assignclass,
         branchschool,
         fee,
+        feeline,
         feetypeschool,
         guardianschool,
         studentschool,

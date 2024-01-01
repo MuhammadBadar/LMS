@@ -22,6 +22,8 @@ namespace LMS.DAL
                     Console.WriteLine("Connection  has been created");
                 else
                     Console.WriteLine("Connection error");
+                cmd.Parameters.Clear();
+
                 cmd.CommandText = "ManageFee";
                 cmd.Parameters.AddWithValue("@id", _fee.Id);                
                 cmd.Parameters.AddWithValue("@studentId", _fee.StudentId);
