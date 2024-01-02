@@ -47,6 +47,7 @@ namespace LMS.DAL
                 cmd.ExecuteNonQuery();
                 return true;
             }
+            
             catch (Exception)
             {
                 throw;

@@ -52,22 +52,21 @@ namespace LMS.Service
                 retVal = _feeDAL.ManageFee(fee, cmd);
 
                 // Check if FeeLines are provided, if yes, insert data into feeline table
-                if (fee.FeeLines != null && fee.FeeLines.Count > 0)
+                int feeId = _corDAL.GetnextId(TableNames.feeline.ToString());
+
+                foreach (var line in fee.FeeLines)
                 {
-                    foreach (var line in fee.FeeLines)
-                    {
-                        line.FeeId = fee.Id; // Associate fee line with the main fee
-                        line.DBoperation = DBoperations.Insert;
-                        line.Id = _corDAL.GetnextId(TableNames.feeline.ToString());
+                    line.FeeId = fee.Id; // Associate fee line with the main fee
+                    line.DBoperation = DBoperations.Insert;
+                    line.Id = feeId;
+                    retVal = _feeLineDAL.ManageFeeLine(line, cmd);
 
-                        retVal = _feeLineDAL.ManageFeeLine(line, cmd);
+                    if (!retVal)
+                        break; // If one fee line fails, break out of the loop and roll back the transaction
 
-                        if (!retVal)
-                            break; // If one fee line fails, break out of the loop and roll back the transaction
-                    }
-
-
+                    feeId++; // Increment the feeId for the next iteration
                 }
+
 
                 if (retVal)
                 {
