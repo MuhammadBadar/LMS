@@ -70,8 +70,12 @@ namespace LMS.WebAPI.Controllers
         public IActionResult GetFeetypeschoolTitles()
         {
             List<FeetypeschoolDE> list = _feetypeschoolSvc.SearchFeetypeschool(new FeetypeschoolDE());
-            List<string> titles = list.Select(f => f.Title).ToList();
-            return Ok(titles);
+
+            // Create a list of anonymous objects with both ID and Title
+            var titlesWithIds = list.Select(f => new { Id = f.Id, Title = f.Title }).ToList();
+
+            return Ok(titlesWithIds);
         }
+
     }
 }

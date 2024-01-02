@@ -2,18 +2,18 @@ export class FeeVM {
     id?: number;
     studentId?: number;
     student?: string;    
-    feetypeschoolId?: number;
-    classId?: number;
-    sectionId?: number;
-    branch?: string;
-    branchId?: number;
-    class?: string;
     amount?: number;
     concession?: string;
-    section?: string;
-    feetype?: string;
     isActive?: boolean;
     feeLines: FeeLineVM[];
+    // feetypeschoolId?: number;
+    // classId?: number;
+    // sectionId?: number;
+    // branch?: string;
+    // branchId?: number;
+    // class?: string;
+    // section?: string;
+    // feetype?: string;
   }
   
   export class FeeLineVM {

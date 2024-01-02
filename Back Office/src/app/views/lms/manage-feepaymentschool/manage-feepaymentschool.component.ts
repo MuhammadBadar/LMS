@@ -26,8 +26,8 @@ export class ManageFeepaymentschoolComponent implements OnInit {
   feepayment?: FeeVM[];
   studentschools?: StudentschoolVM[];
   titles: string[];
-  feeLines: FeeLineVM[]=[ { feeAmount :0,   feetypeId: 1,concession:"",isActive:true },
-    { feeAmount :0,   feetypeId: 1,concession:"",isActive:true }, { feeAmount :0,   feetypeId: 1,concession:"",isActive:true }];
+  feeLines: FeeLineVM[]=[ { feeAmount :0,   feetypeId: 5,concession:"",isActive:true },
+    { feeAmount :0,   feetypeId: 6,concession:"",isActive:true }, { feeAmount :0,   feetypeId: 5,concession:"",isActive:true }, { feeAmount :0,   feetypeId: 5,concession:"",isActive:true }];
   // feeLines: FeeLineVM[] = []
 
   selectedFee = new FeeVM();
@@ -68,6 +68,7 @@ export class ManageFeepaymentschoolComponent implements OnInit {
   }
 
   GetTitles() {
+    debugger;
     this.lmsSvc.GetFeetypeschoolTitles().subscribe({
       next: (res: string[]) => {
         this.titles = res;
@@ -248,19 +249,19 @@ export class ManageFeepaymentschoolComponent implements OnInit {
     });
   }
 
-  Search() {
-    debugger;
-    var feePayment = new FeeVM();
-    feePayment.studentId = this.selectedFee.studentId;
-    feePayment.feetypeschoolId = this.selectedFee.feetypeschoolId;
-    this.lmsSvc.SearchFee(feePayment).subscribe({
-      next: (value: FeeVM[]) => {
-        this.feepayment = value;
-        this.dataSource = new MatTableDataSource(this.feepayment);
-      },
-      error: (err) => {
-        this.catSvc.ErrorMsgBar('Error Occurred', 5000);
-      }
-    });
-  }
+  // Search() {
+  //   debugger;
+  //   var feePayment = new FeeVM();
+  //   feePayment.studentId = this.selectedFee.studentId;
+  //   feePayment.feetypeschoolId = this.selectedFee.feetypeschoolId;
+  //   this.lmsSvc.SearchFee(feePayment).subscribe({
+  //     next: (value: FeeVM[]) => {
+  //       this.feepayment = value;
+  //       this.dataSource = new MatTableDataSource(this.feepayment);
+  //     },
+  //     error: (err) => {
+  //       this.catSvc.ErrorMsgBar('Error Occurred', 5000);
+  //     }
+  //   });
+  // }
 }

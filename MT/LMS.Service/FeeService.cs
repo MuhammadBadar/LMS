@@ -5,6 +5,7 @@ using MySql.Data.MySqlClient;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 
 namespace LMS.Service
 {
@@ -55,14 +56,17 @@ namespace LMS.Service
                 {
                     foreach (var line in fee.FeeLines)
                     {
-                        line.Id = _corDAL.GetnextId(TableNames.feeline.ToString());
                         line.FeeId = fee.Id; // Associate fee line with the main fee
                         line.DBoperation = DBoperations.Insert;
+                        line.Id = _corDAL.GetnextId(TableNames.feeline.ToString());
+
                         retVal = _feeLineDAL.ManageFeeLine(line, cmd);
 
                         if (!retVal)
                             break; // If one fee line fails, break out of the loop and roll back the transaction
                     }
+
+
                 }
 
                 if (retVal)
