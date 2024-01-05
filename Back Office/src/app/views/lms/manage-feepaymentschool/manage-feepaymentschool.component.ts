@@ -9,6 +9,7 @@ import { StudentschoolVM } from '../Models/StudentschoolVM';
 import { ManageStudentschoolComponent } from '../manage-studentschool/manage-studentschool.component';
 import { FeeLineVM, FeeVM } from '../Models/FeepaymentschoolVM';
 import { AssignClassVM } from '../Models/AssignClassVM';
+import { FeetypeschoolVM } from '../Models/FeetypeschoolVM';
 
 @Component({
   selector: 'app-manage-feepaymentschool',
@@ -16,7 +17,7 @@ import { AssignClassVM } from '../Models/AssignClassVM';
   styleUrls: ['./manage-feepaymentschool.component.css']
 })
 export class ManageFeepaymentschoolComponent implements OnInit {
-  displayedColumns: string[] = ['student', 'amount','concession', 'isActive', 'actions'];
+  displayedColumns: string[] = ['amount','concession', 'isActive', 'actions'];
   processing: boolean = false;
   Edit: boolean = false;
   Add: boolean = true;
@@ -26,8 +27,9 @@ export class ManageFeepaymentschoolComponent implements OnInit {
   feepayment?: FeeVM[];
   studentschools?: StudentschoolVM[];
   titles: string[];
-  feeLines: FeeLineVM[]=[ { feeAmount :0,   feetypeId: 5,concession:"",isActive:true },
-    { feeAmount :0,   feetypeId: 6,concession:"",isActive:true }, { feeAmount :0,   feetypeId: 5,concession:"",isActive:true }, { feeAmount :0,   feetypeId: 5,concession:"",isActive:true }];
+  feeTypeSchool: FeetypeschoolVM[]=[]
+  feeLines: FeeLineVM[]=[ { feeAmount :0,   feetypeId: 5,concession:0,isActive:true },
+    { feeAmount :0,   feetypeId: 6,concession:0,isActive:true }, { feeAmount :0,   feetypeId: 5,concession:0,isActive:true }];
   // feeLines: FeeLineVM[] = []
 
   selectedFee = new FeeVM();
@@ -60,15 +62,20 @@ export class ManageFeepaymentschoolComponent implements OnInit {
   ngOnInit(): void {
     this.GetFee();
     this.GetTitles();
+    this.GetTitle();
     this.Add = true;
     this.GetStudentschool();
 
     this.selectedFee.isActive = true;
     this.isDialog = this.dialogData.isDialog;
+
+    // define forloop and intialize array 
+    //this.feeLines.push({ feeAmount :0,   feetypeId: 5,concession:"",isActive:true });
+
   }
 
   GetTitles() {
-    debugger;
+    // debugger;
     this.lmsSvc.GetFeetypeschoolTitles().subscribe({
       next: (res: string[]) => {
         this.titles = res;
@@ -77,7 +84,21 @@ export class ManageFeepaymentschoolComponent implements OnInit {
         console.warn(e);
       }
     });
+    // using forloop initialize array items
   }
+  GetTitle() {
+    debugger;
+    this.lmsSvc.GetFeetypeschool().subscribe({
+      next: (value: FeetypeschoolVM[]) => {
+        debugger;
+        this.feeTypeSchool = value
+        this.dataSource = new MatTableDataSource(this.feeTypeSchool)
+      }, error: (err) => {
+        alert('Error to retrieve Titles');
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+      },
+    })
+}
 
   GetFee() {
     this.lmsSvc.GetFee().subscribe({
@@ -101,7 +122,9 @@ export class ManageFeepaymentschoolComponent implements OnInit {
     this.lmsSvc.SaveFee(this.selectedFee).subscribe({
       next: (value) => {
         this.catSvc.SuccessMsgBar("Successfully Added", 5000);
+        this.ngOnInit();
         this.Refresh();
+        window.scrollTo(0, 0);
       }, 
       error: (err) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000);

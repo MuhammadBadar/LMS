@@ -12,7 +12,7 @@ namespace LMS.Core.Entities
         public int FeeId { get; set; }
         public int? FeeTypeId { get; set; }        
         public int? FeeAmount { get; set; }
-        public string? Concession { get; set; }
+        public int? Concession { get; set; }
 
     }
 }

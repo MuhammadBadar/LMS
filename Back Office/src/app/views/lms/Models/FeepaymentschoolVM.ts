@@ -3,7 +3,7 @@ export class FeeVM {
     studentId?: number;
     student?: string;    
     amount?: number;
-    concession?: string;
+    concession?: number;
     isActive?: boolean;
     feeLines: FeeLineVM[];
     // feetypeschoolId?: number;
@@ -21,7 +21,7 @@ export class FeeVM {
     feeId?: number;
     feetypeId?: number;
     feeAmount?: number;
-    concession?: string;
+    concession?: number;
     isActive?: boolean;
   }
   

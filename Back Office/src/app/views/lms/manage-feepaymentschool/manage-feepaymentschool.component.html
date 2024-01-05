@@ -59,15 +59,19 @@
                     <input matInput required [(ngModel)]="selectedFeeLine.feeAmount[i]" />
                 </mat-form-field>
             </div> -->
-            <div *ngFor="let title of titles; let i = index">
-                <!-- <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                  <input matInput readonly value="{{ title }}" />
-                </mat-form-field> -->
+            <!-- <div *ngFor="let title of titles; let i = index">                
                 <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
                   <mat-label> {{ title }} </mat-label>
                   <input matInput [(ngModel)]="feeLines[i].feeAmount" name="feeAmount" />
                 </mat-form-field>
-              </div>
+              </div> -->
+              <div *ngFor="let title of titles; let i = index">                
+                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label> {{ title }} </mat-label>
+                    <input matInput [(ngModel)]="feeLines[i].feeAmount" name="feeAmount" />
+                </mat-form-field>
+            </div>
+            
 
 
 
