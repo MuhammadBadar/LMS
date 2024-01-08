@@ -29,6 +29,7 @@ namespace LMS.DAL
                 cmd.Parameters.AddWithValue("@studentId", _fee.StudentId);
                 cmd.Parameters.AddWithValue("@feeDate", _fee.FeeDate);
                 cmd.Parameters.AddWithValue("@amount", _fee.Amount);
+                cmd.Parameters.AddWithValue("@netAmount", _fee.NetAmount);
                 cmd.Parameters.AddWithValue("@concession", _fee.Concession);                
                 cmd.Parameters.AddWithValue("@createdOn", _fee.CreatedOn);
                 cmd.Parameters.AddWithValue("@createdById", _fee.CreatedById);

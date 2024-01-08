@@ -19,6 +19,7 @@ namespace LMS.Core.Entities
         //public string Student { get; set; }
         public DateTime FeeDate { get; set; }
         public int? Amount { get; set; }
+        public int NetAmount { get; set; }
         public int? Concession { get; set; }
 
         
