@@ -462,6 +462,7 @@ SearchStudentschool(value: StudentschoolVM): Observable<StudentschoolVM[]> {
 }
 
 GetFeetypeschool(): Observable<FeetypeschoolVM[]> {
+  debugger;
   return this.http.get<FeetypeschoolVM[]>(Globals.BASE_API_URL + 'Feetypeschool').pipe();
 }
 SaveFeetypeschool(value: FeetypeschoolVM) {
@@ -512,8 +513,12 @@ SearchAssignClass(value: AssignClassVM): Observable<AssignClassVM[]> {
   return this.http.post<AssignClassVM[]>(Globals.BASE_API_URL + 'AssignClass/Search', value).pipe();
 }
 
-GetFeetypeschoolTitles(): Observable<string[]> {
-  return this.http.get<string[]>(Globals.BASE_API_URL + 'Feetypeschool/Titles').pipe();
+// GetFeetypeschoolTitles(): Observable<string[]> {
+//   return this.http.get<string[]>(Globals.BASE_API_URL + 'Feetypeschool/Titles').pipe();
+// }
+GetFeetypeschoolTitles(): Observable<{ Id: number, Title: string }[]> {
+  debugger;
+  return this.http.get<{ Id: number, Title: string }[]>(Globals.BASE_API_URL + 'Feetypeschool/Titles').pipe();
 }
 
 }

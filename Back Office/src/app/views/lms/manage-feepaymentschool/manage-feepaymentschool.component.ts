@@ -10,6 +10,7 @@ import { ManageStudentschoolComponent } from '../manage-studentschool/manage-stu
 import { FeeLineVM, FeeVM } from '../Models/FeepaymentschoolVM';
 import { AssignClassVM } from '../Models/AssignClassVM';
 import { FeetypeschoolVM } from '../Models/FeetypeschoolVM';
+import { debug } from 'console';
 
 @Component({
   selector: 'app-manage-feepaymentschool',
@@ -23,14 +24,13 @@ export class ManageFeepaymentschoolComponent implements OnInit {
   Add: boolean = true;
   DisabledType: boolean = false;
   dataSource: any;
-  feetypes: string[];
-  feepayment?: FeeVM[];
+  // feetypes: string[];
+  // feepayment?: FeeVM[];
+  // titles: string[];
   studentschools?: StudentschoolVM[];
-  titles: string[];
+  titles: { id: number, title: string }[] = [];
   feeTypeSchool: FeetypeschoolVM[]=[]
-  feeLines: FeeLineVM[]=[ { feeAmount :0,   feetypeId: 5,concession:0,isActive:true },
-    { feeAmount :0,   feetypeId: 6,concession:0,isActive:true }, { feeAmount :0,   feetypeId: 5,concession:0,isActive:true }];
-  // feeLines: FeeLineVM[] = []
+  feeLines: FeeLineVM[] = []
 
   selectedFee = new FeeVM();
   @ViewChild('feeForm', { static: true }) feeForm: NgForm;
@@ -60,45 +60,44 @@ export class ManageFeepaymentschoolComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.GetFee();
-    this.GetTitles();
+    this.GetFee();    
     this.GetTitle();
     this.Add = true;
     this.GetStudentschool();
 
     this.selectedFee.isActive = true;
     this.isDialog = this.dialogData.isDialog;
-
-    // define forloop and intialize array 
-    //this.feeLines.push({ feeAmount :0,   feetypeId: 5,concession:"",isActive:true });
-
-  }
-
-  GetTitles() {
-    // debugger;
-    this.lmsSvc.GetFeetypeschoolTitles().subscribe({
-      next: (res: string[]) => {
-        this.titles = res;
-      },
-      error: (e) => {
-        console.warn(e);
-      }
-    });
-    // using forloop initialize array items
-  }
-  GetTitle() {
     debugger;
+    this.InitializeFeeLines();
+
+  }
+  InitializeFeeLines() {
+    // Check if titles array is available
+    if (this.titles && this.titles.length > 0) {
+      // Convert feetypeId to number in the mapping function
+      this.feeLines = this.titles.map(title => ({ feeAmount: 0, feetypeId: title.id, concession: 0, isActive: true }));
+    } else {
+      // Handle the case where titles are not available
+      console.warn('Titles array is empty or undefined.');
+    }
+  }
+
+  GetTitle() {
     this.lmsSvc.GetFeetypeschool().subscribe({
       next: (value: FeetypeschoolVM[]) => {
         debugger;
-        this.feeTypeSchool = value
-        this.dataSource = new MatTableDataSource(this.feeTypeSchool)
+        this.feeTypeSchool = value;
+        this.dataSource = new MatTableDataSource(this.feeTypeSchool);
+        // Extract id and title from feeTypeSchool and set them to titles array
+        this.titles = this.feeTypeSchool.map(feetype => ({ id: feetype.id, title: feetype.title }));
+        this.InitializeFeeLines();
       }, error: (err) => {
-        alert('Error to retrieve Titles');
-        this.catSvc.ErrorMsgBar("Error Occurred", 5000)
+        alert('Error to retrieve Fee Titles');
+        this.catSvc.ErrorMsgBar("Error Occurred", 5000);
       },
-    })
-}
+    });
+  }
+
 
   GetFee() {
     this.lmsSvc.GetFee().subscribe({
@@ -118,6 +117,7 @@ export class ManageFeepaymentschoolComponent implements OnInit {
       return; // Exit the function if any required field is empty
     }
   
+    // Update the property name to 'feetypeId'
     this.selectedFee.feeLines = this.feeLines;
     this.lmsSvc.SaveFee(this.selectedFee).subscribe({
       next: (value) => {
@@ -132,34 +132,7 @@ export class ManageFeepaymentschoolComponent implements OnInit {
     });
   }
   
-
-//   SaveFee() {
-//     debugger;
-//     if (  this.selectedFee) {
-//       this.selectedFee.feeLines = this.feeLines;
-//         this.processing = true; 
-//         if (this.Edit) {
-//             this.UpdateFee();
-//         } else {
-//             this.lmsSvc.SaveFee(this.selectedFee).subscribe({
-//                 next: (res) => {
-//                     this.catSvc.SuccessMsgBar("Successfully Added!", 6000);
-//                     this.ngOnInit();
-//                     this.Refresh(); 
-//                     window.scrollTo(0, 0);
-//                     this.processing = false; 
-//                 },
-//                 error: (e) => {
-//                     console.warn(e);
-//                     this.catSvc.ErrorMsgBar("Error Occurred!", 6000);
-//                     this.processing = false; 
-//                 }
-//             });
-//         }
-//     } else {
-//         this.catSvc.ErrorMsgBar("Please fill in all required fields!", 5000);
-//     }
-// }
+  
   
   UpdateFee() {
     if (this.selectedFee.student) {
