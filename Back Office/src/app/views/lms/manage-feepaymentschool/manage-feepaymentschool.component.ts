@@ -70,20 +70,29 @@ export class ManageFeepaymentschoolComponent implements OnInit {
 
   }
 
-updateAmountAndNetAmount() {
-  this.selectedFee.amount = this.calculateTotalAmount();
-  this.selectedFee.netAmount = this.calculateNetAmount();
-}
-
-calculateTotalAmount(): number {
-  return this.feeLines.reduce((acc, feeLine) => acc + (Number(feeLine.feeAmount) || 0), 0);
-}
-
-calculateNetAmount(): number {
-  const totalAmount = this.calculateTotalAmount();
-  const concession = Number(this.selectedFee.concession) || 0;
-  return totalAmount - concession;
-}
+  updateAmountAndNetAmount() {
+    this.selectedFee.amount = this.calculateTotalAmount();
+  
+    // Ensure that concession is less than or equal to the amount
+    if (this.selectedFee.concession >= this.selectedFee.amount) {
+      this.selectedFee.concession = this.selectedFee.amount;
+    }
+  
+    this.selectedFee.netAmount = this.calculateNetAmount();
+  }
+  
+  calculateTotalAmount(): number {
+    return this.feeLines.reduce((acc, feeLine) => acc + (Number(feeLine.feeAmount) || 0), 0);
+  }
+  
+  calculateNetAmount(): number {
+    const totalAmount = this.calculateTotalAmount();
+    const concession = Number(this.selectedFee.concession) || 0;
+  
+    // Ensure that netAmount doesn't become negative
+    return Math.max(totalAmount - concession, 0);
+  }
+  
 
 
 
@@ -114,7 +123,6 @@ InitializeFeeLines() {
       },
     });
   }
-
 
   GetFee() {
     this.lmsSvc.GetFee().subscribe({
@@ -147,8 +155,7 @@ InitializeFeeLines() {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000);
       },
     });
-  }
-  
+  }  
   
   
   UpdateFee() {
@@ -188,6 +195,7 @@ InitializeFeeLines() {
     this.selectedFee = feepaymentschool;
     this.selectedFee.isActive = true;
   }
+
   DeleteFee(id: number) {
     Swal.fire({
       title: 'Are you sure?',
