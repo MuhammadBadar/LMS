@@ -43,31 +43,27 @@
             
             <div *ngFor="let title of titles; let i = index">
                 <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                    <mat-label> {{ title.title }} </mat-label>
-                    <input matInput [(ngModel)]="feeLines[i].feeAmount" name="feeAmount" />
+                    <mat-label>{{ title.title }}</mat-label>
+                    <input matInput [(ngModel)]="feeLines[i].feeAmount" name="feeAmount" (ngModelChange)="updateAmountAndNetAmount()" />
                 </mat-form-field>
             </div>
             
-            <div fxLayout="row" fxLayoutAlign="space-between">
+            <div fxLayout="row" fxLayoutAlign="space-between">                                
                 <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                    <mat-label> Amount </mat-label>
-                    <input matInput required #amount="ngModel" name="amount" [(ngModel)]="selectedFee.amount" />
-                </mat-form-field>
-
-                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                    <mat-label> Concession </mat-label>
-                    <input matInput required #concession="ngModel" name="concession"
-                        [(ngModel)]="selectedFee.concession" />
-                </mat-form-field>
-
-                <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
-                    <mat-label> Net Amount </mat-label>
-                    <input matInput required #netAmount="ngModel" name="netAmount" [(ngModel)]="selectedFee.netAmount" />
-                </mat-form-field>
+                    <mat-label>Amount</mat-label>
+                    <input matInput  name="amount" [(ngModel)]="selectedFee.amount" />
+                  </mat-form-field>
+                  
+                  <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label>Concession</mat-label>
+                    <input matInput  [(ngModel)]="selectedFee.concession" name="concession" (ngModelChange)="updateAmountAndNetAmount()" />
+                  </mat-form-field>
+                  
+                  <mat-form-field fxFlex="33%" appearance="outline" class="form-group">
+                    <mat-label>Net Amount</mat-label>
+                    <input matInput  name="netAmount" [(ngModel)]="selectedFee.netAmount" />
+                  </mat-form-field>                  
             </div>
-
-
-
 
             <mat-checkbox name="isActive" [(ngModel)]="selectedFee.isActive" checked>Is Active</mat-checkbox>
             <div fxLayoutAlign="end end">

@@ -24,9 +24,6 @@ export class ManageFeepaymentschoolComponent implements OnInit {
   Add: boolean = true;
   DisabledType: boolean = false;
   dataSource: any;
-  // feetypes: string[];
-  // feepayment?: FeeVM[];
-  // titles: string[];
   studentschools?: StudentschoolVM[];
   titles: { id: number, title: string }[] = [];
   feeTypeSchool: FeetypeschoolVM[]=[]
@@ -53,39 +50,59 @@ export class ManageFeepaymentschoolComponent implements OnInit {
     this.dialogData = this.injector.get(MAT_DIALOG_DATA, null);
     this.selectedFee = new FeeVM();
     this.selectedFeeLine = new FeeLineVM();
-    this.selectedFeeLine = {
-      feeAmount: 0,
-      isActive: true
-    };
   }
 
   ngOnInit(): void {
     this.GetFee();    
     this.GetTitle();
     this.Add = true;
-    this.GetStudentschool();
+    this.GetStudentschool();  
+    
 
     this.selectedFee.isActive = true;
-    this.isDialog = this.dialogData.isDialog;
-    debugger;
+    // this.isDialog = this.dialogData.isDialog;
+    this.isDialog = this.dialogData && this.dialogData.isDialog; // Check if dialogData is not null
+    // debugger;
     this.InitializeFeeLines();
+    // Initialize selectedFee amount and netAmount to null
+  this.selectedFee.amount = null;
+  this.selectedFee.netAmount = null;
 
   }
-  InitializeFeeLines() {
-    // Check if titles array is available
-    if (this.titles && this.titles.length > 0) {
-      // Convert feetypeId to number in the mapping function
-      this.feeLines = this.titles.map(title => ({ feeAmount: 0, feetypeId: title.id, concession: 0, isActive: true }));
-    } else {
-      // Handle the case where titles are not available
-      console.warn('Titles array is empty or undefined.');
-    }
+
+updateAmountAndNetAmount() {
+  this.selectedFee.amount = this.calculateTotalAmount();
+  this.selectedFee.netAmount = this.calculateNetAmount();
+}
+
+calculateTotalAmount(): number {
+  return this.feeLines.reduce((acc, feeLine) => acc + (Number(feeLine.feeAmount) || 0), 0);
+}
+
+calculateNetAmount(): number {
+  const totalAmount = this.calculateTotalAmount();
+  const concession = Number(this.selectedFee.concession) || 0;
+  return totalAmount - concession;
+}
+
+
+
+// Inside your component class
+InitializeFeeLines() {
+  // Check if titles array is available
+  if (this.titles && this.titles.length > 0) {
+    // Convert feetypeId to number in the mapping function
+    this.feeLines = this.titles.map(title => ({ feeAmount: null, feetypeId: title.id, concession: null, isActive: true }));
+  } else {
+    // Handle the case where titles are not available
+    console.warn('Titles array is empty or undefined.');
   }
+}
 
   GetTitle() {
     this.lmsSvc.GetFeetypeschool().subscribe({
       next: (value: FeetypeschoolVM[]) => {
-        debugger;
+        // debugger;
         this.feeTypeSchool = value;
         this.dataSource = new MatTableDataSource(this.feeTypeSchool);
         // Extract id and title from feeTypeSchool and set them to titles array
@@ -111,8 +128,8 @@ export class ManageFeepaymentschoolComponent implements OnInit {
   }
 
   SaveFee() {
-    debugger;
-    if (!this.selectedFee.amount || !this.selectedFee.concession) {
+    // debugger;
+    if (!this.selectedFee.studentId || !this.selectedFee.amount || !this.selectedFee.concession) {
       this.catSvc.ErrorMsgBar("Please fill in all required fields.", 5000);
       return; // Exit the function if any required field is empty
     }
@@ -161,6 +178,7 @@ export class ManageFeepaymentschoolComponent implements OnInit {
     this.Add = true;
     this.Edit = false;
     this.selectedFee = new FeeVM();
+    this.selectedFee.isActive = true;
   }
 
 

@@ -290,11 +290,11 @@ SearchUserTaskbydate(value:UserTaskbydateVM): Observable<UserTaskbydateVM[]>{
 
 //UserTaskVM lms services
 GetTaskByUserId(userId: string): Observable<TaskVM[]> {
-  debugger;
+  
   return this.http.get<TaskVM[]>(Globals.BASE_API_URL + 'Task/GetTasksByUserId/' + userId).pipe()
 }
 GetDueSps(userId: string): Observable<TaskVM[]> {
-  debugger;
+  
   return this.http.get<TaskVM[]>(Globals.BASE_API_URL + 'Schedule/GetDueSps?userId=' + userId).pipe()
 }
 
@@ -302,7 +302,7 @@ GetTask(): Observable<TaskVM[]>{
   return this.http.get<TaskVM[]>(Globals.BASE_API_URL + 'Task').pipe();
 }
 GetTaskId(userId: string): Observable<TaskVM[]> {
-  debugger;
+  
   return this.http.get<TaskVM[]>(Globals.BASE_API_URL + 'Task/' + userId).pipe()
 }
 SaveTask(value:TaskVM){
@@ -371,21 +371,20 @@ SearchClient(value:ClientVM): Observable<ClientVM[]>{
 
 // usertask lms service 
 GetUsertask(): Observable<UserTaskVM[]> {
-  debugger;
+  
   return this.http.get<UserTaskVM[]>(Globals.BASE_API_URL + 'UserTask').pipe();
 }
 SaveUsertask(task: UserTaskVM) {
   return this.http.post(Globals.BASE_API_URL + 'UserTask', task)
 }
-SaveUsertasks(tasks: UserTaskVM[]) {
-  // debugger;
+SaveUsertasks(tasks: UserTaskVM[]) {  
   return this.http.post<UserTaskVM[]>(Globals.BASE_API_URL + 'UserTask', tasks)
 }
 UpdateUsertask(value: UserTaskVM) {
   return this.http.put(Globals.BASE_API_URL + 'UserTask', value)
 }
 UpdateUsertasks(tasks: UserTaskVM[]) {
-  debugger;
+  
   return this.http.put<UserTaskVM[]>(Globals.BASE_API_URL + 'UserTask', tasks)
 }
 DeleteUsertask(id: number) {
@@ -461,8 +460,7 @@ SearchStudentschool(value: StudentschoolVM): Observable<StudentschoolVM[]> {
   return this.http.post<StudentschoolVM[]>(Globals.BASE_API_URL + 'Studentschool/Search', value).pipe();
 }
 
-GetFeetypeschool(): Observable<FeetypeschoolVM[]> {
-  debugger;
+GetFeetypeschool(): Observable<FeetypeschoolVM[]> {  
   return this.http.get<FeetypeschoolVM[]>(Globals.BASE_API_URL + 'Feetypeschool').pipe();
 }
 SaveFeetypeschool(value: FeetypeschoolVM) {
@@ -482,8 +480,7 @@ SearchFeetypeschool(value: FeetypeschoolVM): Observable<FeetypeschoolVM[]> {
 GetFee(): Observable<FeeVM[]> {
   return this.http.get<FeeVM[]>(Globals.BASE_API_URL + 'Fee').pipe();
 }
-SaveFee(value: FeeVM) {
-  debugger;
+SaveFee(value: FeeVM) {  
   return this.http.post(Globals.BASE_API_URL + 'Fee', value)
 }
 UpdateFee(value: FeeVM) {
@@ -517,7 +514,7 @@ SearchAssignClass(value: AssignClassVM): Observable<AssignClassVM[]> {
 //   return this.http.get<string[]>(Globals.BASE_API_URL + 'Feetypeschool/Titles').pipe();
 // }
 GetFeetypeschoolTitles(): Observable<{ Id: number, Title: string }[]> {
-  debugger;
+  
   return this.http.get<{ Id: number, Title: string }[]>(Globals.BASE_API_URL + 'Feetypeschool/Titles').pipe();
 }
 
