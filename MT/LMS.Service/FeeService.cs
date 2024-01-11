@@ -142,32 +142,7 @@ namespace LMS.Service
             return fees;
         }
 
-        #region GetStudentById
-        public AssignClassDE GetStudentById(string userId)
-        {
-            try
-            {
-                // Assuming you have a method in AssignClassDAL to get AssignClass details by userId
-                var assignClass = _assignClassDAL.GetAssignClassByUserId(userId);
-
-                if (assignClass != null)
-                {
-                    return assignClass;
-                }
-
-                // Handle the case where no AssignClass is found for the given userId
-                // You might want to throw an exception, log, or handle it in a way that makes sense for your application.
-
-                return null;
-            }
-            catch (Exception exp)
-            {
-                _logger.Error(exp, "Error in GetAssignClassByUserId method");
-                throw;
-            }
-        }
-
-        #endregion
+        
 
         #endregion
     }
