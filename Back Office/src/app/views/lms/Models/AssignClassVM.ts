@@ -7,8 +7,8 @@ export class AssignClassVM {
     isActive?: boolean
     classId!: number
     sectionId!: number
+    branchId!: number
     class?: string
     section?: string
-    branchId!: number
     branch?: string
 }

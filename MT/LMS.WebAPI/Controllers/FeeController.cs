@@ -41,6 +41,15 @@ namespace LMS.WebAPI.Controllers
 
         }
 
+        [HttpGet("GetStudentById")]
+        public ActionResult GetStudentById(string userId)
+        {
+            //ScheduleDE Schedule = new ScheduleDE { UserId = userId };
+            var fee = _feeSvc.GetStudentById(userId);
+
+            return Ok(fee);
+        }
+
         [HttpPost]
         public IActionResult PostFee(FeeDE fee)
         {

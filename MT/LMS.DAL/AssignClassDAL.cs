@@ -80,5 +80,35 @@ namespace LMS.DAL
             }
         }
         #endregion
+        public AssignClassDE GetAssignClassByUserId(string userId, MySqlCommand cmd = null)
+        {
+            bool closeConnectionFlag = false;
+
+            try
+            {
+                if (cmd == null)
+                {
+                    cmd = LMSDataContext.OpenMySqlConnection();
+                    closeConnectionFlag = true;
+                }
+
+                // Assuming you have a stored procedure or SQL query to retrieve AssignClass by userId
+                string query = "SELECT * FROM AssignClass WHERE StudentschoolId = @userId AND IsActive = 1";
+
+                var result = cmd.Connection.QueryFirstOrDefault<AssignClassDE>(query, new { userId });
+
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (closeConnectionFlag)
+                    LMSDataContext.CloseMySqlConnection(cmd);
+            }
+        }
+
     }
 }

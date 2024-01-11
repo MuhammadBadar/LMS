@@ -18,15 +18,16 @@ import { debug } from 'console';
   styleUrls: ['./manage-feepaymentschool.component.css']
 })
 export class ManageFeepaymentschoolComponent implements OnInit {
-  displayedColumns: string[] = ['amount','concession', 'isActive', 'actions'];
+  displayedColumns: string[] = ['amount', 'concession', 'isActive', 'actions'];
   processing: boolean = false;
   Edit: boolean = false;
   Add: boolean = true;
   DisabledType: boolean = false;
   dataSource: any;
   studentschools?: StudentschoolVM[];
+  assignClass?: AssignClassVM[]
   titles: { id: number, title: string }[] = [];
-  feeTypeSchool: FeetypeschoolVM[]=[]
+  feeTypeSchool: FeetypeschoolVM[] = []
   feeLines: FeeLineVM[] = []
 
   selectedFee = new FeeVM();
@@ -53,11 +54,12 @@ export class ManageFeepaymentschoolComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.GetFee();    
+    this.GetFee();
     this.GetTitle();
+    this.GetAssignClass();
     this.Add = true;
-    this.GetStudentschool();  
-    
+    this.GetStudentschool();
+
 
     this.selectedFee.isActive = true;
     // this.isDialog = this.dialogData.isDialog;
@@ -65,48 +67,87 @@ export class ManageFeepaymentschoolComponent implements OnInit {
     // debugger;
     this.InitializeFeeLines();
     // Initialize selectedFee amount and netAmount to null
-  this.selectedFee.amount = null;
-  this.selectedFee.netAmount = null;
+    this.selectedFee.amount = null;
+    this.selectedFee.netAmount = null;
 
   }
 
   updateAmountAndNetAmount() {
     this.selectedFee.amount = this.calculateTotalAmount();
-  
+
     // Ensure that concession is less than or equal to the amount
     if (this.selectedFee.concession >= this.selectedFee.amount) {
       this.selectedFee.concession = this.selectedFee.amount;
     }
-  
+
     this.selectedFee.netAmount = this.calculateNetAmount();
   }
-  
+
   calculateTotalAmount(): number {
     return this.feeLines.reduce((acc, feeLine) => acc + (Number(feeLine.feeAmount) || 0), 0);
   }
-  
+
   calculateNetAmount(): number {
     const totalAmount = this.calculateTotalAmount();
     const concession = Number(this.selectedFee.concession) || 0;
-  
+
     // Ensure that netAmount doesn't become negative
     return Math.max(totalAmount - concession, 0);
   }
+
+
+
+
+  // Inside your component class
+  InitializeFeeLines() {
+    // Check if titles array is available
+    if (this.titles && this.titles.length > 0) {
+      // Convert feetypeId to number in the mapping function
+      this.feeLines = this.titles.map(title => ({ feeAmount: null, feetypeId: title.id, concession: null, isActive: true }));
+    } else {
+      // Handle the case where titles are not available
+      console.warn('Titles array is empty or undefined.');
+    }
+  }
+  GetAssignClass() {
+    debugger;
+    this.lmsSvc.GetAssignClass().subscribe({
+      next: (res: AssignClassVM[]) => {
+
+        this.dataSource = new MatTableDataSource(res);
+      },
+      error: (e) => {
+        console.warn(e);
+      }
+    });
+  }
+
+  onStudentSelectionChange() {
+    // Get the selected student's AssignClass details based on the studentId
+    const selectedAssignClass = this.dataSource.data.find(assignClass => assignClass.studentschoolId === this.selectedFee.studentId);
+  
+    // Check if AssignClass data is available for the selected student
+    if (selectedAssignClass) {
+      // Update the fields (Branch, Class, Section) with the selected student's AssignClass details
+      this.selectedFee.branchId = selectedAssignClass.branchId;
+      this.selectedFee.classId = selectedAssignClass.classId;
+      this.selectedFee.sectionId = selectedAssignClass.sectionId;
+      this.selectedFee.branch = selectedAssignClass.branch;
+      this.selectedFee.class = selectedAssignClass.class;
+      this.selectedFee.section = selectedAssignClass.section;
+    } else {
+      // Reset the fields to empty values if no AssignClass data is available for the selected student
+      this.selectedFee.branchId = null;
+      this.selectedFee.classId = null;
+      this.selectedFee.sectionId = null;
+      this.selectedFee.branch = null;
+      this.selectedFee.class = null;
+      this.selectedFee.section = null;
+    }
+  }
+  
   
 
-
-
-// Inside your component class
-InitializeFeeLines() {
-  // Check if titles array is available
-  if (this.titles && this.titles.length > 0) {
-    // Convert feetypeId to number in the mapping function
-    this.feeLines = this.titles.map(title => ({ feeAmount: null, feetypeId: title.id, concession: null, isActive: true }));
-  } else {
-    // Handle the case where titles are not available
-    console.warn('Titles array is empty or undefined.');
-  }
-}
 
   GetTitle() {
     this.lmsSvc.GetFeetypeschool().subscribe({
@@ -141,7 +182,7 @@ InitializeFeeLines() {
       this.catSvc.ErrorMsgBar("Please fill in all required fields.", 5000);
       return; // Exit the function if any required field is empty
     }
-  
+
     // Update the property name to 'feetypeId'
     this.selectedFee.feeLines = this.feeLines;
     this.lmsSvc.SaveFee(this.selectedFee).subscribe({
@@ -150,14 +191,14 @@ InitializeFeeLines() {
         this.ngOnInit();
         this.Refresh();
         window.scrollTo(0, 0);
-      }, 
+      },
       error: (err) => {
         this.catSvc.ErrorMsgBar("Error Occurred", 5000);
       },
     });
-  }  
-  
-  
+  }
+
+
   UpdateFee() {
     if (this.selectedFee.student) {
       this.processing = true;
@@ -244,7 +285,7 @@ InitializeFeeLines() {
     });
   }
 
-  
+
   GetStudentschool() {
     var studentschool = new StudentschoolVM();
     studentschool.isActive = true;

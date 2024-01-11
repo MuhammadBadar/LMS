@@ -460,6 +460,9 @@ SearchStudentschool(value: StudentschoolVM): Observable<StudentschoolVM[]> {
   return this.http.post<StudentschoolVM[]>(Globals.BASE_API_URL + 'Studentschool/Search', value).pipe();
 }
 
+GetStudentById(userId: string): Observable<FeeVM> {
+  return this.http.get<FeeVM>(Globals.BASE_API_URL + 'Fee/GetStudentById?userId=' + userId).pipe()
+}  
 GetFeetypeschool(): Observable<FeetypeschoolVM[]> {  
   return this.http.get<FeetypeschoolVM[]>(Globals.BASE_API_URL + 'Feetypeschool').pipe();
 }

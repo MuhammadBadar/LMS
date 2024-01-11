@@ -12,7 +12,7 @@
     <div class="page_content shadow p-3 position-relative">
         <form #FeeForm="ngForm">
             <div fxLayout="row" fxLayoutAlign="space-between">
-                <mat-form-field fxFlex="24%" appearance="outline" class="form-group">
+                <!-- <mat-form-field fxFlex="24%" appearance="outline" class="form-group">
                     <mat-label>Select Student</mat-label>
                     <mat-select name="student" [(value)]="selectedFee.studentId">
                         <mat-option *ngFor="let val of studentschools" [value]="val.id">
@@ -26,19 +26,36 @@
                             <mat-icon>add</mat-icon>
                         </button>
                     </div>
-                </mat-form-field>
+                </mat-form-field> -->
                 <mat-form-field fxFlex="24%" appearance="outline" class="form-group">
+                    <mat-label>Select Student</mat-label>
+                    <mat-select name="student" [(value)]="selectedFee.studentId" (selectionChange)="onStudentSelectionChange()">
+                      <mat-option *ngFor="let val of studentschools" [value]="val.id">
+                        {{val.name}}
+                      </mat-option>
+                    </mat-select>
+                    <div matSuffix>
+                      <button mat-icon-button style="color:#940540;" (click)="OpenStudentschoolDialog(); $event.stopPropagation()" cTooltip="Explore SettingsType">
+                        <mat-icon>add</mat-icon>
+                      </button>
+                    </div>
+                  </mat-form-field>
+                  
+                  <mat-form-field fxFlex="24%" appearance="outline" class="form-group">
                     <mat-label> Branch </mat-label>
-                    <input matInput  #branch="ngModel" name="branch" [(ngModel)]="selectedFee.branch" />
+                    <input matInput #branch="ngModel" name="branch" [(ngModel)]="selectedFee.branch" readonly />
                 </mat-form-field>
+                
                 <mat-form-field fxFlex="24%" appearance="outline" class="form-group">
                     <mat-label> Class </mat-label>
-                    <input matInput  #class="ngModel" name="class" [(ngModel)]="selectedFee.class" />
+                    <input matInput #class="ngModel" name="class" [(ngModel)]="selectedFee.class" readonly />
                 </mat-form-field>
+                
                 <mat-form-field fxFlex="24%" appearance="outline" class="form-group">
                     <mat-label> Section </mat-label>
-                    <input matInput  #section="ngModel" name="section" [(ngModel)]="selectedFee.section" />
+                    <input matInput #section="ngModel" name="section" [(ngModel)]="selectedFee.section" readonly />
                 </mat-form-field>
+                
             </div>
             
             <div *ngFor="let title of titles; let i = index">

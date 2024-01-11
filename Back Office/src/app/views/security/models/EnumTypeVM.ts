@@ -9,8 +9,8 @@ export enum EnumTypeVM {
     WorkingType,
     EventType,
     Location=1009,
-    Section=1014,
+    Branch=1014,
     Class=1015,
-    Branch=1016,
+    Section=1016,
     
 }
