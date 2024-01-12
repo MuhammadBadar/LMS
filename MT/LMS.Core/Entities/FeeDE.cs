@@ -22,6 +22,7 @@ namespace LMS.Core.Entities
         public int NetAmount { get; set; }
         public int? Concession { get; set; }
 
+        public string? Student { get; set; }
         
     }
 }

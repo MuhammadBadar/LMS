@@ -119,6 +119,8 @@ namespace LMS.Service
                     whereClause += $" AND FeeDate LIKE '{fee.FeeDate}'";
                 if (fee.Amount != default)
                     whereClause += $" AND Amount LIKE '{fee.Amount}'";
+                if (fee.Student != default)
+                    whereClause += $" AND Student LIKE '{fee.Student}'";
                 if (fee.Concession != default)
                     whereClause += $" AND Concession LIKE '{fee.Concession}'";
                 if (fee.IsActive != default)

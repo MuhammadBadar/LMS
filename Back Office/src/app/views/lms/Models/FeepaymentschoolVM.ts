@@ -9,6 +9,7 @@ export class FeeVM {
   feeLines: FeeLineVM[];
   classId?: number;
   sectionId?: number;
+  feeDate?: string;
   branch?: string;
   branchId?: number;
   class?: string;

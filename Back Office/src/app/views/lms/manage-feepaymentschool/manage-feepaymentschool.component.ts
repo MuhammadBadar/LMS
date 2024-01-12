@@ -18,10 +18,11 @@ import { debug } from 'console';
   styleUrls: ['./manage-feepaymentschool.component.css']
 })
 export class ManageFeepaymentschoolComponent implements OnInit {
-  displayedColumns: string[] = ['amount', 'concession', 'isActive', 'actions'];
+  displayedColumns: string[] = ['student', 'feeDate','amount','concession','netAmount', 'isActive', 'actions'];
   processing: boolean = false;
   Edit: boolean = false;
   Add: boolean = true;
+  feeDataSource: MatTableDataSource<FeeVM>;
   DisabledType: boolean = false;
   dataSource: any;
   studentschools?: StudentschoolVM[];
@@ -168,7 +169,8 @@ export class ManageFeepaymentschoolComponent implements OnInit {
   GetFee() {
     this.lmsSvc.GetFee().subscribe({
       next: (res: FeeVM[]) => {
-        this.dataSource = new MatTableDataSource(res);
+        console.log('Fee Data:', res);
+        this.feeDataSource = new MatTableDataSource(res);
       },
       error: (e) => {
         console.warn(e);
