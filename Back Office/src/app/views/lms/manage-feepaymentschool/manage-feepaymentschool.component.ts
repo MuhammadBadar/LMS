@@ -319,7 +319,8 @@ export class ManageFeepaymentschoolComponent implements OnInit {
   showFeeLinesPopup(fee: FeeVM) {
     debugger;
     this.dialog.open(ManageFeelinesPopupComponent, {
-      width: '400px',
+      width: 'auto',
+      height: 'auto',
       data: { feeLines: fee.feeLines, feeId: fee.id }, // Pass feeId
     });
   }
