@@ -11,6 +11,8 @@ import { FeeLineVM, FeeVM } from '../Models/FeepaymentschoolVM';
 import { AssignClassVM } from '../Models/AssignClassVM';
 import { FeetypeschoolVM } from '../Models/FeetypeschoolVM';
 import { debug } from 'console';
+import { ManageFeelinesPopupComponent } from '../manage-feelines-popup/manage-feelines-popup.component';
+import { getEffectiveConstraintOfTypeParameter } from 'typescript/lib/tsserverlibrary';
 
 @Component({
   selector: 'app-manage-feepaymentschool',
@@ -111,7 +113,7 @@ export class ManageFeepaymentschoolComponent implements OnInit {
     }
   }
   GetAssignClass() {
-    debugger;
+    // debugger;
     this.lmsSvc.GetAssignClass().subscribe({
       next: (res: AssignClassVM[]) => {
 
@@ -313,6 +315,15 @@ export class ManageFeepaymentschoolComponent implements OnInit {
       this.GetStudentschool();
     });
   }
+
+  showFeeLinesPopup(fee: FeeVM) {
+    debugger;
+    this.dialog.open(ManageFeelinesPopupComponent, {
+      width: '400px',
+      data: { feeLines: fee.feeLines, feeId: fee.id }, // Pass feeId
+    });
+  }
+  
 
   // Search() {
   //   debugger;

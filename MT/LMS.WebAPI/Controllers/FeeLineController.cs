@@ -24,6 +24,24 @@ namespace LMS.WebAPI.Controllers
             return Ok(list);
         }
 
+
+        [HttpGet]
+        [Route("GetFeeLine/{feeId}")]
+        public IActionResult GetFeeLine(int feeId)
+        {
+            try
+            {
+                List<FeeLineDE> list = _feeLineSvc.GetFeeLinesByFeeId(feeId);
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it accordingly
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
+
+
         [HttpPost("{Search}")]
         public IActionResult SearchFeeLine(FeeLineDE feeLine)
         {

@@ -96,6 +96,7 @@ import { ManageFeetypeschoolComponent } from './manage-feetypeschool/manage-feet
 import { ManageStudentschoolComponent } from './manage-studentschool/manage-studentschool.component';
 import { ManageGuardianschoolComponent } from './manage-guardianschool/manage-guardianschool.component';
 import { ManageSchoolComponent} from './manage-school/manage-school.component';
+import { ManageFeelinesPopupComponent } from './manage-feelines-popup/manage-feelines-popup.component';
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
 
@@ -131,6 +132,7 @@ import { ManageSchoolComponent} from './manage-school/manage-school.component';
     ManageClientComponent,
                 ManageUsertaskComponent,
                 ManageDayStatusComponent,
+                ManageFeelinesPopupComponent,
   ],
   imports: [
     NgxMatDatetimePickerModule,

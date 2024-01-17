@@ -135,10 +135,13 @@
                     </th>
                     <td mat-cell *matCellDef="let row">
                         <div style="text-align: center;">
-                            <button mat-icon-button mat-sm-button (click)="EditFee(row)"
+                            <button mat-icon-button mat-sm-button (click)="showFeeLinesPopup(row)" style=" color:#1e293b ; " cTooltip="Fee Lines">
+                                <mat-icon>info</mat-icon>
+                              </button>
+                            <!-- <button mat-icon-button mat-sm-button (click)="EditFee(row)"
                                 style=" color:#1e293b ; " cTooltip=" Edit Feepaymentschool">
                                 <mat-icon>edit</mat-icon>
-                            </button>
+                            </button> -->
                             <button mat-icon-button mat-sm-button color="warn" (click)="DeleteFee(row.id)"
                                 cTooltip="Delete Feepaymentschool">
                                 <mat-icon>delete</mat-icon>

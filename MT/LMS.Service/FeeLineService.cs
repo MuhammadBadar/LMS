@@ -93,7 +93,38 @@ namespace LMS.Service
         #endregion
 
 
-        #region GetFeeByStudentId
+        #region GetFeeLinesByFeeId
+        public List<FeeLineDE> GetFeeLinesByFeeId(int feeId)
+        {
+            List<FeeLineDE> feeLines = new List<FeeLineDE>();
+            bool closeConnectionFlag = false;
+            MySqlCommand cmd = null;
+
+            try
+            {
+                cmd = LMSDataContext.OpenMySqlConnection();
+                closeConnectionFlag = true;
+
+                #region Search
+
+                string whereClause = $" WHERE FeeId = {feeId}";
+                feeLines = _feeLineDAL.SearchFeeLine(whereClause);
+
+                #endregion
+            }
+            catch (Exception exp)
+            {
+                _logger.Error(exp);
+                throw;
+            }
+            finally
+            {
+                if (closeConnectionFlag)
+                    LMSDataContext.CloseMySqlConnection(cmd);
+            }
+
+            return feeLines;
+        }
 
         #endregion
     }

@@ -31,7 +31,7 @@ import { CityStudentVM } from './Models/CityStudentVM';
 import { VocabularyVM } from './Models/VocabularyVM';
 import { PatientVM } from './Models/PatientVM';
 import { UserTaskVM } from './Models/UserTaskVM';
-import { FeeVM } from './Models/FeepaymentschoolVM';
+import { FeeLineVM, FeeVM } from './Models/FeepaymentschoolVM';
 
 
 @Injectable({
@@ -462,7 +462,7 @@ SearchStudentschool(value: StudentschoolVM): Observable<StudentschoolVM[]> {
 
 GetStudentById(userId: string): Observable<FeeVM> {
   return this.http.get<FeeVM>(Globals.BASE_API_URL + 'Fee/GetStudentById?userId=' + userId).pipe()
-}  
+}
 GetFeetypeschool(): Observable<FeetypeschoolVM[]> {  
   return this.http.get<FeetypeschoolVM[]>(Globals.BASE_API_URL + 'Feetypeschool').pipe();
 }
@@ -477,6 +477,16 @@ DeleteFeetypeschool(id: number) {
 }
 SearchFeetypeschool(value: FeetypeschoolVM): Observable<FeetypeschoolVM[]> {
   return this.http.post<FeetypeschoolVM[]>(Globals.BASE_API_URL + 'Feetypeschool/Search', value).pipe();
+}
+
+//GetFeeLinesByFeeId
+GetFeeLinesByFeeId(feeId: number): Observable<FeeLineVM[]> {
+  debugger;
+  return this.http.get<FeeLineVM[]>(Globals.BASE_API_URL + 'FeeLine/GetFeeLine/' + feeId).pipe()
+}
+
+GetFeeLineByFeeId(feeId: number): Observable<FeeLineVM> {
+  return this.http.get<FeeLineVM>(`${Globals.BASE_API_URL}FeeLine/GetFeeLine/${feeId}`).pipe();
 }
 
 
