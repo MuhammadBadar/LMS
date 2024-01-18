@@ -31,6 +31,7 @@ import { ManageGuardianschoolComponent } from './manage-guardianschool/manage-gu
 import { ManageFeepaymentschoolComponent } from './manage-feepaymentschool/manage-feepaymentschool.component';
 import { ManageFeetypeschoolComponent } from './manage-feetypeschool/manage-feetypeschool.component';
 import { ManageStudentschoolComponent } from './manage-studentschool/manage-studentschool.component';
+import { ManageFeeDetailsComponent } from './manage-fee-details/manage-fee-details.component';
 
 const routes: Routes = [{
   path: '',
@@ -175,7 +176,11 @@ const routes: Routes = [{
       component: ManageStudentschoolComponent,
       pathMatch: "full"
     },
-    
+    {
+      path:"FeeDetails",
+      component:ManageFeeDetailsComponent,
+      pathMatch:"full"
+    },
     
     // {
     //   path: 'secLogin',

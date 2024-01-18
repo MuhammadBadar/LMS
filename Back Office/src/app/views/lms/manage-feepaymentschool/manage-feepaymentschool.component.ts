@@ -181,7 +181,7 @@ export class ManageFeepaymentschoolComponent implements OnInit {
   }
 
   SaveFee() {
-    // debugger;
+    debugger;
     if (!this.selectedFee.studentId || !this.selectedFee.amount || !this.selectedFee.concession) {
       this.catSvc.ErrorMsgBar("Please fill in all required fields.", 5000);
       return; // Exit the function if any required field is empty
