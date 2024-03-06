@@ -25,10 +25,10 @@ if (isset($_POST['update'])) {
         // Update the database table using a prepared statement
         if($path == "" || $path == null){
             $stmt = $mysqli->prepare("UPDATE course SET Title = ?, ShortDescription = ? WHERE Id = ?");
-            $stmt->bind_param("sssi", $title, $shortdescription, $id);
+            $stmt->bind_param("ssi", $title, $shortdescription, $id);
         }else{
             $stmt = $mysqli->prepare("UPDATE course SET Title = ?, ShortDescription = ?, LogoPath = ? WHERE Id = ?");
-            $stmt->bind_param("sssi", $title, $shortdescription, $path, $id);
+            $stmt->bind_param("ssi", $title, $shortdescription, $path, $id);
         }
         
         $result = $stmt->execute();

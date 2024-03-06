@@ -33,6 +33,9 @@ if(!isset($_SESSION['loggedin'])){
         <div class="menu-link">
 		<ul>
         <li class="nav-item">
+          <a class="nav-link" href="ManageVocabulary.php">Manage Vocabulary </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="ManageInquiry.php">Manage Inquiry </a>
         </li>
 		<li class="nav-item">

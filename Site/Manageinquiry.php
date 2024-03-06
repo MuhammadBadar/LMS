@@ -13,7 +13,7 @@
 	 $to= $to ."23:59:59";
 	 $sub_sql= " where added_on >= '$from' && added_on <= '$to' ";
   }
-$result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC")
+$result = mysqli_query($mysqli, "SELECT * FROM contact ORDER BY id DESC")
 ?>
 <?php
 session_start();
@@ -43,6 +43,9 @@ if(!isset($_SESSION['loggedin'])){
         </div>
         <div class="menu-link">
 		<ul>
+    <li class="nav-item">
+          <a class="nav-link" href="ManageVocabulary.php">Manage Vocabulary </a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="ManageInquiry.php">Manage Inquiry </a>
         </li>
@@ -110,7 +113,7 @@ if(!isset($_SESSION['loggedin'])){
 		<?php  if(mysqli_num_rows($result)>0){?>
     <table width=100%' border=0>
 		<tr bgcolor='#DDDDDD'>
-			<td><strong>Name</strong></td>
+			<td><strong>Name ...</strong></td>
 			<td><strong>Email</strong></td>
 			 <td><strong>Message</strong></td> 
 			<td><strong>Cell No</strong></td>

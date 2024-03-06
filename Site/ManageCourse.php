@@ -47,6 +47,9 @@ if(!isset($_SESSION['loggedin'])){
 
 		<ul>
         <li class="nav-item">
+          <a class="nav-link" href="ManageVocabulary.php">Manage Vocabulary </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="ManageInquiry.php">Manage Inquiry </a>
         </li>
 		<li class="nav-item">
@@ -58,7 +61,13 @@ if(!isset($_SESSION['loggedin'])){
         <li class="nav-item">
           <a class="nav-link" href="ManageAnnouncement.php">Manage Announcement </a>
         </li>
-			
+        <li class="nav-item">
+          <a class="nav-link" href="ManageNovel.php">Manage Novel </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="ManageNovel.php">Manage Novel Chapter</a>
+        </li>
+		</ul>
 			
 		</ul>
     </div>

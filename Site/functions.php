@@ -5,7 +5,7 @@ session_start();
 // Include the database connection file
 
 $databaseHost = 'localhost';
-$databaseName = 'lms';
+$databaseName = 'lms.database';
 $databaseUsername = 'root';
 $databasePassword = '';
 

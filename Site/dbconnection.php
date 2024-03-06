@@ -1,6 +1,6 @@
 <?php
 $databaseHost = 'localhost';
-$databaseName = 'lms';
+$databaseName = 'lms.database';
 $databaseUsername = 'root';
 $databasePassword = '';
 
