@@ -18,5 +18,6 @@ namespace LMS.Core.Entities
         public string? Section { get; set; }
         public string? Branch { get; set; }
         public int? BranchId { get; set; }
+
     }
 }
