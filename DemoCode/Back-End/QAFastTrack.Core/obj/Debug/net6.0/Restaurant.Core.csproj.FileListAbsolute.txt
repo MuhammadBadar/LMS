@@ -1,0 +1,84 @@
+E:\QST\Projects\Restaurant\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.deps.json
+E:\QST\Projects\Restaurant\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.runtimeconfig.json
+E:\QST\Projects\Restaurant\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.dll
+E:\QST\Projects\Restaurant\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.pdb
+E:\QST\Projects\Restaurant\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.csproj.AssemblyReference.cache
+E:\QST\Projects\Restaurant\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\QST\Projects\Restaurant\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.AssemblyInfoInputs.cache
+E:\QST\Projects\Restaurant\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.AssemblyInfo.cs
+E:\QST\Projects\Restaurant\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.csproj.CoreCompileInputs.cache
+E:\QST\Projects\Restaurant\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.dll
+E:\QST\Projects\Restaurant\QAFastTrack.Core\obj\Debug\net6.0\refint\Restaurant.Core.dll
+E:\QST\Projects\Restaurant\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.pdb
+E:\QST\Projects\Restaurant\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.genruntimeconfig.cache
+E:\QST\Projects\Restaurant\QAFastTrack.Core\obj\Debug\net6.0\ref\Restaurant.Core.dll
+E:\QST\Projects\Restaurant Application\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.deps.json
+E:\QST\Projects\Restaurant Application\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.runtimeconfig.json
+E:\QST\Projects\Restaurant Application\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.dll
+E:\QST\Projects\Restaurant Application\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.pdb
+E:\QST\Projects\Restaurant Application\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.csproj.AssemblyReference.cache
+E:\QST\Projects\Restaurant Application\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\QST\Projects\Restaurant Application\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.AssemblyInfoInputs.cache
+E:\QST\Projects\Restaurant Application\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.AssemblyInfo.cs
+E:\QST\Projects\Restaurant Application\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.csproj.CoreCompileInputs.cache
+E:\QST\Projects\Restaurant Application\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.dll
+E:\QST\Projects\Restaurant Application\Back-End\QAFastTrack.Core\obj\Debug\net6.0\refint\Restaurant.Core.dll
+E:\QST\Projects\Restaurant Application\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.pdb
+E:\QST\Projects\Restaurant Application\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.genruntimeconfig.cache
+E:\QST\Projects\Restaurant Application\Back-End\QAFastTrack.Core\obj\Debug\net6.0\ref\Restaurant.Core.dll
+E:\New folder\QST\Projects\trunk\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.deps.json
+E:\New folder\QST\Projects\trunk\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.runtimeconfig.json
+E:\New folder\QST\Projects\trunk\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.dll
+E:\New folder\QST\Projects\trunk\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.pdb
+E:\New folder\QST\Projects\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.csproj.AssemblyReference.cache
+E:\New folder\QST\Projects\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\New folder\QST\Projects\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.AssemblyInfoInputs.cache
+E:\New folder\QST\Projects\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.AssemblyInfo.cs
+E:\New folder\QST\Projects\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.csproj.CoreCompileInputs.cache
+E:\New folder\QST\Projects\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.dll
+E:\New folder\QST\Projects\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\refint\Restaurant.Core.dll
+E:\New folder\QST\Projects\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.pdb
+E:\New folder\QST\Projects\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.genruntimeconfig.cache
+E:\New folder\QST\Projects\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\ref\Restaurant.Core.dll
+D:\QST\Projects\Restaurant\trunk\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.deps.json
+D:\QST\Projects\Restaurant\trunk\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.runtimeconfig.json
+D:\QST\Projects\Restaurant\trunk\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.dll
+D:\QST\Projects\Restaurant\trunk\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.pdb
+D:\QST\Projects\Restaurant\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.csproj.AssemblyReference.cache
+D:\QST\Projects\Restaurant\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\QST\Projects\Restaurant\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.AssemblyInfoInputs.cache
+D:\QST\Projects\Restaurant\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.AssemblyInfo.cs
+D:\QST\Projects\Restaurant\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.csproj.CoreCompileInputs.cache
+D:\QST\Projects\Restaurant\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.dll
+D:\QST\Projects\Restaurant\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\refint\Restaurant.Core.dll
+D:\QST\Projects\Restaurant\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.pdb
+D:\QST\Projects\Restaurant\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.genruntimeconfig.cache
+D:\QST\Projects\Restaurant\trunk\Back-End\QAFastTrack.Core\obj\Debug\net6.0\ref\Restaurant.Core.dll
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.deps.json
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.runtimeconfig.json
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.dll
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.pdb
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.csproj.AssemblyReference.cache
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.AssemblyInfoInputs.cache
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.AssemblyInfo.cs
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.csproj.CoreCompileInputs.cache
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.dll
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.Core\obj\Debug\net6.0\refint\Restaurant.Core.dll
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.pdb
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.genruntimeconfig.cache
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.Core\obj\Debug\net6.0\ref\Restaurant.Core.dll
+D:\QST\Projects\Demo\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.csproj.AssemblyReference.cache
+D:\QST\Projects\Demo\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\QST\Projects\Demo\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.AssemblyInfoInputs.cache
+D:\QST\Projects\Demo\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.AssemblyInfo.cs
+D:\QST\Projects\Demo\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.csproj.CoreCompileInputs.cache
+D:\QST\Projects\Demo\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.dll
+D:\QST\Projects\Demo\Back-End\QAFastTrack.Core\obj\Debug\net6.0\refint\Restaurant.Core.dll
+D:\QST\Projects\Demo\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.pdb
+D:\QST\Projects\Demo\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.deps.json
+D:\QST\Projects\Demo\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.runtimeconfig.json
+D:\QST\Projects\Demo\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.dll
+D:\QST\Projects\Demo\Back-End\QAFastTrack.Core\bin\Debug\net6.0\Restaurant.Core.pdb
+D:\QST\Projects\Demo\Back-End\QAFastTrack.Core\obj\Debug\net6.0\Restaurant.Core.genruntimeconfig.cache
+D:\QST\Projects\Demo\Back-End\QAFastTrack.Core\obj\Debug\net6.0\ref\Restaurant.Core.dll

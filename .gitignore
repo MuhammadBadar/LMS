@@ -17,4 +17,4 @@
 *.cache
 *.editorconfig
 *.pdb
-/DemoCode/Back-End/QAFastTrack.Tests/obj/Release/net6.0/Restaurant.Tests.AssemblyInfo.cs
+/DemoCode/Back-End/QAFastTrack.Tests/obj

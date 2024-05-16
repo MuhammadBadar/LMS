@@ -1,0 +1,4 @@
+2024-04-19 21:53:37.4663 ERROR MySql.Data.MySqlClient.MySqlException: Column 'ClientId' in where clause is ambiguous
+2024-04-19 21:54:58.6695 ERROR MySql.Data.MySqlClient.MySqlException: Column 'ClientId' in where clause is ambiguous
+2024-04-19 21:54:59.7558 ERROR MySql.Data.MySqlClient.MySqlException: Column 'ClientId' in where clause is ambiguous
+2024-04-19 21:55:04.7301 ERROR MySql.Data.MySqlClient.MySqlException: Column 'ClientId' in where clause is ambiguous

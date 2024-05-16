@@ -1,0 +1,151 @@
+<div class="container-fluid page">
+    <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+        <div> Chart of Account List
+        </div>
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="pull-right" style="text-align:end; margin-top: 20px;">
+            <button [ngClass]="{disabledBtn:isReadOnly}" class="bttn"
+                (click)="OpenDialog()">Create
+            </button>
+        </div>
+        <form #Form="ngForm">
+            <c-card style="padding: 5px; margin-top: 30px;" class="mat-elevation-z8">
+                <c-card-body
+                    style="padding: 5px; background-image: linear-gradient(to bottom, rgb(2, 33, 58), rgb(7, 95, 122));margin: 5px;border-radius: 10px;">
+                    <div class="example-table-container" style="background-color:white;padding: 5px;">
+                        <section class="example-container mat-elevation-z8" tabindex="0" style="border-radius: 5px;">
+                            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                                <ng-container matColumnDef="Id">
+                                    <th mat-header-cell *matHeaderCellDef> Sr No </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="settingType">
+                                    <th mat-header-cell *matHeaderCellDef [style]="style"> Settings Type </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.settingType}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef [style]="style">
+                                        <div style="min-width:90px">Account Name</div>
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="min-width:90px"> {{element.coaDesc}} </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="keyCode">
+                                    <th mat-header-cell *matHeaderCellDef style="min-width:90px" [style]="style">
+                                        Account Code
+                                    </th>
+                                    <td mat-cell *matCellDef="let element" style="min-width:90px">
+                                        {{element.coaCode}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="isActive">
+                                    <th mat-header-cell *matHeaderCellDef style="min-width:7px" [style]="style">
+                                        IsActive </th>
+                                    <td mat-cell *matCellDef="let element" style="min-width:70px">
+                                        {{element.isActive?'Yes':'No'}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="level">
+                                    <th mat-header-cell *matHeaderCellDef [style]="style" style="min-width:90px"> Level
+                                    </th>
+                                    <td mat-cell *matCellDef="let element" style="min-width:90px"> {{element.coaLevel}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="parent">
+                                    <th mat-header-cell *matHeaderCellDef style="min-width:90px" [style]="style">
+                                        <div>Parent</div>
+                                    </th>
+                                    <td mat-cell *matCellDef="let element" style="min-width:90px">
+                                        <div>{{element.parentCoaDesc}}</div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="actions" stickyEnd="true">
+                                    <th mat-header-cell *matHeaderCellDef [style]="style">
+                                        <p style="font-size: 14px;text-align: center;color: white;">Action</p>
+                                    </th>
+                                    <td mat-cell *matCellDef="let row" style="text-align: center;">
+                                        <div [ngClass]="{disabledDiv:isReadOnly}">
+                                            <button mat-icon-button mat-sm-button style="color:#1e293b ; "
+                                                (click)="EditAccount(row)" cTooltip="Edit Settings ">
+                                                <mat-icon>edit</mat-icon>
+                                            </button>
+                                            <!-- <button mat-icon-button mat-sm-button color="warn" cTooltip="Delete Settings "
+                                            (click)="DeleteSettings(row.id)" [disabled]="row.isSystemDefined">
+                                            <mat-icon>delete</mat-icon>
+                                        </button> -->
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="actionH" stickyEnd="true">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        <button mat-icon-button mat-sm-button style="color:#1e293b ;cursor: pointer; "
+                                            (click)="ResetGrid()" cTooltip="Refresh Grid ">
+                                            <mat-icon>autorenew</mat-icon>
+                                        </button>
+                                    </th>
+                                </ng-container>
+                                <ng-container matColumnDef="isActiveH">
+                                    <th mat-header-cell *matHeaderCellDef>
+
+                                    </th>
+                                </ng-container>
+                                <ng-container matColumnDef="parentH">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        <mat-form-field style="min-width:90px;margin-top: 20px;" class="form-group">
+                                            <mat-label>Search</mat-label>
+                                            <input matInput type="text" #parentCoaDesc="ngModel" name="parentCoaDesc"
+                                                (input)="SearchInChartOfAccount('parentCoaDesc')"
+                                                [(ngModel)]="filterVal.parentCoaDesc">
+                                        </mat-form-field>
+                                    </th>
+                                </ng-container>
+                                <ng-container matColumnDef="levelH">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        <mat-form-field style="min-width:90px;margin-top: 20px;" class="form-group">
+                                            <mat-label>Search </mat-label>
+                                            <input matInput type="text" #coaLevel="ngModel" name="coaLevel"
+                                                [(ngModel)]="filterVal.coaLevel" (input)="SearchInChartOfAccount('coaLevel')">
+                                        </mat-form-field>
+                                    </th>
+                                </ng-container>
+                                <ng-container matColumnDef="nameH">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        <mat-form-field class="form-group" style="margin-top: 20px;">
+                                            <mat-label>Search</mat-label>
+                                            <input matInput type="text" #coaDesc="ngModel" name="coaDesc"
+                                                [(ngModel)]="filterVal.coaDesc"
+                                                (input)="SearchInChartOfAccount('coaDesc')">
+                                        </mat-form-field>
+                                    </th>
+                                </ng-container>
+                                <ng-container matColumnDef="keCodeH">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        <mat-form-field style="margin-top: 20px;">
+                                            <mat-label>Search</mat-label>
+                                            <input matInput type="text" #coaCode="ngModel" name="coaCode"
+                                                [(ngModel)]="filterVal.coaCode"
+                                                (input)="SearchInChartOfAccount('coaCode')">
+                                        </mat-form-field>
+                                    </th>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+                                <tr mat-header-row
+                                    *matHeaderRowDef="['keCodeH','nameH','levelH','parentH','isActiveH','actionH' ]">
+                                </tr>
+
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                              <mat-paginator [length]="catSvc.totalRecords" [pageSize]="catSvc.defaultPageSize" [pageSizeOptions]="catSvc.pageSizes"></mat-paginator>
+                        </section>
+                    </div>
+                </c-card-body>
+            </c-card>
+        </form>
+    </div>
+</div>
+<div>
+  <div *ngIf="catSvc.isLoading" class="spinnerBox">
+    <mat-spinner style="height: 100px; width: 100px; color: white"></mat-spinner>
+      <p class="loadingText">Please Wait, Working...</p>
+  </div>
+</div>

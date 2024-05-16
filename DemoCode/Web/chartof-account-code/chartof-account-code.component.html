@@ -1,0 +1,91 @@
+<div class="container-fluid page">
+  <div class="d-flex page_box p-3 mt-2  header-sticky" position="sticky">
+    <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="100%">
+      <div *ngIf="Add">Manage Chart of Account
+      </div>
+      <div *ngIf="Edit">Update Chart of Account
+      </div>
+      <div fxFlex="7%">
+        <button mat-icon-button fxLayoutAlign="end end" (click)="dialogRef.close()" style="color: white">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="page_content shadow p-3 position-relative">
+    <form name="eventForm" #userForm="ngForm">
+      <div fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="100%" appearance="outline" class="form-group">
+          <mat-label> Select Coa Level</mat-label>
+          <mat-select name="coaLevelId" [(ngModel)]="selectedCoa.coaLevelId" matNativeControl required="true">
+            <mat-option [value]="0" (click)="tAccounts.length=0">--Please Select--</mat-option>
+            <mat-option *ngFor="let pt of levels" [value]=" pt.id" (click)="onSelectLevel(pt)">
+              {{ pt.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field *ngIf="selectedCoa.coaLevelId>0 && selectedCoa.coaLevelId!==1051001" fxFlex="100%" appearance="outline" class="form-group">
+          <mat-label> Select Parent Coa</mat-label>
+          <mat-select  name="parentCoaId" [required]="selectedCoa.coaLevelId!=1051001 && selectedCoa.coaLevelId!=0"
+            [(ngModel)]="selectedCoa.parentCoaId" matNativeControl>
+            <mat-option [value]="0" (click)="selectedParentCoa.coaCode=''">--Please Select--</mat-option>
+            <mat-option *ngFor="let acc of tAccounts" [value]=" acc.id" (click)="onselectParent(acc);">
+              {{ acc.coaDesc}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex="48%">
+          <mat-form-field fxFlex="100%" appearance="outline" floatLabel="always">
+            <span *ngIf="selectedParentCoa.coaCode && selectedParentCoa.coaCode!='0'" matTextPrefix style="margin-left: 10px;"><b>{{ selectedParentCoa.coaCode+"-" }}</b></span>
+            <mat-label >Enter Coa Code</mat-label>
+            <input matInput #keyCode="ngModel" style="color: #940540;font-weight: bolder;font-size: large;" name="keyCode" type="text" required="true"
+              (keypress)="numberOnly($event)"  [maxlength]="maxLength"
+              [(ngModel)]="selectedCoa.keyCode">
+          </mat-form-field>
+        <!-- <mat-form-field fxFlex="48%" appearance="outline" class="form-group">
+          <mat-label>Enter Name</mat-label>
+          <input matInput #name="ngModel" name="Name" type="text" required="true" [(ngModel)]="selectedCoa.name">
+        </mat-form-field> -->
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="100%" appearance="outline">
+          <mat-label>Enter Description</mat-label>
+          <textarea required #coaDesc="ngModel" matInput name="coaDesc"
+            [(ngModel)]="selectedCoa.coaDesc"></textarea>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-checkbox fxFlex="50%" name="isActive" [(ngModel)]="selectedCoa.isActive">
+          IsActive
+        </mat-checkbox>
+        <div fxLayoutAlign="end end" fxFlex="50%">
+           <div style="margin-top: 10px;" >
+            <button *ngIf="Add" mat-button type="submit" style="background-color:#1e293b ;color: white;"
+              (click)="Submit();">
+              Save
+            </button>
+            <button *ngIf="Edit" cButton class="me-1" style="background-color:#1e293b ;" type="submit"
+              (click)="Submit()">
+              Update
+            </button>
+          </div>
+          <div>
+            <button mat-icon-button mat-sm-button color="primary" cTooltip="Refresh" cTooltipPlacement="top"
+              (click)="ngOnInit()">
+              <mat-icon>autorenew</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- <div>
+  <div *ngIf="catSvc.isLoading" class="spinnerBox">
+    <mat-spinner style="height: 100px; width: 100px; color: white"></mat-spinner>
+      <p class="loadingText">Please Wait, Working...</p>
+  </div>
+</div> -->

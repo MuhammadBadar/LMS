@@ -1,0 +1,5 @@
+2024-03-28 02:15:44.5817 ERROR MySql.Data.MySqlClient.MySqlException: Data too long for column 'KeyCode' at row 1
+2024-03-28 03:23:02.9992 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'VchIdId' in 'where clause'
+2024-03-28 03:25:33.7565 ERROR MySql.Data.MySqlClient.MySqlException: Duplicate entry '2-1-0' for key 'voucherdetail.PRIMARY'
+2024-03-28 03:27:21.6478 ERROR MySql.Data.MySqlClient.MySqlException: Duplicate entry '2-1-0' for key 'voucherdetail.PRIMARY'
+2024-03-28 03:30:19.5486 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'client' in 'where clause'

@@ -1,0 +1,14 @@
+2024-04-23 00:34:36.0881 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-23 00:34:45.2873 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-23 00:39:25.3899 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-23 00:48:33.7224 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-23 09:25:00.1411 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'level.Name' in 'where clause'
+2024-04-23 09:26:15.0268 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'level.Name' in 'where clause'
+2024-04-23 09:26:46.4904 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'parentAcc.CoaDesc' in 'where clause'
+2024-04-23 09:33:46.9043 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-23 09:33:52.9385 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-23 09:34:00.0123 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-23 12:03:08.0934 INFO Success: Acc_ChartOfAccount Inserted Successfully
+2024-04-23 12:03:27.6516 ERROR MySql.Data.MySqlClient.MySqlException: Duplicate entry '12' for key 'acc_chartofaccount.CoaCode'
+2024-04-23 12:05:42.2029 INFO Success: Acc_ChartOfAccount Inserted Successfully
+2024-04-23 12:11:23.2874 INFO Success: Acc_ChartOfAccount Inserted Successfully

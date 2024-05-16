@@ -1,0 +1,33 @@
+.page {
+    color: white;
+    padding: 0 ;
+    background: #f1f5f9;
+    width: 100%;
+}
+
+.page_content {
+    padding: 50px;
+    /* min-height: calc(100vh - 178px); */
+    border-radius: 15px;
+    margin-top: -2rem;
+    background: white;
+    color: black;
+}
+
+.page_box {
+    min-height: 100px;
+    background-color: rgb(2, 42, 75);
+    border-radius: 10px;
+    font-size: 25px;
+    padding: 10px;
+    margin-top: 0;
+
+}
+
+.example-container {
+
+    width: 100;
+    max-width: 100%;
+    overflow: auto;
+}
+

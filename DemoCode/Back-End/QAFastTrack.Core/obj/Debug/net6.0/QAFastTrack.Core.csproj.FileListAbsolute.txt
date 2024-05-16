@@ -1,0 +1,42 @@
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\bin\Debug\net6.0\QAFastTrack.Core.deps.json
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\bin\Debug\net6.0\QAFastTrack.Core.runtimeconfig.json
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\bin\Debug\net6.0\QAFastTrack.Core.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\bin\Debug\net6.0\QAFastTrack.Core.pdb
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.csproj.AssemblyReference.cache
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.AssemblyInfoInputs.cache
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.AssemblyInfo.cs
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.csproj.CoreCompileInputs.cache
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\refint\QAFastTrack.Core.dll
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.pdb
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.genruntimeconfig.cache
+C:\Users\Bilal\Desktop\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\ref\QAFastTrack.Core.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\bin\Debug\net6.0\QAFastTrack.Core.deps.json
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\bin\Debug\net6.0\QAFastTrack.Core.runtimeconfig.json
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\bin\Debug\net6.0\QAFastTrack.Core.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\bin\Debug\net6.0\QAFastTrack.Core.pdb
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.csproj.AssemblyReference.cache
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.AssemblyInfoInputs.cache
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.AssemblyInfo.cs
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.csproj.CoreCompileInputs.cache
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\refint\QAFastTrack.Core.dll
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.pdb
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.genruntimeconfig.cache
+E:\QST\Projects\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\ref\QAFastTrack.Core.dll
+E:\QST\Projects\New folder\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\bin\Debug\net6.0\QAFastTrack.Core.deps.json
+E:\QST\Projects\New folder\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\bin\Debug\net6.0\QAFastTrack.Core.runtimeconfig.json
+E:\QST\Projects\New folder\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\bin\Debug\net6.0\QAFastTrack.Core.dll
+E:\QST\Projects\New folder\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\bin\Debug\net6.0\QAFastTrack.Core.pdb
+E:\QST\Projects\New folder\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.csproj.AssemblyReference.cache
+E:\QST\Projects\New folder\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\QST\Projects\New folder\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.AssemblyInfoInputs.cache
+E:\QST\Projects\New folder\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.AssemblyInfo.cs
+E:\QST\Projects\New folder\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.csproj.CoreCompileInputs.cache
+E:\QST\Projects\New folder\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.dll
+E:\QST\Projects\New folder\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\refint\QAFastTrack.Core.dll
+E:\QST\Projects\New folder\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.pdb
+E:\QST\Projects\New folder\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\QAFastTrack.Core.genruntimeconfig.cache
+E:\QST\Projects\New folder\QAFastTrack\QAFastTrack.WebAPI\QAFastTrack.Core\obj\Debug\net6.0\ref\QAFastTrack.Core.dll

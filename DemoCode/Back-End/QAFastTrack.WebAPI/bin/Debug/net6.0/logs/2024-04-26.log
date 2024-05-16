@@ -1,0 +1,97 @@
+2024-04-26 06:39:19.2744 ERROR MySql.Data.MySqlClient.MySqlException: Data too long for column 'prm_vchChq' at row 1
+2024-04-26 06:41:00.4635 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'DBoperation' in 'field list'
+2024-04-26 06:42:20.9937 INFO Success: Acc_Voucher Inserted Successfully
+2024-04-26 06:42:27.3278 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 06:42:37.4360 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 06:43:18.3064 INFO Success: Acc_VoucherType Updateed Successfully
+2024-04-26 07:06:32.3100 ERROR System.Data.DataException: Error parsing column 10 (VchPaidTo= - String)
+2024-04-26 07:07:23.7033 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.ACC_Search_VoucherDetail( 'where 1=1 AND VchId=1 AND IsActive =True AND ClientI' at line 1
+2024-04-26 07:10:19.6452 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.ACC_Search_VoucherDetail( 'where 1=1  AND VchId=1 AND IsActive =True AND Client' at line 1
+2024-04-26 07:10:27.4697 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.ACC_Search_VoucherDetail( 'where 1=1  AND VchId=1 AND IsActive =True AND Client' at line 1
+2024-04-26 07:12:01.7317 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.ACC_Search_VoucherDetail( 'where 1=1  AND VchId=1 AND IsActive =True AND Client' at line 1
+2024-04-26 07:12:37.7796 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.ACC_Search_VoucherDetail( 'where 1=1  AND VchId=1 AND IsActive =True AND Client' at line 1
+2024-04-26 08:14:33.4533 ERROR MySql.Data.MySqlClient.MySqlException: Column 'IsActive' in where clause is ambiguous
+2024-04-26 08:16:26.8967 ERROR System.TimeoutException: Timeout in IO operation
+2024-04-26 08:16:26.8967 ERROR MySql.Data.MySqlClient.MySqlException: Column 'IsActive' in where clause is ambiguous
+2024-04-26 08:16:28.1239 ERROR System.TimeoutException: Timeout in IO operation
+2024-04-26 08:18:09.8238 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'VchType' in 'where clause'
+2024-04-26 09:22:25.5564 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BRV'')' at line 1
+2024-04-26 09:23:50.6577 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CRV'')' at line 1
+2024-04-26 09:33:40.4137 INFO Success: Acc_VoucherType Updateed Successfully
+2024-04-26 09:33:50.7748 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'vchDetail.VchId' in 'where clause'
+2024-04-26 09:35:55.5363 ERROR System.ArgumentException: Parameter 'whereClause' not found in the collection.
+2024-04-26 09:53:58.1404 INFO Success:  Inserted Successfully
+2024-04-26 09:53:58.2830 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'DBoperation' in 'field list'
+2024-04-26 09:54:43.9092 INFO Success:  Inserted Successfully
+2024-04-26 09:54:43.9092 INFO Success: voucherdetail Inserted Successfully
+2024-04-26 09:56:16.9551 INFO Success: Acc_VoucherType Updateed Successfully
+2024-04-26 10:01:30.4790 ERROR MySql.Data.MySqlClient.MySqlException: Duplicate entry '12-1' for key 'acc_voucher.PRIMARY'
+2024-04-26 10:03:49.7411 INFO Success: Acc_Voucher Inserted Successfully
+2024-04-26 10:03:49.8137 INFO Success: Acc_VoucherDetail Inserted Successfully
+2024-04-26 10:04:13.7770 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 10:04:13.7837 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 10:04:30.8556 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 10:04:30.8598 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 10:04:52.9092 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 10:04:52.9092 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 10:04:52.9092 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 10:04:52.9194 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 10:09:20.2861 INFO Success: Acc_Voucher Inserted Successfully
+2024-04-26 10:09:20.2861 INFO Success: Acc_VoucherDetail Inserted Successfully
+2024-04-26 10:09:41.3018 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 10:09:41.4758 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'prmid' in 'where clause'
+2024-04-26 10:10:21.1886 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 10:10:21.1886 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 10:10:44.2572 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 10:10:44.2621 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 10:10:51.9844 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 10:10:51.9844 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 10:11:21.9336 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 10:11:21.9576 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 10:11:24.0906 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 10:11:24.0906 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 10:11:24.0906 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 10:11:28.9093 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 10:11:28.9093 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 10:11:28.9093 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 10:15:25.7391 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 10:15:25.7391 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 10:16:38.0362 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 10:16:38.0362 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 11:30:22.8994 INFO Success: Acc_Voucher Inserted Successfully
+2024-04-26 11:30:22.9082 INFO Success: Acc_VoucherDetail Inserted Successfully
+2024-04-26 11:30:43.3715 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 11:30:43.3783 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 11:31:57.9595 INFO Success: Acc_Voucher Inserted Successfully
+2024-04-26 11:31:57.9595 INFO Success: Acc_VoucherDetail Inserted Successfully
+2024-04-26 11:32:24.7880 INFO Success: Acc_Voucher Inserted Successfully
+2024-04-26 11:32:24.7950 INFO Success: Acc_VoucherDetail Inserted Successfully
+2024-04-26 11:32:44.6813 INFO Success: Acc_Voucher Inserted Successfully
+2024-04-26 11:32:44.6863 INFO Success: Acc_VoucherDetail Inserted Successfully
+2024-04-26 11:33:07.5284 INFO Success: Acc_Voucher Inserted Successfully
+2024-04-26 11:33:07.5284 INFO Success: Acc_VoucherDetail Inserted Successfully
+2024-04-26 11:33:25.9302 INFO Success: Acc_Voucher Inserted Successfully
+2024-04-26 11:33:25.9340 INFO Success: Acc_VoucherDetail Inserted Successfully
+2024-04-26 11:33:49.5260 INFO Success: Acc_Voucher Inserted Successfully
+2024-04-26 11:33:49.5334 INFO Success: Acc_VoucherDetail Inserted Successfully
+2024-04-26 11:34:09.1349 INFO Success: Acc_Voucher Inserted Successfully
+2024-04-26 11:34:09.1418 INFO Success: Acc_VoucherDetail Inserted Successfully
+2024-04-26 11:35:01.2564 INFO Success: Acc_Voucher Inserted Successfully
+2024-04-26 11:35:01.2650 INFO Success: Acc_VoucherDetail Inserted Successfully
+2024-04-26 12:36:24.4076 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 12:36:24.4076 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 12:36:24.4076 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 12:36:24.4076 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 12:36:29.3744 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 12:36:29.3903 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 12:36:29.3903 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 12:36:29.3903 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 12:36:32.3444 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 12:36:32.3444 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 12:36:32.3444 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 12:36:32.3444 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 12:36:50.3677 INFO Success: Acc_Voucher Updateed Successfully
+2024-04-26 12:36:50.3677 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 12:36:50.3717 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 12:36:50.3717 INFO Success: Acc_VoucherDetail Updateed Successfully
+2024-04-26 13:30:59.9048 INFO Success: Acc_VoucherType Inserted Successfully

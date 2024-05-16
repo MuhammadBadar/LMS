@@ -1,0 +1,82 @@
+2024-04-22 15:18:40.5594 ERROR MySql.Data.MySqlClient.MySqlException: Column 'ParentCoaCode' cannot be null
+2024-04-22 15:29:29.2265 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 21
+2024-04-22 15:43:59.1075 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 21
+2024-04-22 16:53:58.7769 ERROR MySql.Data.MySqlClient.MySqlException: Incorrect integer value: '' for column 'prm_parentCoaCode' at row 1
+2024-04-22 16:57:42.3812 ERROR MySql.Data.MySqlClient.MySqlException: Incorrect integer value: '' for column 'prm_parentCoaCode' at row 1
+2024-04-22 17:07:48.3468 ERROR MySql.Data.MySqlClient.MySqlException: Table 'restaurant.chartofaccount' doesn't exist
+2024-04-22 18:54:24.9073 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 18:56:14.0595 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'acc.CoaLevel' in 'where clause'
+2024-04-22 18:57:40.8558 ERROR MySql.Data.MySqlClient.MySqlException: Column 'ClientId' in where clause is ambiguous
+2024-04-22 18:58:34.8337 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'CoaLevel' in 'where clause'
+2024-04-22 18:59:19.2601 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'level.CoaLevel' in 'where clause'
+2024-04-22 18:59:53.9153 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'acc.CoaLevel' in 'where clause'
+2024-04-22 19:01:27.1391 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'acc.CoaLevel' in 'where clause'
+2024-04-22 19:01:28.2138 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'acc.CoaLevel' in 'where clause'
+2024-04-22 19:01:28.2370 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'acc.CoaLevel' in 'where clause'
+2024-04-22 19:01:29.9532 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'acc.CoaLevel' in 'where clause'
+2024-04-22 19:01:30.9421 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'acc.CoaLevel' in 'where clause'
+2024-04-22 19:01:31.9202 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'acc.CoaLevel' in 'where clause'
+2024-04-22 19:01:38.2881 ERROR MySql.Data.MySqlClient.MySqlException: Unknown column 'acc.ParentCoaDesc' in 'where clause'
+2024-04-22 19:05:40.5729 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:06:13.4610 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:06:26.7564 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:06:28.6406 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:06:30.7385 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:06:33.2367 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:06:37.7084 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:08:11.0371 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:08:29.9224 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:11:45.9332 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:13:11.2058 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:13:55.9227 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:39:27.3571 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:45:24.8851 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:46:03.6071 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:46:27.2264 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:47:16.5973 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 19:59:59.1541 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 20:06:56.8697 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 20:07:51.8640 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 20:09:31.9808 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 20:13:34.5447 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 20:19:27.3343 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 20:29:03.4236 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 21:58:09.0583 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%lev%''' at line 4
+2024-04-22 21:58:09.2655 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%le%''' at line 4
+2024-04-22 21:58:09.3613 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%leve%''' at line 4
+2024-04-22 21:58:08.6772 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%l%''' at line 4
+2024-04-22 22:01:31.8510 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%1%''' at line 4
+2024-04-22 22:01:57.1107 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%10%''' at line 4
+2024-04-22 22:02:51.4528 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '10-11''' at line 4
+2024-04-22 22:02:51.5752 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '10-11''' at line 4
+2024-04-22 22:25:47.3813 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '10-11''' at line 4
+2024-04-22 22:25:47.6451 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '10-11''' at line 4
+2024-04-22 22:26:56.6006 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '10-11''' at line 10
+2024-04-22 22:26:56.6906 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '10-11''' at line 10
+2024-04-22 22:33:11.4628 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%0%''' at line 10
+2024-04-22 23:09:53.4144 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '99''' at line 10
+2024-04-22 23:09:53.5290 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '99''' at line 10
+2024-04-22 23:11:19.4374 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '99''' at line 10
+2024-04-22 23:11:19.4945 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '99''' at line 10
+2024-04-22 23:11:30.1733 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:12:10.9182 ERROR MySql.Data.MySqlClient.MySqlException: Column 'CoaCode' in where clause is ambiguous
+2024-04-22 23:12:16.4427 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:12:58.6222 ERROR MySql.Data.MySqlClient.MySqlException: Parameter 'prm_clientId' has already been defined.
+2024-04-22 23:14:47.7629 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:17:21.1719 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:24:50.7791 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:26:24.9472 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:27:02.9432 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:27:17.6780 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:27:36.4756 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:27:57.0518 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:28:06.4744 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:28:32.6263 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:30:52.0960 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:31:09.5970 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:31:25.2287 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:31:53.1732 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:44:33.4529 INFO Success: Acc_ChartOfAccount Updateed Successfully
+2024-04-22 23:46:43.0287 ERROR MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.CoaCode as ParentCoaCode,
+			parentAcc.CoaDesc as ParentCoaDesc,
+			acc.CoaTy' at line 9

@@ -1,0 +1,2 @@
+2024-04-25 23:26:48.7221 ERROR MySql.Data.MySqlClient.MySqlException: PROCEDURE restaurant.ACC_Search_VoucherType does not exist
+2024-04-25 23:30:43.2756 ERROR MySql.Data.MySqlClient.MySqlException: PROCEDURE restaurant.ACC_Search_VoucherType does not exist

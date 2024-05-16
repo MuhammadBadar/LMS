@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "1AF1X6rZok76Y6NGrx5ob+njxFH1NGX8zfawy/hE8y4=",
+  "Source": "Restaurant.WebAPI",
+  "BasePath": "_content/Restaurant.WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Restaurant.WebAPI\\wwwroot",
+      "Source": "Restaurant.WebAPI",
+      "ContentRoot": "D:\\QST\\Projects\\Git\\Restaurant\\Back-End\\QAFastTrack.WebAPI\\wwwroot\\",
+      "BasePath": "_content/Restaurant.WebAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}

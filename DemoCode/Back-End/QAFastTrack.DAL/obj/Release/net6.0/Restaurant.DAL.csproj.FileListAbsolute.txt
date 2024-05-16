@@ -1,0 +1,15 @@
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\bin\Release\net6.0\Restaurant.DAL.deps.json
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\bin\Release\net6.0\Restaurant.DAL.dll
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\bin\Release\net6.0\Restaurant.DAL.pdb
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\bin\Release\net6.0\Restaurant.Core.dll
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\bin\Release\net6.0\Restaurant.Core.pdb
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\obj\Release\net6.0\Restaurant.DAL.csproj.AssemblyReference.cache
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\obj\Release\net6.0\Restaurant.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\obj\Release\net6.0\Restaurant.DAL.AssemblyInfoInputs.cache
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\obj\Release\net6.0\Restaurant.DAL.AssemblyInfo.cs
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\obj\Release\net6.0\Restaurant.DAL.csproj.CoreCompileInputs.cache
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\obj\Release\net6.0\Restaurant.DAL.csproj.CopyComplete
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\obj\Release\net6.0\Restaurant.DAL.dll
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\obj\Release\net6.0\refint\Restaurant.DAL.dll
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\obj\Release\net6.0\Restaurant.DAL.pdb
+D:\QST\Projects\Git\Restaurant\Back-End\QAFastTrack.DAL\obj\Release\net6.0\ref\Restaurant.DAL.dll
